@@ -1,5 +1,6 @@
 package com.ax.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ax.demo.dto.StudentDto;
 import com.ax.demo.entity.Student;
 import org.springframework.validation.annotation.Validated;
@@ -80,6 +81,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "/test3")
+    @ResponseBody
     public Object listParam(@RequestBody List<String> list) {
         return list;
     }
@@ -93,6 +95,24 @@ public class TestController {
         Student.builder().id(1).name("jim");
 
 
+    }
+
+
+    @RequestMapping(value = "/test4")
+    public Object test4 (@RequestParam String name) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("home", name);
+
+
+        return map;
+    }
+
+    @RequestMapping(value = "/test5", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String test5 (@RequestParam String name) {
+
+        return name;
     }
 
 
