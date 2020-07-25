@@ -56,7 +56,7 @@ public class TestController {
 
     @RequestMapping(value = "/test21")
     @ResponseBody
-    public Map<String, Object> test2_1(String name, Integer age,@RequestHeader Map header) {
+    public Map<String, Object> test2_1(String name, Integer age, @RequestHeader Map header) {
         StudentDto studentDto = new StudentDto();
         studentDto.setName(name);
         studentDto.setAge(age);
@@ -70,7 +70,7 @@ public class TestController {
 
     @RequestMapping(value = "/test22")
     @ResponseBody
-    public Map<String, Object> test22(@RequestBody StudentDto studentDto,@RequestHeader Map header) {
+    public Map<String, Object> test22(@RequestBody StudentDto studentDto, @RequestHeader Map header) {
 
         System.out.println("studentDto = " + studentDto);
         System.out.println("header = " + header);
@@ -99,7 +99,7 @@ public class TestController {
 
 
     @RequestMapping(value = "/test4")
-    public Object test4 (@RequestParam String name) {
+    public Object test4(@RequestParam String name) {
 
         Map<String, Object> map = new HashMap<>();
         map.put("home", name);
@@ -110,9 +110,15 @@ public class TestController {
 
     @RequestMapping(value = "/test5", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String test5 (@RequestParam String name) {
+    public String test5(@RequestParam String name) {
 
         return name;
+    }
+
+    @RequestMapping(value = "/test6")
+    public Object test6(@RequestBody Map jsonObject) {
+
+        return jsonObject;
     }
 
 

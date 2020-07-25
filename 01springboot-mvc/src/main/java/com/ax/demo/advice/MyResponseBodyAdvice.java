@@ -76,9 +76,9 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
         // 这里 会拦截html
         System.out.println("这里 会拦截html = " + object);
-        return AxResultEntity.Success(object);
+//        return AxResultEntity.Success(object);
 
-//        return object;
+        return object;
 
 //        return object;
     }
