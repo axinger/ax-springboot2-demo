@@ -1,4 +1,4 @@
-package com.ax.demo.util.axUtil;
+package com.ax.demo.error;
 
 public class TokenException extends Exception {
 

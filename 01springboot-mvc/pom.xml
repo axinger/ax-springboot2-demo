@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<!--    <modelVersion>4.0.0</modelVersion>-->
+  <!--  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+    </parent>-->
     <parent>
-        <groupId>com.ax</groupId>
         <artifactId>SpringBootDemo</artifactId>
+        <groupId>com.ax</groupId>
         <version>1.0.0</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ax</groupId>
     <artifactId>springboot-mvc</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-mvc</name>
-    <description>Demo project for Spring Boot</description>
+    <version>1.0.0</version>
     <!--因为要放入外部的tomcat中，因此更改默认打包方式(jar)为war包-->
     <packaging>war</packaging>
+    <name>01springboot-mvc</name>
+    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -43,11 +50,6 @@
             <artifactId>spring-boot-starter-webflux</artifactId>    <!--【改】增加“flux”四个字符-->
         </dependency>
 
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.7.0</version>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -97,7 +99,9 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
         </dependency>
+
 
         <!-- 图片处理类 -->
         <dependency>
@@ -111,12 +115,12 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <!--hutool工具包-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+            <version>5.2.5</version>
         </dependency>
-
 
 
         <!-- swagger -->
@@ -131,13 +135,11 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
+
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.7.0</version>
         </dependency>
 
     </dependencies>
@@ -148,7 +150,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>

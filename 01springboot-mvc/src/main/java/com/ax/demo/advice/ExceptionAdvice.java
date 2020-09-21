@@ -1,8 +1,9 @@
 package com.ax.demo.advice;
 
+
+import com.ax.demo.error.TokenException;
 import com.ax.demo.util.axUtil.AxResultEntity;
 import com.ax.demo.util.axUtil.AxResultStateEnum;
-import com.ax.demo.util.axUtil.TokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -68,10 +69,10 @@ public class ExceptionAdvice {
         }
 
 //        AccessDeniedException 局部代码无法返回,这里返回
-        if (exception instanceof org.springframework.security.access.AccessDeniedException) {
-            entity.setStateEnum(AxResultStateEnum.INVALID_ACCESS_DENIED);
-            return entity;
-        }
+//        if (exception instanceof org.springframework.security.access.AccessDeniedException) {
+//            entity.setStateEnum(AxResultStateEnum.INVALID_ACCESS_DENIED);
+//            return entity;
+//        }
 
 
 //        if (exception instanceof org.springframework.security.core.AuthenticationException) {
@@ -96,10 +97,12 @@ public class ExceptionAdvice {
     /**
      * 对方法参数校验异常处理方法
      */
+
     @ExceptionHandler(value = {
             MethodArgumentNotValidException.class,
-            BindException.class, /***/
-            MissingServletRequestParameterException.class,/**@RequestParam 校验*/
+            BindException.class,
+            /**@RequestParam 校验*/
+            MissingServletRequestParameterException.class,
     })
     public Object handlerNotValidException(Exception validException) {
 

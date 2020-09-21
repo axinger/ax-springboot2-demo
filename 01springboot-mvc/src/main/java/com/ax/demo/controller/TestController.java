@@ -1,6 +1,5 @@
 package com.ax.demo.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.ax.demo.dto.StudentDto;
 import com.ax.demo.entity.Student;
 import org.springframework.validation.annotation.Validated;
@@ -81,9 +80,20 @@ public class TestController {
     }
 
     @RequestMapping(value = "/test3")
-    @ResponseBody
-    public Object listParam(@RequestBody List<String> list) {
+    public Object test3(@RequestBody List<String> list) {
         return list;
+    }
+
+    @RequestMapping(value = "/test4",produces = {"application/json;charset=UTF-8"})
+    public Object test4() {
+        return "test4";
+    }
+
+    @RequestMapping(value = "/test5")
+    public Object test5() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", "test5");
+        return map;
     }
 
     public void init() {
@@ -95,30 +105,6 @@ public class TestController {
         Student.builder().id(1).name("jim");
 
 
-    }
-
-
-    @RequestMapping(value = "/test4")
-    public Object test4(@RequestParam String name) {
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("home", name);
-
-
-        return map;
-    }
-
-    @RequestMapping(value = "/test5", produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public String test5(@RequestParam String name) {
-
-        return name;
-    }
-
-    @RequestMapping(value = "/test6")
-    public Object test6(@RequestBody Map jsonObject) {
-
-        return jsonObject;
     }
 
 
