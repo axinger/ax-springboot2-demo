@@ -9,6 +9,7 @@ public class UIController {
     @RequestMapping(value = "/api")
     public String api() {
         System.out.println("swagger-ui.html");
-        return "redirect:swagger-ui.html";
+//        return "redirect:swagger-ui.html";
+        return "/swagger-ui/";
     }
 }

@@ -1,16 +1,14 @@
 package com.ax.demo.dto;
 
-
-
 import javax.validation.constraints.NotNull;
 
 public class StudentDto {
 
     @NotNull(message = "姓名不能空")
-    private  String name;
+    private String name;
 
     @NotNull(message = "年龄不能空")
-    private  Integer age;
+    private Integer age;
 
     public String getName() {
         return name;
