@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import java.lang.annotation.Annotation;
 
 @RestControllerAdvice
-public class ResultController implements ResponseBodyAdvice<Object> {
+public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
 //    private static final Class<? extends Annotation> ANNOTATION_TYPE = ResponseResultBody.class;
 
@@ -46,7 +46,8 @@ public class ResultController implements ResponseBodyAdvice<Object> {
         System.out.println("returnType = " + returnType);
         System.out.println("selectedContentType = " + selectedContentType);
 
-        System.out.println("instanceof = " + (body instanceof Resource));
+        System.out.println("body instanceof Resource = " + (body instanceof Resource));
+        System.out.println("body instanceof String = " + (body instanceof String));
         System.out.println("selectedContentType == MediaType.TEXT_HTML = " + (selectedContentType == MediaType.TEXT_HTML));
 
         if (body instanceof Resource) {
@@ -55,27 +56,27 @@ public class ResultController implements ResponseBodyAdvice<Object> {
         }
 
         if (selectedContentType == MediaType.TEXT_HTML) {
+            System.out.println("selectedContentType == MediaType.TEXT_HTML");
             return body;
         }
 
         //         防止重复包裹的问题出现
         if (body instanceof AxResultEntity) {
+            System.out.println("body instanceof AxResultEntity");
+            System.out.println("body = " + body);
             return body;
         }
 
         //处理返回值是String的情况
-//        if (body instanceof String) {
-//            AxResultEntity entity = new AxResultEntity();
-//            entity.setStateEnum(AxResultStateEnum.SUCCESS);
-//
-//            Map<String, Object> map = new HashMap<>();
-//            map.put("data", body);
-//
-//            entity.setBody(map);
-//            return  entity;
-//        }
+        if (body instanceof String) {
+            System.out.println("body instanceof String = " + body);
+            String string = (String)body;
+            AxResultEntity<String> entity  =AxResultEntity.Success(string);
+            return  entity;
+        }
 
         // 这里 会拦截html
+        System.out.println("都不是body = " + body);
         return AxResultEntity.Success(body);
 
 

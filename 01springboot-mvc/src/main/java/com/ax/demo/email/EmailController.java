@@ -19,7 +19,6 @@ public class EmailController {
     public Object sendEmail(@RequestParam(value = "email") @Email(message="错误的邮箱格式") String email){
 
         System.out.println("email = " + email);
-
         return emailService.sendTextEmail(email);
     }
 

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -90,12 +91,14 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
 
     @Override
+    //cannot be cast to java.lang.String
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
-
-        converters.add(stringHttpMessageConverterUtf8());
-
+        converters.clear();
         converters.add(0, fastJsonHttpMessageConverters());//fastJsonHttpMessageConverters 需要在第一个位置
+//        converters.add(1,stringHttpMessageConverterUtf8());
+
+//        converters.add(0, new MappingJackson2HttpMessageConverter());
     }
 
     @Override
