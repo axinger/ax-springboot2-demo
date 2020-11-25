@@ -3,12 +3,12 @@ package com.ax.demo.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -48,7 +48,7 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
         config.setSerializerFeatures(
                 SerializerFeature.DisableCircularReferenceDetect, //结果是否格式化,默认为false
 
-                SerializerFeature.PrettyFormat, //枚举值使用名称或tosting
+                SerializerFeature.PrettyFormat, //枚举值使用名称或toString
 
                 SerializerFeature.WriteEnumUsingName, // 保留map空的字段
 
@@ -85,20 +85,18 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
      * 添加拦截器
      */
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(@NotNull InterceptorRegistry registry) {
         super.addInterceptors(registry);
     }
 
 
     @Override
-    //cannot be cast to java.lang.String
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    public void configureMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         converters.clear();
-        converters.add(0, fastJsonHttpMessageConverters());//fastJsonHttpMessageConverters 需要在第一个位置
-//        converters.add(1,stringHttpMessageConverterUtf8());
+//        converters.add(stringHttpMessageConverterUtf8());
 
-//        converters.add(0, new MappingJackson2HttpMessageConverter());
+        converters.add(0, fastJsonHttpMessageConverters());//fastJsonHttpMessageConverters 需要在第一个位置
     }
 
     @Override
@@ -114,7 +112,7 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
      * @param registry
      */
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(@NotNull ResourceHandlerRegistry registry) {
 
         super.addResourceHandlers(registry);
 

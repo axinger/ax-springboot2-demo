@@ -1,7 +1,6 @@
 package com.ax.demo.email;
 
-import com.ax.demo.util.axUtil.AxResultEntity;
-import com.ax.demo.util.axUtil.AxResultStateEnum;
+import com.ax.demo.error.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -25,7 +24,7 @@ public class EmailService {
     private JavaMailSenderImpl javaMailSender;
 
     //简单邮件测试
-    public Object sendTextEmail(String email) {
+    public Object sendTextEmail(String email) throws ServiceException {
 
         System.out.println("username = " + username);
 
@@ -38,14 +37,13 @@ public class EmailService {
         try {
             javaMailSender.send(message);
             System.out.println("发送成功");
-//            return AxResultEntity.Success("发送成功");
             return "发送成功";
         } catch (MailException e) {
-            System.out.println("发送失败" + e.getMessage());
-//            AxResultEntity<String> entity = new AxResultEntity<>(AxResultStateEnum.INVALID.value(), e.getMessage());
-//            return entity;
+            System.out.println("e = " + e);
+            String msg = "邮件发送失败: " + e.getMessage();
+            throw new ServiceException(msg);
 
-            return "发送失败";
+//            return "发送失败" + e.getMessage();
         }
 
     }

@@ -1,6 +1,7 @@
 package com.ax.demo.advice;
 
 
+import com.ax.demo.error.ServiceException;
 import com.ax.demo.error.TokenException;
 import com.ax.demo.util.axUtil.AxResultEntity;
 import com.ax.demo.util.axUtil.AxResultStateEnum;
@@ -36,14 +37,13 @@ public class ExceptionAdvice {
 
         System.out.println("全局exception = " + exception);
 
-
         String method = request.getMethod();
         String uri = request.getRequestURI();
 
         Map<String, Object> map = new HashMap<>();
         map.put("method", method);
         map.put("uri", uri);
-
+        map.put("msg", exception.getMessage());
         AxResultEntity<Map> entity = new AxResultEntity<>();
         entity.setMsg(map.toString());
         entity.setBody(map);
@@ -58,13 +58,6 @@ public class ExceptionAdvice {
 
         if (exception instanceof HttpMediaTypeNotSupportedException) {
             entity.setStateEnum(AxResultStateEnum.INVALID_PARAMETER_FORMAT);
-            return entity;
-        }
-        /**
-         * token 无效
-         */
-        if (exception instanceof TokenException) {
-            entity.setStateEnum(AxResultStateEnum.TOKEN_INVALID);
             return entity;
         }
 
@@ -86,6 +79,37 @@ public class ExceptionAdvice {
     }
 
 
+    // 业务异常
+    @ExceptionHandler(value = {
+            ServiceException.class,
+            TokenException.class
+    })
+    @ResponseBody
+    public Object serviceException(HttpServletRequest request, HttpServletResponse response, Exception exception) {
+
+        System.out.println("全局exception 业务异常 = " + exception);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("method", request.getMethod());
+        map.put("uri", request.getRequestURI());
+        map.put("msg", exception.getMessage());
+        AxResultEntity<Map> entity = new AxResultEntity<>();
+        entity.setMsg(map.toString());
+        entity.setBody(map);
+
+        /*
+         * token 无效
+         */
+        if (exception instanceof TokenException) {
+            entity.setStateEnum(AxResultStateEnum.TOKEN_INVALID);
+        }
+        if (exception instanceof ServiceException) {
+            entity.setStateEnum(AxResultStateEnum.SERVICE_INVALID);
+        }
+
+        return entity;
+    }
+
 //    @ExceptionHandler(value = AccessDeniedException.class)
 //    public Object accessDeniedException(AccessDeniedException validException) {
 //        AxResultEntity<Object> entity = new AxResultEntity();
@@ -101,7 +125,6 @@ public class ExceptionAdvice {
     @ExceptionHandler(value = {
             MethodArgumentNotValidException.class,
             BindException.class,
-            /**@RequestParam 校验*/
             MissingServletRequestParameterException.class,
     })
     public Object handlerNotValidException(Exception validException) {
@@ -147,7 +170,7 @@ public class ExceptionAdvice {
 //            map.put(key, msg);
 //        }
 
-        AxResultEntity entity = new AxResultEntity();
+        AxResultEntity<String> entity = new AxResultEntity<>();
         entity.setStateEnum(AxResultStateEnum.FAILURE);
         entity.setMsg(map.toString());
 

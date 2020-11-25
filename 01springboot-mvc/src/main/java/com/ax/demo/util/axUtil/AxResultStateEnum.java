@@ -24,7 +24,7 @@ public enum AxResultStateEnum {
     INVALID_ANONYMOUS_NOT_SECURITY(HttpStatus.BAD_REQUEST.value(), "用来解决匿名用户访问无权限资源时的异常"),
     INVALID_USER_NOT_SECURITY(HttpStatus.BAD_REQUEST.value(), "用来解决认证过的用户访问无权限资源时的异常"),
     INVALID_ACCESS_DENIED(HttpStatus.BAD_REQUEST.value(), "无权限,不允许访问"),
-
+    SERVICE_INVALID(-300, "业务异常"),
 
     ;
 
