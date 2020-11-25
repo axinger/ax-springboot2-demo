@@ -7,12 +7,16 @@ import lombok.*;
 import java.io.Serializable;
 
 
+/**
+ * @author xing
+ */
 @Data
 @NoArgsConstructor                 //无参构造
 @AllArgsConstructor                //有参构造
 @ToString
 @Builder
 @ApiModel(value = "返回学生")
+
 public class Student implements Serializable {
 
 
