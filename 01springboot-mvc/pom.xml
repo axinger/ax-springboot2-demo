@@ -126,20 +126,7 @@
             <version>5.2.5</version>
         </dependency>
 
-
-  <!--      &lt;!&ndash; swagger &ndash;&gt;
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-        &lt;!&ndash; swagger-ui &ndash;&gt;
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.5.0</version>
-        </dependency>-->
-
+        <!--Swagger官方Starter-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>

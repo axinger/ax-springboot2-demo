@@ -45,6 +45,8 @@
         <module>13netty</module>
         <module>14elasticsearch</module>
         <module>15rabbitmq</module>
+        <module>16swaggerStarter</module>
+
     </modules>
 
     <!--统一管理jar包版本-->
@@ -203,6 +205,7 @@
                 <version>2.2.2.RELEASE</version>
             </dependency>
 
+            <!--springfox swagger官方Starter-->
             <!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -224,25 +227,7 @@
                 <version>2.4.0</version>
             </dependency>
 
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.5.0</version>
-            </dependency>
 
-            <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-common -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-common</artifactId>
-                <version>3.0.0</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>3.0.0</version>
-            </dependency>
 
             <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
             <dependency>
