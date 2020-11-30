@@ -1,5 +1,8 @@
 package com.ax.demo;
 
+import cn.hutool.core.util.ObjectUtil;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSet;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,10 +13,17 @@ class DemoApplicationTests {
 
     @Test
     void contextLoads() {
+
+
     }
 
+    @Test
+    void _Guava() {
 
-    public static void main(String[] args) {
+
+    }
+
+    public static <e> void main(String[] args) {
         /// valueOf 是 对应的名称
 //		String param= "FAST";
 		int param= 2;
@@ -62,6 +72,23 @@ class DemoApplicationTests {
         user.test2(() -> {
             System.out.println("先做这里事情-2222");
         });
+
+        String param1 = "AAA";
+        String name = Preconditions.checkNotNull(param1);
+        System.out.println(name); // AAA
+        String param2 = null;
+       try{
+           String name2 = Preconditions.checkNotNull(param2,"param2 is null"); // NullPointerException
+
+           System.out.println("name2 = " + name2);
+       }catch (Error e){
+
+       }
+        System.out.println("name2 = " +  ObjectUtil.isNotEmpty(param2));
+
+
+        ImmutableSet<String> immutableSet = ImmutableSet.of("a", "b", "c");
+        immutableSet.forEach(System.out::println);
     }
 
 
