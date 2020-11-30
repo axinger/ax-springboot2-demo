@@ -4,6 +4,7 @@ import com.ax.demo.ExcelService;
 import com.ax.demo.api.HomeAPI;
 import com.ax.demo.entity.Student;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import java.util.*;
  */
 @Api(value = "首页", tags = {"首页所有接口"})
 @RestController
+@Slf4j
 public class HomeController implements HomeAPI {
 /**
  * ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义,使用方式：
@@ -31,6 +33,7 @@ public class HomeController implements HomeAPI {
     public Object ipLogPageInfo() {
 
         System.out.println("home.do");
+        log.info("我在XXX 改了 {} 变量", "name");
 
         Map<String, Object> map = new HashMap<>();
         map.put("home", "首页");

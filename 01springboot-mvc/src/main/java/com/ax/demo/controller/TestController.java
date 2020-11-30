@@ -102,8 +102,11 @@ public class TestController {
         Student student = new Student(1, "jim");
 
 
-        Student.builder().id(1).name("jim");
+        Student.StudentBuilder st = Student.builder().id(1).name("jim");
 
+        st.name("name");
+        st.id(1);
+        st.build().getName();
 
     }
 

@@ -15,11 +15,20 @@ import java.io.File;
 
 @Service
 public class EmailService {
-
+    /// http://hutool.mydoc.io/#text_319499
     @Value(value = "${spring.mail.username}")
     private String username;
 
-
+    ///群发邮件，可选HTML或普通文本，可选多个附件：
+    /**
+     * ArrayList<String> tos = CollUtil.newArrayList(
+     * "person1@bbb.com",
+     * "person2@bbb.com",
+     * "person3@bbb.com",
+     * "person4@bbb.com");
+     * <p>
+     * MailUtil.send(tos, "测试", "邮件来自Hutool群发测试", false);
+     */
     @Autowired
     private JavaMailSenderImpl javaMailSender;
 
@@ -27,6 +36,8 @@ public class EmailService {
     public Object sendTextEmail(String email) throws ServiceException {
 
         System.out.println("username = " + username);
+///发送普通文本邮件，最后一个参数可选是否添加多个附件：
+///        MailUtil.send("hutool@foxmail.com", "测试", "邮件来自Hutool测试", false);
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setSubject("email测试");
@@ -51,6 +62,8 @@ public class EmailService {
 
     //复杂邮件测试
     public void sendComplicated() throws MessagingException {
+//        发送HTML格式的邮件并附带附件，最后一个参数可选是否添加多个附件：
+        /// MailUtil.send("hutool@foxmail.com", "测试", "<h1>邮件来自Hutool测试</h1>", true, FileUtil.file("d:/aaa.xml"));
         //创建一个复杂的消息邮件
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         //用MimeMessageHelper来包装MimeMessage

@@ -1,6 +1,8 @@
 package com.ax.demo.util.axUtil;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import lombok.Builder;
+import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,6 +10,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /** @author axing */
+@Data
+@Builder
 public class AxResultEntity<T> implements Serializable {
 
   private Integer code;
