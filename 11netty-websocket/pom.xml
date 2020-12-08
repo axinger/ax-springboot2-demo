@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>11springboot-netty-websocket</artifactId>
+    <artifactId>11netty-websocket</artifactId>
 
     <dependencies>
         <dependency>
