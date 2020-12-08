@@ -43,7 +43,7 @@
 
         <dependency>
             <groupId>com.ax</groupId>
-            <artifactId>05springboot-kafka-api</artifactId>
+            <artifactId>05kafka-api</artifactId>
             <version>1.0.0</version>
         </dependency>
 
