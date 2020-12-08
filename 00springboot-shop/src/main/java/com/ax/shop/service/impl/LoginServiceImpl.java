@@ -8,8 +8,8 @@ import com.ax.shop.mapper.IpLogMapper;
 import com.ax.shop.mapper.UserinfoMapper;
 import com.ax.shop.service.ILoginService;
 import com.ax.shop.util.axUtil.AxConst;
-import com.ax.shop.util.axUtil.AxResultStateEnum;
 import com.ax.shop.util.axUtil.AxResultEntity;
+import com.ax.shop.util.axUtil.AxResultStateEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

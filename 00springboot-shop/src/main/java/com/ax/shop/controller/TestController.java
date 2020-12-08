@@ -1,20 +1,18 @@
 package com.ax.shop.controller;
 
+import com.ax.shop.annotation.RequireToken;
 import com.ax.shop.dto.LoginDto;
 import com.ax.shop.dto.LoginListDto;
-import com.ax.shop.entity.valid.PasswordGroup;
 import com.ax.shop.entity.User;
+import com.ax.shop.entity.valid.PasswordGroup;
 import com.ax.shop.entity.valid.UsernameGroup;
 import com.ax.shop.entity.valid.ValidList;
-import com.ax.shop.annotation.RequireToken;
 import com.ax.shop.service.HttpClientService;
 import com.ax.shop.service.impl.RedisService;
-import com.ax.shop.util.axUtil.AxResultStateEnum;
 import com.ax.shop.util.axUtil.AxResultEntity;
+import com.ax.shop.util.axUtil.AxResultStateEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

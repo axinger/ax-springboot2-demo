@@ -1,16 +1,11 @@
 package com.ax.shop.security.controller;
 
 
-import com.ax.shop.entity.Userinfo;
 import com.ax.shop.service.IUserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.security.RolesAllowed;
 
 @RestController
 public class SecurityController {

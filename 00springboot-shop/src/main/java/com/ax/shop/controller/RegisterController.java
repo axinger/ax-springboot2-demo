@@ -1,9 +1,8 @@
 package com.ax.shop.controller;
 
-import com.ax.shop.entity.Userinfo;
 import com.ax.shop.service.IRegisterService;
-import com.ax.shop.util.axUtil.AxResultStateEnum;
 import com.ax.shop.util.axUtil.AxResultEntity;
+import com.ax.shop.util.axUtil.AxResultStateEnum;
 import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
