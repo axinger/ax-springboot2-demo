@@ -46,6 +46,7 @@
         <module>14elasticsearch</module>
         <module>15rabbitmq</module>
         <module>16swaggerStarter</module>
+        <module>17minio</module>
 
     </modules>
 
@@ -236,6 +237,11 @@
                 <version>30.0-jre</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>8.0.3</version>
+            </dependency>
 
         </dependencies>
 
