@@ -14,9 +14,7 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.ax</groupId>
-    <artifactId>springboot-mvc</artifactId>
+    <artifactId>01springboot-mvc</artifactId>
     <version>1.0.0</version>
     <!--因为要放入外部的tomcat中，因此更改默认打包方式(jar)为war包-->
     <packaging>war</packaging>

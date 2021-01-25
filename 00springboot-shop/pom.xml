@@ -7,8 +7,8 @@
 		<artifactId>SpringBootDemo</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<groupId>com.ax</groupId>
-	<artifactId>springboot-shop</artifactId>
+
+	<artifactId>00springboot-shop</artifactId>
 	<version>0.0.1</version>
 	<name>00springboot-shop</name>
 	<packaging>war</packaging>
