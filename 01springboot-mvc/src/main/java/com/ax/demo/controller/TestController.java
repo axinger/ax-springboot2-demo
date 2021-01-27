@@ -10,13 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * @author xing
+ */
 @RestController
 public class TestController {
 
     @RequestMapping(value = "/test0", produces = "application/json;charset=UTF-8")
     public Object test(@RequestBody StudentDto studentDto) {
         System.out.println("studentDto = " + studentDto);
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(2);
 
         map.put("date", studentDto);
 

@@ -152,16 +152,10 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -170,6 +164,7 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
+
 
         </plugins>
     </build>
