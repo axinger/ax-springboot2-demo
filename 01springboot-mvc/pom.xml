@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-<!--    <modelVersion>4.0.0</modelVersion>-->
-  <!--  <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
-        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
-    </parent>-->
+    <!--    <modelVersion>4.0.0</modelVersion>-->
+    <!--  <parent>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-parent</artifactId>
+          <version>2.2.5.RELEASE</version>
+          <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+      </parent>-->
     <parent>
         <artifactId>SpringBootDemo</artifactId>
         <groupId>com.ax</groupId>
@@ -47,7 +47,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>    <!--【改】增加“flux”四个字符-->
         </dependency>
-<!--        从SpringBoot 2.3.0之后放弃了默认对-->
+        <!--        从SpringBoot 2.3.0之后放弃了默认对-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -152,20 +152,24 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+            <!-- 打jar包时如果不配置该插件，打出来的jar包没有清单文件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!--使得devtools生效-->
-                    <fork>true</fork>
-                </configuration>
+                <version>2.4.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-
-
         </plugins>
     </build>
 
