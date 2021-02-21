@@ -8,6 +8,9 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author xing
+ */
 public class MyChannelHandlerPool {
 
     public MyChannelHandlerPool(){}

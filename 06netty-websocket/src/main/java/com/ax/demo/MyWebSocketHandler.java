@@ -8,6 +8,9 @@ import io.netty.handler.timeout.IdleStateEvent;
 
 import java.util.Map;
 
+/**
+ * @author xing
+ */
 public class MyWebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
     @Override
