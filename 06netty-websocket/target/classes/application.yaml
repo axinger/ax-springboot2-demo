@@ -1,8 +1,7 @@
 server:
   servlet:
     context-path: /
-
-  port: 8080
+  port: 8081
 
 spring:
   thymeleaf:
@@ -12,7 +11,7 @@ spring:
     enabled: true #启用MVC Thymeleaf视图分辨率
     template-resolver-order: 0
     suffix: .html
-#    prefix: classpath:/templates/ # 这个是配置模板路径的，默认就是templates，可不用配置
+    #    prefix: classpath:/templates/ # 这个是配置模板路径的，默认就是templates，可不用配置
     encoding: UTF-8
   mvc:
     static-path-pattern: /**

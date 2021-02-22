@@ -54,6 +54,7 @@
     <!--统一管理jar包版本-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <thymeleaf-spring5.version>3.0.2.RELEASE</thymeleaf-spring5.version>
     </properties>
 
     <!--子模块集成之后,提供作用,锁定版本+子modlue不用写groupid和version-->
@@ -64,7 +65,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.5.RELEASE</version>
+                <version>2.4.2</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -102,7 +103,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
-                <version>2.2.2.RELEASE</version>
+                <version>2.2.4.RELEASE</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
@@ -298,7 +299,16 @@
                 <artifactId>poi</artifactId>
                 <version>4.1.2</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.5</version>
+            </dependency>
+
+
         </dependencies>
+
 
     </dependencyManagement>
 
