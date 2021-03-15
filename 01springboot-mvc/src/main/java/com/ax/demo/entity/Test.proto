@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+
+message MessageUserLoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message MessageUserLoginResponse {
+  string access_token = 1;
+  string username = 2;
+}
