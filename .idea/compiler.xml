@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="12springcloud-payment" />
+        <module name="06netty-websocket" />
+        <module name="05kafka-consumer" />
+        <module name="06spring-websocket" />
+        <module name="08dubbo-provider" />
+        <module name="05kafka-consumer2" />
+        <module name="12springcloud-getaway-payment" />
+        <module name="14elasticsearch" />
+        <module name="16swaggerStarter" />
+        <module name="05kafka-api" />
+        <module name="17minio" />
+        <module name="18caffeine" />
+        <module name="07more-db" />
+        <module name="02springboot-noweb" />
+        <module name="13netty" />
+        <module name="09springsecurity-oauth" />
+        <module name="04springboot-jar" />
+        <module name="00springboot-shop" />
+        <module name="05kafka-producer" />
+        <module name="08dubbo-consumer" />
+        <module name="09springsecurity-content" />
+        <module name="08dubbo-interface" />
+        <module name="12springcloud-gateway-9527" />
+        <module name="06spring-websocket-stomp" />
+        <module name="15rabbitmq" />
+        <module name="06websocket" />
+        <module name="03springboot-war" />
+        <module name="12springcloud-order" />
+        <module name="01springboot-mvc" />
+        <module name="10Springboot-nginx" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="00springboot-shop" target="1.8" />
+      <module name="01springboot-mvc" target="1.8" />
+      <module name="02springboot-noweb" target="1.8" />
+      <module name="03springboot-war" target="1.8" />
+      <module name="04springboot-jar" target="1.8" />
+      <module name="05kafka-api" target="1.8" />
+      <module name="05kafka-consumer" target="1.8" />
+      <module name="05kafka-consumer2" target="1.8" />
+      <module name="05kafka-producer" target="1.8" />
+      <module name="06netty-websocket" target="1.8" />
+      <module name="06spring-websocket" target="1.8" />
+      <module name="06spring-websocket-stomp" target="1.8" />
+      <module name="06websocket" target="1.8" />
+      <module name="07more-db" target="1.8" />
+      <module name="08dubbo-consumer" target="1.8" />
+      <module name="08dubbo-interface" target="1.8" />
+      <module name="08dubbo-provider" target="1.8" />
+      <module name="09springsecurity-content" target="1.8" />
+      <module name="09springsecurity-oauth" target="1.8" />
+      <module name="10Springboot-nginx" target="1.8" />
+      <module name="12springcloud-gateway-9527" target="1.8" />
+      <module name="12springcloud-getaway-payment" target="1.8" />
+      <module name="12springcloud-order" target="1.8" />
+      <module name="12springcloud-payment" target="1.8" />
+      <module name="13netty" target="1.8" />
+      <module name="14elasticsearch" target="1.8" />
+      <module name="15rabbitmq" target="1.8" />
+      <module name="16swaggerStarter" target="1.8" />
+      <module name="17minio" target="9" />
+      <module name="18caffeine" target="9" />
+      <module name="SpringBootDemo" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="01springboot-mvc" options="-parameters" />
+      <module name="02springboot-noweb" options="-parameters" />
+      <module name="03springboot-war" options="-parameters" />
+      <module name="05kafka-api" options="-parameters" />
+      <module name="05kafka-consumer" options="-parameters" />
+      <module name="05kafka-consumer2" options="-parameters" />
+      <module name="05kafka-producer" options="-parameters" />
+      <module name="06netty-websocket" options="-parameters" />
+      <module name="06spring-websocket" options="-parameters" />
+      <module name="06spring-websocket-stomp" options="-parameters" />
+      <module name="06websocket" options="-parameters" />
+      <module name="08dubbo-consumer" options="-parameters" />
+      <module name="12springcloud-gateway-9527" options="-parameters" />
+      <module name="12springcloud-order" options="-parameters" />
+      <module name="13netty" options="-parameters" />
+      <module name="18caffeine" options="-parameters" />
+    </option>
+  </component>
+</project>
