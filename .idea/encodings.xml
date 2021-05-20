@@ -18,11 +18,12 @@
     <file url="file://$PROJECT_DIR$/05kafka-consumer2/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05kafka-producer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05kafka-producer/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/06netty-websocket/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/06netty-websocket/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/06spring-websocket-stomp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06spring-websocket-stomp/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/06spring-websocket/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/06spring-websocket/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06websocket-netty/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06websocket-netty/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/06websocket/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/06websocket/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/07more-db/src/main/java" charset="UTF-8" />

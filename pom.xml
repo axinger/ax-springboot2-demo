@@ -30,7 +30,7 @@
         <module>05kafka-producer</module>
         <module>06spring-websocket</module>
         <module>06spring-websocket-stomp</module>
-        <module>06netty-websocket</module>
+        <module>06websocket-netty</module>
         <module>06websocket</module>
         <module>07more-db</module>
         <module>08dubbo-consumer</module>
@@ -104,7 +104,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
-                <version>2.2.2.RELEASE</version>
+                <version>2.2.4.RELEASE</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->

@@ -11,10 +11,10 @@
       <module fileurl="file://$PROJECT_DIR$/05kafka-consumer/05kafka-consumer.iml" filepath="$PROJECT_DIR$/05kafka-consumer/05kafka-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/05kafka-consumer2/05kafka-consumer2.iml" filepath="$PROJECT_DIR$/05kafka-consumer2/05kafka-consumer2.iml" />
       <module fileurl="file://$PROJECT_DIR$/05kafka-producer/05kafka-producer.iml" filepath="$PROJECT_DIR$/05kafka-producer/05kafka-producer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/06netty-websocket/06netty-websocket.iml" filepath="$PROJECT_DIR$/06netty-websocket/06netty-websocket.iml" />
       <module fileurl="file://$PROJECT_DIR$/06spring-websocket/06spring-websocket.iml" filepath="$PROJECT_DIR$/06spring-websocket/06spring-websocket.iml" />
       <module fileurl="file://$PROJECT_DIR$/06spring-websocket-stomp/06spring-websocket-stomp.iml" filepath="$PROJECT_DIR$/06spring-websocket-stomp/06spring-websocket-stomp.iml" />
       <module fileurl="file://$PROJECT_DIR$/06websocket/06websocket.iml" filepath="$PROJECT_DIR$/06websocket/06websocket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06websocket-netty/06websocket-netty.iml" filepath="$PROJECT_DIR$/06websocket-netty/06websocket-netty.iml" />
       <module fileurl="file://$PROJECT_DIR$/07more-db/07more-db.iml" filepath="$PROJECT_DIR$/07more-db/07more-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/08dubbo-consumer/08dubbo-consumer.iml" filepath="$PROJECT_DIR$/08dubbo-consumer/08dubbo-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/08dubbo-interface/08dubbo-interface.iml" filepath="$PROJECT_DIR$/08dubbo-interface/08dubbo-interface.iml" />
