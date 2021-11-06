@@ -1,11 +1,9 @@
 package com.ax.demo.controller;
 
-import com.ax.demo.ExcelService;
 import com.ax.demo.api.HomeAPI;
 import com.ax.demo.entity.Student;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
@@ -25,9 +22,9 @@ import java.util.*;
 @RestController
 @Slf4j
 public class HomeController implements HomeAPI {
-/**
- * ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义,使用方式：
- */
+    /**
+     * ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义,使用方式：
+     */
 
     @Override
     public Object ipLogPageInfo() {
@@ -64,7 +61,7 @@ public class HomeController implements HomeAPI {
     @Override
     public List<Student> edit2(String bisKey, String title, String content) {
         List<Student> list = new ArrayList<>();
-        list.add(new Student(1,"jim"));
+        list.add(new Student(1, "jim"));
         return list;
     }
 
@@ -91,16 +88,6 @@ public class HomeController implements HomeAPI {
 //        modelAndView.addObject("port",request.getServerPort());
         modelAndView.addObject("port", port);
         return modelAndView;
-
-    }
-
-    @Autowired
-    ExcelService excelService;
-
-    @RequestMapping(value = "/excel")
-    public void excel(HttpServletResponse response) throws Exception {
-
-        excelService.exportExcel(response);
 
     }
 

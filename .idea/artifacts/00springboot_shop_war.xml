@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="插件.war">
+    <root id="archive" name="00springboot-shop.war">
       <element id="artifact" artifact-name="00springboot-shop:war exploded" />
     </root>
   </artifact>

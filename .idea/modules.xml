@@ -32,6 +32,7 @@
       <module fileurl="file://$PROJECT_DIR$/16swaggerStarter/16swaggerStarter.iml" filepath="$PROJECT_DIR$/16swaggerStarter/16swaggerStarter.iml" />
       <module fileurl="file://$PROJECT_DIR$/17minio/17minio.iml" filepath="$PROJECT_DIR$/17minio/17minio.iml" />
       <module fileurl="file://$PROJECT_DIR$/18caffeine/18caffeine.iml" filepath="$PROJECT_DIR$/18caffeine/18caffeine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/19springboot-redis/19springboot-redis.iml" filepath="$PROJECT_DIR$/19springboot-redis/19springboot-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringBootDemo.iml" filepath="$PROJECT_DIR$/.idea/SpringBootDemo.iml" />
     </modules>
   </component>

@@ -107,6 +107,7 @@
                 <version>2.2.4.RELEASE</version>
             </dependency>
 
+
             <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
             <dependency>
                 <groupId>io.netty</groupId>
@@ -289,7 +290,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.3.8</version>
+                <version>5.7.15</version>
             </dependency>
 
             <!--谷歌工具-->
@@ -318,6 +319,13 @@
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
                 <version>3.15.5</version>
+            </dependency>
+
+            <!--redisson是当前是最火的redis解决方案-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.16.4</version>
             </dependency>
 
 
