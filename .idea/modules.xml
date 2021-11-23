@@ -33,7 +33,8 @@
       <module fileurl="file://$PROJECT_DIR$/17minio/17minio.iml" filepath="$PROJECT_DIR$/17minio/17minio.iml" />
       <module fileurl="file://$PROJECT_DIR$/18caffeine/18caffeine.iml" filepath="$PROJECT_DIR$/18caffeine/18caffeine.iml" />
       <module fileurl="file://$PROJECT_DIR$/19springboot-redis/19springboot-redis.iml" filepath="$PROJECT_DIR$/19springboot-redis/19springboot-redis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/SpringBootDemo.iml" filepath="$PROJECT_DIR$/.idea/SpringBootDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ax_spring_boot_demo.iml" filepath="$PROJECT_DIR$/.idea/ax_spring_boot_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring5_demo/demo_spring5.iml" filepath="$PROJECT_DIR$/spring5_demo/demo_spring5.iml" />
     </modules>
   </component>
 </project>

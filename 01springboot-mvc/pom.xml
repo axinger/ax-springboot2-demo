@@ -11,14 +11,16 @@
     <parent>
         <artifactId>SpringBootDemo</artifactId>
         <groupId>com.ax</groupId>
-        <version>1.0.0</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>01springboot-mvc</artifactId>
     <version>1.0.0</version>
     <!--因为要放入外部的tomcat中，因此更改默认打包方式(jar)为war包-->
-    <packaging>war</packaging>
-    <name>01springboot-mvc</name>
+    <packaging>jar</packaging>
+    <!--    <name>01springboot-mvc</name>-->
+    <name>springbootdemo-0.0.1</name>
+
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -167,6 +169,7 @@
     </dependencies>
 
     <build>
+        <finalName>springbootdemo-0.0.1</finalName>
         <plugins>
             <!-- 打jar包时如果不配置该插件，打出来的jar包没有清单文件 -->
             <plugin>
@@ -181,6 +184,17 @@
                     </execution>
                 </executions>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 

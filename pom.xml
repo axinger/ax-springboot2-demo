@@ -4,14 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
+    <!--统一管理jar包版本-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <thymeleaf-spring5.version>3.0.2.RELEASE</thymeleaf-spring5.version>
+        <springboot.version>2.6.0</springboot.version>
+    </properties>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!--        <version>2.2.5.RELEASE</version>-->
-        <version>2.3.0.RELEASE</version>
+        <version>2.6.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
 
     <groupId>com.ax</groupId>
     <artifactId>SpringBootDemo</artifactId>
@@ -52,11 +59,6 @@
 
     </modules>
 
-    <!--统一管理jar包版本-->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <thymeleaf-spring5.version>3.0.2.RELEASE</thymeleaf-spring5.version>
-    </properties>
 
     <!--子模块集成之后,提供作用,锁定版本+子modlue不用写groupid和version-->
     <!--dependencyManagement 父类管理-->
@@ -66,8 +68,54 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.4.2</version>
+                <version>${springboot.version}</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--监控信息-->
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-cache</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
             <dependency>
@@ -95,17 +143,19 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.SR3</version>
+                <version>2020.0.4</version>
                 <type>pom</type>
-                <scope>import</scope>
+                <scope>runtime</scope>
             </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-oauth2 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
-                <version>2.2.4.RELEASE</version>
+                <version>2.2.5.RELEASE</version>
             </dependency>
+
 
 
             <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
@@ -123,20 +173,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--监控信息-->
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>2.2.5.RELEASE</version>
-            </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>2.3.0.RELEASE</version>
-            </dependency>
 
             <!--注册服务-->
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka-server -->
@@ -183,15 +220,17 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-                <version>2.2.2.RELEASE</version>
+                <version>3.0.4</version>
             </dependency>
+
 
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>2.2.2.RELEASE</version>
+                <version>3.0.5</version>
             </dependency>
+
 
 
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
@@ -233,19 +272,6 @@
                 <version>3.0.0</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-validation</artifactId>
-                <version>2.3.4.RELEASE</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-amqp</artifactId>
-                <version>2.4.0</version>
-            </dependency>
 
 
             <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -261,12 +287,7 @@
                 <version>8.0.3</version>
             </dependency>
             <!--=================缓存类=================-->
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-cache</artifactId>
-                <version>2.4.1</version>
-            </dependency>
+
 
             <!--本地缓存,而redis的服务器缓存-->
             <!-- https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine -->
@@ -330,12 +351,10 @@
 
 
         </dependencies>
-
-
     </dependencyManagement>
 
     <build>
-        <finalName>插件</finalName>
+<!--        <finalName>springbootdemo</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

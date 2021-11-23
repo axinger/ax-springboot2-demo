@@ -5,6 +5,7 @@ import com.ax.shop.entity.valid.UsernameGroup;
 
 import javax.validation.constraints.NotNull;
 
+
 /**
  * @author axing
  */
