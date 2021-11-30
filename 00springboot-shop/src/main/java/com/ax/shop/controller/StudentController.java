@@ -19,41 +19,41 @@ public class StudentController {
 
 
     @Autowired
-    private  StudentMapper studentMapper;
+    private StudentMapper studentMapper;
 
 
     @RequestMapping(value = "/student.do")
-    public void insetStudent(){
+    public void insetStudent() {
 
         int number = ThreadLocalRandom.current().nextInt(100);
-        
+
         Student student = new Student();
-        student.setName("jim"+ number);
+        student.setName("jim" + number);
         studentMapper.insertStudent(student);
 
 
     }
 
     @RequestMapping(value = "/students.do")
-    public void insetStudents(){
+    public void insetStudents() {
         List list = new ArrayList();
 
         {
 
             Student student = new Student();
-            student.setName("jim"+ ThreadLocalRandom.current().nextInt(100));
+            student.setName("jim" + ThreadLocalRandom.current().nextInt(100));
             list.add(student);
         }
         {
 
             Student student = new Student();
-            student.setName("jim"+ ThreadLocalRandom.current().nextInt(100));
+            student.setName("jim" + ThreadLocalRandom.current().nextInt(100));
             list.add(student);
         }
         {
 
             Student student = new Student();
-            student.setName("jim"+ ThreadLocalRandom.current().nextInt(100));
+            student.setName("jim" + ThreadLocalRandom.current().nextInt(100));
             list.add(student);
         }
         studentMapper.inserList(list);
@@ -62,9 +62,9 @@ public class StudentController {
 
     @RequestMapping(value = "/selectStudent.do")
     @Cacheable(value = "student")
-    public List<Student> select(){
+    public List<Student> select() {
 
-      List<Student> list =   studentMapper.selectAll();
+        List<Student> list = studentMapper.selectAll();
 
         System.out.println("list = " + list);
         return list;

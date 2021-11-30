@@ -28,18 +28,6 @@ public class Userinfo implements UserDetails {
         this.id = id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-
-    public void setAuthorities(List<UserRole> authorities) {
-        this.authorities = authorities;
-    }
-
     public int getUserType() {
         return userType;
     }
@@ -48,7 +36,6 @@ public class Userinfo implements UserDetails {
         this.userType = userType;
     }
 
-    //
     /**
      * 添加用户拥有的权限和角色
      *
@@ -59,14 +46,28 @@ public class Userinfo implements UserDetails {
         return authorities;
     }
 
+    public void setAuthorities(List<UserRole> authorities) {
+        this.authorities = authorities;
+    }
+
     @Override
     public String getPassword() {
         return password; //直接返回密码
     }
 
+    //
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**

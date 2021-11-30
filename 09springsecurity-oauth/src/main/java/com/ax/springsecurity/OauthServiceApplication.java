@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.ax.springsecurity.mapper")
 public class OauthServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OauthServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OauthServiceApplication.class, args);
+    }
 
 }

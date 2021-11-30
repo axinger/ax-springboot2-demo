@@ -1,0 +1,18 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: demo12-nacos-config #配置中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+      config: #配置中心
+        server-addr: http://localhost:8848
+        file-extension: yaml
+        group: DEV_GROUP
+        namespace: 952fffef-f006-4683-8e1b-19656dd3d3cc
+
+# ${name}-${active}.${spring.cloud.nacos.config.file-extension}
+# demo12-nacos-config-dev.yaml

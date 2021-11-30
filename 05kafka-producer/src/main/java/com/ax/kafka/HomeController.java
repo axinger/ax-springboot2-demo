@@ -55,8 +55,8 @@ public class HomeController {
     public String sendGroup() {
         for (int i = 0; i < 4; i++) {
             // 第二个参数指定分区，第三个参数指定消息键 分区优先
-            int i2 = i % 4 ;
-            log.info("partition = {}",i2);
+            int i2 = i % 4;
+            log.info("partition = {}", i2);
             ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", "hello group " + i);
             future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
                 @Override

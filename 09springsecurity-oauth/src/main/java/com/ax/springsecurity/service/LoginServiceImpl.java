@@ -14,10 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginServiceImpl implements ILoginService {
 
 
-
     @Override
     public Userinfo login(String username, String password, HttpServletRequest request) {
-
 
 
         Userinfo userinfo = null;
@@ -66,7 +64,6 @@ public class LoginServiceImpl implements ILoginService {
 
     @Override
     public void createAdmin() {
-
 
 
     }

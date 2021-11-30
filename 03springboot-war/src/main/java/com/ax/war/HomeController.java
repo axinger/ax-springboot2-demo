@@ -16,7 +16,7 @@ public class HomeController {
     public Object home() {
 
         Map<String, Object> map = new HashMap<>();
-        map.put("home","首页");
+        map.put("home", "首页");
         return map;
 
     }

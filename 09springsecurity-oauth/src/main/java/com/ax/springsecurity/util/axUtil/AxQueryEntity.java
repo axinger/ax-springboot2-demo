@@ -25,8 +25,8 @@ public class AxQueryEntity {
         this.pageSize = pageSize;
     }
 
-    public int getStart(){
-        return (currentPage -1)*pageSize;
+    public int getStart() {
+        return (currentPage - 1) * pageSize;
 
     }
 }

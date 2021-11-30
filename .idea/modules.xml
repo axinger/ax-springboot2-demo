@@ -22,19 +22,36 @@
       <module fileurl="file://$PROJECT_DIR$/09springsecurity-content/09springsecurity-content.iml" filepath="$PROJECT_DIR$/09springsecurity-content/09springsecurity-content.iml" />
       <module fileurl="file://$PROJECT_DIR$/09springsecurity-oauth/09springsecurity-oauth.iml" filepath="$PROJECT_DIR$/09springsecurity-oauth/09springsecurity-oauth.iml" />
       <module fileurl="file://$PROJECT_DIR$/10Springboot-nginx/10Springboot-nginx.iml" filepath="$PROJECT_DIR$/10Springboot-nginx/10Springboot-nginx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/12spring-cloud-dubbno/12spring-cloud-dubbno.iml" filepath="$PROJECT_DIR$/12spring-cloud-dubbno/12spring-cloud-dubbno.iml" />
       <module fileurl="file://$PROJECT_DIR$/12springcloud-gateway-9527/12springcloud-gateway-9527.iml" filepath="$PROJECT_DIR$/12springcloud-gateway-9527/12springcloud-gateway-9527.iml" />
       <module fileurl="file://$PROJECT_DIR$/12springcloud-getaway-payment/12springcloud-getaway-payment.iml" filepath="$PROJECT_DIR$/12springcloud-getaway-payment/12springcloud-getaway-payment.iml" />
       <module fileurl="file://$PROJECT_DIR$/12springcloud-order/12springcloud-order.iml" filepath="$PROJECT_DIR$/12springcloud-order/12springcloud-order.iml" />
       <module fileurl="file://$PROJECT_DIR$/12springcloud-payment/12springcloud-payment.iml" filepath="$PROJECT_DIR$/12springcloud-payment/12springcloud-payment.iml" />
-      <module fileurl="file://$PROJECT_DIR$/13netty/13netty.iml" filepath="$PROJECT_DIR$/13netty/13netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-all/13spring-cloud-alibaba-all.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-all/13spring-cloud-alibaba-all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-dubbo-consumer/13spring-cloud-alibaba-dubbo-consumer.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-dubbo-consumer/13spring-cloud-alibaba-dubbo-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-dubbo-interface/13spring-cloud-alibaba-dubbo-interface.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-dubbo-interface/13spring-cloud-alibaba-dubbo-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-dubbo-provider/13spring-cloud-alibaba-dubbo-provider.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-dubbo-provider/13spring-cloud-alibaba-dubbo-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-nacos-config/13spring-cloud-alibaba-nacos-config.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-nacos-config/13spring-cloud-alibaba-nacos-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-nacos-order/13spring-cloud-alibaba-nacos-order.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-nacos-order/13spring-cloud-alibaba-nacos-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-nacos-payment/13spring-cloud-alibaba-nacos-payment.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-nacos-payment/13spring-cloud-alibaba-nacos-payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-seata-account/13spring-cloud-alibaba-seata-account.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-seata-account/13spring-cloud-alibaba-seata-account.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-seata-order/13spring-cloud-alibaba-seata-order.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-seata-order/13spring-cloud-alibaba-seata-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-seata-storage/13spring-cloud-alibaba-seata-storage.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-seata-storage/13spring-cloud-alibaba-seata-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13spring-cloud-alibaba-sentinel/13spring-cloud-alibaba-sentinel.iml" filepath="$PROJECT_DIR$/13spring-cloud-alibaba-sentinel/13spring-cloud-alibaba-sentinel.iml" />
       <module fileurl="file://$PROJECT_DIR$/14elasticsearch/14elasticsearch.iml" filepath="$PROJECT_DIR$/14elasticsearch/14elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/15rabbitmq/15rabbitmq.iml" filepath="$PROJECT_DIR$/15rabbitmq/15rabbitmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/16swaggerStarter/16swaggerStarter.iml" filepath="$PROJECT_DIR$/16swaggerStarter/16swaggerStarter.iml" />
       <module fileurl="file://$PROJECT_DIR$/17minio/17minio.iml" filepath="$PROJECT_DIR$/17minio/17minio.iml" />
       <module fileurl="file://$PROJECT_DIR$/18caffeine/18caffeine.iml" filepath="$PROJECT_DIR$/18caffeine/18caffeine.iml" />
       <module fileurl="file://$PROJECT_DIR$/19springboot-redis/19springboot-redis.iml" filepath="$PROJECT_DIR$/19springboot-redis/19springboot-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/20netty/20netty.iml" filepath="$PROJECT_DIR$/20netty/20netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ax-hello-spring-boot-starter/ax-hello-spring-boot-starter.iml" filepath="$PROJECT_DIR$/ax-hello-spring-boot-starter/ax-hello-spring-boot-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ax-hello-spring-boot-starter-autoconfigure/ax-hello-spring-boot-starter-autoconfigure.iml" filepath="$PROJECT_DIR$/ax-hello-spring-boot-starter-autoconfigure/ax-hello-spring-boot-starter-autoconfigure.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ax_spring_boot_demo.iml" filepath="$PROJECT_DIR$/.idea/ax_spring_boot_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring5_demo/demo_spring5.iml" filepath="$PROJECT_DIR$/spring5_demo/demo_spring5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_SpringWebflux/demo_SpringWebflux.iml" filepath="$PROJECT_DIR$/demo_SpringWebflux/demo_SpringWebflux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_java/demo_java.iml" filepath="$PROJECT_DIR$/demo_java/demo_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_juc/demo_juc.iml" filepath="$PROJECT_DIR$/demo_juc/demo_juc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_spring5/demo_spring5.iml" filepath="$PROJECT_DIR$/demo_spring5/demo_spring5.iml" />
     </modules>
   </component>
 </project>

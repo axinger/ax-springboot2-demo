@@ -14,19 +14,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AnyUserDetailsService anyUserDetailsService;
+    @Autowired
+    private AnyUserDetailsService anyUserDetailsService;
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this.anyUserDetailsService);
-	}
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.anyUserDetailsService);
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/webjars/**", "/register", "/api/common/**", "/image/**").permitAll()
-				.anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/chat", true)
-				.permitAll().and().logout().permitAll().and().csrf().disable();
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/", "/webjars/**", "/register", "/api/common/**", "/image/**").permitAll()
+                .anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/chat", true)
+                .permitAll().and().logout().permitAll().and().csrf().disable();
+    }
 
 }

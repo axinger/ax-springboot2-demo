@@ -55,7 +55,6 @@ public class PaymentController {
     }
 
 
-
     @GetMapping(value = "/payment/timeout")
     @HystrixCommand(fallbackMethod = "getOrderPaymentTimeoutFall", commandProperties = {
             @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS,

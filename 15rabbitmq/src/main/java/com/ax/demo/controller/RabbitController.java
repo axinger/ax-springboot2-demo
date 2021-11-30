@@ -23,87 +23,81 @@ public class RabbitController {
 
     @Autowired
     private SimpleSender simpleSender;
+    @Autowired
+    private WorkSender workSender;
+    @Autowired
+    private FanoutSender fanoutSender;
+    @Autowired
+    private DirectSender directSender;
+    @Autowired
+    private TopicSender topicSender;
 
     @ApiOperation("简单模式")
     @RequestMapping(value = "/simple", method = RequestMethod.GET)
     @ResponseBody
     public Object simpleTest() {
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             simpleSender.send();
             ThreadUtil.sleep(1000);
         }
-        Map map = new HashMap<String,Object>(3);
-        map.put("success",true);
+        Map map = new HashMap<String, Object>(3);
+        map.put("success", true);
 
         return map;
     }
-
-
-    @Autowired
-    private WorkSender workSender;
 
     @ApiOperation("工作模式")
     @RequestMapping(value = "/work", method = RequestMethod.GET)
     @ResponseBody
     public Object workTest() {
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             workSender.send(i);
             ThreadUtil.sleep(1000);
         }
-        Map map = new HashMap<String,Object>(3);
-        map.put("success",true);
+        Map map = new HashMap<String, Object>(3);
+        map.put("success", true);
 
         return map;
     }
-
-
-    @Autowired
-    private FanoutSender fanoutSender;
 
     @ApiOperation("发布/订阅模式")
     @RequestMapping(value = "/fanout", method = RequestMethod.GET)
     @ResponseBody
     public Object fanoutTest() {
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             fanoutSender.send(i);
             ThreadUtil.sleep(1000);
         }
-        Map map = new HashMap<String,Object>(3);
-        map.put("success",true);
+        Map map = new HashMap<String, Object>(3);
+        map.put("success", true);
 
         return map;
     }
-
-    @Autowired
-    private DirectSender directSender;
 
     @ApiOperation("路由模式")
     @RequestMapping(value = "/direct", method = RequestMethod.GET)
     @ResponseBody
     public Object directTest() {
-        for(int i=0;i<11;i++){
+        for (int i = 0; i < 11; i++) {
             directSender.send(i);
             ThreadUtil.sleep(1000);
         }
-        Map map = new HashMap<String,Object>(3);
-        map.put("success",true);
+        Map map = new HashMap<String, Object>(3);
+        map.put("success", true);
 
         return map;
     }
-
-    @Autowired
-    private TopicSender topicSender;
 
     @ApiOperation("通配符模式")
     @RequestMapping(value = "/topic", method = RequestMethod.GET)
     @ResponseBody
     public Object topicTest() {
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             topicSender.send(i);
             ThreadUtil.sleep(1000);
         }
-        Map map = new HashMap<String,Object>(3);
-        map.put("success",true);
+        Map map = new HashMap<String, Object>(3);
+        map.put("success", true);
 
         return map;
     }

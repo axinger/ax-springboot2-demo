@@ -1,13 +1,10 @@
 $(function () {
 
     $('#registerBtn').click(function () {
-
-
         window.location.href = getContextPath("/registerPage.do");
-
     });
 
-
+//validate
     $('#login-form').validate({
 
         rules: {
@@ -59,55 +56,24 @@ $(function () {
          */
         submitHandler: function (form) {
 
-            //刷新页面,显示json数据
-            // form.submit(); //没有这一句表单不会提交
-            // $(form).ajaxForm(function() {
-            //
-            // });
-
             //不刷新页面,值提交form
             $(form).ajaxSubmit({
-
                 url: getContextPath("/login.do"),
                 type: "post",
                 dataType: "json",
                 success: function (data) {
-                    alert(data);
-                    alert(data.code);
 
-                    if (data.code == 200) {
-
-//                        $.messager.confirm("提示","登陆成功,点击确定跳转到个人中心",function() {
-                        /**直接进去静态页面*/
-// window.location.href="/home.html";
-                        
-                        // alert(JSON.stringify(data.data));
-
-                        window.localStorage.setItem('user', JSON.stringify(data.body));
-
-                        // var User = { "id":0 ,"userType":0 ,"username": "","password":"","token":""};
-
-
-                        // var user = JSON.parse(localStorage.getItem('user'));
-
-
-                        // alert(user.token);
-
-                        window.location.href=getContextPath("/home.page");
-
-//                        });
-
-                    } else {
+                    if (data.code != 200) {
                         $.messager.alert("提示", data.msg);
+                    } else {
+                        //     window.localStorage.setItem('user', JSON.stringify(data.body));
+
+                        // request.setRequestHeader("token","123");//指定Content-Disposition可以让前端获取
+                        //     window.location.href=getContextPath("/home.page");
+                        window.location.href = "/home.page";
                     }
                 }
             });
-
-//            $(form).ajaxSubmit({
-//                url:"/home.page",
-//                type:"get",
-////                dataType:"json",
-//            });
         },
 
     });

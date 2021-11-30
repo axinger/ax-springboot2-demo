@@ -2,8 +2,10 @@ package com.ax.demo.controller;
 
 import com.ax.demo.api.HomeAPI;
 import com.ax.demo.entity.Student;
+import com.ax.hello.service.HelloService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,11 @@ import java.util.*;
 @RestController
 @Slf4j
 public class HomeController implements HomeAPI {
+    @Value("${server.port}")
+    private String port;
+    @Autowired
+    private HelloService helloService;
+
     /**
      * ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义,使用方式：
      */
@@ -52,7 +59,6 @@ public class HomeController implements HomeAPI {
 
     }
 
-
     @Override
     public Student edit(String bisKey, String title, String content) {
         return new Student();
@@ -65,18 +71,12 @@ public class HomeController implements HomeAPI {
         return list;
     }
 
-
     @RequestMapping(value = "/home.page")
-    public Object ipLogPageInfo1() {
-
+    public ModelAndView home_html() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("home");
         return modelAndView;
-
     }
-
-    @Value("${server.port}")
-    private String port;
 
     @RequestMapping(value = {"/", "/hi", "/index.html"})
     public ModelAndView index(HttpServletRequest request) {
@@ -90,7 +90,6 @@ public class HomeController implements HomeAPI {
         return modelAndView;
 
     }
-
 
     @RequestMapping(value = "/sleep")
     public Object do2(@RequestParam(value = "time") long time) throws InterruptedException {
@@ -107,7 +106,6 @@ public class HomeController implements HomeAPI {
 
     }
 
-
     @RequestMapping(value = "/video")
     public Object video() {
 
@@ -121,8 +119,15 @@ public class HomeController implements HomeAPI {
 
         modelAndView.addObject("path", videoPath);
 
-
         return modelAndView;
 
     }
+
+    @RequestMapping(value = "/hello")
+    public Object hello() {
+
+        return helloService.sayHello("jim");
+    }
+
+
 }

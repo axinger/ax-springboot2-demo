@@ -1,6 +1,5 @@
 package com.ax.demo.module;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.ax.demo.service.ChatConstants;
 import lombok.*;
 
@@ -17,20 +16,20 @@ public class ChatMessage implements Serializable {
     //发送消息则
     private UserInfo from;
 
-	//接收者列表
-	private Map<String, UserInfo> to;
+    //接收者列表
+    private Map<String, UserInfo> to;
 
     //发送内容
     private String message;
 
     private Date createTime;
 
-	public ChatMessage(UserInfo from,String message) {
-		this.from = from;
-		this.message = message;
-		this.to = ChatConstants.onlines;
-		this.createTime = new Date();
-	}
+    public ChatMessage(UserInfo from, String message) {
+        this.from = from;
+        this.message = message;
+        this.to = ChatConstants.onlines;
+        this.createTime = new Date();
+    }
 
 
 }

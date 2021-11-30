@@ -1,5 +1,4 @@
-
-spring:                        # 等待连接获取的最大超时时间
+spring: # 等待连接获取的最大超时时间
   kafka:
     # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
     bootstrap-servers: localhost:9092

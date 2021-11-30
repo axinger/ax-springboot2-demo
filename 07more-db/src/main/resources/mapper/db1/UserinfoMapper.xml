@@ -110,7 +110,9 @@
     <!--注册获得是否已经有了-->
     <select id="getCountByusername" resultType="int">
 
-        SELECT COUNT(id) FROM t_userinfo WHERE username=#{username}
+        SELECT COUNT(id)
+        FROM t_userinfo
+        WHERE username = #{username}
     </select>
 
     <!--按照名username查找-->
@@ -152,7 +154,9 @@
     </resultMap>
 
     <select id="selectUserWithRelo" resultMap="userAndReloResultMap">
-       SELECT u.*, r.id as rid ,r.role FROM t_userinfo u LEFT JOIN t_user_role r ON u.id=r.userid AND  u.id=#{id}
+        SELECT u.*, r.id as rid, r.role
+        FROM t_userinfo u
+                 LEFT JOIN t_user_role r ON u.id = r.userid AND u.id = #{id}
     </select>
 
 

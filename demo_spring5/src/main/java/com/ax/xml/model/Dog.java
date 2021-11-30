@@ -9,12 +9,12 @@ public class Dog {
         return name;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {

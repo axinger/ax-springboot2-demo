@@ -9,7 +9,6 @@ import com.ax.demo.util.AXDateUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileOutputStream;
@@ -19,10 +18,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.*;
-
-
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -32,7 +29,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ExcelService2 {
-
 
 
     public void demoExcel(HttpServletResponse response) throws IOException {

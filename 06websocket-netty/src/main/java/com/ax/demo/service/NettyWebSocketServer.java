@@ -73,7 +73,7 @@ public class NettyWebSocketServer {
      * @param port
      */
     public void start(int port) {
-        log.info("=================Netty 端口启动:{}==================",port);
+        log.info("=================Netty 端口启动:{}==================", port);
 
         /**
          * Future

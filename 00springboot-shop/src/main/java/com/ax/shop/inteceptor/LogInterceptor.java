@@ -2,18 +2,20 @@ package com.ax.shop.inteceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-* 用于记录日志，在每次请求之前，打印请求的地址和参数，方便调试
-*/
+ * 用于记录日志，在每次请求之前，打印请求的地址和参数，方便调试
+ */
 
-public class LogInterceptor extends HandlerInterceptorAdapter {
+public class LogInterceptor implements HandlerInterceptor {
 
-   /** 记录日志 */
+    /**
+     * 记录日志
+     */
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
@@ -31,6 +33,6 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 //        }
 //        logger.info(sb.toString());
 
-        return super.preHandle(request, response, handler);
+        return true;
     }
 }

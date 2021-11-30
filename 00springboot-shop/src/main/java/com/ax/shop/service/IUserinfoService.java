@@ -16,9 +16,13 @@ public interface IUserinfoService {
 
     Userinfo selectUserWithRelo(long id);
 
-//        @Cacheable(value = RedisService.REDIS_VALUE_USERINFO,sync=true)
+    //        @Cacheable(value = RedisService.REDIS_VALUE_USERINFO,sync=true)
     @Cacheable(value = RedisService.REDIS_VALUE_USERINFO, sync = true)
     List<Userinfo> getAllUserinfo();
 
     List<Userinfo> getAllUserinfoWithRedis();
+
+
+    int insert(Userinfo record);
+
 }

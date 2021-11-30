@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SecurityController {
 
+    @Autowired
+    UserinfoMapper userinfoMapper;
+
     @RequestMapping("/code")
     public String code(String code) { // token =1 才能访问
         System.out.println("code = " + code);
@@ -17,15 +20,12 @@ public class SecurityController {
         return "Hello,World!";
     }
 
-    @Autowired
-    UserinfoMapper userinfoMapper;
-
     @RequestMapping("/test/userinfo")
     public Object userinfo(String username) { // token =1 才能访问
         System.out.println("username = " + username);
 
 //        Userinfo userinfo = userinfoMapper.selectUserAndReloByName(username);
-        Userinfo userinfo =  userinfoMapper.selectUserWithRelo(2L);
+        Userinfo userinfo = userinfoMapper.selectUserWithRelo(2L);
         System.out.println("userinfo = " + userinfo);
         return userinfo;
     }

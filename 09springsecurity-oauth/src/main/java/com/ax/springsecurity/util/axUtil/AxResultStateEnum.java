@@ -42,11 +42,11 @@ public enum AxResultStateEnum {
         this.reasonPhrase = reasonPhrase;
     }
 
-    public Integer value(){
+    public Integer value() {
         return value;
     }
 
-    public String reasonPhrase(){
+    public String reasonPhrase() {
         return reasonPhrase;
     }
 }

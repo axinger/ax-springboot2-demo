@@ -1,16 +1,17 @@
 package com.ax.shop.controller;
 
 import com.ax.shop.dto.LoginDto;
-import com.ax.shop.entity.valid.PasswordGroup;
-import com.ax.shop.entity.valid.UsernameGroup;
 import com.ax.shop.service.ILoginService;
 import com.ax.shop.util.axUtil.AxResultEntity;
 import com.ax.shop.util.axUtil.AxResultStateEnum;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.ax.shop.util.error.TokenException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,45 +20,34 @@ import java.util.*;
 /**
  * @author axing
  */
-@Api(tags = "用户接口")
-@RestController
+//@Api(tags = "用户接口")
+@Controller
 public class LoginController extends BaseController {
 
     @Autowired
     private ILoginService loginService;
 
-    @ApiOperation(value = "登录请求", notes = "返回json数据")
-    @RequestMapping(value = "/1/login.do")
+
+    @GetMapping(value = "/login.do")
+    public String loginHtml() {
+        return "login";
+    }
+
+
+    //@ApiOperation(value = "登录请求", notes = "返回json数据")
+    @RequestMapping(value = "/login.do")
     @ResponseBody
     public Object login(@RequestParam(value = "username") String username,
-                        @RequestParam(value = "password") String password) {
+                        @RequestParam(value = "password") String password) throws TokenException {
 
-        System.out.println("username = " + username);
+        System.out.println("登录顺序: login.do username = " + username);
 
-        Object object = this.loginService.loginState(username, password, this.request);
-
-        System.out.println("object = " + object);
-
-        return object;
-
-
-    }
-
-    @GetMapping(value = "/2/login.do")
-    public Object login(@Validated({UsernameGroup.class, PasswordGroup.class}) LoginDto loginDto) {
-
-
-        System.out.println("username = " + loginDto.getUsername());
-
-        Object object = this.loginService.loginState(loginDto.getUsername(), loginDto.getPassword(), this.request);
+        Object object = this.loginService.login(username, password, this.request);
 
         System.out.println("object = " + object);
 
         return object;
-
     }
-
-
 
     @GetMapping(value = "/login22.do")
     public Object login22(@Validated LoginDto loginEntity) {

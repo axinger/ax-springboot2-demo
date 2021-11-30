@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author axing
  */
@@ -18,7 +19,7 @@ public class BaseController {
     protected HttpServletResponse response;
 
 
-    public String getErrors(Exception e){
+    public String getErrors(Exception e) {
         StringBuilder errors = new StringBuilder();
         StackTraceElement[] stes = e.getStackTrace();
         for (StackTraceElement ste : stes) {

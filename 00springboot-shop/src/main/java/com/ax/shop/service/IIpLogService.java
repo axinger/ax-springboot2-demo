@@ -4,7 +4,6 @@ import com.ax.shop.entity.IpLog;
 import com.ax.shop.query.IpLogQueryObject;
 import com.ax.shop.service.impl.RedisService;
 import com.ax.shop.util.axUtil.AxPageResultEntity;
-import com.ax.shop.util.axUtil.AxResultEntity;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,9 +23,6 @@ public interface IIpLogService {
      * @return AxPageResultEntity
      */
     AxPageResultEntity query(IpLogQueryObject queryObject);
-
-    @Cacheable(value = RedisService.REDIS_VALUE_IPLOG)
-    AxResultEntity getByKeyResultEntity(Long id);
 
     @Cacheable(value = RedisService.REDIS_VALUE_IPLOG)
     IpLog getByKey(Long id);

@@ -16,7 +16,6 @@ import java.io.Serializable;
 @ToString
 @Builder
 @ApiModel(value = "返回学生")
-
 public class Student implements Serializable {
 
 

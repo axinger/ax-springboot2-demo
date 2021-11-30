@@ -24,19 +24,17 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisService implements IRedisService {
 
+    public final static String REDIS_VALUE_IPLOG = "iplog_p0";
+    public final static String REDIS_VALUE_USERINFO = "userinfo";
     @Autowired
     private RedisTemplate redisTemplate;
-
-
-    public final static String REDIS_VALUE_IPLOG = "iplog_p0";
-
-    public final static String REDIS_VALUE_USERINFO = "userinfo";
 
 
     /**
      * RedisTemplate的key和value可以是任意类型的数据，
      * 但是StringRedisTemplate的key和value只能是String，
      * */
+
     /**
      * 写入缓存
      *
@@ -85,36 +83,35 @@ public class RedisService implements IRedisService {
 
         boolean result = false;
 
-        List<Userinfo> list = ( List<Userinfo> )redisTemplate.opsForValue().get(key);
+        List<Userinfo> list = (List<Userinfo>) redisTemplate.opsForValue().get(key);
         try {
 
             // 双重检测锁
-            if (null==list){
-                synchronized (this){
+            if (null == list) {
+                synchronized (this) {
                     // 在redis中获取
-                    list= ( List<Userinfo> )redisTemplate.opsForValue().get(key);
-                    if (null==list){
+                    list = (List<Userinfo>) redisTemplate.opsForValue().get(key);
+                    if (null == list) {
                         System.out.println("查询数据库------------");
 
                         list = (List<Userinfo>) callable.call();
 
-                        redisTemplate.opsForValue().set(key,list);
+                        redisTemplate.opsForValue().set(key, list);
                         result = true;
-                    }else {
+                    } else {
                         System.out.println("查询redis缓存------------");
                     }
                 }
-            }else{
+            } else {
                 System.out.println("查询redis缓存------------");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             return list;
         }
         return list;
     }
-
 
 
     /**

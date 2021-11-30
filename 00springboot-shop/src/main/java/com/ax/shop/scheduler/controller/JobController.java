@@ -16,151 +16,136 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-* @ClassName: JobController
-* @Description: TODO()
-* @author lixin(1309244704@qq.com)
-* @date 2018年8月15日 上午10:02:00
-* @version V1.0
-*/
+ * @author lixin(1309244704 @ qq.com)
+ * @version V1.0
+ * @ClassName: JobController
+ * @Description: TODO()
+ * @date 2018年8月15日 上午10:02:00
+ */
 @Controller
 @RequestMapping(value = "/job")
 public class JobController extends BaseController {
 
 
-	@Autowired
-	private IJobAndTriggerService jobAndTriggerService;
+    private static Logger log = LoggerFactory.getLogger(JobController.class);
+    @Autowired
+    private IJobAndTriggerService jobAndTriggerService;
 
-	private static Logger log = LoggerFactory.getLogger(JobController.class);
+    /**
+     * @param jobClassName   类名
+     * @param jobGroupName   组名
+     * @param cronExpression 表达式，如：0/5 * * * * ? (每隔5秒)
+     * @Title: addJob
+     * @Description: TODO(添加Job)
+     */
+    @RequestMapping(value = "/add")
+    public @ResponseBody
+    ResponseEntity addJob(
+            @RequestParam(value = "jobClassName") String jobClassName,
+            @RequestParam(value = "jobGroupName") String jobGroupName,
+            @RequestParam(value = "cronExpression") String cronExpression,
+            HttpServletResponse response) {
 
+        try {
+            System.out.println("jobClassName1 = " + jobClassName);
 
+            Class<?> class1 = Class.forName(jobClassName);
+            System.out.println("class122 = " + class1);
 
-	/**
-	 * @Title: addJob
-	 * @Description: TODO(添加Job)
-	 * @param jobClassName
-	 *            类名
-	 * @param jobGroupName
-	 *            组名
-	 * @param cronExpression
-	 *            表达式，如：0/5 * * * * ? (每隔5秒)
-	 */
-	@RequestMapping(value = "/add")
-	public @ResponseBody
-	ResponseEntity addJob(
-			@RequestParam(value = "jobClassName") String jobClassName,
-			@RequestParam(value = "jobGroupName") String jobGroupName,
-			@RequestParam(value = "cronExpression") String cronExpression,
-			HttpServletResponse response){
+            jobAndTriggerService.addJob(jobClassName, jobGroupName, cronExpression);
+            return ResponseEntity.SUCCESS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.FAILURE(e.getMessage());
+        }
+    }
 
-		try {
-			System.out.println("jobClassName1 = " + jobClassName);
-
-			Class<?> class1 = Class.forName(jobClassName);
-			System.out.println("class122 = " + class1);
-
-			jobAndTriggerService.addJob(jobClassName, jobGroupName, cronExpression);
-			return ResponseEntity.SUCCESS();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.FAILURE(e.getMessage());
-		}
-	}
-
-	/**
-	 * @Title: pauseJob
-	 * @Description: TODO(暂停Job)
-	 * @param jobClassName
-	 *            类名
-	 * @param jobGroupName
-	 *            组名
-	 */
-	@RequestMapping(value = "/pause", method = RequestMethod.POST)
-	public @ResponseBody
+    /**
+     * @param jobClassName 类名
+     * @param jobGroupName 组名
+     * @Title: pauseJob
+     * @Description: TODO(暂停Job)
+     */
+    @RequestMapping(value = "/pause", method = RequestMethod.POST)
+    public @ResponseBody
     ResponseEntity pauseJob(
-			@RequestParam(value = "jobClassName") String jobClassName,
-			@RequestParam(value = "jobGroupName") String jobGroupName,
-			HttpServletResponse response) {
-		try {
-			jobAndTriggerService.pauseJob(jobClassName, jobGroupName);
-			return ResponseEntity.SUCCESS();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.FAILURE(e.getMessage());
-		}
-	}
+            @RequestParam(value = "jobClassName") String jobClassName,
+            @RequestParam(value = "jobGroupName") String jobGroupName,
+            HttpServletResponse response) {
+        try {
+            jobAndTriggerService.pauseJob(jobClassName, jobGroupName);
+            return ResponseEntity.SUCCESS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.FAILURE(e.getMessage());
+        }
+    }
 
-	/**
-	 * @Title: resumeJob
-	 * @Description: TODO(恢复Job)
-	 * @param jobClassName
-	 *            类名
-	 * @param jobGroupName
-	 *            组名
-	 */
-	@RequestMapping(value = "/resume", method = RequestMethod.POST)
-	public @ResponseBody
+    /**
+     * @param jobClassName 类名
+     * @param jobGroupName 组名
+     * @Title: resumeJob
+     * @Description: TODO(恢复Job)
+     */
+    @RequestMapping(value = "/resume", method = RequestMethod.POST)
+    public @ResponseBody
     ResponseEntity resumeJob(
-			@RequestParam(value = "jobClassName") String jobClassName,
-			@RequestParam(value = "jobGroupName") String jobGroupName,
-			HttpServletResponse response) {
-		try {
-			jobAndTriggerService.resumejob(jobClassName, jobGroupName);
-			return ResponseEntity.SUCCESS();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.FAILURE(e.getMessage());
-		}
-	}
+            @RequestParam(value = "jobClassName") String jobClassName,
+            @RequestParam(value = "jobGroupName") String jobGroupName,
+            HttpServletResponse response) {
+        try {
+            jobAndTriggerService.resumejob(jobClassName, jobGroupName);
+            return ResponseEntity.SUCCESS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.FAILURE(e.getMessage());
+        }
+    }
 
-	/**
-	 * @Title: rescheduleJob
-	 * @Description: TODO(重新设置Job)
-	 * @param jobClassName
-	 *            类名
-	 * @param jobGroupName
-	 *            组名
-	 * @param cronExpression
-	 *            表达式
-	 */
-	@RequestMapping(value = "/reschedule", method = RequestMethod.POST)
-	public @ResponseBody
+    /**
+     * @param jobClassName   类名
+     * @param jobGroupName   组名
+     * @param cronExpression 表达式
+     * @Title: rescheduleJob
+     * @Description: TODO(重新设置Job)
+     */
+    @RequestMapping(value = "/reschedule", method = RequestMethod.POST)
+    public @ResponseBody
     ResponseEntity rescheduleJob(
-			@RequestParam(value = "jobClassName") String jobClassName,
-			@RequestParam(value = "jobGroupName") String jobGroupName,
-			@RequestParam(value = "cronExpression") String cronExpression,
-			HttpServletResponse response) {
-		try {
-			
-			jobAndTriggerService.updateJob(jobClassName, jobGroupName, cronExpression);
-			return ResponseEntity.SUCCESS();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.FAILURE(e.getMessage());
-		}
-	}
+            @RequestParam(value = "jobClassName") String jobClassName,
+            @RequestParam(value = "jobGroupName") String jobGroupName,
+            @RequestParam(value = "cronExpression") String cronExpression,
+            HttpServletResponse response) {
+        try {
 
-	/**
-	 * @Title: deleteJob
-	 * @Description: TODO(删除Job)
-	 * @param jobClassName
-	 *            类名
-	 * @param jobGroupName
-	 *            表达式
-	 */
-	@RequestMapping(value = "/del", method = RequestMethod.POST)
-	public @ResponseBody
+            jobAndTriggerService.updateJob(jobClassName, jobGroupName, cronExpression);
+            return ResponseEntity.SUCCESS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.FAILURE(e.getMessage());
+        }
+    }
+
+    /**
+     * @param jobClassName 类名
+     * @param jobGroupName 表达式
+     * @Title: deleteJob
+     * @Description: TODO(删除Job)
+     */
+    @RequestMapping(value = "/del", method = RequestMethod.POST)
+    public @ResponseBody
     ResponseEntity deleteJob(@RequestParam(value = "jobClassName") String jobClassName,
-							 @RequestParam(value = "jobGroupName") String jobGroupName,
+                             @RequestParam(value = "jobGroupName") String jobGroupName,
                              HttpServletResponse response) {
-		try {
-			
-			jobAndTriggerService.deleteJob(jobClassName, jobGroupName);
-			return ResponseEntity.SUCCESS();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.FAILURE(e.getMessage());
-		}
-	}
+        try {
+
+            jobAndTriggerService.deleteJob(jobClassName, jobGroupName);
+            return ResponseEntity.SUCCESS();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.FAILURE(e.getMessage());
+        }
+    }
 
 
 }

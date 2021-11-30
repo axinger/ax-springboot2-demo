@@ -4,7 +4,7 @@ import com.ax.xml.dao.UserDao;
 
 public class UserService {
 
-   private UserDao userDao;
+    private UserDao userDao;
 
     public void add() {
         userDao.update();

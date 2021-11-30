@@ -16,24 +16,24 @@ import java.util.Map;
 
 @Component
 public class MyLoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
- 
-  private Logger logger = LoggerFactory.getLogger(getClass());
- 
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
 //  @Autowired
 //  private ObjectMapper objectMapper;
- 
-  @Override
-  public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                      AuthenticationException exception) throws IOException, ServletException {
- 
-    logger.info("登录失败"+exception.getMessage());
-    response.setContentType("application/json;charset=UTF-8");
 
-    Map map = new HashMap();
-    map.put("code","400");
-    map.put("msg","AuthenticationFailureHandler = "+exception.getMessage());
+    @Override
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+                                        AuthenticationException exception) throws IOException, ServletException {
 
-    response.getWriter().write(JSON.toJSONString(map));
+        logger.info("登录失败" + exception.getMessage());
+        response.setContentType("application/json;charset=UTF-8");
 
-  }
+        Map map = new HashMap();
+        map.put("code", "400");
+        map.put("msg", "AuthenticationFailureHandler = " + exception.getMessage());
+
+        response.getWriter().write(JSON.toJSONString(map));
+
+    }
 }

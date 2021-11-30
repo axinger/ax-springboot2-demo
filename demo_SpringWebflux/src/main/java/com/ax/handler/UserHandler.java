@@ -8,8 +8,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import static org.springframework.web.reactive.function.BodyInserters.fromObject;
-
 public class UserHandler {
     private final UserService userService;
 
@@ -33,7 +31,7 @@ public class UserHandler {
         return userMono.flatMap(e -> ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
 //                .body(fromObject(e))
-                .body(userMono,User.class) /// user 需要无参构造
+                .body(userMono, User.class) /// user 需要无参构造
                 .switchIfEmpty(notFound));
     }
 

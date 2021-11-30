@@ -22,8 +22,8 @@ public class HoneController {
     @ResponseBody
     public Object simpleTest() {
 
-        Map map = new HashMap<String,Object>(3);
-        map.put("success",true);
+        Map map = new HashMap<String, Object>(3);
+        map.put("success", true);
 
         return map;
     }

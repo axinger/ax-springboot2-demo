@@ -2,38 +2,27 @@ package com.ax.demo;
 
 public enum Status {
     NEW(0) {
-      @Override
-      void run() {
-        //do something
-          System.out.println("NEW");
-      }
+        @Override
+        void run() {
+            //do something
+            System.out.println("NEW");
+        }
     },
     RUNNABLE(1) {
-      @Override
-       void run() {
-         //do something
-          System.out.println("RUNNABLE");
-      }
+        @Override
+        void run() {
+            //do something
+            System.out.println("RUNNABLE");
+        }
     },
 
 
     ;
 
 
-
     private int statusCode;
 
-    abstract void run();
-
-    Status(int statusCode){
-        this.statusCode = statusCode;
-    }
-
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
+    Status(int statusCode) {
         this.statusCode = statusCode;
     }
 
@@ -53,6 +42,16 @@ public enum Status {
             }
         }
         return null;
+    }
+
+    abstract void run();
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
 

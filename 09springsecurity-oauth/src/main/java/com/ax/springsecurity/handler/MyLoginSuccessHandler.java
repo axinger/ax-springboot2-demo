@@ -21,7 +21,6 @@ public class MyLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler
 //    private ObjectMapper objectMapper;
 
 
-
     @SneakyThrows
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

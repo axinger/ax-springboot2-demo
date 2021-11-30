@@ -25,7 +25,7 @@ public class RegisterServiceImpl implements IRegisterService {
 
         if (count <= 0) {
             Userinfo userinfo = new Userinfo();
-            userinfo.setUsername(username);
+            userinfo.setUserName(username);
             /**password 加密密码*/
             /* String psw_md5 = DigestUtils.md5DigestAsHex(password.getBytes());*/
             userinfo.setPassword(password);

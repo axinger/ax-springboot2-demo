@@ -27,10 +27,9 @@ public class AxConst {
     public static final String USERINFO_IN_READIS = "USERINFO_IN_READIS";
 
     /**
-     *
      * @return
      */
-    public static HttpServletRequest getRequest(){
+    public static HttpServletRequest getRequest() {
 
         return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
     }

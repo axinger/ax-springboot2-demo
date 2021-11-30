@@ -23,15 +23,15 @@ import javax.sql.DataSource;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /**
-//请求授权码地址
-    http://localhost:8080/oauth/authorize?client_id=client&response_type=code
-
-
-    获得授权码
-    http://client:secret@localhost:8080/oauth/token
- grant_type  authorization_code
- code
-*/
+     * //请求授权码地址
+     * http://localhost:8080/oauth/authorize?client_id=client&response_type=code
+     * <p>
+     * <p>
+     * 获得授权码
+     * http://client:secret@localhost:8080/oauth/token
+     * grant_type  authorization_code
+     * code
+     */
 
     //数据源,存储在数据库中
     @Bean
@@ -45,14 +45,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     //数据源,存储在数据库中
     @Bean
-    public TokenStore tokenStore1(){
+    public TokenStore tokenStore1() {
         return new JdbcTokenStore(oauthDataSource());
     }
 
     //数据源,存储在数据库中
     @Bean
-    public ClientDetailsService jdbc_clientDetailsService(){
-       return new JdbcClientDetailsService(oauthDataSource());
+    public ClientDetailsService jdbc_clientDetailsService() {
+        return new JdbcClientDetailsService(oauthDataSource());
     }
 
 //DruidDataSourceBuilder.create().build()
@@ -71,10 +71,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //        .scopes("app")
 //                /*回调地址*/
 //        .redirectUris("http://localhost:8080/code")
-                ;
+        ;
 
         clients.withClientDetails(jdbc_clientDetailsService())
-               ;
+        ;
 //        // 配置客户端
 //        clients
 //                // 使用内存设置

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ax.seata.dao.TAccountDao">
+    <resultMap id="BaseResultMap" type="com.ax.seata.domain.TAccount">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="total" jdbcType="DECIMAL" property="total"/>
+        <result column="used" jdbcType="DECIMAL" property="used"/>
+        <result column="residue" jdbcType="DECIMAL" property="residue"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, total, used, residue
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_account
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from t_account
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ax.seata.domain.TAccount"
+            useGeneratedKeys="true">
+        insert into t_account (user_id, total, used,
+                               residue)
+        values (#{userId,jdbcType=BIGINT}, #{total,jdbcType=DECIMAL}, #{used,jdbcType=DECIMAL},
+                #{residue,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ax.seata.domain.TAccount"
+            useGeneratedKeys="true">
+        insert into t_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="used != null">
+                used,
+            </if>
+            <if test="residue != null">
+                residue,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="total != null">
+                #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="used != null">
+                #{used,jdbcType=DECIMAL},
+            </if>
+            <if test="residue != null">
+                #{residue,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ax.seata.domain.TAccount">
+        update t_account
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="total != null">
+                total = #{total,jdbcType=DECIMAL},
+            </if>
+            <if test="used != null">
+                used = #{used,jdbcType=DECIMAL},
+            </if>
+            <if test="residue != null">
+                residue = #{residue,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ax.seata.domain.TAccount">
+        update t_account
+        set user_id = #{userId,jdbcType=BIGINT},
+            total   = #{total,jdbcType=DECIMAL},
+            used    = #{used,jdbcType=DECIMAL},
+            residue = #{residue,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="decrease">
+        update t_account
+        set residue=residue - #{money},
+            used=used + #{money}
+        where user_id = #{userId,jdbcType=BIGINT}
+
+    </update>
+</mapper>

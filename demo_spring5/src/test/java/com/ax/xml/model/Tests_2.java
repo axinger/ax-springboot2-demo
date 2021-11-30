@@ -3,6 +3,7 @@ package com.ax.xml.model;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class Tests_2 {
 
     @Test

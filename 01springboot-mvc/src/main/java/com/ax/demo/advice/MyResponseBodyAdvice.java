@@ -1,4 +1,4 @@
-package com.ax.demo.advice;//package com.ax.shop.controller;
+package com.ax.demo.advice;
 
 
 import com.ax.demo.util.axUtil.AxResultEntity;
@@ -14,7 +14,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import javax.annotation.Resource;
 import java.lang.annotation.Annotation;
 
-@RestControllerAdvice
+/**
+ * 你会发现Swagger3会报Unable to infer base url……的错误，这是因为统一返回体影响到了Swagger3的一些内置接口。
+ * 解决方法是@RestControllerAdvice控制好生效的包范围,也就是配置其basePackages参数就行了，这个潜在的冲突浪费我了一个多小时。
+ * https://jishuin.proginn.com/p/763bfbd5811f
+ */
+@RestControllerAdvice(basePackages = "com.ax.demo.controller")
 public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
 //    private static final Class<? extends Annotation> ANNOTATION_TYPE = ResponseResultBody.class;
@@ -25,14 +30,13 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
      * 判断类或者方法是否使用了 @ResponseResultBody
      */
     @Override
-    public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> converterType) {
+    public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
 //        return AnnotatedElementUtils.hasAnnotation(methodParameter.getContainingClass(), ANNOTATION_TYPE) || methodParameter.hasMethodAnnotation(ANNOTATION_TYPE);
 
 //        AnnotatedElement annotatedElement = methodParameter.getAnnotatedElement();
 //        ResponseBody focusController = AnnotationUtils.findAnnotation(annotatedElement, ResponseBody.class);
 //        System.out.println("focusController = " + focusController);
 //        return focusController != null;
-
         return true;
     }
 
@@ -42,16 +46,18 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
 
-        System.out.println("beforeBodyWrite object = " + body);
-        System.out.println("returnType = " + returnType);
-        System.out.println("selectedContentType = " + selectedContentType);
+        System.out.println("body.getClass() = " + body.getClass());
+        System.out.println("body = " + body);
+        System.out.println("MethodParameter = " + returnType);
+        System.out.println("MediaType = " + selectedContentType);
 
-        System.out.println("body instanceof Resource = " + (body instanceof Resource));
-        System.out.println("body instanceof String = " + (body instanceof String));
-        System.out.println("selectedContentType == MediaType.TEXT_HTML = " + (selectedContentType == MediaType.TEXT_HTML));
+
+        if (!selectedContentType.equalsTypeAndSubtype(MediaType.APPLICATION_JSON)) {
+
+            return body;
+        }
 
         if (body instanceof Resource) {
-
             return body;
         }
 
@@ -60,26 +66,27 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             return body;
         }
 
-        //         防止重复包裹的问题出现
-        if (body instanceof AxResultEntity) {
-            System.out.println("body instanceof AxResultEntity");
-            System.out.println("body = " + body);
+        if (selectedContentType == MediaType.parseMediaType(MediaType.TEXT_HTML_VALUE)) {
             return body;
         }
 
         //处理返回值是String的情况
         if (body instanceof String) {
             System.out.println("body instanceof String = " + body);
-            String string = (String)body;
-            AxResultEntity<String> entity  =AxResultEntity.Success(string);
-            return  entity;
+            String string = (String) body;
+            AxResultEntity<String> entity = AxResultEntity.Success(string);
+            return entity;
         }
 
-        // 这里 会拦截html
-        System.out.println("都不是body = " + body);
+        //         防止重复包裹的问题出现
+        if (body instanceof AxResultEntity) {
+            return body;
+        }
+        System.out.println("封装返回结果 = " + body);
+        // 这里 会拦截html,比如  Swagger3
         return AxResultEntity.Success(body);
+//        return body;
 
-
-//        return object;
     }
+
 }

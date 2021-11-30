@@ -1,8 +1,8 @@
 package com.ax.shop.advice;
 
-import com.ax.shop.error.TokenException;
 import com.ax.shop.util.axUtil.AxResultEntity;
 import com.ax.shop.util.axUtil.AxResultStateEnum;
+import com.ax.shop.util.error.TokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -31,10 +31,12 @@ public class ExceptionAdvice {
     @ExceptionHandler(value = Exception.class)//异常全局处理
     @ResponseBody
 //	 在@RequestMapping执行后执行
-    public Object exception(HttpServletRequest request, HttpServletResponse response, Exception exception) {
+    public Object exception(HttpServletRequest request,
+                            HttpServletResponse response,
+                            Exception exception) {
 
         System.out.println("全局exception = " + exception);
-
+        System.out.println("全局exception getMessage = " + exception.getCause().getMessage());
 
         String method = request.getMethod();
         String uri = request.getRequestURI();
@@ -67,11 +69,19 @@ public class ExceptionAdvice {
             return entity;
         }
 
-//        AccessDeniedException 局部代码无法返回,这里返回
-        if (exception instanceof org.springframework.security.access.AccessDeniedException) {
-            entity.setStateEnum(AxResultStateEnum.INVALID_ACCESS_DENIED);
+        /**
+         * SQL异常
+         */
+        if (exception instanceof org.springframework.jdbc.BadSqlGrammarException) {
+            entity.setStateEnum(AxResultStateEnum.INTERNAL_SQL_ERROR);
             return entity;
         }
+
+//        AccessDeniedException 局部代码无法返回,这里返回
+//        if (exception instanceof org.springframework.security.access.AccessDeniedException) {
+//            entity.setStateEnum(AxResultStateEnum.INVALID_ACCESS_DENIED);
+//            return entity;
+//        }
 
 
 //        if (exception instanceof org.springframework.security.core.AuthenticationException) {
@@ -83,7 +93,6 @@ public class ExceptionAdvice {
         entity.setStateEnum(AxResultStateEnum.INVALID);
         return entity;
     }
-
 
 
 //    @ExceptionHandler(value = AccessDeniedException.class)

@@ -7,6 +7,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
 /**
  * 监听所有db的过期事件__keyevent@*__:expired"
+ *
  * @author lsm
  */
 //@Component
@@ -18,6 +19,7 @@ public class RedisKeyExpirationListener extends KeyExpirationEventMessageListene
 
     /**
      * 针对redis数据失效事件，进行数据处理
+     *
      * @param message
      * @param pattern
      */
@@ -33,7 +35,7 @@ public class RedisKeyExpirationListener extends KeyExpirationEventMessageListene
         System.out.println("channel = " + channel);
         System.out.println("key = " + key);
 
-        if(key.startsWith(RedisService.REDIS_VALUE_IPLOG)){
+        if (key.startsWith(RedisService.REDIS_VALUE_IPLOG)) {
             //如果是Order:开头的key，进行处理
         }
     }

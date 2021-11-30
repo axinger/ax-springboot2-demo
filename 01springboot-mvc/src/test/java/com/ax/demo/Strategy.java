@@ -2,36 +2,35 @@ package com.ax.demo;
 
 public enum Strategy {
     FAST {
-      @Override
-      void run() {
-        //do something  
-          System.out.println("FAST");
-      }
+        @Override
+        void run() {
+            //do something
+            System.out.println("FAST");
+        }
     },
     NORMAL {
-      @Override
-       void run() {
-         //do something
-          System.out.println("NORMAL");
-      }
+        @Override
+        void run() {
+            //do something
+            System.out.println("NORMAL");
+        }
     },
 
     SMOOTH {
-      @Override
-       void run() {
-         //do something
-          System.out.println("SMOOTH");
-      }
+        @Override
+        void run() {
+            //do something
+            System.out.println("SMOOTH");
+        }
     },
 
     SLOW {
-      @Override
-       void run() {
-         //do something
-          System.out.println("SLOW");
-      }
+        @Override
+        void run() {
+            //do something
+            System.out.println("SLOW");
+        }
     };
-    abstract void run();
 
     public static Strategy valueOf(int value) {
 
@@ -56,6 +55,7 @@ public enum Strategy {
 //        return null;
     }
 
+    abstract void run();
 
 
 }

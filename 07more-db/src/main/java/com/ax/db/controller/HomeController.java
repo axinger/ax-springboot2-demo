@@ -34,17 +34,16 @@ public class HomeController {
 
         System.out.println("studentMapper = " + studentMapper);
 
-        
+
         Student student = studentMapper.selectById(1L);
 
         System.out.println("student = " + student);
         Map map = new HashMap();
-        map.put("userinfo",userinfo);
-        map.put("student",student);
+        map.put("userinfo", userinfo);
+        map.put("student", student);
 
         return map;
     }
-
 
 
 }

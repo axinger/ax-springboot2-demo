@@ -14,6 +14,11 @@ import java.util.Map;
 @RestController
 public class HomeController {
 
+    @Autowired
+    ExcelService excelService;
+    @Value("${server.port}")
+    private String port;
+
     /**
      * PageInfo 含有页面信息
      */
@@ -35,9 +40,6 @@ public class HomeController {
 
     }
 
-    @Value("${server.port}")
-    private String port;
-
     @RequestMapping(value = {"/", "/hi", "/index.html"})
     public ModelAndView index(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("index");
@@ -50,9 +52,6 @@ public class HomeController {
         return modelAndView;
 
     }
-
-    @Autowired
-    ExcelService excelService;
 
     @RequestMapping(value = "/excel")
     public void excel(HttpServletResponse response) throws Exception {
@@ -75,7 +74,7 @@ public class HomeController {
 
 
     @RequestMapping(value = "/video")
-    public Object video(){
+    public Object video() {
 
         ModelAndView modelAndView = new ModelAndView("videoPlay");
         modelAndView.addObject("title", "小猪佩奇");
@@ -83,7 +82,7 @@ public class HomeController {
         String name = "jm.mkv";
 //        String name = "v0200f930000bpajn9hevctlh37upcj0.MP4";
 
-        String videoPath = "http://127.0.0.1:8091/images/"+name;
+        String videoPath = "http://127.0.0.1:8091/images/" + name;
 
         modelAndView.addObject("path", videoPath);
 

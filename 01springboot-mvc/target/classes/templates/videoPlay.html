@@ -7,17 +7,20 @@
 <body>
 <!--<div th:replace="header::header1"></div><br/><br/><br/>-->
 <div class="panel panel-default">
-    <div class="panel-body" align="center">
-        <div id="a1" align="center" th:text="${title}"></div><br/><!---->
-        <div id="a2" align="center" th:text="${path}"></div><br/>
-<!--height="400"-->
-        <video width="600"  align="center" controls>
-            <source th:src="${path}" ><!--type="video/x-matroska"-->
+    <div align="center" class="panel-body">
+        <div align="center" id="a1" th:text="${title}"></div>
+        <br/><!---->
+        <div align="center" id="a2" th:text="${path}"></div>
+        <br/>
+        <!--height="400"-->
+        <video align="center" controls width="600">
+            <source th:src="${path}"><!--type="video/x-matroska"-->
             您的浏览器不支持 HTML5 video 标签。
-        </video><br>
-<!--alt 用于图片没显示时在图片显示区域显示一个说明文字。
-title 表示鼠标在图片上停留时，显示一个悬浮框，其中显示的文字。-->
-        <img src="http://127.0.0.1:8091/images/A1.jpg" width="600" title="鼠标停留显示文字" alt="111">
+        </video>
+        <br>
+        <!--alt 用于图片没显示时在图片显示区域显示一个说明文字。
+        title 表示鼠标在图片上停留时，显示一个悬浮框，其中显示的文字。-->
+        <img alt="111" src="http://127.0.0.1:8091/images/A1.jpg" title="鼠标停留显示文字" width="600">
 
     </div>
 </div>
@@ -31,8 +34,8 @@ title 表示鼠标在图片上停留时，显示一个悬浮框，其中显示�
 <script src="../js/plugins/bootstrap-4.2.1.min.js"></script>
 <script src="../js/plugins/jquery.bootstrap.min.js"></script>
 
-<script type="text/javascript" src="../js/service/login.js"></script>
-<script type="text/javascript" src="../js/service/contextPath.js"></script>
+<script src="../js/service/login.js" type="text/javascript"></script>
+<script src="../js/service/contextPath.js" type="text/javascript"></script>
 
 
 <!--css-->

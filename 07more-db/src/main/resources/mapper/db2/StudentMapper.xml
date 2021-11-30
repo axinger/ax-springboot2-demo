@@ -15,12 +15,10 @@
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
 
-        select
-       *
+        select *
         from student
         where id = #{id,jdbcType=BIGINT}
     </select>
-
 
 
 </mapper>

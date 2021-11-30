@@ -38,9 +38,6 @@ public class AxJwtUtil {
             return null;
         }
 
-        long nowMillis = System.currentTimeMillis();
-        Date now = new Date();
-
         JWTCreator.Builder builder = JWT.create().withJWTId(id).withIssuer(issuer);
 
         if (subject != null) {
@@ -52,6 +49,7 @@ public class AxJwtUtil {
 
 
         if (timeout > 0) {
+            long nowMillis = System.currentTimeMillis();
             long expMillis = nowMillis + timeout;
             Date expDate = new Date(expMillis);
             // 过期时间
@@ -75,7 +73,7 @@ public class AxJwtUtil {
      */
     public static boolean validateJWT(String token) {
 
-        Algorithm algorithm ;
+        Algorithm algorithm;
 
         try {
             algorithm = Algorithm.HMAC256(generalKey);
@@ -89,7 +87,7 @@ public class AxJwtUtil {
 
 
         try {
-            JWTVerifier verifier  = JWT.require(algorithm).withIssuer(issuer).build();
+            JWTVerifier verifier = JWT.require(algorithm).withIssuer(issuer).build();
             verifier.verify(token);
             System.out.println("token验证成功");
             return true;

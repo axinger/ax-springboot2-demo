@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <!--    <modelVersion>4.0.0</modelVersion>-->
     <!--  <parent>
@@ -9,17 +9,17 @@
           <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
       </parent>-->
     <parent>
-        <artifactId>SpringBootDemo</artifactId>
         <groupId>com.ax</groupId>
-        <version>0.0.1</version>
+        <artifactId>spring-boot-demo</artifactId>
+        <version>1.0.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>01springboot-mvc</artifactId>
     <version>1.0.0</version>
     <!--因为要放入外部的tomcat中，因此更改默认打包方式(jar)为war包-->
     <packaging>jar</packaging>
-    <!--    <name>01springboot-mvc</name>-->
-    <name>springbootdemo-0.0.1</name>
+    <name>01springboot-mvc</name>
 
     <description>Demo project for Spring Boot</description>
 
@@ -31,6 +31,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,6 +53,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>    <!--【改】增加“flux”四个字符-->
         </dependency>
+
         <!--        从SpringBoot 2.3.0之后放弃了默认对-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,11 +86,12 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
+        <!--热更新,就是自动重启,不是真正的热更新-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-devtools</artifactId>-->
+        <!--            <optional>true</optional>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
@@ -97,20 +103,19 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>RELEASE</version>
+            <version>5.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.13</version>
+            <version>5.0.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.73</version>
         </dependency>
 
 
@@ -118,7 +123,7 @@
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
-            <version>0.4.8</version>
+            <version>0.4.14</version>
         </dependency>
 
         <dependency>
@@ -139,21 +144,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.guava</groupId>-->
+        <!--            <artifactId>guava</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -166,10 +165,23 @@
             <artifactId>protobuf-java</artifactId>
         </dependency>
 
+
+        <!-- 自定义 yml 提示, 后缀为.yml,而不是yaml-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.ax</groupId>
+            <artifactId>ax-hello-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>springbootdemo-0.0.1</finalName>
+        <finalName>spring-boot-demo-0.0.1</finalName>
         <plugins>
             <!-- 打jar包时如果不配置该插件，打出来的jar包没有清单文件 -->
             <plugin>
@@ -181,6 +193,11 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                    </execution>
+                    <!-- 去除yml 提示-->
+                    <execution>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-configuration-processor</artifactId>
                     </execution>
                 </executions>
             </plugin>

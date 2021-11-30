@@ -18,14 +18,17 @@ import java.util.concurrent.Callable;
 public class UserinfoServiceImpl implements IUserinfoService {
 
     @Autowired
+    RedisTemplate redisTemplate;
+    @Autowired
     private UserinfoMapper userinfoMapper;
+    @Autowired
+    private IRedisService redisService;
 
     @Override
     public Userinfo getUserinfoWithKey(long id) {
         return userinfoMapper.selectByPrimaryKey(id);
 
     }
-
 
     @Override
     public List<Userinfo> getAllUserinfo() {
@@ -37,13 +40,6 @@ public class UserinfoServiceImpl implements IUserinfoService {
     public Userinfo selectUserWithRelo(long id) {
         return userinfoMapper.selectUserWithRelo(id);
     }
-
-
-    @Autowired
-    RedisTemplate redisTemplate;
-
-    @Autowired
-    private IRedisService redisService;
 
     @Override
     public List<Userinfo> getAllUserinfoWithRedis() {
@@ -75,6 +71,11 @@ public class UserinfoServiceImpl implements IUserinfoService {
 //            System.out.println("查询redis缓存------------");
 //        }
 //        return list;
+    }
+
+    @Override
+    public int insert(Userinfo record) {
+        return userinfoMapper.insert(record);
     }
 }
 

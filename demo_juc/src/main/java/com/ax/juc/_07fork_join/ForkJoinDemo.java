@@ -11,7 +11,7 @@ class MyTask extends RecursiveTask<Integer> {
     private static final Integer VALUE = 10;
     private Integer begin;
     private Integer end;
-    private Integer result=0;
+    private Integer result = 0;
 
     public MyTask(Integer begin, Integer end) {
         this.begin = begin;
@@ -59,7 +59,7 @@ public class ForkJoinDemo {
 
         // 创建对象
 
-        MyTask myTask = new MyTask(0,100);
+        MyTask myTask = new MyTask(0, 100);
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         ForkJoinTask<Integer> forkJoinTask = forkJoinPool.submit(myTask);

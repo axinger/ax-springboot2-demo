@@ -21,6 +21,11 @@ import javax.sql.DataSource;
 
 public class DataSource2Config {
 
+    @Resource(name = "twoDataSource")
+    private DataSource dataSourceTwo;
+    @Value("${mybatis.db2.mapper-locations}")
+    private String XFFQ_XML;
+
     @Bean(name = "twoDataSource")
     @Qualifier("twoDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.db2")
@@ -28,22 +33,13 @@ public class DataSource2Config {
         return DruidDataSourceBuilder.create().build();
     }
 
+//    private static final String XFFQ_XML = "classpath:mapper/db2/*.xml";
 
     @Bean(name = "twoTransaction")
     public DataSourceTransactionManager db2TransactionManager(
             @Qualifier("twoDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
-
-
-    @Resource(name = "twoDataSource")
-    private DataSource dataSourceTwo;
-
-//    private static final String XFFQ_XML = "classpath:mapper/db2/*.xml";
-
-	@Value("${mybatis.db2.mapper-locations}")
-	private String XFFQ_XML;
-
 
     @Bean(name = "twoSqlSessionFactoryBean")
     @ConfigurationProperties(prefix = "mybatis.db2")

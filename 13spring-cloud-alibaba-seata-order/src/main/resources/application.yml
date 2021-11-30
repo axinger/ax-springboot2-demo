@@ -1,0 +1,61 @@
+server:
+  servlet:
+    context-path: /
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+  port: 8071
+
+spring:
+  application:
+    name: demo12spring-cloud-alibaba-seata
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 12345678
+    url: jdbc:mysql://localhost:3306/seata_order?characterEncoding=utf-8&useSSL=false
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#    alibaba:
+#      seata:
+#        tx-service-group: my_test_tx_group
+
+feign:
+  hystrix:
+    enabled: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: com.ax.seata.mapper
+
+## SEATA 1.0.0使用yaml配置替换file.conf 和 registry.conf
+## 1.0新添加的enabled激活自动配置，使得我们可以在yaml/properties文件中配置，
+## 避免了以前需要客户端引入2个文件：
+## file.conf 和 registry.conf
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      application: seata-server
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+#  config:
+#    file:
+#      n
+  #      weight: 1
+#  #  service:
+#  #    vgroup-mapping: geekplus_tx_group
+#  #    disable-global-transaction: false
+#  #    disableGlobalTransaction: false
+#  client:
+#    support:
+#      spring:
+#        datasource-autoproxy: false
+#  seata.ser

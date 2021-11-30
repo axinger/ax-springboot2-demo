@@ -122,7 +122,5 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 
 
-
-
     }
 }

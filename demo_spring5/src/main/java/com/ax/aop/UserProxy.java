@@ -13,7 +13,7 @@ public class UserProxy {
     /// execution 切入点表达式
     /// 重用切入点定义,封装
     @Pointcut(value = "execution(* com.ax.aop.model.AopUser.*(..))")
-    public void pointValue(){
+    public void pointValue() {
 
 
     }
@@ -23,22 +23,22 @@ public class UserProxy {
 //    }
 
     @Before(value = "pointValue()")
-    public void before(){
+    public void before() {
         System.out.println("UserProxy.before");
     }
 
     @After(value = "pointValue()")
-    public void after(){
+    public void after() {
         System.out.println("UserProxy.after");
     }
 
     @AfterReturning(value = "pointValue()")
-    public void afterReturning(){
+    public void afterReturning() {
         System.out.println("UserProxy.afterReturning");
     }
 
     @AfterThrowing(value = "pointValue()")
-    public void afterThrowing(){
+    public void afterThrowing() {
         System.out.println("UserProxy.afterThrowing");
     }
 

@@ -29,30 +29,28 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
  * @PostAuthorize 允许方法调用, 但是如果表达式计算结果为false, 将抛出一个安全性异常
  * @PostFilter 允许方法调用, 但必须按照表达式来过滤方法的结果
  * @PreFilter 允许方法调用, 但必须在进入方法之前过滤输入值
- *
- *
+ * <p>
+ * <p>
  * 一、五个handler一个filter两个User
- *
+ * <p>
  * 5个handler，分别是
- *
- *     实现AuthenticationEntryPoint接口,当匿名请求需要登录的接口时,拦截处理
- *     实现AuthenticationSuccessHandler接口,当登录成功后,该处理类的方法被调用
- *     实现AuthenticationFailureHandler接口,当登录失败后,该处理类的方法被调用
- *     实现AccessDeniedHandler接口,当登录后,访问接口没有权限的时候,该处理类的方法被调用
- *     实现LogoutSuccessHandler接口,注销的时候调用
- *
+ * <p>
+ * 实现AuthenticationEntryPoint接口,当匿名请求需要登录的接口时,拦截处理
+ * 实现AuthenticationSuccessHandler接口,当登录成功后,该处理类的方法被调用
+ * 实现AuthenticationFailureHandler接口,当登录失败后,该处理类的方法被调用
+ * 实现AccessDeniedHandler接口,当登录后,访问接口没有权限的时候,该处理类的方法被调用
+ * 实现LogoutSuccessHandler接口,注销的时候调用
  */
 
 @Configuration
 @EnableWebSecurity
 //Spring Security默认是禁用注解的
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true,jsr250Enabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
     }
 
@@ -72,24 +70,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    /**忽略授权地址,不然无法访问*/
+    /**
+     * 忽略授权地址,不然无法访问
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
-       web.ignoring().antMatchers("/oauth/check_token")
-       .antMatchers("/test/*")
+        web.ignoring().antMatchers("/oauth/check_token")
+                .antMatchers("/test/*")
 
-               ;
+        ;
     }
 
     @Bean
-    SimpleUrlAuthenticationFailureHandler failureHandler(){
+    SimpleUrlAuthenticationFailureHandler failureHandler() {
         return new MyLoginFailureHandler();
     }
 
     @Bean
-    SimpleUrlAuthenticationSuccessHandler successHandler(){
+    SimpleUrlAuthenticationSuccessHandler successHandler() {
         return new MyLoginSuccessHandler();
     }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
 //
@@ -116,6 +117,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(successHandler())
                 // 自定义登录失败处理
                 .failureHandler(failureHandler())
-                ;
+        ;
     }
 }

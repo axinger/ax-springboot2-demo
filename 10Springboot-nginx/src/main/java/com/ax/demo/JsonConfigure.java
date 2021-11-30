@@ -13,7 +13,7 @@ import java.util.List;
 public class JsonConfigure {
 
     @Bean
-    public HttpMessageConverters fastJsonConfigure(){
+    public HttpMessageConverters fastJsonConfigure() {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);

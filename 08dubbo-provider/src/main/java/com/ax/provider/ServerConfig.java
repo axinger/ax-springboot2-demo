@@ -21,13 +21,11 @@ import java.net.UnknownHostException;
 public class ServerConfig implements ApplicationListener<WebServerInitializedEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(SpringbootDubboProviderApplication.class);
-
+    private int serverPort;
 
     public int getServerPort() {
         return serverPort;
     }
-
-    private int serverPort;
 
     public String getUrl() {
         InetAddress address = null;
@@ -36,7 +34,7 @@ public class ServerConfig implements ApplicationListener<WebServerInitializedEve
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        return "http://"+address.getHostAddress()+":"+this.serverPort;
+        return "http://" + address.getHostAddress() + ":" + this.serverPort;
     }
 
     public String getHost() {
@@ -52,7 +50,7 @@ public class ServerConfig implements ApplicationListener<WebServerInitializedEve
     @Override
     public void onApplicationEvent(WebServerInitializedEvent event) {
         serverPort = event.getWebServer().getPort();
-        System.out.println("地址 = "+getUrl());
+        System.out.println("地址 = " + getUrl());
     }
 }
 

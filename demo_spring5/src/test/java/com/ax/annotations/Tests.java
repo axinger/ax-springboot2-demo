@@ -12,7 +12,8 @@ public class Tests {
     @Test
     public void test1() {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanTwo1.xml");
-        PersonService personService = context.getBean("personService", PersonService.class);;
+        PersonService personService = context.getBean("personService", PersonService.class);
+        ;
         System.out.println("personService = " + personService);
         personService.add();
 
@@ -20,11 +21,12 @@ public class Tests {
 
     /**
      * 加载注解
-     * */
+     */
     @Test
     public void test2() {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        PersonService personService = context.getBean("personService", PersonService.class);;
+        PersonService personService = context.getBean("personService", PersonService.class);
+        ;
         System.out.println("配置类方式 personService = " + personService);
         personService.add();
 

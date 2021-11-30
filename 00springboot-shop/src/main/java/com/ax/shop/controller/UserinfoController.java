@@ -16,7 +16,10 @@ public class UserinfoController {
 
     @Autowired
     IUserinfoService iUserinfoService;
-
+    @Autowired
+    RedisTemplate redisTemplate;
+    @Autowired
+    private IRedisService redisService;
 
     @RequestMapping(value = "/getUserInfo.do")
     public Object getUserInfo(long id) {
@@ -27,23 +30,17 @@ public class UserinfoController {
 
     }
 
-    @Autowired
-    private IRedisService redisService;
-
-    @Autowired
-    RedisTemplate redisTemplate;
-
-  @RequestMapping(value = "/getAllUserInfo.do")
+    @RequestMapping(value = "/getAllUserInfo.do")
     public Object getAllUserInfo() {
 
         Runnable runnable = () -> iUserinfoService.getAllUserinfo();
-        /**简历线程池,避免直接用线程**/
+        /**简单线程池,避免直接用线程**/
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         /**submit有返回值，而execute没有*/
         for (int i = 0; i < 1000; i++) {
             executorService.submit(runnable);
         }
-      return iUserinfoService.getAllUserinfo();
+        return iUserinfoService.getAllUserinfo();
 
     }
 

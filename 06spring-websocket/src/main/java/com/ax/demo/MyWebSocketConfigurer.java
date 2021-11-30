@@ -13,17 +13,17 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class MyWebSocketConfigurer implements WebSocketConfigurer {
 
-    public MyTextWebSocketHandler textMsgHandler(){
+    public MyTextWebSocketHandler textMsgHandler() {
         return new MyTextWebSocketHandler();
     }
 
-    public MyHttpSessionHandshakeInterceptor handshakeInterceptor(){
+    public MyHttpSessionHandshakeInterceptor handshakeInterceptor() {
         return new MyHttpSessionHandshakeInterceptor();
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-        webSocketHandlerRegistry.addHandler(textMsgHandler(),"/ws/**").addInterceptors(handshakeInterceptor());
+        webSocketHandlerRegistry.addHandler(textMsgHandler(), "/ws/**").addInterceptors(handshakeInterceptor());
 
     }
 }

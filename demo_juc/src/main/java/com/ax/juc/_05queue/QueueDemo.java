@@ -94,7 +94,7 @@ public class QueueDemo {
         System.out.println("queue.take = " + queue.poll());
         System.out.println("queue.take = " + queue.poll());
         System.out.println("queue.take = " + queue.poll());
-        System.out.println("queue.take = " + queue.poll(3,TimeUnit.SECONDS));
+        System.out.println("queue.take = " + queue.poll(3, TimeUnit.SECONDS));
 
     }
 }

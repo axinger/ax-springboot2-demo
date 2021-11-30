@@ -2,7 +2,6 @@ package com.ax.shop.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +53,7 @@ public class ChaController {
         }
     }
 
-    @ApiOperation(value = "获取图形验证码")
+    //@ApiOperation(value = "获取图形验证码")
     @GetMapping("/kapCode")
 //    @ResponseBody
     public Object kapCode(HttpServletResponse response, HttpSession session) throws Exception {

@@ -2,11 +2,11 @@ package com.ax.kafka.service.impl;
 
 import com.ax.kafka.api.Topic;
 import com.ax.kafka.api.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -20,9 +20,9 @@ import java.util.Optional;
 import java.util.Properties;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
-    private org.slf4j.Logger log = LoggerFactory.getLogger(getClass());
 
     /**
      * 初始化消息队列，发送之后暂时保存在list中，然后最早头部读取 earliest
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     /**
      * groupId 不同, 同一个主题都能收到
      * groupId 相同,只能有一个收到主题消息
-     * */
+     */
 //    @KafkaListener(topics = {com.ax.kafka.api.Topic.SIMPLE})
 //    public void consumer(ConsumerRecord<?,?> consumerRecord){
 //        //判断是否为null
@@ -120,9 +120,10 @@ public class UserServiceImpl implements UserService {
         String content = "";
 //        while (true) {
         log.info("nothing available...");
+
         ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofSeconds(1000));
         for (ConsumerRecord<String, String> record : records) {
-            log.info("获取消息详情，{}", record.value());
+            UserServiceImpl.log.info("获取消息详情，{}", record.value());
             content = record.value();
             if (content != "") {/*
                 XyKafkaOutMsg build = new XyKafkaOutMsg();

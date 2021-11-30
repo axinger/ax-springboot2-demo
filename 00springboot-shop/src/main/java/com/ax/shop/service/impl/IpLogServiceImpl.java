@@ -11,6 +11,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,11 @@ import java.util.List;
  * @author axing
  */
 @Service
-@Cacheable(value = RedisService.REDIS_VALUE_IPLOG)
+@CacheConfig(cacheNames = "ipLog")
 public class IpLogServiceImpl implements IIpLogService {
 
     @Autowired
-    private IpLogMapper ipLogMapper;
+    RedisService redisService;
 
 //    public addIpLog(Userinfo userinfo)
 //    IpLog ipLog = new IpLog();
@@ -51,8 +52,8 @@ public class IpLogServiceImpl implements IIpLogService {
 //
 //    }
 //
-
-
+    @Autowired
+    private IpLogMapper ipLogMapper;
 
     @Override
     public AxPageResultEntity query(IpLogQueryObject queryObject) {
@@ -70,7 +71,6 @@ public class IpLogServiceImpl implements IIpLogService {
         return AxPageResultEntity.empty(queryObject.getPageSize());
     }
 
-
     @Override
     public void insert(IpLog ipLog) {
         ipLogMapper.insert(ipLog);
@@ -81,7 +81,7 @@ public class IpLogServiceImpl implements IIpLogService {
         return 0;
     }
 
-//        @Cacheable(value = RedisService.REDIS_VALUE_IPLOG)
+    //        @Cacheable(value = RedisService.REDIS_VALUE_IPLOG)
     @Override
     public PageInfo<IpLog> findByPageInfo(int pageNum, int pageSize) {
 
@@ -102,54 +102,18 @@ public class IpLogServiceImpl implements IIpLogService {
         return ipLogMapper.findByPage();
     }
 
-        @Cacheable(value = RedisService.REDIS_VALUE_IPLOG)
+    @Cacheable(key = "'all'")
     @Override
     public Object findAll() {
         List<IpLog> list = ipLogMapper.findByPage();
-
-        AxResultEntity<List> entity = new AxResultEntity();
-
-
-        if (null != list) {
-            entity.setStateEnum(AxResultStateEnum.SUCCESS);
-            entity.setBody(list);
-        } else {
-            entity.setStateEnum(AxResultStateEnum.INVALID);
-        }
-        return entity;
-    }
-
-
-    @Autowired
-    RedisService redisService;
-
-    //    @Cacheable(value = RedisService.REDIS_VALUE_IPLOG,key = "#id" )
-//    @Cacheable(value = RedisService.REDIS_VALUE_IPLOG, key = "#p0")
-//    @Scheduled(fixedDelay = 6)
-    @Override
-    public AxResultEntity getByKeyResultEntity(Long id) {
-        IpLog ipLog = ipLogMapper.selectByPrimaryKey(id);
-
-        AxResultEntity<IpLog> responseEntity = new AxResultEntity();
-        if (null != ipLog) {
-            responseEntity.setStateEnum(AxResultStateEnum.SUCCESS);
-            responseEntity.setBody(ipLog);
-        } else {
-            responseEntity.setStateEnum(AxResultStateEnum.INVALID);
-        }
-
-//        redisService.set("getid",ipLog,5, TimeUnit.SECONDS);
-
-        return responseEntity;
+        return list;
     }
 
     @Override
-    public IpLog getByKey(Long id){
+    public IpLog getByKey(Long id) {
         IpLog ipLog = ipLogMapper.selectByPrimaryKey(id);
         return ipLog;
     }
-
-
 
 
     //    @CacheEvict(value = RedisService.REDIS_VALUE_IPLOG,key = "#ipLog.id")

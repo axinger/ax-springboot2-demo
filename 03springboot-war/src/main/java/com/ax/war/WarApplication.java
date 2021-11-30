@@ -8,13 +8,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class WarApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(WarApplication.class);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WarApplication.class, args);
+    }
 
-		public static void main(String[] args) {
-		SpringApplication.run(WarApplication.class, args);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(WarApplication.class);
+    }
 
 }

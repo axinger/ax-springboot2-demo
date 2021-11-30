@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <title>Netty-Websocket</title>
     <script type="text/javascript">
         var socket;
@@ -45,10 +45,10 @@
 </head>
 <body>
 <form onSubmit="return false;">
-    <label>ID</label><input type="text" id="uid" name="uid" th:value="${uid}"/> <br/>
-    <label>TEXT</label><input type="text" name="message" value="这里输入消息"/> <br/>
-    <br/> <input type="button" value="发送ws消息"
-                 onClick="send(this.form.uid.value+':'+this.form.message.value)"/>
+    <label>ID</label><input id="uid" name="uid" th:value="${uid}" type="text"/> <br/>
+    <label>TEXT</label><input name="message" type="text" value="这里输入消息"/> <br/>
+    <br/> <input onClick="send(this.form.uid.value+':'+this.form.message.value)" type="button"
+                 value="发送ws消息"/>
     <hr color="black"/>
     <h3>服务端返回的应答消息</h3>
     <textarea id="responseText" style="width: 1024px;height: 300px;"></textarea>

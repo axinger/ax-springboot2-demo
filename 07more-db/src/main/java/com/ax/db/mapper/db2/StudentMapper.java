@@ -4,5 +4,5 @@ import com.ax.db.entity.db2.Student;
 
 public interface StudentMapper {
 
-     Student selectById(Long id);
+    Student selectById(Long id);
 }

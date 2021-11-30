@@ -73,7 +73,6 @@ class Tests {
 
     }
 
-    
 
     @Test
     void test_person_auto() {
@@ -85,7 +84,6 @@ class Tests {
         System.out.println("person = " + person);
 
     }
-
 
 
     @Test
@@ -100,8 +98,6 @@ class Tests {
         String[] strs = new String[]{"a", "b"};
         System.out.println("strs = " + Arrays.toString(strs));
     }
-
-
 
 
 }

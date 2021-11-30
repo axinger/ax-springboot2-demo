@@ -5,10 +5,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //@SpringBootTest
 class ApplicationTests {
 
-//	@Test
+    //	@Test
 //	void contextLoads() {
 //	}
-public static void main(String[] args) {
-	System.out.println( new BCryptPasswordEncoder().encode("123456"));
-}
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+    }
 }

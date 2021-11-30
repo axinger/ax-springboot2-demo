@@ -1,15 +1,16 @@
 package com.ax.shop.entity;
 
 import org.apache.ibatis.type.Alias;
+
 /**
  * @author axing
  */
 @Alias("User")
 public class User {
 
-    private  Long id;
-    private  String name;
-    private  Integer age;
+    private Long id;
+    private String name;
+    private Integer age;
 
     public Long getId() {
         return id;

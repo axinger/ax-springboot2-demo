@@ -1,10 +1,9 @@
 package com.ax.mongo.service;
 
-import java.util.concurrent.ConcurrentHashMap;
-
+import com.ax.mongo.model.User;
 import org.springframework.stereotype.Service;
 
-import com.ax.mongo.model.User;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * User Service Created by Silence on 2017/4/22.
@@ -12,23 +11,23 @@ import com.ax.mongo.model.User;
 @Service
 public class UserService {
 
-	private final ConcurrentHashMap<String, User> users;
+    private final ConcurrentHashMap<String, User> users;
 
-	public UserService() {
-		users = new ConcurrentHashMap<>();
-	}
+    public UserService() {
+        users = new ConcurrentHashMap<>();
+    }
 
-	public boolean addUser(User user) {
-		boolean isExist = users.containsKey(user.getUsername());
-		if (isExist) {
-			return false;
-		}
-		users.put(user.getUsername(), user);
-		return true;
-	}
+    public boolean addUser(User user) {
+        boolean isExist = users.containsKey(user.getUsername());
+        if (isExist) {
+            return false;
+        }
+        users.put(user.getUsername(), user);
+        return true;
+    }
 
-	public User getByUsername(String username) {
-		return users.get(username);
-	}
+    public User getByUsername(String username) {
+        return users.get(username);
+    }
 
 }

@@ -6,9 +6,13 @@ import java.util.List;
 /**
  * @author axing
  */
-public class Userinfo  {
+public class Userinfo {
 
 
+    /**
+     * 用户权限
+     **/
+    List<UserRole> authorities;
     private Long id;
     private String token;
     private String password;
@@ -22,11 +26,6 @@ public class Userinfo  {
     public void setUserType(int userType) {
         this.userType = userType;
     }
-
-    /**
-     * 用户权限
-     **/
-    List<UserRole> authorities;
 
     public Long getId() {
         return id;
@@ -67,7 +66,6 @@ public class Userinfo  {
     public void setAuthorities(List<UserRole> authorities) {
         this.authorities = authorities;
     }
-
 
 
     @Override

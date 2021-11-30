@@ -14,7 +14,7 @@ public class IndexController {
     private String port;
 
     @RequestMapping(value = "/")
-    public Object index(){
+    public Object index() {
         Map<String, Object> map = new HashMap<>(16);
         map.put("name", "index");
         map.put("port", port);

@@ -1,0 +1,84 @@
+# dev 开发环境,端口8080
+server:
+  servlet:
+    context-path: /
+  port: 8080
+
+spring:
+  thymeleaf:
+    mode: HTML # 模板的模式 模板模式“HTML5”已弃用。改为使用模板模式“HTML”。
+    cache: false # 这个开发配置为false，避免改了模板还要重启服务器
+    check-template-location: true # 检查模板是否存在，然后再呈现
+    enabled: true #启用MVC Thymeleaf视图分辨率
+    template-resolver-order: 0
+    suffix: .html
+    #    prefix: classpath:/templates/ # 这个是配置模板路径的，默认就是templates，可不用配置
+    encoding: UTF-8
+  mvc:
+    static-path-pattern: /**
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # 如果指定了拦截器，该属性有可能失效
+  #需要在拦截器ResourceHandlerRegistry中通过addLocations()指定对应路径。
+  #如果指定@EnableWebMvc注解也会导致spring.resources.static-locations失效。
+  #如果使用@EnableWebMvc，会自动覆盖原有静态文件目录为src/main/webapp，
+  #如果要指定原静态文件目录，需重写addResourceHandlers方法
+  web:
+    resources:
+      static-locations: classpath:/static
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  devtools:
+    restart:
+      enabled: true
+  mail:
+    username: 94080507@qq.com
+    password: mdzbjtzfffgycacj #对于qq邮箱而言 密码指的就是发送方的授权码
+    host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+logging:
+  level:
+    com.ax.shop.mapper: debug
+
+swagger:
+  enable: true
+
+dog:
+  name: j
+  age: 12
+
+
+t-person:
+
+  #  name: jim
+  age: 21
+  email: [ 12@qq.com,22@qq.com ]
+  # List<Map>
+  score:
+    - { e: 10,c: 20 }
+  # 是个map
+  scoreMap:
+    e: 20
+    c: 20
+  #是个list 有 -
+  scoreList:
+    - 10
+    - 20
+  # List<Map>
+  dogs:
+    - { name: dog_1,age: 12 }
+    - name: dog_3
+      age: 12
+
+  dog: { name: dog_1,age: 12 }
+ax:
+  hello:
+    prefix: 第一个
+    suffix: 第二个

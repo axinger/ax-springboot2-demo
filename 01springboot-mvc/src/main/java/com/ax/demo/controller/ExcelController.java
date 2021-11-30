@@ -2,8 +2,8 @@ package com.ax.demo.controller;
 
 import com.ax.demo.service.ExcelService;
 import com.ax.demo.service.ExcelService2;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @Slf4j
-
 @RequestMapping(value = "/excel")
 public class ExcelController {
 
@@ -22,7 +21,7 @@ public class ExcelController {
     @Resource
     ExcelService2 excelService2;
 
-
+    @ApiOperation(value = "desc of method", notes = "")
     @RequestMapping(value = "/excel")
     public void excel(HttpServletResponse response) throws Exception {
         excelService.exportExcel(response);

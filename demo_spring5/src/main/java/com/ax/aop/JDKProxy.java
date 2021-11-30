@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
- /***
+/***
  *  java.lang.reflect.Proxy; 这个包的
  * 参数1,类加载器
  * 2,增强方法所在的类,这个类实现的接口,支持多个接口
@@ -57,11 +57,11 @@ class UserDaoProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         /// 方法前
-        System.out.println("方法前........." + obj +" method = " +method.getName() + " 参数 = " + Arrays.toString(args));
+        System.out.println("方法前........." + obj + " method = " + method.getName() + " 参数 = " + Arrays.toString(args));
 
         Object invoke = method.invoke(obj, args);
 
-        if (method.getName().equals("add")){
+        if (method.getName().equals("add")) {
             System.out.println("判断方法...........add");
         }
         /// 方法后

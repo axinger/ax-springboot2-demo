@@ -8,10 +8,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ThreadDemo2 {
 
-    public synchronized void add() {
-        add();
-    }
-
     public static void main(String[] args) {
 
         // 递归锁,溢出异常,因为是可重复锁
@@ -50,6 +46,10 @@ public class ThreadDemo2 {
                 lock.unlock();
             }
         }, "A1").start();
+    }
+
+    public synchronized void add() {
+        add();
     }
 
 

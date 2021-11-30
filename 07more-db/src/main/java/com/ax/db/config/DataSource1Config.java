@@ -20,6 +20,11 @@ import javax.sql.DataSource;
         sqlSessionFactoryRef = "oneSqlSessionFactoryBean")
 public class DataSource1Config {
 
+    @Resource(name = "oneDataSource")
+    private DataSource dataSource;
+    @Value("${mybatis.db1.mapper-locations}")
+    private String MAPPER_XML;
+
     //指定名称
     @Bean(name = "oneDataSource")
     @Qualifier("oneDataSource")
@@ -30,21 +35,14 @@ public class DataSource1Config {
         return DruidDataSourceBuilder.create().build();
     }
 
+//	private static final String MAPPER_XML = "classpath:mapper/db1/*.xml";
+
     //分别配置事物管理
     @Bean(name = "oneTransaction")
     public DataSourceTransactionManager db1TransactionManager(
             @Qualifier("oneDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
-
-    @Resource(name = "oneDataSource")
-    private DataSource dataSource;
-
-//	private static final String MAPPER_XML = "classpath:mapper/db1/*.xml";
-
-    @Value("${mybatis.db1.mapper-locations}")
-    private String MAPPER_XML;
-
 
     @Bean(name = "oneSqlSessionFactoryBean")
     @ConfigurationProperties(prefix = "mybatis.db1")

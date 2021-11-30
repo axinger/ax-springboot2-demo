@@ -11,18 +11,23 @@ import java.util.Date;
  */
 public class AxResultEntity<T> implements Serializable {
 
-//    private boolean state;
+    //    private boolean state;
     private Integer code;
     private String msg;
     private T body;
 
 
-    /**忽略序列化*/
+    /**
+     * 忽略序列化
+     */
 ////    @JSONField(serialize=false)  transient关键字只能修饰变量，而不能修饰方法和类。
     private transient AxResultStateEnum stateEnum;
 
 //        @JSONField(serialize=false)
 //    private  AxResultStateEnum stateEnum;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //@DatetimeFormat是将String转换成Date，一般前台给后台传值时用
+    private Date date;
 
     public AxResultEntity() {
     }
@@ -31,11 +36,6 @@ public class AxResultEntity<T> implements Serializable {
         this.code = code;
         this.body = body;
     }
-
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //@DatetimeFormat是将String转换成Date，一般前台给后台传值时用
-    private Date date;
-
 
     /**
      * 业务成功返回业务代码,描述和返回的参数
@@ -61,7 +61,7 @@ public class AxResultEntity<T> implements Serializable {
     }
 
 
-    public void setStateEnum( AxResultStateEnum stateEnum) {
+    public void setStateEnum(AxResultStateEnum stateEnum) {
         this.stateEnum = stateEnum;
         this.code = stateEnum.value();
         this.msg = stateEnum.reasonPhrase();
@@ -90,8 +90,6 @@ public class AxResultEntity<T> implements Serializable {
     public void setBody(T body) {
         this.body = body;
     }
-
-
 
 
 }

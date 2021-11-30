@@ -16,7 +16,7 @@ public class JTest4 {
     private Dog dog;
 
     @Test
-    public void test(){
+    public void test() {
 
         System.out.println("dog = " + dog);
     }

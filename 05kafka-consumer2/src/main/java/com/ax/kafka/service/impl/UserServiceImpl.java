@@ -2,11 +2,11 @@ package com.ax.kafka.service.impl;
 
 import com.ax.kafka.api.Topic;
 import com.ax.kafka.api.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -20,9 +20,10 @@ import java.util.Optional;
 import java.util.Properties;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
-  private org.slf4j.Logger log =  LoggerFactory.getLogger(getClass());
+//  private org.slf4j.Logger log =  LoggerFactory.getLogger(getClass());
 
     /**
      * 初始化消息队列，发送之后暂时保存在list中，然后最早头部读取 earliest
@@ -43,12 +44,12 @@ public class UserServiceImpl implements UserService {
 //    }
 
 
-//    @KafkaListener(groupId = "simpleGroup", topics = com.ax.kafka.api.Topic.SIMPLE)
-    @KafkaListener( topics = com.ax.kafka.api.Topic.SIMPLE)
+    //    @KafkaListener(groupId = "simpleGroup", topics = com.ax.kafka.api.Topic.SIMPLE)
+    @KafkaListener(topics = com.ax.kafka.api.Topic.SIMPLE)
     public void consumer1_1(ConsumerRecord<String, Object> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, Consumer consumer, Acknowledgment ack) {
         System.out.println("=============消费者2===========");
-        log.info("消费者2",topic,record.value());
-        log.info("consumer content = {}",consumer);
+        log.info("消费者2", topic, record.value());
+        log.info("consumer content = {}", consumer);
 
         Optional<Object> kafkaMessage = Optional.ofNullable(record.value());
         if (kafkaMessage.isPresent()) {
@@ -92,7 +93,7 @@ public class UserServiceImpl implements UserService {
         for (ConsumerRecord<String, String> record : records) {
             log.info("获取消息详情，{}", record.value());
             content = record.value();
-            if (content!=""){/*
+            if (content != "") {/*
                 XyKafkaOutMsg build = new XyKafkaOutMsg();
                 build.setGmtCreate(new Date());
                 build.setFwBh(123L);
@@ -104,8 +105,9 @@ public class UserServiceImpl implements UserService {
 //        }
         return content;
     }
+
     @Override
-    public synchronized String  getMsg2(){
+    public synchronized String getMsg2() {
         /*log.info("队列消息list，{}",linkedList);
         while (true){
             if (CollectionUtils.isEmpty(linkedList)){
@@ -132,7 +134,6 @@ public class UserServiceImpl implements UserService {
 
         return null;
     }
-
 
 
     @Override

@@ -1,8 +1,7 @@
 package com.ax.db.entity.db1;
 
 
-
-public class UserRole  {
+public class UserRole {
 
     private Long id;
     private String role;

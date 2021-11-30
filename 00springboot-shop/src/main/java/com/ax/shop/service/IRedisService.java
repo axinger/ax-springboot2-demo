@@ -32,7 +32,7 @@ public interface IRedisService {
     public boolean set(final String key, Object value, long outTime, TimeUnit timeUnit);
 
 
-     List<Userinfo> gettWithThread(final String key, Callable callable);
+    List<Userinfo> gettWithThread(final String key, Callable callable);
 
 
     /**
@@ -123,6 +123,7 @@ public interface IRedisService {
      * @return
      */
     public Set<Object> setMembers(String key);
+
     /**
      * 有序集合添加
      *

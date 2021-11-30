@@ -82,7 +82,4 @@ public interface UserinfoMapper {
     List<Userinfo> getAll();
 
 
-
-
-
 }

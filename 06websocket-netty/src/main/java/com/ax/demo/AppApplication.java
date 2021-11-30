@@ -1,14 +1,11 @@
 package com.ax.demo;
 
-import com.ax.demo.service.NettyServer;
 import com.ax.demo.service.NettyWebSocketServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 /**
  * @author xing
@@ -33,26 +30,26 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 public class AppApplication implements CommandLineRunner {
 
-	// yml中指定netty端口号
-	@Value("${netty.port}")
-	private int nettyServerPort;
+    // yml中指定netty端口号
+    @Value("${netty.port}")
+    private int nettyServerPort;
 
-	@Autowired
-	private NettyWebSocketServer nettyServer;
+    @Autowired
+    private NettyWebSocketServer nettyServer;
 
-	public static void main(String[] args) {
-		SpringApplication.run(AppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AppApplication.class, args);
+    }
 
 
-	@Override
-	public void run(String... args) throws Exception {
-		//netty 服务端启动的端口不可和Springboot启动类的端口号重复
-		nettyServer.start(nettyServerPort);
+    @Override
+    public void run(String... args) throws Exception {
+        //netty 服务端启动的端口不可和Springboot启动类的端口号重复
+        nettyServer.start(nettyServerPort);
 
-		//关闭服务器的时候同时关闭Netty服务
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> nettyServer.destroy()));
-	}
+        //关闭服务器的时候同时关闭Netty服务
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> nettyServer.destroy()));
+    }
 }
 
 

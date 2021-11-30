@@ -3,14 +3,24 @@ package com.ax.shop.mapper;
 import com.ax.shop.entity.IpLog;
 import com.ax.shop.query.IpLogQueryObject;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+
+@Mapper
 /**
+ *   eviction: 回收策略,FIFO先进先出,LRU最近最少使用
+ *   flushInterval 刷新间隔,多长时间清空一次
+ *         */
+//@CacheNamespace(eviction = MybatisRedisCache.class)
+/**
+ * @author xing
  * @author axing
  */
-@SuppressWarnings("AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc")
-
+//@CacheNamespace(implementation= MybatisRedisCache.class,eviction=MybatisRedisCache.class)
+// 如果接口上不增加这个注解,在调用tk.mybatis 或 mybatis-plus提供的原生接口时有可能导致缓存中脏数据的产生
+//@CacheNamespaceRef(MybatisRedisCache.class)
 public interface IpLogMapper {
 
     int deleteByPrimaryKey(Long id);
@@ -19,7 +29,15 @@ public interface IpLogMapper {
 
     int insertSelective(IpLog record);
 
+    int insertList(List<IpLog> list);
+
     IpLog selectByPrimaryKey(Long id);
+
+    List<IpLog> selectIfParam(IpLog log);
+
+    List<IpLog> selectChoose(IpLog log);
+
+    List<IpLog> selectByIdList(List<Integer> ids);
 
     int updateByPrimaryKeySelective(IpLog record);
 
@@ -45,7 +63,6 @@ public interface IpLogMapper {
 
     int deleteByIdList(List<Long> ids);
 
-    int insertList(List<IpLog> list);
 
     /**
      * 批量更新,多个sql,

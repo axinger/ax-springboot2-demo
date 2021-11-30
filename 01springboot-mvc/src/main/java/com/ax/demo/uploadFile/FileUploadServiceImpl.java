@@ -33,7 +33,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
         } else {
 
-            FileUploadMessage fileUploadMessage = uploadFlieDto(multipartFile,request);
+            FileUploadMessage fileUploadMessage = uploadFlieDto(multipartFile, request);
 
             if (fileUploadMessage.getResult() == true) {
                 returnMap.put("code", 200);

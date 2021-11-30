@@ -1,18 +1,18 @@
 package com.ax.shop.controller;
 
-import com.ax.shop.annotation.RequireToken;
 import com.ax.shop.dto.LoginDto;
 import com.ax.shop.dto.LoginListDto;
+import com.ax.shop.entity.TStudent;
 import com.ax.shop.entity.User;
 import com.ax.shop.entity.valid.PasswordGroup;
 import com.ax.shop.entity.valid.UsernameGroup;
 import com.ax.shop.entity.valid.ValidList;
 import com.ax.shop.service.HttpClientService;
+import com.ax.shop.service.TStudentService;
 import com.ax.shop.service.impl.RedisService;
 import com.ax.shop.util.axUtil.AxResultEntity;
 import com.ax.shop.util.axUtil.AxResultStateEnum;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +20,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @RestController
 @Slf4j
-@Api(tags = "测试")
+//@Api(tags = "测试")
 public class TestController {
 
     @Autowired
@@ -34,7 +36,7 @@ public class TestController {
     HttpClientService httpClientService;
 
     @RequestMapping(value = "/test1.do")
-    @ApiOperation(value = "获取地区信息列表", notes = "获取地区信息列表")
+    //@ApiOperation(value = "获取地区信息列表", notes = "获取地区信息列表")
     public AxResultEntity testdo1() {
 
         AxResultEntity<List<String>> entity = new AxResultEntity();
@@ -101,7 +103,7 @@ public class TestController {
     }
 
 
-    @ApiOperation(value = "RestGet", notes = "返回json数据")
+    //@ApiOperation(value = "RestGet", notes = "返回json数据")
     @GetMapping(value = "/restGet.do/{id}")
     @ResponseBody
     public ResponseEntity<String> RestGet(@RequestParam(value = "name") String name,
@@ -117,7 +119,7 @@ public class TestController {
 
     }
 
-    @ApiOperation(value = "/restPost", notes = "返回json数据")
+    //@ApiOperation(value = "/restPost", notes = "返回json数据")
     @PostMapping(value = "/restPost.do")
     @ResponseBody
     public Object restPost(@RequestParam(value = "name") String name) {
@@ -172,7 +174,6 @@ public class TestController {
     }
 
     @PostMapping(value = "/jwt2.do")
-    @RequireToken
     public String jwtTest2() {
 
         return "JWT成功";
@@ -180,7 +181,7 @@ public class TestController {
 
 
     @GetMapping(value = "/test22.do")
-    public Object login22(@Validated({UsernameGroup.class,PasswordGroup.class}) LoginDto loginEntity) {
+    public Object login22(@Validated({UsernameGroup.class, PasswordGroup.class}) LoginDto loginEntity) {
         Map<String, Object> map = new HashMap();
         map.put("getUsername", loginEntity.getUsername());
         map.put("getPassword", loginEntity.getPassword());
@@ -218,6 +219,7 @@ public class TestController {
 
     /**
      * 验证 list 必须要自定义一个list
+     *
      * @param loginEntityList
      * @return
      */
@@ -233,28 +235,78 @@ public class TestController {
 
     @GetMapping(value = "/500.do")
     public void error_500() {
-        int i = 5/0;
+        int i = 5 / 0;
     }
 
-    @ApiOperation(value = "参数为list,嵌套map")
+    //@ApiOperation(value = "参数为list,嵌套map")
     @PostMapping(value = "/loginList.do")
     public Object updateByList(@RequestBody(required = false) List<LoginDto> list) {
         System.out.println("list = " + list);
         return list;
     }
 
-    @ApiOperation(value = "参数为map,嵌套list,用object接受")
+    //@ApiOperation(value = "参数为map,嵌套list,用object接受")
     @PostMapping(value = "/loginList2.do")
-    public Object loginList2(@RequestBody(required = false)LoginListDto dto) {
+    public Object loginList2(@RequestBody(required = false) LoginListDto dto) {
         System.out.println("list = " + dto);
         return dto;
     }
 
-    @ApiOperation(value = "参数为map,嵌套list")
+    //@ApiOperation(value = "参数为map,嵌套list")
     @PostMapping(value = "/loginList3.do")
-    public Object loginList3(@RequestBody(required = false)Map list) {
+    public Object loginList3(@RequestBody(required = false) Map list) {
         System.out.println("list = " + list);
         return list;
     }
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @RequestMapping(value = "/setSession", method = RequestMethod.GET)
+    public Map<String, Object> firstResp (HttpServletRequest request,HttpSession session){
+//        HttpSession session =  request.getSession();
+        session.setAttribute("userId","用户id");
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("getId", session.getId());
+        map.put("getAttributeNames",session.getAttributeNames());
+
+        return map;
+    }
+
+    /**
+     * session共享
+     * */
+    @RequestMapping(value = "/getSession", method = RequestMethod.GET)
+    public Object sessions (HttpServletRequest request,HttpSession session){
+//        HttpSession session =  request.getSession();
+
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("getId", session.getId());
+        map.put("getAttributeNames",session.getAttributeNames());
+        map.put("userId",session.getAttribute("userId"));
+
+        return map;
+    }
+
+
+    @Autowired
+    private TStudentService studentService;
+
+
+    @GetMapping(value = "/student1")
+    public Object student1 (){
+        final TStudent student = studentService.getById(1L);
+        System.out.println("student = " + student);
+        return student;
+    }
+
+
+    @GetMapping(value = "/student2")
+    public Object student2 (){
+        Page<TStudent> page  = new Page();
+        final Page<TStudent> page1 = studentService.page(page);
+        System.out.println("page1 = " + page1);
+        System.out.println("ge1.getRecords() = " + page1.getRecords());
+        return page1;
+    }
+
 
 }

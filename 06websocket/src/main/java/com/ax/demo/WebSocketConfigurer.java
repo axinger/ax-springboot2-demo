@@ -6,8 +6,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
  * 使用的是 javax.websocket 包下的注解方式
- *
- * */
+ */
 @Configuration
 public class WebSocketConfigurer {
 

@@ -1,14 +1,13 @@
 package com.ax.mongo.model;
 
-import java.util.Date;
-import java.util.Random;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+import java.util.Random;
+
 /**
- *
  * Created by Silence on 2017/4/22.
  */
 @Data
@@ -16,31 +15,31 @@ import lombok.ToString;
 @ToString
 public class User {
 
-	// @Id
-	// private String id;
+    // @Id
+    // private String id;
 
-	// 用户名
-	// @Indexed(unique = true)
-	private String username;
+    // 用户名
+    // @Indexed(unique = true)
+    private String username;
 
-	// 密码
-	private String password;
+    // 密码
+    private String password;
 
-	// 昵称
-	private String nickname;
+    // 昵称
+    private String nickname;
 
-	// 头像
-	private String avatar;
+    // 头像
+    private String avatar;
 
-	// 登录时间
-	private Date joinTime;
+    // 登录时间
+    private Date joinTime;
 
-	public User(String username, String password, String nickname) {
-		this.username = username;
-		this.password = password;
-		this.nickname = nickname;
-		this.avatar = "/image/avatar/avatar" + new Random().nextInt(10) + ".jpg";
-		this.joinTime = new Date();
-	}
+    public User(String username, String password, String nickname) {
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+        this.avatar = "/image/avatar/avatar" + new Random().nextInt(10) + ".jpg";
+        this.joinTime = new Date();
+    }
 
 }

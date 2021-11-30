@@ -15,6 +15,8 @@ import java.util.List;
 public class UserinfoServiceImpl implements IUserinfoService {
 
 
+    @Autowired
+    UserinfoMapper userinfoMapper;
 
     @Override
     public Userinfo getUserinfoWithKey(long id) {
@@ -22,8 +24,6 @@ public class UserinfoServiceImpl implements IUserinfoService {
 
     }
 
-    @Autowired
-    UserinfoMapper userinfoMapper;
     @Override
     public Userinfo getByUsername(String username) {
         System.out.println("username111 = " + username);

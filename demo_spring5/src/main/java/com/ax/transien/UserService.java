@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
 
-    public void add(){
+    public void add() {
         System.out.println("UserService.add...........");
     }
 }

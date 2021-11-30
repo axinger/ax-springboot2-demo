@@ -1,0 +1,10 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: demo12-nacos-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848

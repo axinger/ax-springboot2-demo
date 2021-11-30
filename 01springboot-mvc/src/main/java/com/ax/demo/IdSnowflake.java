@@ -11,10 +11,10 @@ import javax.annotation.PostConstruct;
 public class IdSnowflake {
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println("init==========");
         String localhostStr = NetUtil.getLocalhostStr();
-        log.info("localhostStr = {}",localhostStr);
+        log.info("localhostStr = {}", localhostStr);
         System.out.println("localhostStr = " + localhostStr);
         long ipv4ToLong = NetUtil.ipv4ToLong(localhostStr);
         System.out.println("ipv4ToLong = " + ipv4ToLong);

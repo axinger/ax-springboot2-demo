@@ -1,4 +1,5 @@
 package com.ax.demo.util.axUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,22 +28,22 @@ public class AxPageResultEntity {
     }
 
 
-    public static AxPageResultEntity empty(int pageSize){
-        return new AxPageResultEntity(0,pageSize,1,new ArrayList<>());
+    public static AxPageResultEntity empty(int pageSize) {
+        return new AxPageResultEntity(0, pageSize, 1, new ArrayList<>());
 
     }
 
-    public Integer getTotalPage(){
-        return Math.max((totalCount+pageSize-1)/pageSize,1);
+    public Integer getTotalPage() {
+        return Math.max((totalCount + pageSize - 1) / pageSize, 1);
 
     }
 
-    public Integer getPrev(){
-        return Math.max(currentPage-1,1);
+    public Integer getPrev() {
+        return Math.max(currentPage - 1, 1);
     }
 
-    public Integer getNext(){
-        return Math.min(currentPage+1,getTotalPage());
+    public Integer getNext() {
+        return Math.min(currentPage + 1, getTotalPage());
     }
 
 

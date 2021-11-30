@@ -10,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class FanoutSender {
     private static final Logger LOGGER = LoggerFactory.getLogger(FanoutSender.class);
+    private static final String exchangeName = "exchange.fanout";
     @Autowired
     private RabbitTemplate template;
-
-    private static final String exchangeName = "exchange.fanout";
 
     public void send(int index) {
         StringBuilder builder = new StringBuilder("Hello");

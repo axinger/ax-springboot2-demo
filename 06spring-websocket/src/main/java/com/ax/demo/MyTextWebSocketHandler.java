@@ -54,10 +54,10 @@ public class MyTextWebSocketHandler extends TextWebSocketHandler {
         System.out.println("toId = " + toId);
 //        TextMessage textMessage = new TextMessage(msg);
 
-        sendMsg(toId,message);
+        sendMsg(toId, message);
     }
 
-    public void sendMsg(Long userid, TextMessage textMessage){
+    public void sendMsg(Long userid, TextMessage textMessage) {
 
         System.out.println("sendMsg allClient = " + allClient);
 
@@ -66,12 +66,12 @@ public class MyTextWebSocketHandler extends TextWebSocketHandler {
 
         System.out.println("session = " + session);
 
-        if (session !=null && session.isOpen()){
+        if (session != null && session.isOpen()) {
 
             try {
                 /*发送消息*/
                 session.sendMessage(textMessage);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -1,1 +1,2 @@
-INSERT INTO table_web_action (TIME) VALUES (NOW());
+INSERT INTO table_web_action (TIME)
+VALUES (NOW());

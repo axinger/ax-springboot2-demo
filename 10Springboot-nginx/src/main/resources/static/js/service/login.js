@@ -80,7 +80,7 @@ $(function () {
 //                        $.messager.confirm("提示","登陆成功,点击确定跳转到个人中心",function() {
                         /**直接进去静态页面*/
 // window.location.href="/home.html";
-                        
+
                         // alert(JSON.stringify(data.data));
 
                         window.localStorage.setItem('user', JSON.stringify(data.body));
@@ -93,7 +93,7 @@ $(function () {
 
                         // alert(user.token);
 
-                        window.location.href=getContextPath("/home.page");
+                        window.location.href = getContextPath("/home.page");
 
 //                        });
 

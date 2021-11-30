@@ -5,8 +5,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 class Share {
-    private Integer num = 0;
     private final Lock lock = new ReentrantLock();
+    private Integer num = 0;
     // 条件锁
     private Condition condition = lock.newCondition();
 

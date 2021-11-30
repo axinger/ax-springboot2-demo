@@ -6,8 +6,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class Ticket {
 
-    private Integer num = 30;
-
     /**
      * Lock 可以响应中断,需要放入 try finally中,保证安全
      * 默认非公平锁 (公平锁与非公平锁)
@@ -17,7 +15,7 @@ class Ticket {
      * 公平锁: 雨露均沾,效率低
      */
     private final Lock lock = new ReentrantLock(true);
-
+    private Integer num = 30;
 
     public void sale() {
         lock.lock();

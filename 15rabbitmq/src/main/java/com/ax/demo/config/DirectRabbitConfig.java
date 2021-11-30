@@ -3,10 +3,11 @@ package com.ax.demo.config;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 /**
  * Created by macro on 2020/5/19.
- *
-https://www.toutiao.com/i6900091091102515716/?tt_from=mobile_qq&utm_campaign=client_share&timestamp=1606644489&app=news_article&utm_source=mobile_qq&utm_medium=toutiao_ios&use_new_style=1&req_id=202011291808080101310751630480369C&group_id=6900091091102515716
+ * <p>
+ * https://www.toutiao.com/i6900091091102515716/?tt_from=mobile_qq&utm_campaign=client_share&timestamp=1606644489&app=news_article&utm_source=mobile_qq&utm_medium=toutiao_ios&use_new_style=1&req_id=202011291808080101310751630480369C&group_id=6900091091102515716
  */
 @Configuration
 public class DirectRabbitConfig {

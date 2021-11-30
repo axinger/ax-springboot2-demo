@@ -9,10 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
     @GetMapping("/chat")
-    public ModelAndView index(@RequestParam(value = "id")String id){
+    public ModelAndView index(@RequestParam(value = "id") String id) {
         System.out.println("chat id = " + id);
 
-        ModelAndView mav=new ModelAndView("socket");
+        ModelAndView mav = new ModelAndView("socket");
         mav.addObject("uid", id);
         return mav;
     }

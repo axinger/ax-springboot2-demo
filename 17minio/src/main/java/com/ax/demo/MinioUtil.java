@@ -58,7 +58,7 @@ public class MinioUtil {
         //开始上传
         client.putObject(
                 PutObjectArgs.builder().bucket(bucketName).object(fileName).stream(
-                        file.getInputStream(), file.getSize(), -1)
+                                file.getInputStream(), file.getSize(), -1)
                         .contentType(file.getContentType())
                         .build());
         String url = minioProp.getEndpoint() + "/" + bucketName + "/" + fileName;

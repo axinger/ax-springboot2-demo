@@ -18,12 +18,15 @@ public enum AxResultStateEnum {
     INVALID_METHOD_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "请求path找不到"),
     INVALID_PARAMETER_FORMAT(HttpStatus.INTERNAL_SERVER_ERROR.value(), "请求参数格式错误"),
     BAD_REQUEST(HttpStatus.BAD_REQUEST.value(), "Bad Request"),
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error"),
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "服务器内部异常"),
     TOKEN_INVALID(HttpStatus.BAD_REQUEST.value(), "token失效"),
     INVALID_LOGIN_PASSWORD_WRONG(HttpStatus.BAD_REQUEST.value(), "验证失败"),
     INVALID_ANONYMOUS_NOT_SECURITY(HttpStatus.BAD_REQUEST.value(), "用来解决匿名用户访问无权限资源时的异常"),
     INVALID_USER_NOT_SECURITY(HttpStatus.BAD_REQUEST.value(), "用来解决认证过的用户访问无权限资源时的异常"),
     INVALID_ACCESS_DENIED(HttpStatus.BAD_REQUEST.value(), "无权限,不允许访问"),
+
+
+    INTERNAL_SQL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "SQL查询异常"),
 
 
     ;
@@ -42,11 +45,11 @@ public enum AxResultStateEnum {
         this.reasonPhrase = reasonPhrase;
     }
 
-    public Integer value(){
+    public Integer value() {
         return value;
     }
 
-    public String reasonPhrase(){
+    public String reasonPhrase() {
         return reasonPhrase;
     }
 }

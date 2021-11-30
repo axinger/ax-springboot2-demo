@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="message")
+@ConfigurationProperties(prefix = "message")
 @PropertySource("classpath:file-message.properties")
 public class MessageProperties {
 

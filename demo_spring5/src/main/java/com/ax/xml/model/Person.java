@@ -17,16 +17,7 @@ public class Person {
     }
 
     public void add() {
-        System.out.println(" name = " + name + " title = " + title + " address = " + address+" dogs = "+dogs);
-    }
-
-    public void setName(String name) {
-        this.name = name;
-        System.out.println("2.为bean的属性设置值和对其他bean引用(调用set方法);");
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        System.out.println(" name = " + name + " title = " + title + " address = " + address + " dogs = " + dogs);
     }
 
     public List<Dog> getDogs() {
@@ -37,16 +28,21 @@ public class Person {
         this.dogs = dogs;
     }
 
-    public void setIdCard(IdCard idCard) {
-        this.idCard = idCard;
-    }
-
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+        System.out.println("2.为bean的属性设置值和对其他bean引用(调用set方法);");
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAddress() {
@@ -57,12 +53,16 @@ public class Person {
         return idCard;
     }
 
+    public void setIdCard(IdCard idCard) {
+        this.idCard = idCard;
+    }
+
     ///创建执行的初始化方法
-    public void initMethod(){
+    public void initMethod() {
         System.out.println("4.调用bean的初始化方法(需要进行配置初始化的方法)");
     }
 
-    public void destroyMethod(){
+    public void destroyMethod() {
         System.out.println("7.当容器关闭时候,调用bean的销毁方法(需要进行配置销毁的方法);");
     }
 

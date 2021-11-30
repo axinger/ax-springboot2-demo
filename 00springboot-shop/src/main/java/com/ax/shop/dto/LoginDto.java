@@ -11,14 +11,13 @@ import javax.validation.constraints.NotNull;
  */
 
 
-
 public class LoginDto {
 
-    @NotNull(message = "姓名不能空",groups = UsernameGroup.class)
-    private  String username;
+    @NotNull(message = "姓名不能空", groups = UsernameGroup.class)
+    private String username;
 
-    @NotNull(message = "密码不能空",groups = PasswordGroup.class)
-    private  String password;
+    @NotNull(message = "密码不能空", groups = PasswordGroup.class)
+    private String password;
 
     public String getUsername() {
         return username;

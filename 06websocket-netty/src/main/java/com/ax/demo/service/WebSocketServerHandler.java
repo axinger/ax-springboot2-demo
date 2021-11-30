@@ -1,8 +1,5 @@
 package com.ax.demo.service;
 
-import com.alibaba.fastjson.JSONObject;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -30,19 +27,33 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     public static final byte PING_MSG = 1;
     public static final byte PONG_MSG = 2;
     public static final byte CUSTOM_MSG = 3;
+    public static WebSocketServerHandler webSocketServerHandler;
     private int heartbeatCount = 0;
-
-  // 配置客户端是否为https的控制
+    // 配置客户端是否为https的控制
     @Value("${netty.ssl-enabled:false}")
     private Boolean useSsl;
-
     /**
      * 这里可以引入自己业务类来处理进行的客户端连接
      */
     @Autowired
     private MessageService messageService;
-    
-    public static WebSocketServerHandler webSocketServerHandler;
+    private WebSocketServerHandshaker handshaker;
+
+    @SuppressWarnings("deprecation")
+    private static void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
+        // 返回应答给客户端
+        if (res.getStatus().code() != 200) {
+//            ByteBuf buf = Unpooled.copiedBuffer(res.getStatus().toString(), CharsetUtil.UTF_8);
+//            res.content().writeBytes(buf);
+
+            // buf.release();
+        }
+        // 如果是非Keep-Alive，关闭连接
+        ChannelFuture f = ctx.channel().writeAndFlush(res);
+        if (!HttpHeaders.isKeepAlive(req) || res.getStatus().code() != 200) {
+            f.addListener(ChannelFutureListener.CLOSE);
+        }
+    }
 
     /**
      * 解决启动加载不到自己业务类
@@ -51,10 +62,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     public void init() {
         webSocketServerHandler = this;
     }
-
-
-    private WebSocketServerHandshaker handshaker;
-
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -156,23 +163,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             handshaker.handshake(ctx.channel(), (FullHttpRequest) req);
         }
     }
-
-    @SuppressWarnings("deprecation")
-    private static void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
-        // 返回应答给客户端
-        if (res.getStatus().code() != 200) {
-//            ByteBuf buf = Unpooled.copiedBuffer(res.getStatus().toString(), CharsetUtil.UTF_8);
-//            res.content().writeBytes(buf);
-
-            // buf.release();
-        }
-        // 如果是非Keep-Alive，关闭连接
-        ChannelFuture f = ctx.channel().writeAndFlush(res);
-        if (!HttpHeaders.isKeepAlive(req) || res.getStatus().code() != 200) {
-            f.addListener(ChannelFutureListener.CLOSE);
-        }
-    }
-
 
     /**
      * 这里是保持服务器与客户端长连接  进行心跳检测 避免连接断开

@@ -23,19 +23,19 @@
     </resultMap>
 
 
-<!--    <resultMap id="userAndReloResultMap" type="com.ax.springsecurity.entity.Userinfo">-->
+    <!--    <resultMap id="userAndReloResultMap" type="com.ax.springsecurity.entity.Userinfo">-->
 
-<!--        <id column="id" property="id" jdbcType="BIGINT"/>-->
-<!--        <result column="username" property="username" jdbcType="VARCHAR"/>-->
-<!--        <result column="password" property="password" jdbcType="VARCHAR"/>-->
-<!--        <result column="userType" property="userType" jdbcType="INTEGER"/>-->
+    <!--        <id column="id" property="id" jdbcType="BIGINT"/>-->
+    <!--        <result column="username" property="username" jdbcType="VARCHAR"/>-->
+    <!--        <result column="password" property="password" jdbcType="VARCHAR"/>-->
+    <!--        <result column="userType" property="userType" jdbcType="INTEGER"/>-->
 
-<!--        <collection property="authorities" javaType="java.util.List" ofType= "com.ax.springsecurity.entity.UserRole">-->
-<!--            <id column="rid" property="id"/>-->
-<!--            <result column="role" property="role"/>-->
-<!--        </collection>-->
+    <!--        <collection property="authorities" javaType="java.util.List" ofType= "com.ax.springsecurity.entity.UserRole">-->
+    <!--            <id column="rid" property="id"/>-->
+    <!--            <result column="role" property="role"/>-->
+    <!--        </collection>-->
 
-<!--    </resultMap>-->
+    <!--    </resultMap>-->
 
     <resultMap id="userAndReloResultMap" type="com.ax.springsecurity.entity.Userinfo" extends="BaseResultMap">
 
@@ -46,13 +46,18 @@
     </resultMap>
 
     <select id="selectUserWithRelo" resultMap="userAndReloResultMap">
-       SELECT u.*, r.id as rid ,r.role FROM t_userinfo u LEFT JOIN t_user_role r ON u.id=r.userid where  u.id=#{id}
+        SELECT u.*, r.id as rid, r.role
+        FROM t_userinfo u
+                 LEFT JOIN t_user_role r ON u.id = r.userid
+        where u.id = #{id}
     </select>
 
 
-
     <select id="selectUserAndReloByName" resultMap="userAndReloResultMap">
-       SELECT u.*, r.id as rid ,r.role FROM t_userinfo u LEFT JOIN t_user_role r ON u.id=r.userid where  u.username=#{username}
+        SELECT u.*, r.id as rid, r.role
+        FROM t_userinfo u
+                 LEFT JOIN t_user_role r ON u.id = r.userid
+        where u.username = #{username}
     </select>
 
 

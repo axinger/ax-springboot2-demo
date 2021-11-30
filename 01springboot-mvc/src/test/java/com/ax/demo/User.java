@@ -12,6 +12,9 @@ public class User {
 
     private String address;
 
+    public User() {
+    }
+
     public Integer getId() {
         return id;
     }
@@ -53,10 +56,6 @@ public class User {
                 ", address='" + address + '\'' +
                 '}';
     }
-
-    public User() {
-    }
-
 
     public User test(Callable<String> callable) {
 

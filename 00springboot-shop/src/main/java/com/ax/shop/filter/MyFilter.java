@@ -7,20 +7,20 @@ import java.io.IOException;
 
 /**
  * Filter和Interceptor的区别
- *
+ * <p>
  * 1、Filter是基于函数回调（doFilter()方法）的，而Interceptor则是基于Java反射的（AOP思想）。
- *
+ * <p>
  * 2、Filter依赖于Servlet容器，而Interceptor不依赖于Servlet容器。
- *
+ * <p>
  * 3、Filter对几乎所有的请求起作用，而Interceptor只能对action请求起作用。
- *
+ * <p>
  * 4、Interceptor可以访问Action的上下文，值栈里的对象，而Filter不能。
- *
+ * <p>
  * 5、在action的生命周期里，Interceptor可以被多次调用，而Filter只能在容器初始化时调用一次。
- *
+ * <p>
  * 6、Filter在过滤是只能对request和response进行操作，而interceptor可以对request、response、handler、modelAndView、exception进行操作。
-
- 使用filter支持跨域资源访问
+ * <p>
+ * 使用filter支持跨域资源访问
  */
 public class MyFilter implements Filter {
 
@@ -29,8 +29,8 @@ public class MyFilter implements Filter {
 
         System.out.println("MyFilter == Filter只能在容器初始化时调用一次。");
 
-        HttpServletRequest request=(HttpServletRequest) servletRequest;
-        HttpServletResponse response=(HttpServletResponse) servletResponse;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
 //        HttpServletResponse res = (HttpServletResponse) response;
 //        res.setHeader("Access-Control-Allow-Origin", "*");
@@ -40,11 +40,9 @@ public class MyFilter implements Filter {
 //        res.setHeader("Access-Control-Expose-Headers", "Content-Disposition, Authorization-info, Stale");
 
 
-
 ////        使用Filter过滤器实现禁用缓存
 //        response.setDateHeader("Expires", -1);
 //        response.setHeader("Cache-Control", "no-cache");
-
 
 
         filterChain.doFilter(servletRequest, servletResponse);

@@ -1,24 +1,8 @@
 package com.ax.demo.service;
 
-import cn.hutool.core.util.ObjectUtil;
-import com.alibaba.fastjson.JSONObject;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import io.netty.util.AttributeKey;
-import io.netty.util.HashedWheelTimer;
-import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.net.InetSocketAddress;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @description
@@ -28,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Service(value = "messageService")
 public class MessageServiceImpl implements MessageService {
-//
+    //
 //// 是消息通信dubbo类,请忽略
 //    @Autowired
 //    private ChatMsgService chatMsgService;
@@ -74,7 +58,8 @@ public class MessageServiceImpl implements MessageService {
 //            channelGroup.add(channel);
 //        }
     }
-//
+
+    //
 //    /**
 //     * 判断一个通道是否有用户在使用
 //     *

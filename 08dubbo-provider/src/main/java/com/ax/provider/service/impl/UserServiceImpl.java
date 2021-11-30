@@ -6,13 +6,13 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.stereotype.Component;
 
 //使用dubbo注解
-@Service(version = "1.0.0",interfaceClass = UserService.class )
+@Service(version = "1.0.0", interfaceClass = UserService.class)
 @Component
 class UserServiceImpl implements UserService {
 
     @Override
     public String sayHi(String name) {
-        return name+"提供者";
+        return name + "提供者";
     }
 
     @Override

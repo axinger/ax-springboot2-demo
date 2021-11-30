@@ -1,6 +1,5 @@
 package com.ax.demo.module;
 
-import com.ax.demo.service.ChatConstants;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,9 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @AllArgsConstructor
 @ToString
 @Builder
-public class UserInfo implements Serializable{
+public class UserInfo implements Serializable {
 
-	public static Map<String, UserInfo> map = new ConcurrentHashMap<>();
-	private String phone;
+    public static Map<String, UserInfo> map = new ConcurrentHashMap<>();
+    private String phone;
 
 }

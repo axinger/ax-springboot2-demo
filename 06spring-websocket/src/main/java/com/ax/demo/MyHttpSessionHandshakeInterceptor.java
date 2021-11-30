@@ -12,6 +12,7 @@ import java.util.Map;
 /**
  * 握手请求拦截器
  * 检查握手请求和相应的属性,用于区别
+ *
  * @author xing
  */
 public class MyHttpSessionHandshakeInterceptor extends HttpSessionHandshakeInterceptor {

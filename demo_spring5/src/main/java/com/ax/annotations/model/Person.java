@@ -7,7 +7,7 @@ public class Person {
 
     private String name;
 
-    public void add(){
+    public void add() {
         System.out.println("add........Person");
     }
 }

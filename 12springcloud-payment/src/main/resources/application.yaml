@@ -6,9 +6,9 @@ server:
 spring:
   application:
     name: cloud-service-payment
-#  devtools:
-#    restart:
-#      enabled: true
+  #  devtools:
+  #    restart:
+  #      enabled: true
 
   cloud:
     consul:

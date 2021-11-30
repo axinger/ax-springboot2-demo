@@ -1,6 +1,13 @@
 package com.ax.shop;
 
 public class Test {
+    public static void main(String[] args) {
+//        System.out.println(Color.RED.toString());
+
+
+    }
+
+
     public enum Color {
         RED("红色", 1), GREEN("绿色", 2), BLANK("白色", 3), YELLO("黄色", 4);
         // 成员变量
@@ -18,14 +25,5 @@ public class Test {
         public String toString() {
             return this.index + "_" + this.name;
         }
-    }
-
-
-    public static void main(String[] args) {
-//        System.out.println(Color.RED.toString());
-
-
-
-
     }
 }

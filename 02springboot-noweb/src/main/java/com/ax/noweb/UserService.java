@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    public String sayHi(){
+    public String sayHi() {
         System.out.println("hi......");
         return "hi 123";
     }
