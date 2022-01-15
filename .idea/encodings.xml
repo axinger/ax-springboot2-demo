@@ -76,14 +76,14 @@
     <file url="file://$PROJECT_DIR$/a19spring-boot-redis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a20netty/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a20netty/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-ax-hello-spring-boot-starter-autoconfigure/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-java/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-java/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-juc/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-juc/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-spring-web-flux/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-spring-web-flux/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-spring5/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b-demo-spring5/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b01-demo-java/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b01-demo-java/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b02-demo-juc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b02-demo-juc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b03-demo-spring5/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b03-demo-spring5/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b04-demo-spring-web-flux/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b04-demo-spring-web-flux/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/b05-ax-hello-spring-boot-starter-autoconfigure/src/main/java" charset="UTF-8" />
   </component>
 </project>
