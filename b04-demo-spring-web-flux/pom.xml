@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.ax</groupId>
-    <artifactId>demo_SpringWebflux</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>demo_SpringWebflux</name>
-    <description>demo_SpringWebflux</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.4.1</spring-boot.version>
-    </properties>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ax</groupId>
+        <artifactId>ax-spring-boot-demo</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>b04-demo-spring-web-flux</artifactId>
+    <name>b04-demo-spring-web-flux</name>
+    <version>1.0.2</version>
 
     <dependencies>
         <dependency>
@@ -45,20 +43,7 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

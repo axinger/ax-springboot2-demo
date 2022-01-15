@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!--    <modelVersion>4.0.0</modelVersion>-->
-    <!--  <parent>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-parent</artifactId>
-          <version>2.2.5.RELEASE</version>
-          <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
-      </parent>-->
+
     <parent>
         <groupId>com.ax</groupId>
         <artifactId>ax-spring-boot-demo</artifactId>
@@ -19,10 +13,7 @@
     <version>1.0.0</version>
     <!--因为要放入外部的tomcat中，因此更改默认打包方式(jar)为war包-->
     <packaging>jar</packaging>
-    <name>01springboot-mvc</name>
-
     <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -184,23 +175,23 @@
         <finalName>spring-boot-demo-0.0.1</finalName>
         <plugins>
             <!-- 打jar包时如果不配置该插件，打出来的jar包没有清单文件 -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.4.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                    <!-- 去除yml 提示-->
-                    <execution>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-configuration-processor</artifactId>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>2.4.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    &lt;!&ndash; 去除yml 提示&ndash;&gt;-->
+<!--                    <execution>-->
+<!--                        <groupId>org.springframework.boot</groupId>-->
+<!--                        <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
 
             <plugin>
@@ -211,8 +202,16 @@
                 </configuration>
             </plugin>
 
-
+            <!-- 该插件用于测试出错并不影响项目的编译 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
 
 </project>

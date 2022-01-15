@@ -18,12 +18,13 @@ spring:
     url: jdbc:mysql://localhost:3306/seata_order?characterEncoding=utf-8&useSSL=false
 
   cloud:
-    alibaba:
-      seata:
-        tx-service-group: my_test_tx_group
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+#    alibaba:
+#      seata:
+#        tx-service-group: my_test_tx_group
+
 feign:
   hystrix:
     enabled: false
@@ -36,25 +37,19 @@ mybatis:
 ## 1.0新添加的enabled激活自动配置，使得我们可以在yaml/properties文件中配置，
 ## 避免了以前需要客户端引入2个文件：
 ## file.conf 和 registry.conf
-#seata:
-#  enabled: true # 1.0新特性，需要依赖seata-spring-boot-starter,默认为true
-#  tx-service-group: ax_tx_group
-#  #  transport:
-#  #    type: TCP #default value is TCP
-#  #    server: NIO #default value is NIO
-#  #    heartbeat: true #enable heartbeat
-#  #    enable-client-batch-send-request: true
-#  #    serialization: seata
-#  #    compressor: none
-#  #    shutdown:
-#  #      wait: 3 #when destroy server, wait seconds
-#  registry:
-#    type: nacos
-#    eureka:
-#      service-url: localhost:8848
-#
-#  #      application: default
-#  #      weight: 1
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      application: seata-server
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+#  config:
+#    file:
+#      n
+  #      weight: 1
 #  #  service:
 #  #    vgroup-mapping: geekplus_tx_group
 #  #    disable-global-transaction: false

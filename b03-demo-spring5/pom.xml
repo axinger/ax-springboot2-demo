@@ -2,17 +2,21 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.ax</groupId>
-    <artifactId>demo_spring5</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>demo_spring5</name>
-    <description>demo_spring5</description>
+    <parent>
+        <groupId>com.ax</groupId>
+        <artifactId>ax-spring-boot-demo</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>b03-demo-spring5</artifactId>
+    <name>b03-demo-spring5</name>
+    <version>1.0.2</version>
+
 
     <properties>
-        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.4.1</spring-boot.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
@@ -47,18 +51,6 @@
         </dependency>
 
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

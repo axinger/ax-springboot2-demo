@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.ax.demo.DemoApplicationTests
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.208 s <<< FAILURE! - in com.ax.demo.DemoApplicationTests
-getHello  Time elapsed: 0.015 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.ax.demo.DemoApplicationTests.getHello(DemoApplicationTests.java:47)
-

@@ -1,4 +1,4 @@
 spring:
   profiles:
-#    active: info
+    #    active: info
     active: dev #环境
