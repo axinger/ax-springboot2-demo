@@ -8,9 +8,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>00springboot-shop</artifactId>
+    <artifactId>a00-spring-boot-mall</artifactId>
+    <name>a00-spring-boot-mall</name>
     <version>1.0.2</version>
-    <name>00springboot-shop</name>
     <packaging>jar</packaging>
     <description>练手</description>
 

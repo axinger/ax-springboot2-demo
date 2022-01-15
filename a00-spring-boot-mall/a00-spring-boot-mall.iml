@@ -7,8 +7,8 @@
           <root url="file://$MODULE_DIR$/../00springboot-shop/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/../00springboot-shop/src/main/java" />
-          <root url="file://$MODULE_DIR$/../00springboot-shop/src/main/resources" />
+          <root url="file://$MODULE_DIR$/../a00-spring-boot-mall/src/main/java" />
+          <root url="file://$MODULE_DIR$/../a00-spring-boot-mall/src/main/resources" />
         </sourceRoots>
       </configuration>
     </facet>

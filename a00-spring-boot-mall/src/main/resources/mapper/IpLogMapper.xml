@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ax.shop.mapper.IpLogMapper">
+<mapper namespace="com.ax.mall.mapper.IpLogMapper">
 
     <!--
     eviction: 回收策略,FIFO先进先出,LRU最近最少使用
     flushInterval 刷新间隔,多长时间清空一次
 
     -->
-        <cache type="com.ax.shop.cache.MybatisRedisCache" flushInterval="6000" size="512" readOnly="true">
+        <cache type="com.ax.mall.cache.MybatisRedisCache" flushInterval="6000" size="512" readOnly="true">
 
 
         </cache>
 
 
-    <resultMap id="BaseResultMap" type="com.ax.shop.entity.IpLog">
+    <resultMap id="BaseResultMap" type="com.ax.mall.entity.IpLog">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="login_time" property="loginTime" jdbcType="TIMESTAMP"/>
@@ -42,7 +42,7 @@
 
     <!--动态sql-->
     <!--  if test=" 不要 前缀 test="log.user_name-->
-    <select id="selectIfParam" resultMap="BaseResultMap" parameterType="com.ax.shop.entity.IpLog">
+    <select id="selectIfParam" resultMap="BaseResultMap" parameterType="com.ax.mall.entity.IpLog">
         select
         <include refid="Base_Column_List"/>
         from t_ip_log
@@ -61,7 +61,7 @@
     </select>
 
 
-    <select id="selectChoose" parameterType="com.ax.shop.entity.IpLog" resultMap="BaseResultMap">
+    <select id="selectChoose" parameterType="com.ax.mall.entity.IpLog" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_ip_log
@@ -85,7 +85,7 @@
     <!--foreach 遍历集合-->
     <!--    <select id="selectByIdList" parameterType="java.util.List" resultMap="BaseResultMap">-->
 
-    <select id="selectByIdList" parameterType="java.util.List" resultType="com.ax.shop.entity.IpLog">
+    <select id="selectByIdList" parameterType="java.util.List" resultType="com.ax.mall.entity.IpLog">
 
 
         select
@@ -105,7 +105,7 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="com.ax.shop.entity.IpLog" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.ax.mall.entity.IpLog" useGeneratedKeys="true" keyProperty="id">
         insert into t_ip_log (user_name, login_time, ip,
                               login_state, user_type, user_info_id)
         values (#{userName,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR},
@@ -113,7 +113,7 @@
     </insert>
 
     <!--动态sql if -->
-    <insert id="insertSelective" parameterType="com.ax.shop.entity.IpLog" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.ax.mall.entity.IpLog" useGeneratedKeys="true" keyProperty="id">
         insert into t_ip_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userName != null">
@@ -157,7 +157,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.ax.shop.entity.IpLog">
+    <update id="updateByPrimaryKeySelective" parameterType="com.ax.mall.entity.IpLog">
         update t_ip_log
 
         <set>
@@ -205,7 +205,7 @@
 
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ax.shop.entity.IpLog">
+    <update id="updateByPrimaryKey" parameterType="com.ax.mall.entity.IpLog">
         update t_ip_log
         set user_name    = #{userName,jdbcType=VARCHAR},
             login_time   = #{loginTime,jdbcType=TIMESTAMP},
@@ -267,7 +267,7 @@
     </select>
 
 
-    <select id="queryPage" resultMap="BaseResultMap" parameterType="com.ax.shop.query.IpLogQueryObject">
+    <select id="queryPage" resultMap="BaseResultMap" parameterType="com.ax.mall.query.IpLogQueryObject">
         SELECT *
         FROM t_ip_log
         <include refid="base_query"/>
@@ -280,7 +280,7 @@
     </select>
 
 
-    <select id="findByPage" resultType="com.ax.shop.entity.IpLog">
+    <select id="findByPage" resultType="com.ax.mall.entity.IpLog">
         select
         <include refid="Base_Column_List"/>
         from t_ip_log
