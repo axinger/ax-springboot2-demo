@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.ax</groupId>
-        <artifactId>spring-boot-demo</artifactId>
+        <artifactId>ax-spring-boot-demo</artifactId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>13spring-cloud-alibaba-nacos-payment</artifactId>
+    <artifactId>a13spring-cloud-alibaba-nacos-payment</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

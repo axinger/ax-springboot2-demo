@@ -28,7 +28,7 @@
     </parent>
 
     <groupId>com.ax</groupId>
-    <artifactId>spring-boot-demo</artifactId>
+    <artifactId>ax-spring-boot-demo</artifactId>
     <version>1.0.0</version>
     <!--pom总的父工程-->
     <packaging>pom</packaging>
