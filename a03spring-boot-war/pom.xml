@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>war</packaging>
-    <artifactId>03springboot-war</artifactId>
+    <artifactId>a03spring-boot-war</artifactId>
 
 
     <properties>

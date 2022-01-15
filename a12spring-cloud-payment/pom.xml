@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>12springcloud-payment</artifactId>
+    <artifactId>a12spring-cloud-payment</artifactId>
     <dependencies>
 
         <dependency>

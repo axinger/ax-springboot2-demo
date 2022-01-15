@@ -7,7 +7,7 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>13spring-cloud-alibaba-dubbo-consumer</artifactId>
+    <artifactId>a13spring-cloud-alibaba-dubbo-consumer</artifactId>
     <description>dubbo 消费者,就是 去调用别人的接口</description>
 
     <dependencies>

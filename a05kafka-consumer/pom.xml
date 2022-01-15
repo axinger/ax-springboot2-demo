@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>05kafka-consumer</artifactId>
+    <artifactId>a05kafka-consumer</artifactId>
 
     <dependencies>
         <dependency>

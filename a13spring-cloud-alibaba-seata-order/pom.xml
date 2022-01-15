@@ -8,7 +8,7 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>13spring-cloud-alibaba-seata-order</artifactId>
+    <artifactId>a13spring-cloud-alibaba-seata-order</artifactId>
 
     <dependencies>
         <dependency>

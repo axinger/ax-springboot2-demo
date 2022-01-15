@@ -2,88 +2,49 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/a00-spring-boot-mall/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a00-spring-boot-mall/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a01spring-boot-mvc/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a01spring-boot-mvc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a02spring-boot-noweb/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a02spring-boot-noweb/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a03spring-boot-war/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a03spring-boot-war/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a04spring-boot-jar/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a05kafka-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a05kafka-consumer/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a05kafka-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a05kafka-consumer2/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a05kafka-consumer2/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a05kafka-producer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a06spring-boot-websocket-stomp/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a06spring-boot-websocket-stomp/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a06spring-websocket/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a06spring-websocket/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a06websocket-netty/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a06websocket-netty/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a06websocket/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a06websocket/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a07more-db/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a07more-db/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a08dubbo-consumer/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a08dubbo-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a08dubbo-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a08dubbo-provider/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a08dubbo-provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a09spring-security-content/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a09spring-security-oauth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a09spring-security-oauth/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a10spring-boot-nginx/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a12spring-cloud-gateway-9527/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a12spring-cloud-gateway-9527/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a12spring-cloud-getaway-payment/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a12spring-cloud-getaway-payment/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a12spring-cloud-order/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a12spring-cloud-order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a12spring-cloud-payment/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a12spring-cloud-payment/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-all/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-all/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-dubbo-consumer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-dubbo-consumer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-dubbo-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-dubbo-provider/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-dubbo-provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-nacos-config/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-nacos-config/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-nacos-order/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-nacos-order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-nacos-payment/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-nacos-payment/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-seata-account/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-seata-account/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-seata-order/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-seata-order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-seata-storage/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-seata-storage/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-sentinel/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a13spring-cloud-alibaba-sentinel/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a14elastic-search/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a14elastic-search/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a15rabbitmq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a16swagger-starter/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a16swagger-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a17minio/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a17minio/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a18caffeine/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a19spring-boot-redis/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a19spring-boot-redis/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/a20netty/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/a20netty/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b01-demo-java/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b01-demo-java/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b02-demo-juc/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b02-demo-juc/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b03-demo-spring5/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b03-demo-spring5/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b04-demo-spring-web-flux/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b04-demo-spring-web-flux/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/b05-ax-hello-spring-boot-starter-autoconfigure/src/main/java" charset="UTF-8" />
   </component>
 </project>
