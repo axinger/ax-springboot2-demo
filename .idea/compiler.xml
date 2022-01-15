@@ -15,12 +15,12 @@
         <module name="a13spring-cloud-alibaba-seata-order" />
         <module name="a08dubbo-provider" />
         <module name="a13spring-cloud-alibaba-nacos-order" />
-        <module name="b04-demo-spring-web-flux" />
         <module name="a16swagger-starter" />
         <module name="a12spring-cloud-gateway-9527" />
         <module name="a20netty" />
         <module name="a13spring-cloud-alibaba-dubbo-consumer" />
         <module name="a05kafka-consumer2" />
+        <module name="demo_SpringWebflux" />
         <module name="a13spring-cloud-alibaba-sentinel" />
         <module name="a13spring-cloud-alibaba-dubbo-interface" />
         <module name="a19spring-boot-redis" />
@@ -120,8 +120,9 @@
       <module name="b-demo-java" target="1.8" />
       <module name="b-demo-juc" target="1.8" />
       <module name="b-demo-spring5" target="1.8" />
-      <module name="b04-demo-spring-web-flux" target="1.8" />
+      <module name="b04-demo-spring-web-flux" target="1.5" />
       <module name="demo (2)" target="1.8" />
+      <module name="demo_SpringWebflux" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

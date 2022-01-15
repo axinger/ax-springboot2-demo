@@ -45,7 +45,7 @@
       <module fileurl="file://$PROJECT_DIR$/19springboot-redis/a19spring-boot-redis.iml" filepath="$PROJECT_DIR$/19springboot-redis/a19spring-boot-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/20netty/a20netty.iml" filepath="$PROJECT_DIR$/20netty/a20netty.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ax_spring_boot_demo.iml" filepath="$PROJECT_DIR$/.idea/ax_spring_boot_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/b-demo-spring-web-flux/b04-demo-spring-web-flux.iml" filepath="$PROJECT_DIR$/b-demo-spring-web-flux/b04-demo-spring-web-flux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/b04-demo-spring-web-flux/demo_SpringWebflux.iml" filepath="$PROJECT_DIR$/b04-demo-spring-web-flux/demo_SpringWebflux.iml" />
     </modules>
   </component>
 </project>
