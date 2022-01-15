@@ -1,68 +1,42 @@
 package com.ax.mall.controller;
 
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.LineCaptcha;
+import cn.hutool.core.lang.Console;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.image.BufferedImage;
 
 
 //@Controller
 @RestController
 public class ChaController {
-    @Autowired
-    private Producer captchaProducer;
 
+
+    //    @ApiOperation(value = "获取图形验证码")
     @GetMapping("/kap")
     public void getKaptchaImage(HttpServletResponse response, HttpSession session) throws Exception {
 
-        response.setDateHeader("Expires", 0);
+        //定义图形验证码的长和宽
+        LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(200, 100);
 
-        // Set standard HTTP/1.1 no-cache headers.
-        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-        // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        // Set standard HTTP/1.0 no-cache header.
-        response.setHeader("Pragma", "no-cache");
-        // return a jpeg
-        response.setContentType("image/jpeg");
-        // create the text for the image
-        String capText = captchaProducer.createText();
+        //图形验证码写出，可以写出到文件，也可以写出到流
+        lineCaptcha.write("d:/line.png");
+        //输出code
+        Console.log(lineCaptcha.getCode());
+        //验证图形验证码的有效性，返回boolean值
+        lineCaptcha.verify("1234");
 
-        System.out.println("图形capText = " + capText);
-
-        //request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
-        /**把文字放在session中，使用时候，再对应的接口取值*/
-        //将验证码存到session
-        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
-        // create the image with the text
-        BufferedImage bi = captchaProducer.createImage(capText);
-        ServletOutputStream out = response.getOutputStream();
-        // write the data out
-        ImageIO.write(bi, "jpg", out);
-        try {
-            out.flush();
-        } finally {
-            out.close();
-        }
-    }
-
-    //@ApiOperation(value = "获取图形验证码")
-    @GetMapping("/kapCode")
-//    @ResponseBody
-    public Object kapCode(HttpServletResponse response, HttpSession session) throws Exception {
-
-        Object object = session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
-        System.out.println("object = " + object);
-
-        return object;
-
+        //重新生成验证码
+        lineCaptcha.createCode();
+        lineCaptcha.write("d:/line.png");
+        //新的验证码
+        Console.log(lineCaptcha.getCode());
+        //验证图形验证码的有效性，返回boolean值
+        lineCaptcha.verify("1234");
     }
 
 
