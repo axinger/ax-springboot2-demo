@@ -12,7 +12,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="00springboot-shop" />
+          <element id="module-output" name="a00-spring-boot-mall" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.6.0" />
@@ -152,7 +152,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/00springboot-shop/target/00springboot-shop-0.0.1/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/a00-spring-boot-mall/target/00springboot-shop-0.0.1/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="00springboot-shop/web/Web" />
     </root>

@@ -7,54 +7,48 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="05kafka-consumer" />
-        <module name="13spring-cloud-alibaba-seata-order" />
-        <module name="08dubbo-provider" />
-        <module name="demo_juc" />
-        <module name="16swaggerStarter" />
-        <module name="17minio" />
-        <module name="demo_java" />
+        <module name="a06websocket" />
+        <module name="a01spring-boot-mvc" />
+        <module name="a02spring-boot-noweb" />
+        <module name="a09spring-security-oauth" />
+        <module name="a13spring-cloud-alibaba-dubbo-provider" />
+        <module name="a13spring-cloud-alibaba-seata-order" />
+        <module name="a08dubbo-provider" />
+        <module name="a13spring-cloud-alibaba-nacos-order" />
+        <module name="a16swagger-starter" />
+        <module name="a12spring-cloud-gateway-9527" />
+        <module name="a20netty" />
+        <module name="a13spring-cloud-alibaba-dubbo-consumer" />
+        <module name="a05kafka-consumer2" />
         <module name="demo_SpringWebflux" />
-        <module name="18caffeine" />
-        <module name="07more-db" />
-        <module name="02springboot-noweb" />
-        <module name="09springsecurity-oauth" />
-        <module name="04springboot-jar" />
-        <module name="00springboot-shop" />
-        <module name="05kafka-producer" />
-        <module name="13spring-cloud-alibaba-dubbo-interface" />
-        <module name="08dubbo-consumer" />
-        <module name="09springsecurity-content" />
-        <module name="08dubbo-interface" />
-        <module name="12springcloud-gateway-9527" />
-        <module name="13spring-cloud-alibaba-seata-storage" />
-        <module name="06websocket" />
-        <module name="03springboot-war" />
-        <module name="12springcloud-order" />
-        <module name="13spring-cloud-alibaba-nacos-config" />
-        <module name="10Springboot-nginx" />
-        <module name="12springcloud-payment" />
-        <module name="ax-hello-spring-boot-starter" />
-        <module name="06spring-websocket" />
-        <module name="13spring-cloud-alibaba-nacos-order" />
-        <module name="05kafka-consumer2" />
-        <module name="19springboot-redis" />
-        <module name="12springcloud-getaway-payment" />
-        <module name="14elasticsearch" />
-        <module name="05kafka-api" />
-        <module name="demo_spring5" />
-        <module name="13spring-cloud-alibaba-sentinel" />
-        <module name="06spring-websocket-stomp" />
-        <module name="13spring-cloud-alibaba-nacos-payment" />
-        <module name="13spring-cloud-alibaba-all" />
-        <module name="15rabbitmq" />
-        <module name="13spring-cloud-alibaba-dubbo-provider" />
-        <module name="13spring-cloud-alibaba-dubbo-consumer" />
-        <module name="ax-hello-spring-boot-starter-autoconfigure" />
-        <module name="06websocket-netty" />
-        <module name="20netty" />
-        <module name="01springboot-mvc" />
-        <module name="13spring-cloud-alibaba-seata-account" />
+        <module name="a13spring-cloud-alibaba-sentinel" />
+        <module name="a13spring-cloud-alibaba-dubbo-interface" />
+        <module name="a19spring-boot-redis" />
+        <module name="a18caffeine" />
+        <module name="a06spring-boot-websocket-stomp" />
+        <module name="a09spring-security-content" />
+        <module name="a05kafka-api" />
+        <module name="a05kafka-producer" />
+        <module name="a08dubbo-consumer" />
+        <module name="a06websocket-netty" />
+        <module name="a07more-db" />
+        <module name="a13spring-cloud-alibaba-nacos-payment" />
+        <module name="a13spring-cloud-alibaba-seata-storage" />
+        <module name="a10spring-boot-nginx" />
+        <module name="a03spring-boot-war" />
+        <module name="a04spring-boot-jar" />
+        <module name="a14elastic-search" />
+        <module name="a12spring-cloud-payment" />
+        <module name="a12spring-cloud-getaway-payment" />
+        <module name="a08dubbo-interface" />
+        <module name="a13spring-cloud-alibaba-nacos-config" />
+        <module name="a00-spring-boot-mall" />
+        <module name="a13spring-cloud-alibaba-seata-account" />
+        <module name="a12spring-cloud-order" />
+        <module name="a15rabbitmq" />
+        <module name="a06spring-websocket" />
+        <module name="a05kafka-consumer" />
+        <module name="a17minio" />
       </profile>
       <profile name="Annotation profile for SpringBootDemo" enabled="true">
         <sourceOutputDir name="../12spring-cloud-dubbno-consumer/target/generated-sources/annotations" />
@@ -64,27 +58,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="00springboot-shop" target="1.8" />
-      <module name="01springboot-mvc" target="1.8" />
-      <module name="02springboot-noweb" target="1.8" />
-      <module name="03springboot-war" target="1.8" />
-      <module name="04springboot-jar" target="1.8" />
-      <module name="05kafka-api" target="1.8" />
-      <module name="05kafka-consumer" target="1.8" />
-      <module name="05kafka-consumer2" target="1.8" />
-      <module name="05kafka-producer" target="1.8" />
       <module name="06netty-websocket" target="1.8" />
-      <module name="06spring-websocket" target="1.8" />
-      <module name="06spring-websocket-stomp" target="1.8" />
-      <module name="06websocket" target="1.8" />
-      <module name="06websocket-netty" target="1.8" />
-      <module name="07more-db" target="1.8" />
-      <module name="08dubbo-consumer" target="1.8" />
-      <module name="08dubbo-interface" target="1.8" />
-      <module name="08dubbo-provider" target="1.8" />
-      <module name="09springsecurity-content" target="1.8" />
-      <module name="09springsecurity-oauth" target="1.8" />
-      <module name="10Springboot-nginx" target="1.6" />
       <module name="12spring-cloud-alibaba-nacos-config" target="1.8" />
       <module name="12spring-cloud-alibaba-nacos-order" target="1.8" />
       <module name="12spring-cloud-alibaba-nacos-payment" target="1.8" />
@@ -93,65 +67,67 @@
       <module name="12spring-cloud-alibaba-sentinel" target="1.8" />
       <module name="12spring-cloud-dubbno" target="1.8" />
       <module name="12spring-cloud-dubbo-interface" target="8" />
-      <module name="12springcloud-gateway-9527" target="1.8" />
-      <module name="12springcloud-getaway-payment" target="1.8" />
       <module name="12springcloud-nacos" target="1.8" />
-      <module name="12springcloud-order" target="1.8" />
-      <module name="12springcloud-payment" target="1.8" />
       <module name="13netty" target="1.8" />
-      <module name="13spring-cloud-alibaba-all" target="1.8" />
-      <module name="13spring-cloud-alibaba-dubbo-consumer" target="1.8" />
-      <module name="13spring-cloud-alibaba-dubbo-interface" target="8" />
-      <module name="13spring-cloud-alibaba-dubbo-provider" target="1.8" />
-      <module name="13spring-cloud-alibaba-nacos-config" target="1.8" />
-      <module name="13spring-cloud-alibaba-nacos-order" target="1.8" />
-      <module name="13spring-cloud-alibaba-nacos-payment" target="1.8" />
       <module name="13spring-cloud-alibaba-nacos-provider" target="1.8" />
       <module name="13spring-cloud-alibaba-seata" target="1.8" />
-      <module name="13spring-cloud-alibaba-seata-account" target="1.8" />
-      <module name="13spring-cloud-alibaba-seata-order" target="1.8" />
-      <module name="13spring-cloud-alibaba-seata-storage" target="1.8" />
-      <module name="13spring-cloud-alibaba-sentinel" target="1.8" />
       <module name="13spring-cloud-dubbo-consumer" target="1.8" />
-      <module name="14elasticsearch" target="1.8" />
-      <module name="15rabbitmq" target="1.8" />
-      <module name="16swaggerStarter" target="1.8" />
-      <module name="17minio" target="1.8" />
-      <module name="18caffeine" target="1.8" />
-      <module name="19springboot-redis" target="1.8" />
-      <module name="20netty" target="1.8" />
-      <module name="ax-hello-spring-boot-starter" target="1.5" />
-      <module name="ax-hello-spring-boot-starter-autoconfigure" target="1.8" />
+      <module name="a00-spring-boot-mall" target="1.8" />
+      <module name="a01spring-boot-mvc" target="1.8" />
+      <module name="a02spring-boot-noweb" target="1.8" />
+      <module name="a03spring-boot-war" target="1.8" />
+      <module name="a04spring-boot-jar" target="1.8" />
+      <module name="a05kafka-api" target="1.8" />
+      <module name="a05kafka-consumer" target="1.8" />
+      <module name="a05kafka-consumer2" target="1.8" />
+      <module name="a05kafka-producer" target="1.8" />
+      <module name="a06spring-boot-websocket-stomp" target="1.8" />
+      <module name="a06spring-websocket" target="1.8" />
+      <module name="a06websocket" target="1.8" />
+      <module name="a06websocket-netty" target="1.8" />
+      <module name="a07more-db" target="1.8" />
+      <module name="a08dubbo-consumer" target="1.8" />
+      <module name="a08dubbo-interface" target="1.8" />
+      <module name="a08dubbo-provider" target="1.8" />
+      <module name="a09spring-security-content" target="1.8" />
+      <module name="a09spring-security-oauth" target="1.8" />
+      <module name="a10spring-boot-nginx" target="1.5" />
+      <module name="a12spring-cloud-gateway-9527" target="1.8" />
+      <module name="a12spring-cloud-getaway-payment" target="1.8" />
+      <module name="a12spring-cloud-order" target="1.8" />
+      <module name="a12spring-cloud-payment" target="1.8" />
+      <module name="a13spring-cloud-alibaba-all" target="1.8" />
+      <module name="a13spring-cloud-alibaba-dubbo-consumer" target="1.8" />
+      <module name="a13spring-cloud-alibaba-dubbo-interface" target="8" />
+      <module name="a13spring-cloud-alibaba-dubbo-provider" target="1.8" />
+      <module name="a13spring-cloud-alibaba-nacos-config" target="1.8" />
+      <module name="a13spring-cloud-alibaba-nacos-order" target="1.8" />
+      <module name="a13spring-cloud-alibaba-nacos-payment" target="1.8" />
+      <module name="a13spring-cloud-alibaba-seata-account" target="1.8" />
+      <module name="a13spring-cloud-alibaba-seata-order" target="1.8" />
+      <module name="a13spring-cloud-alibaba-seata-storage" target="1.8" />
+      <module name="a13spring-cloud-alibaba-sentinel" target="1.8" />
+      <module name="a14elastic-search" target="1.8" />
+      <module name="a15rabbitmq" target="1.8" />
+      <module name="a16swagger-starter" target="1.8" />
+      <module name="a17minio" target="1.8" />
+      <module name="a18caffeine" target="1.8" />
+      <module name="a19spring-boot-redis" target="1.8" />
+      <module name="a20netty" target="1.8" />
       <module name="ax_spring_boot_demo" target="1.8" />
+      <module name="b-ax-hello-spring-boot-starter" target="1.5" />
+      <module name="b-ax-hello-spring-boot-starter-autoconfigure" target="1.8" />
+      <module name="b-demo-java" target="1.8" />
+      <module name="b-demo-juc" target="1.8" />
+      <module name="b-demo-spring-web-flux" target="1.8" />
+      <module name="b-demo-spring5" target="1.8" />
       <module name="demo (2)" target="1.8" />
-      <module name="demo_java" target="1.8" />
-      <module name="demo_juc" target="1.8" />
-      <module name="demo_spring5" target="1.8" />
       <module name="demo_SpringWebflux" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="00springboot-shop" options="-parameters" />
-      <module name="01springboot-mvc" options="-parameters" />
-      <module name="02springboot-noweb" options="-parameters" />
-      <module name="03springboot-war" options="-parameters" />
-      <module name="04springboot-jar" options="-parameters" />
-      <module name="05kafka-api" options="-parameters" />
-      <module name="05kafka-consumer" options="-parameters" />
-      <module name="05kafka-consumer2" options="-parameters" />
-      <module name="05kafka-producer" options="-parameters" />
       <module name="06netty-websocket" options="-parameters" />
-      <module name="06spring-websocket" options="-parameters" />
-      <module name="06spring-websocket-stomp" options="-parameters" />
-      <module name="06websocket" options="-parameters" />
-      <module name="06websocket-netty" options="-parameters" />
-      <module name="07more-db" options="-parameters" />
-      <module name="08dubbo-consumer" options="-parameters" />
-      <module name="08dubbo-interface" options="-parameters" />
-      <module name="08dubbo-provider" options="-parameters" />
-      <module name="09springsecurity-content" options="-parameters" />
-      <module name="10Springboot-nginx" options="-parameters" />
       <module name="12spring-cloud-alibaba-nacos-config" options="-parameters" />
       <module name="12spring-cloud-alibaba-nacos-order" options="-parameters" />
       <module name="12spring-cloud-alibaba-nacos-payment" options="-parameters" />
@@ -159,32 +135,51 @@
       <module name="12spring-cloud-alibaba-seata" options="-parameters" />
       <module name="12spring-cloud-alibaba-sentinel" options="-parameters" />
       <module name="12spring-cloud-dubbo-interface" options="-parameters" />
-      <module name="12springcloud-gateway-9527" options="-parameters" />
-      <module name="12springcloud-getaway-payment" options="-parameters" />
-      <module name="12springcloud-order" options="-parameters" />
-      <module name="12springcloud-payment" options="-parameters" />
       <module name="13netty" options="-parameters" />
-      <module name="13spring-cloud-alibaba-dubbo-consumer" options="-parameters" />
-      <module name="13spring-cloud-alibaba-dubbo-interface" options="-parameters" />
-      <module name="13spring-cloud-alibaba-dubbo-provider" options="-parameters" />
-      <module name="13spring-cloud-alibaba-nacos-config" options="-parameters" />
-      <module name="13spring-cloud-alibaba-nacos-order" options="-parameters" />
-      <module name="13spring-cloud-alibaba-nacos-payment" options="-parameters" />
       <module name="13spring-cloud-alibaba-nacos-provider" options="-parameters" />
       <module name="13spring-cloud-alibaba-seata" options="-parameters" />
-      <module name="13spring-cloud-alibaba-seata-account" options="-parameters" />
-      <module name="13spring-cloud-alibaba-seata-order" options="-parameters" />
-      <module name="13spring-cloud-alibaba-seata-storage" options="-parameters" />
-      <module name="13spring-cloud-alibaba-sentinel" options="-parameters" />
       <module name="13spring-cloud-dubbo-consumer" options="-parameters" />
-      <module name="14elasticsearch" options="-parameters" />
-      <module name="15rabbitmq" options="-parameters" />
-      <module name="16swaggerStarter" options="-parameters" />
-      <module name="17minio" options="-parameters" />
-      <module name="18caffeine" options="-parameters" />
-      <module name="19springboot-redis" options="-parameters" />
-      <module name="20netty" options="-parameters" />
-      <module name="ax-hello-spring-boot-starter-autoconfigure" options="-parameters" />
+      <module name="a00-spring-boot-mall" options="-parameters" />
+      <module name="a01spring-boot-mvc" options="-parameters" />
+      <module name="a02spring-boot-noweb" options="-parameters" />
+      <module name="a03spring-boot-war" options="-parameters" />
+      <module name="a04spring-boot-jar" options="-parameters" />
+      <module name="a05kafka-api" options="-parameters" />
+      <module name="a05kafka-consumer" options="-parameters" />
+      <module name="a05kafka-consumer2" options="-parameters" />
+      <module name="a05kafka-producer" options="-parameters" />
+      <module name="a06spring-boot-websocket-stomp" options="-parameters" />
+      <module name="a06spring-websocket" options="-parameters" />
+      <module name="a06websocket" options="-parameters" />
+      <module name="a06websocket-netty" options="-parameters" />
+      <module name="a07more-db" options="-parameters" />
+      <module name="a08dubbo-consumer" options="-parameters" />
+      <module name="a08dubbo-interface" options="-parameters" />
+      <module name="a08dubbo-provider" options="-parameters" />
+      <module name="a09spring-security-content" options="-parameters" />
+      <module name="a10spring-boot-nginx" options="-parameters" />
+      <module name="a12spring-cloud-gateway-9527" options="-parameters" />
+      <module name="a12spring-cloud-getaway-payment" options="-parameters" />
+      <module name="a12spring-cloud-order" options="-parameters" />
+      <module name="a12spring-cloud-payment" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-dubbo-consumer" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-dubbo-interface" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-dubbo-provider" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-nacos-config" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-nacos-order" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-nacos-payment" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-seata-account" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-seata-order" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-seata-storage" options="-parameters" />
+      <module name="a13spring-cloud-alibaba-sentinel" options="-parameters" />
+      <module name="a14elastic-search" options="-parameters" />
+      <module name="a15rabbitmq" options="-parameters" />
+      <module name="a16swagger-starter" options="-parameters" />
+      <module name="a17minio" options="-parameters" />
+      <module name="a18caffeine" options="-parameters" />
+      <module name="a19spring-boot-redis" options="-parameters" />
+      <module name="a20netty" options="-parameters" />
+      <module name="b-ax-hello-spring-boot-starter-autoconfigure" options="-parameters" />
     </option>
   </component>
 </project>

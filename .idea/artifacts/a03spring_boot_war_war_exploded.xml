@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="03springboot-war:war exploded">
-    <output-path>$PROJECT_DIR$/03springboot-war/target/03springboot-war-1.0.0</output-path>
+  <artifact type="exploded-war" name="a03spring-boot-war:war exploded">
+    <output-path>$PROJECT_DIR$/a03spring-boot-war/target/03springboot-war-1.0.0</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>03springboot-war</module>
+        <module>a03spring-boot-war</module>
         <packaging>war</packaging>
         <unpackNestedArchives>false</unpackNestedArchives>
       </options>

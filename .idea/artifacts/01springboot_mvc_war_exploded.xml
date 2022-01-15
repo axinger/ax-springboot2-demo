@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="01springboot-mvc" />
+          <element id="module-output" name="a01spring-boot-mvc" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:2.3.0.RELEASE" />
@@ -125,9 +125,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/01springboot-mvc/target/插件/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/a01spring-boot-mvc/target/插件/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="01springboot-mvc/web/Web" />
+      <element id="javaee-facet-resources" facet="a01spring-boot-mvc/web/Web" />
     </root>
   </artifact>
 </component>

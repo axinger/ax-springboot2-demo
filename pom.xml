@@ -33,43 +33,49 @@
     <!--pom总的父工程-->
     <packaging>pom</packaging>
     <modules>
-        <module>00springboot-shop</module>
-        <module>01springboot-mvc</module>
-        <module>02springboot-noweb</module>
-        <module>03springboot-war</module>
-        <module>04springboot-jar</module>
-        <module>05kafka-api</module>
-        <module>05kafka-consumer</module>
-        <module>05kafka-consumer2</module>
-        <module>05kafka-producer</module>
-        <module>06spring-websocket</module>
-        <module>06websocket-netty</module>
-        <module>06spring-websocket-stomp</module>
-        <module>06websocket</module>
-        <module>07more-db</module>
-        <module>08dubbo-consumer</module>
-        <module>08dubbo-interface</module>
-        <module>08dubbo-provider</module>
-        <module>09springsecurity-content</module>
-        <module>09springsecurity-oauth</module>
-        <module>10Springboot-nginx</module>
-        <module>12springcloud-gateway-9527</module>
-        <module>12springcloud-getaway-payment</module>
-        <module>12springcloud-order</module>
-        <module>12springcloud-payment</module>
-        <module>13spring-cloud-alibaba-nacos-config</module>
-        <module>13spring-cloud-alibaba-nacos-payment</module>
-        <module>13spring-cloud-alibaba-nacos-order</module>
-        <module>13spring-cloud-alibaba-sentinel</module>
-        <module>13spring-cloud-alibaba-dubbo-interface</module>
-        <module>13spring-cloud-alibaba-dubbo-consumer</module>
-        <module>13spring-cloud-alibaba-dubbo-provider</module>
-        <module>20netty</module>
-        <module>14elasticsearch</module>
-        <module>15rabbitmq</module>
-        <module>16swaggerStarter</module>
-        <module>17minio</module>
-        <module>18caffeine</module>
+        <module>a00-spring-boot-mall</module>
+        <module>a01spring-boot-mvc</module>
+        <module>a02spring-boot-noweb</module>
+        <module>a03spring-boot-war</module>
+        <module>a04spring-boot-jar</module>
+        <module>a05kafka-api</module>
+        <module>a05kafka-consumer</module>
+        <module>a05kafka-consumer2</module>
+        <module>a05kafka-producer</module>
+        <module>a06spring-websocket</module>
+        <module>a06websocket-netty</module>
+        <module>a06spring-boot-websocket-stomp</module>
+        <module>a06websocket</module>
+        <module>a07more-db</module>
+        <module>a08dubbo-consumer</module>
+        <module>a08dubbo-interface</module>
+        <module>a08dubbo-provider</module>
+        <module>a09spring-security-content</module>
+        <module>a09spring-security-oauth</module>
+        <module>a10Spring-boot-nginx</module>
+        <module>a12spring-cloud-gateway-9527</module>
+        <module>a12spring-cloud-getaway-payment</module>
+        <module>a12spring-cloud-order</module>
+        <module>a12spring-cloud-payment</module>
+        <module>a13spring-cloud-alibaba-dubbo-consumer</module>
+        <module>a13spring-cloud-alibaba-dubbo-interface</module>
+        <module>a13spring-cloud-alibaba-dubbo-provider</module>
+        <module>a13spring-cloud-alibaba-nacos-config</module>
+        <module>a13spring-cloud-alibaba-nacos-order</module>
+        <module>a13spring-cloud-alibaba-nacos-payment</module>
+        <module>a13spring-cloud-alibaba-seata-account</module>
+        <module>a13spring-cloud-alibaba-seata-order</module>
+        <module>a13spring-cloud-alibaba-seata-storage</module>
+        <module>a13spring-cloud-alibaba-sentinel</module>
+        <module>a14elastic-search</module>
+        <module>a15rabbitmq</module>
+        <module>a16swagger-starter</module>
+        <module>a17minio</module>
+        <module>a18caffeine</module>
+        <module>a19spring-boot-redis</module>
+        <module>a20netty</module>
+        <module></module>
+
 
     </modules>
 
