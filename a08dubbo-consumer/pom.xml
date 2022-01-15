@@ -54,7 +54,7 @@
         <!--自定义接口类,直接fu复制对应的版本号-->
         <dependency>
             <groupId>com.ax</groupId>
-            <artifactId>08dubbo-interface</artifactId>
+            <artifactId>a08dubbo-interface</artifactId>
             <version>1.0.0</version>
         </dependency>
 

@@ -41,7 +41,7 @@
 
         <dependency>
             <groupId>com.ax</groupId>
-            <artifactId>05kafka-api</artifactId>
+            <artifactId>a05kafka-api</artifactId>
             <version>1.0.0</version>
         </dependency>
 
