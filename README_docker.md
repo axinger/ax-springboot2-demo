@@ -263,6 +263,48 @@ start SLAVE IO_THREAD;
 3.#表示注释
 4.每条指令都会创建一个新的镜像层,并对镜像进行提交
 
+ dockerfile面向开发,docker镜像成为交付标准,docker容器涉及部署与运维
  
 ```
+## 常用保留字
+```text
+https://github.com/docker-library/tomcat/blob/7dc6e45523f302d0d90b9b5bfef5f179a226f604/10.1/jdk11/corretto/Dockerfile
+
+FROM: 基础镜像,当前新镜像基于哪个镜像,指定一个已经存在的镜像作为模板
+
+MAINTAINER: 维护者的姓名和邮箱
+
+RUN: 2种格式,shell格式,简单一点,例如安装vim公共: RUN yum -y install vim 
+    
+EXPOSE: 当前容器对外暴露的端口,P p 区别
+    
+WORKDIR:    指定在创建容器后,终端默认登录进来的工作目录,一个落脚点
+
+USER: 指定镜像以什么样用户执行,如果不指定,默认root用户,一般不用
+
+ENV:   用来在构建镜像过程中设置环境变量, 使用 $变量名 取值
+
+ADD:    将宿主机目录下的文件拷贝镜像且会自动出来URL和解压tar压缩包
+
+COPY:   和add效果一样  参数cp,add多个解压功能
+
+VOLUME: 容器卷位置 ,参数 -v 
+
+CMD:   
+    指定容器 启动后 要干的事情
+    注意: 多个cmd 只有一个有效,会被docker run 之后的参数替换
+    和RUN 命令区别: 
+        cmd在docker run时运行, 
+        run 在docker build时运行
+    
+ 
+ENTRYPOINT: 
+    也是用来指定一个容器启动时候运行的命令
+    类似cmd,但 不会被 docker run 后面的命令覆盖
+    而且这些参数会被当做参数送给ENTRYPOINT指令指定的程序
+    
+    变参,才会使用cmd
+```
+
+
 

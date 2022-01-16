@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>首页</title>
+</head>
+
+<body>
+我是首页
+
+
+<div class="form-group">
+    <label class="col-sm-2 control-label" for="username">token：</label>
+    <div class="col-sm-5">
+        <input class="form-control" id="username" name="username"/>
+    </div>
+</div>
+
+
+<p class="text-center" th:text="|端口号 ${port}|"></p>
+
+<label>接口测试</label><br>
+<a href="/test1.do">test1.do</a><br>
+
+
+<label>redis存储对象</label><br>
+
+<a href="/redis.do">redis.do</a><br>
+
+<a href="/redisSession.do">redisSession.do</a><br>
+
+</body>
+</html>
