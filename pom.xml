@@ -33,7 +33,7 @@
     <!--pom总的父工程-->
     <packaging>pom</packaging>
     <modules>
-        <module>a00-spring-boot-mall</module>
+        <module>a00spring-boot-mall</module>
         <module>a01spring-boot-mvc</module>
         <module>a02spring-boot-noweb</module>
         <module>a03spring-boot-war</module>
@@ -77,8 +77,7 @@
         <module>b03-demo-spring5</module>
         <module>b04-demo-spring-web-flux</module>
 
-
-<!--        <module></module>-->
+        <!--        <module></module>-->
 <!--        <module></module>-->
 <!--        <module></module>-->
 <!--        -->
