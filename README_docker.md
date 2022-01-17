@@ -305,6 +305,7 @@ ENTRYPOINT:
     
     变参,才会使用cmd
 ```
+<<<<<<< HEAD
 ## 构建镜像
 ```text
 构建镜像  最后 有个点
@@ -323,4 +324,8 @@ NETWORK ID     NAME      DRIVER    SCOPE
 4b278c728f0a   none      null      local
 
 ```
+=======
+
+
+>>>>>>> 014d0ebcb080bc545610815856a82b0b6230e2c0
 
