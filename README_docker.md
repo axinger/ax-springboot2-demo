@@ -26,6 +26,8 @@ curl -sSL https://get.daocloud.io/docker | sh
 查看存储: docker system df
 强制删除镜像: docker rmi -f
 
+查看已下载的Docker镜像latest具体版本
+docker image inspect (docker image名称):latest|grep -i version
 
 ```
 ## 容器命令
@@ -33,6 +35,7 @@ curl -sSL https://get.daocloud.io/docker | sh
 启动交互式容器(前台命令行)
 
 查看运行的容器: docker ps 
+显示所有的容器，包括未运行的: docker ps -a
     停止后无法查看,要查看需要运行的,可以用 docker images 查找容器id 也可以用 docker ps -n 2 最近使用的
 查看已经停止的: docker ps -n 2
 进入容器: docker exec -it 容器id /bin/bash
@@ -305,7 +308,7 @@ ENTRYPOINT:
     
     变参,才会使用cmd
 ```
-<<<<<<< HEAD
+
 ## 构建镜像
 ```text
 构建镜像  最后 有个点
@@ -316,6 +319,23 @@ docker build -t ax-mall:1.1.1 .
 ```text
 docker network ls
 
+docker 服务默认会创建一个docker0网桥(其上有一个docker0内部接口),他在内核层链接了其他物理或者虚拟网卡,
+就将所有容器和本地主机都放在同一个物理网络,docker默认指定了docker0接口的IP地址和子网掩码,
+让主机和容器之间可以通过网桥互相通信
+
+
+host模式: 容器没有ip和端口,使用宿主机
+bridge模式:容器独立的ip和端口
+container: 借用别人的ip和端口
+
+
+alpine linux发行版
+
+自定义网络: 因为docker容器内部的ip有可能变化的
+docker link 过时的技术
+
+
+
 ```
 ```text
 NETWORK ID     NAME      DRIVER    SCOPE
@@ -324,8 +344,5 @@ NETWORK ID     NAME      DRIVER    SCOPE
 4b278c728f0a   none      null      local
 
 ```
-=======
 
-
->>>>>>> 014d0ebcb080bc545610815856a82b0b6230e2c0
 
