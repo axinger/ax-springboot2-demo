@@ -1,5 +1,6 @@
 package com.ax.mall.controller;
 
+import cn.hutool.core.util.IdUtil;
 import com.ax.mall.entity.Userinfo;
 import com.ax.mall.service.impl.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 @RestController
 public class TestRedisController {
 
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String, Serializable> redisTemplate;
 
 
     @Autowired
@@ -40,6 +42,7 @@ public class TestRedisController {
                 .id(1)
                 .userName("jim")
                 .userType(1)
+                .password(IdUtil.simpleUUID().substring(0, 6))
                 .build();
         redisTemplate.opsForValue().set("userinfo", userinfo);
 

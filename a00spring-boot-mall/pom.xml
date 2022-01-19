@@ -10,10 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>a00spring-boot-mall</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <docker.image.prefix>ax-mall</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -251,6 +252,58 @@
                 <configuration>
                     <warName>${project.artifactId}</warName>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.2</version>
+                <configuration>
+                    <!-- 镜像名称  ax-mall/exam-->
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <!--指定标签-->
+                    <imageTags>
+<!--                        <imageTag>latest</imageTag>-->
+                        <imageTag>${project.artifactId}</imageTag>
+                    </imageTags>
+                    <!-- 基础镜像jdk 1.8-->
+                    <baseImage>java</baseImage>
+                    <!-- 制作者提供本人信息 -->
+                    <maintainer>阿星</maintainer>
+                    <!--切换到/ROOT目录 -->
+                    <workdir>/ROOT</workdir>
+                    <cmd>["java", "-version"]</cmd>
+                    <entryPoint>["java", "-jar", "${project.build.finalName}.jar"]</entryPoint>
+
+                    <!-- 指定 Dockerfile 路径
+                      <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                   -->
+
+                    <!--指定远程 docker api地址-->
+                    <dockerHost>http://47.101.156.93:2375</dockerHost>
+
+                    <!-- 这里是复制 jar 包到 docker 容器指定目录配置 -->
+                    <resources>
+                        <resource>
+                            <targetPath>/ROOT</targetPath>
+                            <!--用于指定需要复制的根目录，${project.build.directory}表示target目录-->
+                            <directory>${project.build.directory}</directory>
+                            <!--用于指定需要复制的文件。${project.build.finalName}.jar指的是打包后的jar包文件。-->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
             </plugin>
 
         </plugins>

@@ -5,15 +5,21 @@
 容器: 是用镜像创建的运行实例
 仓库
 ```
+
 安装命令如下：
+
 ```text
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
+
 也可以使用国内 daocloud 一键安装命令：
+
 ```text
 curl -sSL https://get.daocloud.io/docker | sh
 ```
+
 ## 镜像命令
+
 ```text
 启动: systemctl start docker
 停止: systemctl stop docker
@@ -30,7 +36,9 @@ curl -sSL https://get.daocloud.io/docker | sh
 docker image inspect (docker image名称):latest|grep -i version
 
 ```
+
 ## 容器命令
+
 ```text
 启动交互式容器(前台命令行)
 
@@ -53,6 +61,7 @@ docker image inspect (docker image名称):latest|grep -i version
 ```
 
 ## 启动守护式容器
+
 ```text
 
 启动守护容器: docker run -itd --name ax-mall-redis -p 6379:6379 redis
@@ -67,14 +76,15 @@ docker image inspect (docker image名称):latest|grep -i version
 ```
 
 ## 复制文件到容器
+
 ```text
 docker cp 容器di:容器内路径 目的主机路径
 ```
 
-
 ## 安装软件
 
 ### redis
+
 ```text
 
 docker run -itd --name ax-mall-redis -p 6379:6379 redis
@@ -102,7 +112,9 @@ docker run -itd --name redis-test -p 6379:6379 redis
 4.设置redis密码 config set requirepass ****（****为你要设置的密码）
 
 ```
+
 ### 安装mysql
+
 ```text
 docker run --privileged=true --name ax-mall-mysql -p 3306:3306 -v /root/mysql/log:/var/log/mysql -v /root/mysql/data:/etc/lib/mysql -v /root/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=AXing#631122 -d mysql
 
@@ -123,17 +135,20 @@ init-connect='SET NAMES utf8'
 ```
 
 ## 面试题
+
 ```text
 仓库名,标签都是<none>的镜像,俗称 虚悬镜像, 需要删除
 ```
 
 ## 加载原理
+
 ```text
 镜像层只读
 容器层可写
 ```
 
 ## 容器数据卷
+
 ```text
 --privileged=true
 
@@ -142,19 +157,36 @@ docker run -it --privileged=true-v 宿主机绝对路径目录:/容器内目录 
 查看挂载等信息: docker inspect 
 
 ```
+
 ### 容器数据卷读写规则
+
 ```text
 容器卷,读写权限,宿主机权限正常
 ```
 
 ### 容器数据卷继承
+
 ```text
 docker run -it --privileged=true --volumes-from 父类 --name u2 Ubuntu
 ```
 
+## nginx
+```text
+建立挂载目录
+mkdir -p app/nginx/{conf,conf.d,html,logs}
+
+docker cp e2489e439a1a:/etc/nginx/nginx.conf /app/nginx/conf/nginx.conf
+
+docker cp e2489e439a1a:/etc/nginx/conf.d/default.conf /app/nginx/conf.d/default.conf
+
+
+docker run --name ax-mall-nginx -d -p 80:80 -v /app/nginx/html:/usr/share/nginx/html -v /app/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /app/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf -v /app/nginx/logs:/var/log/nginx nginx
+
+```
 # 高级版
 
 ## mysql 主从复制,一主一从
+
 ```text
 主
 docker run --privileged=true --name ax-mall-mysql -p 3306:3306 -v /root/mysql/log:/var/log/mysql -v /root/mysql/data:/etc/lib/mysql -v /root/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=AXing#631122 -d mysql
@@ -198,6 +230,7 @@ start SLAVE IO_THREAD;
 ```
 
 ## 分布式存储 - 哈希取余算法
+
 ```text
 面试题
 1~2亿条数据需要缓存,如何设计这个存储案例
@@ -257,7 +290,9 @@ start SLAVE IO_THREAD;
         缩容: 先移除从机,主机移除槽位,可以指定全部给某一个
        
 ```
+
 # DockerFile
+
 ```text
 构建镜像的文本
 
@@ -269,7 +304,9 @@ start SLAVE IO_THREAD;
  dockerfile面向开发,docker镜像成为交付标准,docker容器涉及部署与运维
  
 ```
+
 ## 常用保留字
+
 ```text
 https://github.com/docker-library/tomcat/blob/7dc6e45523f302d0d90b9b5bfef5f179a226f604/10.1/jdk11/corretto/Dockerfile
 
@@ -310,12 +347,15 @@ ENTRYPOINT:
 ```
 
 ## 构建镜像
+
 ```text
 构建镜像  最后 有个点
-docker build -t ax-mall:1.1.1 .
+docker build -t ax-mall:1.1.2 .
 
 ```
+
 # docker 网络
+
 ```text
 docker network ls
 
@@ -337,6 +377,7 @@ docker link 过时的技术
 
 
 ```
+
 ```text
 NETWORK ID     NAME      DRIVER    SCOPE
 7d57dda745d7   bridge    bridge    local
@@ -344,5 +385,66 @@ NETWORK ID     NAME      DRIVER    SCOPE
 4b278c728f0a   none      null      local
 
 ```
+
+## 容器编排
+
+```text
+compose 是docker推出的一个工具软件,管理多个容器组成一个应用,需要定义一个YAML格式的配置文件
+docker-compose.yml,写好多个容器之间的调用关系,只要一个命令就同时启动和关闭容器 
+```
+
+### compose 核心
+
+
+```text
+一个文件
+两个要素: 服务,一个个应用容器实例
+        工程,右一组关联的应用容器组成的一个完整业务单元,在yml文件中定义
+        
+三个步骤:
+    编写Dockerfile
+    使用docker-compose.yml定义一个完整的业务单元
+    执行命令,docker-compose up 启动整个应用程序
+```
+
+## 在yml路径下执行命令
+```shell
+
+#启动并后台运行
+docker-compose up
+
+#启动并后台运行
+docker-compose up -d
+
+# 进入容器内部实例
+docker-compose exec  yml_id
+
+docker-compose ps 
+docker-compose top
+
+#查看日志
+docker-compose  logs -f
+docker-compose  logs yml_id
+
+#检查配置
+docker-compose config
+#检查配置 有问题才输出
+docker-compose config -q
+
+docker-compose restart
+docker-compose start
+docker-compose stop
+# 
+
+```
+
+## 编排mysql注意事项docker
+```text
+1.mysql库表 外挂时数据卷,需要提前建库建表,不然无数据库,启动失败
+2.用户名,需要 新建一个,不要用root,不然启动失败
+
+```
+
+## CIG 监控
 
 

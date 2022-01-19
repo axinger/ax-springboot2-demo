@@ -14,7 +14,8 @@ version: @project.version@
 
 spring:
   profiles:
-    active: prod
+#    active: prod
+    active: prod-docker
 
   thymeleaf:
     mode: HTML # 模板的模式

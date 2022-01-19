@@ -2,11 +2,13 @@ package com.ax.mall.listener.redis;
 
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
+import org.springframework.stereotype.Component;
 
 /**
  * redis 消息的监听器
  * 获取redis 中的消息并进行处理
  */
+@Component
 public class OrderMessageListener implements MessageListener {
 
     @Override
