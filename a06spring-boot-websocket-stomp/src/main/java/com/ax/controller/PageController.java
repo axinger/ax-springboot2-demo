@@ -1,6 +1,6 @@
 package com.ax.controller;
 
-import com.ax.config.sercurity.UserPrincipal;
+import com.ax.a21shiro.config.sercurity.UserPrincipal;
 import com.ax.mongo.model.User;
 import com.ax.mongo.service.RelationService;
 import org.springframework.beans.factory.annotation.Autowired;

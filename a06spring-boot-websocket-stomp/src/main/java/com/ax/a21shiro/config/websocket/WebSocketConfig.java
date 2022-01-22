@@ -1,4 +1,4 @@
-package com.ax.config.websocket;
+package com.ax.a21shiro.config.websocket;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;

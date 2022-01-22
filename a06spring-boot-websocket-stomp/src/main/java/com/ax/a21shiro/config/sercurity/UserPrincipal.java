@@ -1,4 +1,4 @@
-package com.ax.config.sercurity;
+package com.ax.a21shiro.config.sercurity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

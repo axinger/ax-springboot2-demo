@@ -74,6 +74,7 @@
         <module>a18caffeine</module>
         <module>a19spring-boot-redis</module>
         <module>a20netty</module>
+        <module>a21shiro</module>
         <module>b03-demo-spring5</module>
         <module>b04-demo-spring-web-flux</module>
 
