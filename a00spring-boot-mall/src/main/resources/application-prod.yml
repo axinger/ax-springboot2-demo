@@ -8,9 +8,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: jim
     password: AXing#631122
-#    url: jdbc:mysql://47.101.156.93:3306/ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://47.101.156.93:3306/serverTimezone=GMT%2B8&ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     #docker 服务
-    url: jdbc:mysql://mysql:3306/ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql:3306/ax_mall?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     filters: stat,wall,log4j
     druid:   #druid相关配置
       #配置初始化大小/最小/最大

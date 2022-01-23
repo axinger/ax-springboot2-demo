@@ -75,6 +75,8 @@
         <module>a19spring-boot-redis</module>
         <module>a20netty</module>
         <module>a21shiro</module>
+        <module>a22mybatis-plus</module>
+        <module>b01-demo-java</module>
         <module>b03-demo-spring5</module>
         <module>b04-demo-spring-web-flux</module>
 
@@ -493,11 +495,13 @@
             <!--            </dependency>-->
 
 
+            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.4.3.4</version>
+                <version>3.5.0</version>
             </dependency>
+
 
 
         </dependencies>

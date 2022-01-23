@@ -1,3 +1,9 @@
+# 类加载
+```text
+ava中的类加载器负载加载来自文件系统、网络或者其他来源的类文件。jvm的类加载器默认使用的是双亲委派模式。
+三种默认的类加载器Bootstrap ClassLoader、Extension ClassLoader和System ClassLoader（Application ClassLoader）
+每一个中类加载器都确定了从哪一些位置加载文件。于此同时我们也可以通过继承java.lang.classloader实现自己的类加载器。
+```
 # cglib动态代理和jdk动态代理的区别
 
 | 名称 | 备注 |
