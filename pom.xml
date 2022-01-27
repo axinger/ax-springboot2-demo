@@ -3,20 +3,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <!--统一管理jar包版本-->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <thymeleaf-spring5.version>3.0.2.RELEASE</thymeleaf-spring5.version>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
-        <spring-cloud-starter.verson>2.2.5.RELEASE</spring-cloud-starter.verson>
-        <spring-cloud-starter-netflix.version>2.2.10.RELEASE</spring-cloud-starter-netflix.version>
-    </properties>
-
-
     <parent>
         <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
         比如:查看mysql版本号, 重写版本号就可以了
@@ -27,63 +13,49 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
+    <!--统一管理jar包版本-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <thymeleaf-spring5.version>3.0.2.RELEASE</thymeleaf-spring5.version>
+<!--        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!--阿里巴巴cloud-->
+        <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
+        <!--springcloud-->
+        <spring-cloud-starter.verson>2.2.5.RELEASE</spring-cloud-starter.verson>
+    </properties>
+
+
+
     <groupId>com.ax</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
     <version>1.0.0</version>
     <!--pom总的父工程-->
     <packaging>pom</packaging>
     <modules>
-        <module>a00spring-boot-mall</module>
-        <module>a01spring-boot-mvc</module>
-        <module>a02spring-boot-noweb</module>
-        <module>a03spring-boot-war</module>
-        <module>a04spring-boot-jar</module>
-        <module>a05kafka-api</module>
-        <module>a05kafka-consumer</module>
-        <module>a05kafka-consumer2</module>
-        <module>a05kafka-producer</module>
-        <module>a06spring-websocket</module>
-        <module>a06websocket-netty</module>
-        <module>a06spring-boot-websocket-stomp</module>
-        <module>a06websocket</module>
-        <module>a07more-db</module>
-        <module>a08dubbo-consumer</module>
-        <module>a08dubbo-interface</module>
-        <module>a08dubbo-provider</module>
-        <module>a09spring-security-content</module>
-        <module>a09spring-security-oauth</module>
-        <module>a10Spring-boot-nginx</module>
-        <module>a12spring-cloud-gateway-9527</module>
-        <module>a12spring-cloud-getaway-payment</module>
-        <module>a12spring-cloud-order</module>
-        <module>a12spring-cloud-payment</module>
-        <module>a13spring-cloud-alibaba-dubbo-consumer</module>
-        <module>a13spring-cloud-alibaba-dubbo-interface</module>
-        <module>a13spring-cloud-alibaba-dubbo-provider</module>
-        <module>a13spring-cloud-alibaba-nacos-config</module>
-        <module>a13spring-cloud-alibaba-nacos-order</module>
-        <module>a13spring-cloud-alibaba-nacos-payment</module>
-        <module>a13spring-cloud-alibaba-seata-account</module>
-        <module>a13spring-cloud-alibaba-seata-order</module>
-        <module>a13spring-cloud-alibaba-seata-storage</module>
-        <module>a13spring-cloud-alibaba-sentinel</module>
-        <module>a14elastic-search</module>
-        <module>a15rabbitmq</module>
-        <module>a16swagger-starter</module>
-        <module>a17minio</module>
-        <module>a18caffeine</module>
-        <module>a19spring-boot-redis</module>
-        <module>a20netty</module>
-        <module>a21shiro</module>
-        <module>a22mybatis-plus</module>
+        <module>a01-spring-boot-mall</module>
+        <module>a02-spring-boot-mvc</module>
+        <module>a04-spring-boot-security</module>
+        <module>a05-spring-boot-nginx</module>
+        <module>a06-spring-cloud</module>
+        <module>a07-spring-cloud-alibaba</module>
+        <module>a08-spring-boot-es</module>
+        <module>a09-spring-boot-mq</module>
+        <module>a10-spring-boot-swagger-starter</module>
+        <module>a11-spring-boot-minio</module>
+        <module>a12-spring-boot-caffeine</module>
+        <module>a13-spring-boot-redis</module>
+        <module>a14-spring-boot-netty</module>
+        <module>a15-spring-boot-shiro</module>
+        <module>a16-spring-boot-mybatis-plus</module>
+        <module>a17-spring-boot-customize-starter</module>
         <module>b01-demo-java</module>
         <module>b03-demo-spring5</module>
         <module>b04-demo-spring-web-flux</module>
-
-        <!--        <module></module>-->
-<!--        <module></module>-->
-<!--        <module></module>-->
-<!--        -->
+        <module>a02-spring-boot-mvc</module>
+        <module>a04-spring-boot-security</module>
 
 
     </modules>
@@ -94,34 +66,34 @@
     <dependencyManagement>
         <dependencies>
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring-boot.version}</version>
-                <scope>test</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-test</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--                <scope>test</scope>-->
+<!--            </dependency>-->
 
             <!--监控信息-->
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-actuator</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-security</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
 
             <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
@@ -132,43 +104,43 @@
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-validation</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-validation</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-amqp</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-cache</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-cache</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
 
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
 
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jta-atomikos
              解决多数据源,事务失效
              -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-jta-atomikos</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-jta-atomikos</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--            </dependency>-->
 
             <!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis -->
             <dependency>
@@ -208,24 +180,6 @@
                 <version>1.1.9</version>
             </dependency>
 
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.4</version>
-                <type>pom</type>
-                <scope>runtime</scope>
-            </dependency>
-
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-oauth2 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-oauth2</artifactId>
-                <version>2.2.5.RELEASE</version>
-            </dependency>
-
             <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
             <dependency>
                 <groupId>io.netty</groupId>
@@ -233,46 +187,6 @@
                 <version>4.1.52.Final</version>
             </dependency>
 
-
-            <!--注册服务-->
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka-server -->
-            <!--             <dependency>-->
-            <!--                 <groupId>org.springframework.cloud</groupId>-->
-            <!--                 <artifactId>spring-cloud-starter-eureka-server</artifactId>-->
-            <!--                 <version>1.4.7.RELEASE</version>-->
-            <!--             </dependency>-->
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
-            <!-- <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-                 <version>2.2.2.RELEASE</version>
-             </dependency>-->
-
-
-            <!--官网 https://cloud.spring.io/spring-cloud-zookeeper/reference/html/-->
-            <!-- <dependency>
-                 <groupId>org.springframework.cloud</groupId>
-                 <artifactId>spring-cloud-starter-zookeeper-all</artifactId>
-                 <exclusions>
-                     <exclusion>
-                         <groupId>org.apache.zookeeper</groupId>
-                         <artifactId>zookeeper</artifactId>
-                     </exclusion>
-                 </exclusions>
-             </dependency>-->
-
-            <!--  <dependency>
-                  <groupId>org.apache.zookeeper</groupId>
-                  <artifactId>zookeeper</artifactId>
-                  <version>3.4.12</version>
-                  <exclusions>
-                      <exclusion>
-                          <groupId>org.slf4j</groupId>
-                          <artifactId>slf4j-log4j12</artifactId>
-                      </exclusion>
-                  </exclusions>
-              </dependency>-->
 
             <!--管理页面 http://localhost:8500-->
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-consul-discovery -->
@@ -297,20 +211,12 @@
                 <version>${spring-cloud-starter.verson}</version>
             </dependency>
 
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
-            <!--<dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-                <version>2.2.2.RELEASE</version>
-            </dependency>-->
-
             <!--服务降级,熔断,限流-->
             <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-                <version>${spring-cloud-starter-netflix.version}</version>
+                <version>2.2.10.RELEASE</version>
             </dependency>
 
             <!--降级服务仪表板 路径 hystrix-->
@@ -392,11 +298,11 @@
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>3.7.0</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>redis.clients</groupId>-->
+<!--                <artifactId>jedis</artifactId>-->
+<!--                <version>3.7.0</version>-->
+<!--            </dependency>-->
 
             <!--redisson是当前是最火的redis解决方案-->
             <dependency>
@@ -463,14 +369,6 @@
                 <version>3.12.0</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
-            <!--            <dependency>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-starter-log4j2</artifactId>-->
-            <!--                <version>2.6.1</version>-->
-            <!--            </dependency>-->
-
-
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
@@ -479,22 +377,6 @@
                 <scope>import</scope>
             </dependency>
 
-
-            <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
-            <!--            <dependency>-->
-            <!--                <groupId>com.alibaba.cloud</groupId>-->
-            <!--                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-            <!--                <version>${spring-cloud-alibaba.version}</version>-->
-            <!--            </dependency>-->
-
-            <!--            &lt;!&ndash; https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config &ndash;&gt;-->
-            <!--            <dependency>-->
-            <!--                <groupId>com.alibaba.cloud</groupId>-->
-            <!--                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
-            <!--                <version>${spring-cloud-alibaba.version}</version>-->
-            <!--            </dependency>-->
-
-
             <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -502,6 +384,13 @@
                 <version>3.5.0</version>
             </dependency>
 
+            <!--加密-->
+            <!-- https://mvnrepository.com/artifact/com.github.ulisesbocchio/jasypt-spring-boot-starter -->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>3.0.4</version>
+            </dependency>
 
 
         </dependencies>

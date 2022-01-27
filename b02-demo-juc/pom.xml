@@ -3,10 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ax</groupId>
-    <artifactId>demo_juc</artifactId>
+    <artifactId>b02-demo-juc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo_juc</name>
-    <description>demo_juc</description>
 
     <properties>
         <java.version>1.8</java.version>

@@ -26,7 +26,6 @@ public class Tests {
     public void test2() {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
         PersonService personService = context.getBean("personService", PersonService.class);
-        ;
         System.out.println("配置类方式 personService = " + personService);
         personService.add();
 

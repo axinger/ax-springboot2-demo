@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ax-spring-boot-demo</artifactId>
+        <groupId>com.ax</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <artifactId>a06-spring-cloud</artifactId>
+
+    <modules>
+        <module>consul-order</module>
+        <module>consul-payment</module>
+        <module>gateway-9527</module>
+        <module>getaway-payment</module>
+    </modules>
+
+
+</project>
