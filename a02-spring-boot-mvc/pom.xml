@@ -18,6 +18,7 @@
         <module>packaging-jar</module>
         <module>packaging-war</module>
         <module>a02-completable-future</module>
+        <module>02-async</module>
     </modules>
 
 </project>
