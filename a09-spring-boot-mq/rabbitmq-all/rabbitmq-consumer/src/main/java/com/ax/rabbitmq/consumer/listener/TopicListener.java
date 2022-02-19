@@ -4,10 +4,13 @@ import com.rabbitmq.client.Channel;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xing
@@ -34,35 +37,32 @@ import org.springframework.stereotype.Component;
 //        System.out.println(message);
 //    }
 //}
+
 /**
  * containerFactory
- *  concurrency 并发
- *  containerFactory 限流
- *  ,containerFactory = "multiListenerContainer"
- * */
+ * concurrency 并发
+ * containerFactory 限流
+ * ,containerFactory = "multiListenerContainer"
+ */
 @Slf4j
 @Component
-@RabbitListener(queues = "top_queue_name")
+
 public class TopicListener {
-
+    /**
+     * @Payload String body 只能是string 序列化string
+     */
     @SneakyThrows
-    @RabbitHandler
-    public void receive(String msg, Message message, Channel channel, @Payload String body) {
-
-//        StopWatch watch = new StopWatch();
-//        watch.start();
-//        log.info("receive '{}'", new String(message.getBody()));
-//        watch.stop();
-//        log.info("instance {} [x] Done in {}s", new String(message.getBody()), watch.getTotalTimeSeconds());
-
+    @RabbitListener(queues = "test_topic_queue_msg")
+    public void receive(Message message, Channel channel, @Payload String body) {
+        //拿到消息延迟消费
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println("test_topic_queue 专用队列====================");
+//        System.out.println("message = " + message.getBody());
         System.out.println("body = " + body);
 
-        //拿到消息延迟消费
-        try {
-            Thread.sleep(1000 * 3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        System.out.println("\n\n");
+//        @Headers Map<String, Object> headers
+//        System.out.println("headers = " + headers);
 
         final long deliveryTag = message.getMessageProperties().getDeliveryTag();
 
@@ -77,6 +77,23 @@ public class TopicListener {
 //            channel.basicNack(deliveryTag, false, true);
 //            System.err.println("get msg2 failed msg = " + msg);
 //        }
+
+    }
+
+    /**
+     * @Payload String body 只能是string 序列化string
+     */
+    @SneakyThrows
+    @RabbitListener(queues = "test_topic_queue_general")
+    public void receive2(Message message, Channel channel, @Payload String body, @Headers Map<String, Object> headers) {
+        //拿到消息延迟消费
+        TimeUnit.SECONDS.sleep(3);
+
+        System.out.println("test_topic_queue_general 通用队列====================");
+        System.out.println("body = " + body);
+        System.out.println("\n\n");
+        final long deliveryTag = message.getMessageProperties().getDeliveryTag();
+        channel.basicAck(deliveryTag, true);
 
     }
 

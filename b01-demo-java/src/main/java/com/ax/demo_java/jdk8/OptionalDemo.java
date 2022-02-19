@@ -85,7 +85,7 @@ public class OptionalDemo {
             System.out.println("optional5 get = " + optional5.get());
         }
 
-        Optional<String> optional5_2 = Optional.of(Optional.ofNullable(user2).map(User::getCity).map(City::getAddress).orElseGet(() -> "jim"));
+        Optional<String> optional5_2 = Optional.of(Optional.ofNullable(user2).map(User::getCity).map(City::getAddress).orElse("jim"));
 
         System.out.println("optional5_2 isPresent = " + optional5_2.isPresent());
         System.out.println("optional5_2 get = " + optional5_2.get());

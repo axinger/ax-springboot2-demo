@@ -60,6 +60,8 @@ public class TtlQueueConfig {
                 .deadLetterExchange(Y_DEAD_LETTER_EXCHANGE)
                 //死信routingKey
                 .deadLetterRoutingKey(Y_DEAD_LETTER_ROUTING_KEY)
+                //优先级
+//                .maxPriority(10)
                 .build();
     }
 

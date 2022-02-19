@@ -27,8 +27,6 @@
         <spring-cloud-starter.verson>2.2.5.RELEASE</spring-cloud-starter.verson>
     </properties>
 
-
-
     <groupId>com.ax</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
     <version>1.0.0</version>
@@ -36,7 +34,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>a01-spring-boot-mall</module>
-        <module>a02-spring-boot-mvc</module>
+        <module>a02-spring-boot-demo</module>
         <module>a04-spring-boot-security</module>
         <module>a05-spring-boot-nginx</module>
         <module>a06-spring-cloud</module>
@@ -54,7 +52,6 @@
         <module>b01-demo-java</module>
         <module>b03-demo-spring5</module>
         <module>b04-demo-spring-web-flux</module>
-        <module>a02-spring-boot-mvc</module>
         <module>a04-spring-boot-security</module>
 
 

@@ -1,10 +1,9 @@
 package com.ax.rabbitmq.producer.controller;
 
-import cn.hutool.core.io.LineHandler;
 import com.ax.rabbitmq.producer.config.DelayQueueConfig;
+import com.ax.rabbitmq.producer.config.topic.TopicConfig;
 import com.ax.rabbitmq.producer.config.TtlQueueConfig;
 import com.ax.rabbitmq.producer.service.IMessageService;
-import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,15 +41,21 @@ public class IndexController {
     private IMessageService messageService;
 
 
-    @GetMapping(value = "/topic")
+    @GetMapping(value = "/topic/{msg}")
     @ResponseBody
-    public Object topic(String msg) {
+    public Object topic(@PathVariable String msg) {
 
+        // topic 只有msg队列能收到
         Map map = new HashMap<String, Object>(3);
-        map.put("msg", msg);
+        map.put("type", "topic");
+        map.put("msg", "专用 "+msg);
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_ROUTING_KEY,map);
 
-        messageService.sendMessage(map);
-
+        // topic 2个队列都能收到
+        Map map2 = new HashMap<String, Object>(3);
+        map2.put("type", "topic");
+        map2.put("msg", "通用 "+msg);
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2);
         return map;
     }
 

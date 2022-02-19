@@ -8,3 +8,5 @@ spring:
     virtual-host: / #虚拟机
     username: admin
     password: admin
+    publisher-confirm-type: correlated
+    publisher-returns: true
