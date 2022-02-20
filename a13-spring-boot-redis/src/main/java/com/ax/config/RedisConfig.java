@@ -1,4 +1,4 @@
-package com.ax.a21shiro.config;
+package com.ax.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

@@ -50,7 +50,7 @@ redis-cli shutdown
 echo "/usr/local/bin/redis-server /etc/redis/redis.conf &" >> /etc/rc.local
 开机启动要配置在 rc.local 中，而 /etc/profile 文件，要有用户登录了，才会被执行。
 ```
-
+# 8种数据类型
 ```text
 Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
 一、String（字符串）
@@ -93,6 +93,20 @@ Redis支持五种数据类型：string（字符串），hash（哈希），list�
     不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
 
     zset的成员是唯一的,但分数(score)却可以重复。
+
+6. geospatial
+
+Redis 在 3.2 推出 Geo 类型，该功能可以推算出地理位置信息，两地之间的距离。
+
+7、hyperloglog
+
+基数：数学上集合的元素个数，是不能重复的。
+
+8、bitmap 位图
+
+bitmap就是通过最小的单位bit来进行0或者1的设置，表示某个元素对应的值或者状态。一个bit的值，或者是0，或者是1；也就是说一个bit能存储的最多信息是2。
+
+bitmap 常用于统计用户信息比如活跃粉丝和不活跃粉丝、登录和未登录、是否打卡等。
 
 ```
 
@@ -375,4 +389,13 @@ Redis总结：缓存雪崩、缓存击穿、缓存穿透与缓存预热、缓存
 # 幂等性,redis原子性
 ```text
 使用redis执行 setnx 命令,天热具有幂等性
+```
+
+
+## 数据库和redis 数据一致性
+```
+双写模式: 数据库更新,就更新一下redis,需要查询数据库,再写入redis
+失效模式:数据库更新后,就删除redis
+
+并发情况 会产生脏数据,加锁
 ```

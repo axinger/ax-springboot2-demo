@@ -1,18 +1,12 @@
 ```text
 
-corePoolSize  ---------------------> 核心线程数
-
-maximumPoolSize ---------------> 最大线程数
-
-keepAliveTime --------------------> 当线程数大于核心时，此为终止前多余的空闲线程等待新任务的最长时间
-
-unit -----------------------------------> 时间单位
-
-workQueue ------------------------> 用于存储工作工人的队列
-
-threadFactory ---------------------> 创建线程的工厂
-
-handler ------------------------------> 由于超出线程范围和队列容量而使执行被阻塞时所使用的处理程序
+corePoolSize: 核心线程数
+maximumPoolSize:最大线程数
+keepAliveTime:当线程数大于核心时，此为终止前多余的空闲线程等待新任务的最长时间
+unit: 时间单位
+workQueue: 阻塞队列及个数,是core核心数,能处理并发数
+threadFactory: 创建线程的工厂,比如自定义设置前缀
+handler: 拒绝策略,由于超出线程范围和队列容量而使执行被阻塞时所使用的处理程序
 
        public ThreadPoolExecutor(int corePoolSize,
                               int maximumPoolSize,
@@ -23,6 +17,42 @@ handler ------------------------------> 由于超出线程范围和队列容量�
                               RejectedExecutionHandler handler)
                               
 ```
+## 工作顺序
+```text
+一.线程池创建,准备好了core数量的核心线程池,准备接收任务
+1.core满了,就将再进来的任务放入阻塞队列中.空闲的core就会自己去阻塞队列获取任务执行
+2.阻塞队列满了,就直接开启新线程执行,最大只能max指定数量
+3.max满了就用拒绝策略
+4.max都执行完了,有空闲,在指定时间后释放max-core个线程
+```
+
+```text
+例子:
+core:7, max:20,queue:50, 100并发怎么分配
+7个会立即得到执行,50个会进入队列,再开20-7=13个进行执行,剩下的100-50-20=30 就使用拒绝策略
+
+core能处理50个,  max:20,就处理20个 共处理70个
+
+core立即处理7个, 队列进入50个待处理, 还有13个线程开启线程处理13个,  7+50+13=70 就等于  max+queue
+```
+## 代码
+### Executors
+```text
+Executors.newCachedThreadPool() //core是0,所有都回收
+Executors.newFixedThreadPool();//固定大小,core=max,都不可回收
+Executors.newScheduledThreadPool();//定时任务的线程池
+Executors.newSingleThreadExecutor();//单线程的线程池,后台任务顺序执行
+ ```
+### CompletableFuture
+```text
+无返回值
+CompletableFuture.runAsync(任务) 
+CompletableFuture.runAsync(任务,指定线程池) 
+
+有返回值
+CompletableFuture.supplyAsync(任务)   
+CompletableFuture.supplyAsync(任务,指定线程池) 
+```
 ## 拒绝策略 4种
 ```text
 
@@ -32,16 +62,14 @@ AbortPolicy 中止策略
 默认的拒绝策略。直接抛出 java.util.concurrent.RejectedExecutionException异常
 new ThreadPoolExecutor.AbortPolicy()
  
-CallerRunsPolicy 抛弃策略
-将任务返还给调用者线程执行
+CallerRunsPolicy 将任务返还给调用者线程执行,让执行者调用方法,同步执行
 new ThreadPoolExecutor.CallerRunsPolicy()
 
-
-DiscardPolicy 调用者运行
-直接抛弃无法处理的任务，不予处理不抛异常。如果业务汇总允许任务丢失，这是最好的策略
+DiscardPolicy 直接抛弃无法处理的任务
+直接抛弃无法处理的任务，不予处理不抛异常。如果业务汇总 `允许任务丢失`，这是最好的策略
 new ThreadPoolExecutor.DiscardPolicy()
 
-DiscardOldestPolicy 抛弃旧任务策略
+DiscardOldestPolicy 抛弃队列中等待最久的任务
 抛弃队列中等待最久的任务，然后把当前任务加入队列中尝试再次提交当前任务
 new ThreadPoolExecutor.DiscardOldestPolicy()
 
@@ -103,3 +131,50 @@ https://www.cnblogs.com/jpfss/p/10783847.html
 5. 死亡状态(Dead):线程执行完了或者因异常退出了run()方法，该线程结束生命周期。
 
 ```
+## Java线程间通信的几种方式
+```text
+https://www.cnblogs.com/rouqinglangzi/p/9106298.html
+1.wait和notify/notifyAll
+2.使用Lock和Condition
+3.使用阻塞队列控制线程通信
+4.使用管道流进行线程通信(被阻塞队列替代)
+```
+```text
+Java编程思想中有这样一句话：
+
+当我们使用线程来同时运行多个任务时，可以通过使用锁(互斥)来同步两个任务的行为，从而使得一个任务不会干扰到另外一个任务，
+这解决的是线程间彼此干涉的问题，现在我们需要来解决线程间彼此协调的问题，也就是线程间通信问题。
+```
+```text
+1.wait和notify/notifyAll + synchronized 关键字
+
+可以借助于Object类提供的wait()、notify()、notifyAll()三个方法，这三个方法属于Object类。但这三个方法必须由同步监视器对象来调用，这可分为两种情况
+①对于用synchronized修饰的同步方法，因为该类的默认实例(this)就是同步监视器，所以可以在同步方法中直接调用这三个方法。
+②对于用synchronized修饰的同步代码块，同步监视器是synchronized后括号里的对象，所以必须使用该对象调用这三个方法。
+需要注意的是notify()方法只能随机唤醒一个线程，如果要唤醒所有线程，请使用notifyAll()。
+```
+```text
+2.使用Lock和Condition
+
+如果程序不用synchronized关键字来进行同步，而是用Lock对象来保证同步，则系统中不存在隐式的同步监视器，也就不能使用wait()、notify()、notifyAll()方法进行线程通信了。
+使用Lock对象的方式，Java提供了一个Condition类来保持协调，使用Condition可以让那些已经得到Lock对象却无法继续执行的线程释放Lock对象，Condition对象也可以唤醒其他处于等待的线程。
+Condition将同步监视器方法wait()、notify()、notifyAll()分解成截然不同的对象，以便通过将这些对象与Lock对象组合使用，为每个对象提供多个等待集(wait-set)。
+在这种情况下，Lock替代了同步方法和同步代码块，Condition替代了同步监视器的功能。
+Condition实例被绑定在一个Lock对象上。要获得特定Lock实例的Condition实例，调用Lock对象的newCondition()方法获得即可。Condition类提供了以下三个方法：
+await():
+signal():
+
+signalAll():
+```
+```text
+3.使用阻塞队列控制线程通信
+
+Java5提供了一个BlockingQueue接口，虽然BlockingQueue也是Queue的子接口，但它的主要用途不是作为容器，而是作为线程同步的工具。
+BlockingQueue具有一个特征：当生产者线程试图向BlockingQueue中放入元素时，如果该队列已满则线程被阻塞。而消费者线程 在取元素时，如果该队列已空则该线程被阻塞。
+程序的两个线程通过交替向BlockingQueue中放入元素、取出元素，即可很好地控制线程的通信。
+```
+````text
+4.使用管道流进行线程通信(被阻塞队列替代)
+管道通信模型可以看成是生产者-消费者模型的变种，管道就是一个封装好的解决方案。管道基本上就是一个阻塞队列，所以可以用于线程间通信。管道在Java中对应的实现是PipedWriter类和PipedReader类。
+但随着阻塞队列的出现，管道逐渐被替代。所以，在实际开发中，很少会使用到管道流。
+````

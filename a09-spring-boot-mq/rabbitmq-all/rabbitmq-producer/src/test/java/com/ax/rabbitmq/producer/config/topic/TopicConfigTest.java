@@ -5,6 +5,7 @@ import com.ax.rabbitmq.producer.RabbitmqProducerApplication;
 import com.ax.rabbitmq.producer.config.topic.TopicConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RabbitmqProducerApplication.class)
 class TopicConfigTest {
@@ -39,6 +42,8 @@ class TopicConfigTest {
         rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2);
 
 
+        // CorrelationData 指定id
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2,new CorrelationData(UUID.randomUUID().toString()));
         // 优先级
 //        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2, message -> {
 //            message.getMessageProperties().setPriority(10);

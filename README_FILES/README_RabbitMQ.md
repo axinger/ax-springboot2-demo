@@ -116,7 +116,10 @@ RabbitMQ要实现延时任务，需要使用RabbitMQ的死信交换机(Exchange)
 
 
 ```
-
+## 注解
+```text
+@RabbitHandler()  可以参数重载,同一队列,封装不同参数对象
+```
 ```text
 自动应答: 不靠谱,因为接收到消息,后面代码可能失败
 手动应答:
@@ -145,7 +148,10 @@ HEADERS 参数匹配
 
 消息可靠性投递
     持久化到本地文件中 exchange queue message 都要持久化
-
+    确认模式 confirmCallback: 只要broker(一般是交换机)收到就会执行,如果是集群模式,需要所有broker收到,并不能保证目标queue会收到
+   未投递到queue回退模式 returnCallback:消费者未收到消息后回调
+    
+    
 consumer ACK
     消费端手动确认
 
@@ -181,10 +187,13 @@ TTL
 ```text
 消息可靠性保证
 
+消息补偿:
+    生产端同时发送一个延迟延迟消息, 在回调检查服务,消费端接收到消息,发送确认消息,进行回调检查服务中,同时定时检查
 消息幂等性
 
 
 ```
+![img_20.png](img_20.png)
 
 ## 延迟插件
 ```text
@@ -209,3 +218,6 @@ TTL
 版权声明：本文为CSDN博主「Fandy_meng」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/Jack_Brandy/article/details/107811864
 ```
+
+# 消息丢失,使用firehose和插件
+# 集群

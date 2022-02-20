@@ -117,6 +117,8 @@ docker run -itd --name redis-test -p 6379:6379 redis
 ### 安装mysql
 
 ```text
+docker run --name demo-mysql5.7 -e MYSQL_ROOT_PASSWORD=12345678 -p 3306:3306 -d mysql:5.7
+
 docker run --privileged=true --name ax-mall-mysql -p 3306:3306 -v /root/mysql/log:/var/log/mysql -v /root/mysql/data:/etc/lib/mysql -v /root/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=AXing#631122 -d mysql
 
  中文乱码,查看字符集
@@ -378,7 +380,13 @@ docker link 过时的技术
 
 参数  -network 
 
+docker network ls 
 
+# 不指定网络驱动时默认创建的bridge网络
+docker network create demo_network
+
+# 查看网络内部信息
+docker network inspect demo_network
 
 ```
 
@@ -435,7 +443,7 @@ docker-compose config
 #检查配置 有问题才输出
 docker-compose config -q
 
-docker-compose restart
+docker-compose restartdocker exec -it
 docker-compose start
 docker-compose stop
 # 

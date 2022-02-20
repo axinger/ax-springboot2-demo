@@ -1,4 +1,4 @@
-package com.ax.juc._03callable;
+package com.ax.juc._11utils;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -62,7 +62,7 @@ class CyclicBarrierDemo {
 }
 
 /**
- * 3. Semaphore 许可
+ * 3. Semaphore 许可 信号量
  * <p>
  * 6个汽车,抢占3个停车位
  */

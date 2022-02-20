@@ -2,23 +2,38 @@ package com.ax.rabbitmq.producer.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Configuration
 @Slf4j
 public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
 
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
+    /**
+     * 序列化
+     * */
+    public MessageConverter messageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    /**
+     * PostConstruct 构造器创建完成后注入
+     */
+    @PostConstruct
+    public void init() {
 
         /**
          * correlationData 相关配置
@@ -42,19 +57,16 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
          * */
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setReturnCallback(this);
-
-        return rabbitTemplate;
     }
 
-
     /**
-     * 消费者收到消息
+     * broker收到消息
      */
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
 
         Optional.ofNullable(correlationData).map(CorrelationData::getId).ifPresent((id) -> {
-            System.out.println("id = " + id);
+            System.out.println("mq 唯一id = " + id);
         });
 
 //        final String id = Optional.ofNullable(correlationData).map(CorrelationData::getId).orElse("");
@@ -69,7 +81,7 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
     }
 
     /**
-     * 消费者回退消息
+     * 消费者回退消息,消费者未接收到触发
      */
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {

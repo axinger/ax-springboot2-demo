@@ -26,7 +26,6 @@ public class Test {
 
         Student student = new Student();
         student.send();
-        ;
 
         /// 实例 访问静态方法
         student.send2();

@@ -171,3 +171,24 @@ singletonFactories 三级缓存，用于保存bean创建工厂，以便于后面
 
 
 ```
+
+### 统计时间
+```java
+@SpringBootTest
+public class TotalTimeTests {
+
+    @Test
+    public void timeLong(){
+        // StopWatch 用来计时的
+        StopWatch watch = new StopWatch();
+        watch.start();
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        watch.stop();
+        System.out.println("计算时长 = "+watch.getTotalTimeSeconds());
+    }
+}
+```

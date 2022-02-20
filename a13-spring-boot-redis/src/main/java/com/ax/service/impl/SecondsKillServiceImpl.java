@@ -1,5 +1,6 @@
-package com.ax.service;
+package com.ax.service.impl;
 
+import com.ax.service.SecondsKillService;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
@@ -17,6 +18,7 @@ public class SecondsKillServiceImpl implements SecondsKillService {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
     private Redisson redisson;
 
