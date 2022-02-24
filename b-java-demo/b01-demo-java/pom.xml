@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>com.ax</groupId>
-        <artifactId>ax-spring-boot-demo</artifactId>
+        <artifactId>b-java-demo</artifactId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>

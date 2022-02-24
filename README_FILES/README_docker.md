@@ -60,6 +60,12 @@ docker image inspect (docker image名称):latest|grep -i version
 
 开机启动 docker update --restart=always  xx
 ```
+## 查看docker服务状态 
+```shell
+docker stats 
+```
+![img_23.png](img_23.png)
+
 
 ## 启动守护式容器
 
