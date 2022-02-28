@@ -1,4 +1,4 @@
-package com.ax.a21shiro.config.sercurity;
+package com.ax.config.sercurity;
 
 import com.ax.mongo.model.User;
 import com.ax.mongo.service.UserService;

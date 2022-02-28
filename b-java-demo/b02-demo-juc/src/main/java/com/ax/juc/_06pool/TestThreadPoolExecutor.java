@@ -31,9 +31,14 @@ public class TestThreadPoolExecutor {
                                ThreadFactory threadFactory,
                                RejectedExecutionHandler handler)
 
+maximumPoolSize在cpu密级型项目中请配置成 cup核心数+1==>Runtime.getRuntime().availableProcessors()+1
+maximumPoolSize在io密级型项目中请配置成 cpu核心数/阻塞系数
+
+
      * */
 
     public static void main(String[] args) {
+
         test_ThreadPoolExecutor();
     }
 
