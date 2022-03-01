@@ -6,6 +6,7 @@
     <parent>
         <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
         比如:查看mysql版本号, 重写版本号就可以了
+        
         -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
