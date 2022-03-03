@@ -1,6 +1,6 @@
-package com.ax.juc.service.impl;
+package com.ax.future.service.impl;
 
-import com.ax.juc.service.FutureTaskService;
+import com.ax.future.service.FutureTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;

@@ -1,8 +1,7 @@
-package com.ax.juc;
+package com.ax.future;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author xing

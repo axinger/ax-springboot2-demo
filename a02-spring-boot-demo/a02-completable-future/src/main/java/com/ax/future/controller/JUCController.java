@@ -1,7 +1,7 @@
-package com.ax.juc.controller;
+package com.ax.future.controller;
 
 
-import com.ax.juc.service.FutureTaskService;
+import com.ax.future.service.FutureTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
 @Slf4j

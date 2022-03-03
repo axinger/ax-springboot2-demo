@@ -1,4 +1,4 @@
-package com.ax.juc.config;
+package com.ax.future.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
