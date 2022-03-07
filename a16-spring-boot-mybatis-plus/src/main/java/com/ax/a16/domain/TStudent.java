@@ -1,4 +1,4 @@
-package com.ax.a22.domain;
+package com.ax.a16.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.*;

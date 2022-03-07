@@ -1,14 +1,15 @@
-package com.ax.a22;
+package com.ax.a16;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class A22mybatisPlusApplication {
+@MapperScan("com.ax.a16.mapper")
+public class A16MybatisPlusApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(A22mybatisPlusApplication.class, args);
+        SpringApplication.run(A16MybatisPlusApplication.class, args);
     }
 
 }

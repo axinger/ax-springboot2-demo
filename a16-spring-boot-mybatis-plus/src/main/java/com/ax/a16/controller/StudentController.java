@@ -1,6 +1,6 @@
-package com.ax.a22.controller;
+package com.ax.a16.controller;
 
-import com.ax.a22.service.TStudentService;
+import com.ax.a16.service.TStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,5 +22,15 @@ public class StudentController {
     @GetMapping("/")
     public void test() {
         System.out.println("service.getById(1) = " + service.getById(1));
+    }
+
+    /**
+     * 插入一条记录
+     *
+     * @param id 实体对象
+     */
+    public void test2(String id) {
+
+        System.out.println("id = " + id);
     }
 }

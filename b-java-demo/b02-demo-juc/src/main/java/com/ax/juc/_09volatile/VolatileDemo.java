@@ -2,6 +2,7 @@ package com.ax.juc._09volatile;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * @author xing
@@ -22,8 +23,15 @@ class MyData {
 
     /***
      * AtomicInteger 保证原子性的, 解决 volatile 无法保证原子性
+     * 1.5
      */
     AtomicInteger atomicInteger = new AtomicInteger();
+
+    /**
+     * 1.8 api
+     */
+    LongAdder longAdder = new LongAdder();
+
     Integer number2 = 0;
 
     public void addTo60() {

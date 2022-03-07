@@ -1,4 +1,4 @@
-package com.ax.a22.config;
+package com.ax.a16.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;

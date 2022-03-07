@@ -1,9 +1,9 @@
-package com.ax.a22.service.impl;
+package com.ax.a16.service.impl;
 
+import com.ax.a16.domain.TStudent;
+import com.ax.a16.mapper.TStudentMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ax.a22.domain.TStudent;
-import com.ax.a22.service.TStudentService;
-import com.ax.a22.mapper.TStudentMapper;
+import com.ax.a16.service.TStudentService;
 import org.springframework.stereotype.Service;
 
 /**
