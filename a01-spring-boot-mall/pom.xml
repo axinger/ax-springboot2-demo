@@ -268,7 +268,7 @@
                     <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                     <!--指定标签-->
                     <imageTags>
-<!--                        <imageTag>latest</imageTag>-->
+                        <!--                        <imageTag>latest</imageTag>-->
                         <imageTag>${project.artifactId}</imageTag>
                     </imageTags>
                     <!-- 基础镜像jdk 1.8-->

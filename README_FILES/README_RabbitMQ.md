@@ -1,4 +1,5 @@
 # 安装
+
 ```text
 docker pull rabbitmq:management
 
@@ -11,6 +12,7 @@ docker run -d --name  axing-rabbitmq -p 5672:5672 -p 15672:15672   -e RABBITMQ_D
 ```
 
 # 6种模式 五种模式详解
+
 ```text
 五种工作模式
 
@@ -47,7 +49,9 @@ RabbitMQ要实现延时任务，需要使用RabbitMQ的死信交换机(Exchange)
 超过了这个时间，我们认为这个消息就死了，称之为死信。如果队列设置了，消息也设置了，那么会取小的。所以一个消息如果被路由到不同的队列中，这个消息死亡的时间有可能不一样(不同的队列设置
 
 ```
+
 ![img_15.png](img_15.png)
+
 ```text
 
 一、五种模式详解
@@ -116,10 +120,13 @@ RabbitMQ要实现延时任务，需要使用RabbitMQ的死信交换机(Exchange)
 
 
 ```
+
 ## 注解
+
 ```text
 @RabbitHandler()  可以参数重载,同一队列,封装不同参数对象
 ```
+
 ```text
 自动应答: 不靠谱,因为接收到消息,后面代码可能失败
 手动应答:
@@ -129,7 +136,9 @@ RabbitMQ要实现延时任务，需要使用RabbitMQ的死信交换机(Exchange)
     A.channel.basicReject 用于否定(拒绝) 比 basicNack 号同一个参数,不处理改消息 直接拒绝,可以丢弃
     批量应答
 ```
+
 ## 交换机
+
 ```text
 3种方式
 DIRECT 定向
@@ -144,6 +153,7 @@ HEADERS 参数匹配
 ```
 
 # 高级特性
+
 ```text
 
 消息可靠性投递
@@ -184,6 +194,7 @@ TTL
 ```
 
 # 应用问题
+
 ```text
 消息可靠性保证
 
@@ -193,9 +204,11 @@ TTL
 
 
 ```
+
 ![img_20.png](img_20.png)
 
 ## 延迟插件
+
 ```text
 不采用死信队列延迟, 直接是交换机延迟
 
@@ -203,11 +216,13 @@ TTL
 ```
 
 # 惰性队列
+
 ```text
 使用在消费者宕机中,存放磁盘中,有性能问题
 ```
 
 # 为什么创建AnonymousQueue队列
+
 ```text
 为什么创建AnonymousQueue队列？
 
@@ -220,4 +235,5 @@ TTL
 ```
 
 # 消息丢失,使用firehose和插件
+
 # 集群

@@ -1,27 +1,26 @@
 package com.ax.seata.service.impl;
 
-import com.ax.seata.dao.TStorageDao;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ax.seata.domain.Storage;
 import com.ax.seata.service.StorageService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ax.seata.mapper.StorageMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * @author xing
- * @version 1.0.0
- * @ClassName StorageServiceImpl.java
- * @Description TODO
- * @createTime 2021年12月19日 03:03:00
- */
+* @author xing
+* @description 针对表【t_storage】的数据库操作Service实现
+* @createDate 2022-04-03 21:07:29
+*/
 @Service
-@Slf4j
-public class StorageServiceImpl implements StorageService {
-
-    @Autowired
-    private TStorageDao storageDao;
+public class StorageServiceImpl extends ServiceImpl<StorageMapper, Storage>
+    implements StorageService{
 
     @Override
     public int decrease(Long productId, Integer count) {
-        return storageDao.decrease(productId,count);
+        return baseMapper.decrease(productId, count);
     }
 }
+
+
+
+

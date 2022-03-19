@@ -7,11 +7,11 @@
     flushInterval 刷新间隔,多长时间清空一次
 
     -->
-<!--    二级缓存-->
-<!--        <cache type="com.ax.mall.cache.MybatisRedisCache" flushInterval="6000" size="512" readOnly="true">-->
+    <!--    二级缓存-->
+    <!--        <cache type="com.ax.mall.cache.MybatisRedisCache" flushInterval="6000" size="512" readOnly="true">-->
 
 
-<!--        </cache>-->
+    <!--        </cache>-->
 
 
     <resultMap id="BaseResultMap" type="com.ax.mall.entity.IpLog">

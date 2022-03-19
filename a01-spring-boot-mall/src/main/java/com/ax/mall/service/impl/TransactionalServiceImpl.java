@@ -70,10 +70,10 @@ public class TransactionalServiceImpl implements TransactionalService {
     }
 
 
-   /**
-    * 如果只这样写 @Transactional ,
-    * Spring框架的事务基础架构代码将默认地只在抛出运行时和unchecked exceptions时才标识事务回滚。
-    * */
+    /**
+     * 如果只这样写 @Transactional ,
+     * Spring框架的事务基础架构代码将默认地只在抛出运行时和unchecked exceptions时才标识事务回滚。
+     */
     @Override
     @Transactional
     public Object insetSuccess2(Boolean isError) {

@@ -1,9 +1,9 @@
 package com.ax.mall.controller;
 
-import com.ax.mall.entity.IpLog;
-import com.ax.mall.util.axUtil.ResponseEntity;
 import com.ax.mall.dto.UpdateListObject;
+import com.ax.mall.entity.IpLog;
 import com.ax.mall.service.IIpLogService;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

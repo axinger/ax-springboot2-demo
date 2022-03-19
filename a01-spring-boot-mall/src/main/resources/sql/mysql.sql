@@ -32,9 +32,9 @@ CREATE TABLE t_user_role
 # 创建学生信息
 CREATE TABLE t_student
 (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',
-    name VARCHAR(11) COMMENT '姓名',
-    age INT COMMENT '年龄',
-    sex  INT COMMENT '0保密，1男，2女',
+    id      BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',
+    name    VARCHAR(11) COMMENT '姓名',
+    age     INT COMMENT '年龄',
+    sex     INT COMMENT '0保密，1男，2女',
     address VARCHAR(11) COMMENT '地址'
 ) COMMENT ='学生信息';

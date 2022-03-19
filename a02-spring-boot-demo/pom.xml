@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>ax-spring-boot-demo</artifactId>
@@ -13,14 +13,17 @@
 
     <modules>
         <module>multiple-db</module>
-        <module>a02-mvc-web</module>
+        <module>spring-boot-mvc-web</module>
         <module>no-web</module>
         <module>packaging-jar</module>
         <module>packaging-war</module>
-        <module>a02-completable-future</module>
-        <module>02-async</module>
-        <module>a02-transactional</module>
-        <module>a02-spring-web-flux</module>
+        <module>completable-future</module>
+        <module>async</module>
+        <module>transactional</module>
+        <module>spring-web-flux</module>
+        <module>test-tools</module>
+        <module>demo-juc</module>
+        <module>demo-spring5</module>
     </modules>
 
 </project>

@@ -1,7 +1,7 @@
 package com.ax.mall.controller;
 
-import com.ax.mall.service.IUserinfoService;
 import com.ax.mall.service.IRedisService;
+import com.ax.mall.service.IUserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -105,10 +105,10 @@ public class IndexController {
         /* 方法调用 验证权限 和注解效果一样*/
 
         /**
-        Subject subject = SecurityUtils.getSubject();
-        subject.checkRole("admin");
-        subject.checkPermission("add");
-        **/
+         Subject subject = SecurityUtils.getSubject();
+         subject.checkRole("admin");
+         subject.checkPermission("add");
+         **/
 
 
         Map map = new HashMap(2);
@@ -143,30 +143,22 @@ public class IndexController {
  * <p>
  * 当前Subject必须是应用的用户，才能访问或调用被该注解标注的类，实例，方法。
  *
- *
- *
- * @RequiresAuthentication
- *
- *         验证用户是否登录，跟subject.isAuthenticated() 结果为true时一样。
- * @RequiresUser
- *
- *         验证用户是否被记忆，user有两种含义：
- *
- *                 成功登录的（subject.isAuthenticated() 结果为true）；
- *
- *                 被记忆的（subject.isRemembered()结果为true）。
- * @RequiresGuest
- *
- *         验证是否是一个guest的请求，与@RequiresUser完全相反。
- *
- *                  就是RequiresUser  == !RequiresGuest。
- *
- *                 此时subject.getPrincipal() 结果为null.
+ * @RequiresAuthentication 验证用户是否登录，跟subject.isAuthenticated() 结果为true时一样。
+ * @RequiresUser 验证用户是否被记忆，user有两种含义：
+ * <p>
+ * 成功登录的（subject.isAuthenticated() 结果为true）；
+ * <p>
+ * 被记忆的（subject.isRemembered()结果为true）。
+ * @RequiresGuest 验证是否是一个guest的请求，与@RequiresUser完全相反。
+ * <p>
+ * 就是RequiresUser  == !RequiresGuest。
+ * <p>
+ * 此时subject.getPrincipal() 结果为null.
  * ————————————————
  * 版权声明：本文为CSDN博主「superboy@.」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
  * 原文链接：https://blog.csdn.net/weixin_46504244/article/details/120382383
- *
- * 
+ * <p>
+ * <p>
  * ————————————————
  * 版权声明：本文为CSDN博主「Stronger丶We」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
  * 原文链接：https://blog.csdn.net/w_stronger/article/details/73109248

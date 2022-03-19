@@ -1,7 +1,6 @@
 package com.ax.mall.util.axUtil;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,7 +25,7 @@ public class ResponseEntity<T> implements Serializable {
 ////    @JSONField(serialize=false)  transient关键字只能修饰变量，而不能修饰方法和类。
     private transient AxResultStateEnum stateEnum;
 
-//        @JSONField(serialize=false)
+    //        @JSONField(serialize=false)
 //    private  AxResultStateEnum stateEnum;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //@DatetimeFormat是将String转换成Date，一般前台给后台传值时用

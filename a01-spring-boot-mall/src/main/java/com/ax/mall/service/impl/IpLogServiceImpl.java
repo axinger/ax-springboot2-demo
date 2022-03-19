@@ -3,16 +3,15 @@ package com.ax.mall.service.impl;
 import com.ax.mall.entity.IpLog;
 import com.ax.mall.mapper.IpLogMapper;
 import com.ax.mall.query.IpLogQueryObject;
-import com.ax.mall.util.axUtil.AxPageResultEntity;
-import com.ax.mall.util.axUtil.ResponseEntity;
-import com.ax.mall.util.axUtil.AxResultStateEnum;
 import com.ax.mall.service.IIpLogService;
+import com.ax.mall.util.axUtil.AxPageResultEntity;
+import com.ax.mall.util.axUtil.AxResultStateEnum;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class IpLogServiceImpl implements IIpLogService {
 //    @Autowired
 //    RedisService redisService;
 
-//    public addIpLog(Userinfo userinfo)
+    //    public addIpLog(Userinfo userinfo)
 //    IpLog ipLog = new IpLog();
 //        ipLog.setIp(request.getRemoteAddr());
 //        ipLog.setLoginTime(new Date());

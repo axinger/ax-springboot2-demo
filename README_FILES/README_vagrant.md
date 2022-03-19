@@ -1,4 +1,5 @@
 # Virtualbox 插件
+
 ```text
 vagrant init  # 初始化
 vagrant up  # 启动虚拟机
@@ -9,6 +10,7 @@ vagrant status  # 查看虚拟机运行状态
 vagrant destroy  # 销毁当前虚拟机
 
 ```
+
 ```text
 Vagrantfile 在根目录中
 ```

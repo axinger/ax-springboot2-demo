@@ -3,7 +3,6 @@ package com.ax.seata.controller;
 import com.ax.seata.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +27,13 @@ public class StorageController {
 
     /**
      * 减少库存
-     * */
+     */
     @GetMapping(value = "/storage/decrease")
     Object decrease(@RequestParam(value = "productId") Long productId,
-                    @RequestParam(value = "count") Integer count ){
-        System.out.println("接收到库存请求============="+productId);
+                    @RequestParam(value = "count") Integer count) {
+        System.out.println("接收到库存请求=============" + productId);
 //        int a = 1/0;
-        return storageService.decrease(productId,count);
+        return storageService.decrease(productId, count);
     }
 
 }

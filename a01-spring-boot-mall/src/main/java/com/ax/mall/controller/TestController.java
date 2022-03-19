@@ -1,17 +1,16 @@
 package com.ax.mall.controller;
 
+import com.ax.mall.dto.LoginDto;
+import com.ax.mall.dto.LoginListDto;
 import com.ax.mall.entity.TStudent;
 import com.ax.mall.entity.User;
 import com.ax.mall.entity.valid.PasswordGroup;
 import com.ax.mall.entity.valid.UsernameGroup;
 import com.ax.mall.entity.valid.ValidList;
-import com.ax.mall.service.TStudentService;
-import com.ax.mall.util.axUtil.ResponseEntity;
-import com.ax.mall.util.axUtil.AxResultStateEnum;
-import com.ax.mall.dto.LoginDto;
-import com.ax.mall.dto.LoginListDto;
 import com.ax.mall.service.HttpClientService;
-//import com.ax.mall.service.impl.RedisService;
+import com.ax.mall.service.TStudentService;
+import com.ax.mall.util.axUtil.AxResultStateEnum;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,8 @@ public class TestController {
 
     @Autowired
     HttpClientService httpClientService;
+    @Autowired
+    private TStudentService studentService;
 
     @RequestMapping(value = "/test1.do")
     //@ApiOperation(value = "获取地区信息列表", notes = "获取地区信息列表")
@@ -65,9 +66,6 @@ public class TestController {
 
     }
 
-
-
-
     @RequestMapping(value = "/toHttp.do")
     public Object toHttp() {
 //        String url = "http://www.suning.com/";
@@ -77,13 +75,11 @@ public class TestController {
         return httpClientService.getClient(url, null, Object.class);
     }
 
-
     @RequestMapping("/path/{id}")
     public Integer testPathVariable(@PathVariable("id") Integer id) {
         System.out.println("testPathVariable:" + id);
         return id;
     }
-
 
     //@ApiOperation(value = "RestGet", notes = "返回json数据")
     @GetMapping(value = "/restGet.do/{id}")
@@ -116,7 +112,6 @@ public class TestController {
         System.out.println("name = " + name);
         return name + "RestDelete";
     }
-
 
     @PutMapping(value = "/restPut.do")
     @ResponseBody
@@ -160,7 +155,6 @@ public class TestController {
         return "JWT成功";
     }
 
-
     @GetMapping(value = "/test22.do")
     public Object login22(@Validated({UsernameGroup.class, PasswordGroup.class}) LoginDto loginEntity) {
         Map<String, Object> map = new HashMap();
@@ -185,7 +179,6 @@ public class TestController {
         return map;
     }
 
-
     @GetMapping(value = "/test25.do")
     public Object login(@RequestParam(value = "username") String username,
                         @RequestParam(value = "password") String password) {
@@ -196,7 +189,6 @@ public class TestController {
         return map;
 
     }
-
 
     /**
      * 验证 list 必须要自定义一个list
@@ -240,40 +232,35 @@ public class TestController {
         return list;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @RequestMapping(value = "/setSession", method = RequestMethod.GET)
-    public Map<String, Object> firstResp (HttpServletRequest request,HttpSession session){
+    public Map<String, Object> firstResp(HttpServletRequest request, HttpSession session) {
 //        HttpSession session =  request.getSession();
-        session.setAttribute("userId","用户id");
+        session.setAttribute("userId", "用户id");
         Map<String, Object> map = new HashMap<>(16);
         map.put("getId", session.getId());
-        map.put("getAttributeNames",session.getAttributeNames());
+        map.put("getAttributeNames", session.getAttributeNames());
 
         return map;
     }
 
     /**
      * session共享
-     * */
+     */
     @RequestMapping(value = "/getSession", method = RequestMethod.GET)
-    public Object sessions (HttpServletRequest request,HttpSession session){
+    public Object sessions(HttpServletRequest request, HttpSession session) {
 //        HttpSession session =  request.getSession();
 
         Map<String, Object> map = new HashMap<>(16);
         map.put("getId", session.getId());
-        map.put("getAttributeNames",session.getAttributeNames());
-        map.put("userId",session.getAttribute("userId"));
+        map.put("getAttributeNames", session.getAttributeNames());
+        map.put("userId", session.getAttribute("userId"));
 
         return map;
     }
 
-
-    @Autowired
-    private TStudentService studentService;
-
-
     @GetMapping(value = "/student1")
-    public Object student1 (){
+    public Object student1() {
         final TStudent student = studentService.getById(1L);
         System.out.println("student = " + student);
         return student;
@@ -281,8 +268,8 @@ public class TestController {
 
 
     @GetMapping(value = "/student2")
-    public Object student2 (){
-        Page<TStudent> page  = new Page();
+    public Object student2() {
+        Page<TStudent> page = new Page();
         final Page<TStudent> page1 = studentService.page(page);
         System.out.println("page1 = " + page1);
         System.out.println("ge1.getRecords() = " + page1.getRecords());

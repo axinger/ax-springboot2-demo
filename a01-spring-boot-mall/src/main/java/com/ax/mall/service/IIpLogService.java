@@ -2,7 +2,6 @@ package com.ax.mall.service;
 
 import com.ax.mall.entity.IpLog;
 import com.ax.mall.query.IpLogQueryObject;
-//import com.ax.mall.service.impl.RedisService;
 import com.ax.mall.service.impl.RedisService;
 import com.ax.mall.util.axUtil.AxPageResultEntity;
 import com.github.pagehelper.Page;

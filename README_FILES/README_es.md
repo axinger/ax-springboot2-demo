@@ -1,11 +1,15 @@
 # elasticsearch
+
 ```text
 存储在内存中  nosql类型产品
 ```
+
 ## 倒排索引
+
 ```text
 docker 安装kibana 需要版本一致
 ```
+
 ```text
 索引一个文档 (保存数据)
 
@@ -36,6 +40,7 @@ POST http://localhost:9200/customer/external/1/_update
 bulk批量api
 
 ```
+
 ```text
 {
     "_index": "customer", 索引(库)
@@ -52,15 +57,19 @@ bulk批量api
 }
 
 ```
+
 ## 排序
+
 ```text
 QueryDSL
 
 排序简写
 ```
+
 ## 聚合查询 aggs
 
 ## 映射 字段类型
+
 ```text
 GET /bank/_mapping
 
@@ -76,7 +85,9 @@ GET /bank/_mapping
         
         文本有 .keyword 精确查询属性
 ```
+
 ## 分词
+
 ```text
 中文需要安装插件
 ```

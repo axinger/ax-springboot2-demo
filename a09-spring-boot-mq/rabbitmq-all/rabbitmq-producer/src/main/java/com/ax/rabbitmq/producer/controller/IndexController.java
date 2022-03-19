@@ -1,8 +1,8 @@
 package com.ax.rabbitmq.producer.controller;
 
 import com.ax.rabbitmq.producer.config.DelayQueueConfig;
-import com.ax.rabbitmq.producer.config.topic.TopicConfig;
 import com.ax.rabbitmq.producer.config.TtlQueueConfig;
+import com.ax.rabbitmq.producer.config.topic.TopicConfig;
 import com.ax.rabbitmq.producer.service.IMessageService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,8 @@ public class IndexController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
+    @Autowired
+    private IMessageService messageService;
 
     @GetMapping(value = "/")
     @ResponseBody
@@ -37,10 +38,6 @@ public class IndexController {
         return map;
     }
 
-    @Autowired
-    private IMessageService messageService;
-
-
     @GetMapping(value = "/topic/{msg}")
     @ResponseBody
     public Object topic(@PathVariable String msg) {
@@ -48,14 +45,14 @@ public class IndexController {
         // topic 只有msg队列能收到
         Map map = new HashMap<String, Object>(3);
         map.put("type", "topic");
-        map.put("msg", "专用 "+msg);
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_ROUTING_KEY,map);
+        map.put("msg", "专用 " + msg);
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_ROUTING_KEY, map);
 
         // topic 2个队列都能收到
         Map map2 = new HashMap<String, Object>(3);
         map2.put("type", "topic");
-        map2.put("msg", "通用 "+msg);
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2);
+        map2.put("msg", "通用 " + msg);
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_GENERAL_ROUTING_KEY, map2);
         return map;
     }
 
@@ -92,7 +89,7 @@ public class IndexController {
 
     @GetMapping(value = "/ttl/{msg}/{second}")
     @ResponseBody
-    public Object ttl_time(@PathVariable String msg,@PathVariable Integer second) {
+    public Object ttl_time(@PathVariable String msg, @PathVariable Integer second) {
 
         Map map = new HashMap<String, Object>(3);
         map.put("msg", msg);
@@ -100,7 +97,7 @@ public class IndexController {
 
         // 使用插件
         // 第一个消息 延迟时间很长,第二个消息延迟时间很短, 第二个消息会优先执行
-        rabbitTemplate.convertAndSend(DelayQueueConfig.DELAY_EXCHANGE, DelayQueueConfig.DELAY_ROUTING_KEY, "来自"+second+"的消息" + msg,(message) -> {
+        rabbitTemplate.convertAndSend(DelayQueueConfig.DELAY_EXCHANGE, DelayQueueConfig.DELAY_ROUTING_KEY, "来自" + second + "的消息" + msg, (message) -> {
             message.getMessageProperties().setDelay(second);
             return message;
         });

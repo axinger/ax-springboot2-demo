@@ -2,7 +2,6 @@ package com.ax.rabbitmq.producer.config.topic;
 
 
 import com.ax.rabbitmq.producer.RabbitmqProducerApplication;
-import com.ax.rabbitmq.producer.config.topic.TopicConfig;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -25,25 +24,25 @@ class TopicConfigTest {
 
 
     @Test
-    public void testTopic(){
+    public void testTopic() {
 
         String msg = "哈哈";
 
         // topic 只有msg队列能收到
         Map map = new HashMap<String, Object>(3);
         map.put("type", "topic");
-        map.put("msg", "专用 "+msg);
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_ROUTING_KEY,map);
+        map.put("msg", "专用 " + msg);
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_ROUTING_KEY, map);
 
         // topic 2个队列都能收到
         Map map2 = new HashMap<String, Object>(3);
         map2.put("type", "topic");
-        map2.put("msg", "通用 "+msg);
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2);
+        map2.put("msg", "通用 " + msg);
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_GENERAL_ROUTING_KEY, map2);
 
 
         // CorrelationData 指定id
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2,new CorrelationData(UUID.randomUUID().toString()));
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME, TopicConfig.TOPIC_GENERAL_ROUTING_KEY, map2, new CorrelationData(UUID.randomUUID().toString()));
         // 优先级
 //        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE_NAME,TopicConfig.TOPIC_GENERAL_ROUTING_KEY,map2, message -> {
 //            message.getMessageProperties().setPriority(10);

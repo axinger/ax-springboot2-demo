@@ -1,5 +1,6 @@
 package com.ax.a16.domain;
 
+import com.ax.a16.enums.Gender;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,27 +9,32 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName user
  */
 @TableName(value ="user")
 @Data
 public class User implements Serializable {
     /**
-     * 
+     * 主键
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 
+     * 姓名
      */
-    private String userName;
+    private String name;
 
     /**
-     * 
+     * 年龄
      */
-    private String userAge;
+    private Integer age;
+
+    /**
+     * 性别，0未知1男2女
+     */
+    private Gender gender;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

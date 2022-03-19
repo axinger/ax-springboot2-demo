@@ -5,19 +5,15 @@
 <mapper namespace="com.ax.a16.mapper.TStudentMapper">
 
     <resultMap id="BaseResultMap" type="com.ax.a16.domain.TStudent">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="age" column="age" jdbcType="INTEGER"/>
-            <result property="sex" column="sex" jdbcType="INTEGER"/>
-            <result property="address" column="address" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="version" column="version" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,name,age,
-        sex,address,create_time,
-        update_time,version
+        sex,address
     </sql>
 </mapper>

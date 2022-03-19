@@ -11,7 +11,7 @@ spring:
       discovery:
         server-addr: http://localhost:8848
       config: #配置中心
-#        namespace: 72f18206-2993-4b5a-893f-af2b99d2ae63
+        #        namespace: 72f18206-2993-4b5a-893f-af2b99d2ae63
         server-addr: http://localhost:8848
         file-extension: yaml
 #        group: DEV_GROUP

@@ -2,10 +2,8 @@ package com.ax.shiro.config;
 
 
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,7 +17,7 @@ import java.util.Map;
 public class ShiroConfig {
 
 
-//    //1. 创建安全管理器
+    //    //1. 创建安全管理器
     @Bean
     public DefaultWebSecurityManager securityManager(Realm realm) {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();

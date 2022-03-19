@@ -17,11 +17,9 @@ public class TestRedisController {
 
 
     @Autowired
-    private RedisTemplate<String, Serializable> redisTemplate;
-
-
-    @Autowired
     RedisService redisService;
+    @Autowired
+    private RedisTemplate<String, Serializable> redisTemplate;
 
     @RequestMapping(value = "/doRedis.do")
     public void doRedis() {

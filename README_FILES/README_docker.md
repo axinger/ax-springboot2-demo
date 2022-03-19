@@ -30,8 +30,6 @@ curl -sSL https://get.daocloud.io/docker | sh
 开机启动: systemctl enable docker
 ```
 
-
-
 ## 镜像命令
 
 ```tex
@@ -44,8 +42,6 @@ curl -sSL https://get.daocloud.io/docker | sh
 查看已下载的Docker镜像latest具体版本
 docker image inspect (docker image名称):latest|grep -i version
 ```
-
-
 
 ## 容器命令
 
@@ -70,12 +66,14 @@ docker image inspect (docker image名称):latest|grep -i version
 
 开机启动 docker update --restart=always  xx
 ```
-## 查看docker服务状态 
+
+## 查看docker服务状态
+
 ```shell
 docker stats 
 ```
-![img_23.png](img_23.png)
 
+![img_23.png](img_23.png)
 
 ## 启动守护式容器
 
@@ -193,8 +191,6 @@ ENTRYPOINT:
 Dockerfile 和jar在同一级目录
 ```
 
-
-
 ```shell
 # 构建镜像  最后 有个点
 docker build -t 镜像名字:版本号 .
@@ -266,8 +262,6 @@ maven 打包后会在target 形成 文件夹
 
 ## docker 网络
 
-
-
 ### 说明
 
 ```text
@@ -287,21 +281,17 @@ alpine linux发行版
 docker link 过时的技术
 ```
 
-
-
 ### 相关命令
 
-|              命令名称              | 说明                         |
-| :--------------------------------: | :--------------------------- |
-| docker network connect 网络 容器id | 将容器连接到网络             |
-|       docker network create        | 创建一个网络                 |
-|     docker network disconnect      | 断开容器的网络               |
-|       docker network inspect       | 显示一个或多个网络的详细信息 |
-|         docker network ls          | 列出网络                     |
-|        docker network prune        | 删除所有未使用的网络         |
-|         docker network rm          | 删除一个或多个网络           |
-
-
+|              命令名称              | 说明             |
+|:------------------------------:|:---------------|
+| docker network connect 网络 容器id | 将容器连接到网络       |
+|     docker network create      | 创建一个网络         |
+|   docker network disconnect    | 断开容器的网络        |
+|     docker network inspect     | 显示一个或多个网络的详细信息 |
+|       docker network ls        | 列出网络           |
+|      docker network prune      | 删除所有未使用的网络     |
+|       docker network rm        | 删除一个或多个网络      |
 
 ### 显示所有容器IP地址：
 
@@ -309,13 +299,17 @@ docker link 过时的技术
 docker inspect --format='{{.Name}} - {{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 ```
 
-
 ### 查看容器IP地址：
 
 ```shell
 docker inspect 容器ID | grep IPAddress
-```
 
+docker network inspect demo-network
+```
+### 查看同一个网络的容器
+```shell
+docker network inspect demo-network
+```
 
 ## 容器编排
 
@@ -325,7 +319,6 @@ docker-compose.yml,写好多个容器之间的调用关系,只要一个命令就
 ```
 
 ### compose 核心
-
 
 ```text
 一个文件
@@ -378,8 +371,6 @@ docker-compose stop
 
 ```
 
-
-
 ## CIG 监控
 
 # 安装软件
@@ -412,8 +403,6 @@ docker run -itd --name redis-test -p 6379:6379 redis
 4.设置redis密码 config set requirepass ****（****为你要设置的密码）
 
 ```
-
-
 
 ## mysql安装
 
@@ -567,4 +556,4 @@ start SLAVE IO_THREAD;
 仓库名,标签都是<none>的镜像,俗称 虚悬镜像, 需要删除
 ```
 
-## 
+##  

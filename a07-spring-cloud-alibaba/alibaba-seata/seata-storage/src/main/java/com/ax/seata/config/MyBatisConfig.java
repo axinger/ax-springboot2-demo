@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @createTime 2021年12月19日 01:57:00
  */
 @Configuration
-@MapperScan({"com.ax.seata.dao"})
+@MapperScan("com.ax.seata.mapper")
 public class MyBatisConfig {
 }

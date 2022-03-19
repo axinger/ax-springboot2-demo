@@ -19,6 +19,16 @@ class TStudentServiceTest {
     @Autowired
     TStudentService service;
 
+
+    @Test
+    public void add() {
+        TStudent student = new TStudent();
+        student.setName("tom");
+        student.setAge(19);
+        service.save(student);
+    }
+
+
     @Test
     public void test() {
         System.out.println("service.getById(1) = " + service.getById(1));

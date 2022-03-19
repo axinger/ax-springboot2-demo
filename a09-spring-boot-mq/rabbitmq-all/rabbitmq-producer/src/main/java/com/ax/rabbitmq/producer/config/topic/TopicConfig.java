@@ -1,7 +1,6 @@
 package com.ax.rabbitmq.producer.config.topic;
 
 import org.springframework.amqp.core.*;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -53,7 +52,7 @@ public class TopicConfig {
     // 普通  交换机 和 队列A 绑定
     @Bean
     public Binding bootExchangeBindingBootQueue(Queue topicQueueA,
-                                                 TopicExchange topicExchange) {
+                                                TopicExchange topicExchange) {
         return BindingBuilder
                 .bind(topicQueueA)
                 .to(topicExchange)
@@ -62,7 +61,7 @@ public class TopicConfig {
 
     @Bean
     public Binding bootExchangeBindingTopicQueueB(Queue topicQueueB,
-                                               TopicExchange topicExchange) {
+                                                  TopicExchange topicExchange) {
         return BindingBuilder
                 .bind(topicQueueB)
                 .to(topicExchange)

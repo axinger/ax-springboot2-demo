@@ -1,10 +1,10 @@
 package com.ax.seata.controller;
 
-import com.ax.seata.domain.TOrder;
-import com.ax.seata.service.TOrderService;
+import com.ax.seata.domain.Order;
+import com.ax.seata.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 public class OrderController {
 
     @Autowired
-    TOrderService orderService;
+    OrderService orderService;
 
 
     @GetMapping("/test")
@@ -30,11 +30,11 @@ public class OrderController {
     }
 
 
-    @GetMapping("/addOrder")
-    public Object add(@RequestParam(value = "productId") Long productId) {
-        final TOrder order = TOrder.builder()
+    @GetMapping("/addOrder/{productId}")
+    public Object add(@PathVariable Long productId) {
+        final Order order = Order.builder()
                 .userId(1L)
-                .productId(1L)
+                .productId(productId)
                 .count(10)
                 .money(BigDecimal.valueOf(50.00))
                 .status(0)

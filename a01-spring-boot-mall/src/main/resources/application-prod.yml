@@ -10,7 +10,7 @@ spring:
     password: AXing#631122
     url: jdbc:mysql://47.101.156.93:3306/ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     filters: stat,wall,log4j
-    druid:   #druid相关配置
+    druid: #druid相关配置
       #配置初始化大小/最小/最大
       initial-size: 1
       min-idle: 1

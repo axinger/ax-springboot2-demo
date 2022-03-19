@@ -19,7 +19,7 @@ public class RedissonTests {
     RedissonClient redissonClient;
 
     @Test
-    void test1(){
+    void test1() {
         System.out.println("redissonClient = " + redissonClient);
     }
 }

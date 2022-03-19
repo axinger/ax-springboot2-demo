@@ -2,8 +2,8 @@ package com.ax.mall.service.impl;
 
 import com.ax.mall.entity.Userinfo;
 import com.ax.mall.mapper.UserinfoMapper;
-import com.ax.mall.service.IUserinfoService;
 import com.ax.mall.service.IRedisService;
+import com.ax.mall.service.IUserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

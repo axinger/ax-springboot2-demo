@@ -3,6 +3,7 @@ Java中内存溢出常见于如下的几种情形：
     栈内存溢出（StackOverflowError）
     堆内存溢出（OutOfMemoryError：java heap space）
     永久代溢出（OutOfMemoryError：PermGen sapce）
+
 ```text
 一、堆内存溢出 OutOfMemoryError
 
@@ -46,9 +47,10 @@ Java中内存溢出常见于如下的几种情形：
 
 ```
 
-# 8大OOM 
+# 8大OOM
 
 ## 1.堆空间溢出 java.lang.OutOfMemoryError: Java heap space
+
 ```text
 java堆用于存储对象实例，我们只要不断的创建对象，
 并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制清除这些对象，
@@ -65,6 +67,7 @@ java堆用于存储对象实例，我们只要不断的创建对象，
 ```
 
 ## 2.永久代溢出,1.8之前才有 java.lang.OutOfMemoryError: PermGen spacejava.lang.OutOfMemoryError: Metaspace
+
 ```text
 永久代 -> 方法区溢出
 方法区用于存放Class的相关信息，如类名、访问修饰符、常量池、字段描述、方法描述等。
@@ -84,6 +87,7 @@ JDK8后，元空间替换了永久代，元空间使用的是本地内存，还�
 ## 3.元空间溢出,1.8开始有,JDK8后，元空间替换了永久代
 
 ## 4.超过98%时间的gc回收了不到2%的内存, 1.6开始 java.lang.OutOfMemoryError：GC overhead limit exceeded
+
 ```text
 解决方法
 1、检查项目中是否有大量的死循环或有使用大内存的代码，优化代码。
@@ -91,7 +95,9 @@ JDK8后，元空间替换了永久代，元空间使用的是本地内存，还�
 只是把错误的信息延后，最终出现 java.lang.OutOfMemoryError: Java heap space。
 3、dump内存，检查是否存在内存泄露，如果没有，加大内存。
 ```
+
 ## 5.创建了大量线程导致:java.lang.OutOfMemoryError : unable to create new native Thread
+
 ```text
 原因
 出现这种异常，基本上都是创建的了大量的线程导致的，以前碰到过一次，通过jstack出来一共8000多个线程。
@@ -99,8 +105,11 @@ JDK8后，元空间替换了永久代，元空间使用的是本地内存，还�
 1、通过 -Xss 降低的每个线程栈大小的容量
 2、线程总数也受到系统空闲内存和操作系统的限制，检查是否该系统下有此限制：
 ```
+
 不常见
+
 ## 6.超大数组java.lang.OutOfMemoryError: Requested array size exceeds VM limit
+
 ```text
 这种情况一般是由于不合理的数组分配请求导致的，在为数组分配内存之前，JVM 会执行一项检查。
 要分配的数组在该平台是否可以寻址(addressable)，如果不能寻址(addressable)就会抛出这个错误。
@@ -108,6 +117,7 @@ JDK8后，元空间替换了永久代，元空间使用的是本地内存，还�
 ```
 
 ## 7.系统导致,可能是swap分区大小分配不足,进程消耗了所有内存 java.lang.OutOfMemoryError: Out of swap space
+
 ```text
 1、swap 分区大小分配不足；
 2、其他进程消耗了所有的内存。
@@ -116,6 +126,7 @@ JDK8后，元空间替换了永久代，元空间使用的是本地内存，还�
 ```
 
 ## 8.本地方法在运行时出现了内存分配失败(很少遇见)
+
 ```text
 这个异常出现的概率极低，只能通过操作系统本地工具进行诊断，难度有点大，还是放弃为妙。
 ```

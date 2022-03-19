@@ -1,9 +1,9 @@
 package com.ax.rabbitmq.producer.config;
 
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -18,6 +18,7 @@ public class RabbitAdminConfig {
 
     @Autowired
     RabbitAdmin rabbitAdmin;
+
     //创建初始化RabbitAdmin对象
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {

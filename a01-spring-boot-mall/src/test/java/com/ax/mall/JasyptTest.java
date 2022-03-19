@@ -1,6 +1,5 @@
 package com.ax.mall;
 
-import cn.hutool.extra.spring.SpringUtil;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

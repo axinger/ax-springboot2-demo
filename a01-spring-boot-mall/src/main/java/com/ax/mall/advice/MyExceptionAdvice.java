@@ -1,7 +1,7 @@
 package com.ax.mall.advice;
 
-import com.ax.mall.util.axUtil.ResponseEntity;
 import com.ax.mall.util.axUtil.AxResultStateEnum;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import com.ax.mall.util.error.TokenException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;

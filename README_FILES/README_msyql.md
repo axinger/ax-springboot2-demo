@@ -461,7 +461,9 @@ IN exists
 b表必须小于a的数据,,用in优先exists
 a表小于b的数据,exists优于in
 ```
+
 # 主从复制 binlog 日志
+
 ```text
 https://zhuanlan.zhihu.com/p/307288925
 ```

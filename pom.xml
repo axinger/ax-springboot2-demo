@@ -3,13 +3,14 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
-        比如:查看mysql版本号, 重写版本号就可以了
 
-        -->
+    <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
+    比如:查看mysql版本号, 重写版本号就可以了-->
+
+    <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+<!--        <version>2.3.2.RELEASE</version>-->
         <version>2.6.3</version>
     </parent>
 
@@ -20,10 +21,16 @@
         <thymeleaf-spring5.version>3.0.2.RELEASE</thymeleaf-spring5.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!--阿里巴巴cloud-->
+<!--        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>-->
+<!--        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>-->
+<!--        <spring-cloud-alibaba.version>2.2.6.RELEASE</spring-cloud-alibaba.version>-->
+
+
+        <spring-boot.version>2.6.3</spring-boot.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
-        <!--spring cloud-->
-        <spring-cloud-starter.verson>2021.0.1</spring-cloud-starter.verson>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+
+
         <elasticsearch.version>7.17.0</elasticsearch.version>
     </properties>
 
@@ -51,8 +58,8 @@
         <module>a16-spring-boot-mybatis-plus</module>
         <module>a17-spring-boot-customize-starter</module>
         <module>a18-spring-boot-zipkin</module>
-
-        <module>b-java-demo</module>
+        <module>a19-spring-boot-quartz</module>
+        <module>common</module>
     </modules>
 
 
@@ -60,36 +67,22 @@
     <!--dependencyManagement 父类管理-->
     <dependencyManagement>
         <dependencies>
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-test</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--                <scope>test</scope>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-            <!--监控信息-->
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-security</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
             <dependency>
@@ -98,44 +91,6 @@
                 <version>1.4.1</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-validation</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-amqp -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-amqp</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cache &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-cache</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
-
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jta-atomikos
-             解决多数据源,事务失效
-             -->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-jta-atomikos</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
 
             <!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis -->
             <dependency>
@@ -182,68 +137,7 @@
                 <version>4.1.52.Final</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-starter.verson}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-<!--            &lt;!&ndash;管理页面 http://localhost:8500&ndash;&gt;-->
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-consul-discovery &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
-<!--                <version>${spring-cloud-starter.verson}</version>-->
-<!--            </dependency>-->
-
-
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-<!--                <version>${spring-cloud-starter.verson}</version>-->
-<!--            </dependency>-->
-
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-loadbalancer &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-loadbalancer</artifactId>-->
-<!--                <version>${spring-cloud-starter.verson}</version>-->
-<!--            </dependency>-->
-
-<!--            &lt;!&ndash;服务降级,熔断,限流&ndash;&gt;-->
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-<!--                <version>2.2.10.RELEASE</version>-->
-<!--            </dependency>-->
-
-<!--            &lt;!&ndash;降级服务仪表板 路径 hystrix&ndash;&gt;-->
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-hystrix-dashboard &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>-->
-<!--                <version>2.2.2.RELEASE</version>-->
-<!--            </dependency>-->
-
-<!--            &lt;!&ndash;网关,动态路由器,断言,过滤器&ndash;&gt;-->
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-gateway &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-starter-gateway</artifactId>-->
-<!--                <version>${spring-cloud-starter.verson}</version>-->
-<!--            </dependency>-->
 
             <!--springfox swagger官方Starter-->
             <!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
@@ -308,11 +202,11 @@
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-<!--            <dependency>-->
-<!--                <groupId>redis.clients</groupId>-->
-<!--                <artifactId>jedis</artifactId>-->
-<!--                <version>3.7.0</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>redis.clients</groupId>-->
+            <!--                <artifactId>jedis</artifactId>-->
+            <!--                <version>3.7.0</version>-->
+            <!--            </dependency>-->
 
             <!--redisson是当前是最火的redis解决方案-->
             <dependency>
@@ -359,11 +253,11 @@
 
 
             <!-- Shiro 核心依赖 -->
-<!--            <dependency>-->
-<!--                <groupId>org.apache.shiro</groupId>-->
-<!--                <artifactId>shiro-spring</artifactId>-->
-<!--                <version>1.7.0</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.apache.shiro</groupId>-->
+            <!--                <artifactId>shiro-spring</artifactId>-->
+            <!--                <version>1.7.0</version>-->
+            <!--            </dependency>-->
             <!-- Shiro-redis插件 -->
             <dependency>
                 <groupId>org.crazycake</groupId>
@@ -380,11 +274,16 @@
             </dependency>
 
 
-
             <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>3.5.0</version>
             </dependency>
 
@@ -394,6 +293,12 @@
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
                 <version>3.0.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.7.0</version>
             </dependency>
 
 

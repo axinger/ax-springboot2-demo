@@ -50,7 +50,9 @@ redis-cli shutdown
 echo "/usr/local/bin/redis-server /etc/redis/redis.conf &" >> /etc/rc.local
 开机启动要配置在 rc.local 中，而 /etc/profile 文件，要有用户登录了，才会被执行。
 ```
+
 # 8种数据类型
+
 ```text
 Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
 一、String（字符串）
@@ -155,6 +157,7 @@ AOF: 文件追加
 同时开启,优先AOF
 
 ```
+
 ```text
 1、redis提供了两种持久化的方式，分别是RDB（Redis DataBase）和AOF（Append Only File）。
 
@@ -387,12 +390,13 @@ Redis总结：缓存雪崩、缓存击穿、缓存穿透与缓存预热、缓存
 ```
 
 # 幂等性,redis原子性
+
 ```text
 使用redis执行 setnx 命令,天热具有幂等性
 ```
 
-
 ## 数据库和redis 数据一致性
+
 ```
 双写模式: 数据库更新,就更新一下redis,需要查询数据库,再写入redis
 失效模式:数据库更新后,就删除redis

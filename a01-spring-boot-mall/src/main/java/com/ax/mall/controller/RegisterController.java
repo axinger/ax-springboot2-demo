@@ -1,8 +1,8 @@
 package com.ax.mall.controller;
 
-import com.ax.mall.util.axUtil.ResponseEntity;
-import com.ax.mall.util.axUtil.AxResultStateEnum;
 import com.ax.mall.service.IRegisterService;
+import com.ax.mall.util.axUtil.AxResultStateEnum;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

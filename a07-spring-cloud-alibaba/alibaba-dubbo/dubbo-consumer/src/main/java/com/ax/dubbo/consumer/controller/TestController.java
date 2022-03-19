@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @DubboReference(version = "1.0.0",check = false)
+    @DubboReference(version = "1.0.0", check = false)
     TestDubboService testDubboService;
 
 

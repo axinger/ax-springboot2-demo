@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    dynamic:
+      primary: slave_quartz #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          url: jdbc:mysql://localhost:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: 12345678
+          driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
+        slave_quartz:
+          url: jdbc:mysql://localhost:3306/ax_test_quartz?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: 12345678
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+  quartz:
+    jdbc:
+      initialize-schema: never #配置是否每次重启项目都自动生成Quartz表结构,在此使用always生成一次后就可以改为never配置
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: etlCleanScheduler
+            instanceId: AUTO
+          jobStore:
+            dataSource: slave_quartz # 使用的数据源
+            #            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            #            class: spring.quartz.properties.org.quartz.jobStore.class
+            #            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_  #Quartz表前缀
+            isClustered: false #集群
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            #线程数 一个任务使用一个线程
+            threadCount: 100
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+
+
+mybatis:
+  queryLimit: 10

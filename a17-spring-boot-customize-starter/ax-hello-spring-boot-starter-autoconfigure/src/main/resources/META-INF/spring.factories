@@ -1,6 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.ax.hello.auto.HelloServiceAutoConfiguration
-
 ax.hello.prefix=??
 ax.hello.suffix=??
 ax.hello.name=tom

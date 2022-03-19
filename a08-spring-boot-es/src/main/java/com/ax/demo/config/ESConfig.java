@@ -19,7 +19,8 @@ import org.springframework.context.annotation.Configuration;
 public class ESConfig {
 
     //请求头
-    public static final  RequestOptions COMMON_OPTIONS;
+    public static final RequestOptions COMMON_OPTIONS;
+
     static {
         RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 

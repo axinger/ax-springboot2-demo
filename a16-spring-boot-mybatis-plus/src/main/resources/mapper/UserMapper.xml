@@ -6,11 +6,13 @@
 
     <resultMap id="BaseResultMap" type="com.ax.a16.domain.User">
             <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
-            <result property="userAge" column="user_age" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="age" column="age" jdbcType="TINYINT"/>
+            <result property="gender" column="gender" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_name,user_age
+        id,name,age,
+        gender
     </sql>
 </mapper>

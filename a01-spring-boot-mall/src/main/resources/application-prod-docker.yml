@@ -9,11 +9,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: jim
     password: AXing#631122
-#    url: jdbc:mysql://47.101.156.93:3306/ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    #    url: jdbc:mysql://47.101.156.93:3306/ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     #docker 服务
     url: jdbc:mysql://mysql:3306/ax_mall?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     filters: stat,wall,log4j
-    druid:   #druid相关配置
+    druid: #druid相关配置
       #配置初始化大小/最小/最大
       initial-size: 1
       min-idle: 1
@@ -54,7 +54,7 @@ spring:
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
 
   redis:
-#    host: 47.101.156.93 # Redis服务器地址
+    #    host: 47.101.156.93 # Redis服务器地址
     #docker 服务
     host: redis # Redis服务器地址
     password: AXing#631122 # Redis服务器连接密码（默认为空）

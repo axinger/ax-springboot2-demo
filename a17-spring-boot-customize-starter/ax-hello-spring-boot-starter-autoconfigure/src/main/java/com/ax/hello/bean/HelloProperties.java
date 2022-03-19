@@ -9,7 +9,7 @@ public class HelloProperties {
 
     private String suffix;
 
-    private String name="axing";
+    private String name = "axing";
 
     private Integer age = 12;
 

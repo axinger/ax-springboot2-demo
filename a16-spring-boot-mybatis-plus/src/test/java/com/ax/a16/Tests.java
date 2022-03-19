@@ -2,6 +2,7 @@ package com.ax.a16;
 
 import com.ax.a16.domain.User;
 import com.ax.a16.mapper.UserMapper;
+import com.ax.a16.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
@@ -30,19 +31,46 @@ public class Tests {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
+
+    @Test
+    public void testSelect() {
+        List<User> userList = userService.list();
+        System.out.println("userList = " + userList);
+
+        userList.forEach(val->{
+            System.out.println("val.getGender() = " + val.getGender());
+
+            switch (val.getGender()){
+                case male:
+                    System.out.println("男");
+                    break;
+                case female:
+                    System.out.println("女");
+                    break;
+                case unknown:
+                    System.out.println("未知");
+                    break;
+            }
+        });
+    }
+
+
     /**
      * 根据id修改
      * UPDATE user SET user_name=?, user_age=? WHERE (id = ?)
      */
     @Test
-    public void testudpateById(){
+    public void testudpateById() {
         User user = new User();
-        user.setUserAge("25");
-        user.setUserName("test update");
+        user.setAge(25);
+        user.setName("test update");
         UpdateWrapper updateWrapper = new UpdateWrapper();
-        updateWrapper.eq("id","3");
+        updateWrapper.eq("id", "3");
         int num = userMapper.update(user, updateWrapper);
-        System.out.println("修改的记录数为："+num);
+        System.out.println("修改的记录数为：" + num);
     }
 
     /**
@@ -50,28 +78,28 @@ public class Tests {
      * SELECT id,user_name,user_age FROM user WHERE (user_name = ?)
      */
     @Test
-    public void testSelectWrapper(){
+    public void testSelectWrapper() {
         QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("user_name","IT可乐");
+        wrapper.eq("user_name", "IT可乐");
         List<User> users = userMapper.selectList(wrapper);
-        users.forEach(x-> System.out.println(x.getId()+"-"+x.getUserName()+"-"+x.getUserAge()));
+        users.forEach(x -> System.out.println(x.getId() + "-" + x.getName() + "-" + x.getAge()));
     }
 
     /**
      * 新增一条记录
      */
     @Test
-    public void testInsert(){
+    public void testInsert() {
         User user = new User();
         user.setId(4L);
-        user.setUserName("test insert");
-        user.setUserAge("1");
+        user.setName("test insert");
+        user.setAge(1);
         int insert = userMapper.insert(user);
-        System.out.println("影响记录数："+insert);
+        System.out.println("影响记录数：" + insert);
     }
 
     @Test
-    public void testGet(){
+    public void testGet() {
         log.info("控制台颜色===========");
         System.out.println("userMapper.selectById(4L) = " + userMapper.selectById(4L));
     }
@@ -81,11 +109,11 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name = ? AND id = ?)
      */
     @Test
-    public void testAllEq(){
+    public void testAllEq() {
         QueryWrapper queryWrapper = new QueryWrapper();
         Map map = new HashMap<>();
-        map.put("id","3");
-        map.put("user_name","IT可乐");
+        map.put("id", "3");
+        map.put("user_name", "IT可乐");
         queryWrapper.allEq(map);
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
@@ -97,9 +125,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (id = ?)
      */
     @Test
-    public void testEq(){
+    public void testEq() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("id","3");
+        queryWrapper.eq("id", "3");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -109,9 +137,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (id <> ?)
      */
     @Test
-    public void testNe(){
+    public void testNe() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.ne("id","3");
+        queryWrapper.ne("id", "3");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -121,9 +149,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age > ?)
      */
     @Test
-    public void testGt(){
+    public void testGt() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.gt("user_age","18");
+        queryWrapper.gt("user_age", "18");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -133,9 +161,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age >= ?)
      */
     @Test
-    public void testGe(){
+    public void testGe() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.ge("user_age","18");
+        queryWrapper.ge("user_age", "18");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -145,9 +173,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age < ?)
      */
     @Test
-    public void testLt(){
+    public void testLt() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.lt("user_age","18");
+        queryWrapper.lt("user_age", "18");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -157,9 +185,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age <= ?)
      */
     @Test
-    public void testLe(){
+    public void testLe() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.le("user_age","18");
+        queryWrapper.le("user_age", "18");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -169,9 +197,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age BETWEEN ? AND ?)
      */
     @Test
-    public void testBetween(){
+    public void testBetween() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.between("user_age","18","25");
+        queryWrapper.between("user_age", "18", "25");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -182,9 +210,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age NOT BETWEEN ? AND ?)
      */
     @Test
-    public void testNoBetween(){
+    public void testNoBetween() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.notBetween("user_age","18","25");
+        queryWrapper.notBetween("user_age", "18", "25");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -194,9 +222,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name LIKE ?)
      */
     @Test
-    public void testLike(){
+    public void testLike() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.like("user_name","可乐");
+        queryWrapper.like("user_name", "可乐");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -207,9 +235,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name NOT LIKE ?)
      */
     @Test
-    public void testNotLike(){
+    public void testNotLike() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.notLike("user_name","可乐");
+        queryWrapper.notLike("user_name", "可乐");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -219,9 +247,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name LIKE '%parameter')
      */
     @Test
-    public void testLikeLeft(){
+    public void testLikeLeft() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.likeLeft("user_name","可乐");
+        queryWrapper.likeLeft("user_name", "可乐");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -232,9 +260,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name LIKE 'parameter%')
      */
     @Test
-    public void testLikeRight(){
+    public void testLikeRight() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.likeRight("user_name","可乐");
+        queryWrapper.likeRight("user_name", "可乐");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -244,7 +272,7 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name IS NULL)
      */
     @Test
-    public void testIsNull(){
+    public void testIsNull() {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.isNull("user_name");
         List<User> list = userMapper.selectList(queryWrapper);
@@ -257,7 +285,7 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_name IS NOT NULL)
      */
     @Test
-    public void testIsNotNull(){
+    public void testIsNotNull() {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.isNotNull("user_name");
         List<User> list = userMapper.selectList(queryWrapper);
@@ -265,19 +293,18 @@ public class Tests {
     }
 
 
-
     /**
      * in 范围定值查询
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age IN (?,?,?))
      */
     @Test
-    public void testIn(){
+    public void testIn() {
         QueryWrapper queryWrapper = new QueryWrapper();
         List<Integer> queryList = new ArrayList<>();
         queryList.add(18);
         queryList.add(1);
         queryList.add(25);
-        queryWrapper.in("user_age",queryList);
+        queryWrapper.in("user_age", queryList);
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -288,13 +315,13 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age IN (?,?,?))
      */
     @Test
-    public void testNotIn(){
+    public void testNotIn() {
         QueryWrapper queryWrapper = new QueryWrapper();
         List<Integer> queryList = new ArrayList<>();
         queryList.add(18);
         queryList.add(1);
         queryList.add(25);
-        queryWrapper.notIn("user_age",queryList);
+        queryWrapper.notIn("user_age", queryList);
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -305,10 +332,10 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (id IN (select id from user))
      */
     @Test
-    public void testInSql(){
+    public void testInSql() {
         QueryWrapper queryWrapper = new QueryWrapper();
         //查询所有数据
-        queryWrapper.inSql("id","select id from user");
+        queryWrapper.inSql("id", "select id from user");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -319,14 +346,13 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (id NOT IN (select id from user where id > 2))
      */
     @Test
-    public void testNotInSql(){
+    public void testNotInSql() {
         QueryWrapper queryWrapper = new QueryWrapper();
         //查询所有数据
-        queryWrapper.notInSql("id","select id from user where id > 2");
+        queryWrapper.notInSql("id", "select id from user where id > 2");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
-
 
 
     /**
@@ -335,13 +361,12 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user GROUP BY id,user_age
      */
     @Test
-    public void testGroupBy(){
+    public void testGroupBy() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.groupBy("id","user_age");
+        queryWrapper.groupBy("id", "user_age");
         List<User> list = userMapper.selectList(queryWrapper);
-        System.out.println("groupBy = "+list);
+        System.out.println("groupBy = " + list);
     }
-
 
 
     /**
@@ -349,9 +374,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user ORDER BY id ASC,user_age ASC
      */
     @Test
-    public void testOrderByAsc(){
+    public void testOrderByAsc() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.orderByAsc("id","user_age");
+        queryWrapper.orderByAsc("id", "user_age");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -362,9 +387,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user ORDER BY id DESC,user_age DESC
      */
     @Test
-    public void testOrderByDesc(){
+    public void testOrderByDesc() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.orderByDesc("id","user_age");
+        queryWrapper.orderByDesc("id", "user_age");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -375,13 +400,12 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user ORDER BY id ASC,user_age ASC
      */
     @Test
-    public void testOrderBy(){
+    public void testOrderBy() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.orderBy(true,true,"id","user_age");
+        queryWrapper.orderBy(true, true, "id", "user_age");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
-
 
 
     /**
@@ -389,10 +413,10 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user GROUP BY id,user_age HAVING sum(user_age)>?
      */
     @Test
-    public void testHaving(){
+    public void testHaving() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.groupBy("id","user_age");
-        queryWrapper.having("sum(user_age)>{0}","25");
+        queryWrapper.groupBy("id", "user_age");
+        queryWrapper.having("sum(user_age)>{0}", "25");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -403,11 +427,11 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (id = ? OR user_age = ?)
      */
     @Test
-    public void testOr(){
+    public void testOr() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("id",1);
+        queryWrapper.eq("id", 1);
         queryWrapper.or();
-        queryWrapper.eq("user_age",25);
+        queryWrapper.eq("user_age", 25);
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -418,13 +442,12 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE ((id = ? AND user_age <> ?))
      */
     @Test
-    public void testAnd(){
+    public void testAnd() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.and(i->i.eq("id",1).ne("user_age",18));
+        queryWrapper.and(i -> i.eq("id", 1).ne("user_age", 18));
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
-
 
 
     /**
@@ -432,9 +455,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE ((id = ? AND user_age <> ?))
      */
     @Test
-    public void testNested(){
+    public void testNested() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.nested(i->i.eq("id",1).ne("user_age",18));
+        queryWrapper.nested(i -> i.eq("id", 1).ne("user_age", 18));
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -445,9 +468,9 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (user_age>?)
      */
     @Test
-    public void testApplyd(){
+    public void testApplyd() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.apply("user_age>{0}","25 or 1=1");
+        queryWrapper.apply("user_age>{0}", "25 or 1=1");
         List<User> list = userMapper.selectList(queryWrapper);
         System.out.println(list);
     }
@@ -458,7 +481,7 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user limit 1
      */
     @Test
-    public void testLast(){
+    public void testLast() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.last("limit 1 ");
         List<User> list = userMapper.selectList(queryWrapper);
@@ -466,13 +489,12 @@ public class Tests {
     }
 
 
-
     /**
      * exists
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (EXISTS (select id from user where user_age = 1))
      */
     @Test
-    public void testExists(){
+    public void testExists() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.exists("select id from user where user_age = 1");
         List<User> list = userMapper.selectList(queryWrapper);
@@ -485,7 +507,7 @@ public class Tests {
      * 实例SQL：SELECT id,user_name,user_age FROM user WHERE (EXISTS (select id from user where user_age = 1))
      */
     @Test
-    public void testNotExists(){
+    public void testNotExists() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.notExists("select id from user where user_age = 1");
         List<User> list = userMapper.selectList(queryWrapper);
@@ -493,7 +515,7 @@ public class Tests {
     }
 
     /**
-    * LambdaQueryWrapper和LambdaUpdateWrapper（推荐）
+     * LambdaQueryWrapper和LambdaUpdateWrapper（推荐）
      *
      * LambdaQueryWrapper 和 LambdaUpdateWrapper 这是相对于 QueryWrapper 及 UpdateWrapper 的 Lmbda 语法实现方式。
      *
@@ -504,18 +526,18 @@ public class Tests {
      * //两种方式
      * LambdaUpdateWrapper updateLambda = new UpdateWrapper().lambda();
      * LambdaUpdateWrapper lambdaUpdateWrapper = new LambdaUpdateWrapper();
-    * */
+     * */
 
     /**
      * LambdaQueryWrapper
      * SQL实例：SELECT id,user_name,user_age FROM user WHERE (id = ? AND user_age <> ?)
      */
     @Test
-    public void testLambdaQueryWrapper(){
+    public void testLambdaQueryWrapper() {
 //        LambdaQueryWrapper<User> queryLambda = new LambdaQueryWrapper<>();
         LambdaQueryWrapper<User> queryLambda = new QueryWrapper().lambda();
 
-        queryLambda.eq(User::getId,"1").ne(User::getUserAge,25);
+        queryLambda.eq(User::getId, "1").ne(User::getAge, 25);
         List<User> users = userMapper.selectList(queryLambda);
         System.out.println(users);
 
@@ -526,12 +548,12 @@ public class Tests {
      * SQL实例：UPDATE user SET user_name=? WHERE (user_name = ?)
      */
     @Test
-    public void testLambdaUpdateWrapper(){
+    public void testLambdaUpdateWrapper() {
         User user = new User();
-        user.setUserName("LambdaUpdateWrapper");
+        user.setName("LambdaUpdateWrapper");
         LambdaUpdateWrapper<User> userLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-        userLambdaUpdateWrapper.eq(User::getUserName,"IT可乐");
-        userMapper.update(user,userLambdaUpdateWrapper);
+        userLambdaUpdateWrapper.eq(User::getName, "IT可乐");
+        userMapper.update(user, userLambdaUpdateWrapper);
 
     }
 

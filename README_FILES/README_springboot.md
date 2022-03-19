@@ -9,6 +9,7 @@ health indicator:该starter提供的服务的健康指标。
  2. Spring Boot Starter找到自动配置文件(xxxxAutoConfiguration之类的文件)的方式有两种：spring.factories:由Spring Boot触发探测classpath目录下的类，进行自动配置； 
 @EnableXxxxx:有时需要由starter的用户触发*查找自动配置文件的过程
 ```
+
 ```text
 Spring Boot Starter的工作原理如下： 
 1. Spring Boot 在启动时扫描项目所依赖的JAR包，寻找包含spring.factories文件的JAR 

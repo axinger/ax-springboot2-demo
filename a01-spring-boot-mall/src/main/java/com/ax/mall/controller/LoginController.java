@@ -1,9 +1,9 @@
 package com.ax.mall.controller;
 
-import com.ax.mall.util.axUtil.ResponseEntity;
-import com.ax.mall.util.axUtil.AxResultStateEnum;
 import com.ax.mall.dto.LoginDto;
 import com.ax.mall.service.ILoginService;
+import com.ax.mall.util.axUtil.AxResultStateEnum;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import com.ax.mall.util.error.TokenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

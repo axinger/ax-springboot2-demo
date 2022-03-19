@@ -79,7 +79,6 @@ public class TtlQueueConfig {
     }
 
 
-
     // 死信交换机
     @Bean("exchangeY")
     public DirectExchange exchangeY() {
@@ -129,6 +128,7 @@ public class TtlQueueConfig {
                 .deadLetterRoutingKey(Y_DEAD_LETTER_ROUTING_KEY)
                 .build();
     }
+
     // 通用延迟队列  交换机 和 队列C 绑定
     @Bean
     public Binding queueCBindingX(@Qualifier("queueC") Queue queue,

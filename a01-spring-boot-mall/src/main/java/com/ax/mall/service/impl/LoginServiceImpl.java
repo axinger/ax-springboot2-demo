@@ -5,12 +5,12 @@ import com.ax.mall.entity.IpLog;
 import com.ax.mall.entity.Userinfo;
 import com.ax.mall.mapper.IpLogMapper;
 import com.ax.mall.mapper.UserinfoMapper;
+import com.ax.mall.service.ILoginService;
 import com.ax.mall.util.axUtil.AxConst;
 import com.ax.mall.util.axUtil.AxJwtUtil;
-import com.ax.mall.util.axUtil.ResponseEntity;
 import com.ax.mall.util.axUtil.AxResultStateEnum;
+import com.ax.mall.util.axUtil.ResponseEntity;
 import com.ax.mall.util.error.TokenException;
-import com.ax.mall.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -23,7 +23,7 @@ public class FanoutExchangeConfig {
      */
     @Bean
     public FanoutExchange fanoutExchange() {
-        return new FanoutExchange(EXCHANGE_NAME,false,false);
+        return new FanoutExchange(EXCHANGE_NAME, false, false);
     }
 
     //AnonymousQueue类型的队列，它的名字是由客户端生成的，而且是非持久的，独占的，自动删除的队列

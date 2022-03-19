@@ -17,7 +17,9 @@ handler: 拒绝策略,由于超出线程范围和队列容量而使执行被阻�
                               RejectedExecutionHandler handler)
                               
 ```
+
 ## 工作顺序
+
 ```text
 一.线程池创建,准备好了core数量的核心线程池,准备接收任务
 1.core满了,就将再进来的任务放入阻塞队列中.空闲的core就会自己去阻塞队列获取任务执行
@@ -35,15 +37,20 @@ core能处理50个,  max:20,就处理20个 共处理70个
 
 core立即处理7个, 队列进入50个待处理, 还有13个线程开启线程处理13个,  7+50+13=70 就等于  max+queue
 ```
+
 ## 代码
+
 ### Executors
+
 ```text
 Executors.newCachedThreadPool() //core是0,所有都回收
 Executors.newFixedThreadPool();//固定大小,core=max,都不可回收
 Executors.newScheduledThreadPool();//定时任务的线程池
 Executors.newSingleThreadExecutor();//单线程的线程池,后台任务顺序执行
  ```
+
 ### CompletableFuture
+
 ```text
 无返回值
 CompletableFuture.runAsync(任务) 
@@ -53,7 +60,9 @@ CompletableFuture.runAsync(任务,指定线程池)
 CompletableFuture.supplyAsync(任务)   
 CompletableFuture.supplyAsync(任务,指定线程池) 
 ```
+
 ## 拒绝策略 4种
+
 ```text
 
 https://www.jianshu.com/p/bf6fabb7b459
@@ -76,6 +85,7 @@ new ThreadPoolExecutor.DiscardOldestPolicy()
 ```
 
 ## 队列
+
 ```text
 1 无界队列
 2 有界队列
@@ -109,6 +119,7 @@ IO密集型CPU使用率不高，可以让CPU等待IO的时候处理别的任务�
 ```
 
 ## Java多线程：向线程传递参数的三种方法
+
 ```text
 https://www.cnblogs.com/jpfss/p/10783847.html
 
@@ -118,6 +129,7 @@ https://www.cnblogs.com/jpfss/p/10783847.html
 ```
 
 ## 线程的几种状态
+
 ```text
 线程在一定条件下，状态会发生变化。线程一共有以下几种状态:
 1. 新建状态(New):新创建了一个线程对象。
@@ -131,7 +143,9 @@ https://www.cnblogs.com/jpfss/p/10783847.html
 5. 死亡状态(Dead):线程执行完了或者因异常退出了run()方法，该线程结束生命周期。
 
 ```
+
 ## Java线程间通信的几种方式
+
 ```text
 https://www.cnblogs.com/rouqinglangzi/p/9106298.html
 1.wait和notify/notifyAll
@@ -139,12 +153,14 @@ https://www.cnblogs.com/rouqinglangzi/p/9106298.html
 3.使用阻塞队列控制线程通信
 4.使用管道流进行线程通信(被阻塞队列替代)
 ```
+
 ```text
 Java编程思想中有这样一句话：
 
 当我们使用线程来同时运行多个任务时，可以通过使用锁(互斥)来同步两个任务的行为，从而使得一个任务不会干扰到另外一个任务，
 这解决的是线程间彼此干涉的问题，现在我们需要来解决线程间彼此协调的问题，也就是线程间通信问题。
 ```
+
 ```text
 1.wait和notify/notifyAll + synchronized 关键字
 
@@ -153,6 +169,7 @@ Java编程思想中有这样一句话：
 ②对于用synchronized修饰的同步代码块，同步监视器是synchronized后括号里的对象，所以必须使用该对象调用这三个方法。
 需要注意的是notify()方法只能随机唤醒一个线程，如果要唤醒所有线程，请使用notifyAll()。
 ```
+
 ```text
 2.使用Lock和Condition
 
@@ -166,6 +183,7 @@ signal():
 
 signalAll():
 ```
+
 ```text
 3.使用阻塞队列控制线程通信
 
@@ -173,6 +191,7 @@ Java5提供了一个BlockingQueue接口，虽然BlockingQueue也是Queue的子�
 BlockingQueue具有一个特征：当生产者线程试图向BlockingQueue中放入元素时，如果该队列已满则线程被阻塞。而消费者线程 在取元素时，如果该队列已空则该线程被阻塞。
 程序的两个线程通过交替向BlockingQueue中放入元素、取出元素，即可很好地控制线程的通信。
 ```
+
 ````text
 4.使用管道流进行线程通信(被阻塞队列替代)
 管道通信模型可以看成是生产者-消费者模型的变种，管道就是一个封装好的解决方案。管道基本上就是一个阻塞队列，所以可以用于线程间通信。管道在Java中对应的实现是PipedWriter类和PipedReader类。

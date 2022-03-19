@@ -26,7 +26,7 @@ public class AxResultEntity<T> implements Serializable {
 ////    @JSONField(serialize=false)  transient关键字只能修饰变量，而不能修饰方法和类。
     private transient AxResultStateEnum stateEnum;
 
-//        @JSONField(serialize=false)
+    //        @JSONField(serialize=false)
 //    private  AxResultStateEnum stateEnum;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //@DatetimeFormat是将String转换成Date，一般前台给后台传值时用
