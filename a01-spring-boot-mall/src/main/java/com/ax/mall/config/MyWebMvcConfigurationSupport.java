@@ -71,7 +71,7 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
                 //结果是否格式化,默认为false
                 SerializerFeature.PrettyFormat,
-                //枚举值使用名称或tosting
+                //枚举值使用名称或toSting
                 SerializerFeature.WriteEnumUsingName,
                 // 保留map空的字段
                 SerializerFeature.WriteMapNullValue,
@@ -95,7 +95,7 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
         // 4.中文乱码解决方案
         List<MediaType> mediaTypes = new ArrayList<>();
-        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        mediaTypes.add(MediaType.APPLICATION_JSON);
         fastConverter.setSupportedMediaTypes(mediaTypes);
 
         // 5.返回HttpMessageConverters对象

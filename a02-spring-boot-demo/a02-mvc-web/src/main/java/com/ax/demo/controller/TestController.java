@@ -1,5 +1,6 @@
 package com.ax.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ax.demo.dto.StudentDto;
 import com.ax.demo.entity.Student;
 import com.ax.demo.helloword.Injection;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +27,7 @@ public class TestController {
 
     @RequestMapping(value = "/test0", produces = "application/json;charset=UTF-8")
     public Object test(
-            @RequestBody StudentDto studentDto
-    ) {
+            @RequestBody StudentDto studentDto) {
         System.out.println("studentDto = " + studentDto);
         Map<String, Object> map = new HashMap<>(2);
 
@@ -43,8 +44,7 @@ public class TestController {
     public Map<String, Object> test1(
             @RequestBody @Validated StudentDto studentDto,
             @RequestHeader Map header,
-            @RequestHeader("User-Agent") String userAgent
-    ) {
+            @RequestHeader("User-Agent") String userAgent) {
         System.out.println("studentDto = " + studentDto);
         System.out.println("header = " + header);
         System.out.println("userAgent = " + userAgent);
@@ -193,16 +193,31 @@ public class TestController {
     }
 
 
-
     @Autowired
     private Injection injection;
 
     @GetMapping(value = "/injection")
     @ResponseBody
-    public void testHelloWord(){
+    public void testHelloWord() {
 
         injection.doSome();
     }
 
+
+    @GetMapping(value = "/nullValue")
+    @ResponseBody
+    public Object nullValue() {
+        List list = null;
+        Map map1 = null;
+
+        Map map = new HashMap(16);
+        map.put("string", null);
+        map.put("list", list);
+        map.put("map1", map1);
+        map.put("date", new Date());
+
+
+        return JSONObject.toJSON(map);
+    }
 
 }

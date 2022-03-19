@@ -20,6 +20,7 @@
         <module>a02-completable-future</module>
         <module>02-async</module>
         <module>a02-transactional</module>
+        <module>a02-spring-web-flux</module>
     </modules>
 
 </project>

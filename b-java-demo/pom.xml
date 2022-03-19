@@ -12,8 +12,9 @@
     <artifactId>b-java-demo</artifactId>
 
     <modules>
-    <module>b01-demo-java</module>
-    <module>b03-demo-spring5</module>
+        <module>b01-demo-java</module>
+        <module>b02-demo-juc</module>
+        <module>b03-demo-spring5</module>
     </modules>
 
 </project>

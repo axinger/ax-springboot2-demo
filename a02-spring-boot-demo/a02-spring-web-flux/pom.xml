@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>a02-spring-web-flux</artifactId>
-    <name>a02-spring-web-flux</name>
     <version>1.0.2</version>
 
     <dependencies>

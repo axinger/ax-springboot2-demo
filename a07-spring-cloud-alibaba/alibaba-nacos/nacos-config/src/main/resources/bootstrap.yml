@@ -3,17 +3,22 @@ server:
 
 spring:
   application:
-    name: demo12-nacos-config #配置中心
+    name: demo07-nacos-config #配置中心
+  profiles:
+    active: dev #环境
   cloud:
     nacos:
       discovery:
         server-addr: http://localhost:8848
       config: #配置中心
+#        namespace: 72f18206-2993-4b5a-893f-af2b99d2ae63
         server-addr: http://localhost:8848
         file-extension: yaml
-        group: DEV_GROUP
-        namespace: 952fffef-f006-4683-8e1b-19656dd3d3cc
+#        group: DEV_GROUP
+#        enabled: true
 
-
+#  {prefix}-{spring.profiles.active}.{file-extension}
 # ${name}-${active}.${spring.cloud.nacos.config.file-extension}
-# demo12-nacos-config-dev.yaml
+# demo07-nacos-config-dev.yaml
+#config:
+#  info: jim

@@ -20,14 +20,18 @@ import java.util.Map;
 @RefreshScope // 支持nacos的动态刷新功能
 public class ConfigController {
 
-    @Value("${config.info}")
+    @Value("${config.info:#{null}}")
     private String info;
+
+    @Value("${config.name:#{null}}")
+    private String name;
 
     @GetMapping("/config/info")
     public Object getInfo() {
-        System.out.println("getInfo=================");
+        System.out.println("getInfo = "+info);
         Map map = new HashMap(16);
         map.put("info", info);
+        map.put("name", name);
         return map;
     }
 }
