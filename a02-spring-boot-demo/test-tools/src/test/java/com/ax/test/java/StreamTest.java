@@ -208,4 +208,37 @@ public class StreamTest {
 
     }
 
+    //去重
+
+    // 根据name,sex两个属性去重
+    @Test
+    void test_TreeSet() {
+
+        List<Person> persons = new ArrayList();
+        persons.add(Person.builder().id("1").name("jim").sex("0").build());
+        persons.add(Person.builder().id("2").name("jim").sex("0").build());
+        persons.add(Person.builder().id("3").name("jim").sex("1").build());
+
+        List<Person> uniqueByNameAndSex = persons.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() ->
+                                new TreeSet<>(Comparator.comparing(o -> o.getName() + o.getSex()))),
+                        ArrayList::new)
+        );
+
+        System.out.println("uniqueByNameAndSex = " + uniqueByNameAndSex);
+
+        List<Person> uniqueByNameAndSex1 = persons.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() ->
+                                new TreeSet<>(Comparator.comparing(Person::getName).thenComparing(Person::getSex))),
+                        ArrayList::new)
+        );
+        System.out.println("uniqueByNameAndSex1 = " + uniqueByNameAndSex1);
+
+
+
+    }
+
+
 }

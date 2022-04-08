@@ -1,28 +1,37 @@
 package com.ax.test.java;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.util.StringUtils;
 
 public class StringTest {
 
 
     @Test
+    void test_format(){
+
+       String url = String.format("%s/%s", "aaaa", "b");
+        System.out.println("url = " + url);
+    }
+
+    @Test
     void test2(){
-        String str ="http://localhost/";
+        String str ="http://localhost";
 
 
-        //判断最后一个字符是否为“段”
-        if (str.endsWith("/")) {
-            str = str.substring(0,str.length() - 1);
-        }
+//        //判断最后一个字符是否为“段”
+//        if (str.endsWith("/")) {
+//            str = str.substring(0,str.length() - 1);
+//        }
+
 
         System.out.println("str = " + str);
+        final String s = StringUtils.trimTrailingCharacter(str, '/');
+        System.out.println("s = " + s);
 
 
-
-//        String bowlNumber="1.1";
-//        String replaceEnd = bowlNumber.replaceAll(".$","2");
-//        System.out.println(replaceEnd);
-
+        final String th = StringUtils.replace(str, "https", "tcp");
+        System.out.println("th = " + th);
+        System.out.println("str = " + str);
 
     }
 

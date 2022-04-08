@@ -105,3 +105,37 @@ seataio/seata-server:1.4.2
 ```text
 新版本 seata+nacos 需要在nacos导入配置文件,官网执行sh脚本
 ```
+# redis
+```text
+docker run --name demo-redis -d \
+-p 6379:6379 \
+--network demo-network \
+-v $(pwd)/mydata/redis/redis.conf:/etc/redis.conf \
+-v $(pwd)/mydata/redis/data:/data \
+redis:6.2.6-alpine3.15 \
+```
+
+
+
+## nginx
+
+```text
+建立挂载目录
+mkdir -p $(pwd)/mydata/nginx/{conf,conf.d,html,log}
+
+docker run --name nginx-test -p 8080:80 -d nginx
+
+docker cp bfd33ad90560:/etc/nginx/nginx.conf $(pwd)/mydata/nginx/conf/nginx.conf
+
+docker cp bfd33ad90560:/etc/nginx/conf.d/default.conf $(pwd)/mydata/nginx/conf.d/default.conf
+
+
+docker run --name demo-nginx -d \
+-p 80:80 \
+-v $(pwd)/mydata/nginx/html:/usr/share/nginx/html \
+-v $(pwd)/mydata/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+-v $(pwd)/mydata/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf \
+-v $(pwd)/mydata/nginx/log:/var/log/nginx \
+nginx \
+
+```

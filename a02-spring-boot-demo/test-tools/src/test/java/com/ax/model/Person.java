@@ -1,16 +1,19 @@
 package com.ax.model;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person implements Comparable {
     private String name;
     private Integer age;
 
-    public Person() {
-    }
+    private String id;
+    private String sex;
+
 
     public Person(String name) {
         this.name = name;
@@ -65,11 +68,5 @@ public class Person implements Comparable {
         throw new RuntimeException("类型不匹配");
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
+
 }
