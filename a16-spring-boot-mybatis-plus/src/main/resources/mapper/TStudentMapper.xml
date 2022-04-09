@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ax.a16.mapper.TStudentMapper">
+<mapper namespace="com.ax.demo.mapper.TStudentMapper">
 
-    <resultMap id="BaseResultMap" type="com.ax.a16.domain.TStudent">
+    <resultMap id="BaseResultMap" type="com.ax.demo.domain.TStudent">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>

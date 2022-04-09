@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ax.demo.mapper.EmpsMapper">
+
+    <resultMap id="BaseResultMap" type="com.ax.demo.domain.Emps">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="lastname" column="lastName" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="deptid" column="deptid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,lastName,email,
+        gender,deptid
+    </sql>
+
+
+    <!--mybatis-plus多表联合查询,带上${ew.customSqlSegment就可以实现查询-->
+        <select id="findByPage" resultType="com.ax.demo.domain.Emps">
+            select emps.*, department.id
+            from emps
+                     left join department
+                               on emps.deptid = department.id ${ew.customSqlSegment}
+        </select>
+
+
+    <select id="findByPage2" resultType="com.ax.demo.domain.Emps">
+        SELECT *
+        FROM (select emps.*,department.id as dId
+              from emps
+                       left join department
+                                 on emps.deptid = department.id) AS result
+            ${ew.customSqlSegment}
+    </select>
+
+
+</mapper>

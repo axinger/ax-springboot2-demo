@@ -2,7 +2,6 @@ package com.ax.common.service.advice;
 
 import com.ax.common.util.exception.ServiceException;
 import com.ax.common.util.result.Result;
-import com.ax.common.util.result.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -33,21 +32,24 @@ public class GlobalExceptionAdvice {
         Map<String, Object> map = new HashMap<>(16);
         map.put("method", method);
         map.put("uri", uri);
-        Optional.of(exception).map(Throwable::getMessage).ifPresent(val -> map.put("exceptionMessage", val));
 
-        Optional.of(exception).map(Throwable::getCause).map(Throwable::getMessage)
-                .ifPresent(val -> map.put("causeMessage", val));
-
-        final Result<Map<String, Object>> result = Result.build(map, ResultCodeEnum.FAIL);
+        String msg = null;
+        if (Optional.of(exception).map(Throwable::getMessage).isPresent()) {
+            msg = exception.getMessage();
+            map.put("exceptionMessage", msg);
+        }
+        if (Optional.of(exception).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
+            msg = exception.getCause().getMessage();
+            map.put("causeMessage", msg);
+        }
+        final Result<Map<String, Object>> result = Result.build(201, map, msg);
         log.error("全局异常 result = {}", result);
         return result;
     }
 
     @ExceptionHandler(value = ServiceException.class)
-    public Object serviceException(ServiceException e) {
-
+    public Result serviceException(ServiceException e) {
         final Result<Map<String, Object>> result = Result.build(e.getCode(), e.getMessage());
-
         log.error("自定义业务异常 result =  {}", result);
         return result;
     }
@@ -57,7 +59,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class,
             MissingServletRequestParameterException.class,})
-    public Object handlerNotValidException(Exception validException) {
+    public Result handlerNotValidException(Exception validException) {
 
         List<ObjectError> list = new ArrayList<>();
 
@@ -83,8 +85,7 @@ public class GlobalExceptionAdvice {
             map.put(key, msg);
         });
 
-        final Result<Map<String, Object>> result = Result.fail(map);
-
+        final Result<Map<String, Object>> result = Result.build(201, map, map.toString());
         log.error("方法参数校验异常 result =  {}", result);
         return result;
 
