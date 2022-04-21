@@ -69,16 +69,18 @@ public class GlobalExceptionAdvice {
             list = ((BindException) validException).getBindingResult().getAllErrors();
         }
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(16);
 
         list.forEach(error -> {
             String key;
             // 字段错误
             if (error instanceof FieldError) {
-                key = ((FieldError) error).getField();// 获取错误验证字段名
+                // 获取错误验证字段名
+                key = ((FieldError) error).getField();
             } else {
                 // 非字段错误
-                key = error.getObjectName();// 获取验证对象名称
+                // 获取验证对象名称
+                key = error.getObjectName();
             }
             // 错误信息
             String msg = error.getDefaultMessage();

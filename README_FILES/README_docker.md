@@ -296,7 +296,7 @@ docker link 过时的技术
 ### 显示所有容器IP地址：
 
 ```shell
-docker inspect --format='{{.Name}} - {{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+docker inspect --format='{{.Name}} 网络: {{range.NetworkSettings.Networks}}  ip地址: {{.IPAddress}}{{end}}' $(docker ps -aq)
 ```
 
 ### 查看容器IP地址：

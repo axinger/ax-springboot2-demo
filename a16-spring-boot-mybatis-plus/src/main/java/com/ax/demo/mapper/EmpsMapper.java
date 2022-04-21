@@ -1,6 +1,6 @@
 package com.ax.demo.mapper;
 
-import com.ax.demo.domain.Emps;
+import com.ax.demo.entity.Emps;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

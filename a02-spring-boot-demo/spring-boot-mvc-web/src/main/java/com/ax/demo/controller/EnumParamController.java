@@ -16,7 +16,6 @@ import java.util.Map;
  * @createTime 2022年02月13日 15:18:00
  */
 @RestController
-@Api(tags = "枚举参数")
 public class EnumParamController {
 
     /**

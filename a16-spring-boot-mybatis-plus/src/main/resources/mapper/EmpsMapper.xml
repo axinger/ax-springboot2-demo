@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ax.demo.mapper.EmpsMapper">
 
-    <resultMap id="BaseResultMap" type="com.ax.demo.domain.Emps">
+    <resultMap id="BaseResultMap" type="com.ax.demo.entity.Emps">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="lastname" column="lastName" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
@@ -19,7 +19,7 @@
 
 
     <!--mybatis-plus多表联合查询,带上${ew.customSqlSegment就可以实现查询-->
-        <select id="findByPage" resultType="com.ax.demo.domain.Emps">
+        <select id="findByPage" resultType="com.ax.demo.entity.Emps">
             select emps.*, department.id
             from emps
                      left join department
@@ -27,7 +27,7 @@
         </select>
 
 
-    <select id="findByPage2" resultType="com.ax.demo.domain.Emps">
+    <select id="findByPage2" resultType="com.ax.demo.entity.Emps">
         SELECT *
         FROM (select emps.*,department.id as dId
               from emps

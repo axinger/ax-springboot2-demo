@@ -39,14 +39,25 @@ public class DateTest {
 
     }
 
+    /**
+     * 字符串转date
+     * @throws ParseException
+     */
     @Test
     public void test3() throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
         System.out.println("format.format(new Date()) = " + format.format(new Date()));
 
+        String str = "2021-11-27 20:59:25:545";
 
-        Date date = format.parse("2021-11-27 20:59:25:545");
-        System.out.println("date = " + date);
+        Date date = format.parse(str);
+        System.out.println("字符串转date = " + date);
+
+        String str1 = "2021-11-27T20:59:25.545";
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        LocalDateTime time1 = LocalDateTime.parse(str1, formatter);
+        System.out.println("formatter.format(LocalDateTime.now()) = " + formatter.format(LocalDateTime.now()));
+        System.out.println("字符串转 time1 = " + time1);
     }
 
     @Test
@@ -83,7 +94,6 @@ public class DateTest {
 
         LocalDateTime localDateTime1 = LocalDateTime.of(2021, 11, 13, 12, 20, 01);
         System.out.println("localDateTime1 = " + localDateTime1);
-
 
         System.out.println("getDayOfMonth = " + localDateTime1.getDayOfMonth());
         System.out.println("getMonth = " + localDateTime1.getMonth());

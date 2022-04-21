@@ -81,6 +81,7 @@ pagehelper:
   returnPageInfo: check
 
 logging:
+  config: classpath:logback-spring.xml
   #  file:
   #    path:
   #  config: classpath:log4j2.xml

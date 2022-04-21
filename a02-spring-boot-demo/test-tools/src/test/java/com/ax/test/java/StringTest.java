@@ -1,5 +1,6 @@
 package com.ax.test.java;
 
+import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
 
@@ -9,8 +10,16 @@ public class StringTest {
     @Test
     void test_format(){
 
-       String url = String.format("%s/%s", "aaaa", "b");
-        System.out.println("url = " + url);
+//       String url = String.format("%s/%s", "aaaa", "b");
+//        System.out.println("url = " + url);
+        String val = "1";
+        System.out.println("Boolean.parseBoolean(val) = " + Boolean.parseBoolean(val));
+//
+        String val2 = "1";
+        if (StrUtil.isNumeric(val2)) {
+            System.out.println("Integer.parseInt(val) = " + Integer.parseInt(val2));
+        }
+
     }
 
     @Test

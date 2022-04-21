@@ -3,13 +3,42 @@ package com.ax.test.java;
 import com.ax.model.City;
 import com.ax.model.Person;
 import com.ax.model.User;
+import com.google.common.base.Preconditions;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class OptionalTest {
+
+
+    @Test
+    public void test_list() {
+
+        List<Integer> list = new ArrayList();
+        list.add(10);
+//        list.add("b");
+
+
+        // 为指定的值创建一个Optional，如果指定的值为null，则返回一个空的Optional。
+        Optional.ofNullable(list).map(List::size).filter(val -> {
+
+            System.out.println("filter val = " + val);
+            return val > 0;
+        }).ifPresent(val -> System.out.println("val = " + list.get(val - 1)));
+
+       AtomicReference<Integer> value = new AtomicReference<>(0);
+//        AtomicInteger value = new AtomicInteger();
+        Optional.ofNullable(list).map(List::size).filter(val -> val > 0).ifPresent(val -> {
+            value.set(list.get(0));
+        });
+        System.out.println("value = " + value.getClass());
+        System.out.println("value = " + value.get());
+
+
+
+    }
 
 
     @Test

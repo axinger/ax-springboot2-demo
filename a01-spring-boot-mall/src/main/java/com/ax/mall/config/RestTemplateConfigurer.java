@@ -1,5 +1,6 @@
 package com.ax.mall.config;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -19,6 +20,7 @@ public class RestTemplateConfigurer {
 
 
     @Bean
+    @LoadBalanced //负载均衡注解
     public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
 
         RestTemplate restTemplate = new RestTemplate(factory);
@@ -27,6 +29,7 @@ public class RestTemplateConfigurer {
     }
 
     @Bean
+    @LoadBalanced //负载均衡注解
     public RestTemplate restTemplate() {
 
         RestTemplate restTemplate = new RestTemplate();

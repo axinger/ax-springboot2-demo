@@ -1,0 +1,13 @@
+package com.ax.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class A10DemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(A10DemoApplication.class, args);
+    }
+
+}
