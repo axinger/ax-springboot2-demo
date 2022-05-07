@@ -2,10 +2,24 @@ package com.ax.test.java;
 
 import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
 
 public class StringTest {
 
+
+    private Long totalSpent;
+
+    @Test
+    void test_BigDecimal(){
+        BigDecimal stopTime = BigDecimal.ZERO;
+//         long totalSpent;
+        stopTime = stopTime.add(new BigDecimal(totalSpent));
+
+        System.out.println("stopTime = " + stopTime);
+    }
 
     @Test
     void test_format(){
