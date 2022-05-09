@@ -118,8 +118,13 @@ public class DateTest {
     @Test
     public void test3_3() {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-        System.out.println("formatter = " + formatter);
+//        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
+//        DateTimeFormatter formatter = DateTimeFormatter.ISO_TIME;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS");
+
+//        System.out.println("formatter = " + formatter);
 
         String format = formatter.format(LocalDateTime.now());
         System.out.println("format = " + format);

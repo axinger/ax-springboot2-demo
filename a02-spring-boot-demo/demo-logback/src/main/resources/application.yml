@@ -1,0 +1,11 @@
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  application:
+    name: demo-logback
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+

@@ -24,7 +24,7 @@
         <module>test-tools</module>
         <module>demo-juc</module>
         <module>demo-spring5</module>
-        <module>logback</module>
+        <module>demo-logback</module>
     </modules>
 
 </project>
