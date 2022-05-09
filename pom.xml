@@ -7,6 +7,11 @@
     <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
     比如:查看mysql版本号, 重写版本号就可以了-->
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.3</version>
+    </parent>
 
     <!--统一管理jar包版本-->
     <properties>
@@ -23,13 +28,11 @@
 
 
         <elasticsearch.version>7.17.0</elasticsearch.version>
-    </properties>
 
-<!--    <parent>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
-<!--        <version>2.6.3</version>-->
-<!--    </parent>-->
+        <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
+        <okhttp3.version>4.8.1 </okhttp3.version>
+
+    </properties>
 
     <groupId>com.ax</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
@@ -67,13 +70,13 @@
     <dependencyManagement>
         <dependencies>
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-dependencies</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -152,10 +155,26 @@
             </dependency>
 
             <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.20</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/io.minio/minio -->
+            <dependency>
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
-                <version>8.0.3</version>
+                <version>8.3.4</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>okhttp</artifactId>
+                        <groupId>com.squareup.okhttp3</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
+
+
             <!--=================缓存类=================-->
 
 
@@ -276,6 +295,13 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>3.5.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>3.5.0</version>
+                <scope>compile</scope>
             </dependency>
 
             <dependency>

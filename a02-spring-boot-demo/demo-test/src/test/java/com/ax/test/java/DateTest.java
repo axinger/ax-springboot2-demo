@@ -1,0 +1,148 @@
+package com.ax.test.java;
+
+import org.junit.jupiter.api.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class DateTest {
+
+    @Test
+    public void test1() {
+
+        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
+
+        /**
+         * java.util.Date 类
+         * 1. 两个构造器
+         * 2.两个方法 toString,getTime()
+         * */
+
+        Date date = new Date();
+        System.out.println("date = " + date);
+        System.out.println("date.getTime() = " + date.getTime());
+        System.out.println("new Date(date.getTime()) = " + new Date(date.getTime()));
+
+    }
+
+    @Test
+    public void test2() {
+        // 和数据库交互时候使用
+        java.sql.Date date = new java.sql.Date(1638016018479L);
+
+        System.out.println("date = " + date);
+
+    }
+
+    /**
+     * 字符串转date
+     * @throws ParseException
+     */
+    @Test
+    public void test3() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        System.out.println("format.format(new Date()) = " + format.format(new Date()));
+
+        String str = "2021-11-27 20:59:25:545";
+
+        Date date = format.parse(str);
+        System.out.println("字符串转date = " + date);
+
+        String str1 = "2021-11-27T20:59:25.545";
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        LocalDateTime time1 = LocalDateTime.parse(str1, formatter);
+        System.out.println("formatter.format(LocalDateTime.now()) = " + formatter.format(LocalDateTime.now()));
+        System.out.println("字符串转 time1 = " + time1);
+    }
+
+    @Test
+    public void test4() {
+
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("calendar.getClass() = " + calendar.getClass());
+        System.out.println("calendar.get = " + calendar.get(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH, 27);
+        System.out.println("calendar.get = " + calendar.get(Calendar.DAY_OF_MONTH));
+        calendar.add(Calendar.DAY_OF_MONTH, -5);
+        System.out.println("calendar.get = " + calendar.get(Calendar.DAY_OF_MONTH));
+
+        Date date = calendar.getTime();
+        System.out.println("date = " + date);
+
+        calendar.setTime(date);
+
+
+    }
+
+    @Test
+    public void test1_1() {
+
+        LocalDate localDate = LocalDate.now();
+        System.out.println("localDate = " + localDate);
+
+
+        LocalTime localTime = LocalTime.now();
+        System.out.println("localTime = " + localTime);
+        System.out.println("localTime = " + localTime.withSecond(3));
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println("localDateTime = " + localDateTime);
+
+        LocalDateTime localDateTime1 = LocalDateTime.of(2021, 11, 13, 12, 20, 01);
+        System.out.println("localDateTime1 = " + localDateTime1);
+
+        System.out.println("getDayOfMonth = " + localDateTime1.getDayOfMonth());
+        System.out.println("getMonth = " + localDateTime1.getMonth());
+        System.out.println("getMonthValue = " + localDateTime1.getMonthValue());
+        System.out.println("getDayOfWeek = " + localDateTime1.getDayOfWeek());
+        System.out.println("withDayOfMonth = " + localDateTime1.withDayOfMonth(12));
+
+
+    }
+
+    @Test
+    public void test2_2() {
+        Instant instant = Instant.now();
+        System.out.println("instant = " + instant);// 零时区
+        OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(8));
+        System.out.println("offsetDateTime = " + offsetDateTime);
+
+        long milli = instant.toEpochMilli();// 自1970年毫秒数
+        System.out.println("milli = " + milli);
+    }
+
+    @Test
+    public void test3_3() {
+
+
+        System.out.println("LocalDateTime.now() = " + LocalDateTime.now().withNano(3*100000000));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS");
+        String format = formatter.format(LocalDateTime.now());
+        System.out.println("format = " + format);
+
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG);
+        String s1 = formatter1.format(LocalDateTime.now());
+        System.out.println("s1 = " + s1);
+
+        final String format1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("format1 = " + format1);
+
+        final LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(System.currentTimeMillis()), ZoneId.systemDefault());
+        System.out.println("dateTime = " + dateTime);
+
+        System.out.println("dateTime.getDayOfWeek() = " + LocalDateTime.now().plusDays(-1).getDayOfWeek().getValue());
+
+        System.out.println("LocalDateTime.now() = " + LocalDateTime.now().withDayOfMonth(1));
+
+
+        System.out.println("0点 = "+LocalDateTime.of(LocalDate.now(), LocalTime.MIN));
+        System.out.println("23点 = "+LocalDateTime.of(LocalDate.now(), LocalTime.MAX).withNano(0));
+
+    }
+}

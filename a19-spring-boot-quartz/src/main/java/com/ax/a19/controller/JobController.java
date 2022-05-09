@@ -1,10 +1,9 @@
 package com.ax.a19.controller;
 
-import com.ax.a19.job.MyJob;
 import com.ax.a19.service.StudentService;
-import com.ax.common.quartz.model.CronTask;
-import com.ax.common.quartz.service.MyQuartzService;
-import com.ax.common.util.result.Result;
+import com.axing.common.quartz.model.CronTask;
+import com.axing.common.quartz.service.MyQuartzService;
+import com.axing.common.util.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;

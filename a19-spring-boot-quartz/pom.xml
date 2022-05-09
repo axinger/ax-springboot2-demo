@@ -50,13 +50,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.ax</groupId>
+            <groupId>com.axing</groupId>
             <artifactId>common-quartz</artifactId>
             <version>1.0.0</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ax</groupId>
+            <groupId>com.axing</groupId>
             <artifactId>common-util</artifactId>
             <version>1.0.0</version>
         </dependency>

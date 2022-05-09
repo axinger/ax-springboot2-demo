@@ -1,41 +1,27 @@
 package com.ax.demo;
 
 import io.minio.MinioClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@Data
 @Configuration
-@EnableConfigurationProperties(MinioProp.class)
+@ConfigurationProperties(prefix = "minio")
 public class MinioConfig {
 
-    @Autowired
-    private MinioProp minioProp;
+    private String endpoint;
+    private String accessKey;
+    private String secretKey;
+    private String bucketName;
 
-    /**
-     * package com.minio.dto.response;
-     * <p>
-     * import lombok.AllArgsConstructor;
-     * import lombok.Data;
-     * import lombok.NoArgsConstructor;
-     *
-     * @Data
-     * @AllArgsConstructor
-     * @NoArgsConstructor public class FileUploadResponse {
-     * private String urlHttp;
-     * <p>
-     * private String urlPath;
-     * }
-     * <p>
-     * 获取MinioClient
-     */
     @Bean
     public MinioClient minioClient() {
         return MinioClient.builder()
-                .endpoint(minioProp.getEndpoint())
-                .credentials(minioProp.getAccessKey(), minioProp.getSecretKey())
+                .endpoint(endpoint)
+                .credentials(accessKey, secretKey)
                 .build();
     }
-
 }
+

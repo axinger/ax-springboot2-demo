@@ -21,7 +21,7 @@
         <module>async</module>
         <module>transactional</module>
         <module>spring-web-flux</module>
-        <module>test-tools</module>
+        <module>demo-test</module>
         <module>demo-juc</module>
         <module>demo-spring5</module>
         <module>demo-logback</module>
