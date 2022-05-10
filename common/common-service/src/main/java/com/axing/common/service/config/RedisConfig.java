@@ -26,7 +26,6 @@ import java.time.Duration;
  * @ClassName RedisConfig.java
  * @Description 条件配置: https://blog.csdn.net/qq_40041868/article/details/123264571
  * @createTime 2022年01月18日 22:56:00
- *
  */
 @Configuration
 @EnableCaching

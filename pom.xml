@@ -42,8 +42,9 @@
     <!--pom总的父工程-->
     <packaging>pom</packaging>
 
-
     <modules>
+
+        <module>common</module>
         <module>a01-spring-boot-mall</module>
         <module>a02-spring-boot-demo</module>
         <module>a03-spring-boot-websocket</module>
@@ -64,7 +65,9 @@
         <module>a18-spring-boot-zipkin</module>
         <module>a19-spring-boot-quartz</module>
         <module>a20-cloud-demo</module>
-        <module>common</module>
+        <module>a21-spring-boot-mongodb</module>
+        <module>a22-spring-boot-Influxdb</module>
+        <module>a23-spring-boot-iotdb</module>
     </modules>
 
     <dependencyManagement>
@@ -317,6 +320,22 @@
                 <artifactId>jasypt-spring-boot-starter</artifactId>
                 <version>3.0.4</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
+            <dependency>
+                <groupId>org.influxdb</groupId>
+                <artifactId>influxdb-java</artifactId>
+                <version>2.22</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
+            <dependency>
+                <groupId>com.influxdb</groupId>
+                <artifactId>influxdb-client-java</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
