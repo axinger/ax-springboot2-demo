@@ -26,7 +26,7 @@ public class ConfigController {
     @Value("${config.name:#{null}}")
     private String name;
 
-    @GetMapping("/config/info")
+    @GetMapping("/")
     public Object getInfo() {
         System.out.println("getInfo = " + info);
         Map map = new HashMap(16);

@@ -1,7 +1,6 @@
 package com.ax.demo.controller;
 
 import com.ax.demo.model.Person;
-import com.ax.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,8 @@ import java.util.Map;
 public class TestController2 {
 
 
-    @Autowired
-    private HelloService helloService;
+//    @Autowired
+//    private HelloService helloService;
 
     /**
      * 内容协商
@@ -44,15 +43,15 @@ public class TestController2 {
         return person;
     }
 
-    @RequestMapping(value = "/test51")
-    @ResponseBody
-    public Object hello() {
-        final String sayHello = helloService.sayHello("jim");
-        System.out.println("sayHello = " + sayHello);
-        Map map = new HashMap();
-        map.put("hello", sayHello);
-        return map;
-    }
+//    @RequestMapping(value = "/test51")
+//    @ResponseBody
+//    public Object hello() {
+//        final String sayHello = helloService.sayHello("jim");
+//        System.out.println("sayHello = " + sayHello);
+//        Map map = new HashMap();
+//        map.put("hello", sayHello);
+//        return map;
+//    }
 
 
 }

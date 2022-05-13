@@ -25,6 +25,7 @@
         <module>demo-juc</module>
         <module>demo-spring5</module>
         <module>demo-logback</module>
+        <module>spring-boot-active</module>
     </modules>
 
 </project>

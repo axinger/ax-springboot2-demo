@@ -11,9 +11,43 @@
 
     <artifactId>a23-spring-boot-iotdb</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+  <dependencies>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <optional>true</optional>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.iotdb</groupId>
+          <artifactId>iotdb-session</artifactId>
+          <version>0.11.2</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.iotdb</groupId>
+          <artifactId>iotdb-jdbc</artifactId>
+          <version>0.13.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>druid</artifactId>
+          <version>1.2.8</version>
+      </dependency>
+
+
+  </dependencies>
 
 </project>

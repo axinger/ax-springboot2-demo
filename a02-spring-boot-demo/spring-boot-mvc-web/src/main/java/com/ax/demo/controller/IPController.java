@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +21,23 @@ public class IPController {
 
     @GetMapping("/ip1")
     public Object ip1(HttpServletRequest request) {
+
+
         Map<String, Object> map = new HashMap<>(2);
-        if (request.getHeader("x-forwarded-for") == null) {
-            map.put("ip", request.getRemoteAddr());
-        } else {
-            map.put("ip", request.getHeader("x-forwarded-for"));
+//        if (request.getHeader("x-forwarded-for") == null) {
+//            map.put("ip", request.getRemoteAddr());
+//        } else {
+//            map.put("ip", request.getHeader("x-forwarded-for"));
+//        }
+
+        String address = null;
+        try {
+            address = InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+            address = "未获取到";
         }
+        map.put("address", address);
+
         return map;
     }
 }
