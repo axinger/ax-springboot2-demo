@@ -28,6 +28,7 @@
         <module>spring-boot-active</module>
         <module>02-test-guava</module>
         <module>03-test-hutool</module>
+        <module>demo-mapstruct</module>
     </modules>
 
 </project>

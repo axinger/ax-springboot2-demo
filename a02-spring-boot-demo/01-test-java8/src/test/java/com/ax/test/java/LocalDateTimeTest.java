@@ -1,20 +1,16 @@
 package com.ax.test.java;
 
+import com.alibaba.fastjson2.JSON;
 import org.junit.jupiter.api.Test;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalAccessor;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
-public class DateTest {
+public class LocalDateTimeTest {
 
     @Test
     void test_LocalDateTime_mix(){
@@ -225,6 +221,32 @@ public class DateTest {
 
         System.out.println("0点 = " + LocalDateTime.of(LocalDate.now(), LocalTime.MIN));
         System.out.println("23点 = " + LocalDateTime.of(LocalDate.now(), LocalTime.MAX).withNano(0));
+
+    }
+
+    @Test
+    void data_json(){
+
+        Map map = new HashMap();;
+        map.put("createDate",LocalDateTime.now());
+
+
+        final Map<String, Object> map2 = JSON.parseObject(JSON.toJSONString(map), Map.class);
+
+        System.out.println("map2 = " + map2);
+
+        LocalDateTime localDateTime =  LocalDateTime.parse((String)map2.get("createDate"),DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        System.out.println("localDateTime = " + localDateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli());
+
+
+        LocalDateTime localDateTime2 =  LocalDateTime.parse("2022-05-21T17:45:24.381",DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        System.out.println("localDateTime = " + localDateTime2.toInstant(ZoneOffset.of("+8")).toEpochMilli());
+
+
+
+
 
     }
 }

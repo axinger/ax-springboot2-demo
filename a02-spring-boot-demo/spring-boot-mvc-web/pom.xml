@@ -137,7 +137,6 @@
 
 
     <build>
-        <finalName>spring-boot-demo-0.0.1</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
