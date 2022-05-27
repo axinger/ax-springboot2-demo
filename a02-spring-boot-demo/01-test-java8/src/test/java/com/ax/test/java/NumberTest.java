@@ -3,6 +3,7 @@ package com.ax.test.java;
 import org.junit.jupiter.api.Test;
 import org.springframework.format.annotation.NumberFormat;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
@@ -50,8 +51,31 @@ public class NumberTest {
         formatDemo.format1("000,000.000￥",49861.49861);
         formatDemo.format1("##.###%",0.1656498);
         formatDemo.format1("00.###%",0.0156165);
-        formatDemo.format1("###,###\u2030",0.1684489);
+        formatDemo.format1("###,###",0.1684489);
     }
 
+    @Test
+    void tet1(){
+//        float num= (float)6/3;
+//        DecimalFormat df = new DecimalFormat("0.00");//格式化小数
+//        String s = df.format(num);//返回的是String类型
+//        System.out.println("s = " + s);
+
+
+
+        final DecimalFormat decimalFormat = new DecimalFormat("0.0000");
+
+        System.out.println(decimalFormat.format(20.0/2));
+
+        final DecimalFormat df2 = new DecimalFormat("0.00");
+        System.out.println("df2 = "+df2.format(((float)1/8)*100));
+
+        BigDecimal percentage = BigDecimal.valueOf(1)
+                .divide(BigDecimal.valueOf(8), 4, BigDecimal.ROUND_FLOOR)
+                .multiply(BigDecimal.valueOf(100));
+        System.out.println("percentage = " + percentage);
+
+
+    }
 
 }

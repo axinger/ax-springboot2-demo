@@ -1,8 +1,9 @@
 package com.ax.demo.config;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+
+import com.alibaba.fastjson2.JSONWriter;
+import com.alibaba.fastjson2.support.config.FastJsonConfig;
+import com.alibaba.fastjson2.support.spring.http.converter.FastJsonHttpMessageConverter;
 import com.ax.demo.paramenum.IntegerCodeToEnumConverterFactory;
 import com.ax.demo.paramenum.StringCodeToEnumConverterFactory;
 import org.springframework.context.annotation.Bean;
@@ -49,48 +50,48 @@ public class DemoWebMvcConfiguration extends WebMvcConfigurationSupport {
      * @return HttpMessageConverter
      */
 
-    @Bean
-    protected HttpMessageConverter fastJsonHttpMessageConverters() {
-
-        // 2.添加fastjson的配置信息，比如: 是否需要格式化返回的json数据
-        FastJsonConfig config = new FastJsonConfig();
-
-        config.setDateFormat("yyyy-MM-dd HH:MM:ss");
-
-        config.setSerializerFeatures(
-                SerializerFeature.DisableCircularReferenceDetect, //结果是否格式化,默认为false
-
-                SerializerFeature.PrettyFormat, //枚举值使用名称或toString
-
-                SerializerFeature.WriteEnumUsingName, // 保留map空的字段
-
-                SerializerFeature.WriteMapNullValue, // 将String类型的null转成""
-
-                SerializerFeature.WriteNullBooleanAsFalse, // 避免循环引用
-
-                SerializerFeature.WriteNullListAsEmpty, // 将Boolean类型的null转成false
-
-                SerializerFeature.WriteNullNumberAsZero, // 将List类型的null转成[], List<String> list = new ArrayList<>(); 泛型不支持
-
-                SerializerFeature.WriteNullStringAsEmpty // 将Number类型的null转成0
-        );
-
-
-        // 1.定义一个converters转换消息的对象
-        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
-        // 3.在converter中添加配置信息
-        fastConverter.setFastJsonConfig(config);
-
-        // 4.中文乱码解决方案
-        List<MediaType> mediaTypes = new ArrayList<>();
-//        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
-        mediaTypes.add(MediaType.APPLICATION_JSON);
-
-        fastConverter.setSupportedMediaTypes(mediaTypes);
-
-        // 5.返回HttpMessageConverters对象
-        return fastConverter;
-    }
+//    @Bean
+//    protected HttpMessageConverter fastJsonHttpMessageConverters() {
+//
+//        // 2.添加fastjson的配置信息，比如: 是否需要格式化返回的json数据
+//        FastJsonConfig config = new FastJsonConfig();
+//
+//        config.setDateFormat("yyyy-MM-dd HH:MM:ss");
+//
+//        config.setSerializerFeatures(
+//                SerializerFeature.DisableCircularReferenceDetect, //结果是否格式化,默认为false
+//
+//                SerializerFeature.PrettyFormat, //枚举值使用名称或toString
+//
+//                SerializerFeature.WriteEnumUsingName, // 保留map空的字段
+//
+//                SerializerFeature.WriteMapNullValue, // 将String类型的null转成""
+//
+//                SerializerFeature.WriteNullBooleanAsFalse, // 避免循环引用
+//
+//                SerializerFeature.WriteNullListAsEmpty, // 将Boolean类型的null转成false
+//
+//                SerializerFeature.WriteNullNumberAsZero, // 将List类型的null转成[], List<String> list = new ArrayList<>(); 泛型不支持
+//
+//                SerializerFeature.WriteNullStringAsEmpty // 将Number类型的null转成0
+//        );
+//
+//
+//        // 1.定义一个converters转换消息的对象
+//        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+//        // 3.在converter中添加配置信息
+//        fastConverter.setFastJsonConfig(config);
+//
+//        // 4.中文乱码解决方案
+//        List<MediaType> mediaTypes = new ArrayList<>();
+////        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+//        mediaTypes.add(MediaType.APPLICATION_JSON);
+//
+//        fastConverter.setSupportedMediaTypes(mediaTypes);
+//
+//        // 5.返回HttpMessageConverters对象
+//        return fastConverter;
+//    }
 
 
 //    @Bean
@@ -116,10 +117,30 @@ public class DemoWebMvcConfiguration extends WebMvcConfigurationSupport {
 //        converters.clear();
 //        converters.add(stringHttpMessageConverterUtf8());
 
-        converters.add(0, fastJsonHttpMessageConverters());//fastJsonHttpMessageConverters 需要在第一个位置
+//        converters.add(0, fastJsonHttpMessageConverters());//fastJsonHttpMessageConverters 需要在第一个位置
 
 //        converters.add(new MappingJackson2XmlHttpMessageConverter());
 //        converters.add(new MappingJackson2HttpMessageConverter());
+
+
+        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+        FastJsonConfig config = new FastJsonConfig();
+//        config.setReaderFeatures(JSONReader.Feature.FieldBased,
+//                JSONReader.Feature.SupportArrayToBean);
+        config.setWriterFeatures(
+                JSONWriter.Feature.WriteMapNullValue,
+//                JSONWriter.Feature.NotWriteHashMapArrayListClassName,
+                JSONWriter.Feature.NullAsDefaultValue,
+                JSONWriter.Feature.WriteBooleanAsNumber,
+                JSONWriter.Feature.WriteNonStringValueAsString
+
+        );
+        converter.setFastJsonConfig(config);
+        converter.setDefaultCharset(StandardCharsets.UTF_8);
+        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+        converters.add(0, converter);
+
+
     }
 
     /**

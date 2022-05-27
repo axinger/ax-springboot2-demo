@@ -1,6 +1,6 @@
 package com.ax.demo.util.axUtil;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 

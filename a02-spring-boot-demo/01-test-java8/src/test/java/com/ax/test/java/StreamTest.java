@@ -2,6 +2,7 @@ package com.ax.test.java;
 
 
 import com.ax.demo.Person;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -9,13 +10,179 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamTest {
-    public static Stream<Character> fromStringToStream(String str) {
-        List<Character> list = new ArrayList<>();
-        for (Character c : str.toCharArray()) {
-            list.add(c);
-        }
-        return list.stream();
+
+
+    @Test
+    void test_2_list() {
+
+        List<Map<Object, Object>> list1 = Lists.newArrayList(
+                new HashMap() {{
+                    put("id", "1");
+                    put("name", "jim");
+                    put("age", "");
+                }},
+                new HashMap() {{
+                    put("id", "2");
+                    put("name", "tom");
+                    put("age", "");
+                }}
+                );
+
+
+        List<Map<Object, Object>> list2 = Lists.newArrayList(
+                new HashMap() {{
+                    put("id", "1");
+                    put("age", "10");
+                }},
+                new HashMap() {{
+                    put("id", "2");
+                    put("age", "12");
+                }}
+        );
+
+
+
+//        List resultList2 = list1.stream().map(m->{
+//
+//            final Map<Object, Object> map = list2.stream().filter(m2 -> Objects.equals(m.get("id"), m2.get("id")))
+//                    .findFirst().orElse(new HashMap<>());
+//
+//            m.put("age",map.get("age"));
+//            return m;
+//
+//        }).collect(Collectors.toList());
+//
+//
+//        resultList2.stream().forEach(s-> System.out.println(s));
+
+
+        list1.stream().forEach(m->{
+
+            final Object age = list2.stream().filter(m2 -> Objects.equals(m.get("id"), m2.get("id")))
+                    .findFirst().map(val->val.get("age")).orElse("");
+
+            m.put("age",age);
+
+        });
+
+        System.out.println("list1 = " + list1);
+
     }
+
+
+    @Test
+    void test_limit() {
+
+        // 超出不回报错
+        final List<Integer> list = Lists.newArrayList(1, 2, 3);
+
+        list.stream().limit(3).forEach(System.out::println);
+    }
+
+    @Test
+    void test_limit_null() {
+        final List<Integer> list = Lists.newArrayList();
+        list.stream().limit(1).forEach(val -> System.out.println("val = " + val));
+        final List<Integer> collect = list.stream().limit(1).collect(Collectors.toList());
+        System.out.println("collect = " + collect);
+
+        final List<Integer> list2 = null;
+
+//        List<Integer> list3 = null;
+//        Optional.ofNullable(list2).map(List::stream).ifPresent(val->{
+//
+//            list3 = val.collect(Collectors.toList());
+//
+//        });
+
+//        final List<Integer> list2 = Lists.newArrayList
+
+//        Stream.of(list2).limit(1).forEach(val-> System.out.println("val = " + val));
+//
+//        final List<Object> collect1 = Stream.of(list2).flatMap(e -> {
+//            System.out.println("e = " + e);
+//            return Stream.empty();
+//        }).collect(Collectors.toList());
+//        System.out.println("collect1 = " + collect1);
+
+//        final List<List<Integer>> collect2 = Stream.generate(() -> list2).collect(Collectors.toList());
+
+
+    }
+
+    @Test
+    void test_limit2() {
+
+        // 超出不回报错
+        final List<Integer> list = Lists.newArrayList();
+//        final List<List<Integer>> collect1 = Stream.of(list2).limit(1).collect(Collectors.toList());
+//        System.out.println("collect1 = " + collect1);1, 2,3,4);
+
+        list.stream().skip(2).limit(1).forEach(System.out::println);
+    }
+
+    @Test
+    void test_limit_findFirst() {
+
+        // 超出不回报错
+//        final List<Integer> list = Lists.newArrayList(1, 2,3,4);
+        final List<Integer> list = Lists.newArrayList();
+        final Integer integer = list.stream().findFirst().orElse(-1);
+
+        System.out.println("integer = " + integer);
+
+    }
+
+    @Test
+    void test_reverseOrder() {
+
+
+        final List<Integer> list1 = Lists.newArrayList(1, 2, 3, 4);
+        final List<Integer> list2 = list1.parallelStream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        System.out.println("倒序 = " + list2);
+
+    }
+
+    // 拍扁
+    @Test
+    void test_list_map() {
+        // list嵌套map 取map的值
+//        String name = "jim";
+        String name = null;
+        final Map<String, Object> map = new HashMap() {{
+            put("name", name);
+            put("age", 10);
+        }};
+//        final Map<String, Object> map = null;
+        System.out.println("map = " + map);
+        final ArrayList<Map<String, Object>> list = Lists.newArrayList(map);
+
+        final List<Object> collect = list.stream().flatMap(el -> {
+
+            return Optional.ofNullable(el).map(Map::values).orElse(new ArrayList<>()).stream();
+//            el.values().stream()
+
+
+        }).collect(Collectors.toList());
+        System.out.println("collect = " + collect);
+
+
+        final List<Double> collect2 = list.parallelStream()
+                //拍扁,同时检查 list中map是否null,给出默认空list
+                .flatMap(el -> Optional.ofNullable(el)
+                        .map(Map::values)
+                        .orElse(new ArrayList<>())
+                        .stream()
+                )
+                //转成double
+                .map(el -> Double.parseDouble(Optional.ofNullable(el)
+                        .orElse(0).toString())
+                )
+                .collect(Collectors.toList());
+
+        System.out.println("collect2 = " + collect2);
+    }
+
 
     @Test
     void test3() {
@@ -117,6 +284,17 @@ public class StreamTest {
         list3.stream().flatMap(e -> e.stream()).forEach(e -> {
             System.out.println("flatMap 拍扁 e = " + e);
         });
+    }
+
+    public static Stream<Character> fromStringToStream(String str) {
+        List<Character> list = new ArrayList<>();
+        for (Character c : str.toCharArray()) {
+            list.add(c);
+        }
+
+
+        return list.stream();
+//        return  Arrays.asList(str.toCharArray()).stream();
     }
 
     @Test
@@ -235,7 +413,6 @@ public class StreamTest {
                         ArrayList::new)
         );
         System.out.println("uniqueByNameAndSex1 = " + uniqueByNameAndSex1);
-
 
 
     }

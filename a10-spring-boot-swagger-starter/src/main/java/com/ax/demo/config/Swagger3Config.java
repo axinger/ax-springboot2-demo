@@ -70,7 +70,7 @@ public class Swagger3Config {
      * 安全模式，这里指定token通过Authorization头请求头传递
      */
     private List<SecurityScheme> securitySchemes() {
-        List<SecurityScheme> apiKeyList = new ArrayList<SecurityScheme>();
+        List<SecurityScheme> apiKeyList = new ArrayList<>();
         apiKeyList.add(new ApiKey("Authorization",
                 "Authorization",
                 io.swagger.v3.oas.models.security.SecurityScheme.In.HEADER.toString())
@@ -123,34 +123,34 @@ public class Swagger3Config {
 
 //    https://baijiahao.baidu.com/s?id=1727529344646933819&wfr=spider&for=pc
 
-    @Bean
-    public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
-        return new BeanPostProcessor() {
-            @Override
-            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-                if (bean instanceof WebMvcRequestHandlerProvider || bean instanceof WebFluxRequestHandlerProvider) {
-                    customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
-                }
-                return bean;
-            }
-
-            private <T extends RequestMappingInfoHandlerMapping> void customizeSpringfoxHandlerMappings(List<T> mappings) {
-                List<T> copy = mappings.stream().filter(mapping -> mapping.getPatternParser() == null).collect(Collectors.toList());
-                mappings.clear();
-                mappings.addAll(copy);
-            }
-
-            @SuppressWarnings("unchecked")
-            private List<RequestMappingInfoHandlerMapping> getHandlerMappings(Object bean) {
-                try {
-                    Field field = ReflectionUtils.findField(bean.getClass(), "handlerMappings");
-                    field.setAccessible(true);
-                    return (List<RequestMappingInfoHandlerMapping>) field.get(bean);
-                } catch (IllegalArgumentException | IllegalAccessException e) {
-                    throw new IllegalStateException(e);
-                }
-            }
-        };
-    }
+//    @Bean
+//    public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
+//        return new BeanPostProcessor() {
+//            @Override
+//            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+//                if (bean instanceof WebMvcRequestHandlerProvider || bean instanceof WebFluxRequestHandlerProvider) {
+//                    customizeSpringfoxHandlerMappings(getHandlerMappings(bean));
+//                }
+//                return bean;
+//            }
+//
+//            private <T extends RequestMappingInfoHandlerMapping> void customizeSpringfoxHandlerMappings(List<T> mappings) {
+//                List<T> copy = mappings.stream().filter(mapping -> mapping.getPatternParser() == null).collect(Collectors.toList());
+//                mappings.clear();
+//                mappings.addAll(copy);
+//            }
+//
+//            @SuppressWarnings("unchecked")
+//            private List<RequestMappingInfoHandlerMapping> getHandlerMappings(Object bean) {
+//                try {
+//                    Field field = ReflectionUtils.findField(bean.getClass(), "handlerMappings");
+//                    field.setAccessible(true);
+//                    return (List<RequestMappingInfoHandlerMapping>) field.get(bean);
+//                } catch (IllegalArgumentException | IllegalAccessException e) {
+//                    throw new IllegalStateException(e);
+//                }
+//            }
+//        };
+//    }
 
 }

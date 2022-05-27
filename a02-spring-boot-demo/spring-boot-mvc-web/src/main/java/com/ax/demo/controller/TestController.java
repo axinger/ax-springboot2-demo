@@ -1,16 +1,15 @@
 package com.ax.demo.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.ax.demo.dto.StudentDto;
 import com.ax.demo.entity.Student;
 import com.ax.demo.helloword.Injection;
 import com.ax.demo.model.TPerson;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +18,30 @@ import java.util.Map;
 /**
  * @author xing
  */
+
+@Data
+class TestEntity {
+
+    String string;
+    List list;
+    Map map;
+    Boolean aBoolean;
+}
+
 @RestController
 public class TestController {
+
+    @RequestMapping(value = "/null")
+    public Object testnull() {
+        return new TestEntity();
+
+//        Map<String, Object> map = new HashMap<>(2);
+//
+//        map.put("date", "aa");
+//
+//        return map;
+    }
+
 
     @Autowired
     private TPerson person;
@@ -202,20 +223,20 @@ public class TestController {
     }
 
 
-    @GetMapping(value = "/nullValue")
-    @ResponseBody
-    public Object nullValue() {
-        List list = null;
-        Map map1 = null;
-
-        Map map = new HashMap(16);
-        map.put("string", null);
-        map.put("list", list);
-        map.put("map1", map1);
-        map.put("date", new Date());
-
-
-        return JSONObject.toJSON(map);
-    }
+//    @GetMapping(value = "/nullValue")
+//    @ResponseBody
+//    public Object nullValue() {
+//        List list = null;
+//        Map map1 = null;
+//
+//        Map map = new HashMap(16);
+//        map.put("string", null);
+//        map.put("list", list);
+//        map.put("map1", map1);
+//        map.put("date", new Date());
+//
+//
+//        return JSONObject.toJSON(map);
+//    }
 
 }
