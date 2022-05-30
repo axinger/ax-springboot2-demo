@@ -1,11 +1,10 @@
-
 spring:
   iotdb-session::
-    username: root
-    password: root
-    ip: 192.168.101.131
-    port: 6667
-    maxSize: 100
+  username: root
+  password: root
+  ip: 192.168.101.131
+  port: 6667
+  maxSize: 100
 
   iotdb:
     username: root

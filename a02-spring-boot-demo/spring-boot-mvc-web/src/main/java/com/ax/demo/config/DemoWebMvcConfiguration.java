@@ -128,11 +128,16 @@ public class DemoWebMvcConfiguration extends WebMvcConfigurationSupport {
 //        config.setReaderFeatures(JSONReader.Feature.FieldBased,
 //                JSONReader.Feature.SupportArrayToBean);
         config.setWriterFeatures(
-                JSONWriter.Feature.WriteMapNullValue,
+
+                JSONWriter.Feature.NullAsDefaultValue
 //                JSONWriter.Feature.NotWriteHashMapArrayListClassName,
-                JSONWriter.Feature.NullAsDefaultValue,
-                JSONWriter.Feature.WriteBooleanAsNumber,
-                JSONWriter.Feature.WriteNonStringValueAsString
+//                JSONWriter.Feature.WriteBooleanAsNumber,
+                // PrettyFormat 不能要,不然无法访问
+//                , JSONWriter.Feature.PrettyFormat
+
+                //  不要key,不使用
+//                ,JSONWriter.Feature.BeanToArray
+                , JSONWriter.Feature.WriteNonStringValueAsString
 
         );
         converter.setFastJsonConfig(config);

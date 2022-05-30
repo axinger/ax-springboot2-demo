@@ -73,8 +73,8 @@ class SetTest {
 
     @Test
     void difference_set() {
-        final HashSet<Integer> set1 = Sets.newHashSet(1, 2, 3,10);
-        final HashSet<Integer> set2 = Sets.newHashSet(4,5,10);
+        final HashSet<Integer> set1 = Sets.newHashSet(1, 2, 3, 10);
+        final HashSet<Integer> set2 = Sets.newHashSet(4, 5, 10);
 
 
         //合集，并集   并集 = [1, 2, 10, 3, 4, 5]
@@ -89,7 +89,7 @@ class SetTest {
         Set<Integer> result3 = Sets.difference(set1, set2);
         System.out.println("差集,set1独有 = " + result3);
 
-        Set<Integer> result3_2 = Sets.difference(set2,set1);
+        Set<Integer> result3_2 = Sets.difference(set2, set1);
         System.out.println("差集,set2独有 = " + result3_2);
 
         //外集 ,去除相同的 外集 = [1, 2, 3, 4, 5]

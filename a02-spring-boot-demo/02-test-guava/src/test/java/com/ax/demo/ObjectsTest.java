@@ -1,7 +1,6 @@
 package com.ax.demo;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -23,7 +22,6 @@ public class ObjectsTest {
         // Returns "ClassName{x=1}"
         final String x = MoreObjects.toStringHelper(userInfo).add("x", 1).toString();
         System.out.println("x = " + x);
-
 
 
         // Returns "MyObject{x=1}"

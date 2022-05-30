@@ -26,14 +26,13 @@ public class OptionalTest {
             return val > 0;
         }).ifPresent(val -> System.out.println("val = " + list.get(val - 1)));
 
-       AtomicReference<Integer> value = new AtomicReference<>(0);
+        AtomicReference<Integer> value = new AtomicReference<>(0);
 //        AtomicInteger value = new AtomicInteger();
         Optional.ofNullable(list).map(List::size).filter(val -> val > 0).ifPresent(val -> {
             value.set(list.get(0));
         });
         System.out.println("value = " + value.getClass());
         System.out.println("value = " + value.get());
-
 
 
     }

@@ -1,6 +1,5 @@
 package com.ax.order;
 
-import com.ax.common.util.result.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

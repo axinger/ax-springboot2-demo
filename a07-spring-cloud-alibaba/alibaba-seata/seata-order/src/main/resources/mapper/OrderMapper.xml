@@ -5,12 +5,12 @@
 <mapper namespace="com.ax.seata.mapper.OrderMapper">
 
     <resultMap id="BaseResultMap" type="com.ax.seata.domain.Order">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="userId" column="user_id" jdbcType="BIGINT"/>
-            <result property="productId" column="product_id" jdbcType="BIGINT"/>
-            <result property="count" column="count" jdbcType="INTEGER"/>
-            <result property="money" column="money" jdbcType="DECIMAL"/>
-            <result property="status" column="status" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="productId" column="product_id" jdbcType="BIGINT"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
+        <result property="money" column="money" jdbcType="DECIMAL"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">

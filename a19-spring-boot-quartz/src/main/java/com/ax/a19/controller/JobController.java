@@ -9,7 +9,10 @@ import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -87,8 +90,6 @@ public class JobController implements Job {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-
-
 
 
         final Boolean join = future.join();

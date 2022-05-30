@@ -23,15 +23,16 @@ import java.util.Map;
 public class IndexController {
 
     @RequestMapping("/")
-    public Object index(){
+    public Object index() {
         final String date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS").format(LocalDateTime.now());
-        log.error("error = {}",date);
-        log.info("info = {}",date);
-        log.debug("debug = {}",date);
-        log.warn("info = {}",date);
+        log.error("error = {}", date);
+        log.info("info = {}", date);
+        log.debug("debug = {}", date);
+        log.warn("info = {}", date);
 
-        Map map = new HashMap();;
-        map.put("time",new Date());
+        Map map = new HashMap();
+        ;
+        map.put("time", new Date());
         return map;
     }
 }

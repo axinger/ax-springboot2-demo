@@ -18,7 +18,7 @@ import java.util.Map;
 public class TestHutool {
 
     @Test
-    void test_http(){
+    void test_http() {
 
 
         String url = "https://xxx/xx";//指定URL
@@ -34,7 +34,7 @@ public class TestHutool {
     }
 
     @Test
-    void test_uuid(){
+    void test_uuid() {
 
         System.out.println("IdUtil.simpleUUID() = " + IdUtil.simpleUUID());
 

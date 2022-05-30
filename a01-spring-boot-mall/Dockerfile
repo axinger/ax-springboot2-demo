@@ -1,5 +1,5 @@
 # 基础镜像使用java
-FROM java:8
+FROM openjdk:8-jdk-alpine
 
 #作者
 MAINTAINER 阿星
@@ -8,11 +8,11 @@ MAINTAINER 阿星
 VOLUME /tmp
 
 # 将jar包添加到容器中,并更名
-ADD target/ax-mall-*.jar ax-mall.jar
+ADD target/ax-mall-1.1.2.jar ax-mall.jar
 
 # 运行jia 包
 RUN bash -c 'touch /ax-mall.jar'
 ENTRYPOINT ["java","-jar","/ax-mall.jar"]
 
-# 暴露端口
+# 暴露端口,需要和服务的端口一致
 EXPOSE 8090

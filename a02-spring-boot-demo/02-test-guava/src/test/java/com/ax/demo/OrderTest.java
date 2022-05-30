@@ -1,6 +1,5 @@
 package com.ax.demo;
 
-import com.ax.demo.UserInfo;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
  * @createTime 2022年03月21日 13:43:00
  */
 
-public class  OrderTest {
+public class OrderTest {
 
 
     @Test

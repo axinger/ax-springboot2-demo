@@ -19,17 +19,17 @@
 
 
     <!--mybatis-plus多表联合查询,带上${ew.customSqlSegment就可以实现查询-->
-        <select id="findByPage" resultType="com.ax.demo.entity.Emps">
-            select emps.*, department.id
-            from emps
-                     left join department
-                               on emps.deptid = department.id ${ew.customSqlSegment}
-        </select>
+    <select id="findByPage" resultType="com.ax.demo.entity.Emps">
+        select emps.*, department.id
+        from emps
+                 left join department
+                           on emps.deptid = department.id ${ew.customSqlSegment}
+    </select>
 
 
     <select id="findByPage2" resultType="com.ax.demo.entity.Emps">
         SELECT *
-        FROM (select emps.*,department.id as dId
+        FROM (select emps.*, department.id as dId
               from emps
                        left join department
                                  on emps.deptid = department.id) AS result

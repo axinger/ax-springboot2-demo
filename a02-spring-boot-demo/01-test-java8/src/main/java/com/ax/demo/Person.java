@@ -25,7 +25,6 @@ public class Person implements Comparable {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         System.out.println("equals..............");

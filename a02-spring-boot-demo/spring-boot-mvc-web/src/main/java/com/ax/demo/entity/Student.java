@@ -1,4 +1,5 @@
 package com.ax.demo.entity;
+
 import lombok.*;
 
 import java.io.Serializable;

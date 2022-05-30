@@ -15,16 +15,14 @@ public class Test1 {
 
     Role role = null;
     User user = null;
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     @BeforeEach
     public void before() {
         role = new Role(2L, "administrator", "超级管理员");
         user = new User(1L, "zhangsan", "12345", "17677778888", "123@qq.com", role);
     }
-
-
-    @Autowired
-    private UserRoleMapper userRoleMapper;
 
     @Test
     public void test() {

@@ -36,7 +36,7 @@ class FutureTaskServiceTest {
             return "All1";
         }, executor);
 
-        future1.whenComplete((v1,v2)->{
+        future1.whenComplete((v1, v2) -> {
             System.out.println("v1 = " + v1);
             System.out.println("v2 = " + v2);
         });

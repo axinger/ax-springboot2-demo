@@ -1,7 +1,6 @@
 package com.ax.demo.controller;
 
 import com.ax.demo.paramenum.GenderEnum;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

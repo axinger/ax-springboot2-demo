@@ -61,7 +61,7 @@ seata:
     type: nacos
     nacos:
       server-addr: 127.0.0.1:8848
-      group : "SEATA_GROUP"
+      group: "SEATA_GROUP"
       namespace: ""
       dataId: "seataServer.properties"
       username: "nacos"

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class CallBackTest {
 
     @Test
-    void test(){
+    void test() {
 
         Caller call = new Caller();
         call.setCallfuc(new B());

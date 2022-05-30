@@ -306,7 +306,9 @@ docker inspect 容器ID | grep IPAddress
 
 docker network inspect demo-network
 ```
+
 ### 查看同一个网络的容器
+
 ```shell
 docker network inspect demo-network
 ```
@@ -556,4 +558,4 @@ start SLAVE IO_THREAD;
 仓库名,标签都是<none>的镜像,俗称 虚悬镜像, 需要删除
 ```
 
-##  
+##   

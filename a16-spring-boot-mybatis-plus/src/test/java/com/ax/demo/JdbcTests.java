@@ -44,11 +44,12 @@ class JdbcTests {
         System.out.println("new Timestamp(32513713995L) = " + new Timestamp(32513713995000L));
 
 //        final LocalDateTime now = LocalDateTime.now();
-        LocalDate date = LocalDate.of(3000,1,1);
-        LocalTime time2 = LocalTime.of(0,0,0);
-        final LocalDateTime localDateTime =  LocalDateTime.of(date,time2);
+        LocalDate date = LocalDate.of(3000, 1, 1);
+        LocalTime time2 = LocalTime.of(0, 0, 0);
+        final LocalDateTime localDateTime = LocalDateTime.of(date, time2);
         System.out.println("Timestamp.valueOf(localDateTime) = " + Timestamp.valueOf(localDateTime));
     }
+
     //    增加用户
     @Test
     public void addUser() {
@@ -57,7 +58,7 @@ class JdbcTests {
         final Timestamp timestamp = new Timestamp(time);
         System.out.println("time = " + time);
         System.out.println("timestamp = " + timestamp);
-        final String sql = String.format("insert into t_person(name,age,data) values ('小明','12','%s')",timestamp);
+        final String sql = String.format("insert into t_person(name,age,data) values ('小明','12','%s')", timestamp);
         System.out.println("jdbcTemplate.update(sql) = " + jdbcTemplate.update(sql));
 
     }

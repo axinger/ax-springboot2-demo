@@ -5,8 +5,8 @@
 <mapper namespace="com.ax.demo.mapper.DepartmentMapper">
 
     <resultMap id="BaseResultMap" type="com.ax.demo.entity.Department">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

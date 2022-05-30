@@ -32,12 +32,12 @@ public class TestController {
 
 
     @GetMapping("/")
-    public Map<String, Object> test(){
+    public Map<String, Object> test() {
         Map<String, Object> map = new HashMap();
-        map.put("port",port);
-        map.put("active",active);
-        map.put("name",name);
-        map.put("bootName",bootName);
+        map.put("port", port);
+        map.put("active", active);
+        map.put("name", name);
+        map.put("bootName", bootName);
 
         return map;
     }

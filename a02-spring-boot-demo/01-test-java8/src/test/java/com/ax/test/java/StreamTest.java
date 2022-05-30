@@ -12,6 +12,17 @@ import java.util.stream.Stream;
 public class StreamTest {
 
 
+    public static Stream<Character> fromStringToStream(String str) {
+        List<Character> list = new ArrayList<>();
+        for (Character c : str.toCharArray()) {
+            list.add(c);
+        }
+
+
+        return list.stream();
+//        return  Arrays.asList(str.toCharArray()).stream();
+    }
+
     @Test
     void test_2_list() {
 
@@ -26,7 +37,7 @@ public class StreamTest {
                     put("name", "tom");
                     put("age", "");
                 }}
-                );
+        );
 
 
         List<Map<Object, Object>> list2 = Lists.newArrayList(
@@ -39,7 +50,6 @@ public class StreamTest {
                     put("age", "12");
                 }}
         );
-
 
 
 //        List resultList2 = list1.stream().map(m->{
@@ -56,19 +66,18 @@ public class StreamTest {
 //        resultList2.stream().forEach(s-> System.out.println(s));
 
 
-        list1.stream().forEach(m->{
+        list1.stream().forEach(m -> {
 
             final Object age = list2.stream().filter(m2 -> Objects.equals(m.get("id"), m2.get("id")))
-                    .findFirst().map(val->val.get("age")).orElse("");
+                    .findFirst().map(val -> val.get("age")).orElse("");
 
-            m.put("age",age);
+            m.put("age", age);
 
         });
 
         System.out.println("list1 = " + list1);
 
     }
-
 
     @Test
     void test_limit() {
@@ -183,7 +192,6 @@ public class StreamTest {
         System.out.println("collect2 = " + collect2);
     }
 
-
     @Test
     void test3() {
         Object[] objects = new Object[]{1, 2, 3};
@@ -284,17 +292,6 @@ public class StreamTest {
         list3.stream().flatMap(e -> e.stream()).forEach(e -> {
             System.out.println("flatMap 拍扁 e = " + e);
         });
-    }
-
-    public static Stream<Character> fromStringToStream(String str) {
-        List<Character> list = new ArrayList<>();
-        for (Character c : str.toCharArray()) {
-            list.add(c);
-        }
-
-
-        return list.stream();
-//        return  Arrays.asList(str.toCharArray()).stream();
     }
 
     @Test

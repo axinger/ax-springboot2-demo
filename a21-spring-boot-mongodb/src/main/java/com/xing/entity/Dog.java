@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document("Dog")
 @ToString(callSuper = true)
-public class Dog extends BaseMongoEntity{
+public class Dog extends BaseMongoEntity {
 
 
     @Indexed //普通索引

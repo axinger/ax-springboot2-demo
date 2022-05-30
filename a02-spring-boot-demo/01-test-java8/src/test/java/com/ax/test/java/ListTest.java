@@ -2,7 +2,6 @@ package com.ax.test.java;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -16,7 +15,7 @@ import java.util.Arrays;
 public class ListTest {
 
     @Test
-    void test1(){
+    void test1() {
 //
 //        Arrays.asList(1,2,3,4).stream().forEach(val->{
 //
@@ -29,7 +28,7 @@ public class ListTest {
         for (Integer integer : Arrays.asList(1, 2, 3, 4)) {
 
             System.out.println("val = " + integer);
-            if (integer ==2){
+            if (integer == 2) {
                 break;
             }
         }

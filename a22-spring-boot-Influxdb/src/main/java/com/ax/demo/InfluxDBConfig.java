@@ -38,7 +38,8 @@ public class InfluxDBConfig {
 
     private InfluxDB influxDB;
 
-    public InfluxDBConfig(){}
+    public InfluxDBConfig() {
+    }
 
     public InfluxDBConfig(String userName, String password, String url, String database) {
         this.userName = userName;
@@ -73,6 +74,7 @@ public class InfluxDBConfig {
 
     /**
      * 插入
+     *
      * @param measurement 表
      * @param tags        标签
      * @param fields      字段
@@ -87,13 +89,13 @@ public class InfluxDBConfig {
     }
 
     /**
-     * @desc 插入,带时间time
-     * @date 2021/3/27
-      *@param measurement
-     *@param time
-     *@param tags
-     *@param fields
+     * @param measurement
+     * @param time
+     * @param tags
+     * @param fields
      * @return void
+     * @desc 插入, 带时间time
+     * @date 2021/3/27
      */
     public void insert(String measurement, long time, Map<String, String> tags, Map<String, Object> fields) {
         influxDbBuild();
@@ -105,13 +107,13 @@ public class InfluxDBConfig {
     }
 
     /**
-     * @desc influxDB开启UDP功能,默认端口:8089,默认数据库:udp,没提供代码传数据库功能接口
-     * @date 2021/3/13
-      *@param measurement
-     *@param time
-     *@param tags
-     *@param fields
+     * @param measurement
+     * @param time
+     * @param tags
+     * @param fields
      * @return void
+     * @desc influxDB开启UDP功能, 默认端口:8089,默认数据库:udp,没提供代码传数据库功能接口
+     * @date 2021/3/13
      */
     public void insertUDP(String measurement, long time, Map<String, String> tags, Map<String, Object> fields) {
         influxDbBuild();
@@ -120,11 +122,12 @@ public class InfluxDBConfig {
         builder.tag(tags);
         builder.fields(fields);
         int udpPort = 8089;
-        influxDB.write(udpPort,  builder.build());
+        influxDB.write(udpPort, builder.build());
     }
 
     /**
      * 查询
+     *
      * @param command 查询语句
      * @return
      */
@@ -134,23 +137,23 @@ public class InfluxDBConfig {
     }
 
     /**
+     * @param queryResult
      * @desc 查询结果处理
      * @date 2021/5/12
-      *@param queryResult
      */
     public List<Map<String, Object>> queryResultProcess(QueryResult queryResult) {
         List<Map<String, Object>> mapList = new ArrayList<>();
-        List<QueryResult.Result> resultList =  queryResult.getResults();
+        List<QueryResult.Result> resultList = queryResult.getResults();
         //把查询出的结果集转换成对应的实体对象，聚合成list
-        for(QueryResult.Result query : resultList){
+        for (QueryResult.Result query : resultList) {
             List<QueryResult.Series> seriesList = query.getSeries();
-            if(seriesList != null && seriesList.size() != 0) {
-                for(QueryResult.Series series : seriesList){
+            if (seriesList != null && seriesList.size() != 0) {
+                for (QueryResult.Series series : seriesList) {
                     List<String> columns = series.getColumns();
-                    String[] keys =  columns.toArray(new String[columns.size()]);
+                    String[] keys = columns.toArray(new String[columns.size()]);
                     List<List<Object>> values = series.getValues();
-                    if(values != null && values.size() != 0) {
-                        for(List<Object> value : values){
+                    if (values != null && values.size() != 0) {
+                        for (List<Object> value : values) {
                             Map<String, Object> map = new HashMap(keys.length);
                             for (int i = 0; i < keys.length; i++) {
                                 map.put(keys[i], value.get(i));
@@ -171,9 +174,9 @@ public class InfluxDBConfig {
     public long countResultProcess(QueryResult queryResult) {
         long count = 0;
         List<Map<String, Object>> list = queryResultProcess(queryResult);
-        if(list != null && list.size() != 0) {
+        if (list != null && list.size() != 0) {
             Map<String, Object> map = list.get(0);
-            double num = (Double)map.get("count");
+            double num = (Double) map.get("count");
             count = new Double(num).longValue();
         }
         return count;
@@ -181,6 +184,7 @@ public class InfluxDBConfig {
 
     /**
      * 查询
+     *
      * @param dbName 创建数据库
      * @return
      */
@@ -202,14 +206,10 @@ public class InfluxDBConfig {
     /**
      * 批量写入数据
      *
-     * @param database
-     *            数据库
-     * @param retentionPolicy
-     *            保存策略
-     * @param consistency
-     *            一致性
-     * @param records
-     *            要保存的数据（调用BatchPoints.lineProtocol()可得到一条record）
+     * @param database        数据库
+     * @param retentionPolicy 保存策略
+     * @param consistency     一致性
+     * @param records         要保存的数据（调用BatchPoints.lineProtocol()可得到一条record）
      */
     public void batchInsert(final String database, final String retentionPolicy,
                             final InfluxDB.ConsistencyLevel consistency, final List<String> records) {
@@ -218,10 +218,10 @@ public class InfluxDBConfig {
     }
 
     /**
+     * @param consistency
+     * @param records
      * @desc 批量写入数据
      * @date 2021/3/19
-      *@param consistency
-     *@param records
      */
     public void batchInsert(final InfluxDB.ConsistencyLevel consistency, final List<String> records) {
         influxDbBuild();

@@ -19,6 +19,11 @@ import java.util.Map;
 @RequestMapping(value = "/")
 public class FileController {
 
+    @Autowired
+    private MinioUtil minioUtil;
+    @Autowired
+    private MinioConfig prop;
+
     @ApiOperation(value = "test1")
     @GetMapping("/test1")
     public Map test1() {
@@ -32,7 +37,7 @@ public class FileController {
     @ApiOperation(value = "test2")
     @GetMapping("/test2")
     public Map test2() {
-       int i = 1/0;
+        int i = 1 / 0;
 
         return new HashMap<String, Object>() {
             {
@@ -40,11 +45,6 @@ public class FileController {
             }
         };
     }
-
-    @Autowired
-    private MinioUtil minioUtil;
-    @Autowired
-    private MinioConfig prop;
 
     @ApiOperation(value = "查看存储bucket是否存在")
     @GetMapping("/bucketExists")

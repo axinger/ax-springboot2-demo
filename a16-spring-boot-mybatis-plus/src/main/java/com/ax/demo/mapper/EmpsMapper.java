@@ -8,11 +8,11 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.*;
 
 /**
-* @author xing
-* @description 针对表【emps】的数据库操作Mapper
-* @createDate 2022-04-10 00:58:13
-* @Entity com.ax.demo.domain.Emps
-*/
+ * @author xing
+ * @description 针对表【emps】的数据库操作Mapper
+ * @createDate 2022-04-10 00:58:13
+ * @Entity com.ax.demo.domain.Emps
+ */
 public interface EmpsMapper extends BaseMapper<Emps> {
 
 
@@ -20,9 +20,9 @@ public interface EmpsMapper extends BaseMapper<Emps> {
     // 这里将emp中的公寓id（deptid）作为参数，然后用com.refactor.demo.Dao.DepartmentMapper.selectById方法进行查询。
     // com.refactor.demo.Dao.DepartmentMapper.selectById是mybatisplus自动定义好，很方便。
 //    @Results(id="empdept", value =
-    @Results( value =
-    @Result(column = "deptid",property = "department",
-            one=@One(select = "com.ax.demo.mapper.DepartmentMapper.selectById"))
+    @Results(value =
+    @Result(column = "deptid", property = "department",
+            one = @One(select = "com.ax.demo.mapper.DepartmentMapper.selectById"))
     )
     @Select("select * from emps where id=#{id}")
     Emps getEmployeeandDepartment(Integer id);
@@ -30,6 +30,7 @@ public interface EmpsMapper extends BaseMapper<Emps> {
 
     /**
      * mybatis-plus多表查询
+     *
      * @param page
      * @param wrapper
      * @return

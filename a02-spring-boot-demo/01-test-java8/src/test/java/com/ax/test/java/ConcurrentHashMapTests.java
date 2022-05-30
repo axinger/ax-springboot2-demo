@@ -2,8 +2,9 @@ package com.ax.test.java;
 
 import org.springframework.util.StopWatch;
 
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.LongAdder;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author xing
@@ -37,7 +38,7 @@ public class ConcurrentHashMapTests {
             Long finalI = i;
             pool.execute(() -> {
                 String key = String.valueOf(finalI);
-                map.computeIfAbsent(key, k ->String.valueOf(finalI));
+                map.computeIfAbsent(key, k -> String.valueOf(finalI));
             });// 开启20个线程
         }
 

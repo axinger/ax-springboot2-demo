@@ -56,26 +56,26 @@ public class IotDBSessionConfig {
         }
     }
 
-    public List<  Map<String, Object>> executeQuery(String sql) {
+    public List<Map<String, Object>> executeQuery(String sql) {
 
         SessionDataSetWrapper wrapper = null;
         try {
             wrapper = sessionPool().executeQueryStatement(sql);
             final List<String> columnNames = wrapper.getColumnNames();
 
-            List<  Map<String, Object>> list = new ArrayList();
+            List<Map<String, Object>> list = new ArrayList();
             while (wrapper.hasNext()) {
                 Map<String, Object> map = new HashMap<>();
                 list.add(map);
 
                 final List<Field> fields = wrapper.next().getFields();
-                if (columnNames.size() >fields.size()) {
+                if (columnNames.size() > fields.size()) {
                     for (int i = 0; i < columnNames.size() - 1; i++) {
-                        map.put(columnNames.get(i + 1),fields.get((i)));
+                        map.put(columnNames.get(i + 1), fields.get((i)));
                     }
                 } else if (columnNames.size() == fields.size()) {
                     for (int i = 0; i < columnNames.size(); i++) {
-                        map.put(columnNames.get(i),fields.get((i)));
+                        map.put(columnNames.get(i), fields.get((i)));
                     }
                 }
             }

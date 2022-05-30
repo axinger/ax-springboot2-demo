@@ -12,7 +12,7 @@ import java.util.Map;
  * @author xing
  * @date 2022/3/18 13:05
  */
-public class  CronTask {
+public class CronTask {
     /**
      * 任务名称
      */

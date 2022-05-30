@@ -1,13 +1,9 @@
 package com.ax.demo;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,16 +18,16 @@ public class PreconditionsTests {
 
 
     @Test
-    void test1(){
+    void test1() {
 
-       List list = new ArrayList();
+        List list = new ArrayList();
         list.add("a");
 
 //        System.out.println("checkElementIndex = " + Preconditions.checkElementIndex(1, list.size(), "越界"));
 
         System.out.println("list = " + list);
 
-        System.out.println("返回不为空的 = " + MoreObjects.firstNonNull(null,1));
+        System.out.println("返回不为空的 = " + MoreObjects.firstNonNull(null, 1));
         System.out.println("MoreObjects.toStringHelper(UserInfo.class) = " + MoreObjects.toStringHelper(UserInfo.class));
 
 

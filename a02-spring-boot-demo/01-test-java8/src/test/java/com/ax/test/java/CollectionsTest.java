@@ -41,17 +41,17 @@ public class CollectionsTest {
 
 
     @Test
-    void test_map(){
+    void test_map() {
 
         Map<String, Object> map = new HashMap<>();
 
-        map.put("a",1);
-        map.put("b",2);
-        map.put("c",3);
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
 
         System.out.println("map.entrySet() = " + map.entrySet());
 
-        map.entrySet().parallelStream().forEach(val->{
+        map.entrySet().parallelStream().forEach(val -> {
 
             System.out.println("val.getKey() = " + val.getKey());
             System.out.println("val.getValue() = " + val.getValue());

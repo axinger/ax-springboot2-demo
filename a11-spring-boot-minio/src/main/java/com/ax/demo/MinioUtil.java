@@ -85,7 +85,7 @@ public class MinioUtil {
     public List<String> getAllBuckets() {
         try {
             List<Bucket> buckets = minioClient.listBuckets();
-            return  buckets.stream().map(val->val.name()).collect(Collectors.toList());
+            return buckets.stream().map(val -> val.name()).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
         }

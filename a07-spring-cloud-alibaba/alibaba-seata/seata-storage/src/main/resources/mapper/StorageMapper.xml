@@ -5,11 +5,11 @@
 <mapper namespace="com.ax.seata.mapper.StorageMapper">
 
     <resultMap id="BaseResultMap" type="com.ax.seata.domain.Storage">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="productId" column="product_id" jdbcType="BIGINT"/>
-            <result property="total" column="total" jdbcType="INTEGER"/>
-            <result property="used" column="used" jdbcType="INTEGER"/>
-            <result property="residue" column="residue" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="productId" column="product_id" jdbcType="BIGINT"/>
+        <result property="total" column="total" jdbcType="INTEGER"/>
+        <result property="used" column="used" jdbcType="INTEGER"/>
+        <result property="residue" column="residue" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">

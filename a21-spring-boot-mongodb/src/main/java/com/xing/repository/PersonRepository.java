@@ -15,5 +15,5 @@ public interface PersonRepository extends MongoRepository<Person, String> {
 
     List<Person> findListByName(String name);
 
-     List<Person> findByNameLike(String name);
+    List<Person> findByNameLike(String name);
 }

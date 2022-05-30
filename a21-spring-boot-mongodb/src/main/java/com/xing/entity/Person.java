@@ -1,10 +1,7 @@
 package com.xing.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document("Person")
 @ToString(callSuper = true)
-public class Person extends BaseMongoEntity{
+public class Person extends BaseMongoEntity {
 
 
     @Indexed //普通索引

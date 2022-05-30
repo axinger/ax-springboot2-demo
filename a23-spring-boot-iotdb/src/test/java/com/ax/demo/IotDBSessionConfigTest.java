@@ -3,7 +3,6 @@ package com.ax.demo;
 import org.apache.iotdb.rpc.IoTDBConnectionException;
 import org.apache.iotdb.rpc.StatementExecutionException;
 import org.apache.iotdb.session.Session;
-import org.apache.iotdb.session.SessionDataSet;
 import org.apache.iotdb.session.pool.SessionDataSetWrapper;
 import org.apache.iotdb.session.pool.SessionPool;
 import org.apache.iotdb.tsfile.file.metadata.enums.TSDataType;
@@ -14,8 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +23,8 @@ class IotDBSessionConfigTest {
 
     @Autowired
     private IotDBSessionConfig iotDBSessionConfig;
-
+    @Autowired
+    private SessionPool sessionPool;
 
     @Test
     void test() {
@@ -72,24 +70,24 @@ class IotDBSessionConfigTest {
 
 //            long currentTime = LocalDateTime.now().toInstant(ZoneOffset.UTC).getNano();
 //            times.add((long) LocalDateTime.now().toInstant(ZoneOffset.UTC).getNano());
-            times.add(System.currentTimeMillis());
+        times.add(System.currentTimeMillis());
 
-            List<String> iotMeasurements = new ArrayList<>();
-            iotMeasurements.add("machinesOnline");
-            iotMeasurements.add("status");
+        List<String> iotMeasurements = new ArrayList<>();
+        iotMeasurements.add("machinesOnline");
+        iotMeasurements.add("status");
 
-            measurementsList.add(iotMeasurements);
+        measurementsList.add(iotMeasurements);
 
 
-            List<TSDataType> types = new ArrayList<>();
-            types.add(TSDataType.TEXT);
-            types.add(TSDataType.TEXT);
-            typesList.add(types);
+        List<TSDataType> types = new ArrayList<>();
+        types.add(TSDataType.TEXT);
+        types.add(TSDataType.TEXT);
+        typesList.add(types);
 
-            List<Object> iotValues = new ArrayList<>();
-            iotValues.add(String.valueOf(1));
-            iotValues.add(String.valueOf(1));
-            valuesList.add(iotValues);
+        List<Object> iotValues = new ArrayList<>();
+        iotValues.add(String.valueOf(1));
+        iotValues.add(String.valueOf(1));
+        valuesList.add(iotValues);
 
 
 //        }
@@ -102,12 +100,10 @@ class IotDBSessionConfigTest {
                 valuesList);
 
 
-
-
     }
 
     @Test
-    void test3(){
+    void test3() {
         List<String> iotMeasurements2 = new ArrayList<>();
         iotMeasurements2.add("machinesOnline");
         iotMeasurements2.add("status");
@@ -118,25 +114,23 @@ class IotDBSessionConfigTest {
         iotValues2.add(String.valueOf(1));
 
         iotDBSessionConfig.insertRecord("root.cepai.CP109_1"
-                ,System.currentTimeMillis(),
+                , System.currentTimeMillis(),
                 iotMeasurements2,
                 iotValues2
 
         );
     }
-    @Autowired
-    private SessionPool sessionPool;
-
 
     @Test
-    void test_sessionPool_last_value()  {
+    void test_sessionPool_last_value() {
 
-        final  List<  Map<String, Object>> map = iotDBSessionConfig.executeQuery("select last_value(status) from root.cepai.CP109_1");
+        final List<Map<String, Object>> map = iotDBSessionConfig.executeQuery("select last_value(status) from root.cepai.CP109_1");
 
         System.out.println("map = " + map);
     }
+
     @Test
-    void test_sessionPool()  {
+    void test_sessionPool() {
 
 
         SessionDataSetWrapper wrapper = null;
@@ -144,10 +138,10 @@ class IotDBSessionConfigTest {
             wrapper = sessionPool.executeQueryStatement("select * from root.cepai.CP109_1");
 
             final List<String> columnNames = wrapper.getColumnNames();
-            Map<String,Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             while (wrapper.hasNext()) {
-                for (int i = 0; i < columnNames.size()-1; i++) {
-                    map.put(columnNames.get(i+1),wrapper.next().getFields().get((i)));
+                for (int i = 0; i < columnNames.size() - 1; i++) {
+                    map.put(columnNames.get(i + 1), wrapper.next().getFields().get((i)));
                 }
             }
             System.out.println("map = " + map);
@@ -163,7 +157,7 @@ class IotDBSessionConfigTest {
     }
 
     @Test
-    void test_sessionPool_44()  {
+    void test_sessionPool_44() {
 
 
         SessionDataSetWrapper wrapper = null;
@@ -172,19 +166,20 @@ class IotDBSessionConfigTest {
 
             final List<String> columnNames = wrapper.getColumnNames();
 
-            List list = new ArrayList();;
+            List list = new ArrayList();
+            ;
             while (wrapper.hasNext()) {
 
-                Map<String,Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>();
                 list.add(map);
 
                 final List<Field> fields = wrapper.next().getFields();
 
-                if (columnNames.size() >fields.size()) {
+                if (columnNames.size() > fields.size()) {
 
                     System.out.println("不相同");
                     for (int i = 0; i < columnNames.size() - 1; i++) {
-                        map.put(columnNames.get(i + 1),fields.get((i)));
+                        map.put(columnNames.get(i + 1), fields.get((i)));
                     }
 
                 } else if (columnNames.size() == fields.size()) {
@@ -192,9 +187,9 @@ class IotDBSessionConfigTest {
                     System.out.println("相同");
 
                     for (int i = 0; i < columnNames.size(); i++) {
-                        map.put(columnNames.get(i),fields.get((i)));
+                        map.put(columnNames.get(i), fields.get((i)));
                     }
-                }else {
+                } else {
                     System.out.println("相同========");
                 }
 

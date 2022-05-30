@@ -19,14 +19,14 @@ import java.util.Map;
 public class SplitterTest {
 
     @Test
-    void test1(){
-String str = "1,2,3,4,5";
+    void test1() {
+        String str = "1,2,3,4,5";
         List<String> list = Splitter.on("-").omitEmptyStrings().trimResults().splitToList(str);
 
 
         Map<String, Object> valMap = new HashMap(1);
-        valMap.put("na",1);
-        if (valMap.size()<1){
+        valMap.put("na", 1);
+        if (valMap.size() < 1) {
             System.out.println("长度不够");
         }
 

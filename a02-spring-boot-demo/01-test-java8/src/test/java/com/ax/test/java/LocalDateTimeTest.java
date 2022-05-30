@@ -8,12 +8,15 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LocalDateTimeTest {
 
     @Test
-    void test_LocalDateTime_mix(){
+    void test_LocalDateTime_mix() {
 
 //        System.out.println("LocalDateTime.now().with(LocalDate.MIN) = " + LocalDateTime.now().with(LocalTime.MIN));
 
@@ -39,7 +42,7 @@ public class LocalDateTimeTest {
         System.out.println("format = " + format);
 
         //当天零点
-        LocalDateTime.of(LocalDate.now(),LocalTime.MIN).toEpochSecond(OffsetDateTime.now().getOffset());
+        LocalDateTime.of(LocalDate.now(), LocalTime.MIN).toEpochSecond(OffsetDateTime.now().getOffset());
 
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss.SSSSSSSSS");
@@ -51,7 +54,6 @@ public class LocalDateTimeTest {
 
         System.out.println(when);
     }
-
 
 
     @Test
@@ -225,27 +227,25 @@ public class LocalDateTimeTest {
     }
 
     @Test
-    void data_json(){
+    void data_json() {
 
-        Map map = new HashMap();;
-        map.put("createDate",LocalDateTime.now());
+        Map map = new HashMap();
+        ;
+        map.put("createDate", LocalDateTime.now());
 
 
         final Map<String, Object> map2 = JSON.parseObject(JSON.toJSONString(map), Map.class);
 
         System.out.println("map2 = " + map2);
 
-        LocalDateTime localDateTime =  LocalDateTime.parse((String)map2.get("createDate"),DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        LocalDateTime localDateTime = LocalDateTime.parse((String) map2.get("createDate"), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         System.out.println("localDateTime = " + localDateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli());
 
 
-        LocalDateTime localDateTime2 =  LocalDateTime.parse("2022-05-21T17:45:24.381",DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        LocalDateTime localDateTime2 = LocalDateTime.parse("2022-05-21T17:45:24.381", DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         System.out.println("localDateTime = " + localDateTime2.toInstant(ZoneOffset.of("+8")).toEpochMilli());
-
-
-
 
 
     }

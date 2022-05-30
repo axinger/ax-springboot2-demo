@@ -4,6 +4,8 @@ import com.ax.demo.dto.StudentDto;
 import com.ax.demo.entity.Student;
 import com.ax.demo.helloword.Injection;
 import com.ax.demo.model.TPerson;
+import com.google.common.collect.Lists;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -20,20 +22,37 @@ import java.util.Map;
  */
 
 @Data
+@Builder
 class TestEntity {
 
     String string;
-    List list;
+    String string2;
+    List<String> list;
+    List<String> list2;
     Map map;
+    Map map2;
     Boolean aBoolean;
+    Boolean aBoolean2;
 }
 
 @RestController
 public class TestController {
 
+    @Autowired
+    private TPerson person;
+    @Autowired
+    private Injection injection;
+
     @RequestMapping(value = "/null")
     public Object testnull() {
-        return new TestEntity();
+        return TestEntity.builder()
+                .string2("jim")
+                .list2(Lists.newArrayList("a", "b"))
+                .map2(new HashMap<String, Object>() {{
+                    put("age", 10);
+                }})
+                .aBoolean2(true)
+                .build();
 
 //        Map<String, Object> map = new HashMap<>(2);
 //
@@ -41,12 +60,6 @@ public class TestController {
 //
 //        return map;
     }
-
-
-    @Autowired
-    private TPerson person;
-    @Autowired
-    private Injection injection;
 
     @RequestMapping(value = "/test0", produces = "application/json;charset=UTF-8")
     public Object test(

@@ -8,12 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -26,6 +30,8 @@ class A21SpringBootMongodbApplicationTests {
 
     @Autowired
     private DogRepository dogRepository;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Test
     void save() {
@@ -85,19 +91,14 @@ class A21SpringBootMongodbApplicationTests {
         System.out.println("list = " + list);
     }
 
-
-    @Autowired
-    private MongoTemplate mongoTemplate;
-
-
     @Test
     void save_dog() {
 
         for (int i = 0; i < 5; i++) {
             Dog dog = new Dog();
-            if (i%2==0){
-                dog.setName("name"+i);
-                dog.setAddress("address"+i);
+            if (i % 2 == 0) {
+                dog.setName("name" + i);
+                dog.setAddress("address" + i);
             }
             dog.setAge(i);
             final Dog save = mongoTemplate.save(dog);
@@ -152,7 +153,7 @@ class A21SpringBootMongodbApplicationTests {
         log.info("分页参数 = {},isPaged = {}, isUnpaged = {}", pageable.getPageNumber(),
                 pageable.isPaged(),
                 pageable.isUnpaged()
-                );
+        );
 
 
 //        query.fields().include("name").include("status")
@@ -171,7 +172,7 @@ class A21SpringBootMongodbApplicationTests {
 
 
         /// 不能同时为空
-        query.addCriteria(new Criteria ().orOperator(
+        query.addCriteria(new Criteria().orOperator(
                 Criteria.where("name").exists(true),
                 Criteria.where("address").exists(true)
         ));
@@ -184,7 +185,7 @@ class A21SpringBootMongodbApplicationTests {
         long total = mongoTemplate.count(query, Dog.class);
         System.out.println("total = " + total);
         final List<Dog> dogList = mongoTemplate.find(query, Dog.class);
-        dogList.forEach(varl-> System.out.println("getName = " + varl.getName()+" getAddress = "+varl.getAddress()));
+        dogList.forEach(varl -> System.out.println("getName = " + varl.getName() + " getAddress = " + varl.getAddress()));
     }
 
     @Test
@@ -192,10 +193,10 @@ class A21SpringBootMongodbApplicationTests {
 
         Query query = new Query();
 
-        query.addCriteria( Criteria.where("age").is(4));
+        query.addCriteria(Criteria.where("age").is(4));
 
         /// 不能同时为空
-        query.addCriteria(new Criteria ().orOperator(
+        query.addCriteria(new Criteria().orOperator(
                 Criteria.where("name").exists(true),
                 Criteria.where("address").exists(true)
         ));
@@ -207,17 +208,17 @@ class A21SpringBootMongodbApplicationTests {
         long total = mongoTemplate.count(query, Dog.class);
         System.out.println("total = " + total);
         final List<Dog> dogList = mongoTemplate.find(query, Dog.class);
-        dogList.forEach(varl-> System.out.println("age = "+varl.getAge()+"getName = " + varl.getName()+" getAddress = "+varl.getAddress()));
+        dogList.forEach(varl -> System.out.println("age = " + varl.getAge() + "getName = " + varl.getName() + " getAddress = " + varl.getAddress()));
     }
 
     @Test
-    void test1(){
-List list = Arrays.asList(1,4,2);
+    void test1() {
+        List list = Arrays.asList(1, 4, 2);
 
 //        list.stream().sorted(Comparator.reverseOrder()).forEach(val-> System.out.println("val = " + val));
 
 //        list.stream().sorted(Comparator.reverse).forEach(val-> System.out.println("val = " + val));
-        list.stream().forEachOrdered(val-> System.out.println("val = " + val));
+        list.stream().forEachOrdered(val -> System.out.println("val = " + val));
 //        Collections.reverse(list);list.forEach(val-> System.out.println("val = " + val));
     }
 }

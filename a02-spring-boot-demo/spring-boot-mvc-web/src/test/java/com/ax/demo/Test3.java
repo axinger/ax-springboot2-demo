@@ -1,11 +1,8 @@
 package com.ax.demo;
 
-import cn.hutool.http.HttpUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 public class Test3 {
