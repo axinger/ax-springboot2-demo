@@ -3,6 +3,7 @@ package com.ax.test.java;
 
 import com.ax.demo.Person;
 import com.google.common.collect.Lists;
+import lombok.val;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -139,6 +140,16 @@ public class StreamTest {
         final Integer integer = list.stream().findFirst().orElse(-1);
 
         System.out.println("integer = " + integer);
+
+        List<Integer> list2 = null;
+        list2 = Lists.newArrayList(1);
+        final Integer val = Optional.ofNullable(list2).orElse(new ArrayList<>()).stream().findFirst().orElse(-1);
+        System.out.println("val = " + val);
+
+        //判空查找指定位置元素
+        list2 = Lists.newArrayList(1,2,3,4);
+        final Integer s2 = Optional.ofNullable(list2).orElse(new ArrayList<>()).stream().skip(2).findFirst().orElse(-1);
+        System.out.println("s2 = " + s2);
 
     }
 

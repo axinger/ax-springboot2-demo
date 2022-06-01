@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Stream;
 
 public class OptionalTest {
-
 
     @Test
     public void test_list() {
@@ -20,6 +20,7 @@ public class OptionalTest {
 
 
         // 为指定的值创建一个Optional，如果指定的值为null，则返回一个空的Optional。
+        /// 用stream试一试
         Optional.ofNullable(list).map(List::size).filter(val -> {
 
             System.out.println("filter val = " + val);
@@ -33,6 +34,7 @@ public class OptionalTest {
         });
         System.out.println("value = " + value.getClass());
         System.out.println("value = " + value.get());
+
 
 
     }
