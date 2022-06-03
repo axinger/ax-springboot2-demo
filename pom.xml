@@ -68,6 +68,7 @@
         <module>a21-spring-boot-mongodb</module>
         <module>a22-spring-boot-Influxdb</module>
         <module>a23-spring-boot-iotdb</module>
+        <module>a24-oauth2-client</module>
     </modules>
 
     <dependencies>
