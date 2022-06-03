@@ -30,6 +30,8 @@
         <module>03-test-hutool</module>
         <module>demo-mapstruct</module>
         <module>04-web-json</module>
+        <module>05-jdk11-b</module>
+        <module>05-jdk11</module>
     </modules>
 
 </project>

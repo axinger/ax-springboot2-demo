@@ -13,6 +13,16 @@ import java.util.stream.Stream;
 public class StreamTest {
 
 
+
+    @Test
+    void Optional_null(){
+
+        List listNull = null;
+        Optional.ofNullable(listNull)
+                .orElse(new ArrayList<>())
+                .stream()
+                .forEach(val-> System.out.println("Optional 和 Stream val = " + val));
+    }
     public static Stream<Character> fromStringToStream(String str) {
         List<Character> list = new ArrayList<>();
         for (Character c : str.toCharArray()) {
