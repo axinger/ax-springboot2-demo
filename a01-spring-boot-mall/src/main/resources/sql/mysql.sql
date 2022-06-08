@@ -1,4 +1,5 @@
-# 创建ip登录信息
+#
+创建ip登录信息
 CREATE TABLE t_ip_log
 (
     id           BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',
@@ -11,7 +12,8 @@ CREATE TABLE t_ip_log
 ) COMMENT ='ip登录信息';
 
 
-# 创建用户信息
+#
+创建用户信息
 CREATE TABLE t_user_info
 (
     id        BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',
@@ -21,7 +23,8 @@ CREATE TABLE t_user_info
 ) COMMENT ='用户信息';
 
 
-# 创建用户角色
+#
+创建用户角色
 CREATE TABLE t_user_role
 (
     id        BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',
@@ -29,7 +32,8 @@ CREATE TABLE t_user_role
     user_id   TINYINT COMMENT '关联User表id'
 ) COMMENT ='角色信息';
 
-# 创建学生信息
+#
+创建学生信息
 CREATE TABLE t_student
 (
     id      BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',

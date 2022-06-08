@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.ax</groupId>
+        <groupId>com.axing</groupId>
         <artifactId>ax-spring-boot-demo</artifactId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <version>0.0.1-SNAPSHOT</version>
-    <artifactId>a16-spring-boot-mybatis-plus-plus</artifactId>
+    <artifactId>a16-spring-boot-mybatis-plus</artifactId>
 
 
     <dependencies>

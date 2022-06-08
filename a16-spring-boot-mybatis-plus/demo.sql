@@ -1,10 +1,13 @@
-CREATE DATABASE
+CREATE
+DATABASE
     IF
     NOT EXISTS `ax_test` CHARACTER
     SET utf8;
-USE `ax_test`;
+USE
+`ax_test`;
 SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET
+FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for department
@@ -131,4 +134,5 @@ INSERT INTO `user`
 VALUES (4, 'lili', 23, 1);
 COMMIT;
 
-SET FOREIGN_KEY_CHECKS = 1;
+SET
+FOREIGN_KEY_CHECKS = 1;

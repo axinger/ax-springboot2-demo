@@ -13,7 +13,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,product_id,total,
+        id
+        ,product_id,total,
         used,residue
     </sql>
 

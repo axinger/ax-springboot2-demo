@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @SpringBootTest
 @Slf4j
@@ -29,10 +26,10 @@ class PersonServiceTest {
         Person person = new Person();
         person.setName("jim");
         person.setAge(20);
-        person.setData(new Date());
-//        person.setTime();
-
-        person.setTime(Timestamp.valueOf(LocalDateTime.now()));
+//        person.setData(new Date());
+////        person.setTime();
+//
+//        person.setTime(Timestamp.valueOf(LocalDateTime.now()));
         personService.save(person);
     }
 

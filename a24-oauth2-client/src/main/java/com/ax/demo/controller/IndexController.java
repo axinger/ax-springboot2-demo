@@ -2,7 +2,6 @@ package com.ax.demo.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,7 @@ public class IndexController {
      */
     @GetMapping("/gitee")
     public Map<String, Object> foo(@RegisteredOAuth2AuthorizedClient
-                                           OAuth2AuthorizedClient giteeOauth2client) {
+                                   OAuth2AuthorizedClient giteeOauth2client) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> map = new HashMap<>(2);
         map.put("giteeOauth2client", giteeOauth2client);
@@ -48,6 +47,7 @@ public class IndexController {
 
     /**
      * 获得当前用户的授权信息
+     *
      * @return
      */
     @GetMapping("/info")

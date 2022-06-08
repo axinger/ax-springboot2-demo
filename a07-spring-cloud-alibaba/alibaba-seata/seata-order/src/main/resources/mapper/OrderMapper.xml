@@ -14,7 +14,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_id,product_id,
+        id
+        ,user_id,product_id,
         count,money,status
     </sql>
 

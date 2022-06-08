@@ -107,8 +107,12 @@ public class MinioUtil {
         String fileName = IdUtil.fastUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
         String objectName = fileName;
         try {
-            PutObjectArgs objectArgs = PutObjectArgs.builder().bucket(minioConfig.getBucketName()).object(objectName)
-                    .stream(file.getInputStream(), file.getSize(), -1).contentType(file.getContentType()).build();
+            PutObjectArgs objectArgs = PutObjectArgs.builder()
+                    .bucket(minioConfig.getBucketName())
+                    .object(objectName)
+                    .stream(file.getInputStream(), file.getSize(), -1)
+                    .contentType(file.getContentType())
+                    .build();
             //文件名称相同会覆盖
             minioClient.putObject(objectArgs);
         } catch (Exception e) {

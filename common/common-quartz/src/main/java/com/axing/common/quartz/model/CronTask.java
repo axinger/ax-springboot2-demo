@@ -2,7 +2,6 @@ package com.axing.common.quartz.model;
 
 import lombok.Data;
 import org.quartz.Job;
-import org.springframework.data.annotation.Transient;
 
 import java.util.Map;
 
@@ -61,6 +60,5 @@ public class CronTask {
     /**
      * 参数的map
      */
-    @Transient
-    private Map<String, Object> parameterMap;
+    private transient Map<String, Object> parameterMap;
 }

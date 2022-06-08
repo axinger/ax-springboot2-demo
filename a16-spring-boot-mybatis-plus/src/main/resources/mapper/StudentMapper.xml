@@ -13,7 +13,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,age,
+        id
+        ,name,age,
         sex,address
     </sql>
 </mapper>

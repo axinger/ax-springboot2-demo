@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: admin-server # 给client应用取个名字
+  jackson:
+    serialization:
+      indent_output: true
+
+logging:
+  file:
+    path: ./.logs/${spring.application.name}
+
+endpoints:
+  health:
+    sensitive: false
+

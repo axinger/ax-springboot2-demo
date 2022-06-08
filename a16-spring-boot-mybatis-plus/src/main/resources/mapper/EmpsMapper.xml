@@ -5,36 +5,15 @@
 <mapper namespace="com.ax.demo.mapper.EmpsMapper">
 
     <resultMap id="BaseResultMap" type="com.ax.demo.entity.Emps">
-        <id property="id" column="id" jdbcType="BIGINT"/>
-        <result property="lastname" column="lastName" jdbcType="VARCHAR"/>
-        <result property="email" column="email" jdbcType="VARCHAR"/>
-        <result property="gender" column="gender" jdbcType="INTEGER"/>
-        <result property="deptid" column="deptid" jdbcType="INTEGER"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="lastName" column="last_name" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="INTEGER"/>
+            <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,lastName,email,
-        gender,deptid
+        id,last_name,email,
+        gender,dept_id
     </sql>
-
-
-    <!--mybatis-plus多表联合查询,带上${ew.customSqlSegment就可以实现查询-->
-    <select id="findByPage" resultType="com.ax.demo.entity.Emps">
-        select emps.*, department.id
-        from emps
-                 left join department
-                           on emps.deptid = department.id ${ew.customSqlSegment}
-    </select>
-
-
-    <select id="findByPage2" resultType="com.ax.demo.entity.Emps">
-        SELECT *
-        FROM (select emps.*, department.id as dId
-              from emps
-                       left join department
-                                 on emps.deptid = department.id) AS result
-            ${ew.customSqlSegment}
-    </select>
-
-
 </mapper>

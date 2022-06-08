@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>ax-spring-boot-demo</artifactId>
-        <groupId>com.ax</groupId>
+        <groupId>com.axing</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <artifactId>a17-spring-boot-customize-starter</artifactId>
-
+    <artifactId>spring-boot-axing-starter</artifactId>
+    <name>阿星自定义启动</name>
     <modules>
-        <module>ax-hello-spring-boot-starter</module>
-        <module>ax-hello-spring-boot-starter-autoconfigure</module>
+        <module>spring-boot-axing-starter</module>
+        <module>spring-boot-axing-starter-autoconfigure</module>
     </modules>
 
 </project>

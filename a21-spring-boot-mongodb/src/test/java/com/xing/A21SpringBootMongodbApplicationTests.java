@@ -1,5 +1,6 @@
 package com.xing;
 
+import com.mongodb.BasicDBObject;
 import com.xing.entity.Dog;
 import com.xing.entity.Person;
 import com.xing.repository.DogRepository;
@@ -13,11 +14,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.LookupOperation;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
+import org.springframework.data.mongodb.core.aggregation.SortOperation;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @Slf4j
@@ -171,7 +178,7 @@ class A21SpringBootMongodbApplicationTests {
         Query query = new Query();
 
 
-        /// 不能同时为空
+        /// 添加判断: 不能同时为空
         query.addCriteria(new Criteria().orOperator(
                 Criteria.where("name").exists(true),
                 Criteria.where("address").exists(true)
@@ -195,7 +202,7 @@ class A21SpringBootMongodbApplicationTests {
 
         query.addCriteria(Criteria.where("age").is(4));
 
-        /// 不能同时为空
+        /// 条件判断,不能同时为空
         query.addCriteria(new Criteria().orOperator(
                 Criteria.where("name").exists(true),
                 Criteria.where("address").exists(true)
@@ -220,5 +227,42 @@ class A21SpringBootMongodbApplicationTests {
 //        list.stream().sorted(Comparator.reverse).forEach(val-> System.out.println("val = " + val));
         list.stream().forEachOrdered(val -> System.out.println("val = " + val));
 //        Collections.reverse(list);list.forEach(val-> System.out.println("val = " + val));
+    }
+
+    @Test
+    void test2() {
+        BasicDBObject dbObject = new BasicDBObject();
+        dbObject.put("id", "1");
+        dbObject.put("name", "jim");
+
+        //指定返回的字段
+        BasicDBObject fieldsObject = new BasicDBObject();
+        fieldsObject.put("id", true);
+        fieldsObject.put("name", true);
+        fieldsObject.put("age", true);
+        Query query = new BasicQuery(dbObject.toJson(), fieldsObject.toJson());
+
+        List<Person> list = mongoTemplate.find(query, Person.class, "collectionName");
+
+    }
+
+
+    @Test
+    public void getLeaveMessage() {
+
+        String postId = "1";   //帖子id
+        LookupOperation lookupOperation = LookupOperation.newLookup()
+                .from("DirectTrainPostLeaveMessageComment")   //从表名
+                .localField("_id")   //主表关联字段
+                .foreignField("leaveId")   //从表关联字段
+                .as("CommentList");   //查询结果名
+        //匹配id条件
+        MatchOperation matchOperation = new MatchOperation(Criteria.where("postId").is(postId));
+        //按回帖时间排序
+        SortOperation sortOperation = new SortOperation(Sort.by(Sort.Order.desc("leaveMessageTime")));
+        Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
+        List<Map> result = mongoTemplate.aggregate(aggregation, "DirectTrainPostLeaveMessage", Map.class).getMappedResults();
+
+
     }
 }

@@ -4,7 +4,7 @@
 
     <parent>
         <artifactId>ax-spring-boot-demo</artifactId>
-        <groupId>com.ax</groupId>
+        <groupId>com.axing</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -104,10 +104,7 @@
         </dependency>
 
         <!--fastjson-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
+
 
         <!--freemarker-->
         <!--        <dependency>-->
