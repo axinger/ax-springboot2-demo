@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <artifactId>spring-boot-axing-starter</artifactId>
+    <artifactId>a17-spring-boot-customize-starter</artifactId>
     <name>阿星自定义启动</name>
     <modules>
         <module>spring-boot-axing-starter</module>

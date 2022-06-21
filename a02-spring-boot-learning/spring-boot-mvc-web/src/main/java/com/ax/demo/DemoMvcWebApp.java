@@ -19,10 +19,10 @@ import java.util.Map;
  */
 @SpringBootApplication
 @EnableAsync
-public class MvcWebApplication {
+public class DemoMvcWebApp {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext run = SpringApplication.run(MvcWebApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(DemoMvcWebApp.class, args);
 
         String[] names = run.getBeanDefinitionNames();
         for (String name : names) {

@@ -12,6 +12,31 @@ import java.util.stream.Stream;
 public class StreamTest {
 
 
+    //map排序
+    @Test
+    void test_map() {
+//        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new LinkedHashMap();
+        map.put("3", "c");
+        map.put("1", "a");
+        map.put("2", "b");
+
+
+        System.out.println("map = " + map);
+
+        // 按值排序 升序
+        Map<String, Object> sorted = map
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(
+                        Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                (oldVal, newVal) -> oldVal,
+                                LinkedHashMap::new)
+                );
+        System.out.println("升序按值排序后的map: " + sorted);
+    }
+
     @Test
     void Optional_null() {
 

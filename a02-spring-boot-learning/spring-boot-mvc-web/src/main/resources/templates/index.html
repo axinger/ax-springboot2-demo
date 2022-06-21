@@ -64,6 +64,10 @@
     <button class="btn btn-lg btn-primary btn-block" id="registerBtn">注册</button>
 </div>
 
+<div>
+    <button class="btn" id="testBtn1">测试按钮</button>
+</div>
+
 
 </body>
 
@@ -72,6 +76,22 @@
     var port = window.location.port;
 
     document.getElementById('h2-3').innerText = "js端口号:" + port;
+
+    $('#testBtn1').click(function () {
+        alert('测试按钮')
+
+        $.ajax({
+            dataType: "json",
+            type: "get",
+            url: "/ip1",
+            async: false,
+            success: function (data) {
+                //返回值
+                console.log('data = ' + data)
+            },
+        });
+    })
+
 
 </script>
 

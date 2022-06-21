@@ -1,6 +1,6 @@
 package com.ax.demo;
 
-import com.ax.demo.controller.JUCController;
+import com.ax.demo.controller.JucController;
 import com.ax.demo.juc.FutureTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -15,11 +15,11 @@ import java.util.function.Supplier;
 
 @SpringBootTest
 @Slf4j
-public class JUCControllerTests {
+public class JucControllerTests {
     @Autowired
     FutureTaskService taskService;
     @Autowired
-    private JUCController jucController;
+    private JucController jucController;
 
     @Test
     void test1() {

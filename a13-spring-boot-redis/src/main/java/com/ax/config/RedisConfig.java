@@ -73,15 +73,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         return jackson2JsonRedisSerializer;
     }
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager() throws SQLException {
-//        return new DataSourceTransactionManaerr(dataSource()); // 3
-//    }
-//
-//    @Bean
-//    public DataSource dataSource() throws SQLException {
-//
-//
-//    }
+    
 }
 

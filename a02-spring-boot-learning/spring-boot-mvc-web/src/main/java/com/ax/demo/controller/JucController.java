@@ -13,7 +13,7 @@ import java.util.concurrent.Future;
 
 @RestController
 @Slf4j
-public class JUCController {
+public class JucController {
     @Autowired
     FutureTaskService taskService;
 

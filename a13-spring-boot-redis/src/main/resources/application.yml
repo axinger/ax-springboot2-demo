@@ -7,7 +7,7 @@ server:
 spring:
   redis:
     host: 47.101.156.93 # Redis服务器地址
-    password: AXing#631122 # Redis服务器连接密码（默认为空）
+    #    password: AXing#631122 # Redis服务器连接密码（默认为空）
     database: 0 # Redis数据库索引（默认为0）
     port: 6379 # Redis服务器连接端口
     timeout: 5000 # 连接超时时间（毫秒）\
@@ -17,5 +17,12 @@ spring:
         min-idle: 0  # 连接池中的最小空闲连接
         max-idle: 8 # 连接池中的最大空闲连接
         max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+    redisson:
+      file:
+        classpath: redisson.yml
+
+
+
+
 
 

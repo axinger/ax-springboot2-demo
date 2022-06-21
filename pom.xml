@@ -25,10 +25,7 @@
         <spring-boot.version>2.7.0</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
-
-
         <elasticsearch.version>7.17.0</elasticsearch.version>
-
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <okhttp3.version>4.8.1</okhttp3.version>
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
@@ -243,11 +240,14 @@
             <!--                <version>3.7.0</version>-->
             <!--            </dependency>-->
 
-            <!--redisson是当前是最火的redis解决方案-->
+            <!--redisson是当前是最火的redis解决方案
+            和 spring-boot-starter-data-redis 内部关联
+            -->
+
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>3.16.4</version>
+                <version>3.17.4</version>
             </dependency>
 
             <dependency>

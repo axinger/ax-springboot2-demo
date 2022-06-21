@@ -4,6 +4,12 @@ spring:
   aop:
     proxy-target-class: true
 
+#  jackson:
+#    mapper:
+#      sort-properties-alphabetically: true
+
+
+
 sms:
   threadpool:
     corePoolSize: 5 #核心线程数

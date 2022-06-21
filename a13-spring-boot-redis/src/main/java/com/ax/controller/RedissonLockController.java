@@ -1,17 +1,10 @@
 package com.ax.controller;
-/*
- * @auther 顶风少年
- * @mail dfsn19970313@foxmail.com
- * @date 2020-01-13 11:19
- * @notify
- * @version 1.0
- */
 
 import lombok.SneakyThrows;
-import org.redisson.Redisson;
 import org.redisson.api.RLock;
 import org.redisson.api.RReadWriteLock;
 import org.redisson.api.RSemaphore;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,35 +23,50 @@ public class RedissonLockController {
     private RedisTemplate<String, Object> redisTemplate;
 
 
+    //    @Autowired
+//    private Redisson redisson;
     @Autowired
-    private Redisson redisson;
+    private RedissonClient redissonClient;
+
+    @GetMapping(value = "/add")
+    public String add() {
+        redisTemplate.opsForValue().set("phone", 100);
+        Object phone = redisTemplate.opsForValue().get("phone");
+        return String.valueOf(phone);
+    }
 
 
-    @GetMapping(value = "buy2")
+    @GetMapping(value = "/buy2")
     public String get() {
-        RLock lock = redisson.getLock("phoneLock");
+        String result = null;
+
+        RLock lock = redissonClient.getLock("phoneLock");
         lock.lock(3, TimeUnit.SECONDS);
         try {
-            String phone = (String) redisTemplate.opsForValue().get("phone");
-            Integer count = Integer.valueOf(phone);
+            Integer phone = (Integer) redisTemplate.opsForValue().get("phone");
+            Integer count = phone;
+            
             if (count > 0) {
-                redisTemplate.opsForValue().set("phone", String.valueOf(count - 1));
+//                redisTemplate.opsForValue().set("phone", String.valueOf(count - 1));
+                redisTemplate.opsForValue().decrement("phone", 1);
                 System.out.println("抢到了" + count + "号商品");
+                result = "抢到了" + count + "号商品";
             } else {
-                System.out.println("库存没有了.............");
+                result = "库存没有了.............";
             }
 
         } finally {
+            System.out.println("result = " + result);
             lock.unlock();
         }
-        return "";
+        return result;
     }
 
 
     @SneakyThrows
     @GetMapping(value = "/hello")
     public Object hello() {
-        RLock lock = redisson.getLock("phoneLock");
+        RLock lock = redissonClient.getLock("phoneLock");
 
         //1.加锁
         //1.1 锁的自动续期,业务超长,会自动续期30秒,不用担心业务厂,锁被删除
@@ -88,7 +96,7 @@ public class RedissonLockController {
     // 读 + 写,
     @GetMapping(value = "/write")
     public Object write() {
-        RReadWriteLock lock = redisson.getReadWriteLock("rw-lock");
+        RReadWriteLock lock = redissonClient.getReadWriteLock("rw-lock");
         String uuid = "";
 
         // 1.改数据,加写锁
@@ -110,7 +118,7 @@ public class RedissonLockController {
     @GetMapping(value = "/read")
     public Object read() {
 
-        RReadWriteLock lock = redisson.getReadWriteLock("rw-lock");
+        RReadWriteLock lock = redissonClient.getReadWriteLock("rw-lock");
         final RLock readLock = lock.readLock();
         readLock.lock();
         String uuid = "";
@@ -132,7 +140,7 @@ public class RedissonLockController {
     /// 停车位 3个停车位
     @GetMapping(value = "/park")
     public Object park() {
-        RSemaphore semaphore = redisson.getSemaphore("park");
+        RSemaphore semaphore = redissonClient.getSemaphore("park");
 //        try {
 //            semaphore.acquire();// 获取一个信号
 //        } catch (InterruptedException e) {
@@ -147,7 +155,7 @@ public class RedissonLockController {
 
     @GetMapping(value = "/go")
     public Object go() {
-        RSemaphore semaphore = redisson.getSemaphore("park");
+        RSemaphore semaphore = redissonClient.getSemaphore("park");
         semaphore.release();// 释放一个信号
 
         return "ok";
