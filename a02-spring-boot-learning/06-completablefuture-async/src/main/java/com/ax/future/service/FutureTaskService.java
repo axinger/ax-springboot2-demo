@@ -1,5 +1,7 @@
 package com.ax.future.service;
 
+import org.springframework.scheduling.annotation.Async;
+
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -12,6 +14,16 @@ public interface FutureTaskService {
     Future<String> asyncGetResult1();
 
     Future<String> asyncGetResult2();
+
+
+    CompletableFuture<String> asyncInternalCalls();
+
+    CompletableFuture<String> asyncInternalCalls2();
+
+    CompletableFuture<String> actionByTime(long seconds);
+
+    @Async
+    CompletableFuture<String> actionByTime2(long seconds);
 
     CompletableFuture<String> asyncTes1(long seconds);
 

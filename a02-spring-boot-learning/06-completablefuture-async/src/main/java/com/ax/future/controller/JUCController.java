@@ -112,4 +112,33 @@ public class JUCController {
         return all;
     }
 
+    @Autowired
+    FutureTaskService futureTaskService;
+
+
+    @RequestMapping("/in1")
+    public Object test9() {
+        final String join = futureTaskService.asyncInternalCalls().join();
+        return join;
+    }
+
+    /**
+     * 内部调用,成功 ,用CompletableFuture
+     *
+     * @return
+     */
+    @RequestMapping("/in2")
+    public Object test11() {
+        final String join = futureTaskService.asyncInternalCalls2().join();
+        return join;
+    }
+
+
+    @RequestMapping("/test10")
+    public Object test10() {
+        final String join = futureTaskService.actionByTime(2).join();
+        return join;
+    }
+
+
 }

@@ -23,9 +23,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 public class MyDefaultExecutor implements AsyncConfigurer {
 
-    @Override
     @Primary
     @Bean
+    @Override
     public Executor getAsyncExecutor() {
 
 
@@ -46,7 +46,7 @@ public class MyDefaultExecutor implements AsyncConfigurer {
         // 等待任务在关机时完成--表明等待所有线程执行完
         executor.setWaitForTasksToCompleteOnShutdown(true);
         // 线程池名称前缀
-        executor.setThreadNamePrefix("🍎🍎🍎线程池-");
+        executor.setThreadNamePrefix("默认程池-");
         // 线程池拒绝策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
         // 线程池初始化

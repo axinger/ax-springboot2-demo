@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -55,22 +56,53 @@ public class AsyncServiceImpl implements AsyncService {
     @Async
     @Override
     public void test3() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
         System.out.println("test3 currentThread = " + Thread.currentThread().getName());
 //        test4();
 //        this.test4();;
 //        System.out.println("((AsyncService)AopContext.currentProxy()) = " + (AopContext.currentProxy()));
 
+
+        applicationContext.getBean(AsyncService.class).test4_1();
         /**
          * 和事务效果一样,使用了aop代理,所以内部调用
          * */
         applicationContext.getBean(AsyncService.class).test4();
+
+        stopWatch.stop();
+        String s = "统计完成时长" + stopWatch.getTotalTimeSeconds();
+        log.info(s);
 
     }
 
     @Async
     @Override
     public void test4() {
-        System.out.println("test4 currentThread = " + Thread.currentThread().getName());
+        long seconds = 3;
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        final String result = "睡眠了" + seconds + "秒";
+        log.info("Thread.currentThread() = {}, result = {}", Thread.currentThread().getName(), result);
+
+    }
+
+    @Async
+    @Override
+    public void test4_1() {
+        long seconds = 2;
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        final String result = "睡眠了" + seconds + "秒";
+        log.info("Thread.currentThread() = {}, result = {}", Thread.currentThread().getName(), result);
+
     }
 
     @Autowired

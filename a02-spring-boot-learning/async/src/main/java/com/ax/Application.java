@@ -19,10 +19,10 @@ public class Application {
 //        service.test2();
 
         // 内部嵌套
-//        service.test3();
+        service.test3();
 
 
-        service.test11();
+//        service.test11();
     }
 
 

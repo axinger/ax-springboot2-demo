@@ -8,6 +8,12 @@ import java.math.BigDecimal;
 
 public class StringTest {
 
+    @Test
+    void test_str() {
+        String s = "1/2-103";
+        System.out.println("s = " + s);
+
+    }
 
     String string = new String("good");
     char[] chars = {'t', 'e', 's', 't'};

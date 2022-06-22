@@ -18,6 +18,7 @@ public interface AsyncService {
 
     void test3();
 
+    void test4_1();
 
     void test4();
 

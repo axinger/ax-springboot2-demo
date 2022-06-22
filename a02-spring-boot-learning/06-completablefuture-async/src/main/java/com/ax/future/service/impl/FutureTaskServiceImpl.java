@@ -4,11 +4,15 @@ import com.ax.future.service.FutureTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
@@ -54,6 +58,93 @@ public class FutureTaskServiceImpl implements FutureTaskService {
         }
         log.info("异步2 返回结果B");
         return new AsyncResult<String>("结果B");
+    }
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+
+    @Override
+    @Async
+    public CompletableFuture<String> asyncInternalCalls() {
+        FutureTaskService self = null;
+        try {
+            // 必须使用接口,不会报错
+            self = applicationContext.getBean(FutureTaskService.class);
+//            self = (FutureTaskServiceImpl) AopContext.currentProxy();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (self == null) {
+            return CompletableFuture.completedFuture("self null");
+        }
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
+        for (int i = 1; i <= 3; i++) {
+            self.actionByTime2(i);
+        }
+        stopWatch.stop();
+        String s = "统计完成时长" + stopWatch.getTotalTimeSeconds();
+        log.info(s);
+        return CompletableFuture.completedFuture(s);
+    }
+
+    @Autowired
+    private Executor executor;
+
+    /**
+     * 内部调用,成功 ,用CompletableFuture
+     *
+     * @return
+     */
+    @Override
+    public CompletableFuture<String> asyncInternalCalls2() {
+
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
+        List<CompletableFuture> futureList = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            int finalI = i;
+            futureList.add(
+                    CompletableFuture.runAsync(() -> {
+                        actionByTime2(finalI);
+                    }, executor)
+            );
+        }
+        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[futureList.size()])).join();
+        stopWatch.stop();
+        String result = "统计完成时长" + stopWatch.getTotalTimeSeconds();
+        log.info("Thread.currentThread() = {}, result = {}", Thread.currentThread().getName(), result);
+        return CompletableFuture.completedFuture(result);
+    }
+
+    @Async
+    @Override
+    public CompletableFuture<String> actionByTime(long seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        final String result = "睡眠了" + seconds + "秒";
+        log.info("Thread.currentThread() = {}, result = {}", Thread.currentThread().getName(), result);
+        return CompletableFuture.completedFuture(result);
+    }
+
+    @Async
+    @Override
+    public CompletableFuture<String> actionByTime2(long seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        final String result = "睡眠了" + seconds + "秒";
+        log.info("Thread.currentThread() = {}, result = {}", Thread.currentThread().getName(), result);
+        return CompletableFuture.completedFuture(result);
     }
 
     @Async("smsExecutor")

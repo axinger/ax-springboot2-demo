@@ -43,8 +43,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private Executor executor;
 
-//    @Autowired
-//    private Executor executor;
 
     public void method1(long timeout, String name) {
         try {
@@ -59,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
     public void method2(long timeout, String name) {
         try {
             TimeUnit.SECONDS.sleep(timeout);
-            log.info("{}执行任务完成,Thread.currentThread() = {}", name, Thread.currentThread().getName());
+            log.info("{}method2,标注@Async, 执行任务完成,Thread.currentThread() = {}", name, Thread.currentThread().getName());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -72,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
 
     // 没有 @Async 走主线程
 //    @Async("orderExecutor")
-    @Async // 需要重写 AsyncConfigurer
+//    @Async // 需要重写 AsyncConfigurer
     @Override
     public void test1() {
         log.info("test1========");
@@ -83,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
         watch.start();
 
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
-            method1(1, "订单");
+            method1(1, "订单Executor");
             orderNo.set("订单号001");
             return "返回内容1";
         }, orderExecutor);
@@ -91,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
         futureList.add(future1);
 
         CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
-            method1(2, "短信");
+            method1(2, "短信Executor");
             return "返回内容2";
         }, smsExecutor);
 
@@ -99,14 +97,14 @@ public class OrderServiceImpl implements OrderService {
 
         /// 不传参 Executor executor 默认系统的 ForkJoinPool.commonPool-worker 不能修改
         CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> {
-            method2(2, "不传参");
+            method2(2, "不传参Executor");
             return "返回内容3";
         });
 
         futureList.add(future3);
 
         CompletableFuture<String> future4 = CompletableFuture.supplyAsync(() -> {
-            method2(2, "传参,默认的");
+            method2(2, "传参,默认的Executor");
             return "返回内容4";
         }, executor);
 

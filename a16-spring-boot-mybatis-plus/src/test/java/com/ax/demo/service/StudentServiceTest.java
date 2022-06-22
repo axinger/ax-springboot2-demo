@@ -1,8 +1,11 @@
 package com.ax.demo.service;
 
 import com.ax.demo.entity.Student;
+import com.ax.demo.mapper.StudentMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -19,6 +23,14 @@ class StudentServiceTest {
     @Autowired
     StudentService service;
 
+    @Test
+    public void test_IService() {
+
+
+        IService<Student> iService = new ServiceImpl<StudentMapper, Student>();
+        final List<Student> list = iService.list();
+        System.out.println("list = " + list);
+    }
 
     @Test
     public void add() {

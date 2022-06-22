@@ -13,13 +13,11 @@
 
     <modules>
         <module>multiple-db</module>
-        <module>spring-boot-mvc-web</module>
         <module>no-web</module>
         <module>packaging-jar</module>
         <module>packaging-war</module>
 
         <module>async</module>
-        <module>transactional</module>
         <module>spring-web-flux</module>
         <module>01-test-java8</module>
         <module>demo-juc</module>
@@ -33,6 +31,7 @@
         <module>05-jdk11-b</module>
         <module>05-jdk11</module>
         <module>06-completablefuture-async</module>
+        <module>07-sql-transactional</module>
     </modules>
 
 </project>

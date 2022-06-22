@@ -17,6 +17,8 @@
         <module>alibaba-nacos</module>
         <module>alibaba-seata</module>
         <module>alibaba-nacos-gateway</module>
+        <module>openfeign-nacos-consume</module>
+        <module>openfeign-nacos-provider</module>
     </modules>
 
 </project>
