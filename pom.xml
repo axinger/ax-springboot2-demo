@@ -7,11 +7,11 @@
     <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
     比如:查看mysql版本号, 重写版本号就可以了-->
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
-    </parent>
+    <!--    <parent>-->
+    <!--        <groupId>org.springframework.boot</groupId>-->
+    <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--        <version>2.7.0</version>-->
+    <!--    </parent>-->
 
     <!--统一管理jar包版本-->
     <properties>
@@ -30,6 +30,7 @@
         <okhttp3.version>4.8.1</okhttp3.version>
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
         <fastjson2.version>2.0.4</fastjson2.version>
+        <docker.maven.plugin.version>0.40.1</docker.maven.plugin.version>
     </properties>
 
     <groupId>com.axing</groupId>
@@ -42,7 +43,7 @@
 
     <modules>
         <module>common</module>
-        <module>a01-spring-boot-mall</module>
+        <module>a01-spring-boot-master</module>
         <module>a02-spring-boot-learning</module>
         <module>a03-spring-boot-websocket</module>
         <module>a04-spring-boot-security</module>
@@ -58,7 +59,6 @@
         <module>a14-spring-boot-netty</module>
         <module>a15-spring-boot-shiro</module>
         <module>a16-spring-boot-mybatis-plus</module>
-        <module>a17-spring-boot-customize-starter</module>
         <module>a18-spring-boot-zipkin</module>
         <module>a19-spring-boot-quartz</module>
         <module>a20-cloud-demo</module>
@@ -68,31 +68,49 @@
         <module>a24-oauth2-client</module>
         <module>a25-admin-server</module>
         <module>a25-admin-client</module>
+        <module>a17-custom-spring-boot-start</module>
     </modules>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+    </dependencies>
 
 
     <dependencyManagement>
         <dependencies>
 
-            <!--            <dependency>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-dependencies</artifactId>-->
-            <!--                <version>${spring-boot.version}</version>-->
-            <!--                <type>pom</type>-->
-            <!--                <scope>import</scope>-->
-            <!--            </dependency>-->
-
-
+            <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->
             <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>
@@ -111,6 +129,17 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -118,11 +147,16 @@
                 <version>1.4.1</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>axing-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.session</groupId>
                 <artifactId>spring-session-data-redis</artifactId>
-                <version>2.6.0</version>
+                <version>${spring-boot.version}</version>
             </dependency>
 
 
@@ -138,14 +172,6 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.83</version>
             </dependency>
-
-
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.2.2</version>
-            </dependency>
-
 
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -188,7 +214,7 @@
             <!--=================缓存类=================-->
 
 
-            <!--本地缓存,而redis的服务器缓存-->
+            <!--本地缓存,redis是服务器缓存-->
             <dependency>
                 <groupId>com.github.ben-manes.caffeine</groupId>
                 <artifactId>caffeine</artifactId>
@@ -305,6 +331,12 @@
 
 
             <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.2.2</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
@@ -345,42 +377,37 @@
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
-                <version>1.4.2.Final</version>
+                <version>1.5.1.Final</version>
             </dependency>
+
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
-                <version>1.4.2.Final</version>
+                <version>1.5.1.Final</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.maven.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

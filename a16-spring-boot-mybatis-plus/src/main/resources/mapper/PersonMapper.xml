@@ -5,12 +5,13 @@
 <mapper namespace="com.ax.demo.mapper.PersonMapper">
 
     <resultMap id="BaseResultMap" type="com.ax.demo.entity.Person">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="age" column="age" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,age
+        id
+        ,name,age
     </sql>
 </mapper>

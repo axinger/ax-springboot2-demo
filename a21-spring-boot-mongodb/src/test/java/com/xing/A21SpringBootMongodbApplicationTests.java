@@ -22,6 +22,7 @@ import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -48,12 +49,9 @@ class A21SpringBootMongodbApplicationTests {
         final Person save = personRepository.save(person);
         System.out.println("save = " + save);
 
-
         Dog dog = new Dog();
         dog.setName("golf");
         dog.setAge(9);
-
-
         dogRepository.save(dog);
     }
 
@@ -106,6 +104,7 @@ class A21SpringBootMongodbApplicationTests {
             if (i % 2 == 0) {
                 dog.setName("name" + i);
                 dog.setAddress("address" + i);
+                dog.setBirthday(LocalDateTime.now());
             }
             dog.setAge(i);
             final Dog save = mongoTemplate.save(dog);
@@ -114,6 +113,12 @@ class A21SpringBootMongodbApplicationTests {
 
     }
 
+    @Test
+    void find_dog() {
+        final List<Dog> dogList = mongoTemplate.findAll(Dog.class);
+        System.out.println("dogList = " + dogList);
+
+    }
 
     @Test
     void query_dog() {
@@ -202,7 +207,7 @@ class A21SpringBootMongodbApplicationTests {
 
         query.addCriteria(Criteria.where("age").is(4));
 
-        /// 条件判断,不能同时为空
+        /// 条件判断,不同时为空
         query.addCriteria(new Criteria().orOperator(
                 Criteria.where("name").exists(true),
                 Criteria.where("address").exists(true)

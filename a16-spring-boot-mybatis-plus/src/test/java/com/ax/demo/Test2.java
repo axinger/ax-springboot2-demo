@@ -19,7 +19,7 @@ public class Test2 {
 //        columnToString
         System.out.println("LambdaUtils.getColumnMap(Person.class) = " + LambdaUtils.getColumnMap(Person.class));
         System.out.println("LambdaUtils.extract(Person::getName).getImplMethodName() = " + LambdaUtils.extract(Person::getName).getImplMethodName());
-      
+
 
     }
 }

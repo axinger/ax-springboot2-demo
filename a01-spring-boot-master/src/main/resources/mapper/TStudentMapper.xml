@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ax.master.mapper.TStudentMapper">
+
+    <!--    <cache type="com.ax.master.cache.MybatisRedisCache" flushInterval="6000" size="512" readOnly="true">-->
+
+    <!--    </cache>-->
+
+    <resultMap id="BaseResultMap" type="com.ax.master.entity.TStudent">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,name,age,
+        sex,address
+    </sql>
+</mapper>

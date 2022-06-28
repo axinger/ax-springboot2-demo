@@ -24,7 +24,11 @@ import java.lang.annotation.Annotation;
  */
 
 @Slf4j
-@RestControllerAdvice(basePackages = {"${axing.base-packages}:com.ax"})
+/**
+ * 为了解决swagger-ui拦截
+ */
+@RestControllerAdvice(basePackages = {"${axing.advice.base-packages}:com.axing"})
+//@RestControllerAdvice
 public class GlobalResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
     private static final Class<? extends Annotation> ANNOTATION_TYPE = ResponseBody.class;

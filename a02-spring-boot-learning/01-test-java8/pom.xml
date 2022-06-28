@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>01-test-java8</artifactId>
-    <name>工具类测试</name>
+    <name>01-java8工具类测试</name>
 
     <dependencies>
 

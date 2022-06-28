@@ -45,7 +45,7 @@ public class RedissonLockController {
         try {
             Integer phone = (Integer) redisTemplate.opsForValue().get("phone");
             Integer count = phone;
-            
+
             if (count > 0) {
 //                redisTemplate.opsForValue().set("phone", String.valueOf(count - 1));
                 redisTemplate.opsForValue().decrement("phone", 1);

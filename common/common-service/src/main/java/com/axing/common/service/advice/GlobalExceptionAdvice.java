@@ -19,7 +19,11 @@ import java.util.*;
  * @author xing
  */
 @Slf4j
-@RestControllerAdvice(basePackages = {"${axing.base-packages}:com.ax"})
+/**
+ * 为了解决swagger-ui拦截
+ */
+@RestControllerAdvice(basePackages = {"${axing.advice.base-packages}:com.axing"})
+//@RestControllerAdvice
 public class GlobalExceptionAdvice {
 
     @ExceptionHandler(value = Exception.class)
@@ -57,8 +61,11 @@ public class GlobalExceptionAdvice {
     /**
      * 对方法参数校验异常处理方法
      */
-    @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class,
-            MissingServletRequestParameterException.class,})
+    @ExceptionHandler(value = {
+            MethodArgumentNotValidException.class,
+            BindException.class,
+            MissingServletRequestParameterException.class,
+    })
     public Result handlerNotValidException(Exception validException) {
 
         List<ObjectError> list = new ArrayList<>();

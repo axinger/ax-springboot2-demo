@@ -18,6 +18,8 @@
         <module>common-util</module>
         <module>common-service</module>
         <module>common-quartz</module>
+        <module>common-swagger</module>
+        <module>common-redis</module>
     </modules>
 
     <dependencies>

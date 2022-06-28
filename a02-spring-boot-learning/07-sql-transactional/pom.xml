@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>07-sql-transactional</artifactId>
-    <name>事务</name>
+    <name>07-事务</name>
     <dependencies>
 
         <dependency>

@@ -3,7 +3,6 @@ package com.ax.demo.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.sun.istack.internal.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -85,13 +84,13 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
      * 添加拦截器
      */
     @Override
-    public void addInterceptors(@NotNull InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
     }
 
 
     @Override
-    public void configureMessageConverters(@NotNull List<HttpMessageConverter<?>> converters) {
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         converters.clear();
 //        converters.add(stringHttpMessageConverterUtf8());
@@ -112,7 +111,7 @@ public class MyWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
      * @param registry
      */
     @Override
-    public void addResourceHandlers(@NotNull ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         super.addResourceHandlers(registry);
 

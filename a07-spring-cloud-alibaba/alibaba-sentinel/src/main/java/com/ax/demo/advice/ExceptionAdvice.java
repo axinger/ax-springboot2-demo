@@ -1,7 +1,7 @@
 package com.ax.demo.advice;
 
+import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -47,7 +47,7 @@ public class ExceptionAdvice {
         entity.setMsg(map.toString());
         entity.setBody(map);
         entity.setCode(400);
-        if (StringUtils.isNotEmpty(message)) {
+        if (ObjectUtil.isNotEmpty(message)) {
             entity.setMsg(message);
             return entity;
         }

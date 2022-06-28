@@ -3,18 +3,15 @@ package com.ax.rabbitmq.producer.config.topic;
 
 import com.ax.rabbitmq.producer.RabbitmqProducerApplication;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = RabbitmqProducerApplication.class)
 class TopicConfigTest {
 

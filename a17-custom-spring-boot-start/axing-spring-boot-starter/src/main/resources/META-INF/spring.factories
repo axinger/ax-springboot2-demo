@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.axing.starter.auto.HelloServiceAutoConfiguration
+axing.hello.prefix=??
+axing.hello.suffix=??
+axing.hello.name=tom
+axing.hello.age=10
