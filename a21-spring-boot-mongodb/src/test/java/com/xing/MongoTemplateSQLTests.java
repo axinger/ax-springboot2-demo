@@ -1,5 +1,6 @@
 package com.xing;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,13 +36,16 @@ public class MongoTemplateSQLTests {
     @Test
     void test_sql_save() {
 
-        Map map = new HashMap();
-        map.put("age", 10);
-        map.put("name", "jim");
-        map.put("birthday", LocalDateTime.now());
-        final Map student = mongoTemplate.save(map, "student");
+        for (int i = 1; i < 4; i++) {
 
-        System.out.println("student = " + student);
+            Map map = new HashMap();
+            map.put("age", 10 + i);
+            map.put("name", "jim" + i);
+            map.put("birthday", LocalDateTimeUtil.parse(String.format("2020-01-%02d 12:00:00", i), "yyyy-MM-dd HH:mm:ss"));
+            final Map student = mongoTemplate.save(map, "student");
+            System.out.println("student = " + student);
+        }
+
     }
 
 
@@ -63,6 +66,27 @@ public class MongoTemplateSQLTests {
 
         System.out.println("list = " + list);
         System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
+    }
+
+    @Test
+    void test_sql_find_2() {
+
+        Map sqlMap = new HashMap();
+        sqlMap.put("age", 11);
+        BasicDBObject basicDBObject = new BasicDBObject(sqlMap);
+        final FindIterable<Map> findIterable = mongoTemplate.getCollection("student")
+                .find(basicDBObject, Map.class);
+
+        List<Map> list = new ArrayList<>();
+        findIterable.forEach(val -> {
+            val.put("id", String.valueOf(val.get("_id")));
+            val.remove("_id");
+            list.add(val);
+        });
+
+        System.out.println("list = " + list);
+        System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
+
     }
 
     @Test
@@ -91,8 +115,7 @@ public class MongoTemplateSQLTests {
 
     @Test
     void test_sql_find_id_limit() {
-
-
+        
         Map sqlMap = new HashMap();
         sqlMap.put("age", 10);
 
@@ -112,4 +135,6 @@ public class MongoTemplateSQLTests {
         System.out.println("list = " + list);
         System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
     }
+
+
 }
