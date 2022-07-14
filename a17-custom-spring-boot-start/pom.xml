@@ -5,13 +5,14 @@
     <parent>
         <artifactId>ax-spring-boot-demo</artifactId>
         <groupId>com.axing</groupId>
-        <version>1.0.0</version>
+        <version>2.0.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <artifactId>a17-custom-spring-boot-start</artifactId>
     <modules>
         <module>axing-spring-boot-starter</module>
+        <module>custom-spring-boot-start-demo</module>
     </modules>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

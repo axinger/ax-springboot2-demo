@@ -13,6 +13,8 @@ server:
 version: 1.0.0
 
 spring:
+  application:
+    name: @artifactId@
   jta:
     log-dir: ./.logs/jta
   profiles:
@@ -104,6 +106,10 @@ axing:
   hello:
     age: -10
     name: 自定义名称
+  swagger:
+    title: 阿星项目接口
+    contact:
+      name: 阿星A
 
 
 

@@ -5,12 +5,12 @@
     <parent>
         <artifactId>ax-spring-boot-demo</artifactId>
         <groupId>com.axing</groupId>
-        <version>1.0.0</version>
+        <version>2.0.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>a01-spring-boot-master</artifactId>
-    <version>1.1.2</version>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -22,25 +22,23 @@
         <dependency>
             <groupId>com.axing</groupId>
             <artifactId>common-service</artifactId>
-            <version>2.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
             <artifactId>common-util</artifactId>
-            <version>2.0.0</version>
+
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
             <artifactId>common-redis</artifactId>
-            <version>2.0.0</version>
+
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
             <artifactId>common-swagger</artifactId>
-            <version>2.0.0</version>
         </dependency>
 
         <dependency>
@@ -80,12 +78,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
-
-        <!-- 通用mapper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>

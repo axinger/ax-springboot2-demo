@@ -5,11 +5,10 @@
     <parent>
         <groupId>com.axing</groupId>
         <artifactId>a02-spring-boot-learning</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.4</version>
     </parent>
 
     <artifactId>spring-boot-active</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-active</name>
     <description>spring-boot-active</description>
 
@@ -22,6 +21,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.1.3</version>
         </dependency>
 
         <dependency>

@@ -13,15 +13,22 @@
     <!--        <version>2.7.0</version>-->
     <!--    </parent>-->
 
+    <groupId>com.axing</groupId>
+    <artifactId>ax-spring-boot-demo</artifactId>
+    <version>2.0.4</version>
+    <name>spring-boot 案例</name>
+    <description>个人代码总结</description>
+    <!--pom总的父工程-->
+    <packaging>pom</packaging>
+
     <!--统一管理jar包版本-->
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-
+        <my-project.version>${version}</my-project.version>
         <spring-boot.version>2.7.0</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
@@ -31,15 +38,10 @@
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
         <fastjson2.version>2.0.4</fastjson2.version>
         <docker.maven.plugin.version>0.40.1</docker.maven.plugin.version>
+
+        <lombok.version>1.18.24</lombok.version>
     </properties>
 
-    <groupId>com.axing</groupId>
-    <artifactId>ax-spring-boot-demo</artifactId>
-    <version>1.0.0</version>
-    <name>spring-boot 案例</name>
-    <description>个人代码总结</description>
-    <!--pom总的父工程-->
-    <packaging>pom</packaging>
 
     <modules>
         <module>common</module>
@@ -59,6 +61,7 @@
         <module>a14-spring-boot-netty</module>
         <module>a15-spring-boot-shiro</module>
         <module>a16-spring-boot-mybatis-plus</module>
+        <module>a17-custom-spring-boot-start</module>
         <module>a18-spring-boot-zipkin</module>
         <module>a19-spring-boot-quartz</module>
         <module>a20-cloud-demo</module>
@@ -68,7 +71,7 @@
         <module>a24-oauth2-client</module>
         <module>a25-admin-server</module>
         <module>a25-admin-client</module>
-        <module>a17-custom-spring-boot-start</module>
+        <module>a26-prometheus</module>
     </modules>
 
 
@@ -103,6 +106,42 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-quartz</artifactId>
+                <version>${my-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>${my-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-service</artifactId>
+                <version>${my-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-swagger</artifactId>
+                <version>${my-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-util</artifactId>
+                <version>${my-project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-service</artifactId>
+                <version>${my-project.version}</version>
+            </dependency>
+
 
             <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->
             <dependency>
@@ -142,12 +181,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>1.4.1</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>axing-spring-boot-starter</artifactId>
                 <version>1.0.0</version>
@@ -163,7 +196,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
+                <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -298,7 +331,7 @@
             <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>spring-boot-axing-starter</artifactId>
-                <version>2.0.0</version>
+
             </dependency>
 
 
@@ -409,5 +442,19 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- 统一管理父子模块的版本号 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.11.0</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
+
 </project>

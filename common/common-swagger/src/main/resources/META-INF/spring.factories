@@ -1,3 +1,12 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.axing.common.swagger.SpringFoxSwaggerConfig
+com.axing.common.swagger.config.SwaggerAutoConfig
+#axing.swagger.enable=true
+#axing.swagger.group-name=????
+#axing.swagger.title=????????
+#axing.swagger.description=??:??demo
+#axing.swagger.version=??
+#axing.swagger.contact.name=??~
+#axing.swagger.contact.url=??
+#axing.swagger.contact.email=??
+
 
