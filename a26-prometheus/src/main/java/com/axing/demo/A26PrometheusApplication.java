@@ -1,4 +1,4 @@
-package com.axing.demo.a26prometheus;
+package com.axing.demo;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Value;
