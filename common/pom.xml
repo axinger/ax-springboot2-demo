@@ -9,7 +9,6 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.axing</groupId>
     <artifactId>common</artifactId>
     <name>阿星common工具类</name>
     <packaging>pom</packaging>
@@ -21,26 +20,5 @@
         <module>common-swagger</module>
         <module>common-redis</module>
     </modules>
-
-    <dependencies>
-
-        <!--lombok用来简化实体类：需要安装lombok插件-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-
-    </dependencies>
 
 </project>
