@@ -3,4 +3,4 @@ spring:
   application:
     name: a16-spring-boot-mybatis-plus
   profiles:
-    active: dev
+    active: prd

@@ -66,7 +66,7 @@ class DepartmentServiceTest {
                 ;
 
         final List<Department> list = ((DepartmentMapper) departmentService.getBaseMapper())
-                .getDepartmentEmpsList(wrapper);
+                .getDepartmentEmpsList2(wrapper);
         System.out.println("list = " + list);
     }
 
@@ -77,7 +77,7 @@ class DepartmentServiceTest {
                 .eq(Department::getId, 1);
 
         final List<Department> list = ((DepartmentMapper) departmentService.getBaseMapper())
-                .find(wrapper);
+                .find2(wrapper);
         System.out.println("list = " + list);
     }
 }

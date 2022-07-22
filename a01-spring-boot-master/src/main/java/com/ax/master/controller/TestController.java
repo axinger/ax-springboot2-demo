@@ -1,5 +1,6 @@
 package com.ax.master.controller;
 
+import com.alibaba.fastjson2.JSON;
 import com.ax.master.entity.TStudent;
 import com.ax.master.entity.User;
 import com.ax.master.entity.valid.PasswordGroup;
@@ -9,12 +10,12 @@ import com.ax.master.po.LoginDto;
 import com.ax.master.po.LoginListDto;
 import com.ax.master.service.HttpClientService;
 import com.ax.master.service.TStudentService;
-import com.axing.common.util.result.Result;
-import com.axing.common.util.result.ResultCodeEnum;
+import com.axing.common.response.result.Result;
 import com.axing.starter.service.HelloService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,7 @@ import java.util.*;
 
 @RestController
 @Slf4j
-@Api(tags = "测试控制器", value = "TestController", produces = "produces", consumes = "consumes")
-@ApiOperation("测试控制器=====")
+@Tag(name = "TestController", description = "测试控制器")
 public class TestController {
 
     @Autowired
@@ -43,18 +43,21 @@ public class TestController {
     //@ApiOperation(value = "获取地区信息列表", notes = "获取地区信息列表")
     public Result testdo1() {
 
-        Result<List<String>> entity = new Result();
 
         List<String> list = new LinkedList<>();
         list.add("A");
         list.add("Baaa");
 
-        entity.setData(list);
-        entity.setCode(ResultCodeEnum.SUCCESS.getCode());
         log.info("啊啊啊啊啊啊啊");
         log.warn("哈哈哈哈哈");
-        return entity;
 
+
+        final Result<List<String>> ok = Result.ok(list);
+
+        System.out.println("JSON.toJSONString(ok) = " + JSON.toJSONString(ok));
+
+
+        return ok;
     }
 
     @RequestMapping(value = "/error.do")
@@ -79,8 +82,9 @@ public class TestController {
         return httpClientService.getClient(url, null, Object.class);
     }
 
+    @Operation(summary = "testPathVariable", description = "测试PathVariable")
     @RequestMapping("/path/{id}")
-    public Integer testPathVariable(@PathVariable("id") Integer id) {
+    public Integer testPathVariable(@Parameter(name = "用户id") @PathVariable("id") Integer id) {
         System.out.println("testPathVariable:" + id);
         return id;
     }

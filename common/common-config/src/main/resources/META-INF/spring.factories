@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.axing.common.config.AjaxCorsFilter,\
+com.axing.common.config.CorsConfig,\
+com.axing.common.config.MybatisPlusConfig,\
+com.axing.common.config.MapperHandler
+axing.advice.base-packages=??

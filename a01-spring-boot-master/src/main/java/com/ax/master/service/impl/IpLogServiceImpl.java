@@ -5,7 +5,7 @@ import com.ax.master.mapper.IpLogMapper;
 import com.ax.master.query.IpLogQueryObject;
 import com.ax.master.service.IIpLogService;
 import com.ax.master.util.axUtil.AxPageResultEntity;
-import com.axing.common.util.result.Result;
+import com.axing.common.response.result.Result;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

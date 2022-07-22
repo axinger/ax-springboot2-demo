@@ -3,7 +3,8 @@ package com.ax.master.controller;
 import com.ax.master.entity.IpLog;
 import com.ax.master.po.UpdateListObject;
 import com.ax.master.service.IIpLogService;
-import com.axing.common.util.result.Result;
+import com.axing.common.response.result.Result;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import java.util.Map;
  * @author axing
  */
 @RestController
+@Tag(name = "IpLogController", description = "查看登录ip")
 public class IpLogController {
 
     @Autowired

@@ -1,8 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.axing.common.service.advice.GlobalExceptionAdvice,\
-com.axing.common.service.advice.GlobalResponseBodyAdvice,\
-com.axing.common.service.config.AjaxCorsFilter,\
-com.axing.common.service.config.CorsConfig,\
-com.axing.common.service.config.MybatisPlusConfig,\
-com.axing.common.service.handler.MapperHandler
-axing.advice.base-packages=??

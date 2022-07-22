@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ConfigProperties {
 
     private Boolean enable = true;
-    private String groupName;
+    private String groupName = "默认组";
     private String title = "阿星项目接口文档";
     private String description = "描述:阿星demo";
     private String version = "1.0.0";

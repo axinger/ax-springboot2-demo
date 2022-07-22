@@ -16,7 +16,7 @@ spring:
   application:
     name: @artifactId@
   jta:
-    log-dir: ./.logs/jta
+    log-dir: .logs/jta
   profiles:
     include: swagger
     active: prd

@@ -25,8 +25,6 @@ class StudentServiceTest {
 
     @Test
     public void test_IService() {
-
-
         IService<Student> iService = new ServiceImpl<StudentMapper, Student>();
         final List<Student> list = iService.list();
         System.out.println("list = " + list);
@@ -40,6 +38,10 @@ class StudentServiceTest {
         service.save(student);
     }
 
+    @Test
+    public void list() {
+        System.out.println("service.list() = " + service.list());
+    }
 
     @Test
     public void test() {

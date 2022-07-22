@@ -29,7 +29,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     @Select("SELECT * " +
             " FROM department " +
             " ${ew.customSqlSegment} ")
-    List<Department> find(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> find2(@Param(Constants.WRAPPER) Wrapper wrapper);
 
     /**
      * 一对多
@@ -57,7 +57,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     })
     @Select("SELECT * FROM department LEFT JOIN emps ON (emps.dept_id = department.id) "
             + "${ew.customSqlSegment}")
-    List<Department> getDepartmentEmpsList(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> getDepartmentEmpsList2(@Param(Constants.WRAPPER) Wrapper wrapper);
 
 
     //参数加上@Param(Constants.WRAPPER),xml里加上${ew.customSqlSegment}可以实现复杂条件检索查询
