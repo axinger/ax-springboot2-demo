@@ -1,1 +1,10 @@
-
+#springdoc:
+#  api-docs:
+#    path: api
+# 最大支持文件大小
+spring:
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      # 最大支持请求大小
+      max-request-size: 1000MB

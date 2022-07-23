@@ -11,13 +11,16 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author xing
  * @version 1.0.0
- * @ClassName MybatisplusConfig.java
- * @Description TODO
+ * @ClassName MybatisConfig.java
+ * @Description 分页
  * @createTime 2022年01月24日 00:00:00
  */
 @Configuration
-@MapperScan("com.ax.demo.mapper")
-public class MybatisPlusConfig {
+//@MapperScan("com.ax.demo.mapper")
+//@MapperScan("com.ax.demo.db2.mapper")
+
+@MapperScan("com.ax.demo.**.mapper")
+public class MybatisConfig {
 
     @Bean
     public MybatisPlusInterceptor optimisticLockerInnerInterceptor() {

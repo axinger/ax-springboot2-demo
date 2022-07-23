@@ -4,5 +4,3 @@ spring:
       matching-strategy: ANT_PATH_MATCHER
   main:
     allow-circular-references: true
-
-

@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.axing.common.response.advice.GlobalExceptionAdvice,\
-com.axing.common.response.advice.GlobalResponseBodyAdvice,
+com.axing.common.response.advice.GlobalResponseBodyAdvice
 axing.advice.base-packages=??

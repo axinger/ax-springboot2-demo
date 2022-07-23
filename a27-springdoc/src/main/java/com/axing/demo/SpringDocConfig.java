@@ -30,18 +30,18 @@ public class SpringDocConfig {
                         .url("http://www.macrozheng.com"));
     }
 
-    /**
-     * 按照 group 排序
-     *
-     * @return GroupedOpenApi
-     */
-    @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder().group("brand").pathsToMatch("/brand/**").build();
-    }
+//    /**
+//     * 按照 group 排序
+//     *
+//     * @return GroupedOpenApi
+//     */
+//    @Bean
+//    public GroupedOpenApi publicApi() {
+//        return GroupedOpenApi.builder().group("brand").pathsToMatch("/brand/**").build();
+//    }
 
     @Bean
     public GroupedOpenApi adminApi() {
-        return GroupedOpenApi.builder().group("admin").pathsToMatch("/admin/**").build();
+        return GroupedOpenApi.builder().group("admin").pathsToMatch("/**").build();
     }
 }
