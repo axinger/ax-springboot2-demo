@@ -25,8 +25,9 @@
         <module>02-test-guava</module>
         <module>03-test-hutool</module>
         <module>04-web-json</module>
-        <!--        <module>05-jdk11-b</module>-->
-        <!--        <module>05-jdk11</module>-->
+        <module>05-jdk11-b</module>
+        <module>05-jdk11</module>
+        <module>05-test-jdk11</module>
         <module>06-completablefuture-async</module>
         <module>07-sql-transactional</module>
         <module>08-strategy</module>

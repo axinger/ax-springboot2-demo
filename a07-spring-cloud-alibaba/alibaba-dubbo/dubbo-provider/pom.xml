@@ -11,13 +11,12 @@
 
     <artifactId>dubbo-provider</artifactId>
 
-
     <dependencies>
         <dependency>
             <groupId>com.axing</groupId>
             <artifactId>dubbo-api</artifactId>
-            <version>1.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-dubbo</artifactId>

@@ -18,4 +18,14 @@
         <module>kafka-producer</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>kafka-api</artifactId>
+                <version>${parent.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>
