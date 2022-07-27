@@ -15,7 +15,7 @@
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <name>spring-boot 案例</name>
     <description>个人代码总结</description>
     <!--pom总的父工程-->
@@ -23,7 +23,7 @@
 
     <!--统一管理jar包版本-->
     <properties>
-        <!--        <java.version>1.8</java.version>-->
+        <java.version>17</java.version>
         <!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
         <!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
         <!--        <maven.compiler.source>1.8</maven.compiler.source>-->

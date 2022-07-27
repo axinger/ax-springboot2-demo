@@ -1,11 +1,11 @@
 # 基础镜像使用java
-FROM openjdk:8-jdk
+FROM openjdk:17-jdk
 
 VOLUME /tmp
 
 #将本地文件添加到容器中，不会自动解压文件，也不能访问网络资源
 #COPY target/a16-spring-boot-mybatis-plus-2.0.5.jar mybatis-demo.jar
-COPY target/a16-spring-boot-mybatis-plus-2.0.5.jar mybatis-demo.jar
+COPY target/a16-spring-boot-mybatis-plus-2.0.6.jar mybatis-demo.jar
 
 #COPY target/${JAR_FILE} mybatis-demo.jar
 #配置容器，使其可执行化。 我的理解就是拼接启动命令
