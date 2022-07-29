@@ -27,6 +27,24 @@ class SetTest {
 
     }
 
+
+    @Test
+    void set_2() {
+        HashSet<Integer> setA = Sets.newHashSet(1, 2, 3, 4, 5);
+        HashSet<Integer> setB = Sets.newHashSet(5);
+
+
+        Sets.SetView<Integer> union = Sets.union(setA, setB);
+        System.out.println("union:" + union);
+
+        Sets.SetView<Integer> difference = Sets.difference(setA, setB);
+        System.out.println("difference:" + difference);
+
+        Sets.SetView<Integer> intersection = Sets.intersection(setA, setB);
+        System.out.println("intersection:" + intersection);
+
+    }
+
     //双键 map - 超级实用
     @Test
     void test_HashBasedTable() {

@@ -1,6 +1,7 @@
 package com.ax.test.java;
 
 import com.alibaba.fastjson2.JSON;
+import com.ax.demo.DateModel;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -8,12 +9,48 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LocalDateTimeTest {
+    @Test
+    void test_0() {
+        final LocalDateTime dateTime = LocalDateTime.now();
+
+        List<DateModel> list = new ArrayList<>();
+
+        final int hour = dateTime.getHour();
+
+        for (int i = 0; i <= hour; i++) {
+            final LocalDateTime localDateTime = dateTime.withMinute(0).withSecond(0).withNano(0).plusHours(-i);
+//            System.out.println("localDateTime.getHour() = " + localDateTime.getHour());
+
+            DateModel model = new DateModel();
+            model.setDateTime(localDateTime);
+            model.setName(String.valueOf(hour - i));
+            list.add(model);
+            final String format = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+//            System.out.println("format = " + format);
+        }
+
+
+        for (int i = 0; i <= hour; i = i + 2) {
+            final LocalDateTime localDateTime = dateTime.withMinute(0).withSecond(0).withNano(0).plusHours(-i);
+            final String format = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+            System.out.println("format = " + format);
+        }
+
+        //时间分组
+        final Map<Integer, List<DateModel>> collect = list.parallelStream()
+                .collect(Collectors.groupingBy(o -> o.getDateTime().getHour() / 2));
+        System.out.println("时间分组 collect = " + collect);
+
+        final List<Integer> collect1 = collect.values().parallelStream()
+                .map(o -> o.size())
+                .collect(Collectors.toList());
+        System.out.println("collect1 = " + collect1);
+
+    }
 
     @Test
     void test_LocalDateTime_mix() {

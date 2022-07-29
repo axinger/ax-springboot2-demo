@@ -2,7 +2,6 @@ package com.ax.demo;
 
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.func.LambdaUtil;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.http.HttpUtil;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ import java.util.Map;
  * @createTime 2022年04月10日 02:34:00
  */
 
-public class TestHutool {
+public class HttpTests {
 
     @Test
     void test_getFieldName() {
@@ -46,11 +45,4 @@ public class TestHutool {
 
     }
 
-    @Test
-    void test_uuid() {
-
-        System.out.println("IdUtil.simpleUUID() = " + IdUtil.simpleUUID());
-
-        System.out.println("IdUtil.fastUUID() = " + IdUtil.fastUUID());
-    }
 }

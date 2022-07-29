@@ -4,16 +4,9 @@ spring:
   aop:
     proxy-target-class: true
 
-sms:
-  threadpool:
-    corePoolSize: 2 #核心线程数
-    maxPoolSize: 2 #最大线程数
-    keepAliveSeconds: 60 #空闲线程存活时间
-    queueCapacity: 5 #等待队列长度
-
 thread:
   pool:
-    coreSize: 100 #核心线程数
-    maxSize: 500 #最大线程数
+    core-size: 100 #核心线程数
+    max-size: 500 #最大线程数
     keepalive: 60 #空闲线程存活时间
-    blockQueueSize: 1000 #等待队列长度
+    block-queue-size: 1000 #等待队列长度

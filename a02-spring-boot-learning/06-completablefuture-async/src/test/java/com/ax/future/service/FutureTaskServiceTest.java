@@ -128,4 +128,73 @@ class FutureTaskServiceTest {
 
     }
 
+
+    @Test
+    void test2() {
+
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
+            log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+            return "返回内容1";
+        }, orderExecutor);
+    }
+
+
+    @Test
+    void test_3() {
+
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
+            log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+            return "返回内容1";
+        });
+    }
+
+    @Test
+    @Async
+    void test_4() {
+
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
+            log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+            return "返回内容1";
+        });
+    }
+
+
+    @Test
+    void test_5() {
+
+        CompletableFuture.supplyAsync(() -> {
+            log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+            int i = 1 / 0;
+            return 1;
+        }, executor).exceptionally(throwable ->
+        {
+            System.out.println("throwable = " + throwable);
+            return -1;
+        }).thenApply(val -> {
+            log.info("thenApply val = " + val);
+            return val == -1 ? -2 : val;
+        }).whenComplete((val, error) -> {
+            log.info("whenComplete val = " + val);
+            log.info("error = " + error);
+        }).thenAcceptAsync(val -> { // 启用另一个线程池
+            log.info("thenAcceptAsync = {}", val);
+        }, orderExecutor);
+    }
+
+
+    @Test
+    void test_6() {
+        // 不拦截 exceptionally,whenComplete 才有error,
+        // whenComplete有error,不会执行后面的 thenXXX
+        CompletableFuture.supplyAsync(() -> {
+            log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+//            int i = 1 / 0;
+            return 1;
+        }, executor).whenComplete((val, error) -> {
+            log.info("whenComplete val = " + val);
+            log.info("error = " + error);
+        }).thenAcceptAsync(val -> { // 启用另一个线程池
+            log.info("thenAcceptAsync = {}", val);
+        }, orderExecutor);
+    }
 }

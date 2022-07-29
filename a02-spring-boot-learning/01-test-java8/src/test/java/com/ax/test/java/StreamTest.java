@@ -5,11 +5,28 @@ import com.ax.demo.Person;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamTest {
+
+    @Test
+    void test_findFirst() {
+
+        final List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+
+        final Integer integer = list.stream().filter(o -> o > 3)
+                .findFirst().orElse(-1);
+        System.out.println("integer = " + integer);
+
+
+        final int i = LocalDateTime.now().getHour() / 2;
+        System.out.println("i = " + i);
+
+        System.out.println("i = " + (4 % 2));
+    }
 
 
     //map排序
@@ -251,7 +268,7 @@ public class StreamTest {
     void test1() {
 
 
-        List<Person> list = new ArrayList<Person>() {
+        List<Person> list = new ArrayList<>() {
             {
                 add(new Person("jim", 9));
                 add(new Person("jim", 10));
@@ -260,6 +277,14 @@ public class StreamTest {
                 add(new Person("jim", 12));
             }
         };
+
+        ArrayList<Person> collect = list.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(
+                        Comparator.comparing(
+                                Person::getAge))), ArrayList::new));
+        System.out.println("去重年龄重复的 = " + collect);
+
+
         /// 顺序流
         list.stream().forEach(System.out::println);
 
