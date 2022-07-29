@@ -1,4 +1,4 @@
-package com.axing.demo;
+package com.axing.demo27;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
