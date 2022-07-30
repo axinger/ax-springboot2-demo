@@ -115,7 +115,7 @@ public class MongoTemplateSQLTests {
 
     @Test
     void test_sql_find_id_limit() {
-        
+
         Map sqlMap = new HashMap();
         sqlMap.put("age", 10);
 

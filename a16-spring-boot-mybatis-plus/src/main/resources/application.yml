@@ -1,6 +1,12 @@
+server:
+  port: 7600
 spring:
 
   application:
     name: a16-spring-boot-mybatis-plus
   profiles:
     active: prd
+axing:
+  response:
+    base-packages: com.axing.demo
+

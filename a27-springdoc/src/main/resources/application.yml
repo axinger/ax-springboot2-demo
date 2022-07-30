@@ -10,3 +10,7 @@ spring:
       max-file-size: 1000MB
       # 最大支持请求大小
       max-request-size: 1000MB
+
+axing:
+  response:
+    base-packages: com.axing.demo27

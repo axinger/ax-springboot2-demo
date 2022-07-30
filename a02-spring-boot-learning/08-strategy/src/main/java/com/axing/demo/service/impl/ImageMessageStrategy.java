@@ -7,7 +7,7 @@ import com.axing.demo.service.MessageStrategy;
 import org.springframework.stereotype.Service;
 
 @Service
-@MsgTypeHandler(value = MsgTypeEnum.IMAGE)
+@MsgTypeHandler(MsgTypeEnum.IMAGE)
 public class ImageMessageStrategy implements MessageStrategy {
 
     @Override

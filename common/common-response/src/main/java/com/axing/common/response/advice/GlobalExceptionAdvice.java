@@ -3,6 +3,7 @@ package com.axing.common.response.advice;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -12,19 +13,27 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
  * @author xing
+ * ${axing.response.base-packages:} 有问题
  */
 @Slf4j
-/**
- * 为了解决swagger-ui拦截
- */
-@RestControllerAdvice(basePackages = {"${axing.advice.base-packages}:com.axing"})
-//@RestControllerAdvice
+@RestControllerAdvice(basePackages = {"com.axing"})
+@ResponseBody
 public class GlobalExceptionAdvice {
+
+    @Value("${axing.response.base-packages:}")
+    private String basePackages;
+
+    @PostConstruct
+    private void init() {
+        log.info("basePackages = {}", basePackages);
+    }
+
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
@@ -35,16 +44,14 @@ public class GlobalExceptionAdvice {
 
         Map<String, Object> map = new HashMap<>(16);
         map.put("method", method);
-        map.put("uri", uri);
+        map.put("path", uri);
 
         String msg = null;
         if (Optional.of(exception).map(Throwable::getMessage).isPresent()) {
             msg = exception.getMessage();
-            map.put("exceptionMessage", msg);
         }
         if (Optional.of(exception).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
             msg = exception.getCause().getMessage();
-            map.put("causeMessage", msg);
         }
         final Result<Map<String, Object>> result = Result.build(201, map, msg);
         log.error("全局异常 result = {}", result);

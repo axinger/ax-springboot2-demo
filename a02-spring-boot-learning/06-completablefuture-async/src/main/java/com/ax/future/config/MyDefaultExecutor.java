@@ -27,7 +27,7 @@ public class MyDefaultExecutor implements AsyncConfigurer {
     @Bean
     @Override
     public Executor getAsyncExecutor() {
-        
+
 //        ThreadPoolExecutor(); 这个无法定义名称
 
         int cpuNum = 4;

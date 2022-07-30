@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.axing</groupId>
         <artifactId>ax-spring-boot-demo</artifactId>
-        <version>2.0.6</version>
+        <version>2.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>a16-spring-boot-mybatis-plus</artifactId>
@@ -46,6 +46,11 @@
         <dependency>
             <groupId>com.axing</groupId>
             <artifactId>common-swagger</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>common-response</artifactId>
         </dependency>
     </dependencies>
 

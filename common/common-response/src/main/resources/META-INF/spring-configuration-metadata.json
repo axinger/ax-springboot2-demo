@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "axing.response.base-packages",
+      "type": "java.lang.String",
+      "defaultValue": "com.axing",
+      "description": "全局响应包名"
+    }
+  ]
+}

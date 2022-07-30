@@ -1,10 +1,10 @@
 {
-    "properties": [
-        {
-            "name": "axing.swagger.group-name",
-            "type": "java.lang.String",
-            "defaultValue": "默认分组",
-            "description": "多个api分组"
-        }
-    ]
+  "properties": [
+    {
+      "name": "axing.swagger.group-name",
+      "type": "java.lang.String",
+      "defaultValue": "默认分组",
+      "description": "多个api分组"
+    }
+  ]
 }

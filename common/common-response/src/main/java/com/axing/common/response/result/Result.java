@@ -1,7 +1,9 @@
 package com.axing.common.response.result;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.beans.Transient;
 
@@ -11,6 +13,8 @@ import java.beans.Transient;
  * @author xing
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Schema(name = "返回体", description = "请求返回结果")
 public class Result<T> {
 
@@ -23,8 +27,6 @@ public class Result<T> {
     @Schema(title = "返回数据", description = "泛型数据,类型不固定")
     private T data;
 
-    public Result() {
-    }
 
     protected static <T> Result<T> build(T data) {
         Result<T> result = new Result<>();
@@ -70,15 +72,12 @@ public class Result<T> {
         return Result.ok(null);
     }
 
-    /**
-     * 失败
-     *
-     * @param data 数据
-     * @param <T>  泛型
-     * @return 结果
-     */
     public static <T> Result<T> fail(T data) {
         return build(data, ResultCodeEnum.FAIL);
+    }
+
+    public static <T> Result<T> fail(String message) {
+        return build(ResultCodeEnum.FAIL.getCode(), message);
     }
 
     public static <T> Result<T> fail() {

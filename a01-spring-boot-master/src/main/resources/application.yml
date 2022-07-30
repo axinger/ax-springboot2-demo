@@ -101,7 +101,7 @@ jasypt:
 
 
 axing:
-  advice:
+  response:
     base-packages: com.ax.master
   hello:
     age: -10
