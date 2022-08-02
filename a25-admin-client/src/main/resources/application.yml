@@ -18,5 +18,5 @@ spring:
 logging:
   config: classpath:logback-spring.xml
   file:
-    path: ./.logs
-    name: ./.logs/${spring.application.name}/info.log,
+    path: /logs
+    name: /logs/${spring.application.name}/info.log,

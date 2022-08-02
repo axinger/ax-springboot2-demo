@@ -16,7 +16,7 @@ spring:
   application:
     name: @artifactId@
   jta:
-    log-dir: .logs/jta
+    log-dir: /logs/jta
   profiles:
     include: swagger
     active: prd
@@ -87,12 +87,11 @@ pagehelper:
 
 logging:
   config: classpath:logback-spring.xml
-  #  file:
-  #    path:
-  #  config: classpath:log4j2.xml
+  file:
+    path: logs
   level:
     com.ax.master.mapper: debug
-#    com.ax: info
+
 swaggerEnabled: false
 
 jasypt:

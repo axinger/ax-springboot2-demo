@@ -10,7 +10,7 @@ spring:
 
 logging:
   file:
-    path: ./.logs/${spring.application.name}
+    path: /logs/${spring.application.name}
 
 endpoints:
   health:

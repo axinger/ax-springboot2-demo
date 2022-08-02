@@ -2,8 +2,7 @@
 #  api-docs:
 #    path: api
 # 最大支持文件大小
-server:
-  port: 8090
+
 spring:
   servlet:
     multipart:

@@ -5,7 +5,7 @@
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
     <springProperty scope="context" name="logback.app.name" source="spring.application.name" defaultValue="appName"/>
-    <springProperty scope="context" name="logback.path" source="logging.file.path" defaultValue=".logs"/>
+    <springProperty scope="context" name="logback.path" source="logging.file.path" defaultValue="logs"/>
 
 
     <!-- 彩色日志 -->

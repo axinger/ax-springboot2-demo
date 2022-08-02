@@ -22,7 +22,7 @@ public class TestController {
         return "123";
     }
 
-    @GetMapping("/test2")
+    @GetMapping("/ip1")
     public Object test2() {
         System.out.println("test2==========");
         return Arrays.asList("1");
