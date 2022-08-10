@@ -1,4 +1,4 @@
-package com.axing.demo.cllback;
+package com.axing.demo.java.cllback;
 
 public class Caller {
     public MyCallInterface mc;

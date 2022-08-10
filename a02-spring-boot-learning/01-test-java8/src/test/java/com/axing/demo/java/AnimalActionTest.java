@@ -1,5 +1,8 @@
-package com.axing.demo;
+package com.axing.demo.java;
 
+import com.axing.demo.AnimalAction;
+import com.axing.demo.Cat;
+import com.axing.demo.Dog;
 import com.axing.demo.impl.AnimalActionImpl;
 import com.axing.demo.impl.DogActionImpl;
 import org.junit.jupiter.api.Test;

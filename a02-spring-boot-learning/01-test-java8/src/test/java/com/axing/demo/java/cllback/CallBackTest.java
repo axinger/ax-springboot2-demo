@@ -1,4 +1,4 @@
-package com.axing.demo.cllback;
+package com.axing.demo.java.cllback;
 
 import org.junit.jupiter.api.Test;
 
