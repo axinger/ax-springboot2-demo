@@ -75,6 +75,7 @@
         <module>a25-admin-client</module>
         <module>a26-prometheus</module>
         <module>a27-springdoc</module>
+        <module>a28-wordToPdf</module>
     </modules>
 
     <dependencies>
