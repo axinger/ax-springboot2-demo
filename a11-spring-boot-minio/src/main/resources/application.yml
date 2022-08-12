@@ -6,15 +6,12 @@ spring:
   profiles:
     include:
       swagger
-
   application:
     name: minio-demo
 
 minio:
-  endpoint: http://localhost:9000
-  bucket-name: iot-device #存储桶名称
+  endpoint: http://localhost:9030
   access-key: admin #访问的key
-  secret-key: 12345678 #访问的秘钥
-
+  secret-key: admin123 #访问的秘钥
 axing:
   base-packages: com.ax
