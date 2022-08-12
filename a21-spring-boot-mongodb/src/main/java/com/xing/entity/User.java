@@ -1,6 +1,7 @@
 package com.xing.entity;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 
@@ -15,6 +16,8 @@ import java.util.Date;
 @Data
 public class User {
 
+    @MongoId
+    private String id;
     private Integer age;
     private String name;
     private Date birthday;

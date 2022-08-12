@@ -12,14 +12,14 @@ import java.util.Map;
 @Data
 public class BaseMongoEntity implements Serializable {
 
-    @Id
+    @Id //ObjectId
     private String id;
 
     private Date createTime;
 
     private Date updateTime;
 
-    private Integer isDeleted = 0;
+    private Boolean deleted;
 
     @Transient //被该注解标注的，将不会被录入到数据库中。只作为普通的javaBean属性
     private Map<String, Object> param = new HashMap<>();

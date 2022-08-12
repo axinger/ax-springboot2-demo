@@ -1,15 +1,20 @@
 package com.xing;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.lang.func.LambdaUtil;
+import cn.hutool.core.util.RandomUtil;
+import com.alibaba.fastjson2.JSON;
 import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.result.UpdateResult;
 import com.xing.entity.Dog;
 import com.xing.entity.Person;
-import com.xing.repository.DogRepository;
-import com.xing.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -21,83 +26,31 @@ import org.springframework.data.mongodb.core.aggregation.SortOperation;
 import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
+/**
+ * @author xing
+ * @version 1.0.0
+ * @ClassName MongoTemplateSQLTests.java
+ * @description TODO
+ * @createTime 2022年07月12日 16:32:00
+ */
 
 @SpringBootTest
 @Slf4j
-class A21SpringBootMongodbApplicationTests {
+public class MongoTemplateTests {
 
-
-    @Autowired
-    private PersonRepository personRepository;
-
-
-    @Autowired
-    private DogRepository dogRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    @Test
-    void save() {
-        Person person = new Person();
-        person.setName("jim");
-        person.setAge(10);
-        final Person save = personRepository.save(person);
-        System.out.println("save = " + save);
-
-        Dog dog = new Dog();
-        dog.setName("golf");
-        dog.setAge(9);
-        dogRepository.save(dog);
-    }
-
-    @Test
-    void findAll() {
-
-        final List<Person> all = personRepository.findAll();
-        System.out.println("all = " + all);
-    }
-
-    @Test
-    void findAllPage() {
-
-        PageRequest pageRequest = PageRequest.of(0, 10);
-        final Page<Person> personPage = personRepository.findAll(pageRequest);
-
-        System.out.println("personPage = " + personPage);
-        System.out.println("personPage.getContent() = " + personPage.getContent());
-    }
-
-    @Test
-    void findAllName() {
-        final Person name = personRepository.getByName("jim");
-        System.out.println("name = " + name);
-    }
-
-    @Test
-    void findAllListName() {
-        final List<Person> list = personRepository.findListByName("jim");
-        System.out.println("list = " + list);
-    }
-
-    @Test
-    void findAllLike() {
-        final List<Person> list = personRepository.findByNameLike("jim");
-        System.out.println("list = " + list);
-    }
-
-    @Test
-    void findAll_Sort() {
-        List<Person> list = personRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
-        System.out.println("list = " + list);
-    }
 
     @Test
     void save_dog() {
+
 
         for (int i = 0; i < 5; i++) {
             Dog dog = new Dog();
@@ -112,6 +65,60 @@ class A21SpringBootMongodbApplicationTests {
         }
 
     }
+
+
+    @Test
+    void save_dog_1() {
+        /**
+         * insert: 若新增数据的主键已经存在，则会抛 org.springframework.dao.DuplicateKeyException 异常提示主键重复，不保存当前数据。
+         * save: 若新增数据的主键已经存在，则会对当前已经存在的数据进行修改操作。
+         */
+        Dog dog = new Dog();
+        dog.setId("1");
+        dog.setName("name-001");
+        mongoTemplate.save(dog);
+
+
+//        Query query = new Query();
+//        query.addCriteria(Criteria.where("_id").is(dog.getId()));
+//        query.addCriteria(
+//                new Criteria().orOperator(
+//                        Criteria.where("delete").isNull(),
+//                        Criteria.where("delete").is(false)
+//                ));
+//
+//        Dog dog1 = mongoTemplate.findOne(query, Dog.class);
+//        System.out.println("dog1 = " + dog1);
+
+    }
+
+
+    @Test
+    void update_dog_2() {
+
+        // 这里不设置name,为null
+        Dog dog = new Dog();
+        dog.setId("1");
+        dog.setAge(RandomUtil.randomInt(1, 100));
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is(dog.getId()));
+
+
+        Update update = new Update();
+        Optional.ofNullable(dog).map(Dog::getName).ifPresent(val -> {
+            update.set(LambdaUtil.getFieldName(Dog::getName), dog.getName());
+        });
+        /// age 为null时,会被更新
+        update.set("age", dog.getAge());
+
+        /**
+         * 数据库有，就新增， 没有，就修改
+         */
+        UpdateResult upsert = mongoTemplate.upsert(query, update, Dog.class);
+
+
+    }
+
 
     @Test
     void find_dog() {
@@ -267,7 +274,110 @@ class A21SpringBootMongodbApplicationTests {
         SortOperation sortOperation = new SortOperation(Sort.by(Sort.Order.desc("leaveMessageTime")));
         Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
         List<Map> result = mongoTemplate.aggregate(aggregation, "DirectTrainPostLeaveMessage", Map.class).getMappedResults();
+    }
 
+    @Test
+    void test_sql_save() {
+
+        for (int i = 1; i < 4; i++) {
+
+            Map map = new HashMap();
+            map.put("age", 10 + i);
+            map.put("name", "jim" + i);
+            map.put("birthday", LocalDateTimeUtil.parse(String.format("2020-01-%02d 12:00:00", i), "yyyy-MM-dd HH:mm:ss"));
+            final Map student = mongoTemplate.save(map, "student");
+            System.out.println("student = " + student);
+        }
 
     }
+
+
+    // SQL语句
+    @Test
+    void test_sql_find() {
+
+        final FindIterable<Document> documents = mongoTemplate.getCollection("student")
+                .find();
+        List<Map> list = new ArrayList<>();
+        documents.forEach(val -> {
+            final Map<String, Object> map = val.entrySet().parallelStream()
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            map.put("id", String.valueOf(map.get("_id")));
+            map.remove("_id");
+            list.add(map);
+        });
+
+        System.out.println("list = " + list);
+        System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
+    }
+
+    @Test
+    void test_sql_find_2() {
+
+        Map sqlMap = new HashMap();
+        sqlMap.put("age", 11);
+        BasicDBObject basicDBObject = new BasicDBObject(sqlMap);
+        final FindIterable<Map> findIterable = mongoTemplate.getCollection("student")
+                .find(basicDBObject, Map.class);
+
+        List<Map> list = new ArrayList<>();
+        findIterable.forEach(val -> {
+            val.put("id", String.valueOf(val.get("_id")));
+            val.remove("_id");
+            list.add(val);
+        });
+
+        System.out.println("list = " + list);
+        System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
+
+    }
+
+    @Test
+    void test_sql_find_id() {
+
+
+        Map sqlMap = new HashMap();
+        sqlMap.put("_id", new ObjectId("62cd541108069b3d1bd92458"));
+        sqlMap.put("age", 10);
+
+        BasicDBObject basicDBObject = new BasicDBObject(sqlMap);
+        final FindIterable<Document> documents = mongoTemplate.getCollection("student")
+                .find(basicDBObject);
+        List<Map> list = new ArrayList<>();
+        documents.forEach(val -> {
+            final Map<String, Object> map = val.entrySet().parallelStream()
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            map.put("id", String.valueOf(map.get("_id")));
+            map.remove("_id");
+            list.add(map);
+        });
+
+        System.out.println("list = " + list);
+        System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
+    }
+
+    @Test
+    void test_sql_find_id_limit() {
+
+        Map sqlMap = new HashMap();
+        sqlMap.put("age", 10);
+
+        BasicDBObject basicDBObject = new BasicDBObject(sqlMap);
+        final FindIterable<Document> documents = mongoTemplate.getCollection("student")
+                .find(basicDBObject)
+                .limit(2);
+        List<Map> list = new ArrayList<>();
+        documents.forEach(val -> {
+            final Map<String, Object> map = val.entrySet().parallelStream()
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            map.put("id", String.valueOf(map.get("_id")));
+            map.remove("_id");
+            list.add(map);
+        });
+
+        System.out.println("list = " + list);
+        System.out.println("JSON.toJSONString(list) = " + JSON.toJSONString(list));
+    }
+
+
 }

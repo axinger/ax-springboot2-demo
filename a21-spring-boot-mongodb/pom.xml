@@ -28,6 +28,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>common-response</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
