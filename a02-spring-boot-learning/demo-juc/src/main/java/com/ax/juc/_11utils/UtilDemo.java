@@ -9,9 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 辅助类
- */
-
-/**
  * 1.减少计数
  * 6个同学,都离开,才关灯
  */

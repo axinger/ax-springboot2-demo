@@ -6,6 +6,6 @@ public class Student extends Person {
     }
 
     public Student(String name, Integer age) {
-        super(name, age);
+        super(1, name, "man", age, "");
     }
 }

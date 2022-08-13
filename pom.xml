@@ -23,13 +23,6 @@
     <!--统一管理jar包版本-->
     <properties>
         <java.version>17</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-
-        <!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-        <!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
-        <!--        <maven.compiler.source>1.8</maven.compiler.source>-->
-        <!--        <maven.compiler.target>1.8</maven.compiler.target>-->
         <my-project.version>${project.version}</my-project.version>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>

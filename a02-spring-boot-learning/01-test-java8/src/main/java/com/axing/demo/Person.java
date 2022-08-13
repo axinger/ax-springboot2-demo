@@ -8,22 +8,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person implements Comparable {
+
+    private Integer id;
     private String name;
-    private Integer age;
-
-    private String id;
     private String sex;
-
-
-    public Person(String name) {
-        this.name = name;
-    }
-
-    public Person(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
-
+    private Integer age;
+    private String area;
 
     @Override
     public boolean equals(Object o) {

@@ -14,12 +14,13 @@ class MainTest {
         System.out.println(" = " + "1234".replaceFirst("123", ""));
 
     }
+
     @Test
     void test() {
 
         File inputWord = new File("C:\\Users\\xing\\Desktop\\硬度检测报告.docx");
         File outputFile = new File("C:\\Users\\xing\\Desktop\\12.pdf");
-        try  {
+        try {
             InputStream docxInputStream = new FileInputStream(inputWord);
             OutputStream outputStream = new FileOutputStream(outputFile);
             IConverter converter = LocalConverter.builder().build();

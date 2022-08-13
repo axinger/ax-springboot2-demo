@@ -1,4 +1,6 @@
 server:
+  #拒绝kill -9 优雅停机,kill -2
+  shutdown: graceful
   servlet:
     context-path: /
     encoding:
@@ -15,6 +17,8 @@ version: 1.0.0
 spring:
   application:
     name: @artifactId@
+  lifecycle:
+    timeout-per-shutdown-phase: 20s  #时间后，在规定时间内如果线程无法执行完毕则会被强制停机。默认30s
   jta:
     log-dir: /logs/jta
   profiles:

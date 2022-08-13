@@ -27,55 +27,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2-extension</artifactId>
-        </dependency>
-
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-        <!--        </dependency>-->
     </dependencies>
-
-    <!--    <build>-->
-    <!--        <pluginManagement>-->
-
-    <!--            <plugins>-->
-    <!--                &lt;!&ndash; springboot 打包 &ndash;&gt;-->
-    <!--                <plugin>-->
-    <!--                    <groupId>org.springframework.boot</groupId>-->
-    <!--                    <artifactId>spring-boot-maven-plugin</artifactId>-->
-    <!--                </plugin>-->
-    <!--                &lt;!&ndash; mvn clean package docker:build -Dmaven.test.skip=true &ndash;&gt;-->
-    <!--                <plugin>-->
-    <!--                    <groupId>com.spotify</groupId>-->
-    <!--                    <artifactId>docker-maven-plugin</artifactId>-->
-    <!--                    <version>1.2.2</version>-->
-    <!--                    <configuration>-->
-    <!--                        &lt;!&ndash; 镜像名称  &ndash;&gt;-->
-    <!--                        <imageName>maven-hello</imageName>-->
-    <!--                        <imageTags>0.0.1</imageTags>-->
-    <!--                        &lt;!&ndash; docker远程服务器地址 &ndash;&gt;-->
-    <!--                        <dockerHost>http://47.101.156.93:2375</dockerHost>-->
-    <!--                        &lt;!&ndash; Dockerfile文件存放目录 &ndash;&gt;-->
-    <!--                        <dockerDirectory>src/main/docker</dockerDirectory>-->
-    <!--                        <resources>-->
-    <!--                            <resource>-->
-    <!--                                <directory>${project.build.directory}</directory>-->
-    <!--                                <include>${project.build.finalName}.jar</include>-->
-    <!--                            </resource>-->
-    <!--                        </resources>-->
-    <!--                    </configuration>-->
-    <!--                </plugin>-->
-    <!--            </plugins>-->
-    <!--        </pluginManagement>-->
-    <!--    </build>-->
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
