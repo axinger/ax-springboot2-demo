@@ -11,6 +11,14 @@
 
     <artifactId>a28-wordToPdf</artifactId>
 
+    <repositories>
+        <repository>
+            <id>AsposeJavaAPI</id>
+            <name>Aspose Java API</name>
+            <url>https://repository.aspose.com/repo/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -23,30 +31,36 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.documents4j/documents4j-local -->
+        <!--        <dependency>-->
+        <!--            <groupId>com.aspose</groupId>-->
+        <!--            <artifactId>aspose-words</artifactId>-->
+        <!--            <version>15.8.0</version>-->
+        <!--            <scope>system</scope>-->
+        <!--            <systemPath>${basedir}/src/main/resources/lib/aspose-words-15.8.0.jar</systemPath>-->
+        <!--        </dependency>-->
+
         <dependency>
-            <groupId>com.documents4j</groupId>
-            <artifactId>documents4j-local</artifactId>
-            <version>1.1.9</version>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>15.8.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.documents4j/documents4j-transformer-msoffice-word -->
-        <dependency>
-            <groupId>com.documents4j</groupId>
-            <artifactId>documents4j-transformer-msoffice-word</artifactId>
-            <version>1.1.9</version>
-        </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+            <!-- 线上打包运行出错 注意这里 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--                <configuration>-->
+                <!--                    &lt;!&ndash; 允许导入外包 &ndash;&gt;-->
+                <!--                    <includeSystemScope>true</includeSystemScope>-->
+                <!--                </configuration>-->
             </plugin>
         </plugins>
-    </build>
 
+    </build>
 
 </project>
