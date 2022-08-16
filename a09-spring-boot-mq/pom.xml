@@ -18,6 +18,7 @@
         <module>rabbitmq-all</module>
         <module>rocketmq</module>
         <module>pulsar</module>
+        <module>rabbitmq-demo</module>
     </modules>
 
 </project>
