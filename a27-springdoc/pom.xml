@@ -23,19 +23,10 @@
             <scope>test</scope>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
+            <groupId>com.axing</groupId>
+            <artifactId>common-doc</artifactId>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-springdoc-ui -->
-        <!--        <dependency>-->
-        <!--            <groupId>com.github.xiaoymin</groupId>-->
-        <!--            <artifactId>knife4j-springdoc-ui</artifactId>-->
-        <!--            <version>3.0.3</version>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.axing</groupId>

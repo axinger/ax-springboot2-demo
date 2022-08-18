@@ -16,6 +16,6 @@ import org.springframework.stereotype.Component;
 public class SimpleCustomer {
     @RabbitHandler
     public void receive(String message) {
-       log.info("方式1.简单模式message== {}",message);
+        log.info("方式1.简单模式message== {}", message);
     }
 }

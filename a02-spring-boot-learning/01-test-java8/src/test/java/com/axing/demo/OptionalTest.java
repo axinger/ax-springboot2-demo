@@ -6,6 +6,15 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class OptionalTest {
+    @Test
+    public void test_add() {
+
+        Long a = null;
+        Long b = 1L;
+
+        Long aLong = Optional.ofNullable(a + b).orElse(1L);
+        System.out.println("aLong = " + aLong);
+    }
 
     @Test
     public void test_list() {

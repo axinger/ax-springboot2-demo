@@ -5,7 +5,7 @@ spring:
   application:
     name: a16-spring-boot-mybatis-plus
   profiles:
-    active: prd
+    active: dev
 axing:
   response:
     base-packages: com.axing.demo

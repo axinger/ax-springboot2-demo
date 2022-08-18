@@ -17,7 +17,7 @@
         <module>common-util</module>
         <module>common-response</module>
         <module>common-quartz</module>
-        <module>common-swagger</module>
+        <module>common-doc</module>
         <module>common-redis</module>
         <module>common-config</module>
     </modules>

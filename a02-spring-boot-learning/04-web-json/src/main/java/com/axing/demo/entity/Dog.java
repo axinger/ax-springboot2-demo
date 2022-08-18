@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -20,7 +21,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Dog {
+public class Dog implements Serializable {
 
     private String string;
 
@@ -28,12 +29,15 @@ public class Dog {
     private String string2;
 
 
+    private transient String name2;
+
     // transient 文件流中不可被序列化, 前2个以上字母小写才有效
     // 只能修饰属性
     @JsonIgnore
-    @JSONField(serialize = false)
-    private transient String aTransient;
-//    private transient String aaTransient;
+//    @JSONField(serialize = false)
+    private String aTransient;
+
+    private transient String aTransient2;
 
     /**
      * @JsonIgnore , 其他功能在  @JsonFormat
@@ -41,9 +45,9 @@ public class Dog {
      * @JSONField 属性更多
      */
     @JsonIgnore
-
-//    @JSONField(serialize = false)
     private String aaTransient;
+
+    private transient String aaTransient2;
 
     //    @JsonIgnore
 //    @JsonFormat(format = "yyyy-MM-dd")

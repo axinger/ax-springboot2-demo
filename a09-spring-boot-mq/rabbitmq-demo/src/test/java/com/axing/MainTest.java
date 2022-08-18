@@ -33,46 +33,45 @@ class MainTest {
     @Test
     void workTest() {
         for (int i = 0; i < 20; i++) {
-            rabbitTemplate.convertAndSend("work",("provider"+i+"hello work"));
+            rabbitTemplate.convertAndSend("work", ("provider" + i + "hello work"));
         }
     }
 
     //参数1为交换机，参数2为路由key，“”表示为任意路由，参数3为消息内容
     @Test
     void fanoutTest() {
-        rabbitTemplate.convertAndSend("logs"," ","fanout provider message");
+        rabbitTemplate.convertAndSend("logs", " ", "fanout provider message");
     }
 
 
     @Test
     void _4routingDirect_1() {
-        rabbitTemplate.convertAndSend("directs","error","direct provider message");
+        rabbitTemplate.convertAndSend("directs", "error", "direct provider message");
     }
 
     @Test
     void _4routingDirect_2() {
-        rabbitTemplate.convertAndSend("directs","info","direct provider message");
+        rabbitTemplate.convertAndSend("directs", "info", "direct provider message");
     }
 
     @Test
     void topTest() {
-        rabbitTemplate.convertAndSend("topics","user.save.findAll","user.save.findAll 的消息");
+        rabbitTemplate.convertAndSend("topics", "user.save.findAll", "user.save.findAll 的消息");
     }
 
     @Test
     void topTest2() {
-        rabbitTemplate.convertAndSend("topics","user.save","user.save 的消息");
+        rabbitTemplate.convertAndSend("topics", "user.save", "user.save 的消息");
     }
-
 
 
     @SneakyThrows
     @Test
-    void delayQueue(){
+    void delayQueue() {
 
 
-        Map<String,Object> message = new HashMap<>();
-        message.put("time",LocalDateTime.now());
+        Map<String, Object> message = new HashMap<>();
+        message.put("time", LocalDateTime.now());
 
         System.out.println("开始发送消息object = " + message);
 
@@ -83,7 +82,7 @@ class MainTest {
                 message,
                 messagePostProcessor -> {
                     //配置消息的过期时间
-                    messagePostProcessor.getMessageProperties().setDelay(5*1000);
+                    messagePostProcessor.getMessageProperties().setDelay(5 * 1000);
                     return messagePostProcessor;
                 }
         );
@@ -95,12 +94,11 @@ class MainTest {
 
     @SneakyThrows
     @Test
-    void delayQueue2(){
+    void delayQueue2() {
 
 
-
-        Map<String,Object> message = new HashMap<>();
-        message.put("time",LocalDateTime.now());
+        Map<String, Object> message = new HashMap<>();
+        message.put("time", LocalDateTime.now());
 
         System.out.println("开始发送消息object = " + message);
         rabbitTemplate.convertAndSend(
@@ -109,7 +107,7 @@ class MainTest {
                 message,
                 messagePostProcessor -> {
                     //配置消息的过期时间
-                    messagePostProcessor.getMessageProperties().setDelay(5*1000);
+                    messagePostProcessor.getMessageProperties().setDelay(5 * 1000);
                     return messagePostProcessor;
                 }
         );

@@ -1,5 +1,6 @@
 package com.axing.demo.service;
 
+import com.alibaba.fastjson2.JSON;
 import com.axing.demo.entity.Student;
 import com.axing.demo.mapper.StudentMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -31,7 +32,7 @@ class StudentServiceTest {
     }
 
     @Test
-    public void add() {
+    public void save() {
         Student student = new Student();
         student.setName("tom");
         student.setAge(19);
@@ -39,8 +40,21 @@ class StudentServiceTest {
     }
 
     @Test
+    public void update() {
+        Student student = new Student();
+        student.setId(1L);
+        student.setName("tom2");
+        student.setAge(19);
+        service.updateById(student);
+    }
+
+    @Test
     public void list() {
-        System.out.println("service.list() = " + service.list());
+//        System.out.println("service.list() = " + service.list());
+
+        for (Student student : service.list()) {
+            System.out.println("student = " + JSON.toJSONString(student));
+        }
     }
 
     @Test
@@ -91,14 +105,28 @@ class StudentServiceTest {
     }
 
     @Test
-    public void test6() {
+    public void test6_version() {
 
-        // 乐观锁
+        // 乐观锁,version需要与数据库一直
+        final Student student = service.getById(2);
+        System.out.println("student before = " + student);
+        student.setAge(student.getAge() + 1);
+        System.out.println("student after = " + student);
+        boolean updateById = service.updateById(student);
+        System.out.println("updateById = " + updateById);
+    }
 
+    @Test
+    public void test6_version_2() {
+
+        // 乐观锁,version 不一致,更新失败
         final Student student = service.getById(1);
-        student.setAge(23);
-        System.out.println("student = " + student);
-        service.updateById(student);
+        System.out.println("student before = " + student);
+        student.setAge(student.getAge() + 1);
+        student.setVersion(student.getVersion() - 1);
+        System.out.println("student after = " + student);
+        boolean updateById = service.updateById(student);
+        System.out.println("updateById = " + updateById);
     }
 
     @Test

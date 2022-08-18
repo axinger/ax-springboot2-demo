@@ -6,10 +6,9 @@ import org.springframework.stereotype.Component;
 
 /**
  * 2、work 模式
- *
- *一个生产者对应多个消费者，但是一条消息只能有一个消费者获得消息！！！
+ * <p>
+ * 一个生产者对应多个消费者，但是一条消息只能有一个消费者获得消息！！！
  * 轮询分发就是将消息队列中的消息，依次发送给所有消费者。一个消息只能被一个消费者获取。
- *
  */
 @Component
 public class WorkCustomer {

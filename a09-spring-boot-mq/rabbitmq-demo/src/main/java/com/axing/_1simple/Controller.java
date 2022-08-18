@@ -15,7 +15,7 @@ public class Controller {
     //第一种模式(直连)
     @GetMapping("/01")
     void simpleCustomerTest() {
-        rabbitTemplate.convertAndSend("hello","hello world");
+        rabbitTemplate.convertAndSend("hello", "hello world");
     }
 
 }

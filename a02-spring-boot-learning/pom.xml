@@ -32,6 +32,7 @@
         <module>07-sql-transactional</module>
         <module>08-strategy</module>
         <module>a09-response</module>
+        <module>a10-jdk17</module>
     </modules>
 
 </project>

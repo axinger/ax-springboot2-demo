@@ -1,6 +1,7 @@
 package com.axing.demo.entity;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.junit.jupiter.api.Test;
 
 class DogTest {
@@ -35,5 +36,27 @@ class DogTest {
 
     }
 
+    @Test
+    void test2() throws Exception {
+
+        final Dog dog = new Dog();
+        dog.setString("不使用builder");
+        dog.setString2("str2");
+        dog.setName2("name2");
+        dog.setATransient("首部1个小写字母,JsonIgnore不被序列化,正常");
+        dog.setATransient2("首部1个小写字母,transient不被序列化,失效");
+        dog.setAaTransient("首部2个以上小写字母,transient修改不被序列化,正常");
+        dog.setAaTransient2("首部2个以上小写字母,transient修改不被序列化,正常");
+        String s = JSON.toJSONString(dog);
+        System.out.println("s = " + s);
+
+        Dog dog1 = JSON.parseObject(s, Dog.class);
+
+        // 内部调用  return JSON.parseObject(text, clazz);
+        Dog dog2 = JSONObject.parseObject(s, Dog.class);
+
+        System.out.println("dog1 = " + dog1);
+        System.out.println("dog2 = " + dog2);
+    }
 
 }
