@@ -4,3 +4,4 @@ server:
 spring:
   application:
     name: name_app_test
+    boot-name: 测试环境

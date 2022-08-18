@@ -4,3 +4,4 @@ server:
 spring:
   application:
     name: name_app_dev
+    boot-name: 开发环境

@@ -38,7 +38,7 @@ public class TestController {
         map.put("active", active);
         map.put("name", name);
         map.put("bootName", bootName);
-
+        map.put("name2", "22222");
         return map;
     }
 }

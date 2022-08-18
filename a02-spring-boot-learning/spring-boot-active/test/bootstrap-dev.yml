@@ -1,7 +1,0 @@
-server:
-  port: 8093
-
-spring:
-  application:
-    name: name_boot_dev
-    boot-name: boot_name_dev

@@ -1,7 +1,0 @@
-server:
-  port: 8094
-
-spring:
-  application:
-    name: name_boot_test
-    boot-name: boot_name_test

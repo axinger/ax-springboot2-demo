@@ -1,0 +1,7 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: name_app_local
+    boot-name: 本地环境环境
