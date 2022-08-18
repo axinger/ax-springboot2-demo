@@ -3,16 +3,28 @@ package com.ax.controller;
 
 import com.ax.entity.User;
 import com.ax.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 @RestController
+@RequestMapping("/mvc2")
 public class UserController2 {
     /// flux 注解方法,和springmvc 类似
     @Autowired
     private UserService userService;
+
+    @SneakyThrows
+    @GetMapping("/sleep/{id}")
+    public Mono<Map> sleep(@PathVariable Integer id) {
+        TimeUnit.SECONDS.sleep(id);
+        return Mono.justOrEmpty(Map.of("time", id));
+    }
 
 
     @GetMapping("/user/{id}")

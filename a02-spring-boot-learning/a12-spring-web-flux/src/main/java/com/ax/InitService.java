@@ -30,17 +30,15 @@ public class InitService {
     // 路由
     public RouterFunction<ServerResponse> routerFunction() {
 
-        UserService userService = new UserServiceImpl();
-        UserHandler userHandler = new UserHandler(userService);
+        UserHandler userHandler = new UserHandler();
+
+        return RouterFunctions
+                .route(GET("/flux/users/list").and(accept(MediaType.APPLICATION_JSON)), userHandler::getAllUser)
+
+                .andRoute(GET("/flux/user/{id}").and(accept(MediaType.APPLICATION_JSON)), userHandler::getUserById)
 
 
-        return RouterFunctions.route(
-                GET("/user/{id}").and(accept(MediaType.APPLICATION_JSON)),
-                userHandler::getUserById
-        ).andRoute(
-                GET("/users").and(accept(MediaType.APPLICATION_JSON)),
-                userHandler::getAllUser
-        );
+                ;
     }
 
     // 创建服务器完成适配

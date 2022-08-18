@@ -1,43 +1,55 @@
 package com.ax.service;
 
 import com.ax.entity.User;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    /// 模拟数据
-    private final Map<Integer, User> userMap = new HashMap<>();
-
-    // 无参构造,初始化数据
-    public UserServiceImpl() {
-        for (int i = 1; i <= 5; i++) {
-            userMap.put(i, new User("jim" + i, (i % 2 == 0 ? "男" : "女"), 20 + i));
-        }
-    }
-
     @Override
     public Mono<User> getUserById(Integer id) {
-        return Mono.justOrEmpty(userMap.get(id));
+        User user = User.builder()
+                .id(id)
+                .name("name"+id)
+                .build();
+        return Mono.justOrEmpty(user);
     }
 
     @Override
     public Flux<User> getAllUser() {
-        /// userMap.values 取集合
-        return Flux.fromIterable(userMap.values());
+        User user1 = User.builder()
+                .id(1)
+                .name("name"+1)
+                .build();
+
+        User user2 = User.builder()
+                .id(2)
+                .name("name"+2)
+                .build();
+
+        List<User> list = List.of(user1, user2);
+
+        return Flux.fromIterable(list);
     }
 
     @Override
     public Mono<Void> addUser(Mono<User> userMono) {
 
         return userMono.doOnNext(user -> {
-            Integer id = userMap.size() + 1;
-            userMap.put(id, user);
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }).thenEmpty(Mono.empty());
 
     }

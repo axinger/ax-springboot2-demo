@@ -1,6 +1,7 @@
 package com.ax.future.config;
 
 import lombok.Data;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +10,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
-
+@Data
 @Configuration
 @EnableAsync
 @ConfigurationProperties(prefix = "thread.pool")
-@Data
 public class ThreadPoolConfig {
 
     private int coreSize;
@@ -21,13 +21,20 @@ public class ThreadPoolConfig {
     private int keepalive;
     private int blockQueueSize;
 
+    /**
+     * maximumPoolSize 在cpu密级型项目中请配置成 cup核心数+1==>Runtime.getRuntime().availableProcessors()+1
+     * maximumPoolSize在io密级型项目中请配置成 cpu核心数/阻塞系数
+     * @return
+     */
     @Bean(name = "smsExecutor")
     public Executor smsExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        int cpu = Runtime.getRuntime().availableProcessors();
         //配置核心线程数
         executor.setCorePoolSize(coreSize);
         //配置最大线程数
-        executor.setMaxPoolSize(maxSize);
+//        executor.setMaxPoolSize(maxSize);
+        executor.setMaxPoolSize(cpu+1);
         // 保活时间
         executor.setKeepAliveSeconds(keepalive);
         //配置队列大小

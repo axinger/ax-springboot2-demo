@@ -3,10 +3,14 @@ package com.ax.controller;
 
 import com.ax.entity.User;
 import com.ax.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/mvc")
@@ -18,9 +22,16 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public Mono<User> getUserById(@PathVariable Integer id) {
-
         return userService.getUserById(id);
     }
+
+    @SneakyThrows
+    @GetMapping("/sleep/{id}")
+    public Object sleep(@PathVariable long id) {
+        TimeUnit.SECONDS.sleep(id);
+        return Map.of("time",id);
+    }
+
 
     // 查询所有用户 Flux 多个返回值
     @GetMapping("/user")

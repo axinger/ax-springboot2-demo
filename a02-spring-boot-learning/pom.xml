@@ -16,12 +16,12 @@
         <module>no-web</module>
         <module>packaging-jar</module>
         <module>async</module>
-        <module>spring-web-flux</module>
+        <module>a12-spring-web-flux</module>
         <module>01-test-java8</module>
         <module>demo-juc</module>
         <module>demo-spring5</module>
         <module>demo-logback</module>
-        <module>spring-boot-active</module>
+        <module>a11-spring-boot-active</module>
         <module>02-test-guava</module>
         <module>03-test-hutool</module>
         <module>04-web-json</module>

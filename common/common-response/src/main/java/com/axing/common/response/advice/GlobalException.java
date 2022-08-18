@@ -24,7 +24,7 @@ import java.util.*;
 @Slf4j
 @RestControllerAdvice(basePackages = {"com.axing"})
 @ResponseBody
-public class GlobalExceptionAdvice {
+public class GlobalException {
 
     @Value("${axing.response.base-packages:}")
     private String basePackages;

@@ -30,6 +30,11 @@
 
         <dependency>
             <groupId>com.axing</groupId>
+            <artifactId>common-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
             <artifactId>common-response</artifactId>
         </dependency>
     </dependencies>

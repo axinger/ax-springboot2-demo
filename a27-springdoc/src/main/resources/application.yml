@@ -16,3 +16,18 @@ axing:
 
 doc-info:
   title: 测试项目1
+
+logging:
+  level:
+#    root: debug
+    com.axing.demo27: debug
+  config: classpath:logback-spring.xml
+  file:
+    path: logs
+#    DEBUG
+#    ERROR
+#    FATAL
+#    INFO
+#    OFF
+#    TRACE
+#    WARN
