@@ -1,5 +1,6 @@
 package com.axing.demo;
 
+import cn.hutool.core.lang.func.LambdaUtil;
 import cn.hutool.core.util.IdUtil;
 import org.junit.jupiter.api.Test;
 

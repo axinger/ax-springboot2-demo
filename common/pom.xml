@@ -20,6 +20,7 @@
         <module>common-doc</module>
         <module>common-redis</module>
         <module>common-config</module>
+        <module>common-mybatis</module>
     </modules>
 
 </project>

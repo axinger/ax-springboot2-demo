@@ -69,7 +69,6 @@
         <module>a26-prometheus</module>
         <module>a27-springdoc</module>
         <module>a28-wordToPdf</module>
-        <module>common/common-mybatis</module>
     </modules>
 
     <dependencies>
