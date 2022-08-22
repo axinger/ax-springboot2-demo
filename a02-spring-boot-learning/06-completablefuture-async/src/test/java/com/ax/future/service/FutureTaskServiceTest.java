@@ -1,19 +1,25 @@
 package com.ax.future.service;
 
+import ch.qos.logback.classic.spi.EventArgUtil;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StopWatch;
 
+import java.nio.file.WatchService;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootTest
 @Slf4j
@@ -196,5 +202,160 @@ class FutureTaskServiceTest {
         }).thenAcceptAsync(val -> { // 启用另一个线程池
             log.info("thenAcceptAsync = {}", val);
         }, orderExecutor);
+    }
+
+
+    @Test
+    void test_list_parallelStream() {
+
+        /**
+         * parallelStream默认使用了fork-join框架，其默认线程数是CPU核心数。
+         *
+         * 通过测试实践，发现有两种方法来修改默认的多线程数量
+         */
+        /**
+         * 1、全局设置
+         *
+         * 在运行代码之前，加入如下代码：
+         */
+        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "20");
+
+        System.out.println("Runtime.getRuntime().availableProcessors() = " + Runtime.getRuntime().availableProcessors());
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        StopWatch watch = new StopWatch();
+        watch.start();
+        List<Integer> collect = list.parallelStream()
+                .map(val -> {
+                    try {
+                        TimeUnit.SECONDS.sleep(val);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+                    return val;
+                }).collect(Collectors.toList());
+        watch.stop();
+
+        System.out.println("collect = " + collect + " getTotalTimeSeconds = " + watch.getTotalTimeSeconds());
+
+    }
+
+    @Test
+    void test_list_parallelStream2() throws ExecutionException, InterruptedException {
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        StopWatch watch = new StopWatch();
+        watch.start();
+        ForkJoinPool forkJoinPool = new ForkJoinPool(4);
+
+
+        List<Integer> collect = forkJoinPool.submit(() -> list.parallelStream()
+                .map(val -> {
+                    try {
+                        TimeUnit.SECONDS.sleep(val);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+                    return val;
+                }).collect(Collectors.toList())).get();
+
+
+        watch.stop();
+
+        System.out.println("collect = " + collect + " getTotalTimeSeconds = " + watch.getTotalTimeSeconds());
+
+
+    }
+
+
+
+    @Test
+    void test_list_parallelStream3()  {
+
+        List<Integer> list = Arrays.asList(1, 2, 3);
+
+        StopWatch watch = new StopWatch();
+        watch.start();
+
+
+        List<Integer> collect = list.parallelStream()
+                .map(val -> {
+                    try {
+                        TimeUnit.SECONDS.sleep(val);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+                    return val;
+                }).collect(Collectors.toList());
+
+
+        /// 模拟抢占线程
+        // 假如某个任务运行时间较长，导致线程池资源占据，阻塞其它线程，这样就阻止了其他的并行流任务正常进行。
+        list.parallelStream().forEach(val -> {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        watch.stop();
+
+        System.out.println("collect = " + collect + " getTotalTimeSeconds = " + watch.getTotalTimeSeconds());
+
+
+    }
+
+    /**
+     * stream指定线程池,用CompletableFuture
+     */
+    @Test
+    void start() {
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+
+
+        StopWatch watch = new StopWatch();
+        watch.start();
+
+
+        List<CompletableFuture<Integer>> futureList = list.stream().map(val -> CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(val);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+            return val;
+        }, executor)).collect(Collectors.toList());
+
+        /// 这行可有可无,
+        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[futureList.size()])).join();
+        List<Integer> collect = futureList.stream().map(val -> {
+            System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+           return val.join();
+        }).collect(Collectors.toList());
+
+
+        //这个不行
+//        List<Integer> collect = list.stream().map(val -> CompletableFuture.supplyAsync(() -> {
+//            try {
+//                TimeUnit.SECONDS.sleep(val);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+//            return val;
+//        }, executor).join()).collect(Collectors.toList());
+
+
+
+        watch.stop();
+        System.out.println("collect = " + collect + " getTotalTimeSeconds = " + watch.getTotalTimeSeconds());
+
     }
 }

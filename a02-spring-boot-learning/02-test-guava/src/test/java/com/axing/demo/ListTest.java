@@ -19,8 +19,13 @@ public class ListTest {
     void test1() {
 
         List list = Lists.newArrayList(1, 2, 3, 4);
+        list.add(5);
+        System.out.println("list = " + list);
+
 
         final List list1 = Lists.partition(list, list.size() - 1);
+
+
         System.out.println("Lists.partition(list, 3) = " + list1);
         if (list1.size() > 1) {
             System.out.println("list.get(1) = " + list1.get(1));

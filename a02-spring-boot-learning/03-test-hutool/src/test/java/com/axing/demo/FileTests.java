@@ -32,6 +32,7 @@ public class FileTests {
         System.out.println("path = " + path);
 
         File touch = FileUtil.touch(userHomePath, "/a/b/c.docx");
+        System.out.println("touch = " + touch.getPath());
 
         String path1 = FileUtil.mkdir(userHomePath+"/f/b/c").getPath();
         System.out.println("path1 = " + path1);

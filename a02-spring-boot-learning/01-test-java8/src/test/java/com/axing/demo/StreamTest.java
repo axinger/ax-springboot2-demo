@@ -8,9 +8,31 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamTest {
+
+
+    @Test
+    void test() {
+
+        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);
+
+        List<Integer> list = IntStream.range(0, nums.size() - 1)
+                .map(i -> nums.get(i + 1) - nums.get(i))
+                .boxed()
+                .toList();
+
+        System.out.println("list = " + list);
+
+        Integer collect = IntStream.range(0, nums.size() - 1)
+                .map(i -> nums.get(i + 1) - nums.get(i))
+                .boxed()
+                .collect(Collectors.summingInt(Integer::intValue));
+        System.out.println("collect = " + collect);
+
+    }
 
     @Test
     void test_findFirst() {
@@ -723,12 +745,15 @@ class StreamTest_count {
         List<Person> personList = new ArrayList<Person>();
         personList.add(Person.builder()
                 .id(1)
+                        .age(1)
                 .build());
         personList.add(Person.builder()
                 .id(1)
+                .age(2)
                 .build());
         personList.add(Person.builder()
                 .id(1)
+                .age(3)
                 .build());
 
         // 求总数
@@ -742,6 +767,12 @@ class StreamTest_count {
         Optional<Integer> max = personList.stream().map(Person::getAge).collect(Collectors.maxBy(Integer::compare));
         // 求工资之和
         Integer sum = personList.stream().collect(Collectors.summingInt(Person::getAge));
+        // 统计所有的
+        IntSummaryStatistics collect1 = personList.stream().collect(Collectors.summarizingInt(Person::getAge));
+        System.out.println("collect1.getCount() = " + collect1.getCount());
+        System.out.println("collect1.getMax() = " + collect1.getMax());
+        System.out.println("collect1.getMin() = " + collect1.getMin());
+
         // 一次性统计所有信息
         DoubleSummaryStatistics collect = personList.stream().collect(Collectors.summarizingDouble(Person::getAge));
 
@@ -750,11 +781,9 @@ class StreamTest_count {
         System.out.println("员工工资总和：" + sum);
         System.out.println("员工工资所有统计：" + collect);
     }
-}
 
-
-class StreamTest_groupingBy {
-    public static void main(String[] args) {
+    @Test
+    void test1() {
         List<Person> personList = new ArrayList<Person>();
         personList.add(Person.builder()
                 .id(1)
@@ -765,8 +794,40 @@ class StreamTest_groupingBy {
         personList.add(Person.builder()
                 .id(1)
                 .build());
+
+        Optional<Integer> max = personList.stream().map(Person::getAge).collect(Collectors.maxBy(Integer::compare));
+
+
+    }
+}
+
+
+class StreamTest_groupingBy {
+    public static void main(String[] args) {
+        List<Person> personList = new ArrayList<Person>();
         personList.add(Person.builder()
                 .id(1)
+                .sex("男")
+                .age(10)
+                .area("安徽")
+                .build());
+        personList.add(Person.builder()
+                .id(1)
+                .sex("女")
+                .age(10)
+                .area("安徽")
+                .build());
+        personList.add(Person.builder()
+                .id(1)
+                .sex("女")
+                .age(11)
+                .area("安徽")
+                .build());
+        personList.add(Person.builder()
+                .id(1)
+                .sex("女")
+                .age(12)
+                .area("江苏")
                 .build());
 
 
@@ -788,8 +849,32 @@ class StreamTest_groupingBy {
                                 Collectors.summingInt(Person::getAge)
                         )
                 );
-        System.out.println("collect = " + collect);
+        System.out.println("分组求和 = " + collect);
 
+        //分组求和,统计个数
+        Map<String, Long> collect1 = personList.stream()
+                .collect(Collectors.groupingBy(
+                                Person::getSex,
+                                Collectors.counting()
+                        )
+                );
+        System.out.println("分组求和个数 = " + collect1);
+
+//        .sorted(Comparator.comparing(Person::getAge).reversed())
+//                .map(Person::getName).collect(Collectors.toList())
+        //map排序成list
+        List<Map.Entry<String, Long>> collect2 = collect1.entrySet().stream()
+                .sorted(Map.Entry.<String, Long> comparingByValue().reversed()).collect(Collectors.toList());
+
+        System.out.println("map排序 = " + collect2);
+
+
+        List<Map.Entry<String, Long>> collect3 = collect1.entrySet().stream()
+                .sorted(Map.Entry.<String, Long> comparingByValue().reversed())
+                .limit(1)
+                .collect(Collectors.toList());
+
+        System.out.println("map排序top = " + collect3);
     }
 }
 
