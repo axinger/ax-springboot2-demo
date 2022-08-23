@@ -15,6 +15,17 @@ import java.time.LocalDateTime;
 
 public class DateTest {
 
+
+    @Test
+    void test_withDayOfYear() {
+        final LocalDateTime localDateTime = LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfYear(1));
+        System.out.println("localDateTime = " + localDateTime);
+
+        System.out.println(LocalDateTime.now().withDayOfYear(1));
+
+    }
+
+
     @Test
     void test_1() {
         final LocalDateTime localDateTime = LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(1));
