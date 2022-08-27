@@ -10,7 +10,7 @@
 
     <artifactId>spring-boot-active</artifactId>
     <name>a11-spring-boot-active</name>
-    <description>spring-boot-active</description>
+    <description>a11-spring-boot-active</description>
     <profiles>
         <profile>
             <id>local</id>

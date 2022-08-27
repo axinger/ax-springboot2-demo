@@ -33,6 +33,7 @@
         <module>08-strategy</module>
         <module>a09-response</module>
         <module>a10-jdk17</module>
+        <module>a13-springboot-mvc</module>
     </modules>
 
 </project>
