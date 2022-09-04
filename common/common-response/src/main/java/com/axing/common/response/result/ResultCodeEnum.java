@@ -26,7 +26,7 @@ public enum ResultCodeEnum {
 
     PERMISSION(209, "没有权限"),
 
-    CODE_ERROR(210, "验证码错误"), // LOGIN_MOBLE_ERROR(211, "账号不正确"),
+    CODE_ERROR(210, "验证码错误"),
 
     LOGIN_DISABLED_ERROR(212, "改用户已被禁用"),
 
@@ -36,9 +36,21 @@ public enum ResultCodeEnum {
 
     LOGIN_ACL(215, "没有权限"),
 
-    URL_ENCODE_ERROR(216, "URL编码失败"), ILLEGAL_CALLBACK_REQUEST_ERROR(217, "非法回调请求"), FETCH_ACCESSTOKEN_FAILD(218, "获取accessToken失败"), FETCH_USERINFO_ERROR(219, "获取用户信息失败"),
-    // LOGIN_ERROR( 23005, "登录失败"),
+    URL_ENCODE_ERROR(216, "URL编码失败"),
 
+    ILLEGAL_CALLBACK_REQUEST_ERROR(217, "非法回调请求"),
+
+    FETCH_ACCESSTOKEN_FAILD(218, "获取accessToken失败"),
+
+    FETCH_USERINFO_ERROR(219, "获取用户信息失败"),
+
+    FAILED(500, "操作失败"),
+
+    VALIDATE_FAILED(404, "参数检验失败"),
+
+    UNAUTHORIZED(401, "暂未登录或token已经过期"),
+
+    FORBIDDEN(403, "没有相关权限");
 
     ;
 

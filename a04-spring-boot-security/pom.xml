@@ -14,6 +14,7 @@
     <modules>
         <module>security-content</module>
         <module>security-oauth</module>
+        <module>spring-boot-security</module>
     </modules>
 
 </project>

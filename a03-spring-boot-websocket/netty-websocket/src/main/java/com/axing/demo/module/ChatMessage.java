@@ -1,6 +1,6 @@
 package com.axing.demo.module;
 
-import com.axing.demo.service.ChatConstants;
+import com.axing.service.ChatConstants;
 import lombok.*;
 
 import java.io.Serializable;

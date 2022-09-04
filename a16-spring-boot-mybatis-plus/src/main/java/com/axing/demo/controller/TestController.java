@@ -3,7 +3,7 @@ package com.axing.demo.controller;
 import com.axing.demo.annotation.DS_DB1;
 import com.axing.demo.annotation.DS_MASTER;
 import com.axing.demo.db2.service.UserRoleService;
-import com.axing.demo.service.StudentService;
+import com.axing.service.StudentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

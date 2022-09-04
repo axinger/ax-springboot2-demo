@@ -1,0 +1,53 @@
+server:
+  port: 8700
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://localhost:3306/ax_test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+# 自定义jwt key
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui/**
+      - /swagger-resources/**
+      - /**/v3/api-docs
+      - /**/*.html
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /favicon.ico
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+
+#springdoc:
+swagger-ui:
+    # 修改Swagger UI路径
+  path: /swagger-ui.html
+  # 开启Swagger UI界面
+  enabled: true
+  api-docs:
+    # 修改api-docs路径
+    path: /v3/api-docs
+    # 开启api-docs
+    enabled: true
+  # 配置需要生成接口文档的扫描包
+  packages-to-scan: com.axing.security.controller
+  # 配置需要生成接口文档的接口路径
+  paths-to-match: /brand/**,/admin/**
+
+axing:
+  response:
+    base-packages: com.axing.security

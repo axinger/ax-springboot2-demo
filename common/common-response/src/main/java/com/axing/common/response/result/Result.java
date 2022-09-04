@@ -36,7 +36,7 @@ public class Result<T> {
         return result;
     }
 
-    public static <T> Result<T> build(T body, ResultCodeEnum resultCodeEnum) {
+    public static <T> Result<T> build(ResultCodeEnum resultCodeEnum, T body) {
         Result<T> result = build(body);
         result.setCode(resultCodeEnum.getCode());
         result.setMessage(resultCodeEnum.getMessage());
@@ -65,7 +65,7 @@ public class Result<T> {
      * @return 结果
      */
     public static <T> Result<T> ok(T data) {
-        return build(data, ResultCodeEnum.SUCCESS);
+        return build(ResultCodeEnum.SUCCESS, data);
     }
 
     public static <T> Result<T> ok() {
@@ -73,8 +73,13 @@ public class Result<T> {
     }
 
     public static <T> Result<T> fail(T data) {
-        return build(data, ResultCodeEnum.FAIL);
+        return build(ResultCodeEnum.FAIL, data);
     }
+
+    public static <T> Result<T> fail(ResultCodeEnum resultCodeEnum, T data) {
+        return build(resultCodeEnum, data);
+    }
+
 
     public static <T> Result<T> fail(String message) {
         return build(ResultCodeEnum.FAIL.getCode(), message);

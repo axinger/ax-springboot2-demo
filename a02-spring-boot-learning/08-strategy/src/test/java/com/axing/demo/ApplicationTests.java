@@ -2,7 +2,7 @@ package com.axing.demo;
 
 import com.axing.demo.entity.MessageInfo;
 import com.axing.demo.entity.MsgTypeEnum;
-import com.axing.demo.service.MessageService;
+import com.axing.service.MessageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

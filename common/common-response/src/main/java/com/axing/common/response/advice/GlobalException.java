@@ -101,7 +101,7 @@ public class GlobalException {
             map.put(key, msg);
         });
 
-        final Result<Map<String, Object>> result = Result.build(201, map, map.toString());
+        final Result<Map<String, Object>> result = Result.build(201, map, "方法参数校验异常");
         log.error("方法参数校验异常 result =  {}", result);
         return result;
 
