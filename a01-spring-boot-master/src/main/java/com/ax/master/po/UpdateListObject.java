@@ -1,6 +1,6 @@
 package com.ax.master.po;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.ax.master.entity.IpLog;
 
 import java.util.List;

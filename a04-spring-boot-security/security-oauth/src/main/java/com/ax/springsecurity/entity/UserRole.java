@@ -1,6 +1,6 @@
 package com.ax.springsecurity.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson2.annotation.JSONField;
 import org.springframework.security.core.GrantedAuthority;
 
 public class UserRole implements GrantedAuthority {

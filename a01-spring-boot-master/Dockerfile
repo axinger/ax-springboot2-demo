@@ -8,7 +8,7 @@ MAINTAINER 阿星
 VOLUME /tmp
 
 # 将jar包添加到容器中,并更名
-ADD target/ax-mall-1.1.2.jar ax-mall.jar
+ADD target/*.jar ax-mall.jar
 
 # 运行jia 包
 RUN bash -c 'touch /ax-mall.jar'

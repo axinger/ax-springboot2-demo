@@ -1,6 +1,6 @@
 package com.ax.springsecurity.util.axUtil;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson2.annotation.JSONField;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;

@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 
@@ -34,13 +33,12 @@ public class Person implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-
-    @Transient
+    @TableField(exist = false)
     private Integer age2;
 
 
     /**
-     * 不会序列化,所有也不会映射表,业务需求不一样
+     * 不会序列化,所以也不会映射表,业务需求不一样
      */
     private transient String name2 = "name2";
 

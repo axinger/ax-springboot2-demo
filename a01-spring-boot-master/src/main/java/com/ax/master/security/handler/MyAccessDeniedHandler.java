@@ -1,6 +1,6 @@
 //package com.ax.master.security.handler;
 //
-//import com.alibaba.fastjson.JSON;
+//import com.alibaba.fastjson2.JSON;
 //import org.springframework.security.access.AccessDeniedException;
 //import org.springframework.security.web.access.AccessDeniedHandler;
 //import org.springframework.stereotype.Service;
