@@ -1,12 +1,30 @@
 package com.axing.demo;
 
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.StrUtil;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class StringTest {
+
+
+    public void antMatchers(String... antPatterns) {
+        System.out.println("antPatterns = " + antPatterns);
+    }
+
+    @Test
+    void test_antMatchers() {
+        List<String> list = ListUtil.of("1", "2");
+
+        String[] objects = list.toArray(new String[list.size()]);
+//        antMatchers(objects);
+        antMatchers("1", "2");
+    }
 
     @Test
     void test_str() {
