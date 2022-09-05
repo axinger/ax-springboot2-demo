@@ -5,10 +5,8 @@ import com.axing.common.response.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,7 +56,7 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
                                   ServerHttpResponse response) {
 
         if (body instanceof String) {
-          return JSON.toJSONString(Result.ok(body));
+            return JSON.toJSONString(Result.ok(body));
         }
 
         if (body instanceof Resource) {

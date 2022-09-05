@@ -1,6 +1,5 @@
 package com.axing.controller;
 
-import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.messaging.Message;

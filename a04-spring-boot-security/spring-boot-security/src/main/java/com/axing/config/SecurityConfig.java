@@ -1,6 +1,5 @@
 package com.axing.config;
 
-import cn.hutool.core.collection.ListUtil;
 import com.axing.component.DynamicSecurityFilter;
 import com.axing.component.JwtAuthenticationTokenFilter;
 import com.axing.component.RestAuthenticationEntryPoint;
@@ -11,11 +10,7 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -84,7 +79,6 @@ public class SecurityConfig {
     @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
         List<String> list = ignoreUrlsConfig.getUrls();
-
 
 
 //        List<String> list =    ListUtil.of( "/",

@@ -16,15 +16,14 @@ public class ReceiveMessageController {
     private String serverPort;
 
     @Bean(value = "send")
-    //这里接收rabbitmq的条件是参数为Consumer 并且 方法名和supplier方法名相同
-    //这里的返回值是一个匿名函数 返回类型是consumer 类型和提供者的类型一致
-    //supplier发送的exchange是 send-in-0 这里只需要用send方法名即可
+        //这里接收rabbitmq的条件是参数为Consumer 并且 方法名和supplier方法名相同
+        //这里的返回值是一个匿名函数 返回类型是consumer 类型和提供者的类型一致
+        //supplier发送的exchange是 send-in-0 这里只需要用send方法名即可
     Consumer<Map> send() {
         return str -> {
-            System.out.println("我是消费者"+serverPort+"，我收到了消息："+str);
+            System.out.println("我是消费者" + serverPort + "，我收到了消息：" + str);
         };
     }
-
 
 
 //    //Supplier声明一个消息生产者，source就对应source-out-0的生产者binding
@@ -71,6 +70,7 @@ public class ReceiveMessageController {
             System.out.println("myHeader = " + myHeader);
         };
     }
+
     @Bean
     public Consumer<String> sms() {
         return message -> {

@@ -3,8 +3,6 @@ package com.axing.component;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,7 +38,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
         String authHeader = request.getHeader(this.tokenHeader);
-        log.info("authHeader = {}",authHeader);
+        log.info("authHeader = {}", authHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer"
             JWT jwt = JWTUtil.parseToken(authToken);

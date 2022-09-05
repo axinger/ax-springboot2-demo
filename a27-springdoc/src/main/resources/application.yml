@@ -19,7 +19,7 @@ doc-info:
 
 logging:
   level:
-#    root: debug
+    #    root: debug
     com.axing.demo27: debug
   config: classpath:logback-spring.xml
   file:

@@ -1,8 +1,8 @@
 package com.axing.demo.entity;
 
 import com.axing.common.mybatis.entity.BaseEntity;
-import com.baomidou.mybatisplus.annotation.*;
-
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -50,7 +50,7 @@ springdoc:
     enabled: true
     #swagger后端请求地址
   #    path: /api-docs
-#  swagger-ui:
+  #  swagger-ui:
   #自定义swagger前端请求路径，输入http：127.0.0.1:8080/test会自动重定向到swagger页面
   #    path: /test
   #包扫描路径

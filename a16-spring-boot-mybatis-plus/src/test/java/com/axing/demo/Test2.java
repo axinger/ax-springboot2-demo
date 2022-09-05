@@ -1,11 +1,7 @@
 package com.axing.demo;
 
 import com.axing.demo.entity.Person;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
-import com.baomidou.mybatisplus.core.toolkit.SerializationUtils;
-import com.baomidou.mybatisplus.core.toolkit.support.SerializedLambda;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import org.junit.jupiter.api.Test;
 
 /**

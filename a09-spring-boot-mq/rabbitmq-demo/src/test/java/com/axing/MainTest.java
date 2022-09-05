@@ -2,7 +2,6 @@ package com.axing;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MainTest {

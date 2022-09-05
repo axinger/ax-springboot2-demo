@@ -4,12 +4,12 @@ server:
 spring:
   application:
     name: cloud-stream-consumer
-#  rabbitmq:
-#    host: localhost
-#    port: 5672  #mq调用的端口为5672
-#    username: admin
-#    password: 123456
-#    virtual-host: my_vhost
+  #  rabbitmq:
+  #    host: localhost
+  #    port: 5672  #mq调用的端口为5672
+  #    username: admin
+  #    password: 123456
+  #    virtual-host: my_vhost
 
   #中间cloud部分和8802一样
   cloud:
@@ -29,15 +29,15 @@ spring:
       function:
         definition: order;sms
       bindings:
-#        transfer-in-0:
-#          destination: test1
-#        transfer-out-0:
-#          destination: test2
+        #        transfer-in-0:
+        #          destination: test1
+        #        transfer-out-0:
+        #          destination: test2
         #消息消费者，则需要定义为[函数对象名]-in-0。其中in表示这是一个不断接收消息的消费者
         order-in-0:
           destination: mq.order
-#        order-in-1:
-#          destination: mq.order
+        #        order-in-1:
+        #          destination: mq.order
         sms-in-0:
           destination: mq.sms
 

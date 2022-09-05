@@ -190,11 +190,11 @@
             </dependency>
 
 
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.session</groupId>-->
-<!--                <artifactId>spring-session-data-redis</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.session</groupId>-->
+            <!--                <artifactId>spring-session-data-redis</artifactId>-->
+            <!--                <version>${spring-boot.version}</version>-->
+            <!--            </dependency>-->
 
 
             <dependency>
@@ -318,10 +318,10 @@
             </dependency>
 
 
-<!--            <dependency>-->
-<!--                <groupId>com.axing</groupId>-->
-<!--                <artifactId>spring-boot-axing-starter</artifactId>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.axing</groupId>-->
+            <!--                <artifactId>spring-boot-axing-starter</artifactId>-->
+            <!--            </dependency>-->
 
             <dependency>
                 <groupId>org.apache.shiro</groupId>

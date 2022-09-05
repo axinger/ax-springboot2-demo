@@ -37,9 +37,9 @@ public class DateTest {
         System.out.println(beginOfDay.compareTo(endOfDay));
         System.out.println(endOfDay.compareTo(beginOfDay));
 
-        System.out.println(now.compareTo(now)<1);
-        System.out.println(beginOfDay.compareTo(endOfDay)<1);
-        System.out.println(endOfDay.compareTo(beginOfDay)<1);
+        System.out.println(now.compareTo(now) < 1);
+        System.out.println(beginOfDay.compareTo(endOfDay) < 1);
+        System.out.println(endOfDay.compareTo(beginOfDay) < 1);
     }
 
     @Test

@@ -21,13 +21,13 @@
 
     <insert id="create">
         insert into t_order(user_id, product_id, count, money, status)
-        value (#{userId}, #{productId}, #{count}, #{money}, 0)
+            value (#{userId}, #{productId}, #{count}, #{money}, 0)
     </insert>
 
     <update id="updateStatus">
         update t_order
         set status = 1
         where user_id = #{userId}
-        and status = #{status}
+          and status = #{status}
     </update>
 </mapper>

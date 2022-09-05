@@ -3,7 +3,6 @@ package com.axing.demo;
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.jwt.JWT;
-import cn.hutool.jwt.JWTHeader;
 import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ public class JWTTest {
         DateTime now = DateTime.now();
         DateTime newTime = now.offsetNew(DateField.MINUTE, 10);
 
-        Map<String,Object> payload = new HashMap<String,Object>();
+        Map<String, Object> payload = new HashMap<String, Object>();
         //签发时间
         payload.put(JWTPayload.ISSUED_AT, now);
         //过期时间
@@ -51,7 +50,6 @@ public class JWTTest {
 
         boolean verifyTime = jwt.validate(0);
         System.out.println(verifyTime);
-
 
 
     }

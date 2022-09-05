@@ -9,9 +9,9 @@ import java.util.Map;
 public class MapTests {
 
     @Test
-    void test(){
+    void test() {
 
-        HashMap<Object,Object> map = Maps.newHashMap(new HashMap<>() {{
+        HashMap<Object, Object> map = Maps.newHashMap(new HashMap<>() {{
             put("a", 1);
         }});
         System.out.println("map = " + map);

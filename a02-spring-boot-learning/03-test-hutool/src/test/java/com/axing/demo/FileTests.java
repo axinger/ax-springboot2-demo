@@ -4,7 +4,6 @@ import cn.hutool.core.comparator.CompareUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import lombok.val;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,11 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class FileTests {
 
@@ -60,7 +56,7 @@ public class FileTests {
 
 
         Optional<File> min1 = List.of(ls).stream()
-                .filter(val->FileUtil.isDirectory(val))
+                .filter(val -> FileUtil.isDirectory(val))
                 .min((val1, val2) -> {
                     FileTime t1 = null;
                     FileTime t2 = null;
@@ -69,14 +65,14 @@ public class FileTests {
                         t2 = Files.readAttributes(Paths.get(val2.getPath()), BasicFileAttributes.class).creationTime();
                     } catch (Exception e) {
                     }
-                    return  CompareUtil.compare(t1,t2);
+                    return CompareUtil.compare(t1, t2);
                 });
 
         System.out.println("min = " + min1);
 
         File[] ls1 = FileUtil.ls(min1.get().getPath());
         Optional<File> min2 = List.of(ls1).stream()
-                .filter(val->FileUtil.isDirectory(val) && StrUtil.startWith(val.getName(),"chk-"))
+                .filter(val -> FileUtil.isDirectory(val) && StrUtil.startWith(val.getName(), "chk-"))
                 .min((val1, val2) -> {
                     FileTime t1 = null;
                     FileTime t2 = null;
@@ -85,7 +81,7 @@ public class FileTests {
                         t2 = Files.readAttributes(Paths.get(val2.getPath()), BasicFileAttributes.class).creationTime();
                     } catch (Exception e) {
                     }
-                    return  CompareUtil.compare(t1,t2);
+                    return CompareUtil.compare(t1, t2);
                 });
 
         System.out.println("min2 = " + min2);

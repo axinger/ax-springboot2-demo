@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class LambdaUtilTest {
 
     @Test
-    void test(){
+    void test() {
         String fieldName = LambdaUtil.getFieldName(Person::getName);
         System.out.println("fieldName = " + fieldName);
 

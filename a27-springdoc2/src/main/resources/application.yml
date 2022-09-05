@@ -6,12 +6,12 @@ springdoc:
     #是否开启文档功能
     enabled: true
     #swagger后端请求地址
-#    path: /api-docs
+  #    path: /api-docs
   swagger-ui:
-    #自定义swagger前端请求路径，输入http：127.0.0.1:8080/test会自动重定向到swagger页面
-#    path: /test
+  #自定义swagger前端请求路径，输入http：127.0.0.1:8080/test会自动重定向到swagger页面
+  #    path: /test
   #包扫描路径
-#  packages-to-scan: com.axing.controller
+  #  packages-to-scan: com.axing.controller
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
     #分组名

@@ -254,7 +254,7 @@ public class StreamTest {
     void test_limit2() {
 
         // 超出不回报错
-        final List<Integer> list = Lists.newArrayList(1,2);
+        final List<Integer> list = Lists.newArrayList(1, 2);
 //        final List<List<Integer>> collect1 = Stream.of(list2).limit(1).collect(Collectors.toList());
 //        System.out.println("collect1 = " + collect1);1, 2,3,4);
 
@@ -302,7 +302,7 @@ public class StreamTest {
         System.out.println("list = " + list);
 
 
-        List<Integer> list2 = IntStream.rangeClosed(0, list1.size()-1).mapToObj(i -> {
+        List<Integer> list2 = IntStream.rangeClosed(0, list1.size() - 1).mapToObj(i -> {
             System.out.println("i = " + i);
             return i;
         }).toList();
