@@ -16,6 +16,9 @@
         <module>consul-payment</module>
         <module>gateway-9527</module>
         <module>getaway-payment</module>
+        <module>stream-producer</module>
+        <module>stream-consumer2</module>
+        <module>stream-consumer</module>
     </modules>
 
 

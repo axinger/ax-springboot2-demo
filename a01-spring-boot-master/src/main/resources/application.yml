@@ -1,4 +1,5 @@
 server:
+  port: 8900
   #拒绝kill -9 优雅停机,kill -2
   shutdown: graceful
   servlet:
