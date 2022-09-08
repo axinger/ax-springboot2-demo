@@ -34,7 +34,7 @@ public class RabbitMqConfig implements RabbitTemplate.ConfirmCallback, RabbitTem
      */
     @PostConstruct
     public void init() {
-
+        rabbitTemplate.setMessageConverter(messageConverter());
         /**
          * correlationData 相关配置
          * ack 是否成功收到消息
