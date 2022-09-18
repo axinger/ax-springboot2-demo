@@ -70,6 +70,7 @@
         <module>a27-springdoc</module>
         <module>a28-wordToPdf</module>
         <module>a27-springdoc2</module>
+        <module>a29-elk</module>
     </modules>
 
     <dependencies>
