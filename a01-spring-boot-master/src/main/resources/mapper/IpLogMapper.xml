@@ -109,9 +109,9 @@
 
     <insert id="insert" parameterType="com.ax.master.entity.IpLog" useGeneratedKeys="true" keyProperty="id">
         insert into t_ip_log (user_name, login_time, ip,
-                              login_state, user_type, user_info_id)
+        login_state, user_type, user_info_id)
         values (#{userName,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR},
-                #{loginState,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}, #{userinfoId,jdbcType=BIGINT})
+        #{loginState,jdbcType=INTEGER}, #{userType,jdbcType=INTEGER}, #{userinfoId,jdbcType=BIGINT})
     </insert>
 
     <!--动态sql if -->
@@ -209,12 +209,12 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ax.master.entity.IpLog">
         update t_ip_log
-        set user_name    = #{userName,jdbcType=VARCHAR},
-            login_time   = #{loginTime,jdbcType=TIMESTAMP},
-            ip           = #{ip,jdbcType=VARCHAR},
-            login_state  = #{loginState,jdbcType=INTEGER},
-            user_type    = #{userType,jdbcType=INTEGER},
-            user_info_id = #{userinfoId,jdbcType=BIGINT}
+        set user_name = #{userName,jdbcType=VARCHAR},
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+        ip = #{ip,jdbcType=VARCHAR},
+        login_state = #{loginState,jdbcType=INTEGER},
+        user_type = #{userType,jdbcType=INTEGER},
+        user_info_id = #{userinfoId,jdbcType=BIGINT}
         where id = #{id,jdbcType=BIGINT}
     </update>
 

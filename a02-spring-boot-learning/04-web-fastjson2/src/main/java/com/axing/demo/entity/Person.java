@@ -1,7 +1,6 @@
 package com.axing.demo.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,13 +30,13 @@ public class Person implements Serializable {
     Boolean aBoolean;
     Boolean aBoolean2;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     Date date;
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JSONField(format = "yyyy年MM-dd HH:mm:ss")
     LocalDateTime localDateTime;
 
     Long aLong;

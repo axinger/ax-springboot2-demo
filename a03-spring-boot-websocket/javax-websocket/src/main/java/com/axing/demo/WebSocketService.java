@@ -1,8 +1,8 @@
 package com.axing.demo;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -115,7 +115,9 @@ public class WebSocketService {
     @OnMessage
     public void onMessage(String message, Session session) {
         logger.info("收到来自用户id为：{}的消息：{}", this.userId, message);
-        if (session == null) logger.info("session null");
+        if (session == null){
+            logger.info("session null");
+        }
 
         JSONObject jsonObject = JSON.parseObject(message);
         Long toId = jsonObject.getLong("toId");

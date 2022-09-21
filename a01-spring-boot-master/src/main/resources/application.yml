@@ -26,6 +26,10 @@ spring:
     include: swagger
     active: prd
   #    active: prd-docker
+  #彩色日志
+  output:
+    ansi:
+      enabled: always
 
   thymeleaf:
     mode: HTML # 模板的模式

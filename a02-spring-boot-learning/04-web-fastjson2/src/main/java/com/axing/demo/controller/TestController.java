@@ -1,17 +1,18 @@
 package com.axing.demo.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson2.JSON;
 import com.axing.demo.entity.Person;
 import com.google.common.collect.Lists;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,7 +24,13 @@ import java.util.List;
 public class TestController {
 
     @RequestMapping(value = "/json")
-    public Object testnull() {
+    public Object json() {
+
+        Map map = new HashMap();
+        map.put("localDateTime", LocalDateTime.now());
+        map.put("localDate", LocalDate.now());
+        map.put("localTime", LocalTime.now());
+        map.put("date", new Date());
 
         final Person person = Person.builder()
                 .string2("jim")
@@ -43,13 +50,10 @@ public class TestController {
         person1.setString2("tom");
         final List<Person> list = Lists.newArrayList(person, person1);
 
-
-        final String string = JSON.toJSONString(list);
-        System.out.println("string = " + string);
-        System.out.println("JSONObject.toJSONString(list) = " + JSONObject.toJSONString(list));
+        map.put("personList", list);
 
 
-        return list;
+        return map;
     }
 
 

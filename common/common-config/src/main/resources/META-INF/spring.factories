@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.axing.common.config.MyCorsFilter,\
-com.axing.common.config.CorsConfig

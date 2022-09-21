@@ -6,6 +6,7 @@ import org.springframework.format.annotation.NumberFormat;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
+
 /**
  * @author xing
  * @version 1.0.0
@@ -75,6 +76,17 @@ public class NumberTest {
                 .multiply(BigDecimal.valueOf(100));
         System.out.println("percentage = " + percentage);
 
+
+    }
+
+    @Test
+    void test3() {
+
+        BigDecimal bigDecimal = BigDecimal.valueOf(2.1234);
+
+        System.out.println("bigDecimal = " + bigDecimal);
+
+        System.out.println(String.format("%.1f", bigDecimal));
 
     }
 

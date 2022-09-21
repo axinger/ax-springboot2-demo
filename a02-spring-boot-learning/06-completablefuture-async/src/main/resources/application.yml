@@ -4,6 +4,11 @@ spring:
   aop:
     proxy-target-class: true
 
+  #彩色日志
+  output:
+    ansi:
+      enabled: always
+
 thread:
   pool:
     core-size: 2 #核心线程数

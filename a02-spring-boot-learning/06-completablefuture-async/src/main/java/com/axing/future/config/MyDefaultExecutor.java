@@ -68,7 +68,7 @@ public class MyDefaultExecutor implements AsyncConfigurer {
         //队列中最大的数目
         executor.setQueueCapacity(650);
         //线程名称前缀
-        executor.setThreadNamePrefix("自定义线程池-");
+        executor.setThreadNamePrefix("🐛🐛🐛自定义线程池-");
         //rejection-policy：当pool已经达到max size的时候，如何处理新任务
         //CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行
         //对拒绝task的处理策略

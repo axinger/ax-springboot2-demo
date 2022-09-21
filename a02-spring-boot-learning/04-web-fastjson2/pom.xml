@@ -5,22 +5,13 @@
     <parent>
         <artifactId>a02-spring-boot-learning</artifactId>
         <groupId>com.axing</groupId>
-        <version>2.2.0</version>
+        <version>2.2.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>04-web-json</artifactId>
 
-    <properties>
-        <docker.host>http://47.101.156.93:2375</docker.host>
-        <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
-    </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -30,10 +21,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>common-config</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -1,4 +1,3 @@
-
 logging:
   config: classpath:logback-spring.xml
   file:
