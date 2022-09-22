@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
-    <contextName>logback-demo</contextName>
+<!--    <contextName>logback-demo</contextName>-->
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
-    <springProperty scope="context" name="logback.app.name" source="spring.application.name" defaultValue="appName"/>
+    <springProperty scope="context" name="logback.app.name" source="spring.application.name" defaultValue="app-name"/>
     <springProperty scope="context" name="logback.dir" source="logging.file.path" defaultValue="logs"/>
 
 
