@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Primary;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-@Configuration
-public class LocalDateFormatConfig {
+//
+//@Configuration
+//public class LocalDateFormatConfig {
  
      
     @Bean

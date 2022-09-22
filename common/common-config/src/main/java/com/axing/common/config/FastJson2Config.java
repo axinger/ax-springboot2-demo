@@ -1,31 +1,22 @@
 package com.axing.common.config;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring.http.converter.FastJsonHttpMessageConverter;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author xing
- * @version 1.0.0
- * @ClassName FastJsonConfig.java
- * @description https://github.com/alibaba/fastjson2/blob/main/docs/features_cn.md
- * @createTime 2022年09月21日 20:01:00
+ * 目前LocalTime,LocalDate,无法全局设置,暂不用
  */
-@Configuration
-public class JsonConfig {
+public class FastJson2Config {
+
 
     @Bean
     public HttpMessageConverters fastJsonHttpMessageConverter() {
@@ -34,7 +25,7 @@ public class JsonConfig {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         //自定义配置...
         FastJsonConfig config = new FastJsonConfig();
-        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
+//        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
         config.setReaderFeatures(
                 JSONReader.Feature.FieldBased,
                 JSONReader.Feature.SupportArrayToBean,
@@ -68,52 +59,6 @@ public class JsonConfig {
         supportedMediaTypes.add(MediaType.APPLICATION_JSON);
         converter.setSupportedMediaTypes(supportedMediaTypes);
 
-
-        // 自定义LocalDate序列化格式
-        JSON.register(LocalDate.class, (jsonWriter, object, fieldName, fieldType, features) -> {
-            if (object == null) {
-                jsonWriter.writeNull();
-                return;
-            }
-            LocalDate localDate = (LocalDate) object;
-            jsonWriter.writeString(localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        });
-
-        // 自定义LocalTime序列化格式
-        JSON.register(LocalTime.class, (jsonWriter, object, fieldName, fieldType, features) -> {
-            if (object == null) {
-                jsonWriter.writeNull();
-                return;
-            }
-            LocalTime localTime = (LocalTime) object;
-            jsonWriter.writeString(localTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        });
         return new HttpMessageConverters(converter);
     }
-
-//    @Bean
-//    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        // 指定时区
-//        objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-//        // 日期类型字符串处理
-////        objectMapper.setDateFormat(new SimpleDateFormat(DatePattern.NORM_DATETIME_FORMATTER));
-//
-//        // Java8日期日期处理
-//        JavaTimeModule javaTimeModule = new JavaTimeModule();
-//        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DatePattern.NORM_DATETIME_FORMATTER));
-//        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DatePattern.NORM_DATE_FORMATTER));
-//        javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DatePattern.NORM_TIME_FORMATTER));
-//
-//
-//        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DatePattern.NORM_DATETIME_FORMATTER));
-//        javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DatePattern.NORM_DATE_FORMATTER));
-//        javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DatePattern.NORM_TIME_FORMATTER));
-//        objectMapper.registerModule(javaTimeModule);
-//
-//        converter.setObjectMapper(objectMapper);
-//        return converter;
-//    }
-
 }

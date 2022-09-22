@@ -1,6 +1,7 @@
 package com.axing.demo.controller;
 
 
+import com.axing.demo.entity.EmptyModel;
 import com.axing.demo.entity.Person;
 import com.google.common.collect.Lists;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,10 @@ public class TestController {
         final List<Person> list = Lists.newArrayList(person, person1);
 
         map.put("personList", list);
+
+        EmptyModel emptyModel = new EmptyModel();
+        map.put("emptyModel", emptyModel);
+
 
 
         return map;

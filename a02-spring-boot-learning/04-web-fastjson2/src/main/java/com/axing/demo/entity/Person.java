@@ -1,6 +1,9 @@
 package com.axing.demo.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,22 +30,34 @@ public class Person implements Serializable {
 
     Map map1;
     Map map2;
+
+    @JsonProperty(value = "aBoolean")//jackson,第二个字母大写,需要指定
     Boolean aBoolean;
+
+    @JsonProperty(value = "aBoolean2")
     Boolean aBoolean2;
 
-    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy年MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     Date date;
 
 
-    //    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy年MM-dd HH:mm:ss", timezone = "GMT+8")
     @JSONField(format = "yyyy年MM-dd HH:mm:ss")
     LocalDateTime localDateTime;
 
+    @JsonProperty(value = "aLong")
     Long aLong;
+    @JsonProperty(value = "aDouble")
     Double aDouble;
-
+    @JsonProperty(value = "aFloat")
     Float aFloat;
+
+    @JsonProperty(value = "aList")
+    List aList;
+
+    @JsonIgnore
+    String jsonIgnore;
 
     Dog dog;
 

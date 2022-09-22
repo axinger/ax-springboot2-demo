@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class WebJsonApp {
-
     public static void main(String[] args) {
         SpringApplication.run(WebJsonApp.class, args);
     }
