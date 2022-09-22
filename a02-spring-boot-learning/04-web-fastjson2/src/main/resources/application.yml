@@ -33,4 +33,7 @@
 #
 #
 
+spring:
+  application:
+    name: @artifactId@
 
