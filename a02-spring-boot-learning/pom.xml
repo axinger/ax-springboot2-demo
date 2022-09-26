@@ -16,12 +16,10 @@
         <module>no-web</module>
         <module>packaging-jar</module>
         <module>async</module>
-        <module>a12-spring-web-flux</module>
         <module>01-test-java8</module>
         <module>demo-juc</module>
         <module>demo-spring5</module>
         <module>demo-logback</module>
-        <module>a11-spring-boot-active</module>
         <module>02-test-guava</module>
         <module>03-test-hutool</module>
         <module>04-web-fastjson2</module>
@@ -33,6 +31,8 @@
         <module>08-strategy</module>
         <module>a09-response</module>
         <module>a10-jdk17</module>
+        <module>a11-spring-boot-active</module>
+        <module>a12-spring-web-flux</module>
         <module>a13-springboot-mvc</module>
     </modules>
 

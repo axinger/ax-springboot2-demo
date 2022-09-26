@@ -1,4 +1,4 @@
-package com.axing.common.config.model;
+package com.axing.common.model;
 
 import cn.hutool.core.date.DatePattern;
 import com.fasterxml.jackson.core.JsonGenerator;

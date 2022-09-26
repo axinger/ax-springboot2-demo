@@ -14,6 +14,62 @@ import java.util.stream.Stream;
 
 public class StreamTest {
 
+    //统计个数
+    @Test
+    void test_count(){
+        List<DeviceModel> list = new ArrayList<>();
+        list.add(DeviceModel.builder()
+                .id("1")
+                .state("1")
+                .build());
+
+        list.add(DeviceModel.builder()
+                .id("1")
+                .state("2")
+                .build());
+
+        list.add(DeviceModel.builder()
+                .id("1")
+                .state("1")
+                .build());
+
+        list.add(DeviceModel.builder()
+                .id("2")
+                .state("1")
+                .build());
+        list.add(DeviceModel.builder()
+                .id("2")
+                .state("1")
+                .build());
+
+
+        list.add(DeviceModel.builder()
+                .id("3")
+                .state("1")
+                .build());
+        list.add(DeviceModel.builder()
+                .id("3")
+                .state("1")
+                .build());
+        list.add(DeviceModel.builder()
+                .id("3")
+                .state("1")
+                .build());
+
+        //统计个数
+        Map<String, Long> collect = list.stream().filter(val->val.getState().equals("1")).collect(Collectors.groupingBy(DeviceModel::getId, Collectors.counting()));
+        System.out.println("collect = " + collect);
+
+        //map排序
+        List<Map.Entry<String, Long>> collect2 = collect.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .collect(Collectors.toList());
+
+        System.out.println("map排序 = " + collect2);
+
+
+
+    }
 
     @Test
     void test_groupingBy() {

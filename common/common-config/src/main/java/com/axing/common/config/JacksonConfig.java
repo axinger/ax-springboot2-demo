@@ -1,6 +1,6 @@
 package com.axing.common.config;
 
-import com.axing.common.config.model.JacksonHttpMessageConverter;
+import com.axing.common.model.JacksonHttpMessageConverter;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

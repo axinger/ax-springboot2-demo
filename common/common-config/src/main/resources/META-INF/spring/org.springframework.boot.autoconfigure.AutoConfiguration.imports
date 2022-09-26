@@ -1,3 +1,2 @@
-com.axing.common.config.MyCorsFilter
 com.axing.common.config.CorsConfig
 com.axing.common.config.JacksonConfig
