@@ -78,7 +78,7 @@ public class LoginController extends BaseController {
 
         Result<List<String>> object = new Result<>();
         object.setCode(200);
-        object.setMessage("eee");
+        object.setMsg("eee");
         object.setData(list);
         return Result.ok(list);
 

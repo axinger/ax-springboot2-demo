@@ -18,7 +18,7 @@ import lombok.ToString;
 @ToString
 public class ServiceException extends RuntimeException {
 
-    @Schema(name = "异常状态码", description = "200 正常,不会显示这里")
+    @Schema(title = "异常状态码", description = "200 正常,不会显示这里")
     private Integer code;
 
     /**

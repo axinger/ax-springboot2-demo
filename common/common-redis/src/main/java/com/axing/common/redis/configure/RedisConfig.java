@@ -1,7 +1,5 @@
 package com.axing.common.redis.configure;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +15,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @EnableCaching
-@AutoConfigureBefore(RedisAutoConfiguration.class)
 public class RedisConfig extends CachingConfigurerSupport {
+
     @Bean
-//    @ConditionalOnBean(RedisConnectionFactory.class)
-    @SuppressWarnings(value = {"unchecked", "rawtypes"})
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);

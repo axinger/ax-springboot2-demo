@@ -1,5 +1,6 @@
 package com.axing.common.response.result;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,14 +16,14 @@ import java.beans.Transient;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(name = "返回体", description = "请求返回结果")
+@Schema(title = "返回体", description = "请求返回结果")
 public class Result<T> {
 
     @Schema(title = "状态码", description = "200 正常;")
     private Integer code;
 
     @Schema(title = "返回消息", description = "code!=200,会有")
-    private String message;
+    private String msg;
 
     @Schema(title = "返回数据", description = "泛型数据,类型不固定")
     private T data;
@@ -39,21 +40,21 @@ public class Result<T> {
     public static <T> Result<T> build(ResultCodeEnum resultCodeEnum, T body) {
         Result<T> result = build(body);
         result.setCode(resultCodeEnum.getCode());
-        result.setMessage(resultCodeEnum.getMessage());
+        result.setMsg(resultCodeEnum.getMessage());
         return result;
     }
 
     public static <T> Result<T> build(Integer code, T body, String message) {
         Result<T> result = build(body);
         result.setCode(code);
-        result.setMessage(message);
+        result.setMsg(message);
         return result;
     }
 
     public static <T> Result<T> build(Integer code, String message) {
         Result<T> result = build(null);
         result.setCode(code);
-        result.setMessage(message);
+        result.setMsg(message);
         return result;
     }
 
@@ -90,7 +91,7 @@ public class Result<T> {
     }
 
     public Result<T> message(String msg) {
-        this.setMessage(msg);
+        this.setMsg(msg);
         return this;
     }
 
@@ -105,6 +106,7 @@ public class Result<T> {
      * @return 状态是否等于200
      */
     @Transient
+    @JsonIgnore
     public boolean isSuccess() {
         return this.getCode().intValue() == ResultCodeEnum.SUCCESS.getCode().intValue();
     }

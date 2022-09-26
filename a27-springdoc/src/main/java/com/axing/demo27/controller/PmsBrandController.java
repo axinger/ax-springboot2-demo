@@ -1,4 +1,4 @@
-package com.axing.demo27;
+package com.axing.demo27.controller;
 
 
 import io.swagger.v3.oas.annotations.Operation;

@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Schema(name = "UmsResource对象", description = "后台资源表")
+@Schema(title = "UmsResource对象", description = "后台资源表")
 @Builder
 public class UmsResource {
 
