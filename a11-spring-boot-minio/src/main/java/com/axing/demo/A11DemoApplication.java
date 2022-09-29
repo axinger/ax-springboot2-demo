@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 //        MongoAutoConfiguration.class})
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.axing.common.response", "com.axing.common.util", "com.axing.demo"})
+//@ComponentScan(basePackages = {"com.axing.common.response", "com.axing.common.util", "com.axing.demo"})
 public class A11DemoApplication {
 
     public static void main(String[] args) {

@@ -1,9 +1,10 @@
 package com.axing.demo.controller;
 
+import com.axing.common.minio.service.MinioService;
 import com.axing.common.response.result.Result;
-import com.axing.service.MinioService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class MinioController {
     /**
      * 上传文件
      */
-    @PostMapping("/minio/upload")
+    @PostMapping(value = "/minio/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Result uploadByMinio(@RequestParam(value = "file") MultipartFile file,
                                 @RequestParam("bucketName") String bucketName) throws Exception {
         if (file.getSize() < 1) {

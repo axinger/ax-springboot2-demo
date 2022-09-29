@@ -23,7 +23,7 @@
     <!--统一管理jar包版本-->
     <properties>
         <java.version>17</java.version>
-        <my-project.version>${project.version}</my-project.version>
+        <axinger-project.version>${project.version}</axinger-project.version>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
@@ -108,49 +108,61 @@
             <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>common-quartz</artifactId>
-                <version>${my-project.version}</version>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-redis</artifactId>
-                <version>${my-project.version}</version>
+                <artifactId>common-redis-starter</artifactId>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-doc</artifactId>
-                <version>${my-project.version}</version>
+                <artifactId>common-doc-starter</artifactId>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>common-util</artifactId>
-                <version>${my-project.version}</version>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-response</artifactId>
-                <version>${my-project.version}</version>
+                <artifactId>common-response-starter</artifactId>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-config</artifactId>
-                <version>${my-project.version}</version>
+                <artifactId>common-config-starter</artifactId>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-mybatis</artifactId>
-                <version>${my-project.version}</version>
+                <artifactId>common-mybatis-starter</artifactId>
+                <version>${axinger-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-mongodb-start</artifactId>
+                <version>${axinger-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>common-minio-starter</artifactId>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>axing-spring-boot-starter</artifactId>
-                <version>${my-project.version}</version>
+                <version>${axinger-project.version}</version>
             </dependency>
 
             <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->

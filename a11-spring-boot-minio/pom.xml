@@ -51,14 +51,34 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-response</artifactId>
+            <artifactId>common-response-starter </artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-doc</artifactId>
+           <artifactId>common-doc-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>common-minio-starter</artifactId>
         </dependency>
     </dependencies>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

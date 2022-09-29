@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-mybatis</artifactId>
+           <artifactId>common-mybatis-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -50,12 +50,12 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-doc</artifactId>
+           <artifactId>common-doc-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-response</artifactId>
+            <artifactId>common-response-starter </artifactId>
         </dependency>
     </dependencies>
 

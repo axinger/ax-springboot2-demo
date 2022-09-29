@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-response</artifactId>
+            <artifactId>common-response-starter </artifactId>
         </dependency>
     </dependencies>
 

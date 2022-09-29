@@ -14,9 +14,43 @@ import java.util.stream.Stream;
 
 public class StreamTest {
 
+
+    List<Person> personList(){
+        List<Person> personList = new ArrayList();
+        personList.add(Person.builder()
+                .id(1)
+                .sex("男")
+                .age(10)
+                .area("安徽")
+                .build());
+
+        personList.add(Person.builder()
+                .id(1)
+                .sex("女")
+                .age(10)
+                .area("安徽")
+                .build());
+
+        personList.add(Person.builder()
+                .id(1)
+                .sex("女")
+                .age(11)
+                .area("安徽")
+                .build());
+
+        personList.add(Person.builder()
+                .id(1)
+                .sex("女")
+                .age(12)
+                .area("江苏")
+                .build());
+
+        return personList;
+    }
+
     //统计个数
     @Test
-    void test_count(){
+    void test_map_grouping_count() {
         List<DeviceModel> list = new ArrayList<>();
         list.add(DeviceModel.builder()
                 .id("1")
@@ -57,7 +91,7 @@ public class StreamTest {
                 .build());
 
         //统计个数
-        Map<String, Long> collect = list.stream().filter(val->val.getState().equals("1")).collect(Collectors.groupingBy(DeviceModel::getId, Collectors.counting()));
+        Map<String, Long> collect = list.stream().filter(val -> val.getState().equals("1")).collect(Collectors.groupingBy(DeviceModel::getId, Collectors.counting()));
         System.out.println("collect = " + collect);
 
         //map排序
@@ -68,7 +102,40 @@ public class StreamTest {
         System.out.println("map排序 = " + collect2);
 
 
+    }
 
+
+    @Test
+    void test_sum() {
+
+        // 优先使用这个方法
+        int sum = personList().stream()
+                .mapToInt(Person::getAge)
+                .sum();
+        System.out.println("sum = " + sum);
+
+
+        int sum2 = personList().stream()
+                .collect(Collectors.summingInt(Person::getAge));
+        System.out.println("sum2 = " + sum2);
+
+
+        //分组求和
+        Map<String, Integer> collect = personList().stream()
+                .collect(Collectors.groupingBy(
+                                Person::getSex,
+                                Collectors.summingInt(Person::getAge)
+                        )
+                );
+        System.out.println("分组求和 = " + collect);
+
+        Map<String, Long> collect1 = personList().stream()
+                .collect(Collectors.groupingBy(
+                                Person::getSex,
+                                Collectors.counting()
+                        )
+                );
+        System.out.println("分组求个数 = " + collect1);
     }
 
     @Test
@@ -946,6 +1013,7 @@ class StreamTest_count {
 
     }
 }
+
 
 class StreamTest_joining {
     public static void main(String[] args) {

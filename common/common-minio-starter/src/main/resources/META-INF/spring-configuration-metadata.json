@@ -1,0 +1,33 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.axing.common.minio.bean.MinioProperties",
+      "name": "axing.minio",
+      "type": "com.axing.common.minio.bean.MinioProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.axing.common.minio.bean.MinioProperties",
+      "name": "axing.minio.url",
+      "type": "java.lang.String",
+      "defaultValue": "http://localhost:9000",
+      "description": "minio地址"
+    },
+    {
+      "sourceType": "com.axing.common.minio.bean.MinioProperties",
+      "name": "axing.minio.access-key",
+      "type": "java.lang.String",
+      "defaultValue": "admin",
+      "description": "账户"
+    },
+    {
+      "sourceType": "com.axing.common.minio.bean.MinioProperties",
+      "name": "axing.minio.secret-key",
+      "type": "java.lang.String",
+      "defaultValue": "admin",
+      "description": "密码"
+    }
+  ]
+}

@@ -25,17 +25,17 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-doc</artifactId>
+           <artifactId>common-doc-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-config</artifactId>
+            <artifactId>common-config-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-response</artifactId>
+            <artifactId>common-response-starter </artifactId>
         </dependency>
     </dependencies>
 

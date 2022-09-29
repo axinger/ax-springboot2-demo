@@ -24,7 +24,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-config</artifactId>
+            <artifactId>common-config-starter</artifactId>
         </dependency>
 
     </dependencies>

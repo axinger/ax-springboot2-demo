@@ -8,7 +8,7 @@
         <version>2.2.1</version>
     </parent>
 
-    <artifactId>spring-boot-active</artifactId>
+    <artifactId>a11-spring-boot-active</artifactId>
     <name>a11-spring-boot-active</name>
     <description>a11-spring-boot-active</description>
     <profiles>

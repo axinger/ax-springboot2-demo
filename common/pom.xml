@@ -15,12 +15,14 @@
 
     <modules>
         <module>common-util</module>
-        <module>common-response</module>
+        <module>common-response-starter</module>
         <module>common-quartz</module>
-        <module>common-doc</module>
-        <module>common-redis</module>
-        <module>common-config</module>
-        <module>common-mybatis</module>
+        <module>common-doc-starter</module>
+        <module>common-redis-starter</module>
+        <module>common-config-starter</module>
+        <module>common-mybatis-starter</module>
+        <module>common-mongodb-starter</module>
+        <module>common-minio-starter</module>
     </modules>
 
 </project>

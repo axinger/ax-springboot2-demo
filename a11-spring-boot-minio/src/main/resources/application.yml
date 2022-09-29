@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 11011
   servlet:
     context-path: /
 spring:
@@ -9,9 +9,11 @@ spring:
   application:
     name: minio-demo
 
-minio:
-  endpoint: http://localhost:9030
-  access-key: admin #访问的key
-  secret-key: admin123 #访问的秘钥
 axing:
-  base-packages: com.ax
+  response:
+    base-packages: com.axing.demo
+  minio:
+    url: http://localhost:9000
+    access-key: admin #访问的key
+    secret-key: 12345678 #访问的秘钥
+
