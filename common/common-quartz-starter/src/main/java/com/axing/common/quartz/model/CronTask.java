@@ -5,12 +5,12 @@ import org.quartz.Job;
 
 import java.util.Map;
 
-@Data
 /**
  *
  * @author xing
  * @date 2022/3/18 13:05
  */
+@Data
 public class CronTask {
     /**
      * 任务名称

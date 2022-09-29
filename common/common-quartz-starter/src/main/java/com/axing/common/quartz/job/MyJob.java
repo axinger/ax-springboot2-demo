@@ -13,9 +13,7 @@ import org.quartz.JobExecutionContext;
 public class MyJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
-
         String jobName = jobExecutionContext.getJobDetail().getKey().toString();
         log.info("定时任务 jobName = " + jobName);
-
     }
 }

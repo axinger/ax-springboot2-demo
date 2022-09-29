@@ -16,7 +16,7 @@
     <modules>
         <module>common-util</module>
         <module>common-response-starter</module>
-        <module>common-quartz</module>
+        <module>common-quartz-starter</module>
         <module>common-doc-starter</module>
         <module>common-redis-starter</module>
         <module>common-config-starter</module>

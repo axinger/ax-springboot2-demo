@@ -107,7 +107,7 @@
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-quartz</artifactId>
+                <artifactId>common-quartz-starter</artifactId>
                 <version>${axinger-project.version}</version>
             </dependency>
 

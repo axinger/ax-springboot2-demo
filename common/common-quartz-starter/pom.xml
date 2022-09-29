@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-quartz</artifactId>
+    <artifactId>common-quartz-starter</artifactId>
 
     <dependencies>
         <dependency>
