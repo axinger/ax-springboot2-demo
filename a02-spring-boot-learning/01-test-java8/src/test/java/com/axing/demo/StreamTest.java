@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class StreamTest {
 
 
-    List<Person> personList(){
+    List<Person> personList() {
         List<Person> personList = new ArrayList();
         personList.add(Person.builder()
                 .id(1)

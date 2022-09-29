@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
 
@@ -19,13 +22,13 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping(value ="/get")
+    @GetMapping(value = "/get")
     public Object getUser(Integer id) {
         System.out.println("getUser...........");
         return userService.findUser(id);
     }
 
-    @PostMapping(value ="/update")
+    @PostMapping(value = "/update")
     public Object update(Integer id) {
         Person person = Person.builder().id(id).name("jim" + new Random().nextInt(100)).age(10).build();
 
@@ -33,7 +36,7 @@ public class UserController {
         return userService.updateUser(person);
     }
 
-    @DeleteMapping(value ="/delete")
+    @DeleteMapping(value = "/delete")
     public boolean deleteUser(Integer id) {
         System.out.println("deleteUser...........");
         userService.deleteUser(id);

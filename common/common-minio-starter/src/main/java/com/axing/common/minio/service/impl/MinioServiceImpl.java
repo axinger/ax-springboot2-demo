@@ -215,7 +215,7 @@ public class MinioServiceImpl implements MinioService {
     /**
      * 上传MultipartFile
      *
-     * @param file 文件
+     * @param file       文件
      * @param bucketName 桶
      * @return 文件
      */
@@ -267,10 +267,11 @@ public class MinioServiceImpl implements MinioService {
 
     /**
      * 复制文件到指定位置
+     *
      * @param sourceBucket 源桶
-     * @param source 源文件
+     * @param source       源文件
      * @param targetBucket 目标桶
-     * @param target 目标文件
+     * @param target       目标文件
      * @return 目标文件
      */
     @SneakyThrows

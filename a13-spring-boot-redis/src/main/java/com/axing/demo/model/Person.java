@@ -10,7 +10,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Person implements Serializable  {
+public class Person implements Serializable {
 
     private Integer id;
     private String name;

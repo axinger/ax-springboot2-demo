@@ -115,7 +115,7 @@ public class WebSocketService {
     @OnMessage
     public void onMessage(String message, Session session) {
         logger.info("收到来自用户id为：{}的消息：{}", this.userId, message);
-        if (session == null){
+        if (session == null) {
             logger.info("session null");
         }
 

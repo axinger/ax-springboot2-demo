@@ -130,7 +130,7 @@ public class MongoDBServiceImpl implements MongoService {
 
     @Override
     public <T> T save(T objectToSave, String collectionName) {
-       return this.mongoTemplate.save(objectToSave,collectionName);
+        return this.mongoTemplate.save(objectToSave, collectionName);
     }
 
     /**

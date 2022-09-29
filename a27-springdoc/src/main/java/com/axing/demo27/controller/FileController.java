@@ -2,12 +2,9 @@ package com.axing.demo27.controller;
 
 import com.axing.common.response.result.Result;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Map;
 
 /**
  * @author xing
@@ -34,19 +31,19 @@ public class FileController {
     /**
      * form-data 表单格式,swagger 才会有提示,没有提示postman也可以成功,
      * 文件也是参数
+     *
      * @param file
      * @param name
      * @return
      */
     @Operation(summary = "文件上传,使用RequestParam", description = "这个方式可以")
-    @PostMapping(value = "/test2",name = "upload222222",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/test2", name = "upload222222", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Result<String> upload2(@RequestParam(value = "file") MultipartFile file,
                                   @RequestParam("name") String name) {
         System.out.println("file = " + file);
         System.out.println("name = " + name);
         return Result.ok();
     }
-
 
 
 }

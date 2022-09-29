@@ -32,10 +32,11 @@ public interface MongoService {
 
     /**
      * 保持数据到指定表
+     *
      * @param objectToSave
      * @param collectionName
-     * @return
      * @param <T>
+     * @return
      */
     <T> T save(T objectToSave, String collectionName);
 

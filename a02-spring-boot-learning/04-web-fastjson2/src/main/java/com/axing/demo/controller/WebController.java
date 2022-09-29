@@ -1,8 +1,10 @@
 package com.axing.demo.controller;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -28,10 +30,9 @@ public class WebController {
     }
 
     /**
-     * @RequestBody只能有一个
-     *
      * @param json
      * @return
+     * @RequestBody只能有一个
      */
     @PostMapping(value = "/web2")
     public Object json(@RequestBody JSONObject json) {

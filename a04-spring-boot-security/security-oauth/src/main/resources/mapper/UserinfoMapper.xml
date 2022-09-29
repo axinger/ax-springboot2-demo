@@ -48,7 +48,7 @@
     <select id="selectUserWithRelo" resultMap="userAndReloResultMap">
         SELECT u.*, r.id as rid, r.role
         FROM t_userinfo u
-        LEFT JOIN t_user_role r ON u.id = r.userid
+                 LEFT JOIN t_user_role r ON u.id = r.userid
         where u.id = #{id}
     </select>
 
@@ -56,7 +56,7 @@
     <select id="selectUserAndReloByName" resultMap="userAndReloResultMap">
         SELECT u.*, r.id as rid, r.role
         FROM t_userinfo u
-        LEFT JOIN t_user_role r ON u.id = r.userid
+                 LEFT JOIN t_user_role r ON u.id = r.userid
         where u.username = #{username}
     </select>
 
