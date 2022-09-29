@@ -77,7 +77,7 @@ public interface MinioService {
      * @param bucketName  bucketName
      * @param contentType contentType
      */
-    String upload(InputStream inputStream,
+    Map<String,Object> upload(InputStream inputStream,
                   String bucketName,
                   String objectName,
                   String contentType);
@@ -90,7 +90,7 @@ public interface MinioService {
      * @return
      * @throws IOException
      */
-    String upload(MultipartFile file, String bucketName);
+    Map<String, Object> upload(MultipartFile file, String bucketName);
 
     /**
      * 下载文件

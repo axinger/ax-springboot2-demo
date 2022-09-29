@@ -187,10 +187,10 @@ public class MinioServiceImpl implements MinioService {
      */
     @SneakyThrows
     @Override
-    public String upload(InputStream inputStream,
-                         String bucketName,
-                         String objectName,
-                         String contentType) {
+    public Map<String, Object> upload(InputStream inputStream,
+                                      String bucketName,
+                                      String objectName,
+                                      String contentType) {
         try {
             // 检查存储桶是否已经存在，不存在则创建
             this.createBucket(bucketName);
@@ -205,8 +205,9 @@ public class MinioServiceImpl implements MinioService {
 
             //关闭
             inputStream.close();
-            log.info("上传文件成功 = {}", response.object());
-            return response.object();
+            String object = response.object();
+            log.info("上传文件成功 = {}", object);
+            return Map.of("bucket", bucketName, "object", object);
         } catch (Exception e) {
             throw new Exception(StrUtil.format("上传文件失败 = {}", e.getMessage()));
         }
@@ -221,7 +222,7 @@ public class MinioServiceImpl implements MinioService {
      */
     @SneakyThrows
     @Override
-    public String upload(MultipartFile file, String bucketName) {
+    public Map<String, Object> upload(MultipartFile file, String bucketName) {
         try {
             String originalFilename = file.getOriginalFilename();
             String contentType = file.getContentType();

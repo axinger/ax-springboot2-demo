@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -46,7 +47,7 @@ public class MinioController {
         InputStream inputStream = file.getInputStream();
         String contentType = file.getContentType();
         String patchName = this.getPath() + suffix;
-        String upload = minioService.upload(inputStream, bucketName, patchName, contentType);
+        Map<String,Object> upload = minioService.upload(inputStream, bucketName, patchName, contentType);
         return Result.ok(upload);
     }
 
