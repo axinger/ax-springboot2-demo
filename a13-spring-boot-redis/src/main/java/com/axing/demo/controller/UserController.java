@@ -1,41 +1,86 @@
 package com.axing.demo.controller;
 
 
-import com.axing.demo.model.Person;
+import com.axing.common.redis.service.RedisService;
+import com.axing.common.redis.util.RedisUtil;
+import com.axing.common.response.result.Result;
+import com.axing.demo.model.User;
 import com.axing.demo.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @RestController
 public class UserController {
 
-
+    @Autowired
+    private RedisService redisService;
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "RedisTemplate获取数据")
+    @GetMapping("/get/{id}")
+    public Result getValue(@PathVariable Integer id) {
 
+        String key = RedisUtil.getRedisKey("demo13", "person", id);
+        User person;
+        if (redisService.hasKey(key)) {
+            person = redisService.getCacheObject("demo13::person::" + id);
+        } else {
+            User.Book book = User.Book.builder()
+                    .id(1)
+                    .name("海底两万里")
+                    .build();
+            person = User.builder()
+                    .id(id)
+                    .name("jim")
+                    .age(21)
+                    .date(new Date())
+                    .books(List.of(book))
+                    .build();
+        }
+        return Result.ok(person);
+    }
+
+
+    @Operation(summary = "RedisTemplate添加数据")
+    @GetMapping("/add/{id}")
+    public Result addValue(@PathVariable Integer id) {
+        User.Book book = User.Book.builder()
+                .id(1)
+                .name("海底两万里")
+                .build();
+        User person = User.builder()
+                .id(id)
+                .name("jim")
+                .age(21)
+                .date(new Date())
+                .books(List.of(book))
+                .build();
+        redisService.set("demo13::user::" + id, person);
+        return Result.ok();
+    }
+
+
+    @Operation(summary = "Cacheable获取数据", description = "redis没有数据,就从数据库中取")
     @GetMapping(value = "/get")
     public Object getUser(Integer id) {
         System.out.println("getUser...........");
         return userService.findUser(id);
     }
 
+    @Operation(summary = "Cacheable更新数据")
     @PostMapping(value = "/update")
     public Object update(Integer id) {
-        Person person = Person.builder().id(id).name("jim" + new Random().nextInt(100)).age(10).build();
-
-
-        return userService.updateUser(person);
+        User user = User.builder().id(id).name("jim" + new Random().nextInt(100)).age(10).build();
+        return userService.updateUser(user);
     }
 
+    @Operation(summary = "Cacheable删除数据")
     @DeleteMapping(value = "/delete")
     public boolean deleteUser(Integer id) {
         System.out.println("deleteUser...........");
@@ -43,24 +88,11 @@ public class UserController {
         return true;
     }
 
-
-    /**
-     * @Description: @Caching是缓存的结合体，可以同时设置多了缓存的信息设置。
-     */
-    @Caching(
-            cacheable = {
-                    @Cacheable(value = "emp", key = "#name")
-            },
-            put = {                  //更新缓存可以通过id，email或者lastName进行key值查找。
-                    @CachePut(value = "emp", key = "#result.id"),
-                    @CachePut(value = "emp", key = "#result.email"),
-                    @CachePut(value = "emp", key = "#result.name"),
-            }
-    )
-    public Person getEmpByLastName(String name) {
-        System.out.println("要查询的用户名为：" + name);
-        return new Person(1, "jim", 10);
+    @Operation(summary = "Cacheable更新数据")
+    @GetMapping(value = "/last")
+    public Result getLastName(Integer id) {
+        System.out.println("getLastName...........");
+        return Result.ok(userService.getLastName(id));
     }
-
 
 }

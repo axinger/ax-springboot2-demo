@@ -34,7 +34,7 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T> {
 
     @Override
     public T deserialize(byte[] bytes) throws SerializationException {
-        if (bytes == null || bytes.length <= 0) {
+        if (bytes == null || bytes.length == 0) {
             return null;
         }
         String str = new String(bytes, DEFAULT_CHARSET);

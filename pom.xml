@@ -149,7 +149,7 @@
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>common-mongodb-start</artifactId>
+                <artifactId>common-mongodb-starter</artifactId>
                 <version>${axinger-project.version}</version>
             </dependency>
 

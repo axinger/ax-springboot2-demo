@@ -1,6 +1,5 @@
 package com.axing.demo.model;
 
-
 import lombok.*;
 
 import java.io.Serializable;
@@ -10,9 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Person implements Serializable {
-
+public class Book implements Serializable {
     private Integer id;
     private String name;
-    private Integer age;
 }
