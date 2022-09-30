@@ -13,9 +13,10 @@ spring:
 axing:
   response:
     base-packages: cn.axing.demo
+  doc-info:
+    title: 测试项目1
 
-doc-info:
-  title: 测试项目1
+
 
 logging:
   level:

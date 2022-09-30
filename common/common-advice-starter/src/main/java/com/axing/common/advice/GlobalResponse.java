@@ -1,4 +1,4 @@
-package com.axing.common.response.advice;
+package com.axing.common.advice;
 
 import com.axing.common.response.result.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;

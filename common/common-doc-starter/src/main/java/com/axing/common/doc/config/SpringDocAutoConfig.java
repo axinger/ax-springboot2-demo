@@ -1,6 +1,6 @@
 package com.axing.common.doc.config;
 
-import com.axing.common.doc.bean.DocInfo;
+import com.axing.common.doc.bean.DocInfoProperties;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 @Configuration
 @EnableConfigurationProperties({
-        DocInfo.class
+        DocInfoProperties.class
 })
-public class SpringDocConfig {
-    private final DocInfo docInfo;
+public class SpringDocAutoConfig {
+    private final DocInfoProperties docInfo;
 
     @Bean
     public OpenAPI openAPI() {

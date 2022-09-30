@@ -3,13 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>a02-spring-boot-learning</artifactId>
+        <artifactId>common</artifactId>
         <groupId>com.axing</groupId>
         <version>2.4.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>a09-response</artifactId>
+    <artifactId>common-advice-starter</artifactId>
 
     <dependencies>
 
@@ -20,8 +21,9 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-advice-starter</artifactId>
+            <artifactId>common-response-starter</artifactId>
         </dependency>
 
     </dependencies>
+
 </project>

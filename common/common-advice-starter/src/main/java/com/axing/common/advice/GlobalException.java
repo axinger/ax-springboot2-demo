@@ -1,4 +1,4 @@
-package com.axing.common.response.advice;
+package com.axing.common.advice;
 
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;

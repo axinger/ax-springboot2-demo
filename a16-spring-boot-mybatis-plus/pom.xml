@@ -55,7 +55,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>common-response-starter</artifactId>
+            <artifactId>common-advice-starter</artifactId>
         </dependency>
     </dependencies>
 

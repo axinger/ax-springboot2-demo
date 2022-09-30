@@ -23,6 +23,7 @@
         <module>common-mybatis-starter</module>
         <module>common-mongodb-starter</module>
         <module>common-minio-starter</module>
+        <module>common-advice-starter</module>
     </modules>
 
 </project>

@@ -1,10 +1,10 @@
 {
   "properties": [
     {
-      "name": "axing.swagger.group-name",
+      "name": "axing.doc-info.title",
       "type": "java.lang.String",
-      "defaultValue": "默认分组",
-      "description": "多个api分组"
+      "defaultValue": "阿星项目",
+      "description": "项目名称"
     }
   ]
 }
