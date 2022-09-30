@@ -34,7 +34,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     /**
      * 处理数组类型的null值
      */
-    public class NullArrayJsonSerializer extends JsonSerializer<Object> {
+    public static class NullArrayJsonSerializer extends JsonSerializer<Object> {
 
         @Override
         public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
@@ -49,7 +49,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     /**
      * 处理字符串等类型的null值
      */
-    public class NullStringJsonSerializer extends JsonSerializer<Object> {
+    public static class NullStringJsonSerializer extends JsonSerializer<Object> {
 
         @Override
         public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
@@ -60,7 +60,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     /**
      * 处理字符串等类型的null值
      */
-    public class NullNumberJsonSerializer extends JsonSerializer<Object> {
+    public static class NullNumberJsonSerializer extends JsonSerializer<Object> {
 
         @Override
         public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
@@ -71,7 +71,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     /**
      * 处理字符串等类型的null值
      */
-    public class NullBooleanJsonSerializer extends JsonSerializer<Object> {
+    public static class NullBooleanJsonSerializer extends JsonSerializer<Object> {
 
         @Override
         public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
@@ -80,13 +80,13 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     }
 
 
-    public class MyBeanSerializerModifier extends BeanSerializerModifier {
+    public static class MyBeanSerializerModifier extends BeanSerializerModifier {
 
         @Override
         public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
             //循环所有的beanPropertyWriter
-            for (Object beanProperty : beanProperties) {
-                BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
+            for (BeanPropertyWriter writer : beanProperties) {
+//                BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
                 //判断字段的类型，如果是array，list，set则注册nullSerializer
                 if (isArrayType(writer)) {
                     //给writer注册一个自己的nullSerializer

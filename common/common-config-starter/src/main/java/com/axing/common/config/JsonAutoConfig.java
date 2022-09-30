@@ -5,19 +5,11 @@ import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author xing
- * @version 1.0.0
- * @ClassName FastJsonConfig.java
- * @description https://github.com/alibaba/fastjson2/blob/main/docs/features_cn.md
- * @createTime 2022年09月21日 20:01:00
- */
 @Configuration
-public class JacksonConfig {
+public class JsonAutoConfig {
 
     @Bean
-    public HttpMessageConverters fastJsonHttpMessageConverters() {
+    public HttpMessageConverters httpMessageConverters() {
         return new HttpMessageConverters(new JacksonHttpMessageConverter());
     }
-
 }

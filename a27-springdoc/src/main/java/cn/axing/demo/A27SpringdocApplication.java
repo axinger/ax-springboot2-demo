@@ -1,4 +1,4 @@
-package com.axing.demo27;
+package cn.axing.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

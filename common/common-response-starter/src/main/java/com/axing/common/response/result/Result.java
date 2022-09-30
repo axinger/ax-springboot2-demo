@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.beans.Transient;
+import java.io.Serializable;
 
 /**
  * 全局统一返回结果类
@@ -17,13 +18,13 @@ import java.beans.Transient;
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(title = "返回体", description = "请求返回结果")
-public class Result<T> {
+public class Result<T> implements Serializable {
 
     @Schema(title = "状态码", description = "200 正常;")
-    private Integer code;
+    private Integer code = 200;
 
-    @Schema(title = "返回消息", description = "code!=200,会有")
-    private String msg;
+    @Schema(title = "返回消息")
+    private String msg = "";
 
     @Schema(title = "返回数据", description = "泛型数据,类型不固定")
     private T data;

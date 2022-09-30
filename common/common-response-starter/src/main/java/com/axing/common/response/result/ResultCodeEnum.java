@@ -2,13 +2,15 @@ package com.axing.common.response.result;
 
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * 统一返回结果状态信息类
  *
  * @author xing
  */
 @Getter
-public enum ResultCodeEnum {
+public enum ResultCodeEnum implements Serializable {
 
     SUCCESS(200, "成功"),
 

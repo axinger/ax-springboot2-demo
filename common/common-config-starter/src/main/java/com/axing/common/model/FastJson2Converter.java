@@ -1,11 +1,9 @@
-package com.axing.common.config;
+package com.axing.common.model;
 
 import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring.http.converter.FastJsonHttpMessageConverter;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 
 import java.nio.charset.StandardCharsets;
@@ -15,12 +13,11 @@ import java.util.List;
 /**
  * 目前LocalTime,LocalDate,无法全局设置,暂不用
  */
-public class FastJson2Config {
+
+public class FastJson2Converter {
 
 
-    @Bean
-    public HttpMessageConverters fastJsonHttpMessageConverter() {
-
+    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter() {
 
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         //自定义配置...
@@ -58,7 +55,6 @@ public class FastJson2Config {
         List<MediaType> supportedMediaTypes = new ArrayList<>();
         supportedMediaTypes.add(MediaType.APPLICATION_JSON);
         converter.setSupportedMediaTypes(supportedMediaTypes);
-
-        return new HttpMessageConverters(converter);
+        return converter;
     }
 }

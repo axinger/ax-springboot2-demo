@@ -3,7 +3,6 @@ package com.axing.common.response.advice;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -22,18 +20,9 @@ import java.util.*;
  * ${axing.response.base-packages:} 有问题
  */
 @Slf4j
-@RestControllerAdvice(basePackages = {"${axing.response.base-packages:com.axing}"})
 @ResponseBody
+@RestControllerAdvice
 public class GlobalException {
-
-    @Value("${axing.response.base-packages:}")
-    private String basePackages;
-
-    @PostConstruct
-    private void init() {
-        log.info("basePackages = {}", basePackages);
-    }
-
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
@@ -104,7 +93,6 @@ public class GlobalException {
         final Result<Map<String, Object>> result = Result.build(201, map, "方法参数校验异常");
         log.error("方法参数校验异常 result =  {}", result);
         return result;
-
     }
 
 }
