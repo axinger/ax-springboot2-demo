@@ -71,6 +71,7 @@
         <module>a28-wordToPdf</module>
         <module>a27-springdoc2</module>
         <module>a29-elk</module>
+        <module>a07-spring-cloud-alibaba/alibaba-nacos/nacos-gateway</module>
     </modules>
 
     <dependencies>

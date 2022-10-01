@@ -26,12 +26,18 @@ public class ConfigController {
     @Value("${config.name:#{null}}")
     private String name;
 
+
+    @Value("${person.name:#{null}}")
+    private String personName;
+
+
     @GetMapping("/")
     public Object getInfo() {
         System.out.println("getInfo = " + info);
         Map map = new HashMap(16);
         map.put("info", info);
         map.put("name", name);
+        map.put("personName", personName);
         return map;
     }
 }

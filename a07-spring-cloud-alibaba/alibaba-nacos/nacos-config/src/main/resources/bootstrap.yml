@@ -1,16 +1,10 @@
 spring:
   application:
     name: demo07-nacos-config
-  cloud:
-    nacos:
-      config: #配置中心
-        server-addr: http://localhost:8848
-        file-extension: yaml
-#        group: DEV_GROUP
-#        enabled: true
+  profiles:
+    active: dev
 
-#  {prefix}-{spring.profiles.active}.{file-extension}
-# ${name}-${active}.${spring.cloud.nacos.config.file-extension}
-# demo07-nacos-config-dev.yaml
-#config:
-#  info: jim
+
+config:
+  info: 没有前缀
+  name: luck

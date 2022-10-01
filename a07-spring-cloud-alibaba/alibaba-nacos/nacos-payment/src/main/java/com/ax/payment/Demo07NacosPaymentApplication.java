@@ -1,4 +1,4 @@
-package com.ax.order;
+package com.ax.payment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class Demo12NacosOrderApplication {
+public class Demo07NacosPaymentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Demo12NacosOrderApplication.class, args);
+        SpringApplication.run(Demo07NacosPaymentApplication.class, args);
     }
 
 }
