@@ -15,6 +15,7 @@
         <module>nacos-config</module>
         <module>nacos-order</module>
         <module>nacos-payment</module>
+        <module>nacos-gateway</module>
     </modules>
 
 </project>

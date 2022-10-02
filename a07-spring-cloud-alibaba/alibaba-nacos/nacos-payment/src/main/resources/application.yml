@@ -1,5 +1,7 @@
 server:
-  port: 9001
+  port: 9003
+  servlet:
+    context-path: /payment
 
 spring:
   application:
@@ -7,4 +9,4 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: http://localhost:8848
+        server-addr: http://192.168.101.135:8848

@@ -29,18 +29,60 @@ public class OrderController {
     @Value("${server-url.nacos-payment-service}")
     private String paymentURL;
 
+    @Value("${server-url.gateway-service}")
+    private String gatewayService;
 
-    @GetMapping(value = "/order/nacos/{id}")
+    /**
+     * 直接请求测试一下
+     * @return
+     */
+    @GetMapping(value = "/test")
+    public Object order1() {
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("order_name", "订单");
+        map.put("order_port", port);
+        return map;
+
+    }
+
+
+    /**
+     * 请求nacos
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/nacos/{id}")
     public Object order(@PathVariable("id") Integer id) {
         Map<String, Object> map = new HashMap<>(16);
         map.put("order_id", id);
         map.put("order_name", "订单");
         map.put("order_port", port);
 
-        String url = paymentURL + "/payment/nacos/" + id;
+        String url = paymentURL + "/payment/count/" + id;
         System.out.println("url = " + url);
 
-        Map<String, Object> map1 = restTemplate.getForObject(paymentURL + "/payment/nacos/" + id, Map.class);
+        Map<String, Object> map1 = restTemplate.getForObject(url, Map.class);
+        map.putAll(map1);
+        return map;
+
+    }
+
+    /**
+     * 请求网关,利用网关进行分发,需要 服务名+path+接口, 一定要区分path
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/gateway/{id}")
+    public Object order2(@PathVariable("id") Integer id) {
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("order_id", id);
+        map.put("order_name", "订单");
+        map.put("order_port", port);
+
+        String url = gatewayService + "/payment/count/" + id;
+        System.out.println("url = " + url);
+
+        Map<String, Object> map1 = restTemplate.getForObject(url, Map.class);
         map.putAll(map1);
         return map;
 

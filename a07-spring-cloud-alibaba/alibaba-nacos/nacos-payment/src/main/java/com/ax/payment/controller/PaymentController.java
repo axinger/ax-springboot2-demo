@@ -18,8 +18,8 @@ public class PaymentController {
     @Value("${server.port}")
     private String port;
 
-    @GetMapping(value = "/payment/nacos/{id}")
-    public Map<String, Object> payment(@PathVariable("id") Integer id) {
+    @GetMapping(value = "/count/{id}")
+    public Map<String, Object> payment(@PathVariable("id") String id) {
         System.out.println("payment_id = " + id);
         Map<String, Object> map = new HashMap<>(16);
         map.put("payment_id", id);
