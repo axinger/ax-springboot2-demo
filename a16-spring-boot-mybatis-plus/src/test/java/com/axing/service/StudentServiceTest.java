@@ -1,8 +1,9 @@
 package com.axing.service;
 
 import com.alibaba.fastjson2.JSON;
-import com.axing.demo.entity.Student;
+import com.axing.demo.domain.Student;
 import com.axing.demo.mapper.StudentMapper;
+import com.axing.demo.service.StudentService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;

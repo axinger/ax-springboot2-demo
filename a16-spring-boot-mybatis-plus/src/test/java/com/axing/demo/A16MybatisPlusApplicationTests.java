@@ -1,7 +1,7 @@
 package com.axing.demo;
 
-import com.axing.demo.entity.Person;
-import com.axing.service.PersonService;
+import com.axing.demo.domain.Person;
+import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;

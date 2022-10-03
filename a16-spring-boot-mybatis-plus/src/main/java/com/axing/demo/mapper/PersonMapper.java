@@ -1,6 +1,6 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.entity.Person;
+import com.axing.demo.domain.Person;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

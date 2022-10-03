@@ -1,6 +1,6 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.entity.Department;
+import com.axing.demo.domain.Department;
 import com.axing.demo.vo.DepartmentVo;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

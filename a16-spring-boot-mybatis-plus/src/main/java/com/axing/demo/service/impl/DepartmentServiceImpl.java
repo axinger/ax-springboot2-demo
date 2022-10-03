@@ -1,8 +1,8 @@
-package com.axing.service.impl;
+package com.axing.demo.service.impl;
 
-import com.axing.demo.entity.Department;
+import com.axing.demo.domain.Department;
 import com.axing.demo.mapper.DepartmentMapper;
-import com.axing.service.DepartmentService;
+import com.axing.demo.service.DepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

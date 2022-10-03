@@ -1,8 +1,8 @@
-package com.axing.service.impl;
+package com.axing.demo.service.impl;
 
-import com.axing.demo.entity.Student;
+import com.axing.demo.domain.Student;
 import com.axing.demo.mapper.StudentMapper;
-import com.axing.service.StudentService;
+import com.axing.demo.service.StudentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

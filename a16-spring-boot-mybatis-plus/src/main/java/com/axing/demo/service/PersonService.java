@@ -1,6 +1,6 @@
-package com.axing.service;
+package com.axing.demo.service;
 
-import com.axing.demo.entity.Person;
+import com.axing.demo.domain.Person;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

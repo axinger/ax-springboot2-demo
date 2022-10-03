@@ -1,6 +1,6 @@
 package com.axing.demo;
 
-import com.axing.demo.entity.Person;
+import com.axing.demo.domain.Person;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
 import org.junit.jupiter.api.Test;
 

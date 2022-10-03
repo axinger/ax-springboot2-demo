@@ -1,4 +1,4 @@
-package com.axing.demo.entity;
+package com.axing.demo.domain;
 
 import com.axing.common.mybatis.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;

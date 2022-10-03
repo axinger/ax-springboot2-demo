@@ -1,6 +1,6 @@
 package com.axing.demo.vo;
 
-import com.axing.demo.entity.Emps;
+import com.axing.demo.domain.Emps;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

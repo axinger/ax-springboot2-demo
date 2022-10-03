@@ -1,6 +1,6 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.entity.Emps;
+import com.axing.demo.domain.Emps;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
 
