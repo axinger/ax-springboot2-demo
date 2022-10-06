@@ -12,13 +12,8 @@
     <artifactId>a07-spring-cloud-alibaba</artifactId>
 
     <modules>
-        <module>alibaba-dubbo</module>
-        <module>alibaba-sentinel</module>
-        <module>alibaba-nacos</module>
-        <module>alibaba-seata</module>
-        <module>alibaba-nacos-gateway</module>
-        <module>openfeign-nacos-consume</module>
-        <module>openfeign-nacos-provider</module>
+        <module>alibaba-demo</module>
+        <module>alibaba-learning</module>
     </modules>
 
 </project>
