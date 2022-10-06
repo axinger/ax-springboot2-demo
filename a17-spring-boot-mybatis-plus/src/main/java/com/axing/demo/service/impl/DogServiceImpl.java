@@ -1,6 +1,6 @@
 package com.axing.demo.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.axing.demo.domain.Dog;
 import com.axing.demo.service.DogService;
 import com.axing.demo.mapper.DogMapper;
