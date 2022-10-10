@@ -3,23 +3,16 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ax-spring-boot-demo</artifactId>
+        <artifactId>a10-spring-boot-mq</artifactId>
         <groupId>com.axing</groupId>
         <version>2.4.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>rabbitmq-all</artifactId>
     <packaging>pom</packaging>
-    <artifactId>a06-spring-cloud</artifactId>
-
     <modules>
-        <module>consul-order</module>
-        <module>consul-payment</module>
-        <module>gateway-9527</module>
-        <module>getaway-payment</module>
-        <module>mq-stream-producer</module>
-        <module>mq-stream-consumer2</module>
-        <module>mq-stream-consumer</module>
+        <module>rabbitmq-consumer</module>
+        <module>rabbitmq-producer</module>
     </modules>
-
 
 </project>

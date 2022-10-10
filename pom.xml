@@ -48,20 +48,20 @@
         <module>a04-spring-boot-security</module>
         <module>a05-spring-boot-nginx</module>
         <module>a06-spring-cloud</module>
-        <module>a07-spring-cloud-alibaba</module>
-        <module>a08-spring-boot-es</module>
-        <module>a09-spring-boot-mq</module>
-        <module>a10-spring-boot-swagger3</module>
-        <module>a11-spring-boot-minio</module>
-        <module>a12-spring-boot-caffeine</module>
-        <module>a13-spring-boot-redis</module>
-        <module>a14-spring-boot-netty</module>
-        <module>a15-spring-boot-shiro</module>
-        <module>a16-spring-boot-mybatis-plus</module>
-        <module>a17-custom-spring-boot-start</module>
-        <module>a18-spring-boot-zipkin</module>
-        <module>a19-spring-boot-quartz</module>
-        <module>a20-cloud-demo</module>
+        <module>a07-spring-cloud-alibaba-learning</module>
+        <module>a08-spring-cloud-alibaba-demo</module>
+        <module>a09-spring-boot-es</module>
+        <module>a10-spring-boot-mq</module>
+        <module>a11-spring-boot-swagger3</module>
+        <module>a12-spring-boot-minio</module>
+        <module>a13-spring-boot-caffeine</module>
+        <module>a14-spring-boot-redis</module>
+        <module>a15-spring-boot-netty</module>
+        <module>a16-spring-boot-shiro</module>
+        <module>a17-spring-boot-mybatis-plus</module>
+        <module>a18-custom-spring-boot-start</module>
+        <module>a19-spring-boot-zipkin</module>
+        <module>a20-spring-boot-quartz</module>
         <module>a21-spring-boot-mongodb</module>
         <module>a22-spring-boot-Influxdb</module>
         <module>a23-spring-boot-iotdb</module>
@@ -220,7 +220,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.9</version>
+                <version>1.2.12</version>
             </dependency>
 
             <dependency>

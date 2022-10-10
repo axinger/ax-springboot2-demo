@@ -9,17 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <artifactId>a06-spring-cloud</artifactId>
+
+    <artifactId>a10-spring-boot-mq</artifactId>
 
     <modules>
-        <module>consul-order</module>
-        <module>consul-payment</module>
-        <module>gateway-9527</module>
-        <module>getaway-payment</module>
-        <module>mq-stream-producer</module>
-        <module>mq-stream-consumer2</module>
-        <module>mq-stream-consumer</module>
+        <module>kafka</module>
+        <module>rabbitmq</module>
+        <module>rabbitmq-all</module>
+        <module>rocketmq</module>
+        <module>pulsar</module>
+        <module>rabbitmq-demo</module>
     </modules>
-
 
 </project>
