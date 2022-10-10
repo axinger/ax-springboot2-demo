@@ -35,6 +35,8 @@
         <docker-maven-plugin.version>0.40.1</docker-maven-plugin.version>
         <lombok.version>1.18.24</lombok.version>
         <docker.image.prefix>axing-cloud</docker.image.prefix>
+<!--        <jackson.version>2.14.0-rc1</jackson.version>-->
+<!--        <jackson-bom.version>2.14.0-rc1</jackson-bom.version>-->
     </properties>
 
 
