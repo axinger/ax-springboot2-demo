@@ -3,6 +3,8 @@ package com.axing.demo;
 
 import cn.hutool.core.collection.ListUtil;
 import com.google.common.collect.Lists;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -14,38 +16,102 @@ import java.util.stream.Stream;
 
 public class StreamTest {
 
+    List<Person> personList;
 
-    List<Person> personList() {
-        List<Person> personList = new ArrayList();
-        personList.add(Person.builder()
-                .id(1)
-                .sex("男")
-                .age(10)
-                .area("安徽")
-                .build());
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("beforeAll====");
+    }
 
-        personList.add(Person.builder()
-                .id(1)
-                .sex("女")
-                .age(10)
-                .area("安徽")
-                .build());
+    @BeforeEach
+    void beforeEach() {
+        System.out.println("beforeEach=======");
+        personList = new ArrayList() {{
+            add(Person.builder()
+                    .id(1)
+                    .name("jim")
+                    .sex("男")
+                    .age(10)
+                    .area("安徽")
+                    .build());
+            add(Person.builder()
+                    .id(1)
+                    .name("lili")
+                    .sex("女")
+                    .age(10)
+                    .area("安徽")
+                    .build());
+            add(Person.builder()
+                    .id(1)
+                    .name("Lucy")
+                    .sex("女")
+                    .age(11)
+                    .area("安徽")
+                    .build());
+            add(Person.builder()
+                    .id(1)
+                    .name("小红")
+                    .sex("女")
+                    .age(12)
+                    .area("江苏")
+                    .build());
+        }};
+    }
 
-        personList.add(Person.builder()
-                .id(1)
-                .sex("女")
-                .age(11)
-                .area("安徽")
-                .build());
+    @Test
+    void test_any() {
+        List<Integer> list = Arrays.asList(7, 6, 9, 3, 8, 2, 1);
 
-        personList.add(Person.builder()
-                .id(1)
-                .sex("女")
-                .age(12)
-                .area("江苏")
-                .build());
+        // 匹配第一个
+        list.stream().findFirst().ifPresent(val -> {
+            System.out.println("匹配第一个值：" + val);
+        });
 
-        return personList;
+        list.parallelStream().filter(x -> x > 5).findFirst().ifPresent(val -> {
+            System.out.println("匹配第一个值,大于5的:" + val);
+        });
+
+        // 匹配任意（适用于并行流）,会随机返回一个
+        list.parallelStream().filter(x -> x > 5).findAny().ifPresent(val -> {
+            System.out.println("匹配任意一个值,大于5的:" + val);
+        });
+
+        // 是否包含符合特定条件的元素
+        boolean anyMatch = list.stream().anyMatch(x -> x < 6);
+        System.out.println("是否存在小于6的值：" + anyMatch);
+    }
+
+    @Test
+    void test_boxed() {
+        //boxed的作用就是将int类型的stream转成了Integer类型的Stream
+        List<Integer> integers = Arrays.asList("1", "2")
+                .stream()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
+        System.out.println("integers = " + integers);
+    }
+
+    @Test
+    void test_peek_map() {
+
+        //peek 和 map 区别
+        // peek 没有返回值,可以直接修改当前值
+        List<Person> list1 = personList
+                .stream()
+                .peek((val) -> {
+                    val.setName("pek:" + val.getName());
+                }).toList();
+        System.out.println("list1 = " + list1);
+
+        List<Person> list2 = personList
+                .stream()
+                .map((val) -> {
+                    val.setName("map:" + val.getName());
+                    return val;
+                }).toList();
+        System.out.println("list2 = " + list2);
+
     }
 
     //统计个数
@@ -108,20 +174,52 @@ public class StreamTest {
     @Test
     void test_sum() {
 
+        // 求总数
+        Long count = personList.stream().count();
+        System.out.println("count = " + count);
+
+        // 求平均
+        Double average = personList.stream().collect(Collectors.averagingDouble(Person::getAge));
+        System.out.println("average = " + average);
+        // averagingDouble 因为有参数,所以用上面方法简单
+//        personList.stream().map(Person::getSalary).collect(Collectors.averagingInt(value -> value));
+
+        // 求最大
+        personList.stream().map(Person::getAge).max(Integer::compare).ifPresent(val -> {
+            System.out.println("max = " + val);
+        });
+
+        // 求工资之和
+        Integer sum = personList.stream().mapToInt(Person::getAge).sum();
+        System.out.println("sum = " + sum);
+
+        // 统计所有的
+        IntSummaryStatistics collect1 = personList.stream().collect(Collectors.summarizingInt(Person::getAge));
+        System.out.println("collect1.getCount() = " + collect1.getCount());
+        System.out.println("collect1.getSum() = " + collect1.getSum());
+        System.out.println("collect1.getMax() = " + collect1.getMax());
+        System.out.println("collect1.getMin() = " + collect1.getMin());
+        System.out.println("collect1.getAverage() = " + collect1.getAverage());
+
+    }
+
+    @Test
+    void test_groupingBy_sum() {
+
         // 优先使用这个方法
-        int sum = personList().stream()
+        int sum = personList.stream()
                 .mapToInt(Person::getAge)
                 .sum();
         System.out.println("sum = " + sum);
 
 
-        int sum2 = personList().stream()
+        int sum2 = personList.stream()
                 .collect(Collectors.summingInt(Person::getAge));
         System.out.println("sum2 = " + sum2);
 
 
         //分组求和
-        Map<String, Integer> collect = personList().stream()
+        Map<String, Integer> collect = personList.stream()
                 .collect(Collectors.groupingBy(
                                 Person::getSex,
                                 Collectors.summingInt(Person::getAge)
@@ -129,7 +227,7 @@ public class StreamTest {
                 );
         System.out.println("分组求和 = " + collect);
 
-        Map<String, Long> collect1 = personList().stream()
+        Map<String, Long> collect1 = personList.stream()
                 .collect(Collectors.groupingBy(
                                 Person::getSex,
                                 Collectors.counting()
@@ -137,6 +235,7 @@ public class StreamTest {
                 );
         System.out.println("分组求个数 = " + collect1);
     }
+
 
     @Test
     void test_groupingBy() {
@@ -669,45 +768,36 @@ public class StreamTest {
     }
 
     @Test
-    void test7() {
+    void test_reduce() {
         /// 匹配和查找
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
 
-        /// 是否全部 满足一个条件
-        boolean allMatch = list.stream().allMatch(e -> e > 2);
-
-        System.out.println("allMatch = " + allMatch);
-
-        /// 任何一个满足条件
-        boolean anyMatch = list.stream().anyMatch(e -> e > 2);
-        System.out.println("anyMatch = " + anyMatch);
-
-
-        /// 是否没有匹配的,
-        boolean noneMatch = list.stream().noneMatch(e -> e > 2);
-        System.out.println("noneMatch = " + noneMatch);
-        Integer first = list.stream().findFirst().get();
-        System.out.println("first = " + first);
-        Optional<Integer> max = list.stream().max(Integer::compare);
-        System.out.println("max = " + max);
-        Optional<Integer> min = list.stream().min(Integer::compare);
-        System.out.println("min = " + min);
-        long count = list.stream().filter(e -> e > 3).count();
-        System.out.println("count = " + count);
-
-        // 规约 反复结合起来
-        Integer reduce1 = list.stream().reduce(1, (e1, e2) -> e1 * e2);
+        // 规约 反复结合起来, 求和,求积,类似用法
+        Integer reduce1 = list.stream().reduce(1, (e1, e2) -> {
+            System.out.println("reduce 1 : e1 = " + e1 + " e2 = " + e1);
+            return e1 + e2;
+        });
         System.out.println("reduce1 = " + reduce1);
 
         /// 没有初始值,返回Optional 类型
-        Optional<Integer> reduce2 = list.stream().reduce((e1, e2) -> e1 * e2);
+        Optional<Integer> reduce2 = list.stream().reduce((e1, e2) ->{
+            System.out.println("reduce 1 : e1 = " + e1 + " e2 = " + e1);
+            return   e1 + e2;
+        });
         System.out.println("reduce2 = " + reduce2);
 
-        Integer reduce = list.stream().reduce(0, Integer::sum);
+        // reduce 第一个参数,给个默认值,
+        Integer reduceSum = list.stream().reduce(Integer::sum).get();
+        System.out.println("reduceSum = " + reduceSum);
 
-        System.out.println("reduce = " + reduce);
+        Integer reduceSum0 = list.stream().reduce(0, Integer::sum);
+        System.out.println("reduceSum0 = " + reduceSum0);
 
+        Integer reduceSum1 = list.stream().reduce(2, Integer::sum);
+        System.out.println("reduceSum1 = " + reduceSum1);
 
+        Integer mapToIntSum = list.stream().mapToInt(Integer::valueOf).sum();
+        System.out.println("mapToIntSum = " + mapToIntSum);
     }
 
     //去重
@@ -762,27 +852,6 @@ public class StreamTest {
     }
 }
 
-
-class StreamTest2 {
-
-    public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(7, 6, 9, 3, 8, 2, 1);
-
-        // 遍历输出符合条件的元素
-        list.stream().filter(x -> x > 6).forEach(System.out::println);
-        // 匹配第一个
-        Optional<Integer> findFirst = list.stream().filter(x -> x > 5).findFirst();
-        System.out.println("匹配第一个值：" + findFirst.orElse(null));
-//        System.out.println("匹配第一个值：" + findFirst.get());
-        // 匹配任意（适用于并行流）,会随机返回一个
-        Optional<Integer> findAny = list.parallelStream().filter(x -> x > 5).findAny();
-        System.out.println("匹配任意一个值：" + findAny.orElse(null));
-
-        // 是否包含符合特定条件的元素
-        boolean anyMatch = list.stream().anyMatch(x -> x < 6);
-        System.out.println("是否存在大于6的值：" + anyMatch);
-    }
-}
 
 class StreamTest_filter_map {
     public static void main(String[] args) {
@@ -933,82 +1002,6 @@ class StreamTest_reduce {
             return result;
         }).get();
         System.out.println(a);
-
-
-    }
-}
-
-/*
-* Collectors提供了一系列用于数据统计的静态方法：
-
-计数：count
-平均值：averagingInt、averagingLong、averagingDouble
-最值：maxBy、minBy
-求和：summingInt、summingLong、summingDouble
-统计以上所有：summarizingInt、summarizingLong、summarizingDouble
-
-作者：Levng
-链接：https://juejin.cn/post/7064757819165114404
-来源：稀土掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-*
-* */
-class StreamTest_count {
-    public static void main(String[] args) {
-        List<Person> personList = new ArrayList<Person>();
-        personList.add(Person.builder()
-                .id(1)
-                .age(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .age(2)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .age(3)
-                .build());
-
-        // 求总数
-        Long count = personList.stream().collect(Collectors.counting());
-        // 求平均工资
-        Double average = personList.stream().collect(Collectors.averagingDouble(Person::getAge));
-        // averagingDouble 因为有参数,所以用上面方法简单
-//        personList.stream().map(Person::getSalary).collect(Collectors.averagingInt(value -> value));
-
-        // 求最高工资
-        Optional<Integer> max = personList.stream().map(Person::getAge).collect(Collectors.maxBy(Integer::compare));
-        // 求工资之和
-        Integer sum = personList.stream().collect(Collectors.summingInt(Person::getAge));
-        // 统计所有的
-        IntSummaryStatistics collect1 = personList.stream().collect(Collectors.summarizingInt(Person::getAge));
-        System.out.println("collect1.getCount() = " + collect1.getCount());
-        System.out.println("collect1.getMax() = " + collect1.getMax());
-        System.out.println("collect1.getMin() = " + collect1.getMin());
-
-        // 一次性统计所有信息
-        DoubleSummaryStatistics collect = personList.stream().collect(Collectors.summarizingDouble(Person::getAge));
-
-        System.out.println("员工总数：" + count);
-        System.out.println("员工平均工资：" + average);
-        System.out.println("员工工资总和：" + sum);
-        System.out.println("员工工资所有统计：" + collect);
-    }
-
-    @Test
-    void test1() {
-        List<Person> personList = new ArrayList<Person>();
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-
-        Optional<Integer> max = personList.stream().map(Person::getAge).collect(Collectors.maxBy(Integer::compare));
 
 
     }

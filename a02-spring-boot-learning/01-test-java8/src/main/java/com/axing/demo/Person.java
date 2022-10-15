@@ -1,5 +1,8 @@
 package com.axing.demo;
 
+import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson2.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 
 @Data
@@ -15,29 +18,10 @@ public class Person implements Comparable {
     private Integer age;
     private String area;
 
+    @SneakyThrows
     @Override
-    public boolean equals(Object o) {
-        System.out.println("equals..............");
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Person person = (Person) o;
-
-        if (!name.equals(person.name)) {
-            return false;
-        }
-        return age.equals(person.age);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + age.hashCode();
-        return result;
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 
     @Override
