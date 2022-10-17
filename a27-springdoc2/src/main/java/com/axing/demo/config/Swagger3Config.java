@@ -1,4 +1,4 @@
-package com.axing.config;
+package com.axing.demo.config;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;

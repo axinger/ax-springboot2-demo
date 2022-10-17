@@ -1,7 +1,7 @@
-package com.axing.controller;
+package com.axing.demo.controller;
 
 import com.axing.common.response.result.Result;
-import com.axing.vo.AdminVo;
+import com.axing.demo.vo.AdminVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
