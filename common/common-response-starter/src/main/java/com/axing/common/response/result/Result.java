@@ -13,20 +13,22 @@ import java.io.Serializable;
  * 全局统一返回结果类
  *
  * @author xing
+ * Result 和 T用title,name不要同时使用
+ * 避免bug
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(title = "返回体", description = "请求返回结果")
+@Schema(title = "Result", description = "请求返回结果")
 public class Result<T> implements Serializable {
 
-    @Schema(title = "状态码", description = "200 正常;")
+    @Schema(description = "状态码")
     private Integer code = 200;
 
-    @Schema(title = "返回消息")
+    @Schema(description = "提示信息")
     private String msg = "";
 
-    @Schema(title = "返回数据", description = "泛型数据,类型不固定")
+    @Schema(description = "泛型数据,类型不固定")
     private T data;
 
 
