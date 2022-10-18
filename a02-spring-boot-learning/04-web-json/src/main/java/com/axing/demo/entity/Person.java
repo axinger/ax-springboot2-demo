@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Person implements Serializable {
     Map map1;
     Map map2;
 
-    @JsonProperty(value = "aBoolean")//jackson,第二个字母大写,需要指定
+//    @JsonProperty(value = "aBoolean")//jackson,第二个字母大写,需要指定
     Boolean aBoolean;
 
     @JsonProperty(value = "aBoolean2")
@@ -45,6 +46,11 @@ public class Person implements Serializable {
     @JsonFormat(pattern = "yyyy年MM-dd HH:mm:ss", timezone = "GMT+8")
     @JSONField(format = "yyyy年MM-dd HH:mm:ss")
     LocalDateTime localDateTime;
+
+
+    LocalDateTime localDateTime2;
+
+    LocalDate localDate2;
 
     @JsonProperty(value = "aLong")
     Long aLong;

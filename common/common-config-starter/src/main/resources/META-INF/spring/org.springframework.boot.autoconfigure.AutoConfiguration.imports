@@ -1,2 +1,2 @@
 com.axing.common.config.CorsConfig
-com.axing.common.model.FastJson2Converter
+com.axing.common.config.JsonAutoConfig

@@ -1,6 +1,7 @@
 package com.axing.common.model;
 
-import cn.hutool.core.date.DatePattern;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 import java.util.TimeZone;
@@ -30,6 +32,77 @@ import java.util.TimeZone;
  * 使用官方自带的json格式类库，fastjson因为content type问题时不时控制台报错、无法直接返回二进制等问题
  */
 public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConverter {
+
+    public JacksonHttpMessageConverter(String dateFormat) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        this.setObjectMapper(objectMapper);
+
+        objectMapper
+                .setSerializerFactory(getObjectMapper().getSerializerFactory().withSerializerModifier(new MyBeanSerializerModifier()))
+                // 设置序列化反序列化采用直接处理字段的方式， 不依赖setter 和 getter
+                .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE).setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+                // 反序列化设置 关闭反序列化时Jackson发现无法找到对应的对象字段，便会抛出UnrecognizedPropertyException: Unrecognized field xxx异常
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                // 序列化设置 关闭日志输出为时间戳的设置
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+
+                // 指定时区
+                .setTimeZone(TimeZone.getTimeZone("GMT+8"))
+                // 日期类型字符串处理
+                .setDateFormat(new SimpleDateFormat(dateFormat))
+                .registerModule(javaTimeModule(dateFormat)) // 和 findAndRegisterModules 有冲突
+
+        // 自动查找并注册Java 8相关模块
+//                .findAndRegisterModules()
+
+
+        ;
+
+
+    }
+
+    protected JavaTimeModule javaTimeModule(String dateFormat) {
+        // Java8日期日期处理
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addSerializer(LocalDateTime.class, localDateTimeSerializer(dateFormat));
+        javaTimeModule.addDeserializer(LocalDateTime.class, localDateTimeDeserializer(dateFormat));
+
+        javaTimeModule.addSerializer(LocalDate.class, localDateSerializer("yyyy-MM-dd"));
+        javaTimeModule.addDeserializer(LocalDate.class, localDateDeserializer("yyyy-MM-dd"));
+
+        javaTimeModule.addSerializer(LocalTime.class, localTimeSerializer("HH:mm:ss"));
+        javaTimeModule.addDeserializer(LocalTime.class, localTimeDeserializer("HH:mm:ss"));
+        return javaTimeModule;
+    }
+
+    protected LocalDateTimeSerializer localDateTimeSerializer(String dateFormat) {
+        return new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateFormat));
+    }
+
+
+    protected LocalDateTimeDeserializer localDateTimeDeserializer(String dateFormat) {
+        return new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(dateFormat));
+    }
+
+
+    protected LocalDateSerializer localDateSerializer(String pattern) {
+        return new LocalDateSerializer(DateTimeFormatter.ofPattern(pattern));
+    }
+
+
+    protected LocalDateDeserializer localDateDeserializer(String pattern) {
+        return new LocalDateDeserializer(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    protected LocalTimeSerializer localTimeSerializer(String pattern) {
+        return new LocalTimeSerializer(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    protected LocalTimeDeserializer localTimeDeserializer(String pattern) {
+        return new LocalTimeDeserializer(DateTimeFormatter.ofPattern(pattern));
+    }
+
 
     /**
      * 处理数组类型的null值
@@ -52,7 +125,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     public static class NullStringJsonSerializer extends JsonSerializer<Object> {
 
         @Override
-        public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+        public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
             jsonGenerator.writeString(StringUtils.EMPTY);
         }
     }
@@ -63,7 +136,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     public static class NullNumberJsonSerializer extends JsonSerializer<Object> {
 
         @Override
-        public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+        public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
             jsonGenerator.writeNumber(0);
         }
     }
@@ -134,28 +207,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
             Class<?> clazz = writer.getType().getRawClass();
             return clazz.equals(Boolean.class);
         }
-
     }
 
-    public JacksonHttpMessageConverter() {
-        getObjectMapper().setSerializerFactory(getObjectMapper().getSerializerFactory().withSerializerModifier(new MyBeanSerializerModifier()));
-
-        ObjectMapper objectMapper = getObjectMapper();
-        // 指定时区
-        objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-        // 日期类型字符串处理
-        objectMapper.setDateFormat(new SimpleDateFormat(DatePattern.NORM_DATETIME_PATTERN));
-
-        // Java8日期日期处理
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
-        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DatePattern.NORM_DATETIME_FORMATTER));
-        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DatePattern.NORM_DATE_FORMATTER));
-        javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DatePattern.NORM_TIME_FORMATTER));
-
-        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DatePattern.NORM_DATETIME_FORMATTER));
-        javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DatePattern.NORM_DATE_FORMATTER));
-        javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DatePattern.NORM_TIME_FORMATTER));
-        objectMapper.registerModule(javaTimeModule);
-    }
 
 }

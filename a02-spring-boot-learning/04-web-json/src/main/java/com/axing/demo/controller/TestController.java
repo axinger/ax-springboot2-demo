@@ -61,4 +61,28 @@ public class TestController {
     }
 
 
+    @RequestMapping(value = "/json1")
+    public Object json1() {
+
+        final Person person = Person.builder()
+                .string2("jim")
+                .list2(Lists.newArrayList("a", "b"))
+                .map2(new HashMap<String, Object>() {{
+                    put("age", 10);
+                }})
+                .aBoolean(true)
+                .aBoolean2(true)
+                .localDateTime(LocalDateTime.now())
+                .localDateTime2(LocalDateTime.now())
+                .localDate2(LocalDate.now())
+
+                .date(new Date())
+                .aDouble(2.12433)
+                .aFloat(2.12533f)
+                .aLong(2222L)
+                .build();
+
+        return person;
+    }
+
 }

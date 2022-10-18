@@ -2,11 +2,15 @@ package com.axing.demo;
 
 
 import cn.hutool.core.collection.ListUtil;
+import cn.hutool.core.date.DateUtil;
+import com.alibaba.fastjson2.JSON;
+import com.axing.demo.model.Staff;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Function;
@@ -22,6 +26,7 @@ public class StreamTest {
     static void beforeAll() {
         System.out.println("beforeAll====");
     }
+
 
     @BeforeEach
     void beforeEach() {
@@ -57,6 +62,41 @@ public class StreamTest {
                     .build());
         }};
     }
+
+
+    /**
+     * 按照月分组
+     */
+    @Test
+    void test_group_date() {
+        List<Staff> staffList = new ArrayList<>();
+        staffList.add(new Staff("张三", DateUtil.parse("2022-01-01", "yyyy-MM-dd"), new BigDecimal(10)));
+        staffList.add(new Staff("张三", DateUtil.parse("2022-01-02", "yyyy-MM-dd"), new BigDecimal(14)));
+        staffList.add(new Staff("张三", DateUtil.parse("2022-01-03", "yyyy-MM-dd"), new BigDecimal(11)));
+
+        staffList.add(new Staff("张三", DateUtil.parse("2022-02-03", "yyyy-MM-dd"), new BigDecimal(10)));
+        staffList.add(new Staff("张三", DateUtil.parse("2022-02-04", "yyyy-MM-dd"), new BigDecimal(10)));
+
+
+        //日期月分组
+        Map<String, List<Staff>> collect = staffList.stream().collect(
+                Collectors.groupingBy(
+                        o -> DateUtil.format(o.getDate(), "yyyy-MM")
+                ));
+
+
+        System.out.println(collect);
+
+        //日期分组求和
+        Map<String, BigDecimal> collect1 = staffList.stream().collect(
+                Collectors.groupingBy(
+                        o -> DateUtil.format(o.getDate(), "yyyy-MM"),
+                        Collectors.mapping(Staff::getYield, Collectors.reducing(BigDecimal.ZERO, BigDecimal::add)
+                        )));
+        System.out.println("collect1 = " + collect1);
+
+    }
+
 
     @Test
     void test_any() {
@@ -118,13 +158,9 @@ public class StreamTest {
     @Test
     void test_map_grouping_count() {
         List<DeviceModel> list = new ArrayList<>();
-        list.add(DeviceModel.builder()
-                .id("1")
-                .state("1")
-                .build());
 
         list.add(DeviceModel.builder()
-                .id("1")
+                .id("3")
                 .state("2")
                 .build());
 
@@ -133,28 +169,12 @@ public class StreamTest {
                 .state("1")
                 .build());
 
-        list.add(DeviceModel.builder()
-                .id("2")
-                .state("1")
-                .build());
-        list.add(DeviceModel.builder()
-                .id("2")
-                .state("1")
-                .build());
-
 
         list.add(DeviceModel.builder()
-                .id("3")
-                .state("1")
+                .id("2")
+                .state("2")
                 .build());
-        list.add(DeviceModel.builder()
-                .id("3")
-                .state("1")
-                .build());
-        list.add(DeviceModel.builder()
-                .id("3")
-                .state("1")
-                .build());
+
 
         //统计个数
         Map<String, Long> collect = list.stream().filter(val -> val.getState().equals("1")).collect(Collectors.groupingBy(DeviceModel::getId, Collectors.counting()));
@@ -166,6 +186,13 @@ public class StreamTest {
                 .collect(Collectors.toList());
 
         System.out.println("map排序 = " + collect2);
+
+
+
+        LinkedHashMap<String, List<DeviceModel>> collect3 = list.stream()
+                .sorted(Comparator.comparing(DeviceModel::getId))
+                .collect(Collectors.groupingBy(DeviceModel::getState, LinkedHashMap::new, Collectors.toList()));
+        System.out.println("collect3 = " +   JSON.toJSONString(collect3));
 
 
     }
@@ -780,9 +807,9 @@ public class StreamTest {
         System.out.println("reduce1 = " + reduce1);
 
         /// 没有初始值,返回Optional 类型
-        Optional<Integer> reduce2 = list.stream().reduce((e1, e2) ->{
+        Optional<Integer> reduce2 = list.stream().reduce((e1, e2) -> {
             System.out.println("reduce 1 : e1 = " + e1 + " e2 = " + e1);
-            return   e1 + e2;
+            return e1 + e2;
         });
         System.out.println("reduce2 = " + reduce2);
 

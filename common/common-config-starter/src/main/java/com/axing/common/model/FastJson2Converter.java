@@ -14,12 +14,12 @@ import java.util.List;
  * 目前LocalTime,LocalDate,无法全局设置,暂不用
  */
 
-public class FastJson2Converter {
+public class FastJson2Converter extends FastJsonHttpMessageConverter{
 
 
-    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter() {
+    public FastJson2Converter() {
 
-        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+//        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         //自定义配置...
         FastJsonConfig config = new FastJsonConfig();
 //        config.setDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -49,12 +49,11 @@ public class FastJson2Converter {
 
                 //JSONWriter.Feature.ReferenceDetection
         );
-        converter.setFastJsonConfig(config);
-        converter.setDefaultCharset(StandardCharsets.UTF_8);
+        this.setFastJsonConfig(config);
+        this.setDefaultCharset(StandardCharsets.UTF_8);
         // 4.中文乱码解决方案
         List<MediaType> supportedMediaTypes = new ArrayList<>();
         supportedMediaTypes.add(MediaType.APPLICATION_JSON);
-        converter.setSupportedMediaTypes(supportedMediaTypes);
-        return converter;
+        this.setSupportedMediaTypes(supportedMediaTypes);
     }
 }
