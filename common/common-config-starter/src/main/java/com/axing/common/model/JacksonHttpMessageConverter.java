@@ -15,6 +15,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.TimeZone;
 
 
@@ -33,22 +35,23 @@ import java.util.TimeZone;
  */
 public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConverter {
 
-    public JacksonHttpMessageConverter(String dateFormat) {
-
+    public JacksonHttpMessageConverter(JacksonProperties jacksonProperties) {
         ObjectMapper objectMapper = new ObjectMapper();
         this.setObjectMapper(objectMapper);
 
+        TimeZone timeZone = Optional.ofNullable(jacksonProperties).map(JacksonProperties::getTimeZone).orElse(TimeZone.getTimeZone("GMT+8"));
+        String dateFormat = Optional.ofNullable(jacksonProperties).map(JacksonProperties::getDateFormat).orElse("yyyy-MM-dd HH:mm:ss");
         objectMapper
-                .setSerializerFactory(getObjectMapper().getSerializerFactory().withSerializerModifier(new MyBeanSerializerModifier()))
+                .setSerializerFactory(objectMapper.getSerializerFactory().withSerializerModifier(new MyBeanSerializerModifier()))
                 // 设置序列化反序列化采用直接处理字段的方式， 不依赖setter 和 getter
-                .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE).setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+                .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
+                .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
                 // 反序列化设置 关闭反序列化时Jackson发现无法找到对应的对象字段，便会抛出UnrecognizedPropertyException: Unrecognized field xxx异常
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 // 序列化设置 关闭日志输出为时间戳的设置
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-
                 // 指定时区
-                .setTimeZone(TimeZone.getTimeZone("GMT+8"))
+                .setTimeZone(timeZone)
                 // 日期类型字符串处理
                 .setDateFormat(new SimpleDateFormat(dateFormat))
                 .registerModule(javaTimeModule(dateFormat)) // 和 findAndRegisterModules 有冲突
@@ -110,7 +113,7 @@ public class JacksonHttpMessageConverter extends MappingJackson2HttpMessageConve
     public static class NullArrayJsonSerializer extends JsonSerializer<Object> {
 
         @Override
-        public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+        public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
             if (value == null) {
                 jgen.writeStartArray();
                 jgen.writeEndArray();
