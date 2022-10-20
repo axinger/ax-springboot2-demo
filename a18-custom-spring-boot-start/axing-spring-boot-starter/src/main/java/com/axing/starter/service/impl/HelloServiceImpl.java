@@ -20,8 +20,11 @@ import java.util.Map;
  */
 public class HelloServiceImpl implements HelloService {
 
-    @Autowired
     private HelloProperties helloProperties;
+
+    public HelloServiceImpl(HelloProperties helloProperties){
+       this.helloProperties = helloProperties;
+    }
 
     @Override
     public Map sayHello(String param) {

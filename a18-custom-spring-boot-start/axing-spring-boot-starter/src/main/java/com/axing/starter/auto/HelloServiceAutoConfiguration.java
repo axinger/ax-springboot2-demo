@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-/// 默认把HelloProperties 放入容器中
-@EnableConfigurationProperties(HelloProperties.class)
+@EnableConfigurationProperties(HelloProperties.class)//默认把HelloProperties 放入容器中
 public class HelloServiceAutoConfiguration {
+
 
     @Bean
     @ConditionalOnMissingBean(HelloService.class)
-    public HelloService helloService() {
-        HelloService helloService = new HelloServiceImpl();
+    public HelloService helloService(HelloProperties helloProperties) {
+        HelloService helloService = new HelloServiceImpl(helloProperties);
         return helloService;
     }
 

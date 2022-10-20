@@ -5,9 +5,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "axing.hello")
 public class HelloProperties {
 
-    private String prefix = "A+";
+    /**
+     * 自定义前缀
+     */
+    private String prefix = "前缀";
 
-    private String suffix;
+    /**
+     * 自定义后缀
+     */
+    private String suffix="后缀";
 
     private String name = "axing";
 

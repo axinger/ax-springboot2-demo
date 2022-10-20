@@ -81,7 +81,6 @@ public class TestController {
                 .aFloat(2.12533f)
                 .aLong(2222L)
                 .build();
-
         return person;
     }
 

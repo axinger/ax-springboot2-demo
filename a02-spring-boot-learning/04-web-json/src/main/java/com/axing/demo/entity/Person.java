@@ -38,13 +38,14 @@ public class Person implements Serializable {
     @JsonProperty(value = "aBoolean2")
     Boolean aBoolean2;
 
-    @JsonFormat(pattern = "yyyy年MM-dd HH:mm:ss")
+
+    @JsonFormat(pattern = "yyyyMM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     Date date;
 
 
-    @JsonFormat(pattern = "yyyy年MM-dd HH:mm:ss", timezone = "GMT+8")
-    @JSONField(format = "yyyy年MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy\uD83C\uDF1EMM-dd HH:mm:ss", timezone = "GMT+8")
+    @JSONField(format = "yyyy\uD83C\uDF1EMM-dd HH:mm:ss")
     LocalDateTime localDateTime;
 
 

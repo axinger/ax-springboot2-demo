@@ -14,6 +14,7 @@ public class JsonMixinController {
         person.setAge(10);
         System.out.println("person = " + person);
 
+
         return person;
     }
 }
