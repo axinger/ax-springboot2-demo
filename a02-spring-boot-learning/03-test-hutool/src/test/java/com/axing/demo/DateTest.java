@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 
 /**
  * @author xing
@@ -44,10 +45,18 @@ public class DateTest {
 
     @Test
     void test_withDayOfYear() {
-        final LocalDateTime localDateTime = LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfYear(1));
-        System.out.println("localDateTime = " + localDateTime);
+
+        System.out.println("月初 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(1)));
+        System.out.println("月末 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(31)));
+
+
+        LocalDateTime _2th = LocalDateTimeUtil.parse("2022-02-28 12:00:00", "yyyy-MM-dd HH:mm:ss").with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println("2月末 = " + LocalDateTimeUtil.endOfDay(_2th));
+
+        System.out.println("年初 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfYear(1)));
 
         System.out.println(LocalDateTime.now().withDayOfYear(1));
+
 
     }
 
