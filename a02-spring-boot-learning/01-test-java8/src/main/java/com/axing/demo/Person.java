@@ -18,11 +18,6 @@ public class Person implements Comparable {
     private Integer age;
     private String area;
 
-    @SneakyThrows
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 
     @Override
     public int compareTo(Object o) {

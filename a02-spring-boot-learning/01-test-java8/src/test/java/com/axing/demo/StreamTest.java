@@ -20,18 +20,10 @@ import java.util.stream.Stream;
 
 public class StreamTest {
 
-    List<Person> personList;
+    static List<Person> personList;
 
-    @BeforeAll
-    static void beforeAll() {
-        System.out.println("beforeAll====");
-    }
-
-
-    @BeforeEach
-    void beforeEach() {
-        System.out.println("beforeEach=======");
-        personList = new ArrayList() {{
+    static {
+        personList = new ArrayList<>() {{
             add(Person.builder()
                     .id(1)
                     .name("jim")
@@ -50,17 +42,28 @@ public class StreamTest {
                     .id(1)
                     .name("Lucy")
                     .sex("女")
-                    .age(11)
+                    .age(18)
                     .area("安徽")
                     .build());
             add(Person.builder()
                     .id(1)
                     .name("小红")
                     .sex("女")
-                    .age(12)
+                    .age(20)
                     .area("江苏")
                     .build());
         }};
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("beforeAll====");
+    }
+
+
+    @BeforeEach
+    void beforeEach() {
+        System.out.println("beforeEach=======");
     }
 
 
@@ -124,8 +127,7 @@ public class StreamTest {
     @Test
     void test_boxed() {
         //boxed的作用就是将int类型的stream转成了Integer类型的Stream
-        List<Integer> integers = Arrays.asList("1", "2")
-                .stream()
+        List<Integer> integers = Stream.of("1", "2")
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
@@ -139,19 +141,9 @@ public class StreamTest {
         // peek 没有返回值,可以直接修改当前值
         List<Person> list1 = personList
                 .stream()
-                .peek((val) -> {
-                    val.setName("pek:" + val.getName());
-                }).toList();
+                .peek((val) -> val.setName("pek:" + val.getName()))
+                .toList();
         System.out.println("list1 = " + list1);
-
-        List<Person> list2 = personList
-                .stream()
-                .map((val) -> {
-                    val.setName("map:" + val.getName());
-                    return val;
-                }).toList();
-        System.out.println("list2 = " + list2);
-
     }
 
     //统计个数
@@ -188,11 +180,10 @@ public class StreamTest {
         System.out.println("map排序 = " + collect2);
 
 
-
         LinkedHashMap<String, List<DeviceModel>> collect3 = list.stream()
                 .sorted(Comparator.comparing(DeviceModel::getId))
                 .collect(Collectors.groupingBy(DeviceModel::getState, LinkedHashMap::new, Collectors.toList()));
-        System.out.println("collect3 = " +   JSON.toJSONString(collect3));
+        System.out.println("collect3 = " + JSON.toJSONString(collect3));
 
 
     }
@@ -202,7 +193,7 @@ public class StreamTest {
     void test_sum() {
 
         // 求总数
-        Long count = personList.stream().count();
+        long count = personList.size();
         System.out.println("count = " + count);
 
         // 求平均
@@ -768,15 +759,19 @@ public class StreamTest {
         List<Person> persons = new ArrayList<Person>() {{
             add(Person.builder()
                     .id(1)
+                    .age(18)
                     .build());
             add(Person.builder()
                     .id(1)
+                    .age(17)
                     .build());
             add(Person.builder()
                     .id(1)
+                    .age(16)
                     .build());
             add(Person.builder()
                     .id(1)
+                    .age(20)
                     .build());
 
         }};
@@ -792,6 +787,15 @@ public class StreamTest {
         System.out.println("result2 = " + result2);
 
 
+    }
+
+    /**
+     * Collectors.partitioningBy会根据值是否为true,把集合中的数据分割为两个列表，一个true列表，一个false列表。
+     */
+    @Test
+    void test_partitioningBy() {
+        Map<Boolean, List<Person>> collect = personList.stream().collect(Collectors.partitioningBy(p -> p.getAge() > 18));
+        System.out.println("collect = " + collect);
     }
 
     @Test
@@ -1055,6 +1059,9 @@ class StreamTest_joining {
         List<String> list = Arrays.asList("A", "B", "C");
         String string = list.stream().collect(Collectors.joining("-"));
         System.out.println("拼接后的字符串：" + string);
+
+        String string2 = list.stream().collect(Collectors.joining("-", "头", "尾"));
+        System.out.println("拼接后的字符串：" + string2);
     }
 }
 
@@ -1064,21 +1071,34 @@ class StreamTest_reducing {
         List<Person> personList = new ArrayList<Person>();
         personList.add(Person.builder()
                 .id(1)
+                .name("jim")
+                .age(1)
                 .build());
         personList.add(Person.builder()
                 .id(1)
+                .name("tom")
+                .age(1)
                 .build());
         personList.add(Person.builder()
                 .id(1)
+                .name("jack")
+                .age(1)
                 .build());
+        // 这3个效果一样的
 
         // 每个员工减去起征点后的薪资之和（这个例子并不严谨，但一时没想到好的例子）
-        Integer sum = personList.stream().collect(Collectors.reducing(0, Person::getAge, (i, j) -> (i + j - 5000)));
+        Integer sum = personList.stream().map(Person::getAge).reduce(0, (i, j) -> (i + j + 1));
         System.out.println("员工扣税薪资总和：" + sum);
 
         // stream的reduce
-        Optional<Integer> sum2 = personList.stream().map(Person::getAge).reduce(Integer::sum);
+        Optional<Integer> sum2 = personList.stream().map(val -> val.getAge() + 1).reduce(Integer::sum);
         System.out.println("员工薪资总和：" + sum2.get());
+
+        int sum1 = personList.stream().map(val -> val.getAge() + 1).mapToInt(Integer::valueOf).sum();
+        System.out.println("sum1 = " + sum1);
+
+        Optional<String> reduce = personList.stream().map(val -> val.getName()).reduce(String::join);
+        System.out.println("String::join = " + reduce);
     }
 }
 
