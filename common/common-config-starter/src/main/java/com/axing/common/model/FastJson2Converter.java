@@ -14,7 +14,7 @@ import java.util.List;
  * 目前LocalTime,LocalDate,无法全局设置,暂不用
  */
 
-public class FastJson2Converter extends FastJsonHttpMessageConverter{
+public class FastJson2Converter extends FastJsonHttpMessageConverter {
 
 
     public FastJson2Converter() {

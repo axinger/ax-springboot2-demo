@@ -1,6 +1,6 @@
 package com.axing.common.config;
 
-import com.axing.common.model.JacksonHttpMessageConverter;
+import com.axing.common.model.JacksonConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
@@ -16,11 +16,13 @@ public class JsonAutoConfig {
 
     @Bean
     public HttpMessageConverters httpMessageConverters(JacksonProperties jacksonProperties) {
-        return new HttpMessageConverters(new JacksonHttpMessageConverter(jacksonProperties));
+        return new HttpMessageConverters(new JacksonConverter(jacksonProperties));
     }
 
 //    @Bean
 //    public HttpMessageConverters httpMessageConverters() {
 //        return new HttpMessageConverters(new FastJson2Converter());
 //    }
+
+
 }
