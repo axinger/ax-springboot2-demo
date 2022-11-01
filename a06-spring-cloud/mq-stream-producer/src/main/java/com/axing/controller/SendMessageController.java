@@ -1,64 +1,46 @@
 package com.axing.controller;
 
+import com.axing.BaseMessage;
+import com.axing.MessageConstant;
+import com.axing.service.MessageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.support.GenericMessage;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.axing.MessageConstant.*;
+
 @RestController
+@RequiredArgsConstructor
+@Tag(name = "消息生产者")
 public class SendMessageController {
 
-    //这里直接装配一个桥 用来连接rabbit或者kafka
-    @Autowired
-    StreamBridge streamBridge;
+    private final MessageService messageService;
 
-    @RequestMapping("/send")
+    @Operation(summary = "发送主题消息")
+    @GetMapping("/orderExchange")
     public void sendMethod() {
-        String uuid = UUID.randomUUID().toString();
-        //这里说明一下这个 streamBridge.send 方法的参数 第一个参数是exchange或者topic 就是主题名称
-        //默认的主题名称是通过
-        //输入:    <方法名> + -in- + <index>
-        //输出:    <方法名> + -out- + <index>
-        //这里我们接收的时候就要用send方法 参数是consumer<String>接收  详情看8802的controller
-        //consumer的参数类型是这里message的类型
+        messageService.orderExchange();
 
-        Map map = new HashMap();
-        map.put("data", uuid);
-
-        boolean send = streamBridge.send("send-in-0", map);
-        System.out.println("send = " + send);
     }
 
-    @RequestMapping("/order")
+    @Operation(summary = "发送交换机消息")
+    @GetMapping("/orderOut")
     public void oder() {
-        Map map = new HashMap();
-        map.put("type", "订单业务");
-        map.put("date", LocalDateTime.now());
-
-        Message<Map> message = MessageBuilder
-                .withPayload(map)
-                .setHeader("myHeader", "abc123")
-                .build();
-
-        boolean send = streamBridge.send("mq.order", message);
-        System.out.println("send = " + send);
+        messageService.orderOut();
     }
 
-    @RequestMapping("/sms")
-    public void sms() {
-        Map map = new HashMap();
-        map.put("type", "发送短信业务");
-        map.put("date", LocalDateTime.now());
-        boolean send = streamBridge.send("mq.sms", map);
-        System.out.println("send = " + send);
-    }
 
 //    @RequestMapping("/send2")
 //    public void sendMethod2() {
@@ -80,5 +62,46 @@ public class SendMessageController {
 //                .build();
 //        streamBridge.send("sendMessage-in-0", message);
 //    }
+
+    @Autowired
+    private StreamBridge streamBridge;
+
+    /**
+     * 1.普通消息发送
+     *
+     * @param message
+     */
+    @PostMapping(value = "/cluster")
+    public void sendClusterMsg(@RequestParam("message") String message) {
+        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(CLUSTER_MESSAGE_OUTPUT, "", message));
+        boolean result = streamBridge.send(CLUSTER_MESSAGE_OUTPUT, msg);
+        System.out.println(Thread.currentThread().getName() + " 消息集群发送: " + msg.getPayload().getData());
+    }
+
+
+    /**
+     * 2.广播消息发送
+     */
+    @PostMapping(value = "/broadcast")
+    public void sendBroadcastMsg(@RequestParam("message") String message) {
+        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(BROADCAST_MESSAGE_OUTPUT, "", message));
+        boolean result = streamBridge.send(BROADCAST_MESSAGE_OUTPUT, msg);
+        System.out.println(Thread.currentThread().getName() + " 消息广播发送: " + msg.getPayload().getData());
+    }
+
+
+    @PostMapping(value = "/delay")
+    public void delay( ){
+        Map map = new HashMap();
+        map.put("date", LocalDateTime.now());
+
+
+
+        Message<Map> message = MessageBuilder
+                .withPayload(map)
+                .setHeader("x-delay", 5 * 1000)
+                .build();
+        streamBridge.send(DELAYED_MESSAGE_OUTPUT,message);
+    }
 }
 

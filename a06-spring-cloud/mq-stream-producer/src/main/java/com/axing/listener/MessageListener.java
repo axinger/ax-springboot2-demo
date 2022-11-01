@@ -1,5 +1,6 @@
-package com.axing.controller;
+package com.axing.listener;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
@@ -10,14 +11,15 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 @Component
-public class ReceiveMessageController {
+@Slf4j
+public class MessageListener {
 
 
     @Value("${server.port}")
     private String serverPort;
 
     @Bean
-    public Consumer<Message<Map<String, Object>>> order() {
+    public Consumer<Message<Map<String, Object>>> myOrder() {
         return message -> {
             System.out.println("我是消费者" + serverPort);
 
@@ -29,11 +31,6 @@ public class ReceiveMessageController {
         };
     }
 
-    @Bean
-    public Consumer<String> sms() {
-        return message -> {
-            System.out.println("我是消费者" + serverPort);
-            System.out.println("Received message " + message);
-        };
-    }
+
+
 }

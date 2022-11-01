@@ -1,13 +1,14 @@
 package com.axing;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StreamConsumer2 {
+public class StreamProducerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StreamConsumer2.class, args);
+        SpringApplication.run(StreamProducerApplication.class, args);
     }
 
 }

@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @author luoyu
  */
 @Data
-@Configuration
 @ConfigurationProperties(prefix = "axing.minio")
 public class MinioProperties {
 

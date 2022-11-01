@@ -1,55 +1,51 @@
 server:
-  port: 8801
+  port: 8900
 
 spring:
   application:
     name: cloud-stream-producer
 
-  #  rabbitmq:
-  #    host: localhost
-  #    port: 5672  #mq调用的端口为5672
-  #    username: admin
-  #    password: 123456
-  #    virtual-host: my_vhost
+  rabbitmq:
+    host: localhost
+    port: 5672  #mq调用的端口为5672
+    username: admin
+    password: 123456
+    virtual-host: my_vhost
 
   #中间cloud部分和8802一样
   cloud:
     stream:
+      rabbit:
+        bindings:
+          delayed-out-0:
+            producer:
+              delayed-exchange: true
+
+
       #      default-binder: rabbit
-      binders: #自此处配置要绑定的rabbitmq的服务信息
-        msn-binder: #表示定义的名称，用于binding整合
-          type: rabbit #消息组件类型
-          # 这里配置环境,好处,可以有多个rabbitmq环境
-          environment: # 设置rabbitmq的相关的环境配置 stream3.1只需要配置这些即可
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672  #mq调用的端口为5672
-                username: admin
-                password: 123456
-                virtual-host: my_vhost
+#      binders: #自此处配置要绑定的rabbitmq的服务信息
+#        msn-binder: #表示定义的名称，用于binding整合
+#          type: rabbit #消息组件类型
+#          # 这里配置环境,好处,可以有多个rabbitmq环境
+#          environment: # 设置rabbitmq的相关的环境配置 stream3.1只需要配置这些即可
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 5672  #mq调用的端口为5672
+#                username: admin
+#                password: 123456
+#                virtual-host: my_vhost
 
-      #      bindings:
-      #        send:
-      #          destination: user-send
-      #        sendMessage:
-      #          destination: user-sendMessage
-      #        send-out-0:
-      #          destination: user-send
-      #        sendMessage-out-0:
-      #          destination: user-sendMessage
+      bindings:
+        order-out-0:
+          destination: mq.order
 
+        cluster-out-0:
+          destination: cluster-topic
 
-#      function:
-#        definition: sink
-#      bindings:
-#        output:
-#          destination: test1
-#        transfer-in-0:
-#          destination: test1
-#        transfer-out-0:
-#          destination: test2
-#        sink-in-0:
-#          destination: test2
-#        sink-in-0:
-#          destination: test1
+        broadcast-out-0:
+          destination: broadcast-topic
+
+        delayed-out-0:
+          destination: delayed-topic
+

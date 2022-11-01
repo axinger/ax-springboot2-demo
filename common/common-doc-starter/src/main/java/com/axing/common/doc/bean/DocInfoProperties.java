@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Data
-@Configuration
 @ConfigurationProperties(prefix = "axing.doc-info")
 public class DocInfoProperties {
 
