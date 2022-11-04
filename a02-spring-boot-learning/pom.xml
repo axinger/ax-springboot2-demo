@@ -34,6 +34,14 @@
         <module>a11-spring-boot-active</module>
         <module>a12-spring-web-flux</module>
         <module>a13-springboot-mvc</module>
+        <module>a14-lombok</module>
     </modules>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>common-util</artifactId>
+        </dependency>
+    </dependencies>
 </project>
