@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.axing</groupId>
         <artifactId>alibaba-seata</artifactId>
-        <version>2.4.0</version>
+        <version>2.5.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>seata-storage</artifactId>
@@ -43,8 +43,8 @@
 
         <!--mysql-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
