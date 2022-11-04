@@ -1,7 +1,6 @@
 package com.axing.common.redis.service.impl;
 
 import com.axing.common.redis.service.RedisService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,8 +12,13 @@ import java.util.concurrent.TimeUnit;
 
 public class RedisServiceImpl implements RedisService {
 
-    @Autowired
+
     private RedisTemplate redisTemplate;
+
+    public RedisServiceImpl(RedisTemplate redisTemplate){
+        this.redisTemplate = redisTemplate;
+    }
+
 
     /**
      * 缓存基本的对象，Integer、String、实体类等

@@ -8,13 +8,18 @@ import com.axing.demo.model.User;
 import com.axing.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 @RestController
+@CacheConfig(cacheNames = "demo14::user")
 public class UserController {
 
     @Autowired
@@ -94,5 +99,45 @@ public class UserController {
         System.out.println("getLastName...........");
         return Result.ok(userService.getLastName(id));
     }
+
+
+    @Cacheable(key = "#id")
+    @GetMapping(value = "/key")
+    public String getByKey(Long id) {
+        return "我的jim" + id;
+    }
+
+
+    @Autowired
+    private RedisTemplate<String, User> redisTemplate2;
+    @GetMapping(value = "/user")
+    public User user(Long id) {
+
+        User.Book book = User.Book.builder()
+                .id(1)
+                .name("海底两万里")
+                .build();
+
+        User user = User.builder()
+                .id(1)
+                .name("jim")
+                .age(21)
+                .date(new Date())
+                .localDateTime(LocalDateTime.now())
+                .books(List.of(book))
+                .build();
+
+        String key = "test::user";
+        redisTemplate2.opsForValue().set(key, user);
+
+        User user1 = redisTemplate2.opsForValue().get(key);
+        System.out.println("user1 = " + user1.getLocalDateTime().toString());
+
+        return user1;
+    }
+
+
+
+
 
 }

@@ -2,7 +2,6 @@ package com.axing.starter.service.impl;
 
 import com.axing.starter.bean.HelloProperties;
 import com.axing.starter.service.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,7 @@
 package com.axing.common.redis.configure;
 
+import com.axing.common.redis.service.RedisService;
+import com.axing.common.redis.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +21,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import javax.annotation.Resource;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author xing
@@ -52,6 +55,9 @@ public class RedisAutoConfig {
         };
     }
 
+        private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
     /**
      * 设置RedisTemplate规则
      *
@@ -69,6 +75,7 @@ public class RedisAutoConfig {
         redisTemplate.setHashValueSerializer(this.redisSerializer());
 
         redisTemplate.afterPropertiesSet();
+
         return redisTemplate;
     }
 
@@ -111,5 +118,11 @@ public class RedisAutoConfig {
         // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         return objectMapper;
+    }
+
+    @Bean
+    public RedisService redisService(){
+        RedisService redisService = new RedisServiceImpl(this.redisTemplate());
+        return redisService;
     }
 }

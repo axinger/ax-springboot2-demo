@@ -21,7 +21,7 @@ import java.util.List;
  * allEntries：true表示清除value中的全部缓存，默认为false。
  */
 @Service
-@CacheConfig(cacheNames = "demo13::user")
+@CacheConfig(cacheNames = "demo14::user")
 public class UserServiceImpl implements UserService {
 
     @Override
