@@ -1,102 +1,115 @@
 package com.axing.common.redis.configure;
 
-import cn.hutool.json.JSON;
-import com.alibaba.fastjson2.support.spring.data.redis.GenericFastJsonRedisSerializer;
-import com.axing.common.redis.service.RedisService;
-import com.axing.common.redis.service.impl.RedisServiceImpl;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import javax.annotation.Resource;
-import java.time.Duration;
 
 /**
- * redis配置
- *
- * @author axing
+ * @author xing
+ * @version 1.0.0
+ * @ClassName RedisConfig.java
+ * @description
+ * @createTime 2022年01月18日 22:56:00
  */
 @Configuration
 @EnableCaching
-public class RedisAutoConfig extends CachingConfigurerSupport {
+public class RedisAutoConfig {
 
     @Resource
-    private RedisConnectionFactory factory;
+    RedisConnectionFactory redisConnectionFactory;
 
+    /**
+     * 自定义key规则
+     *
+     * @return
+     */
     @Bean
-    @ConditionalOnMissingBean(RedisService.class)
-    public RedisService redisService() {
-        return new RedisServiceImpl();
+    public KeyGenerator keyGenerator() {
+        return (target, method, params) -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(target.getClass().getName());
+            sb.append(method.getName());
+            for (Object obj : params) {
+                sb.append(obj.toString());
+            }
+            return sb.toString();
+        };
     }
 
-
+    /**
+     * 设置RedisTemplate规则
+     *
+     * @return
+     */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory);
-//
-//        FastJson2JsonRedisSerializer serializer = new FastJson2JsonRedisSerializer(Object.class);
-//
-//        // 使用StringRedisSerializer来序列化和反序列化redis的key值
-//        template.setKeySerializer(new StringRedisSerializer());
-//        template.setValueSerializer(serializer);
-//
-//        // Hash的key也采用StringRedisSerializer的序列化方式
-//        template.setHashKeySerializer(new StringRedisSerializer());
-//        template.setHashValueSerializer(serializer);
-//
-//        template.afterPropertiesSet();
+    public RedisTemplate redisTemplate() {
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
 
-//        GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
-
-        // 设置键（key）的序列化方式
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        // 序列号key value
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(this.redisSerializer());
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(this.redisSerializer());
 
-        // 设置值（value）的序列化方式
-        redisTemplate.setHashValueSerializer(redisSerializer());
-        redisTemplate.setValueSerializer(redisSerializer());
         redisTemplate.afterPropertiesSet();
-
         return redisTemplate;
     }
 
-    @Override
+    /**
+     * 设置CacheManager缓存规则
+     *
+     * @return
+     */
+    @Bean
     public CacheManager cacheManager() {
-
-
-//        GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
-
-        // 配置序列化（解决乱码的问题）,过期时间600秒
+        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
+        // 配置序列化（解决乱码的问题）,
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(600))
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer()))
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))
+                .serializeValuesWith(
+                        RedisSerializationContext.SerializationPair.fromSerializer(this.redisSerializer()))
                 .disableCachingNullValues();
-        RedisCacheManager cacheManager = RedisCacheManager.builder(factory)
-                .cacheDefaults(config)
-                .build();
+
+        RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(config).build();
         return cacheManager;
     }
 
-//    public RedisSerializer<String> redisSerializer() {
-//        return new StringRedisSerializer();
-//    }
 
+    /**
+     * 还有一个 GenericJackson2JsonRedisSerializer ,不好用
+     *
+     * @return
+     */
+    private RedisSerializer redisSerializer() {
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        jackson2JsonRedisSerializer.setObjectMapper(this.objectMapper());
+        return jackson2JsonRedisSerializer;
+    }
 
-    @Bean
-    public RedisSerializer redisSerializer() {
-        GenericFastJsonRedisSerializer redisSerializer = new GenericFastJsonRedisSerializer();
-        return redisSerializer;
+    private ObjectMapper objectMapper() {
+        // 解决查询缓存转换异常的问题
+        ObjectMapper objectMapper = new ObjectMapper();
+        // 指定要序列化的域，field,get和set,以及修饰符范围，ANY是都有包括private和public
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        return objectMapper;
     }
 }

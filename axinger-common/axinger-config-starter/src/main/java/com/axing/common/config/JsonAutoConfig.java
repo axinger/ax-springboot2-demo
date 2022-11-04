@@ -1,6 +1,7 @@
 package com.axing.common.config;
 
 import com.axing.common.model.JacksonConverter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
@@ -24,5 +25,10 @@ public class JsonAutoConfig {
 //        return new HttpMessageConverters(new FastJson2Converter());
 //    }
 
-
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println("全局objectMapper = " + objectMapper);
+        return objectMapper;
+    }
 }

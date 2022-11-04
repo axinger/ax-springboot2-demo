@@ -3,7 +3,7 @@ package com.axing.demo.entity;
 import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Data;
 
-@Data
+//@Data
 public class Pig {
 
     /**
@@ -12,6 +12,22 @@ public class Pig {
      */
     @JSONField(name = "aName")
     private String aName;
+
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
+    }
+
+    public String getaAge() {
+        return aAge;
+    }
+
+    public void setaAge(String aAge) {
+        this.aAge = aAge;
+    }
 
     private String aAge;
 }

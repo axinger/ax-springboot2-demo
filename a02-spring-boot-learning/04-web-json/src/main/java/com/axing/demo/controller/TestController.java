@@ -3,7 +3,9 @@ package com.axing.demo.controller;
 
 import com.axing.demo.entity.EmptyModel;
 import com.axing.demo.entity.Person;
+import com.axing.demo.entity.Pig;
 import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -84,4 +86,12 @@ public class TestController {
         return person;
     }
 
+    @Autowired
+    private Pig pig;
+    @RequestMapping(value = "/pig")
+    public void pig() {
+
+        System.out.println("new Pig() = " + new Pig());
+        System.out.println("pig = " + pig);
+    }
 }
