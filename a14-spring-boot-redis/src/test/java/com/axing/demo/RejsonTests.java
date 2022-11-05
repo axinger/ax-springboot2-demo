@@ -1,5 +1,6 @@
 package com.axing.demo;
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.common.redis.service.RedisService;
 import com.axing.demo.model.User;
@@ -14,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @Slf4j
@@ -33,11 +35,11 @@ public class RejsonTests {
 //        Object peron = redisService.getCacheObject("peron");
 //        System.out.println("peron = " + peron);
 
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "jim");
 
-        redisTemplate.opsForValue().set("demo::dog1", jsonObject);
-        redisTemplate.opsForValue().set("demo:dog2", jsonObject);
+        this.redisTemplate.opsForValue().set("demo::dog1", jsonObject);
+        this.redisTemplate.opsForValue().set("demo:dog2", jsonObject);
     }
 
     @Autowired
@@ -46,12 +48,12 @@ public class RejsonTests {
     @Test
     void test1() {
 
-        User.Book book = User.Book.builder()
+        final User.Book book = User.Book.builder()
                 .id(1)
                 .name("海底两万里")
                 .build();
 
-        User user = User.builder()
+        final User user = User.builder()
                 .id(1)
                 .name("jim")
                 .age(21)
@@ -60,19 +62,62 @@ public class RejsonTests {
                 .books(List.of(book))
                 .build();
 
-        String key = "test::user";
-        redisTemplate2.opsForValue().set(key, user);
+        final String key = "test::user";
+        this.redisTemplate2.opsForValue().set(key, user);
 
-        User user1 = redisTemplate2.opsForValue().get(key);
-        System.out.println("user1 = " + user1.getLocalDateTime().toString());
+        final User user1 = this.redisTemplate2.opsForValue().get(key);
+        System.out.println("user1 = " + user1);
 
+
+        final Object user2 = this.redisTemplate.opsForValue().get(key);
+
+        System.out.println("user2 = " + user2);
+    }
+
+    @Test
+    void test_json_1() {
+
+        final User.Book book = User.Book.builder()
+                .id(1)
+                .name("海底两万里")
+                .build();
+
+        final User user = User.builder()
+                .id(1)
+                .name("jim")
+                .age(21)
+                .date(new Date())
+                .localDateTime(LocalDateTime.now())
+                .books(List.of(book))
+                .build();
+
+        final String key = "test::json::user";
+
+        final Map map = JSON.parseObject(JSON.toJSONString(user), Map.class);
+
+//        final Map map = new HashMap<>();
+//        map.put("name",123);
+
+                this.redisTemplate.opsForValue().set(key, map);
+
+        final Object user1 = this.redisTemplate.opsForValue().get(key);
+
+        System.out.println("user1 = " + user1);
+
+
+    }
+
+    @Test
+    void test_json() {
+        final Object o = this.redisTemplate.opsForValue().get("test::json::user.id");
+        System.out.println("o = " + o);
 
 
     }
 
     @Test
     void test_get() {
-        Object o = redisTemplate.opsForValue().get("user:name");
+        final Object o = this.redisTemplate.opsForValue().get("user:name");
         System.out.println("o = " + o);
 
 
@@ -81,12 +126,12 @@ public class RejsonTests {
 
     @Test
     void test_Cacheable() {
-        System.out.println("getByKey(1L) = " + getByKey(1L));
+        System.out.println("getByKey(1L) = " +getByKey(1L));
     }
 
 
     @Cacheable(key = "#id")
-    public String getByKey(Long id) {
+    public String getByKey(final Long id) {
         return "我的jim" + id;
     }
 }
