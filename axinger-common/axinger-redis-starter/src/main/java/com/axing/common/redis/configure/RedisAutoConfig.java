@@ -18,7 +18,6 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import javax.annotation.Resource;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author xing
@@ -52,9 +51,6 @@ public class RedisAutoConfig {
         };
     }
 
-        private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
     /**
      * 设置RedisTemplate规则
      *
@@ -97,11 +93,12 @@ public class RedisAutoConfig {
 
 
     /**
-     * 还有一个 GenericJackson2JsonRedisSerializer ,不好用
+     * 还有一个 GenericJackson2JsonRedisSerializer
      *
      * @return
      */
-    private RedisSerializer jsonRedisSerializer() {
+    @Bean
+    public RedisSerializer jsonRedisSerializer() {
 //        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
 //        jackson2JsonRedisSerializer.setObjectMapper(this.objectMapper());
 //        return jackson2JsonRedisSerializer;
@@ -127,7 +124,7 @@ public class RedisAutoConfig {
     }
 
     @Bean
-    public RedisService redisService(){
+    public RedisService redisService() {
         RedisService redisService = new RedisServiceImpl(this.redisTemplate());
         return redisService;
     }
