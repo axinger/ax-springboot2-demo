@@ -16,9 +16,13 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * https://blog.csdn.net/weixin_40461281/article/details/82011670
+ */
 @SpringBootTest
 @Slf4j
 @CacheConfig(cacheNames = "demo13::user")
@@ -30,6 +34,83 @@ public class RedisTemplateTests {
     @Autowired
     private RedisService redisService;
 
+
+    User user(Integer id) {
+        final User.Book book = User.Book.builder()
+                .id(id)
+                .name("海底两万里")
+                .build();
+
+        final User user = User.builder()
+                .id(id)
+                .name("jim")
+                .age(21)
+                .date(new Date())
+                .localDateTime(LocalDateTime.now())
+                .books(List.of(book))
+                .build();
+
+        return user;
+    }
+
+    @Test
+    void opsForHash() {
+        final String key = "test::hash::1::User";
+
+        Map valuesMap = new HashMap<>();
+        valuesMap.put("map", new HashMap<>() {{
+            put("name", "jim");
+        }});
+
+        //redisTemplate.opsForHash().put(key, "name", valuesMap);
+        redisTemplate.opsForHash().putAll(key, valuesMap);
+
+    }
+
+    @Autowired
+    private RedisTemplate<String, User> redisTemplateList;
+
+    @Test
+    void opsForList_leftPush() {
+        // 将所有指定的值插入存储在键的列表的头部
+        final String key = "test::list::1::User";
+
+        Long aLong = redisTemplateList.opsForList().leftPush(key, user(1));
+        System.out.println("aLong = " + aLong);
+
+        Long aLon2 = redisTemplateList.opsForList().leftPush(key, user(2));
+        System.out.println("aLong = " + aLon2);
+    }
+
+    @Test
+    void opsForList_range() {
+        // 不会越界
+        final String key = "test::list::1::User";
+        List<User> range = redisTemplateList.opsForList().range(key, 1, 3);
+        System.out.println("range = " + range);
+    }
+
+    @Test
+    void opsForList_index() {
+        //弹出最左边的元素，弹出之后该值在列表中将不复存在
+        final String key = "test::list::1::User";
+        User index = redisTemplateList.opsForList().index(key, 0);
+        System.out.println("index = " + index);
+
+        User index1 = redisTemplateList.opsForList().index(key, 1);
+        System.out.println("index = " + index1);
+    }
+
+    @Test
+    void opsForList_pop() {
+        //弹出最左边的元素，弹出之后该值在列表中将不复存在
+        final String key = "test::list::1::User";
+        User user = redisTemplateList.opsForList().rightPop(key);
+        System.out.println("user = " + user);
+
+        User user2 = redisTemplateList.opsForList().leftPop(key);
+        System.out.println("user2 = " + user2);
+    }
 
     @Test
     void test() {
@@ -65,23 +146,31 @@ public class RedisTemplateTests {
                 .build();
 
         final String key = "test::user::1::User";
-        this.redisTemplateUser.opsForValue().set(key, user);
+        //this.redisTemplateUser.opsForValue().set(key, user);
+
+        //设置键的字符串值并返回其旧值
+        User andSet = this.redisTemplateUser.opsForValue().getAndSet(key, user);
+
+        System.out.println("andSet = " + andSet);
 
         // 可以直接存, 不能直接取
-        final Map user1 = (Map) this.redisTemplateUser.opsForValue().get(key);
-        System.out.println("user1 = " + user1);
+        //final Map user1 = (Map) this.redisTemplateUser.opsForValue().get(key);
+        //System.out.println("user1 = " + user1);
 
 
-//        final Object user2 = this.redisTemplate.opsForValue().get(key);
-//
-//        System.out.println("user2 = " + user2);
+        final User user2 = this.redisTemplateUser.opsForValue().get(key);
+
+        System.out.println("user2 = " + user2);
+
+
     }
 
     @Autowired
-    private RedisTemplate<String,Map> redisTemplateMap;
+    private RedisTemplate<String, Map> redisTemplateMap;
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @SneakyThrows
     @Test
     void test_map() {
@@ -103,7 +192,7 @@ public class RedisTemplateTests {
         //final String key = "test::user::1::Map";
 
 
-       final String key = RedisUtil.getKey("test", "user", 1, "Map");
+        final String key = RedisUtil.getKey("test", "user", 1, "Map");
         System.out.println("key = " + key);
 
         Map map = objectMapper.readValue(objectMapper.writeValueAsString(user), Map.class);
