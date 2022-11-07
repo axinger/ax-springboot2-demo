@@ -228,8 +228,6 @@ public class RedisTemplateTests {
     void test_get() {
         final Object o = this.redisTemplate.opsForValue().get("user:name");
         System.out.println("o = " + o);
-
-
     }
 
 
