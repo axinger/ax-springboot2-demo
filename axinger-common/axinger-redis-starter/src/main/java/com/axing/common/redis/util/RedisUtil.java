@@ -10,7 +10,7 @@ public class RedisUtil {
      * @param kes
      * @return
      */
-    public static String getRedisKey(Object... kes) {
+    public static String getKey(Object... kes) {
         String join = StrUtil.join("::", kes);
         return join;
     }

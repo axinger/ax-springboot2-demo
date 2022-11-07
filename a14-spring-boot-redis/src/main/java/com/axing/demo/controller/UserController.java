@@ -31,7 +31,7 @@ public class UserController {
     @GetMapping("/get/{id}")
     public Result getValue(@PathVariable Integer id) {
 
-        String key = RedisUtil.getRedisKey("demo13", "person", id);
+        String key = RedisUtil.getKey("demo13", "person", id);
         User person;
         if (redisService.hasKey(key)) {
             person = redisService.getCacheObject("demo13::person::" + id);

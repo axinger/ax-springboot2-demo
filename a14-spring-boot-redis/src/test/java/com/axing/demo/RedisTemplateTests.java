@@ -1,8 +1,8 @@
 package com.axing.demo;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.common.redis.service.RedisService;
+import com.axing.common.redis.util.RedisUtil;
 import com.axing.demo.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -22,7 +22,7 @@ import java.util.Map;
 @SpringBootTest
 @Slf4j
 @CacheConfig(cacheNames = "demo13::user")
-public class RejsonTests {
+public class RedisTemplateTests {
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -100,8 +100,11 @@ public class RejsonTests {
                 .books(List.of(book))
                 .build();
 
-        final String key = "test::user::1::Map";
+        //final String key = "test::user::1::Map";
 
+
+       final String key = RedisUtil.getKey("test", "user", 1, "Map");
+        System.out.println("key = " + key);
 
         Map map = objectMapper.readValue(objectMapper.writeValueAsString(user), Map.class);
 
@@ -119,11 +122,17 @@ public class RejsonTests {
     }
 
     @Test
+    void test_map_to_user() {
+
+        final String key = "test::user::1::Map";
+        User user = redisTemplateUser.opsForValue().get(key);
+        System.out.println("user = " + user);
+    }
+
+    @Test
     void test_json() {
         final Object o = this.redisTemplate.opsForValue().get("test::json::user.id");
         System.out.println("o = " + o);
-
-
     }
 
     @Test
