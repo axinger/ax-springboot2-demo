@@ -4,7 +4,6 @@
     <contextName>logback-demo</contextName>
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
-    <springProperty scope="context" name="logback.app.name" source="spring.application.name" defaultValue="appName"/>
     <springProperty scope="context" name="logback.path" source="logging.file.path" defaultValue="logs"/>
 
 
@@ -49,11 +48,11 @@
             如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
             的日志改名为今天的日期。即，<File> 的日志都是当天的。
         -->
-        <File>${logback.path}/${logback.app.name}/debug.log</File>
+        <File>${logback.path}/debug.log</File>
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${logback.path}/${logback.app.name}/debug.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logback.path}/debug.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
@@ -82,11 +81,11 @@
             如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
             的日志改名为今天的日期。即，<File> 的日志都是当天的。
         -->
-        <File>${logback.path}/${logback.app.name}/info.log</File>
+        <File>${logback.path}/info.log</File>
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${logback.path}/${logback.app.name}/info.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logback.path}/info.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
@@ -113,11 +112,11 @@
             如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
             的日志改名为今天的日期。即，<File> 的日志都是当天的。
         -->
-        <File>${logback.path}/${logback.app.name}/warn.log</File>
+        <File>${logback.path}/warn.log</File>
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${logback.path}/${logback.app.name}/warn.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logback.path}/warn.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
@@ -144,11 +143,11 @@
             如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
             的日志改名为今天的日期。即，<File> 的日志都是当天的。
         -->
-        <File>${logback.path}/${logback.app.name}/error.log</File>
+        <File>${logback.path}/error.log</File>
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
-            <FileNamePattern>${logback.path}/${logback.app.name}/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>${logback.path}/error.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->

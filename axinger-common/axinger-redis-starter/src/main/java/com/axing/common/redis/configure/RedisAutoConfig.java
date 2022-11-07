@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.support.spring.data.redis.GenericFastJsonRedisSeria
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -13,11 +14,7 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import javax.annotation.Resource;
+import org.springframework.data.redis.serializer.*;
 
 /**
  * @author xing
@@ -28,10 +25,12 @@ import javax.annotation.Resource;
  */
 @Configuration
 @EnableCaching
+@RequiredArgsConstructor
 public class RedisAutoConfig {
 
-    @Resource
-    RedisConnectionFactory redisConnectionFactory;
+    private final RedisConnectionFactory redisConnectionFactory;
+
+    private final ObjectMapper objectMapper;
 
     /**
      * 自定义key规则
@@ -99,29 +98,20 @@ public class RedisAutoConfig {
      */
     @Bean
     public RedisSerializer jsonRedisSerializer() {
-//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-//        jackson2JsonRedisSerializer.setObjectMapper(this.objectMapper());
-//        return jackson2JsonRedisSerializer;
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        jackson2JsonRedisSerializer.setObjectMapper(this.objectMapper);
+        return jackson2JsonRedisSerializer;
 
-//        GenericJackson2JsonRedisSerializer redisSerializer = new GenericJackson2JsonRedisSerializer();
-//        return redisSerializer;
+        //GenericJackson2JsonRedisSerializer redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        //return redisSerializer;
 
 //        FastJson2JsonRedisSerializer redisSerializer = new FastJson2JsonRedisSerializer<>(Object.class);
 //        return redisSerializer;
-        GenericFastJsonRedisSerializer redisSerializer = new GenericFastJsonRedisSerializer();
-        return redisSerializer;
+//        GenericFastJsonRedisSerializer redisSerializer = new GenericFastJsonRedisSerializer();
+//        return redisSerializer;
 
     }
 
-    private ObjectMapper objectMapper() {
-        // 解决查询缓存转换异常的问题
-        ObjectMapper objectMapper = new ObjectMapper();
-        // 指定要序列化的域，field,get和set,以及修饰符范围，ANY是都有包括private和public
-//        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        // 指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常
-//        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
-        return objectMapper;
-    }
 
     @Bean
     public RedisService redisService() {

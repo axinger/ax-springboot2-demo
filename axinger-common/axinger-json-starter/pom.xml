@@ -7,8 +7,11 @@
         <groupId>com.axing</groupId>
         <version>2.5.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>axinger-config-starter</artifactId>
+
+    <artifactId>axinger-json-starter</artifactId>
+
 
     <dependencies>
 
@@ -23,19 +26,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.axing</groupId>
-            <artifactId>axinger-json-starter</artifactId>
         </dependency>
     </dependencies>
 

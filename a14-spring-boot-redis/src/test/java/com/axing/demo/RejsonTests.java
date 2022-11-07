@@ -4,6 +4,8 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.common.redis.service.RedisService;
 import com.axing.demo.model.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +45,10 @@ public class RejsonTests {
     }
 
     @Autowired
-    private RedisTemplate<String, User> redisTemplate2;
+    private RedisTemplate<String, User> redisTemplateUser;
 
     @Test
-    void test1() {
+    void test1_redisTemplateUser() {
 
         final User.Book book = User.Book.builder()
                 .id(1)
@@ -62,20 +64,27 @@ public class RejsonTests {
                 .books(List.of(book))
                 .build();
 
-        final String key = "test::user";
-        this.redisTemplate2.opsForValue().set(key, user);
+        final String key = "test::user::1::User";
+        this.redisTemplateUser.opsForValue().set(key, user);
 
-        final User user1 = this.redisTemplate2.opsForValue().get(key);
+        // 可以直接存, 不能直接取
+        final Map user1 = (Map) this.redisTemplateUser.opsForValue().get(key);
         System.out.println("user1 = " + user1);
 
 
-        final Object user2 = this.redisTemplate.opsForValue().get(key);
-
-        System.out.println("user2 = " + user2);
+//        final Object user2 = this.redisTemplate.opsForValue().get(key);
+//
+//        System.out.println("user2 = " + user2);
     }
 
+    @Autowired
+    private RedisTemplate<String,Map> redisTemplateMap;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+    @SneakyThrows
     @Test
-    void test_json_1() {
+    void test_map() {
 
         final User.Book book = User.Book.builder()
                 .id(1)
@@ -91,19 +100,22 @@ public class RejsonTests {
                 .books(List.of(book))
                 .build();
 
-        final String key = "test::json::user";
+        final String key = "test::user::1::Map";
 
         final Map map = JSON.parseObject(JSON.toJSONString(user), Map.class);
 
 //        final Map map = new HashMap<>();
 //        map.put("name",123);
 
-                this.redisTemplate.opsForValue().set(key, map);
+        this.redisTemplateMap.opsForValue().set(key, map);
 
-        final Object user1 = this.redisTemplate.opsForValue().get(key);
+        final Map userMap = this.redisTemplateMap.opsForValue().get(key);
 
+        System.out.println("userMap = " + userMap);
+
+
+        User user1 = objectMapper.readValue(objectMapper.writeValueAsString(userMap), User.class);
         System.out.println("user1 = " + user1);
-
 
     }
 
@@ -126,7 +138,7 @@ public class RejsonTests {
 
     @Test
     void test_Cacheable() {
-        System.out.println("getByKey(1L) = " +getByKey(1L));
+        System.out.println("getByKey(1L) = " + getByKey(1L));
     }
 
 

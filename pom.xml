@@ -169,6 +169,12 @@
 
             <dependency>
                 <groupId>com.axing</groupId>
+                <artifactId>axinger-json-starter</artifactId>
+                <version>${axinger-project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.axing</groupId>
                 <artifactId>axing-spring-boot-starter</artifactId>
                 <version>${axinger-project.version}</version>
             </dependency>

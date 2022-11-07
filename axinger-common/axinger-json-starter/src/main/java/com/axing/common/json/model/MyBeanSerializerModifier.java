@@ -1,4 +1,4 @@
-package com.axing.common.model;
+package com.axing.common.json.model;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,7 +21,7 @@ public class MyBeanSerializerModifier extends BeanSerializerModifier {
     public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
         //循环所有的beanPropertyWriter
         for (BeanPropertyWriter writer : beanProperties) {
-//                BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
+            //BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
             //判断字段的类型，如果是array，list，set则注册nullSerializer
             if (isArrayType(writer)) {
                 //给writer注册一个自己的nullSerializer

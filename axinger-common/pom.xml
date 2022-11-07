@@ -24,6 +24,7 @@
         <module>axinger-mongodb-starter</module>
         <module>axinger-minio-starter</module>
         <module>axinger-advice-starter</module>
+        <module>axinger-json-starter</module>
     </modules>
 
 </project>

@@ -1,17 +1,14 @@
-package com.axing.common.model;
+package com.axing.common.json.model;
 
 import cn.hutool.core.date.DatePattern;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.InstantDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -25,6 +22,7 @@ public class Java8TimeModule extends SimpleModule {
         // yyyy-MM-dd HH:mm:ss
         this.addSerializer(LocalDateTime.class,
                 new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN)));
+
         // yyyy-MM-dd
         this.addSerializer(LocalDate.class,
                 new LocalDateSerializer(DateTimeFormatter.ofPattern(DatePattern.NORM_DATE_PATTERN)));
@@ -33,7 +31,7 @@ public class Java8TimeModule extends SimpleModule {
                 new LocalTimeSerializer(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN)));
 
         // Instant 类型序列化
-        this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
+        //this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
 
         // ======================= 时间反序列化规则 ==============================
         // yyyy-MM-dd HH:mm:ss
@@ -45,8 +43,8 @@ public class Java8TimeModule extends SimpleModule {
         // HH:mm:ss
         this.addDeserializer(LocalTime.class,
                 new LocalTimeDeserializer(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN)));
-        // Instant 反序列化
-        this.addDeserializer(Instant.class, InstantDeserializer.INSTANT);
+        //// Instant 反序列化
+        //this.addDeserializer(Instant.class, InstantDeserializer.INSTANT);
     }
 
 }
