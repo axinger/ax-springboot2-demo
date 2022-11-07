@@ -102,10 +102,9 @@ public class RejsonTests {
 
         final String key = "test::user::1::Map";
 
-        final Map map = JSON.parseObject(JSON.toJSONString(user), Map.class);
 
-//        final Map map = new HashMap<>();
-//        map.put("name",123);
+        Map map = objectMapper.readValue(objectMapper.writeValueAsString(user), Map.class);
+
 
         this.redisTemplateMap.opsForValue().set(key, map);
 
