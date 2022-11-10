@@ -17,7 +17,6 @@ import java.util.List;
  * mongodb数据泛型dao类
  */
 @Slf4j
-@Service
 public class MongoDBServiceImpl implements MongoService {
     @Resource
     protected MongoTemplate mongoTemplate;

@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * https://blog.csdn.net/weixin_40461281/article/details/82011670
@@ -241,4 +242,16 @@ public class RedisTemplateTests {
     public String getByKey(final Long id) {
         return "我的jim" + id;
     }
+
+
+    @Test
+    void test_expire(){
+
+        final String key = "test::expire::1::Map";
+            this.redisTemplate.opsForValue().set(key,"1");
+            this.redisTemplate.expire(key,5, TimeUnit.SECONDS);
+
+
+    }
+
 }

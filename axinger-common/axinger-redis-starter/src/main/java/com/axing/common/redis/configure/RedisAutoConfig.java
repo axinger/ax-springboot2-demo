@@ -1,12 +1,14 @@
 package com.axing.common.redis.configure;
 
 import com.alibaba.fastjson2.support.spring.data.redis.GenericFastJsonRedisSerializer;
+import com.axing.common.redis.bean.RedisProperties;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -28,11 +30,14 @@ import org.springframework.data.redis.serializer.*;
 @Configuration
 @EnableCaching
 @RequiredArgsConstructor
+@EnableConfigurationProperties(RedisProperties.class)
 public class RedisAutoConfig {
 
     private final RedisConnectionFactory redisConnectionFactory;
 
     private final ObjectMapper objectMapper;
+
+    private final RedisProperties redisProperties;
 
     /**
      * 自定义key规则
@@ -102,7 +107,9 @@ public class RedisAutoConfig {
     public RedisSerializer jsonRedisSerializer() {
         ObjectMapper objectMapper = this.objectMapper;
         // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
-        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        if (redisProperties.isSavePackageName()) {
+            objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        }
 
         // 解决jackson2无法反序列化LocalDateTime的问题
         //objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);

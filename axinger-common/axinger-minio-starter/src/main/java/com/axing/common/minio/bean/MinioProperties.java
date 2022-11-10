@@ -13,15 +13,18 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "axing.minio")
 public class MinioProperties {
 
+    /**
+     * minio 地址
+     */
     private String url = "http://localhost:9000";
 
     /**
-     * Access key就像用户ID，可以唯一标识你的账户
+     * minio 账户
      */
     private String accessKey;
 
     /**
-     * Secret key是你账户的密码
+     * minio 密码
      */
     private String secretKey;
 }
