@@ -1,4 +1,4 @@
-package com.axing;
+package com.axing.model;
 
 /**
  * 类说明: mq 常量类

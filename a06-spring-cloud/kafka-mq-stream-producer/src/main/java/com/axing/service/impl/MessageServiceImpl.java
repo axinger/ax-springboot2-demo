@@ -1,9 +1,7 @@
 package com.axing.service.impl;
 
-import com.axing.model.MessageDTO;
 import com.axing.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
@@ -45,24 +43,17 @@ public class MessageServiceImpl implements MessageService {
         //这里我们接收的时候就要用send方法 参数是consumer<String>接收  详情看8802的controller
         //consumer的参数类型是这里message的类型
 
+        Map map = new HashMap();
+        map.put("type", "orderExchange交换机消息");
+        map.put("date", LocalDateTime.now());
 
-        MessageDTO<Object> dto = new MessageDTO<>();
-        dto.setTopic("mq.order");
-        dto.setType("exchange");
-        dto.setDate(LocalDateTime.now());
-        dto.setData("orderExchange交换机消息");
-
-        Message<MessageDTO<Object>> message = MessageBuilder
-                .withPayload(dto)
-                .setHeader(AmqpHeaders.USER_ID, "abc123")
+        Message<Map> message = MessageBuilder
+                .withPayload(map)
+                .setHeader("myHeader", "abc123")
                 .build();
-
-
 
 //        boolean send = streamBridge.send("myOrder-out-0", message);
 //        boolean send = streamBridge.send("orderExchange", message);
-
-
         boolean send = streamBridge.send("mq.order", message);
         System.out.println("send = " + send);
     }

@@ -1,6 +1,6 @@
 package com.axing.controller;
 
-import com.axing.model.MessageDTO;
+import com.axing.model.BaseMessage;
 import com.axing.service.MessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,7 +10,10 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -69,17 +72,10 @@ public class SendMessageController {
      * @param message
      */
     @PostMapping(value = "/cluster")
-    public void sendClusterMsg(@RequestBody String message) {
-
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setTopic(CLUSTER_MESSAGE_OUTPUT);
-        messageDTO.setType("消息集群发送");
-        messageDTO.setDate(LocalDateTime.now());
-        messageDTO.setData(message);
-
-        boolean result = streamBridge.send(CLUSTER_MESSAGE_OUTPUT, messageDTO);
-
-        System.out.println(Thread.currentThread().getName() + " 消息集群发送: " + result);
+    public void sendClusterMsg(@RequestParam("message") String message) {
+        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(CLUSTER_MESSAGE_OUTPUT, "", message));
+        boolean result = streamBridge.send(CLUSTER_MESSAGE_OUTPUT, msg);
+        System.out.println(Thread.currentThread().getName() + " 消息集群发送: " + msg.getPayload().getData());
     }
 
 
@@ -87,16 +83,10 @@ public class SendMessageController {
      * 2.广播消息发送
      */
     @PostMapping(value = "/broadcast")
-    public void sendBroadcastMsg(@RequestBody Map message) {
-
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setTopic(BROADCAST_MESSAGE_OUTPUT);
-        messageDTO.setType("消息广播发送");
-        messageDTO.setDate(LocalDateTime.now());
-        messageDTO.setData(message);
-
-        boolean result = streamBridge.send(BROADCAST_MESSAGE_OUTPUT, messageDTO);
-        System.out.println(Thread.currentThread().getName() + " 消息广播发送: " + result);
+    public void sendBroadcastMsg(@RequestParam("message") String message) {
+        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(BROADCAST_MESSAGE_OUTPUT, "", message));
+        boolean result = streamBridge.send(BROADCAST_MESSAGE_OUTPUT, msg);
+        System.out.println(Thread.currentThread().getName() + " 消息广播发送: " + msg.getPayload().getData());
     }
 
 

@@ -1,4 +1,4 @@
-package com.axing;
+package com.axing.model;
 
 import lombok.ToString;
 

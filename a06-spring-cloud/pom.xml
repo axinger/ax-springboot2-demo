@@ -16,9 +16,12 @@
         <module>consul-payment</module>
         <module>gateway-9527</module>
         <module>getaway-payment</module>
+        <module>mq-stream-api</module>
         <module>mq-stream-producer</module>
         <module>mq-stream-consumer2</module>
         <module>mq-stream-consumer</module>
+        <module>kafka-mq-stream-producer</module>
+        <module>kafka-mq-stream-consumer</module>
     </modules>
 
     <dependencies>
@@ -29,5 +32,17 @@
         </dependency>
 
     </dependencies>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>mq-stream-api</artifactId>
+                <version>${axinger-project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

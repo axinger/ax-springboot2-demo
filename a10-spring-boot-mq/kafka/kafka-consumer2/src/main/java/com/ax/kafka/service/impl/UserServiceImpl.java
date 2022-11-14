@@ -23,7 +23,6 @@ import java.util.Properties;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-//  private org.slf4j.Logger log =  LoggerFactory.getLogger(getClass());
 
     /**
      * 初始化消息队列，发送之后暂时保存在list中，然后最早头部读取 earliest
@@ -31,6 +30,10 @@ public class UserServiceImpl implements UserService {
     private static final LinkedList<Long> linkedList = new LinkedList<>();
     private static String content = "";
 
+    /**
+     * groupId 不同, 同一个主题都能收到
+     * groupId 相同,只能有一个收到主题消息
+     */
 //    @KafkaListener(topics = {com.ax.kafka.api.Topic.SIMPLE})
 //    public void consumer(ConsumerRecord<?,?> consumerRecord){
 //        //判断是否为null
@@ -42,32 +45,6 @@ public class UserServiceImpl implements UserService {
 //            System.err.println("消费消息:"+message);
 //        }
 //    }
-
-
-    //    @KafkaListener(groupId = "simpleGroup", topics = com.ax.kafka.api.Topic.SIMPLE)
-    @KafkaListener(topics = com.ax.kafka.api.Topic.SIMPLE)
-    public void consumer1_1(ConsumerRecord<String, Object> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, Consumer consumer, Acknowledgment ack) {
-        System.out.println("=============消费者2===========");
-        log.info("消费者2", topic, record.value());
-        log.info("consumer content = {}", consumer);
-
-        Optional<Object> kafkaMessage = Optional.ofNullable(record.value());
-        if (kafkaMessage.isPresent()) {
-            Object message = kafkaMessage.get();
-      /*      XyKafkaOutMsg build = new XyKafkaOutMsg();
-            build.setGmtCreate(new Date());
-            // TODO: 2019-05-15 此处fwBh就是消息队列的消息，后期使用修改
-            build.setFwBh(System.currentTimeMillis());
-            int insertOutMsg = xyKafkaOutMsgMapper.insertSelective(build);
-            log.info("insertOutMsg result,{}",insertOutMsg==1 ? "成功" : "失败");
-            linkedList.add(build.getId());*/
-            ack.acknowledge(); // 手动提交消费消息
-        }
-        /*
-         * 如果需要手工提交异步 consumer.commitSync();
-         * 手工同步提交 consumer.commitAsync()
-         */
-    }
 
 
     @Override
@@ -89,16 +66,17 @@ public class UserServiceImpl implements UserService {
         String content = "";
 //        while (true) {
         log.info("nothing available...");
+
         ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofSeconds(1000));
         for (ConsumerRecord<String, String> record : records) {
-            log.info("获取消息详情，{}", record.value());
+            UserServiceImpl.log.info("获取消息详情，{}", record.value());
             content = record.value();
-            if (content != "") {/*
-                XyKafkaOutMsg build = new XyKafkaOutMsg();
-                build.setGmtCreate(new Date());
-                build.setFwBh(123L);
-                int insertOutMsg = xyKafkaOutMsgMapper.insertSelective(build);
-                log.info("insertOutMsg result,{}",insertOutMsg==1 ? "成功" : "失败");*/
+            if (content != "") {
+                //XyKafkaOutMsg build = new XyKafkaOutMsg();
+                //build.setGmtCreate(new Date());
+                //build.setFwBh(123L);
+                //int insertOutMsg = xyKafkaOutMsgMapper.insertSelective(build);
+                //log.info("insertOutMsg result,{}",insertOutMsg==1 ? "成功" : "失败");
                 return content;
             }
         }
