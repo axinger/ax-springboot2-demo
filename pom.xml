@@ -30,13 +30,20 @@
         <elasticsearch.version>7.17.0</elasticsearch.version>
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <okhttp3.version>4.8.1</okhttp3.version>
-        <mybatis-plus.version>3.5.1</mybatis-plus.version>
-        <fastjson2.version>2.0.14</fastjson2.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+
+        <guava.version>31.1-jre</guava.version>
+        <hutool.version>5.8.9</hutool.version>
+        <fastjson2.version>2.0.19</fastjson2.version>
         <docker-maven-plugin.version>0.40.1</docker-maven-plugin.version>
         <lombok.version>1.18.24</lombok.version>
         <docker.image.prefix>axing-cloud</docker.image.prefix>
-        <!--        <jackson.version>2.14.0-rc1</jackson.version>-->
-        <!--        <jackson-bom.version>2.14.0-rc1</jackson-bom.version>-->
+
+<!--        jackson-->
+<!--        <jackson.version>2.14.0</jackson.version>-->
+<!--        <jackson-bom.version>2.14.0</jackson-bom.version>-->
+
+        <redisson.version>3.17.7</redisson.version>
     </properties>
 
 
@@ -269,13 +276,13 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.7.15</version>
+                <version>${hutool.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>31.1-jre</version>
+                <version>${guava.version}</version>
             </dependency>
 
             <dependency>
@@ -316,7 +323,7 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>3.17.7</version>
+                <version>${redisson.version}</version>
             </dependency>
 
             <dependency>
