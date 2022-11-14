@@ -15,7 +15,7 @@ public class UserController {
 
 
     @GetMapping
-    @Operation(summary = "用户信息",description = "用户信息")
+    @Operation(summary = "用户信息", description = "用户信息")
     public Result<UserVo> data() {
         UserVo userVo = new UserVo();
         userVo.setName("jim");

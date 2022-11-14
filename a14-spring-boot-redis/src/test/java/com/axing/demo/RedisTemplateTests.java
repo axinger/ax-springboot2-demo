@@ -245,11 +245,11 @@ public class RedisTemplateTests {
 
 
     @Test
-    void test_expire(){
+    void test_expire() {
 
         final String key = "test::expire::1::Map";
-            this.redisTemplate.opsForValue().set(key,"1");
-            this.redisTemplate.expire(key,5, TimeUnit.SECONDS);
+        this.redisTemplate.opsForValue().set(key, "1");
+        this.redisTemplate.expire(key, 5, TimeUnit.SECONDS);
 
 
     }

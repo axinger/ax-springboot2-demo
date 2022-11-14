@@ -1,7 +1,6 @@
 package com.axing.demo.entity;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import lombok.Data;
 
 //@Data
 public class Pig {

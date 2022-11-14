@@ -33,8 +33,7 @@ public class Person {
     private String testPre;
 
 
-
-    void test(){
+    void test() {
 
     }
 

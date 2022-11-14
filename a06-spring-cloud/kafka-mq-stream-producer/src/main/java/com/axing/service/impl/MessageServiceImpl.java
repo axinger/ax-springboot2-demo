@@ -18,7 +18,6 @@ public class MessageServiceImpl implements MessageService {
     private final StreamBridge streamBridge;
 
 
-
     public void oder() {
         Map map = new HashMap();
         map.put("type", "订单业务");
@@ -81,7 +80,6 @@ public class MessageServiceImpl implements MessageService {
         boolean send = streamBridge.send("order-out-0", message);
         System.out.println("send = " + send);
     }
-
 
 
 }

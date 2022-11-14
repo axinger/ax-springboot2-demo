@@ -19,39 +19,39 @@ spring:
 
   cloud:
     stream:
-#      default-binder: test-rabbit
-#      binders:
-#        test-rabbit:
-#          type: rabbit
-#          environment:
-#            spring:
-#              rabbitmq:
-#                host: 192.168.101.135
-#                port: 5672
-#                username: admin
-#                password: admin
-#                virtual-host: /
+      #      default-binder: test-rabbit
+      #      binders:
+      #        test-rabbit:
+      #          type: rabbit
+      #          environment:
+      #            spring:
+      #              rabbitmq:
+      #                host: 192.168.101.135
+      #                port: 5672
+      #                username: admin
+      #                password: admin
+      #                virtual-host: /
 
-#      rabbit:
-#        bindings:
-#          delayed-out-0:
-#            producer:
-#              delayed-exchange: true
+      #      rabbit:
+      #        bindings:
+      #          delayed-out-0:
+      #            producer:
+      #              delayed-exchange: true
 
 
       #      default-binder: rabbit
-#      binders: #自此处配置要绑定的rabbitmq的服务信息
-#        msn-binder: #表示定义的名称，用于binding整合
-#          type: rabbit #消息组件类型
-#          # 这里配置环境,好处,可以有多个rabbitmq环境
-#          environment: # 设置rabbitmq的相关的环境配置 stream3.1只需要配置这些即可
-#            spring:
-#              rabbitmq:
-#                host: localhost
-#                port: 5672  #mq调用的端口为5672
-#                username: admin
-#                password: 123456
-#                virtual-host: my_vhost
+      #      binders: #自此处配置要绑定的rabbitmq的服务信息
+      #        msn-binder: #表示定义的名称，用于binding整合
+      #          type: rabbit #消息组件类型
+      #          # 这里配置环境,好处,可以有多个rabbitmq环境
+      #          environment: # 设置rabbitmq的相关的环境配置 stream3.1只需要配置这些即可
+      #            spring:
+      #              rabbitmq:
+      #                host: localhost
+      #                port: 5672  #mq调用的端口为5672
+      #                username: admin
+      #                password: 123456
+      #                virtual-host: my_vhost
 
       bindings:
         order-out-0:

@@ -110,6 +110,7 @@ public class UserController {
 
     @Autowired
     private RedisTemplate<String, User> redisTemplate2;
+
     @GetMapping(value = "/user")
     public User user(Long id) {
 
@@ -135,9 +136,6 @@ public class UserController {
 
         return user1;
     }
-
-
-
 
 
 }

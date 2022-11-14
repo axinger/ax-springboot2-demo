@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 @Component
 @Slf4j
@@ -26,7 +24,7 @@ public class MessageConsumerImpl implements MessageConsumerApi {
 
     @Bean
     @Override
-    public Consumer< Message<MessageDTO<Object>>> order() {
+    public Consumer<Message<MessageDTO<Object>>> order() {
         return message -> {
             System.out.println("order 接收消息为" + message);
             System.out.println("我是消费者" + serverPort);
@@ -46,7 +44,6 @@ public class MessageConsumerImpl implements MessageConsumerApi {
             }
         };
     }
-
 
 
     @Bean

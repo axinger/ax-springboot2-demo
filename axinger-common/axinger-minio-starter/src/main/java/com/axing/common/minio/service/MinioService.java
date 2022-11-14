@@ -77,10 +77,10 @@ public interface MinioService {
      * @param bucketName  bucketName
      * @param contentType contentType
      */
-    Map<String,Object> upload(InputStream inputStream,
-                  String bucketName,
-                  String objectName,
-                  String contentType);
+    Map<String, Object> upload(InputStream inputStream,
+                               String bucketName,
+                               String objectName,
+                               String contentType);
 
     /**
      * 上传MultipartFile

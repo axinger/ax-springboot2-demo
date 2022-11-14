@@ -88,6 +88,7 @@ public class TestController {
 
     @Autowired
     private Pig pig;
+
     @RequestMapping(value = "/pig")
     public void pig() {
 

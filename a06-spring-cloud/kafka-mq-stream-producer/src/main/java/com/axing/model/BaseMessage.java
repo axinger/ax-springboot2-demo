@@ -75,7 +75,7 @@ public class BaseMessage<T> implements Serializable {
         this.data = data;
     }
 
-    public BaseMessage(String topic,  T data) {
+    public BaseMessage(String topic, T data) {
         this.topic = topic;
         this.data = data;
     }

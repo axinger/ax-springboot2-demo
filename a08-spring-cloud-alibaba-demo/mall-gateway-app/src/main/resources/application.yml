@@ -9,16 +9,16 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-#      routes: #走nacos
-#        - id: mall-order-app
-#          uri: lb://mall-order-app
-#          predicates:
-#            - Path=/order/**
-#
-#        - id: mall-payment-app
-#          uri: lb://mall-payment-app
-#          predicates:
-#            - Path=/payment/**
+  #      routes: #走nacos
+  #        - id: mall-order-app
+  #          uri: lb://mall-order-app
+  #          predicates:
+  #            - Path=/order/**
+  #
+  #        - id: mall-payment-app
+  #          uri: lb://mall-payment-app
+  #          predicates:
+  #            - Path=/payment/**
 
 
   zipkin:

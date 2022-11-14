@@ -2,7 +2,6 @@ package com.axing.common.minio.bean;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 配置属性

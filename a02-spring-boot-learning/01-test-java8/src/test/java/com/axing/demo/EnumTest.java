@@ -4,12 +4,10 @@ import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.func.LambdaUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
-import lombok.Data;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.function.Function;
 
 
 public class EnumTest {

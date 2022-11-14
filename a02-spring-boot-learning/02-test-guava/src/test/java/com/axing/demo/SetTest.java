@@ -57,9 +57,6 @@ class SetTest {
     }
 
 
-
-
-
     @Test
     void difference_set() {
         final HashSet<Integer> set1 = Sets.newHashSet(1, 2, 3, 10);

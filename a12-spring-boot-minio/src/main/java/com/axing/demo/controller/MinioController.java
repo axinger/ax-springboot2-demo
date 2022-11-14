@@ -47,7 +47,7 @@ public class MinioController {
         InputStream inputStream = file.getInputStream();
         String contentType = file.getContentType();
         String patchName = this.getPath() + suffix;
-        Map<String,Object> upload = minioService.upload(inputStream, bucketName, patchName, contentType);
+        Map<String, Object> upload = minioService.upload(inputStream, bucketName, patchName, contentType);
         return Result.ok(upload);
     }
 

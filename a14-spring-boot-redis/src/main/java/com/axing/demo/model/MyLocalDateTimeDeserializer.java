@@ -9,14 +9,13 @@ import java.time.LocalDateTime;
 
 public class MyLocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
 
-  @Override
-  public LocalDateTime deserialize(JsonParser p, DeserializationContext ctx)
-          throws IOException {
-      String str = p.getText();
+    @Override
+    public LocalDateTime deserialize(JsonParser p, DeserializationContext ctx)
+            throws IOException {
+        String str = p.getText();
 
-      return LocalDateTime.parse(str, MyLocalDateTimeSerializer.DATE_FORMATTER);
-  }
-
+        return LocalDateTime.parse(str, MyLocalDateTimeSerializer.DATE_FORMATTER);
+    }
 
 
 }

@@ -21,8 +21,8 @@ public class HelloServiceImpl implements HelloService {
 
     private HelloProperties helloProperties;
 
-    public HelloServiceImpl(HelloProperties helloProperties){
-       this.helloProperties = helloProperties;
+    public HelloServiceImpl(HelloProperties helloProperties) {
+        this.helloProperties = helloProperties;
     }
 
     @Override

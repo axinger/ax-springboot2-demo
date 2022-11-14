@@ -3,9 +3,7 @@ package com.axing.service.impl;
 import com.axing.model.MessageDTO;
 import com.axing.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.cloud.stream.function.StreamBridge;
-import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
@@ -66,7 +63,6 @@ public class MessageServiceImpl implements MessageService {
         boolean send = streamBridge.send("mq.order", message);
         System.out.println("发送主题消息是否成功send = " + send);
     }
-
 
 
     @Override

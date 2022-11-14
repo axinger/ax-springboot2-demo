@@ -13,7 +13,7 @@ public class HelloProperties {
     /**
      * 自定义后缀
      */
-    private String suffix="后缀";
+    private String suffix = "后缀";
 
     private String name = "axing";
 

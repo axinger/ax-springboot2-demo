@@ -6,18 +6,18 @@ spring:
   application:
     name: cloud-stream-producer
 
-  # Kafka配置
-#  kafka:
-#    bootstrap-servers:
-#      - 192.168.101.143:9092
-#    consumer:
-#      group-id: community-consumer-group
-#      enable-auto-commit: true #配置是否自动提交消费者的偏移量
-#      auto-commit-interval: 3000 #配置自动提交的频率
+    # Kafka配置
+    #  kafka:
+    #    bootstrap-servers:
+    #      - 192.168.101.143:9092
+    #    consumer:
+    #      group-id: community-consumer-group
+    #      enable-auto-commit: true #配置是否自动提交消费者的偏移量
+    #      auto-commit-interval: 3000 #配置自动提交的频率
     # 方式一
-#  kafka:
-#    # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
-#    bootstrap-servers: 192.168.101.143:9092
+  #  kafka:
+  #    # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
+  #    bootstrap-servers: 192.168.101.143:9092
 
   cloud:
     stream:
@@ -27,16 +27,16 @@ spring:
           brokers: 192.168.101.143:9092
           auto-create-topics: true #自动创建topic
       #      default-binder: test-kafka
-#      binders:
-#        type: kafka # 方式三
-#        environment:
-#          spring:
-#            cloud:
-#              stream:
-#                kafka:
-#                  binder:
-#                    brokers: 192.168.101.143:9092 # 根据字节的地址来填写
-#                    auto-create-topics: true #自动创建topic
+      #      binders:
+      #        type: kafka # 方式三
+      #        environment:
+      #          spring:
+      #            cloud:
+      #              stream:
+      #                kafka:
+      #                  binder:
+      #                    brokers: 192.168.101.143:9092 # 根据字节的地址来填写
+      #                    auto-create-topics: true #自动创建topic
 
       bindings:
         order-out-0:

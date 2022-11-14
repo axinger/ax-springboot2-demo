@@ -5,11 +5,12 @@
 <mapper namespace="com.axing.demo.mapper.DogMapper">
 
     <resultMap id="BaseResultMap" type="com.axing.demo.domain.Dog">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name
+        id
+        ,name
     </sql>
 </mapper>

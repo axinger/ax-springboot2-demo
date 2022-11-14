@@ -15,7 +15,7 @@ public class RedisServiceImpl implements RedisService {
 
     private RedisTemplate redisTemplate;
 
-    public RedisServiceImpl(RedisTemplate redisTemplate){
+    public RedisServiceImpl(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

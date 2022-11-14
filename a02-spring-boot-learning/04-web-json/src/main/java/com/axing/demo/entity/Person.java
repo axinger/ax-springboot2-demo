@@ -32,7 +32,7 @@ public class Person implements Serializable {
     Map map1;
     Map map2;
 
-//    @JsonProperty(value = "aBoolean")//jackson,第二个字母大写,需要指定
+    //    @JsonProperty(value = "aBoolean")//jackson,第二个字母大写,需要指定
     Boolean aBoolean;
 
     @JsonProperty(value = "aBoolean2")

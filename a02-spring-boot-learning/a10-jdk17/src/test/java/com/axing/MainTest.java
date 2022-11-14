@@ -2,7 +2,6 @@ package com.axing;
 
 import com.alibaba.fastjson2.JSON;
 import com.axing.common.util.json.JsonUtil;
-import com.axing.model.Dog;
 import com.axing.model.Person;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -162,7 +161,7 @@ class MainTest {
     void test_instanceof() {
 
 //        Object obj = "abc";
-        Object obj = Arrays.asList(1,2);
+        Object obj = Arrays.asList(1, 2);
         if (obj instanceof String str) {
 
             System.out.println("str.length() = " + str.length());

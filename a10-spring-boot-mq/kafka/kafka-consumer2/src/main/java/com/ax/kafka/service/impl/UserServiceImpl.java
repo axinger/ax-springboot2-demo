@@ -3,20 +3,14 @@ package com.ax.kafka.service.impl;
 import com.ax.kafka.api.Topic;
 import com.ax.kafka.api.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Optional;
 import java.util.Properties;
 
 @Service
@@ -45,8 +39,6 @@ public class UserServiceImpl implements UserService {
 //            System.err.println("消费消息:"+message);
 //        }
 //    }
-
-
     @Override
     public String getMsg() {
         Properties props = new Properties();

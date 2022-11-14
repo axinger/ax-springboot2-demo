@@ -25,7 +25,7 @@ public class MapTests {
 
 
     @Test
-    void map_filterKeys(){
+    void map_filterKeys() {
         Map<Object, Object> map1 = Maps.newHashMap();
         map1.put("name", "jim");
         map1.put("age", 20);

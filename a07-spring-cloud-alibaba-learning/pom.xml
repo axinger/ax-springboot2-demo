@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-   <artifactId>a07-spring-cloud-alibaba-learning</artifactId>
+    <artifactId>a07-spring-cloud-alibaba-learning</artifactId>
 
 
     <modules>

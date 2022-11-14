@@ -17,7 +17,7 @@ public interface SerializableLambda extends Serializable {
         try {
             Method method = getClass().getDeclaredMethod("writeReplace");
             method.setAccessible(true);
-            return  (SerializedLambda) method.invoke(this);
+            return (SerializedLambda) method.invoke(this);
         } catch (Exception e) {
             throw new RuntimeException("获取Lambda信息失败", e);
         }

@@ -36,6 +36,7 @@ public class OrderController {
 
     /**
      * 直接请求测试一下
+     *
      * @return
      */
     @GetMapping(value = "/test")
@@ -50,6 +51,7 @@ public class OrderController {
 
     /**
      * 请求nacos
+     *
      * @param id
      * @return
      */
@@ -71,6 +73,7 @@ public class OrderController {
 
     /**
      * 请求网关,利用网关进行分发,需要 服务名+path+接口, 一定要区分path
+     *
      * @param id
      * @return
      */
@@ -92,7 +95,6 @@ public class OrderController {
 
     @Autowired
     private OrderFeignService orderFeignService;
-
 
 
     @GetMapping(value = "/gateway/feign/{id}")

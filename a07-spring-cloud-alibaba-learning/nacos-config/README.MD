@@ -11,6 +11,7 @@ shared-configs:
   refresh: true   # 是否动态刷新，默认为false         
 
 ```
+
 ```text
 第一种写法  ：
  extension-configs[0]:

@@ -3,45 +3,44 @@ package com.axing.demo.domain;
 import java.io.Serializable;
 
 /**
- * 
  * @TableName Dog
  */
 public class Dog implements Serializable {
     /**
-     * 
+     *
      */
     private Long id;
 
     /**
-     * 
+     *
      */
     private String name;
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 
+     *
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * 
+     *
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * 
+     *
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 
+     *
      */
     public void setName(String name) {
         this.name = name;
@@ -60,7 +59,7 @@ public class Dog implements Serializable {
         }
         Dog other = (Dog) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }
 
     @Override

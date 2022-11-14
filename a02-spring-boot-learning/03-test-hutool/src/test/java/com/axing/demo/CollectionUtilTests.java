@@ -84,9 +84,9 @@ public class CollectionUtilTests {
         System.out.println("交集的补集  disjunction ：" + disjunction);
 
 
-        Map map = new HashMap<>(){{
-            put("1","1");
-            put("3","3");
+        Map map = new HashMap<>() {{
+            put("1", "1");
+            put("3", "3");
         }};
 
 

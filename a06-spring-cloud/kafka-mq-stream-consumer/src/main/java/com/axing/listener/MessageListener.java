@@ -30,6 +30,7 @@ public class MessageListener {
 
     /**
      * demoChannel 是管道的名字
+     *
      * @return
      */
     @Bean
