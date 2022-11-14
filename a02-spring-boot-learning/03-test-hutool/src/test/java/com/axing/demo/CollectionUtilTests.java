@@ -6,7 +6,9 @@ import cn.hutool.core.util.ObjectUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xing
@@ -68,5 +70,27 @@ public class CollectionUtilTests {
         Collection<String> subtract = CollectionUtil.subtract(listA, listB);
         System.out.println("差集(集合相减) subtract  ：" + subtract);
 
+    }
+
+    @Test
+    public void test2() {
+
+
+        List<String> listA = ListUtil.toList("1", "2", "3", "4", "5");
+        List<String> listB = ListUtil.of("1", "2");
+
+        //交集的补集
+        Collection<String> disjunction = CollectionUtil.disjunction(listA, listB);
+        System.out.println("交集的补集  disjunction ：" + disjunction);
+
+
+        Map map = new HashMap<>(){{
+            put("1","1");
+            put("3","3");
+        }};
+
+
+        Collection<String> disjunction2 = CollectionUtil.disjunction(listA, map.keySet());
+        System.out.println("disjunction2 = " + disjunction2);
     }
 }
