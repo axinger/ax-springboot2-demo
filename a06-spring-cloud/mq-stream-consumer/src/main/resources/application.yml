@@ -10,6 +10,10 @@ spring:
     username: admin
     password: admin
     virtual-host: /
+    publisher-returns: true   #开启 return 确认机制
+    publisher-confirm-type: correlated #return 确认机制类型
+    template:
+      mandatory: true #设置为true后消费者在消息没有被路由到合适队列情况下会被return监听，而不会自动删除
 
   #中间cloud部分和8802一样
   cloud:

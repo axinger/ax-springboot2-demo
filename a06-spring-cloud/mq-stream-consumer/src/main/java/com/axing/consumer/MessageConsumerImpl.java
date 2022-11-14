@@ -2,15 +2,19 @@ package com.axing.consumer;
 
 import com.axing.api.MessageConsumerApi;
 import com.axing.model.MessageDTO;
+import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Component
 @Slf4j
@@ -22,17 +26,27 @@ public class MessageConsumerImpl implements MessageConsumerApi {
 
     @Bean
     @Override
-    public Consumer<Message<MessageDTO<Object>>> order() {
+    public Consumer< Message<MessageDTO<Object>>> order() {
         return message -> {
             System.out.println("order 接收消息为" + message);
             System.out.println("我是消费者" + serverPort);
             MessageDTO<Object> payload = message.getPayload();
             System.out.println("payload = " + payload);
             MessageHeaders headers = message.getHeaders();
-            String userId = headers.get(AmqpHeaders.USER_ID, String.class);
-            System.out.println("userId = " + userId);
+            String myHeader = headers.get("myHeader", String.class);
+            System.out.println("myHeader = " + myHeader);
+
+            Channel channel = message.getHeaders().get(AmqpHeaders.CHANNEL, Channel.class);
+            Long deliveryTag = message.getHeaders().get(AmqpHeaders.DELIVERY_TAG, Long.class);
+
+            try {
+                channel.basicAck(deliveryTag, false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         };
     }
+
 
 
     @Bean
