@@ -1,5 +1,5 @@
 server:
-  port: 11019
+  port: 8702
 
 #PulsarClient
 pulsar:

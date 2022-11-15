@@ -39,9 +39,9 @@
         <lombok.version>1.18.24</lombok.version>
         <docker.image.prefix>axing-cloud</docker.image.prefix>
 
-<!--        jackson-->
-<!--        <jackson.version>2.14.0</jackson.version>-->
-<!--        <jackson-bom.version>2.14.0</jackson-bom.version>-->
+        <!--        jackson-->
+        <!--        <jackson.version>2.14.0</jackson.version>-->
+        <!--        <jackson-bom.version>2.14.0</jackson-bom.version>-->
 
         <redisson.version>3.17.7</redisson.version>
     </properties>
