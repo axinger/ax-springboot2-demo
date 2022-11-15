@@ -23,7 +23,9 @@ public class MyWebSocketConfigurer implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-        webSocketHandlerRegistry.addHandler(textMsgHandler(), "/ws/**").addInterceptors(handshakeInterceptor());
+        webSocketHandlerRegistry
+                .addHandler(textMsgHandler(), "/ws/**")
+                .addInterceptors(handshakeInterceptor());
 
     }
 }

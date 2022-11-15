@@ -167,7 +167,6 @@ class IotDBSessionConfigTest {
             final List<String> columnNames = wrapper.getColumnNames();
 
             List list = new ArrayList();
-            ;
             while (wrapper.hasNext()) {
 
                 Map<String, Object> map = new HashMap<>();

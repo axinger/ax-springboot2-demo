@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class HelloJob implements Job {
 
-    private static Logger _log = LoggerFactory.getLogger(HelloJob.class);
+    private static final Logger _log = LoggerFactory.getLogger(HelloJob.class);
 
     @Override
     public void execute(JobExecutionContext context)

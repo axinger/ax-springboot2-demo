@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class JobController extends BaseController {
 
 
-    private static Logger log = LoggerFactory.getLogger(JobController.class);
+    private static final Logger log = LoggerFactory.getLogger(JobController.class);
     @Autowired
     private IJobAndTriggerService jobAndTriggerService;
 

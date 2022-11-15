@@ -114,7 +114,7 @@ public class MyBeanSerializerModifier extends BeanSerializerModifier {
     public static class NullBooleanJsonSerializer extends JsonSerializer<Object> {
 
         @Override
-        public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+        public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
             jsonGenerator.writeBoolean(false);
         }
     }

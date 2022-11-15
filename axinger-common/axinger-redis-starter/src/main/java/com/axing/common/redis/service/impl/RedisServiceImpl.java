@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisServiceImpl implements RedisService {
 
 
-    private RedisTemplate redisTemplate;
+    private final RedisTemplate redisTemplate;
 
     public RedisServiceImpl(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;

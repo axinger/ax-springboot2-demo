@@ -22,6 +22,5 @@ public class Demo6Application {
 //        final FutureTaskService futureTaskService = context.getBean(FutureTaskService.class);
 //
 //        futureTaskService.asyncTest();
-        ;
     }
 }

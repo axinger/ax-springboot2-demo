@@ -33,7 +33,7 @@ public class ThreadDemo3 {
         for (int i = 0; i < 30; i++) {
             int finalI = i;
             new Thread(() -> {
-                list.add(String.valueOf(UUID.randomUUID().toString().substring(0, 5)));
+                list.add(UUID.randomUUID().toString().substring(0, 5));
                 System.out.println("list = " + list);
                 System.out.println("list.count = " + list.stream().count());
                 System.out.println("list.size = " + list.size());

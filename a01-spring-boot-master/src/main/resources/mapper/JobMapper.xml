@@ -22,7 +22,7 @@
     <!--AND t.TRIGGER_GROUP = ct.TRIGGER_GROUP-->
     <!--</select>-->
 
-    <select id="getJobAndTriggerDto" resultType="com.ax.master.po.JobAndTriggerDto">
+    <select id="getJobAndTriggerDto" resultType="com.ax.master.dto.JobAndTriggerDto">
         SELECT jd.JOB_NAME                                           AS jobName,
                jd.DESCRIPTION                                        AS jobDescription,
                jd.JOB_GROUP                                          AS jobGroupName,

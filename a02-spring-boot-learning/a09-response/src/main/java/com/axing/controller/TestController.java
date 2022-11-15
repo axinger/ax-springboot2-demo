@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author xing
@@ -27,7 +28,7 @@ public class TestController {
     @GetMapping("/ip1")
     public Object test2() {
         System.out.println("test2==========");
-        return Arrays.asList("1");
+        return List.of("1");
     }
 
 

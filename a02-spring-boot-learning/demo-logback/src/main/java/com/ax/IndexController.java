@@ -31,7 +31,6 @@ public class IndexController {
         log.warn("info = {}", date);
 
         Map map = new HashMap();
-        ;
         map.put("time", new Date());
         return map;
     }

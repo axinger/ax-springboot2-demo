@@ -70,18 +70,17 @@ public class Userinfo {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"id\":")
-                .append(id);
-        sb.append(",\"token\":\"")
-                .append(token).append('\"');
-        sb.append(",\"password\":\"")
-                .append(password).append('\"');
-        sb.append(",\"username\":\"")
-                .append(username).append('\"');
-        sb.append(",\"authorities\":")
-                .append(authorities);
-        sb.append('}');
-        return sb.toString();
+        String sb = "{" + "\"id\":" +
+                id +
+                ",\"token\":\"" +
+                token + '\"' +
+                ",\"password\":\"" +
+                password + '\"' +
+                ",\"username\":\"" +
+                username + '\"' +
+                ",\"authorities\":" +
+                authorities +
+                '}';
+        return sb;
     }
 }

@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class HelloServiceImpl implements HelloService {
 
-    private HelloProperties helloProperties;
+    private final HelloProperties helloProperties;
 
     public HelloServiceImpl(HelloProperties helloProperties) {
         this.helloProperties = helloProperties;

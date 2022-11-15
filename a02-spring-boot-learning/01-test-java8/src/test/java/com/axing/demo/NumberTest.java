@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 
@@ -28,20 +29,20 @@ class FormatDemo {
 public class NumberTest {
 
     @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#,###")
-    private Number total = 10000;
+    private final Number total = 10000;
 
     @NumberFormat(style = NumberFormat.Style.PERCENT)
-    private double discount = 10000;
+    private final double discount = 10000;
 
     @NumberFormat(style = NumberFormat.Style.CURRENCY)
-    private double money = 10000;
+    private final double money = 10000;
     @NumberFormat(pattern = "#,###")
-    private Integer salary = 1000;
+    private final Integer salary = 1000;
 
     @Test
     void test1() {
 
-        System.out.println("total = " + String.valueOf(total));
+        System.out.println("total = " + total);
         System.out.println("discount = " + discount);
         System.out.println("money = " + money);
         System.out.println("salary = " + salary);
@@ -72,7 +73,7 @@ public class NumberTest {
         System.out.println("df2 = " + df2.format(((float) 1 / 8) * 100));
 
         BigDecimal percentage = BigDecimal.valueOf(1)
-                .divide(BigDecimal.valueOf(8), 4, BigDecimal.ROUND_FLOOR)
+                .divide(BigDecimal.valueOf(8), 4, RoundingMode.FLOOR)
                 .multiply(BigDecimal.valueOf(100));
         System.out.println("percentage = " + percentage);
 
@@ -86,7 +87,7 @@ public class NumberTest {
 
         System.out.println("bigDecimal = " + bigDecimal);
 
-        System.out.println(String.format("%.1f", bigDecimal));
+        System.out.printf("%.1f%n", bigDecimal);
 
     }
 

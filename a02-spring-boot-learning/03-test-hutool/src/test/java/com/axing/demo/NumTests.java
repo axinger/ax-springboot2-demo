@@ -35,14 +35,12 @@ public class NumTests {
 
     @Test
     void test_4() {
-        ;
         final String s = NumberUtil.decimalFormat("#", new BigDecimal("2.123456"));
         System.out.println("s = " + s);
     }
 
     @Test
     void test_5() {
-        ;
         final String s = NumberUtil.decimalFormat("#%", 1);
         System.out.println("s = " + s);
     }

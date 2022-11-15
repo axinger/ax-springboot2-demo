@@ -79,7 +79,7 @@ public class ThreadDemo4OfLock8 {
 
         new Thread(() -> {
             try {
-                phone1.sendSMS();
+                Phone.sendSMS();
 
             } catch (Exception e) {
                 e.printStackTrace();

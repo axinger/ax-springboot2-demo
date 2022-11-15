@@ -1,7 +1,7 @@
 package com.ax.master.scheduler.service;
 
 
-import com.ax.master.po.JobAndTriggerDto;
+import com.ax.master.dto.JobAndTriggerDto;
 
 
 /**
@@ -29,7 +29,7 @@ public interface IJobAndTriggerService {
      * @Title: getPageJobmod
      * @Description: TODO(查询定时任务)
      */
-    public JobAndTriggerDto getPageJobmod();
+    JobAndTriggerDto getPageJobmod();
 
     /**
      * @param @param  jobClassName 任务路径名称
@@ -41,7 +41,7 @@ public interface IJobAndTriggerService {
      * @Title: addJob
      * @Description: TODO(添加任务)
      */
-    public void addJob(String jobClassName, String jobGroupName, String cronExpression) throws Exception;
+    void addJob(String jobClassName, String jobGroupName, String cronExpression) throws Exception;
 
     /**
      * @param @param  jobClassName 任务路径名称
@@ -53,7 +53,7 @@ public interface IJobAndTriggerService {
      * @Title: updateJob
      * @Description: TODO(更新定时任务)
      */
-    public void updateJob(String jobClassName, String jobGroupName, String cronExpression) throws Exception;
+    void updateJob(String jobClassName, String jobGroupName, String cronExpression) throws Exception;
 
     /**
      * @param @param  jobClassName 任务路径名称
@@ -64,7 +64,7 @@ public interface IJobAndTriggerService {
      * @Title: deleteJob
      * @Description: TODO(删除定时任务)
      */
-    public void deleteJob(String jobClassName, String jobGroupName) throws Exception;
+    void deleteJob(String jobClassName, String jobGroupName) throws Exception;
 
     /**
      * @param @param  jobClassName 任务路径名称
@@ -75,7 +75,7 @@ public interface IJobAndTriggerService {
      * @Title: pauseJob
      * @Description: TODO(暂停定时任务)
      */
-    public void pauseJob(String jobClassName, String jobGroupName) throws Exception;
+    void pauseJob(String jobClassName, String jobGroupName) throws Exception;
 
     /**
      * @param @param  jobClassName 任务路径名称
@@ -86,5 +86,5 @@ public interface IJobAndTriggerService {
      * @Title: resumejob
      * @Description: TODO(恢复任务)
      */
-    public void resumejob(String jobClassName, String jobGroupName) throws Exception;
+    void resumejob(String jobClassName, String jobGroupName) throws Exception;
 }

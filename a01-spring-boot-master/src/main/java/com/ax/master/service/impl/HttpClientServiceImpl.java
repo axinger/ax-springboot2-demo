@@ -37,18 +37,18 @@ public class HttpClientServiceImpl implements HttpClientService {
 
         System.out.println("response = " + response);
         System.out.println("response.getBody() = " + response.getBody());
-        return (T) response.getBody();
+        return response.getBody();
     }
 
     @Override
     public <T> T getClient(String url, MultiValueMap<String, String> params, Class<T> responseType) {
 
-        return (T) this.client(url, HttpMethod.GET, params, responseType);
+        return this.client(url, HttpMethod.GET, params, responseType);
     }
 
     @Override
     public <T> T postClient(String url, MultiValueMap<String, String> params, Class<T> responseType) {
 
-        return (T) this.client(url, HttpMethod.POST, params, responseType);
+        return this.client(url, HttpMethod.POST, params, responseType);
     }
 }

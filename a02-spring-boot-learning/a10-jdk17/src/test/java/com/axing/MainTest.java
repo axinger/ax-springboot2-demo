@@ -27,7 +27,7 @@ class MainTest {
         Map<String, Integer> map = Map.of("a", 1, "b", 2, "c", 3, "d", 4);
         System.out.println("map = " + map);
 
-        List<String> list = Arrays.asList("1");
+        List<String> list = List.of("1");
 //        list.add("3");
         System.out.println("list = " + list);
 
@@ -47,12 +47,10 @@ class MainTest {
     String swtich1() {
         for (int i = 0; i < 3; i++) {
             System.out.println("i = " + i);
-            switch (i) {
-                case 1:
-                    return "1";
-                default:
-                    return "default";
+            if (i == 1) {
+                return "1";
             }
+            return "default";
         }
         return "a";
     }
@@ -81,7 +79,6 @@ class MainTest {
             };
             System.out.println("x = " + x);
         }
-        ;
     }
 
     /**

@@ -17,7 +17,6 @@ public class Instance {
     @Test
     void test2() {
         List<Object> list = new ArrayList();
-        ;
         list.add("1");
         list.add(2);
 

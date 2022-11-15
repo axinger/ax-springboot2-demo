@@ -15,7 +15,7 @@ import java.io.IOException;
 @Component
 public class MyLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
 //    @Autowired
 //    private ObjectMapper objectMapper;

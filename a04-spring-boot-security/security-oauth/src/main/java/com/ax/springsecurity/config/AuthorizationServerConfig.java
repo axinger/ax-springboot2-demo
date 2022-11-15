@@ -71,7 +71,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //        .scopes("app")
 //                /*回调地址*/
 //        .redirectUris("http://localhost:8080/code")
-        ;
 
         clients.withClientDetails(jdbc_clientDetailsService())
         ;

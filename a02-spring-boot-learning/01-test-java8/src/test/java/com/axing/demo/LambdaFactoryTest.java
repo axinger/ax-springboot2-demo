@@ -26,7 +26,6 @@ public class LambdaFactoryTest {
     void test2() {
 
         Function<String, Person> function1 = name -> Person.builder().name(name).build();
-        ;
         Person person1 = function1.apply("jim");
         System.out.println("person1 = " + person1);
 

@@ -24,7 +24,6 @@ public class CollectionsTest {
         Person p2 = Person.builder()
                 .id(2)
                 .build();
-        ;
 
         list.add(p2);
 

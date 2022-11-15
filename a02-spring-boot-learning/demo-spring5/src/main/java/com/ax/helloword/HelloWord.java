@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class HelloWord {
 
 
-    private HelloService helloService;
+    private final HelloService helloService;
 
     //
 //    // setter方式注入Bean

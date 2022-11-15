@@ -8,7 +8,7 @@ class Share {
     private final Lock lock = new ReentrantLock();
     private Integer num = 0;
     // 条件锁
-    private Condition condition = lock.newCondition();
+    private final Condition condition = lock.newCondition();
 
 
     //+1

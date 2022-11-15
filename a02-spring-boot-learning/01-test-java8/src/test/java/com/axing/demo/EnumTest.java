@@ -21,8 +21,8 @@ public class EnumTest {
 
         ;
 
-        private String name;
-        private Integer code;
+        private final String name;
+        private final Integer code;
 
         Week(String name, Integer code) {
             this.name = name;

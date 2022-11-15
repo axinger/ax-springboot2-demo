@@ -2,7 +2,7 @@ package com.axing.demo.testinterface;
 
 public interface InterfacePerson {
 
-    final static String name2 = "";
+    String name2 = "";
 
     void mothod4();
 

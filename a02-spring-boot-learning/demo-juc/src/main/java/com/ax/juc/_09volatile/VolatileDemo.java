@@ -70,7 +70,6 @@ public class VolatileDemo {
 //        test1();
 
         test2();
-        ;
     }
 
     /**

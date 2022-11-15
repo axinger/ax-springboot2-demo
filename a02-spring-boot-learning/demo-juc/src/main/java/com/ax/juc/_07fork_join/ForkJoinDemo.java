@@ -9,8 +9,8 @@ class MyTask extends RecursiveTask<Integer> {
 
     //拆分,差值不超过10
     private static final Integer VALUE = 10;
-    private Integer begin;
-    private Integer end;
+    private final Integer begin;
+    private final Integer end;
     private Integer result = 0;
 
     public MyTask(Integer begin, Integer end) {

@@ -43,7 +43,7 @@ public class StudentInfoServiceImpl implements IStudentInfoService {
         query.addCriteria(Criteria.where("chooseCourse.courseId").is(courseId).and("chooseCourse.deleted").is(false)
                 .and("deleted").is(false));
         // 分页
-        query.skip((page - 1) * limit).limit(limit);
+        query.skip((long) (page - 1) * limit).limit(limit);
         // 排序
         query.with(Sort.by(Sort.Direction.fromString(order), sort));
         //springboot2.2.1（含）以上的版本Sort已经不能再实例化了，构造方法已经是私有的了！

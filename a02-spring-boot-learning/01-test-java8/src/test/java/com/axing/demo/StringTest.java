@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class StringTest {
@@ -30,12 +31,12 @@ public class StringTest {
 //        System.out.println("s = " + s);
 
 
-        BigDecimal run = new BigDecimal(String.valueOf(21 * 60 * 60)).divide(new BigDecimal("3600000"), 2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal run = new BigDecimal(String.valueOf(21 * 60 * 60)).divide(new BigDecimal("3600000"), 2, RoundingMode.HALF_UP);
 
         System.out.println("run = " + run);
     }
 
-    String string = new String("good");
+    String string = "good";
     char[] chars = {'t', 'e', 's', 't'};
     StringBuffer string2 = new StringBuffer("good");
     private Long totalSpent;

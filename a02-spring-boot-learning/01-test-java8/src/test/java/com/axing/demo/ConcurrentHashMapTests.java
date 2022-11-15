@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 public class ConcurrentHashMapTests {
 
-    private static ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>(900);
+    private static final ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>(900);
 
     public static void main(String[] args) {
 

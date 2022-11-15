@@ -32,11 +32,10 @@ public class TokenInterceptor implements HandlerInterceptor {
         System.out.println("token监听...................");
 
         // 如果不是映射到方法直接通过
-        if (!(object instanceof HandlerMethod)) {
+        if (!(object instanceof HandlerMethod handlerMethod)) {
             return true;
         }
 
-        HandlerMethod handlerMethod = (HandlerMethod) object;
         Method method = handlerMethod.getMethod();
         System.out.println("token监听 method = " + method);
 

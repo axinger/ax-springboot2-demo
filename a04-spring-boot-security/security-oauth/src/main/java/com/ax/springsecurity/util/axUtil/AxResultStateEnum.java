@@ -31,11 +31,11 @@ public enum AxResultStateEnum {
     /**
      * 业务异常码
      */
-    private Integer value;
+    private final Integer value;
     /**
      * 业务异常信息描述
      */
-    private String reasonPhrase;
+    private final String reasonPhrase;
 
     AxResultStateEnum(Integer value, String reasonPhrase) {
         this.value = value;

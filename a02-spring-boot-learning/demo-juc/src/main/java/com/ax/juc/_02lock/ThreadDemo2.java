@@ -9,11 +9,11 @@ class ShareResource {
     // 定义标志位
     private Integer flag = 1;// 1 A1, 2 A2,3 A3
 
-    private Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
     // 条件锁
-    private Condition conditionA1 = lock.newCondition();
-    private Condition conditionA2 = lock.newCondition();
-    private Condition conditionA3 = lock.newCondition();
+    private final Condition conditionA1 = lock.newCondition();
+    private final Condition conditionA2 = lock.newCondition();
+    private final Condition conditionA3 = lock.newCondition();
 
 
     public void log5(int loop) throws InterruptedException {

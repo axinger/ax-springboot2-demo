@@ -16,7 +16,7 @@ public class LogInterceptor implements HandlerInterceptor {
     /**
      * 记录日志
      */
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

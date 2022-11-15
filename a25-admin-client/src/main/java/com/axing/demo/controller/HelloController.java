@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RestController
 @RequestMapping("/api")
 public class HelloController {
-    private AtomicInteger count = new AtomicInteger(0);
+    private final AtomicInteger count = new AtomicInteger(0);
 
     @GetMapping("hi")
     private String sayHi() {

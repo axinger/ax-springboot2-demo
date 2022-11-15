@@ -18,7 +18,7 @@ public interface IStudentInfoService {
      * @param studentInfo
      * @return
      */
-    public void save(StudentInfo studentInfo);
+    void save(StudentInfo studentInfo);
 
     /**
      * 根据主键id查找学生信息
@@ -26,7 +26,7 @@ public interface IStudentInfoService {
      * @param id
      * @return
      */
-    public StudentInfo getStudentInfoById(ObjectId id);
+    StudentInfo getStudentInfoById(ObjectId id);
 
     /**
      * 根据所选课程id查找学生信息列表并分页
@@ -38,7 +38,7 @@ public interface IStudentInfoService {
      * @param order
      * @return
      */
-    public List<StudentInfo> getStudentInfoListByCourseId(Integer courseId, Integer page, Integer limit, String sort, String order);
+    List<StudentInfo> getStudentInfoListByCourseId(Integer courseId, Integer page, Integer limit, String sort, String order);
 
     /**
      * 更新学生信息
@@ -46,7 +46,7 @@ public interface IStudentInfoService {
      * @param studentInfo
      * @return
      */
-    public void update(StudentInfo studentInfo);
+    void update(StudentInfo studentInfo);
 
     /**
      * 根据学生id以及课程id删除选修课程
@@ -54,7 +54,7 @@ public interface IStudentInfoService {
      * @param id
      * @param courseId
      */
-    public void deleteCourseByIdAndCourseId(ObjectId id, Integer courseId);
+    void deleteCourseByIdAndCourseId(ObjectId id, Integer courseId);
 
     /**
      * 删除学生信息
@@ -62,5 +62,5 @@ public interface IStudentInfoService {
      * @param id
      * @return
      */
-    public void delete(ObjectId id);
+    void delete(ObjectId id);
 }

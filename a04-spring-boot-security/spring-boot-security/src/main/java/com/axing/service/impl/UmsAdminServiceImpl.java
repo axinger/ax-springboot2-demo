@@ -34,11 +34,11 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 存放默认用户信息
      */
-    private List<AdminUserDetails> adminUserDetailsList = new ArrayList<>();
+    private final List<AdminUserDetails> adminUserDetailsList = new ArrayList<>();
     /**
      * 存放默认资源信息
      */
-    private List<UmsResource> resourceList = new ArrayList<>();
+    private final List<UmsResource> resourceList = new ArrayList<>();
 
     @Autowired
     private PasswordEncoder passwordEncoder;

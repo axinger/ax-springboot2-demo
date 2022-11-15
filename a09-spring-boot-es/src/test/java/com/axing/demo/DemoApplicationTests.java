@@ -110,6 +110,7 @@ class DemoApplicationTests {
             // 获得 _source
             final String string = val.getSourceAsString();
             final Account account = JSON.parseObject(string, Account.class);
+            System.out.println("account = " + account);
             return account;
         }).collect(Collectors.toList());
         System.out.println("list = " + list);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 @Service
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
      * 初始化消息队列，发送之后暂时保存在list中，然后最早头部读取 earliest
      */
     private static final LinkedList<Long> linkedList = new LinkedList<>();
-    private static String content = "";
+    private static final String content = "";
 
     /**
      * groupId 不同, 同一个主题都能收到
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(props);
         //指定订阅的topic
-        kafkaConsumer.subscribe(Arrays.asList(Topic.SIMPLE));
+        kafkaConsumer.subscribe(List.of(Topic.SIMPLE));
         String content = "";
 //        while (true) {
         log.info("nothing available...");

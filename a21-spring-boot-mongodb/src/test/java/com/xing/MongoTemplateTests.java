@@ -160,8 +160,6 @@ public class MongoTemplateTests {
 //        query.skip(0);
 //        query.limit(10)
 
-        ;
-
         // 分页
         query.with(pageable);
 
@@ -176,7 +174,6 @@ public class MongoTemplateTests {
 
 
 //        query.fields().include("name").include("status")
-        ;
         final List<Dog> dogList = mongoTemplate.find(query, Dog.class);
         System.out.println("dogList = " + dogList);
     }

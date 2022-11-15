@@ -10,7 +10,7 @@ class DateConfigTest {
 
     @Test
     void test_date() {
-        System.out.println("LocalDateTime.now() = " + LocalDateTime.now().toString());
+        System.out.println("LocalDateTime.now() = " + LocalDateTime.now());
         System.out.println("LocalDateTime.now() = " + LocalDateTime.now());
 
     }

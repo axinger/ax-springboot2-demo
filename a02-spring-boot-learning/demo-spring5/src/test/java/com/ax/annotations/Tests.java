@@ -13,7 +13,6 @@ public class Tests {
     public void test1() {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanTwo1.xml");
         PersonService personService = context.getBean("personService", PersonService.class);
-        ;
         System.out.println("personService = " + personService);
         personService.add();
 

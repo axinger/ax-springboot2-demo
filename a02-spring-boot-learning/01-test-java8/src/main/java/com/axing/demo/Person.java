@@ -18,8 +18,7 @@ public class Person implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        if (o instanceof Person) {
-            Person p = (Person) o;
+        if (o instanceof Person p) {
             int sort;
             sort = name.compareTo(p.name);
 //            if (sort == 0) {

@@ -1,7 +1,7 @@
 package com.ax.master.scheduler.service.impl;
 
 import com.ax.master.mapper.JobAndTriggerMapper;
-import com.ax.master.po.JobAndTriggerDto;
+import com.ax.master.dto.JobAndTriggerDto;
 import com.ax.master.scheduler.service.IJobAndTriggerService;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;

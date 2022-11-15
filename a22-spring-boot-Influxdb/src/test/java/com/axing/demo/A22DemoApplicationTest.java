@@ -73,7 +73,6 @@ class A22DemoApplicationTest {
 
         String measurement = "a_person_01";
         Map<String, String> tags = new HashMap<>();
-        ;
         tags.put("name", "jim");
         Map<String, Object> fields = new HashMap<>();
         fields.put("age", "10");

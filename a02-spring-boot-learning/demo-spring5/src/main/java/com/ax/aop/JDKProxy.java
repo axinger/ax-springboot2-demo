@@ -45,7 +45,7 @@ class UserDaoProxy implements InvocationHandler {
     // 1. 把创建的是谁的代理对象,把谁传递过来
     // 常用,有参构造
 
-    private Object obj;
+    private final Object obj;
 
     public UserDaoProxy(Object obj) {
         this.obj = obj;

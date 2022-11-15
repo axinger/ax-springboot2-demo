@@ -271,8 +271,7 @@ public class QuartzServiceImpl implements QuartzService {
                 job.setDescription("触发器:" + trigger.getKey());
                 Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
                 job.setTypeName(triggerState.name());
-                if (trigger instanceof CronTrigger) {
-                    CronTrigger cronTrigger = (CronTrigger) trigger;
+                if (trigger instanceof CronTrigger cronTrigger) {
                     String cronExpression = cronTrigger.getCronExpression();
                     job.setCronExpression(cronExpression);
                 }
@@ -300,8 +299,7 @@ public class QuartzServiceImpl implements QuartzService {
             job.setDescription("触发器:" + trigger.getKey());
             Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
             job.setJobStatus(Long.parseLong(triggerState.name()));
-            if (trigger instanceof CronTrigger) {
-                CronTrigger cronTrigger = (CronTrigger) trigger;
+            if (trigger instanceof CronTrigger cronTrigger) {
                 String cronExpression = cronTrigger.getCronExpression();
                 job.setCronExpression(cronExpression);
             }

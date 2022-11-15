@@ -266,7 +266,6 @@ public class LocalDateTimeTest {
     void data_json() {
 
         Map map = new HashMap();
-        ;
         map.put("createDate", LocalDateTime.now());
 
 

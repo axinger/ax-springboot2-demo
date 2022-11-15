@@ -32,7 +32,7 @@ public class JobController implements Job {
     @Autowired
     private Scheduler scheduler;
 
-    private CompletableFuture<Boolean> future = new CompletableFuture<>();
+    private final CompletableFuture<Boolean> future = new CompletableFuture<>();
 
     @GetMapping("/{id}")
     public Result addJob(@PathVariable String id) {

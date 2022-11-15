@@ -137,7 +137,7 @@ class TestCompletableFuture {
 
 class Both {
 
-    private static ExecutorService service = Executors.newFixedThreadPool(10);
+    private static final ExecutorService service = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) {
 
@@ -183,7 +183,7 @@ class Both {
 
 class Either {
 
-    private static ExecutorService service = Executors.newFixedThreadPool(10);
+    private static final ExecutorService service = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) {
 
@@ -230,7 +230,7 @@ class Either {
 
 class All {
 
-    private static ExecutorService service = Executors.newFixedThreadPool(10);
+    private static final ExecutorService service = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) throws Exception {
 
@@ -269,7 +269,7 @@ class All {
 
 class Any {
 
-    private static ExecutorService service = Executors.newFixedThreadPool(10);
+    private static final ExecutorService service = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) throws Exception {
 
@@ -307,7 +307,7 @@ class Any {
 
 class Exceptionally {
 
-    private static ExecutorService executorService = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) {
 

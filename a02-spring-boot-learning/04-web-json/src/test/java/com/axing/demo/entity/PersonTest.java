@@ -4,10 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 class PersonTest {
 
@@ -36,7 +33,7 @@ class PersonTest {
         final String personStr = JSON.toJSONString(person);
         System.out.println("personStr = " + personStr);
 
-        final List<Person> list = Arrays.asList(person);
+        final List<Person> list = Collections.singletonList(person);
         final String listStr = JSON.toJSONString(list);
         System.out.println("listStr = " + listStr);
 

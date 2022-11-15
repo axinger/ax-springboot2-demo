@@ -17,12 +17,12 @@ class MyCache {
      * volatile变量不会被缓存在寄存器或者对其他处理器不可见的地方，
      * 因此在读取volatile类型的变量时总会返回最新写入的值。
      */
-    private volatile Map<String, Object> map = new HashMap<>();
+    private final Map<String, Object> map = new HashMap<>();
 
     /**
      * 创建读写锁
      */
-    private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
 
     // set数据

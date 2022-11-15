@@ -13,7 +13,7 @@ import java.util.Map;
 public class MyTextWebSocketHandler extends TextWebSocketHandler {
 
 
-    private Map<String, WebSocketSession> allClient = new HashMap<>();
+    private final Map<String, WebSocketSession> allClient = new HashMap<>();
 
     /**
      * 建立连接

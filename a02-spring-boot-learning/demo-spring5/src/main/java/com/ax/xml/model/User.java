@@ -2,10 +2,10 @@ package com.ax.xml.model;
 
 public class User {
 
-    private String name;
-    private String title;
+    private final String name;
+    private final String title;
 
-    private String address;
+    private final String address;
 
     public User(String name, String title, String address) {
         this.name = name;

@@ -11,14 +11,11 @@ public class AbstractPersonTest {
         AbstractPersonImpl person = new AbstractPersonImpl();
 
         person.mothod1();
-        ;
         person.name = "jim";
         System.out.println(" person.name2 = " + person.name2);
 
         person.mothod5();
-        ;
         person.mothod6();
-        ;
 
     }
 }
