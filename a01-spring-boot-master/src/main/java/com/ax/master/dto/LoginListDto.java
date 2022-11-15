@@ -1,4 +1,4 @@
-package com.ax.master.po;
+package com.ax.master.dto;
 
 import lombok.Data;
 

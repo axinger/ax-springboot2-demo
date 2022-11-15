@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <artifactId>a07-spring-cloud-alibaba-learning</artifactId>
+    <artifactId>a07-spring-cloud-alibaba</artifactId>
 
 
     <modules>
@@ -21,6 +21,9 @@
         <module>openfeign-nacos-consume</module>
         <module>openfeign-nacos-provider</module>
         <module>sleuth</module>
+        <module>mall-gateway-app</module>
+        <module>mall-order-app</module>
+        <module>mall-payment-app</module>
     </modules>
 
 </project>

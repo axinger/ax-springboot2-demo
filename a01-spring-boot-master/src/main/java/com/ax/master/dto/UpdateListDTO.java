@@ -1,11 +1,11 @@
-package com.ax.master.po;
+package com.ax.master.dto;
 
 import com.alibaba.fastjson2.JSON;
 import com.ax.master.entity.IpLog;
 
 import java.util.List;
 
-public class UpdateListObject {
+public class UpdateListDTO {
 
     private List<IpLog> list;
     private String name;

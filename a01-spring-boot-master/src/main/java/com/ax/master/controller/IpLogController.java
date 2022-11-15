@@ -1,7 +1,7 @@
 package com.ax.master.controller;
 
 import com.ax.master.entity.IpLog;
-import com.ax.master.po.UpdateListObject;
+import com.ax.master.dto.UpdateListDTO;
 import com.ax.master.service.IIpLogService;
 import com.axing.common.response.result.Result;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -77,7 +77,7 @@ public class IpLogController {
     }
 
     @RequestMapping(value = "/updateList2.do")
-    public Object updateByList2(@RequestBody(required = false) UpdateListObject object) {
+    public Object updateByList2(@RequestBody(required = false) UpdateListDTO object) {
 
         System.out.println("name = " + object);
 

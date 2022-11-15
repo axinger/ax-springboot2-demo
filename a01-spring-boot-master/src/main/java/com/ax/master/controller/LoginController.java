@@ -1,6 +1,6 @@
 package com.ax.master.controller;
 
-import com.ax.master.po.LoginDto;
+import com.ax.master.dto.LoginDto;
 import com.ax.master.service.ILoginService;
 import com.ax.master.util.error.TokenException;
 import com.axing.common.response.result.Result;

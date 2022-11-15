@@ -1,7 +1,7 @@
 package com.ax.master.scheduler.service;
 
 
-import com.ax.master.po.JobAndTriggerDto;
+import com.ax.master.dto.JobAndTriggerDto;
 
 
 /**
