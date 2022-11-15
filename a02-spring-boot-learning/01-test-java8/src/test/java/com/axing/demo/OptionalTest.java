@@ -6,6 +6,20 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class OptionalTest {
+
+    @Test
+    public void test_1() {
+ // isEmpty == !isPresent
+ //       String str = "";
+        String str = null;
+        System.out.println("Optional.ofNullable(str).isEmpty() = " + Optional.ofNullable(str).isEmpty());
+        System.out.println("Optional.ofNullable(str).isEmpty() = " + Optional.ofNullable(str).isPresent());
+
+        Optional<String> optional = Optional.ofNullable(str);
+        System.out.println(optional.isEmpty());
+
+    }
+
     @Test
     public void test_add() {
 

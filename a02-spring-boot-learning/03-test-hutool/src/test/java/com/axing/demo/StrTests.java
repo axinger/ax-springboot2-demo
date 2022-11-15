@@ -1,5 +1,6 @@
 package com.axing.demo;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;
 
@@ -19,5 +20,13 @@ public class StrTests {
     @Test
     void test_1() {
         System.out.println(StrUtil.padPre("1", 3, "0"));
+    }
+
+
+    @Test
+    void test_2() {
+       Object obj = "null";
+       String string = "null";
+        System.out.println("ObjectUtil.equals(obj,string) = " + ObjectUtil.equals(obj, string));
     }
 }
