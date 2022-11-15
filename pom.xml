@@ -25,6 +25,7 @@
         <java.version>17</java.version>
         <axinger-project.version>${project.version}</axinger-project.version>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
+        <spring-boot-admin.version>2.7.7</spring-boot-admin.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
         <elasticsearch.version>7.17.0</elasticsearch.version>
@@ -214,13 +215,13 @@
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
 
             <dependency>
