@@ -18,12 +18,12 @@ import java.util.concurrent.TimeUnit;
 class PulsarProducerApplicationTest {
 
     @Autowired
-    private PulsarTemplate template;
+    private PulsarTemplate<Map<String, Object>> template;
 
     @Test
     void test1() {
         try {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "独占模式(Exclusive)");
             map.put("topic", Topic.EXCLUSIVE_TOPIC);
@@ -39,7 +39,7 @@ class PulsarProducerApplicationTest {
     @Test
     void test2() {
         try {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "灾备模式(Failover)");
             map.put("topic", Topic.FAILOVER_TOPIC);
@@ -59,7 +59,7 @@ class PulsarProducerApplicationTest {
     @Test
     void test3() {
         try {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "共享订阅(Shared)");
             map.put("topic", Topic.SHARED_TOPIC);
@@ -78,7 +78,7 @@ class PulsarProducerApplicationTest {
     @Test
     void test4() {
         try {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "Key_Shared");
             map.put("topic", Topic.KEY_SHARED_TOPIC);
@@ -97,7 +97,7 @@ class PulsarProducerApplicationTest {
     @Test
     void test5() {
         try {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "发送延迟消息");
 
@@ -115,7 +115,7 @@ class PulsarProducerApplicationTest {
     @Test
     void test6() {
         try {
-            Map map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "发送定时消息");
 
