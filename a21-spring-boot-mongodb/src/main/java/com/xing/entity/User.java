@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.google.errorprone.annotations.concurrent.LazyInit;
 import lombok.Data;
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.Date;
  */
 
 @Data
+@Document(collection = "user")
 public class User {
 
 
