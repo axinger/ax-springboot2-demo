@@ -81,6 +81,7 @@
         <module>a27-springdoc2</module>
         <module>a28-wordToPdf</module>
         <module>a29-elk</module>
+        <module>a30-spring-boot-sa-token</module>
     </modules>
 
     <dependencies>

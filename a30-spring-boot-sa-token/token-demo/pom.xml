@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>a30-spring-boot-sa-token</artifactId>
+        <groupId>com.axing</groupId>
+        <version>2.7.5.2.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>a30-spring-boot-sa-token-demo</artifactId>
+    <properties>
+        <sa-token.version>1.33.0</sa-token.version>
+    </properties>
+
+
+
+    <dependencies>
+        <!-- Sa-Token 权限认证，在线文档：https://sa-token.cc -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot-starter</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+
+        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-dao-redis-jackson</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+
+        <!-- Sa-Token 整合 jwt -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-jwt</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+
+
+        <!-- 提供Redis连接池 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axinger-response-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axinger-doc-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axinger-advice-starter</artifactId>
+        </dependency>
+    </dependencies>
+</project>
