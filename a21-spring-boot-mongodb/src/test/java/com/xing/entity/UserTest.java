@@ -1,6 +1,7 @@
 package com.xing.entity;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
@@ -34,8 +35,11 @@ class UserTest {
 
 
         System.out.println("user = " + user);
-        System.out.println("save = " + save.getId());
+        //System.out.println("save = " + save.getId());
+        //save.getId().getDate();
+        //cn.hutool.core.lang.ObjectId id2 = save.getId2();
 
-        System.out.println(LocalDateTimeUtil.of(new ObjectId(save.getId()).getDate()));
+
+        //System.out.println(LocalDateTimeUtil.of(new ObjectId(save.getId()).getDate()));
     }
 }

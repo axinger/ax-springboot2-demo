@@ -25,4 +25,10 @@ public class UuidTests {
 
         System.out.println("IdUtil.fastUUID() = " + IdUtil.fastUUID());
     }
+
+    @Test
+    void test_objectId() {
+
+        System.out.println(IdUtil.objectId());
+    }
 }

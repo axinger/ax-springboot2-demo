@@ -2,10 +2,17 @@ spring:
   data:
     # 这2个方式都可以
     mongodb:
-      host: localhost
-      port: 27017
-      authentication-database: admin #认证的库
+      host: 192.168.101.143
+      port: 27018
       username: admin
-      password: 'admin123' #如果是纯数字，需要加个单引号
-      database: ax_demo #操作的库
+      password: '123456'
+      database: demo
+      authentication-database: admin
+
+#      host: localhost
+#      port: 27017
+#      authentication-database: admin #认证的库
+#      username: admin
+#      password: 'admin123' #如果是纯数字，需要加个单引号
+#      database: ax_demo #操作的库
 #      uri: mongodb://root:123456@47.101.156.93:27017/ax_demo?authSource=admin

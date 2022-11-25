@@ -9,6 +9,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.result.UpdateResult;
 import com.xing.entity.Dog;
 import com.xing.entity.Person;
+import com.xing.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -47,7 +48,19 @@ public class MongoTemplateTests {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Test
+    void save_user() {
 
+        User user = new User();
+
+        //user.setId("123");
+        user.setName("jim");
+        user.setAge(10);
+        User save = mongoTemplate.save(user);
+        System.out.println("save = " + save);
+
+
+    }
     @Test
     void save_dog() {
 
