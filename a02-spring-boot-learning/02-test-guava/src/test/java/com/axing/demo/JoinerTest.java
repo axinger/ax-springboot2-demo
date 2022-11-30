@@ -51,6 +51,19 @@ public class JoinerTest {
     }
 
     @Test
+    void join2() {
+        List<String> list = Lists.newArrayList("d");
+        list.add("a");
+        list.add("b");
+        list.add("c");
+
+        String result = Joiner.on("-").join(list);
+        System.out.println("Joiner = "+result);
+
+
+    }
+
+    @Test
     void test_Splitter() {
         String str = "1-2-3--4-5- 6";
         List<String> list = Splitter.on("-").splitToList(str);

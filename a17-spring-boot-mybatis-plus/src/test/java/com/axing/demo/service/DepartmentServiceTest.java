@@ -1,4 +1,4 @@
-package com.axing.service;
+package com.axing.demo.service;
 
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.Department;

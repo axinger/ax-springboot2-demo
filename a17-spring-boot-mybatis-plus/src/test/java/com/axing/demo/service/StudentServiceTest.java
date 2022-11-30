@@ -1,7 +1,9 @@
-package com.axing.service;
+package com.axing.demo.service;
 
+import cn.hutool.core.util.ObjUtil;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.Student;
+import com.axing.demo.enums.Gender;
 import com.axing.demo.mapper.StudentMapper;
 import com.axing.demo.service.StudentService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -34,11 +36,101 @@ class StudentServiceTest {
 
     @Test
     public void save() {
-        Student student = new Student();
-        student.setName("tom");
-        student.setAge(19);
-        service.save(student);
+
+        String json = """
+                [
+                    {
+                        "id": 1,
+                        "age": 20,
+                        "name": "jim",
+                        "gender": 2
+                    },
+                    {
+                        "id": 2,
+                        "address": "幸运大街",
+                        "age": 20,
+                        "name": "tom",
+                        "gender": 1
+                    },
+                    {
+                        "id": 3,
+                        "address": "幸福大街",
+                        "age": 20,
+                        "name": "lili",
+                        "gender": 2
+                    }
+                ]
+                """;
+
+        List<Student> studentList = JSON.parseArray(json, Student.class);
+        System.out.println("service.saveBatch(studentList) = " + service.saveBatch(studentList));
     }
+
+    @Test
+    public void find_1() {
+
+        // 条件少, or 是可以的
+        List<Student> list = service.lambdaQuery()
+                .eq(Student::getAddress, "幸福大街")
+                .or()
+                .isNull(Student::getAddress)
+                .list();
+        System.out.println("list = " + list);
+    }
+
+    @Test
+    public void find_2() {
+
+        // 条件多, or
+        /**
+         SELECT id,name,age,gender,address,create_time,update_time,deleted,version FROM t_student WHERE deleted=0 AND (gender = 2 AND address = '幸福大街' OR address IS NULL)
+         */
+        List<Student> list = service.lambdaQuery()
+                .eq(Student::getGender, Gender.female)
+                .eq(Student::getAddress, "幸福大街")
+                .or()
+                .isNull(Student::getAddress)
+                .list();
+        System.out.println("list = " + list);
+    }
+
+    /**
+     * 查找 null 或者 指定 值
+     */
+    @Test
+    public void find_3() {
+
+        /**
+         SELECT id,name,gender,sex,address,create_time,update_time,deleted,version FROM t_student WHERE deleted=0 AND (gender = 2 AND (address = '幸福大街' OR address IS NULL))
+         */
+        List<Student> list = service.lambdaQuery()
+                .eq(Student::getGender, Gender.female)
+                .and((query) -> query
+                        .eq(Student::getAddress, "幸福大街")
+                        .or()
+                        .isNull(Student::getAddress))
+                .comment("多个查询")
+                .list();
+        System.out.println("list = " + list);
+    }
+
+    @Test
+    public void find_4() {
+        // SELECT id,name,age,gender,address,create_time,update_time,deleted,version FROM t_student WHERE deleted=0 AND (gender = 2)
+        //String address = null;
+
+        // SELECT id,name,age,gender,address,create_time,update_time,deleted,version FROM t_student WHERE deleted=0 AND (gender = 2 AND address = '幸福大街') /*eq 判断条件*/
+        String address = "幸福大街";
+        List<Student> list = service.lambdaQuery()
+                .eq(Student::getGender, Gender.female)
+                .eq(ObjUtil.isNotEmpty(address),Student::getAddress, address)
+                .comment("eq 判断条件")
+                .list();
+        System.out.println("list = " + list);
+    }
+
+
+
 
     @Test
     public void update() {
@@ -51,11 +143,8 @@ class StudentServiceTest {
 
     @Test
     public void list() {
-//        System.out.println("service.list() = " + service.list());
-
-        for (Student student : service.list()) {
-            System.out.println("student = " + JSON.toJSONString(student));
-        }
+        List<Student> list = service.list();
+        System.out.println("list = " + list);
     }
 
     @Test
@@ -73,7 +162,7 @@ class StudentServiceTest {
         wrapper.last("limit 1");
 
         // 注释
-//        wrapper.comment("我是注释");
+        wrapper.comment("我是注释");
 
         System.out.println("getOne = " + service.getOne(wrapper));
 //        System.out.println("getOne = " + service.getBaseMapper().selectOne(wrapper));

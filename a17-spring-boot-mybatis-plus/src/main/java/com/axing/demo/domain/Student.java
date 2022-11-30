@@ -1,6 +1,7 @@
 package com.axing.demo.domain;
 
 import com.axing.common.mybatis.entity.BaseEntity;
+import com.axing.demo.enums.Gender;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class Student extends BaseEntity {
     /**
      *
      */
-    private Integer sex;
+    private Gender gender;
 
     /**
      *
