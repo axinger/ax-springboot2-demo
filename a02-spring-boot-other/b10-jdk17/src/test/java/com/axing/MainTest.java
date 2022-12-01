@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://blog.csdn.net/qq_43842093/article/details/124547345?share_token=C924842A-814A-470D-AB13-B89FD09A5A60&tt_from=weixin&utm_source=weixin&utm_medium=toutiao_ios&utm_campaign=client_share&wxshare_count=1
+ * <a href="https://blog.csdn.net/qq_43842093/article/details/124547345?share_token=C924842A-814A-470D-AB13-B89FD09A5A60&tt_from=weixin&utm_source=weixin&utm_medium=toutiao_ios&utm_campaign=client_share&wxshare_count=1">...</a>
  */
 class MainTest {
 
@@ -39,12 +39,12 @@ class MainTest {
      * 和return的区别在于：return会直接跳出当前循环或者方法，而yield只会跳出当前switch块。
      */
     @Test
-    void test_swtich1() {
+    void test_switch1() {
 
-        System.out.println("swtich1() = " + swtich1());
+        System.out.println("switch1() = " + switch1());
     }
 
-    String swtich1() {
+    String switch1() {
         for (int i = 0; i < 3; i++) {
             System.out.println("i = " + i);
             if (i == 1) {
@@ -57,14 +57,14 @@ class MainTest {
 
 
     @Test
-    void test_swtich() {
+    void test_switch() {
 
-        swtich();
+        switch_2();
 
     }
 
     // switch中就多了一个关键字用于跳出switch块了，那就是yield
-    void swtich() {
+    void switch_2() {
 
         for (int i = 0; i < 3; i++) {
             System.out.println("i = " + i);
@@ -91,7 +91,7 @@ class MainTest {
         String query =
                 """
                         SELECT `EMP_ID`, `LAST_NAME` FROM `EMPLOYEE_TB`
-                        WHERE `CITY` = 'INDIANAPOLIS'        
+                        WHERE `CITY` = 'INDIANAPOLIS'
                         ORDER BY `EMP_ID`, `LAST_NAME`;
                            """;
         System.out.println(query);
@@ -144,8 +144,6 @@ class MainTest {
 
         Person1 person1 = new Person1("tom", 10);
         System.out.println(person1.name);
-
-
     }
 
     /**
@@ -159,15 +157,17 @@ class MainTest {
 
 //        Object obj = "abc";
         Object obj = Arrays.asList(1, 2);
+        instanceofFunc(obj);
+    }
+
+    void instanceofFunc(Object obj) {
         if (obj instanceof String str) {
-
             System.out.println("str.length() = " + str.length());
-
-        } else if (obj instanceof List list) {
-
+        } else if (obj instanceof List<?> list) {
             System.out.println("list.size() = " + list.size());
+        } else {
+            System.out.println("else = " + obj);
         }
-
     }
 
     /// jdk17 预览模式,不是TLS
