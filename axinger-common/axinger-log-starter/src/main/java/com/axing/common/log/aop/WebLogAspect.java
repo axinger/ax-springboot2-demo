@@ -1,8 +1,10 @@
-package com.axing.demo.apo;
+package com.axing.common.log.aop;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
+import com.axing.common.log.model.WebLog;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -10,6 +12,7 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -31,14 +34,17 @@ import java.util.Map;
  * Created by macro on 2018/4/26.
  */
 @Aspect
-@Component
+@Configuration
 @Order(1)
+@Slf4j
 public class WebLogAspect {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebLogAspect.class);
 
-    @Pointcut("execution(public * com.axing.demo.controller.*.*(..))")
-    public void webLog() {
-    }
+//    @Pointcut("execution(public * com.axing.demo.controller.*.*(..))")
+//    public void webLog() {
+//    }
+
+    @Pointcut("@within(org.springframework.web.bind.annotation.RestController ) || @within(org.springframework.stereotype.Controller)")
+    public void webLog(){}
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
@@ -75,7 +81,8 @@ public class WebLogAspect {
         webLog.setStartTime(startTime);
         webLog.setUri(request.getRequestURI());
         webLog.setUrl(request.getRequestURL().toString());
-        LOGGER.info("{}", JSONUtil.parse(webLog));
+
+        log.info("请求参数和请求返回 = {}", JSONUtil.parse(webLog));
         return result;
     }
 

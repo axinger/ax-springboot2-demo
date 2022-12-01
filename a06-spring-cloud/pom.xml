@@ -40,7 +40,7 @@
             <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>mq-stream-api</artifactId>
-                <version>${axinger-project.version}</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

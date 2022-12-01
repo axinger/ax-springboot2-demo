@@ -11,7 +11,7 @@ public class UserController {
     public UserDTO getUser() {
         UserDTO user = new UserDTO("jim", "123");
 //        User user2 = new User();
-        String name = user.name();
+        String name = user.username();
         System.out.println("name = " + name);
 
         UserDTO.range range = new UserDTO.range(1, 2);

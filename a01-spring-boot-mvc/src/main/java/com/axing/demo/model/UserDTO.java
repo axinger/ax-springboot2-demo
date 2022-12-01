@@ -1,5 +1,7 @@
 package com.axing.demo.model;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 /**
  * Java 16 新特性：record类
  * record申明的类，具备这些特点：
@@ -8,17 +10,19 @@ package com.axing.demo.model;
  * 自动实现equals、hashCode、toString函数
  * 成员变量均为public属性
  *
- * @param name
+ * @param username
  * @param password
  */
-public record UserDTO(String name, String password) {
+@ConfigurationProperties(prefix = "axing.config")
+/// @EnableConfigurationProperties(UserDTO.class) 配合使用
+public record UserDTO(String username, String password) {
 
     public record range(int start, int end) {
 
     }
 
     public String all() {
-        return name + password;
+        return username + password;
     }
 
 }
