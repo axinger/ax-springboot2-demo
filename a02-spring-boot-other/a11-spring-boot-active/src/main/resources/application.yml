@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    # 这个用来打包
+    #    active: @env@
+    active: dev
