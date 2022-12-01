@@ -1,0 +1,11 @@
+
+
+version: 1.0.0
+
+
+axing:
+  web-log: execution(public * com.axing.demo.controller.*.*(..))
+
+
+
+

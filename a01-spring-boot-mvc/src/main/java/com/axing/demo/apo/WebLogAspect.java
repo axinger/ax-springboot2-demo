@@ -1,223 +1,114 @@
 package com.axing.demo.apo;
 
-import com.alibaba.fastjson2.JSONObject;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.URLUtil;
+import cn.hutool.json.JSONUtil;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.http.HttpMethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.*;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * 统一日志处理切面
+ * Created by macro on 2018/4/26.
+ */
 @Aspect
-@Slf4j
 @Component
-class WebLogAspect {
+@Order(1)
+public class WebLogAspect {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebLogAspect.class);
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
-
-    /**
-     * ============================================================================
-     */
-    @Pointcut(value = "@annotation(org.springframework.web.bind.annotation.RequestMapping)")
-    public void requestMappingPointcut() {
+    @Pointcut("execution(public * com.axing.demo.controller.*.*(..))")
+    public void webLog() {
     }
 
-    @Before("requestMappingPointcut()")
-    public void requestMappingPointcutBefore(JoinPoint joinPoint) {
-        logRequestInfo(joinPoint);
+    @Before("webLog()")
+    public void doBefore(JoinPoint joinPoint) throws Throwable {
     }
 
-    @AfterReturning(pointcut = "requestMappingPointcut()", returning = "resultVo")
-    public void requestMappingPointcutAfterReturning(JoinPoint joinpoint, Object resultVo) {
-        logResultInfo(joinpoint, resultVo);
+    @AfterReturning(value = "webLog()", returning = "ret")
+    public void doAfterReturning(Object ret) throws Throwable {
     }
 
-    /**
-     * ============================================================================
-     */
-
-
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void getMappingPointcut() {
-    }
-
-    @Before("getMappingPointcut()")
-    public void getMappingPointcutBefore(JoinPoint joinPoint) {
-        //logRequestInfo(joinPoint);
-        try {
-            getRequestParams(joinPoint);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @AfterReturning(pointcut = "getMappingPointcut()", returning = "resultVo")
-    public void getMappingPointcutAfterReturning(JoinPoint joinpoint, Object resultVo) {
-        logResultInfo(joinpoint, resultVo);
-    }
-
-
-    /**
-     * ============================================================================
-     */
-
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.PostMapping)")
-    public void postMappingPointcut() {
-    }
-
-    @Before("postMappingPointcut()")
-    public void postMappingPointcutBefore(JoinPoint joinPoint) {
-        logRequestInfo(joinPoint);
-    }
-
-    @AfterReturning(pointcut = "postMappingPointcut()", returning = "resultVo")
-    public void postMappingPointcutAfterReturning(JoinPoint joinpoint, Object resultVo) {
-        logResultInfo(joinpoint, resultVo);
-    }
-
-    /**
-     * ============================================================================
-     */
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.PutMapping)")
-    public void putMappingPointcut() {
-    }
-
-    @Before("putMappingPointcut()")
-    public void putMappingPointcutBefore(JoinPoint joinPoint) {
-        logRequestInfo(joinPoint);
-    }
-
-    @AfterReturning(pointcut = "putMappingPointcut()", returning = "resultVo")
-    public void putMappingPointcutAfterReturning(JoinPoint joinpoint, Object resultVo) {
-        logResultInfo(joinpoint, resultVo);
-    }
-
-    /**
-     * ============================================================================
-     */
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.DeleteMapping)")
-    public void deleteMappingPointcut() {
-    }
-
-    @Before("deleteMappingPointcut()")
-    public void deleteMappingPointcutBefore(JoinPoint joinPoint) {
-        logRequestInfo(joinPoint);
-    }
-
-    @AfterReturning(pointcut = "deleteMappingPointcut()", returning = "resultVo")
-    public void deleteMappingPointcutAfterReturning(JoinPoint joinpoint, Object resultVo) {
-        logResultInfo(joinpoint, resultVo);
-    }
-
-    /**
-     * ============================================================================
-     */
-
-    public void logRequestInfo(JoinPoint joinpoint) {
-        //方法前打印方法名称和方法参数
-        try {
-            String[] paramNames = ((MethodSignature) joinpoint.getSignature()).getParameterNames();
-            Object[] paramValues = joinpoint.getArgs();
-            int paramLength = null == paramNames ? 0 : paramNames.length;
-            StringBuilder requestInfo = new StringBuilder();
-            if (paramLength == 0) {
-                requestInfo.append("{} ");
-            } else {
-                requestInfo.append("[");
-                for (int i = 0; i < paramLength; i++) {
-                    if (paramValues[i] instanceof MultipartFile
-                            || paramValues[i] instanceof HttpServletRequest
-                            || paramValues[i] instanceof HttpServletResponse) {
-                        continue;
-                    }
-                    requestInfo.append(paramNames[i]).append("=").append(JSONObject.toJSONString(paramValues[i]));
-                }
-                requestInfo.append("]");
-            }
-            log.info("请求参数 方法名 = {}, 参数 = {}", joinpoint.getSignature().toShortString(), requestInfo);
-        } catch (Exception e) {
-            log.error("请求参数解析异常: 方法名: {}, e = {}", joinpoint.getSignature().toShortString(), e);
-        }
-    }
-
-    public void logResultInfo(JoinPoint joinpoint, Object resultVo) {
-        //方法后打印方法名称和方法返回值
-        try {
-            if (null != resultVo) {
-                log.info("返回参数 方法名 = {}, 返回值 = {}",joinpoint.getSignature().toShortString(),resultVo);
-            }
-        } catch (Exception e) {
-            log.error("返回参数解析异常: 方法名: {}, e = {}", joinpoint.getSignature().toShortString(), e);
-        }
-    }
-
-    //获取请求的相关信息
-    private Map<String, Object> getRequestParams(JoinPoint joinPoint) throws UnsupportedEncodingException {
-        Map<String, Object> requestParams = new HashMap<>();
-        //获取请求信息
+    @Around("webLog()")
+    public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        //获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        requestParams.put("uri", request.getRequestURI());
-        // 获取请求头信息,需要注意的是，请求头中的key都会转成小写
-        Enumeration<String> enumeration = request.getHeaderNames();
-        JSONObject headers = new JSONObject();
-        while (enumeration.hasMoreElements()) {
-            String name = enumeration.nextElement();
-            String value = request.getHeader(name);
-            headers.put(name, value);
-        }
-        requestParams.put("headers", headers);
-        //获取请求的方法
-        String method = request.getMethod();
-        requestParams.put("method", method);
-        List<String> params = new ArrayList<>();
-        if (HttpMethod.GET.toString().equals(method)) {// get请求
-            String queryString = request.getQueryString();
-            if (StringUtils.isNotBlank(queryString)) {
-                params.add(0, URLDecoder.decode(queryString, "UTF-8"));
-            }
-        } else {//其他请求
-            Object[] paramsArray = joinPoint.getArgs();
-            if (paramsArray != null && paramsArray.length > 0) {
-                for (int i = 0; i < paramsArray.length; i++) {
-                    if (paramsArray[i] instanceof Serializable) {
-                        params.add(paramsArray[i].toString());
-                    } else {
-                        try {
-                            //使用json系列化 反射等等方法 反系列化会影响请求性能建议重写toString方法实现系列化接口
-                            String param = objectMapper.writeValueAsString(paramsArray[i]);
-                            if (StringUtils.isNotBlank(param)) {
-                                params.add(param);
-                            }
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                            log.error("json序列化异常", e);
-                        }
-                    }
-                }
-            }
-        }
+        //记录请求信息
+        WebLog webLog = new WebLog();
+        Object result = joinPoint.proceed();
+        Signature signature = joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        Method method = methodSignature.getMethod();
+        //if (method.isAnnotationPresent(ApiOperation.class)) {
+        //    ApiOperation apiOperation = method.getAnnotation(ApiOperation.class);
+        //    webLog.setDescription(apiOperation.value());
+        //}
+        long endTime = System.currentTimeMillis();
+        String urlStr = request.getRequestURL().toString();
+        webLog.setBasePath(StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
+        webLog.setIp(request.getRemoteUser());
+        webLog.setMethod(request.getMethod());
+        webLog.setParameter(getParameter(method, joinPoint.getArgs()));
+        webLog.setResult(result);
+        webLog.setSpendTime((int) (endTime - startTime));
+        webLog.setStartTime(startTime);
+        webLog.setUri(request.getRequestURI());
+        webLog.setUrl(request.getRequestURL().toString());
+        LOGGER.info("{}", JSONUtil.parse(webLog));
+        return result;
+    }
 
-        log.info(">>>>>>uri: {},method: {}", request.getRequestURI(), method);
-        log.info(">>>>>>headers: {}", headers);
-        log.info(">>>>>>params: {}", params);
-        requestParams.put("params", params);
-        return requestParams;
+    /**
+     * 根据方法和传入的参数获取请求参数
+     */
+    private Object getParameter(Method method, Object[] args) {
+        List<Object> argList = new ArrayList<>();
+        Parameter[] parameters = method.getParameters();
+        for (int i = 0; i < parameters.length; i++) {
+            //将RequestBody注解修饰的参数作为请求参数
+            RequestBody requestBody = parameters[i].getAnnotation(RequestBody.class);
+            if (requestBody != null) {
+                argList.add(args[i]);
+            }
+            //将RequestParam注解修饰的参数作为请求参数
+            RequestParam requestParam = parameters[i].getAnnotation(RequestParam.class);
+            if (requestParam != null) {
+                Map<String, Object> map = new HashMap<>();
+                String key = parameters[i].getName();
+                if (!StringUtils.isEmpty(requestParam.value())) {
+                    key = requestParam.value();
+                }
+                map.put(key, args[i]);
+                argList.add(map);
+            }
+        }
+        if (argList.size() == 0) {
+            return null;
+        } else if (argList.size() == 1) {
+            return argList.get(0);
+        } else {
+            return argList;
+        }
     }
 }

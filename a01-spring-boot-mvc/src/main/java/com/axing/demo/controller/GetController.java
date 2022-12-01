@@ -3,6 +3,7 @@ package com.axing.demo.controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class GetController {
@@ -18,8 +19,9 @@ public class GetController {
     }
 
     @PostMapping("/post")
-    public Object PostMapping(String id) {
-        return List.of(id);
+    public Object PostMapping(@RequestBody Map map) {
+        System.out.println("map = " + map);
+        return map;
     }
 
     @PutMapping("/put")
