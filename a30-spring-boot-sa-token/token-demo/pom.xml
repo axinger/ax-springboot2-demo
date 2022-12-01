@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>a30-spring-boot-sa-token-demo</artifactId>
+    <artifactId>token-demo</artifactId>
     <properties>
         <sa-token.version>1.33.0</sa-token.version>
     </properties>
