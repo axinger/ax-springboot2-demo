@@ -15,26 +15,26 @@
         <module>multiple-db</module>
         <module>no-web</module>
         <module>packaging-jar</module>
-        <module>async</module>
-        <module>01-test-java8</module>
-        <module>demo-juc</module>
+        <module>b15-async</module>
+        <module>b01-java8</module>
+        <module>b16-demo-juc</module>
         <module>demo-spring5</module>
         <module>demo-logback</module>
-        <module>02-test-guava</module>
-        <module>03-test-hutool</module>
-        <module>04-web-json</module>
-        <module>05-jdk11-b</module>
-        <module>05-jdk11</module>
-        <module>05-test-jdk11</module>
-        <module>06-future-async</module>
-        <module>07-sql-transactional</module>
-        <module>08-strategy</module>
-        <module>a09-response</module>
-        <module>a10-jdk17</module>
-        <module>a11-spring-boot-active</module>
-        <module>a12-spring-web-flux</module>
-        <module>a13-springboot-mvc</module>
-        <module>a14-lombok</module>
+        <module>b02-guava</module>
+        <module>b03-hutool</module>
+        <module>b04-web-json</module>
+        <module>b05-jdk11-b</module>
+        <module>b05-jdk11</module>
+        <module>b17-http-request</module>
+        <module>b06-future-async</module>
+        <module>b07-sql-transactional</module>
+        <module>b08-strategy</module>
+        <module>b09-response</module>
+        <module>b10-jdk17</module>
+        <module>b11-spring-boot-active</module>
+        <module>b12-spring-web-flux</module>
+        <module>b13-springboot-mvc</module>
+        <module>b14-lombok</module>
     </modules>
 
 
