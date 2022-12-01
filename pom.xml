@@ -82,6 +82,7 @@
         <module>a29-elk</module>
         <module>a30-spring-boot-sa-token</module>
         <module>a01-spring-boot-mvc</module>
+        <module>a08-spring-boot-mapstruct</module>
     </modules>
 
     <dependencies>

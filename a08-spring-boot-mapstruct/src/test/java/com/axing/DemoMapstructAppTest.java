@@ -1,17 +1,16 @@
-package com.ax;
+package com.axing;
 
-import com.ax.model.Role;
-import com.ax.model.User;
-import com.ax.model.UserRoleDto;
-import com.ax.model.UserRoleMapper;
+import com.axing.model.Role;
+import com.axing.model.User;
+import com.axing.model.UserRoleDto;
+import com.axing.model.UserRoleMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Test1 {
-
+class DemoMapstructAppTest {
 
     Role role = null;
     User user = null;

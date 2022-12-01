@@ -1,14 +1,16 @@
-package com.ax.model;
+package com.axing.model;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.springframework.stereotype.Component;
 
 /**
  * @Mapper 定义这是一个MapStruct对象属性转换接口，在这个类里面规定转换规则
  * 在项目构建时，会自动生成改接口的实现类，这个实现类将实现对象属性值复制
  */
 @Mapper(componentModel = "spring")
+@Component
 public interface UserRoleMapper {
 
     /**

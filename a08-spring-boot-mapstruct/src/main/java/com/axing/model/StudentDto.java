@@ -1,6 +1,5 @@
-package com.ax.model;
+package com.axing.model;
 
-import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -13,13 +12,13 @@ import lombok.Data;
  * @version: 1.0
  */
 @Data
-@Builder
-public class StudentVo {
+public class StudentDto {
     private String userName;
     private String userId;
     private String address;
     private String school;
     private int age;
-    private String emailAddress;
+    private String email;
+
 }
 

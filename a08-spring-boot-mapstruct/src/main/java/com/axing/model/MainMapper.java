@@ -1,4 +1,4 @@
-package com.ax.model;
+package com.axing.model;
 
 import org.mapstruct.Mapper;
 
