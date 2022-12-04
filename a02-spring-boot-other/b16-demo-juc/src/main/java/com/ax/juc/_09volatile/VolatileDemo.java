@@ -93,7 +93,7 @@ public class VolatileDemo {
         }, "A1").start();
 
         System.out.println(Thread.currentThread().getName() + "==主线程");
-        //主线程
+        // 主线程
         while (myData.number == 0) {
 
             ///没有volatile修饰,会一直卡住,说明子线程修改了值,没有通知主线程,无法保证可见性

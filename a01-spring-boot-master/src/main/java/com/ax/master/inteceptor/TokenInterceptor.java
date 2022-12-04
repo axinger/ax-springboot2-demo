@@ -45,7 +45,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         System.out.println("token获得 = " + token);
 
 
-        //检查是否有passtoken注释，有则跳过认证
+        // 检查是否有passtoken注释，有则跳过认证
         if (method.isAnnotationPresent(PassToken.class)) {
             PassToken passToken = method.getAnnotation(PassToken.class);
             if (passToken.value()) {

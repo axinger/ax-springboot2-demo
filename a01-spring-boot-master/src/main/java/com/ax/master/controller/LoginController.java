@@ -113,9 +113,9 @@ public class LoginController extends BaseController {
                              RedirectAttributes redirectAttributes,
                              HttpServletResponse response) throws Exception {
         System.out.println("name = " + name);
-        //页面传参
+        // 页面传参
         redirectAttributes.addFlashAttribute("username", name);
-        //url传参
+        // url传参
         redirectAttributes.addAttribute("name", name);
         return "redirect:/loginPage1";
 

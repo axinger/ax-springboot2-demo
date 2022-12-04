@@ -17,7 +17,7 @@ public class PersonFactory implements FactoryBean<Person> {
         return Person.class;
     }
 
-    //是否单例
+    // 是否单例
     @Override
     public boolean isSingleton() {
 //        return false;

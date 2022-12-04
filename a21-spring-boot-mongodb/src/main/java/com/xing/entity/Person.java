@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Person extends BaseMongoEntity {
 
 
-    @Indexed //普通索引
+    @Indexed // 普通索引
     private String name;
 
     private int age;

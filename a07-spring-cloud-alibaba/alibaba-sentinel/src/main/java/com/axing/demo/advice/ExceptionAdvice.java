@@ -25,7 +25,7 @@ import java.util.Map;
 @Slf4j
 public class ExceptionAdvice {
 
-    @ExceptionHandler(value = Exception.class)//异常全局处理
+    @ExceptionHandler(value = Exception.class)// 异常全局处理
     @ResponseBody
 //	 在@RequestMapping执行后执行
     public Object exception(HttpServletRequest request,

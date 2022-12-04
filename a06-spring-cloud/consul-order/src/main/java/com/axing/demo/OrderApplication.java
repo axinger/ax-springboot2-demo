@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableDiscoveryClient // zookeeper 发现注册服务
 @EnableFeignClients
-@EnableCircuitBreaker //回路,熔断
+@EnableCircuitBreaker // 回路,熔断
 @EnableHystrixDashboard // 熔断仪表盘
 public class OrderApplication {
 
@@ -26,8 +26,8 @@ public class OrderApplication {
 
         HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-        registrationBean.setLoadOnStartup(1);  //系统启动时加载顺序
-        registrationBean.addUrlMappings("/hystrix.stream");//路径
+        registrationBean.setLoadOnStartup(1);  // 系统启动时加载顺序
+        registrationBean.addUrlMappings("/hystrix.stream");// 路径
         registrationBean.setName("HystrixMetricsStreamServlet");
         return registrationBean;
     }

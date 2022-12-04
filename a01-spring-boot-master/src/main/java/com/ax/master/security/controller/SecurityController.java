@@ -1,14 +1,14 @@
-//package com.ax.master.security.controller;
+// package com.ax.master.security.controller;
 //
 //
-//import com.ax.master.service.IUserinfoService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.access.annotation.Secured;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
+// import com.ax.master.service.IUserinfoService;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.security.access.annotation.Secured;
+// import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RestController;
 //
 //@RestController
-//public class SecurityController {
+// public class SecurityController {
 //
 //
 //    @RequestMapping("/admin/p")

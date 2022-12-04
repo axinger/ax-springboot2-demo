@@ -63,7 +63,7 @@ class JdbcTests {
 
     }
 
-    //更新用户
+    // 更新用户
     @Test
     public void updateUser(@PathVariable("id") int id) {
         String sql = "update mybatis.user set name=?,pwd=? where id=" + id;
@@ -73,7 +73,7 @@ class JdbcTests {
         jdbcTemplate.update(sql, objects);
     }
 
-    //删除用户
+    // 删除用户
     @Test
     public void delUser(@PathVariable("id") int id) {
         String sql = "delete from user where id=?";

@@ -66,9 +66,9 @@ public class RedissonLockController {
     public Object hello() {
         RLock lock = redissonClient.getLock("phoneLock");
 
-        //1.加锁
-        //1.1 锁的自动续期,业务超长,会自动续期30秒,不用担心业务厂,锁被删除
-        //1.2 加锁业务完成,就不会自动续期,即使不解锁,30秒后也会删除锁
+        // 1.加锁
+        // 1.1 锁的自动续期,业务超长,会自动续期30秒,不用担心业务厂,锁被删除
+        // 1.2 加锁业务完成,就不会自动续期,即使不解锁,30秒后也会删除锁
 //          lock.lock(); // 阻塞式等待
 //        lock.lock(10, TimeUnit.SECONDS); //10秒后自动解锁,自动解锁时间要大于业务执行时间,不然会误删别人的锁
         final boolean tryLock = lock.tryLock(10, TimeUnit.SECONDS);
@@ -76,10 +76,10 @@ public class RedissonLockController {
         if (tryLock) {
             try {
 
-                //2.处理业务
+                // 2.处理业务
 
             } finally {
-                //3.解锁,多个业务用一个锁时,有个业务终端,没有解锁,不会死锁
+                // 3.解锁,多个业务用一个锁时,有个业务终端,没有解锁,不会死锁
                 // 有个 watchDog 看门狗,自动续期
                 lock.unlock();
             }

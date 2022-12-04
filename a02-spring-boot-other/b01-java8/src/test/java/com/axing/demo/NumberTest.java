@@ -16,11 +16,11 @@ import java.text.DecimalFormat;
  * @createTime 2022年05月20日 22:00:00
  */
 class FormatDemo {
-    //此方法用于完成数字的格式化显示
+    // 此方法用于完成数字的格式化显示
     public void format1(String parrent, double value) {
-        DecimalFormat decimalFormat = null;//声明对象
-        decimalFormat = new DecimalFormat(parrent);//实例化并传入模板
-        String string = decimalFormat.format(value);//格式化数字
+        DecimalFormat decimalFormat = null;// 声明对象
+        decimalFormat = new DecimalFormat(parrent);// 实例化并传入模板
+        String string = decimalFormat.format(value);// 格式化数字
         System.out.println("string = " + string);
     }
 
@@ -47,7 +47,7 @@ public class NumberTest {
         System.out.println("money = " + money);
         System.out.println("salary = " + salary);
 
-        FormatDemo formatDemo = new FormatDemo();//格式化对象的类
+        FormatDemo formatDemo = new FormatDemo();// 格式化对象的类
         formatDemo.format1("###,###.###", 123468.4986);
         formatDemo.format1("000,000.000", 18956.6615);
         formatDemo.format1("###,###.###￥", 156498.948165);

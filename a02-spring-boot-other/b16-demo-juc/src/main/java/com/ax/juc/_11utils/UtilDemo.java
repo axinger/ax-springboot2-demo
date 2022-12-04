@@ -76,7 +76,7 @@ class SemaphoreDemo {
                     semaphore.acquire();
                     System.out.println(Thread.currentThread().getName() + "抢占到车位");
 
-                    //设置随机停车时间
+                    // 设置随机停车时间
                     TimeUnit.SECONDS.sleep(new Random().nextInt(5));
                     System.out.println(Thread.currentThread().getName() + "离开车位车位");
                 } catch (InterruptedException e) {

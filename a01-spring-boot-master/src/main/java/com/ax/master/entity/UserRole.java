@@ -1,8 +1,8 @@
 package com.ax.master.entity;
 
-//import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.security.core.GrantedAuthority;
 
-//public class UserRole implements GrantedAuthority {
+// public class UserRole implements GrantedAuthority {
 public class UserRole {
     private Long id;
     private String role;

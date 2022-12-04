@@ -33,10 +33,10 @@ public class PulsarController {
     @GetMapping(value = "/deliverAfter")
     @ResponseBody
     public void deliverAfter() {
-        //Map map = new HashMap<>();
-        //map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
-        //map.put("data", "发送普通消息");
-        //pulsarProducer.send(map);
+        // Map map = new HashMap<>();
+        // map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
+        // map.put("data", "发送普通消息");
+        // pulsarProducer.send(map);
         pulsarProducer.deliverAfter();
 
     }

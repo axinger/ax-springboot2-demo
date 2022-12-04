@@ -1,13 +1,13 @@
 package com.ax.master.controller;
 
 import com.alibaba.fastjson2.JSON;
+import com.ax.master.dto.LoginDto;
+import com.ax.master.dto.LoginListDto;
 import com.ax.master.entity.TStudent;
 import com.ax.master.entity.User;
 import com.ax.master.entity.valid.PasswordGroup;
 import com.ax.master.entity.valid.UsernameGroup;
 import com.ax.master.entity.valid.ValidList;
-import com.ax.master.dto.LoginDto;
-import com.ax.master.dto.LoginListDto;
 import com.ax.master.service.HttpClientService;
 import com.ax.master.service.TStudentService;
 import com.axing.common.response.result.Result;

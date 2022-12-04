@@ -71,10 +71,10 @@ public class LookupOperationTests {
     @Test
     public void test() {
         LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("studentClass")//关联从表名
-                .localField("classId")//主表中的关联字段
-                .foreignField("_id")//从表关联的字段
-                .as("classStudents");//查询结果名
+                .from("studentClass")// 关联从表名
+                .localField("classId")// 主表中的关联字段
+                .foreignField("_id")// 从表关联的字段
+                .as("classStudents");// 查询结果名
         // 源码中建议使用静态工厂方法Aggregation.lookup(String, String, String, String)而不是直接创建此类的实例
         LookupOperation lookup = Aggregation.lookup("studentClass",
                 "classId",

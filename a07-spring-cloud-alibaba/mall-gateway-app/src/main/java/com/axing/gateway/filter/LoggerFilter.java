@@ -1,21 +1,21 @@
-package com.axing.gateway.filter;//package com.ax.service.gateway.filter;
+package com.axing.gateway.filter;// package com.ax.service.gateway.filter;
 //
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.cloud.gateway.filter.GatewayFilterChain;
-//import org.springframework.cloud.gateway.filter.GlobalFilter;
-//import org.springframework.core.io.buffer.DataBuffer;
-//import org.springframework.core.io.buffer.DataBufferUtils;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.http.server.reactive.ServerHttpRequest;
-//import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
-//import org.springframework.stereotype.Component;
-//import org.springframework.web.server.ServerWebExchange;
-//import reactor.core.publisher.Flux;
-//import reactor.core.publisher.Mono;
+// import lombok.extern.slf4j.Slf4j;
+// import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+// import org.springframework.cloud.gateway.filter.GlobalFilter;
+// import org.springframework.core.io.buffer.DataBuffer;
+// import org.springframework.core.io.buffer.DataBufferUtils;
+// import org.springframework.http.HttpMethod;
+// import org.springframework.http.server.reactive.ServerHttpRequest;
+// import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
+// import org.springframework.stereotype.Component;
+// import org.springframework.web.server.ServerWebExchange;
+// import reactor.core.publisher.Flux;
+// import reactor.core.publisher.Mono;
 //
-//import java.nio.charset.StandardCharsets;
-//import java.util.Map;
-//import java.util.stream.Collectors;
+// import java.nio.charset.StandardCharsets;
+// import java.util.Map;
+// import java.util.stream.Collectors;
 //
 ///**
 // * @author xing
@@ -26,7 +26,7 @@ package com.axing.gateway.filter;//package com.ax.service.gateway.filter;
 // */
 //@Slf4j
 //@Component
-//public class LoggerFilter implements GlobalFilter {
+// public class LoggerFilter implements GlobalFilter {
 //
 //    @Override
 //    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {

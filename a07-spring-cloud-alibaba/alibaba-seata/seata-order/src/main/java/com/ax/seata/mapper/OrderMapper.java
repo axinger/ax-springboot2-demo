@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface OrderMapper extends BaseMapper<Order> {
 
-    //创建订单
+    // 创建订单
     void create(Order order);
 
     boolean updateStatus(Long userId, Integer status);

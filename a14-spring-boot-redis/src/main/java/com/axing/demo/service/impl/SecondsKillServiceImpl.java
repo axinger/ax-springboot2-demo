@@ -60,7 +60,7 @@ public class SecondsKillServiceImpl implements SecondsKillService {
 
         /// 监视库存,并发
         redisTemplate.watch(prodKey);
-        //判断库存是否存在
+        // 判断库存是否存在
         if (redisTemplate.opsForValue().get(prodKey) == null) {
             log.info("秒杀还未开始.........");
             return false;
@@ -118,7 +118,7 @@ public class SecondsKillServiceImpl implements SecondsKillService {
             String prodKey = prodKey(prodId);
             // 商品已经秒杀过的 用户集合key
             String userKilledKey = userKilledKey(prodId);
-            //判断库存是否存在
+            // 判断库存是否存在
             if (redisTemplate.opsForValue().get(prodKey) == null) {
                 log.info("秒杀还未开始.........");
                 return false;

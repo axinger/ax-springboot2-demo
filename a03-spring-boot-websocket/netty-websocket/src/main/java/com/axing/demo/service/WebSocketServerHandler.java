@@ -65,11 +65,11 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        //http请求和tcp请求分开处理
+        // http请求和tcp请求分开处理
         if (msg instanceof HttpRequest) {
             handlerHttpRequest(ctx, (HttpRequest) msg);
         } else if (msg instanceof WebSocketFrame frame) {
-            //踩坑: simpleChannelInboundHandler 他会进行一次释放(引用计数器减一),参考源码,而我们释放的时候就变为了0,所以必须手动进行引用计数器加1
+            // 踩坑: simpleChannelInboundHandler 他会进行一次释放(引用计数器减一),参考源码,而我们释放的时候就变为了0,所以必须手动进行引用计数器加1
             frame.retain();
             handlerWebSocketFrame(ctx, frame);
         }
@@ -88,26 +88,26 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
      * @param frame
      */
     private void handlerWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
-        //判断是否是关闭链路的指令
+        // 判断是否是关闭链路的指令
         if (frame instanceof CloseWebSocketFrame) {
             log.info("【" + ctx.channel().remoteAddress() + "】已关闭（服务器端）");
-            //移除channel
+            // 移除channel
             NioSocketChannel channel = (NioSocketChannel) ctx.channel();
             webSocketServerHandler.messageService.removeConnection(channel);
             handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame);
             return;
         }
-        //判断是否是ping消息
+        // 判断是否是ping消息
         if (frame instanceof PingWebSocketFrame) {
             log.info("【ping】");
             return;
         }
-        //判断实时是pong消息
+        // 判断实时是pong消息
         if (frame instanceof PongWebSocketFrame) {
             log.info("【pong】");
             return;
         }
-        //本例子只支持文本，不支持二进制
+        // 本例子只支持文本，不支持二进制
         if (!(frame instanceof TextWebSocketFrame)) {
             log.info("【不支持二进制】");
             throw new UnsupportedOperationException("不支持二进制");
@@ -132,7 +132,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             String uri = req.getUri();
             userUid = req.getUri().substring(uri.indexOf("/", 2) + 1, uri.lastIndexOf("/"));
             sectionId = req.getUri().substring(uri.lastIndexOf("/") + 1);
-            //对用户信息进行存储
+            // 对用户信息进行存储
             NioSocketChannel channel = (NioSocketChannel) ctx.channel();
 
             webSocketServerHandler.messageService.putConnection(userUid, sectionId, channel);
@@ -142,7 +142,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         if (!req.getDecoderResult().isSuccess() || (!"websocket".equalsIgnoreCase(req.headers().get("Upgrade")))) {
             sendHttpResponse(ctx, (FullHttpRequest) req, new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
         }
-        //可以通过url获取其他参数
+        // 可以通过url获取其他参数
         WebSocketServerHandshakerFactory factory;
 // 这里主要用于 客户端为wss连接的处理
         if (useSsl != null && useSsl) {
@@ -158,7 +158,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         if (handshaker == null) {
             WebSocketServerHandshakerFactory.sendUnsupportedWebSocketVersionResponse(ctx.channel());
         } else {
-            //进行连接
+            // 进行连接
             handshaker.handshake(ctx.channel(), (FullHttpRequest) req);
         }
     }
@@ -175,18 +175,18 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         if (evt instanceof IdleStateEvent stateEvent) {
             PingWebSocketFrame ping = new PingWebSocketFrame();
             switch (stateEvent.state()) {
-                //读空闲（服务器端）
+                // 读空闲（服务器端）
                 case READER_IDLE:
-                    //log.info("【" + ctx.channel().remoteAddress() + "】读空闲（服务器端）");
+                    // log.info("【" + ctx.channel().remoteAddress() + "】读空闲（服务器端）");
                     ctx.writeAndFlush(ping);
                     break;
-                //写空闲（客户端）
+                // 写空闲（客户端）
                 case WRITER_IDLE:
-                    //log.info("【" + ctx.channel().remoteAddress() + "】写空闲（客户端）");
+                    // log.info("【" + ctx.channel().remoteAddress() + "】写空闲（客户端）");
                     ctx.writeAndFlush(ping);
                     break;
                 case ALL_IDLE:
-                    //log.info("【" + ctx.channel().remoteAddress() + "】读写空闲");
+                    // log.info("【" + ctx.channel().remoteAddress() + "】读写空闲");
                     break;
                 default:
                     break;
@@ -201,7 +201,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
-        //移除channel
+        // 移除channel
         webSocketServerHandler.messageService.removeConnection((NioSocketChannel) ctx.channel());
         ctx.close();
         log.info("【" + ctx.channel().remoteAddress() + "】已关闭（服务器端）");

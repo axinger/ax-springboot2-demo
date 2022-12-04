@@ -50,7 +50,7 @@ public class IndexController {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(data))
-                .header("Content-Type", "application/json") //设置头部信息
+                .header("Content-Type", "application/json") // 设置头部信息
                 .uri(URI.create("http://127.0.0.1:8080/data1"))
                 .build();
 

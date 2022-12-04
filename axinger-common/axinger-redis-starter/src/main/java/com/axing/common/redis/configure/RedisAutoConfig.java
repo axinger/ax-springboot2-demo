@@ -113,14 +113,14 @@ public class RedisAutoConfig {
         }
 
         // 解决jackson2无法反序列化LocalDateTime的问题
-        //objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        // objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
         return jackson2JsonRedisSerializer;
 
-        //GenericJackson2JsonRedisSerializer redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
-        //return redisSerializer;
+        // GenericJackson2JsonRedisSerializer redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        // return redisSerializer;
 
 //        FastJson2JsonRedisSerializer redisSerializer = new FastJson2JsonRedisSerializer<>(Object.class);
 //        return redisSerializer;

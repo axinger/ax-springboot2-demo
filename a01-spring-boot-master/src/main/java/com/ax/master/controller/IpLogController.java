@@ -1,7 +1,7 @@
 package com.ax.master.controller;
 
-import com.ax.master.entity.IpLog;
 import com.ax.master.dto.UpdateListDTO;
+import com.ax.master.entity.IpLog;
 import com.ax.master.service.IIpLogService;
 import com.axing.common.response.result.Result;
 import io.swagger.v3.oas.annotations.tags.Tag;

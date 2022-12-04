@@ -17,15 +17,15 @@ public class CustomizeThreadPoolConfig {
     @Bean("customizeThreadPool")
     public Executor doConfigCustomizeThreadPool() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        //核心线程池大小
+        // 核心线程池大小
         executor.setCorePoolSize(2);
-        //最大线程数
+        // 最大线程数
         executor.setMaxPoolSize(4);
-        //队列容量
+        // 队列容量
         executor.setQueueCapacity(50);
-        //活跃时间
+        // 活跃时间
         executor.setKeepAliveSeconds(20);
-        //线程名字前缀
+        // 线程名字前缀
         executor.setThreadNamePrefix("⃣2️⃣2️⃣2️⃣订单线程池-");
      /*
       当poolSize已达到maxPoolSize，如何处理新任务（是拒绝还是交由其它线程处理）
@@ -39,15 +39,15 @@ public class CustomizeThreadPoolConfig {
     @Bean("orderExecutor")
     public Executor orderExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        //核心线程池大小
+        // 核心线程池大小
         executor.setCorePoolSize(2);
-        //最大线程数
+        // 最大线程数
         executor.setMaxPoolSize(4);
-        //队列容量
+        // 队列容量
         executor.setQueueCapacity(50);
-        //活跃时间
+        // 活跃时间
         executor.setKeepAliveSeconds(20);
-        //线程名字前缀
+        // 线程名字前缀
         executor.setThreadNamePrefix("3️⃣3️⃣3️⃣订单线程池-");
      /*
       当poolSize已达到maxPoolSize，如何处理新任务（是拒绝还是交由其它线程处理）

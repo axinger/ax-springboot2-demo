@@ -44,8 +44,8 @@ class PulsarProducerApplicationTest {
             map.put("data", "灾备模式(Failover)");
             map.put("topic", Topic.FAILOVER_TOPIC);
 
-            //异步发送
-            //messageId = 1873:0:-1:0
+            // 异步发送
+            // messageId = 1873:0:-1:0
             template.sendAsync(Topic.FAILOVER_TOPIC, map).whenComplete((messageId, err) -> {
                 System.out.println("messageId = " + messageId.toString());
             });
@@ -64,8 +64,8 @@ class PulsarProducerApplicationTest {
             map.put("data", "共享订阅(Shared)");
             map.put("topic", Topic.SHARED_TOPIC);
 
-            //异步发送
-            //messageId = 1873:0:-1:0
+            // 异步发送
+            // messageId = 1873:0:-1:0
             template.sendAsync(Topic.SHARED_TOPIC, map).whenComplete((messageId, err) -> {
                 System.out.println("messageId = " + messageId.toString());
             });
@@ -83,8 +83,8 @@ class PulsarProducerApplicationTest {
             map.put("data", "Key_Shared");
             map.put("topic", Topic.KEY_SHARED_TOPIC);
 
-            //异步发送
-            //messageId = 1873:0:-1:0
+            // 异步发送
+            // messageId = 1873:0:-1:0
             MessageId messageId = template.createMessage(Topic.KEY_SHARED_TOPIC, map).key("1")
                     .send();
             System.out.println("messageId = " + messageId);

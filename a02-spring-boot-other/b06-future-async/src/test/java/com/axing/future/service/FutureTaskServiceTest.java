@@ -334,7 +334,7 @@ class FutureTaskServiceTest {
         }).collect(Collectors.toList());
 
 
-        //这个不行
+        // 这个不行
 //        List<Integer> collect = list.stream().map(val -> CompletableFuture.supplyAsync(() -> {
 //            try {
 //                TimeUnit.SECONDS.sleep(val);

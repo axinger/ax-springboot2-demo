@@ -31,7 +31,7 @@ public class Java8TimeModule extends SimpleModule {
                 new LocalTimeSerializer(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN)));
 
         // Instant 类型序列化
-        //this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
+        // this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
 
         // ======================= 时间反序列化规则 ==============================
         // yyyy-MM-dd HH:mm:ss
@@ -44,7 +44,7 @@ public class Java8TimeModule extends SimpleModule {
         this.addDeserializer(LocalTime.class,
                 new LocalTimeDeserializer(DateTimeFormatter.ofPattern(DatePattern.NORM_TIME_PATTERN)));
         //// Instant 反序列化
-        //this.addDeserializer(Instant.class, InstantDeserializer.INSTANT);
+        // this.addDeserializer(Instant.class, InstantDeserializer.INSTANT);
     }
 
 }

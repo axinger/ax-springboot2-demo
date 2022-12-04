@@ -28,13 +28,13 @@ class DemoAppTest {
 
         List<Integer> list1 = List.of(45, 43, 76, 4, 5);
 
-        //takewhile() 方法接受所有值，直到谓词返回false为止,才停止。
+        // takewhile() 方法接受所有值，直到谓词返回false为止,才停止。
         // 也就是从第1个元素一直往后判断，符合条件的就进行处理，如果中间遇见一个不符合的，整个流程结束。
         list1.stream()
                 .takeWhile(val -> val < 50)
                 .forEach(System.out::println); // 45,43  ,
 
-        //dropWhile()方法丢弃所有值，直到它与谓词匹配为止。行为与 takeWhile 相反，返回剩余的元素。
+        // dropWhile()方法丢弃所有值，直到它与谓词匹配为止。行为与 takeWhile 相反，返回剩余的元素。
         // 也就是从第1个元素一直往后判断，如果符合条件的就继续往下判断，当发现元素不符合条件，那么处理后面的那些元素。
 
         list1.stream()
@@ -86,7 +86,7 @@ class DemoAppTest {
 
     }
 
-    //Java 11
+    // Java 11
 
     @Test
     void test_jdk11() {

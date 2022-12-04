@@ -53,7 +53,7 @@ public class MongoTemplateTests {
 
         User user = new User();
 
-        //user.setId("123");
+        // user.setId("123");
         user.setName("jim");
         user.setAge(10);
         User save = mongoTemplate.save(user);
@@ -61,6 +61,7 @@ public class MongoTemplateTests {
 
 
     }
+
     @Test
     void save_dog() {
 
@@ -257,7 +258,7 @@ public class MongoTemplateTests {
         dbObject.put("id", "1");
         dbObject.put("name", "jim");
 
-        //指定返回的字段
+        // 指定返回的字段
         BasicDBObject fieldsObject = new BasicDBObject();
         fieldsObject.put("id", true);
         fieldsObject.put("name", true);
@@ -272,15 +273,15 @@ public class MongoTemplateTests {
     @Test
     public void getLeaveMessage() {
 
-        String postId = "1";   //帖子id
+        String postId = "1";   // 帖子id
         LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("DirectTrainPostLeaveMessageComment")   //从表名
-                .localField("_id")   //主表关联字段
-                .foreignField("leaveId")   //从表关联字段
-                .as("CommentList");   //查询结果名
-        //匹配id条件
+                .from("DirectTrainPostLeaveMessageComment")   // 从表名
+                .localField("_id")   // 主表关联字段
+                .foreignField("leaveId")   // 从表关联字段
+                .as("CommentList");   // 查询结果名
+        // 匹配id条件
         MatchOperation matchOperation = new MatchOperation(Criteria.where("postId").is(postId));
-        //按回帖时间排序
+        // 按回帖时间排序
         SortOperation sortOperation = new SortOperation(Sort.by(Sort.Order.desc("leaveMessageTime")));
         Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
         List<Map> result = mongoTemplate.aggregate(aggregation, "DirectTrainPostLeaveMessage", Map.class).getMappedResults();

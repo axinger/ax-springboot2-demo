@@ -25,7 +25,7 @@ class Tests {
         System.out.println("person = " + person);
         person.add();
 
-        //手动调用销毁
+        // 手动调用销毁
         ((ClassPathXmlApplicationContext) context).close();
 
     }

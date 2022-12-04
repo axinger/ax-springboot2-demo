@@ -1,11 +1,11 @@
-package com.axing.gateway.config;//package com.ax.service.gateway.config;
+package com.axing.gateway.config;// package com.ax.service.gateway.config;
 //
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.cors.CorsConfiguration;
-//import org.springframework.web.cors.reactive.CorsWebFilter;
-//import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-//import org.springframework.web.util.pattern.PathPatternParser;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.web.cors.CorsConfiguration;
+// import org.springframework.web.cors.reactive.CorsWebFilter;
+// import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+// import org.springframework.web.util.pattern.PathPatternParser;
 //
 ///**
 // * @author xing
@@ -16,7 +16,7 @@ package com.axing.gateway.config;//package com.ax.service.gateway.config;
 // */
 //
 //@Configuration
-//public class CorsConfig {
+// public class CorsConfig {
 //
 //    @Bean
 //    public CorsWebFilter corsFilter() {

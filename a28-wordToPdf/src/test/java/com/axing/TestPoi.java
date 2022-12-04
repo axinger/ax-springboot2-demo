@@ -1,36 +1,36 @@
-//package com.axing;
+// package com.axing;
 //
-//import com.itextpdf.text.BaseColor;
-//import com.itextpdf.text.Font;
-//import com.itextpdf.text.FontProvider;
-//import com.itextpdf.text.PageSize;
-//import com.itextpdf.text.pdf.BaseFont;
-//import com.itextpdf.text.pdf.PdfWriter;
-//import com.itextpdf.tool.xml.XMLWorkerHelper;
-//import org.apache.commons.lang3.StringUtils;
-//import org.apache.poi.hwpf.HWPFDocument;
-//import org.apache.poi.hwpf.converter.PicturesManager;
-//import org.apache.poi.hwpf.converter.WordToHtmlConverter;
-//import org.apache.poi.hwpf.usermodel.PictureType;
-//import org.apache.poi.xwpf.converter.core.BasicURIResolver;
-//import org.apache.poi.xwpf.converter.core.FileImageExtractor;
-//import org.apache.poi.xwpf.converter.xhtml.XHTMLConverter;
-//import org.apache.poi.xwpf.converter.xhtml.XHTMLOptions;
-//import org.apache.poi.xwpf.usermodel.XWPFDocument;
-//import org.jsoup.Jsoup;
-//import org.jsoup.nodes.Element;
-//import org.jsoup.nodes.Entities;
-//import org.jsoup.select.Elements;
-//import org.w3c.dom.Document;
+// import com.itextpdf.text.BaseColor;
+// import com.itextpdf.text.Font;
+// import com.itextpdf.text.FontProvider;
+// import com.itextpdf.text.PageSize;
+// import com.itextpdf.text.pdf.BaseFont;
+// import com.itextpdf.text.pdf.PdfWriter;
+// import com.itextpdf.tool.xml.XMLWorkerHelper;
+// import org.apache.commons.lang3.StringUtils;
+// import org.apache.poi.hwpf.HWPFDocument;
+// import org.apache.poi.hwpf.converter.PicturesManager;
+// import org.apache.poi.hwpf.converter.WordToHtmlConverter;
+// import org.apache.poi.hwpf.usermodel.PictureType;
+// import org.apache.poi.xwpf.converter.core.BasicURIResolver;
+// import org.apache.poi.xwpf.converter.core.FileImageExtractor;
+// import org.apache.poi.xwpf.converter.xhtml.XHTMLConverter;
+// import org.apache.poi.xwpf.converter.xhtml.XHTMLOptions;
+// import org.apache.poi.xwpf.usermodel.XWPFDocument;
+// import org.jsoup.Jsoup;
+// import org.jsoup.nodes.Element;
+// import org.jsoup.nodes.Entities;
+// import org.jsoup.select.Elements;
+// import org.w3c.dom.Document;
 //
-//import javax.xml.parsers.DocumentBuilderFactory;
-//import javax.xml.transform.OutputKeys;
-//import javax.xml.transform.Transformer;
-//import javax.xml.transform.TransformerFactory;
-//import javax.xml.transform.dom.DOMSource;
-//import javax.xml.transform.stream.StreamResult;
-//import java.io.*;
-//import java.nio.charset.Charset;
+// import javax.xml.parsers.DocumentBuilderFactory;
+// import javax.xml.transform.OutputKeys;
+// import javax.xml.transform.Transformer;
+// import javax.xml.transform.TransformerFactory;
+// import javax.xml.transform.dom.DOMSource;
+// import javax.xml.transform.stream.StreamResult;
+// import java.io.*;
+// import java.nio.charset.Charset;
 //
 ///**
 // * 使用poi+itextpdf进行word转pdf
@@ -39,7 +39,7 @@
 // * @author ：hewie
 // * @date ：Created in 2020/2/27 22:41
 // */
-//public class TestPoi {
+// public class TestPoi {
 //
 //    /**
 //     * 将doc格式文件转成html

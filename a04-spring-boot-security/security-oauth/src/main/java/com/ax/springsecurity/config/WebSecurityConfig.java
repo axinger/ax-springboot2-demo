@@ -1,4 +1,4 @@
-package com.ax.springsecurity.config;//package com.ax.springsecurity.config;
+package com.ax.springsecurity.config;// package com.ax.springsecurity.config;
 
 import com.ax.springsecurity.handler.MyLoginFailureHandler;
 import com.ax.springsecurity.handler.MyLoginSuccessHandler;
@@ -44,7 +44,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 
 @Configuration
 @EnableWebSecurity
-//Spring Security默认是禁用注解的
+// Spring Security默认是禁用注解的
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         /**使用框架的判断规则*/
         auth.userDetailsService(userDetailsService())
-                .passwordEncoder(passwordEncoder());//passwoldEncoder是对密码的加密处理，如果user中密码没有加密，则可以不加此方法。注意加密请使用security自带的加密方式。
+                .passwordEncoder(passwordEncoder());// passwoldEncoder是对密码的加密处理，如果user中密码没有加密，则可以不加此方法。注意加密请使用security自带的加密方式。
 
 
     }

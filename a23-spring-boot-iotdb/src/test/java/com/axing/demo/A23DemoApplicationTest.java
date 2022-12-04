@@ -1,15 +1,15 @@
-//package com.ax.demo;
+// package com.ax.demo;
 //
 //
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
 //
-//import java.util.List;
-//import java.util.Map;
+// import java.util.List;
+// import java.util.Map;
 //
 //@SpringBootTest
-//class A23DemoApplicationTest {
+// class A23DemoApplicationTest {
 ////    @Autowired
 ////    private IotDBSessionConfig iotDBSessionConfig;
 ////

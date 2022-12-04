@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -18,7 +17,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.support.PageableExecutionUtils;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -36,7 +34,7 @@ public class MongoTemplateCRUDTests {
     @Test
     void save_user() {
 
-        List list = new ArrayList<>(){{
+        List list = new ArrayList<>() {{
             {
                 User user = new User();
                 user.setId("1");
@@ -67,7 +65,7 @@ public class MongoTemplateCRUDTests {
             }
         }};
         mongoTemplate.<User>insertAll(list);
-        //mongoTemplate.save(list,"user"); //失败
+        // mongoTemplate.save(list,"user"); //失败
     }
 
 
@@ -137,21 +135,19 @@ public class MongoTemplateCRUDTests {
         System.out.println("list = " + list);
         System.out.println("request = " + request);
 
-        //System.out.println("request.isPaged() = " + request.isPaged());
-        //System.out.println("request.isUnpaged() = " + request.isUnpaged());
-        //System.out.println("request.getPageNumber() = " + request.getPageNumber());
-        //System.out.println("request.getPageSize() = " + request.getPageSize());
-        //System.out.println("request.getOffset() = " + request.getOffset());
-
-
+        // System.out.println("request.isPaged() = " + request.isPaged());
+        // System.out.println("request.isUnpaged() = " + request.isUnpaged());
+        // System.out.println("request.getPageNumber() = " + request.getPageNumber());
+        // System.out.println("request.getPageSize() = " + request.getPageSize());
+        // System.out.println("request.getOffset() = " + request.getOffset());
 
 
         // 分页,需要总数量, 需要自定义查询总数量
-        //PageableExecutionUtils.getPage()
+        // PageableExecutionUtils.getPage()
         Page page = new PageImpl<>(list, request, count);
         System.out.println("page = " + page);
 
-        //mongoTemplate.
+        // mongoTemplate.
 
         // 有很多判断
         Page<User> page1 = PageableExecutionUtils.getPage(list, request, () -> count);
@@ -205,8 +201,6 @@ public class MongoTemplateCRUDTests {
         System.out.println("result = " + result);
 
     }
-
-
 
 
 }

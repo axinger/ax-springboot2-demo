@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @ToString(callSuper = true)
 public class Dog extends BaseMongoEntity {
 
-    @Indexed //普通索引
+    @Indexed // 普通索引
     private String name;
     private String address;
     private Integer age;

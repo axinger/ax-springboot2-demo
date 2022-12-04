@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author xing
  */
 //@SpringBootApplication
-//public class AppApplication {
+// public class AppApplication {
 //
 //	public static void main(String[] args) {
 //		SpringApplication.run(AppApplication.class, args);
@@ -44,10 +44,10 @@ public class AppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //netty 服务端启动的端口不可和Springboot启动类的端口号重复
+        // netty 服务端启动的端口不可和Springboot启动类的端口号重复
         nettyServer.start(nettyServerPort);
 
-        //关闭服务器的时候同时关闭Netty服务
+        // 关闭服务器的时候同时关闭Netty服务
         Runtime.getRuntime().addShutdownHook(new Thread(() -> nettyServer.destroy()));
     }
 }

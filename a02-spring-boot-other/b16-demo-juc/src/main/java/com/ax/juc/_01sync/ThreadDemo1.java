@@ -10,12 +10,12 @@ class Share {
 //            wait();//在哪里睡,就在哪里醒
 //        }
         while (num != 0) {
-            wait();//在哪里睡,就在哪里醒
+            wait();// 在哪里睡,就在哪里醒
         }
         num++;
         System.out.println("num = " + num + "::" + Thread.currentThread().getName());
 
-        //通知其他线程
+        // 通知其他线程
         notifyAll();
     }
 
@@ -28,7 +28,7 @@ class Share {
         num--;
         System.out.println("num = " + num + "::" + Thread.currentThread().getName());
 
-        //通知其他线程
+        // 通知其他线程
         notifyAll();
     }
 

@@ -53,7 +53,7 @@ class DemoApplicationTests {
 //                .source(map);
 
 
-        //放入对象,转JSON
+        // 放入对象,转JSON
         User user = User.builder().userName("jim").gender("F").age(20).build();
 
         final String jsonString = JSON.toJSONString(user);

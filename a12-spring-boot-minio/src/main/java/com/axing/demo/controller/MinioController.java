@@ -72,9 +72,9 @@ public class MinioController {
      * @return 返回上传路径
      */
     private String getPath() {
-        //生成uuid
+        // 生成uuid
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        //文件路径
+        // 文件路径
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         return sdf.format(new Date()) + "/" + uuid;
     }

@@ -21,7 +21,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSecurityManager securityManager(Realm realm) {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
-        //给安全管理器设置realm
+        // 给安全管理器设置realm
         manager.setRealm(realm);
         return manager;
     }
@@ -34,12 +34,12 @@ public class ShiroConfig {
     }
 
 
-    //2. 创建过滤器
+    // 2. 创建过滤器
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
 
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-        //给filter设置安全管理器
+        // 给filter设置安全管理器
         bean.setSecurityManager(securityManager);
         // 配置用户登录请求,需要登录的转发
         bean.setLoginUrl("/");
@@ -62,7 +62,7 @@ public class ShiroConfig {
         // 所有请求需要认证,必须写在最后
 //        map.put("/**", "authc");
 
-        //设置规则
+        // 设置规则
         bean.setFilterChainDefinitionMap(map);
         return bean;
     }

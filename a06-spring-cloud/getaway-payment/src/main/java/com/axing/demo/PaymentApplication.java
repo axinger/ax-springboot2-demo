@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient // 发现注册服务
 @EnableFeignClients
-@EnableCircuitBreaker //回路,熔断
+@EnableCircuitBreaker // 回路,熔断
 public class PaymentApplication {
 
     public static void main(String[] args) {

@@ -45,7 +45,7 @@ class SetTest {
 
     }
 
-    //双键 map - 超级实用
+    // 双键 map - 超级实用
     @Test
     void test_HashBasedTable() {
         Table<String, String, Object> tables = HashBasedTable.create();
@@ -63,22 +63,22 @@ class SetTest {
         final HashSet<Integer> set2 = Sets.newHashSet(4, 5, 10);
 
 
-        //合集，并集   并集 = [1, 2, 10, 3, 4, 5]
+        // 合集，并集   并集 = [1, 2, 10, 3, 4, 5]
         Set<Integer> result1 = Sets.union(set1, set2);
         System.out.println("并集 = " + result1);
 
-        //交集         交集 = [10]
+        // 交集         交集 = [10]
         Set<Integer> result2 = Sets.intersection(set1, set2);
         System.out.println("交集 = " + result2);
 
-        //差集 1中有而2中没有的 差集,左独有 = [1, 2, 3]
+        // 差集 1中有而2中没有的 差集,左独有 = [1, 2, 3]
         Set<Integer> result3 = Sets.difference(set1, set2);
         System.out.println("差集,set1独有 = " + result3);
 
         Set<Integer> result3_2 = Sets.difference(set2, set1);
         System.out.println("差集,set2独有 = " + result3_2);
 
-        //外集 ,去除相同的 外集 = [1, 2, 3, 4, 5]
+        // 外集 ,去除相同的 外集 = [1, 2, 3, 4, 5]
         Set<Integer> result4 = Sets.symmetricDifference(set1, set2);
         System.out.println("外集 = " + result4);
 
@@ -108,7 +108,7 @@ class SetTest {
         System.out.println("map.inverse().get(\"jim\") = " + map.inverse().get("jim"));
     }
 
-    //复制一个map，新的map的值不可变,ImmutableMap 不可变map
+    // 复制一个map，新的map的值不可变,ImmutableMap 不可变map
     @Test
     void test_ImmutableMap() {
 

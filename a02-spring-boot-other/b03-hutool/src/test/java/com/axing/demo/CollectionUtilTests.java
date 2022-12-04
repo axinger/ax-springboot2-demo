@@ -55,18 +55,18 @@ public class CollectionUtilTests {
         System.out.println("集合B:" + listB);
         System.out.println("------------------------");
 
-        //并集
+        // 并集
         Collection<String> union = CollectionUtil.union(listA, listB);
         System.out.println("并集 union ：" + union);
 
 
-        //交集
+        // 交集
         Collection<String> intersection = CollectionUtil.intersection(listA, listB);
         System.out.println("交集 intersection :" + intersection);
-        //交集的补集
+        // 交集的补集
         Collection<String> disjunction = CollectionUtil.disjunction(listA, listB);
         System.out.println("交集的补集  disjunction ：" + disjunction);
-        //差集(集合相减)
+        // 差集(集合相减)
         Collection<String> subtract = CollectionUtil.subtract(listA, listB);
         System.out.println("差集(集合相减) subtract  ：" + subtract);
 
@@ -79,7 +79,7 @@ public class CollectionUtilTests {
         List<String> listA = ListUtil.toList("1", "2", "3", "4", "5");
         List<String> listB = ListUtil.of("1", "2");
 
-        //交集的补集
+        // 交集的补集
         Collection<String> disjunction = CollectionUtil.disjunction(listA, listB);
         System.out.println("交集的补集  disjunction ：" + disjunction);
 

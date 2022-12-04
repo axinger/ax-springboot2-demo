@@ -1,4 +1,4 @@
-package com.ax.springsecurity.config;//package com.ax.springsecurity.config;
+package com.ax.springsecurity.config;// package com.ax.springsecurity.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -33,7 +33,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * code
      */
 
-    //数据源,存储在数据库中
+    // 数据源,存储在数据库中
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -43,19 +43,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return DruidDataSourceBuilder.create().build();
     }
 
-    //数据源,存储在数据库中
+    // 数据源,存储在数据库中
     @Bean
     public TokenStore tokenStore1() {
         return new JdbcTokenStore(oauthDataSource());
     }
 
-    //数据源,存储在数据库中
+    // 数据源,存储在数据库中
     @Bean
     public ClientDetailsService jdbc_clientDetailsService() {
         return new JdbcClientDetailsService(oauthDataSource());
     }
 
-//DruidDataSourceBuilder.create().build()
+// DruidDataSourceBuilder.create().build()
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {

@@ -1,8 +1,8 @@
-//package com.ax.master.cache;
+// package com.ax.master.cache;
 //
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.redis.core.RedisTemplate;
-//import org.springframework.stereotype.Component;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.data.redis.core.RedisTemplate;
+// import org.springframework.stereotype.Component;
 //
 ///**
 // * @author xing   将redisTemplate注入
@@ -10,7 +10,7 @@
 // * @Description:
 // */
 //@Component
-//public class RedisCacheTransfer {
+// public class RedisCacheTransfer {
 //
 //    @Autowired
 //    public void setJedisConnectionFactory(RedisTemplate redisTemplate) {

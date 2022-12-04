@@ -13,13 +13,13 @@ import java.util.Map;
 @ToString
 @Builder
 public class ChatMessage implements Serializable {
-    //发送消息则
+    // 发送消息则
     private UserInfo from;
 
-    //接收者列表
+    // 接收者列表
     private Map<String, UserInfo> to;
 
-    //发送内容
+    // 发送内容
     private String message;
 
     private Date createTime;

@@ -16,7 +16,7 @@ public class UserController {
     @PostMapping("/doLogin")
     public Result doLogin(String username, String password) {
         // 第1步，先登录上
-        //StpUtil.login(10001);
+        // StpUtil.login(10001);
         // 设置登录账号id为10001，第二个参数指定是否为[记住我]，当此值为false后，关闭浏览器后再次打开需要重新登录
         StpUtil.login(10001, false);
         // 第2步，获取 Token  相关参数

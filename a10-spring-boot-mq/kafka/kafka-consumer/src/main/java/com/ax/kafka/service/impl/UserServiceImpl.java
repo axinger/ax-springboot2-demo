@@ -9,7 +9,6 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -47,14 +46,14 @@ public class UserServiceImpl implements UserService {
         props.put("group.id", "group1");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
-        //latest 最新  earliest 最早
+        // latest 最新  earliest 最早
         props.put("auto.offset.reset", "earliest");
         props.put("session.timeout.ms", "30000");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
         KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(props);
-        //指定订阅的topic
+        // 指定订阅的topic
         kafkaConsumer.subscribe(List.of(Topic.SIMPLE));
         String content = "";
 //        while (true) {
@@ -65,11 +64,11 @@ public class UserServiceImpl implements UserService {
             UserServiceImpl.log.info("获取消息详情，{}", record.value());
             content = record.value();
             if (content != "") {
-                //XyKafkaOutMsg build = new XyKafkaOutMsg();
-                //build.setGmtCreate(new Date());
-                //build.setFwBh(123L);
-                //int insertOutMsg = xyKafkaOutMsgMapper.insertSelective(build);
-                //log.info("insertOutMsg result,{}",insertOutMsg==1 ? "成功" : "失败");
+                // XyKafkaOutMsg build = new XyKafkaOutMsg();
+                // build.setGmtCreate(new Date());
+                // build.setFwBh(123L);
+                // int insertOutMsg = xyKafkaOutMsgMapper.insertSelective(build);
+                // log.info("insertOutMsg result,{}",insertOutMsg==1 ? "成功" : "失败");
                 return content;
             }
         }

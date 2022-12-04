@@ -6,9 +6,9 @@ public class BasicBuffer {
 
     /// buffer的使用 buffer缓冲区,内存块
     public static void main(String[] args) {
-        //创建5个int的 buffer
+        // 创建5个int的 buffer
         IntBuffer intBuffer = IntBuffer.allocate(5);
-        //向buff中存放数据
+        // 向buff中存放数据
         intBuffer.put(2);
         intBuffer.put(3);
         // 读写切换

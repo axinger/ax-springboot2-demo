@@ -32,25 +32,25 @@ public class ExcelService {
         /*下载的文件名称*/
         String fileName = "导出excel例子.xls";
 
-        //生成excel文件
+        // 生成excel文件
         buildExcelFile(fileName, workbook);
 
-        //浏览器下载excel
+        // 浏览器下载excel
         buildExcelDocument(fileName, workbook, response);
     }
 
-    //创建表头
+    // 创建表头
     private void createTitle(HSSFWorkbook workbook, HSSFSheet sheet) {
-        //合并单元格
-        //参数1：起始行 参数2：终止行 参数3：起始列 参数4：终止列
+        // 合并单元格
+        // 参数1：起始行 参数2：终止行 参数3：起始列 参数4：终止列
         CellRangeAddress region1 = new CellRangeAddress(0, 1, 0, 0);
         sheet.addMergedRegion(region1);
         HSSFRow row = sheet.createRow(0);
-        //设置行高
+        // 设置行高
         row.setHeightInPoints(18);
-        //设置列宽度
+        // 设置列宽度
         sheet.setColumnWidth(0, 30 * 256);
-        //设置为居中加粗
+        // 设置为居中加粗
         HSSFCellStyle style = workbook.createCellStyle();
         HSSFFont font = workbook.createFont();
         font.setBold(true);
@@ -75,7 +75,7 @@ public class ExcelService {
         cell.setCellStyle(style);
     }
 
-    //生成excel文件
+    // 生成excel文件
     public void buildExcelFile(String filename, HSSFWorkbook workbook) throws Exception {
 
         FileOutputStream fos = new FileOutputStream(filename);
@@ -84,7 +84,7 @@ public class ExcelService {
         fos.close();
     }
 
-    //浏览器下载excel
+    // 浏览器下载excel
     public void buildExcelDocument(String fileName, HSSFWorkbook workbook, HttpServletResponse response) throws Exception {
 
 

@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-<!--        <version>2.7.5</version>-->
+        <!--        <version>2.7.5</version>-->
         <version>3.0.0</version>
     </parent>
 
@@ -84,6 +84,7 @@
         <module>a30-spring-boot-sa-token</module>
         <module>a01-spring-boot-mvc</module>
         <module>a08-spring-boot-mapstruct</module>
+        <module>a31-spring-boot-multitenant-partition</module>
     </modules>
 
     <dependencies>
@@ -118,13 +119,13 @@
     <dependencyManagement>
         <dependencies>
 
-<!--            <dependency>-->
-<!--                <groupId>com.axing</groupId>-->
-<!--                <artifactId>axinger-common</artifactId>-->
-<!--                <version>${project.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.axing</groupId>-->
+            <!--                <artifactId>axinger-common</artifactId>-->
+            <!--                <version>${project.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
 
             <dependency>
                 <groupId>com.axing</groupId>

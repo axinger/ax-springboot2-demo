@@ -1,24 +1,24 @@
-//package com.ax.master.security.handler;
+// package com.ax.master.security.handler;
 //
-//import com.alibaba.fastjson2.JSON;
-//import com.ax.master.entity.Userinfo;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+// import com.alibaba.fastjson2.JSON;
+// import com.ax.master.entity.Userinfo;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
+// import org.springframework.security.core.Authentication;
+// import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 //
-//import javax.servlet.ServletException;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
-//import java.util.HashMap;
-//import java.util.Map;
+// import javax.servlet.ServletException;
+// import javax.servlet.http.HttpServletRequest;
+// import javax.servlet.http.HttpServletResponse;
+// import java.io.IOException;
+// import java.util.HashMap;
+// import java.util.Map;
 //
 ///**
 // * 退出成功 handler
 // * @author xing
 // */
-//public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
+// public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
 //
 //    private Logger logger = LoggerFactory.getLogger(getClass());
 //

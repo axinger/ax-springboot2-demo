@@ -7,7 +7,7 @@ import java.util.concurrent.RecursiveTask;
 
 class MyTask extends RecursiveTask<Integer> {
 
-    //拆分,差值不超过10
+    // 拆分,差值不超过10
     private static final Integer VALUE = 10;
     private final Integer begin;
     private final Integer end;
@@ -28,13 +28,13 @@ class MyTask extends RecursiveTask<Integer> {
                 result = result + i;
             }
         } else {
-            //继续拆分
-            //获取中间值
+            // 继续拆分
+            // 获取中间值
             Integer middle = (begin + end) / 2;
             // 拆分左边
             MyTask task1 = new MyTask(begin, middle);
 
-            //拆分右边
+            // 拆分右边
             MyTask task2 = new MyTask(middle + 1, end);
 
             task1.fork();

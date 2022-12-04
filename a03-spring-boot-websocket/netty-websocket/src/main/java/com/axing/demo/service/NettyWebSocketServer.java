@@ -91,9 +91,9 @@ public class NettyWebSocketServer {
              */
             ServerBootstrap server = new ServerBootstrap();
             server.group(boosGroup, workGroup)
-                    //非阻塞异步服务端TCP Socket 连接
+                    // 非阻塞异步服务端TCP Socket 连接
                     .channel(NioServerSocketChannel.class)
-                    //设置为前端WebSocket可以连接
+                    // 设置为前端WebSocket可以连接
                     .childHandler(new ChannelInitializer<SocketChannel>() {
 
                         @Override

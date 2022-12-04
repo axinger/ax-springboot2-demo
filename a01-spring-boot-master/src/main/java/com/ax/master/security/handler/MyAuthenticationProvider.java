@@ -1,26 +1,26 @@
-//package com.ax.master.security.handler;
+// package com.ax.master.security.handler;
 //
 //
-//import com.ax.master.entity.IpLog;
-//import com.ax.master.entity.Userinfo;
-//import com.ax.master.service.ILoginService;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.authentication.AuthenticationProvider;
-//import org.springframework.security.authentication.BadCredentialsException;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.AuthenticationException;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.stereotype.Component;
+// import com.ax.master.entity.IpLog;
+// import com.ax.master.entity.Userinfo;
+// import com.ax.master.service.ILoginService;
+// import lombok.extern.slf4j.Slf4j;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.security.authentication.AuthenticationProvider;
+// import org.springframework.security.authentication.BadCredentialsException;
+// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+// import org.springframework.security.core.Authentication;
+// import org.springframework.security.core.AuthenticationException;
+// import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.stereotype.Component;
 //
-//import java.util.Collection;
-//import java.util.Date;
+// import java.util.Collection;
+// import java.util.Date;
 //
 //@Slf4j
 //@Component
 /////AuthenticationProvider  和 UserDetailsService 任用一个
-//public class MyAuthenticationProvider implements AuthenticationProvider {
+// public class MyAuthenticationProvider implements AuthenticationProvider {
 //
 //    @Autowired
 //    ILoginService loginService;

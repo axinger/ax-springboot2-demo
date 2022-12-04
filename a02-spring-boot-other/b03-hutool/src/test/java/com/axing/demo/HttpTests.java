@@ -33,13 +33,13 @@ public class HttpTests {
     void test_http() {
 
 
-        String url = "https://xxx/xx";//指定URL
-        Map<String, Object> map = new HashMap<>();//存放参数
+        String url = "https://xxx/xx";// 指定URL
+        Map<String, Object> map = new HashMap<>();// 存放参数
         map.put("A", 100);
         map.put("B", 200);
-        HashMap<String, String> headers = new HashMap<>();//存放请求头，可以存放多个请求头
+        HashMap<String, String> headers = new HashMap<>();// 存放请求头，可以存放多个请求头
         headers.put("xxx", "xxx");
-//发送get请求并接收响应数据
+// 发送get请求并接收响应数据
 
         HttpUtil.createGet(url).addHeaders(headers).form(map).execute().body();
 

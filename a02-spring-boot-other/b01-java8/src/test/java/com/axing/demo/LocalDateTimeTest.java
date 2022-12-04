@@ -39,7 +39,7 @@ public class LocalDateTimeTest {
             System.out.println("format = " + format);
         }
 
-        //时间分组
+        // 时间分组
         final Map<Integer, List<DateModel>> collect = list.parallelStream()
                 .collect(Collectors.groupingBy(o -> o.getDateTime().getHour() / 2));
         System.out.println("时间分组 collect = " + collect);
@@ -77,7 +77,7 @@ public class LocalDateTimeTest {
         final String format = LocalDateTime.now().with(LocalTime.MIN).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS"));
         System.out.println("format = " + format);
 
-        //当天零点
+        // 当天零点
         LocalDateTime.of(LocalDate.now(), LocalTime.MIN).toEpochSecond(OffsetDateTime.now().getOffset());
 
         DateTimeFormatter formatter =
@@ -210,7 +210,7 @@ public class LocalDateTimeTest {
 //        // 时区转换
 //         localDateTime.atZone(currentZone).withZoneSameInstant(newZone).toLocalDateTime();
 
-        //UTC
+        // UTC
         System.out.println("ZoneId.ofOffset = " + ZoneId.ofOffset("UTC", ZoneOffset.ofHours(8)));
         System.out.println("上海时间1 = " + LocalDateTime.now(ZoneOffset.ofHours(8)));
 

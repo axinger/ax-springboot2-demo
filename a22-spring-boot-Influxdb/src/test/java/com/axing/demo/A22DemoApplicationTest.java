@@ -37,7 +37,7 @@ class A22DemoApplicationTest {
 //        writeApi.writeRecord(bucket, org, WritePrecision.NS, data);
 
 
-        //Option 2: Use a Data Point to write data
+        // Option 2: Use a Data Point to write data
         Point point = Point
                 .measurement("mem_001")
                 .addTag("定义tag", "tag_001")

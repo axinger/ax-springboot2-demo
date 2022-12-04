@@ -9,8 +9,8 @@ public class OptionalTest {
 
     @Test
     public void test_1() {
- // isEmpty == !isPresent
- //       String str = "";
+        // isEmpty == !isPresent
+        //       String str = "";
         String str = null;
         System.out.println("Optional.ofNullable(str).isEmpty() = " + Optional.ofNullable(str).isEmpty());
         System.out.println("Optional.ofNullable(str).isEmpty() = " + Optional.ofNullable(str).isPresent());
