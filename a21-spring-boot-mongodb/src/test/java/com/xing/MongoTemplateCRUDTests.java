@@ -46,7 +46,7 @@ public class MongoTemplateCRUDTests {
 
                 Dog dog = new Dog();
                 user.setDog(dog);
-                dog.setName("jim的狗");
+                dog.setName("大斑点");
                 dog.setAge(5);
                 dog.setDescription("address不传值");
 
@@ -61,7 +61,7 @@ public class MongoTemplateCRUDTests {
 
                 Dog dog = new Dog();
                 user.setDog(dog);
-                dog.setName("tom的狗");
+                dog.setName("大斑点");
                 dog.setAge(5);
                 dog.setAddress("a号道");
                 dog.setDescription("address有值");
@@ -77,7 +77,7 @@ public class MongoTemplateCRUDTests {
 
                 Dog dog = new Dog();
                 user.setDog(dog);
-                dog.setName("jack的狗");
+                dog.setName("牧羊犬");
                 dog.setAge(6);
                 dog.setAddress("a号道");
                 dog.setDescription("address有值");
@@ -92,11 +92,19 @@ public class MongoTemplateCRUDTests {
 
                 Dog dog = new Dog();
                 user.setDog(dog);
-                dog.setName("lili的狗");
-                dog.setAge(5);
+                dog.setName("牧羊犬");
+                dog.setAge(6);
                 dog.setAddress("b号道");
                 dog.setDescription("address有值");
 
+                add(user);
+            }
+            {
+                User user = new User();
+                user.setId("5");
+                user.setName("luck");
+                user.setAge(10);
+                // 没有狗
                 add(user);
             }
         }};
@@ -188,24 +196,41 @@ public class MongoTemplateCRUDTests {
     void find_or_2() {
 
 
-        Query query = new Query(Criteria
-                .where(LambdaUtil.getFieldName(User::getAge)).is(10)
-        );
+        Query query = new Query();
 
-        // like
-        // ^.* 开头,类似%开头
+        Criteria criteria = Criteria
+                .where(LambdaUtil.getFieldName(User::getAge)).is(10);
+
+        query.addCriteria(criteria);
+
+
+        // 多个条件, 多个or 需要包裹一下
+        List<Criteria> criteriaList = new ArrayList<>();
+
         // .*$ 结尾,类似%结尾
         {
 
-            Pattern name1 = Pattern.compile(StrUtil.format("^.*{}.*$", "b号道"), Pattern.CASE_INSENSITIVE);
-
-            Criteria criteria = new Criteria();
-            criteria.orOperator(Criteria.where("dog.address").regex(name1),
+            Pattern patternAddress = Pattern.compile(StrUtil.format("^.*{}.*$", "b号道"), Pattern.CASE_INSENSITIVE);
+            criteriaList.add(new Criteria().orOperator(
+                    Criteria.where("dog.address").regex(patternAddress),
                     // 是空
                     Criteria.where("dog.address").isNull()
-            );
-            query.addCriteria(criteria);
+            ));
         }
+
+
+        {
+
+            Pattern patternSize = Pattern.compile(StrUtil.format("^.*{}.*$", "大"), Pattern.CASE_INSENSITIVE);
+            criteriaList.add(new Criteria().orOperator(
+                    Criteria.where("dog.name").regex(patternSize),
+                    Criteria.where("dog.name").isNull()
+            ));
+
+        }
+
+        criteria.andOperator(criteriaList);
+
 
         // {
         //     //  Criteria 没有where会报错,
@@ -217,9 +242,11 @@ public class MongoTemplateCRUDTests {
 
         {
 
-            Criteria gt = Criteria
-                    .where("dog.age").gt(5);
-            query.addCriteria(gt);
+            // Criteria gt = Criteria
+            //         .where("dog.age").gt(4);
+            // query.addCriteria(gt);
+
+            criteria.and("dog.age").gt(4);
         }
 
         PageRequest request = PageRequest.of(0, 5);

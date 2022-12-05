@@ -21,6 +21,7 @@ public class Dog extends BaseMongoEntity {
 
     @Indexed // 普通索引
     private String name;
+
     private String address;
     private Integer age;
     private LocalDateTime birthday;

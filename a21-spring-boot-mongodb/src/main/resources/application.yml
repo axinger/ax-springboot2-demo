@@ -16,3 +16,6 @@ spring:
 #      password: 'admin123' #如果是纯数字，需要加个单引号
 #      database: ax_demo #操作的库
 #      uri: mongodb://root:123456@47.101.156.93:27017/ax_demo?authSource=admin
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
