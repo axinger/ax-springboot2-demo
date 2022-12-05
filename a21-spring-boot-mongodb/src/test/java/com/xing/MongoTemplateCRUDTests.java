@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -20,7 +19,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.support.PageableExecutionUtils;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 

@@ -12,7 +12,7 @@ public class Controller {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    //第一种模式(直连)
+    // 第一种模式(直连)
     @GetMapping("/01")
     void simpleCustomerTest() {
         rabbitTemplate.convertAndSend("hello", "hello world");

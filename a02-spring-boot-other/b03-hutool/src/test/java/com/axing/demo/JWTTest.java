@@ -20,13 +20,13 @@ public class JWTTest {
         DateTime newTime = now.offsetNew(DateField.MINUTE, 10);
 
         Map<String, Object> payload = new HashMap<String, Object>();
-        //签发时间
+        // 签发时间
         payload.put(JWTPayload.ISSUED_AT, now);
-        //过期时间
+        // 过期时间
         payload.put(JWTPayload.EXPIRES_AT, newTime);
-        //生效时间
+        // 生效时间
         payload.put(JWTPayload.NOT_BEFORE, now);
-        //载荷
+        // 载荷
         payload.put("username", "jim");
         payload.put("password", "123456");
 

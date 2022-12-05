@@ -22,19 +22,19 @@ import java.util.Set;
  * @Description: 给所用户所有终端推送消息
  * @date 2018年3月19日 下午3:21:31
  */
-//websocket连接URL地址和可被调用配置
+// websocket连接URL地址和可被调用配置
 //@ServerEndpoint(value="/ws/{id}")
 @ServerEndpoint(value = "/{ws}")
 @Service
 public class WebSocketService {
 
-    //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+    // 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
-    //记录每个用户下多个终端的连接
+    // 记录每个用户下多个终端的连接
     private static final Map<Long, Set<WebSocketService>> userSocketMap = new HashMap<>();
-    //日志记录
+    // 日志记录
     private final Logger logger = LoggerFactory.getLogger(WebSocketService.class);
-    //需要session来对用户发送数据, 获取连接特征userId
+    // 需要session来对用户发送数据, 获取连接特征userId
     private Session session;
     private Long userId;
 
@@ -75,10 +75,10 @@ public class WebSocketService {
         this.userId = Long.valueOf(id);
 
         onlineCount++;
-        //根据该用户当前是否已经在别的终端登录进行添加操作
+        // 根据该用户当前是否已经在别的终端登录进行添加操作
         if (userSocketMap.containsKey(this.userId)) {
             logger.debug("当前用户id:{}已有其他终端登录", this.userId);
-            userSocketMap.get(this.userId).add(this); //增加该用户set中的连接实例
+            userSocketMap.get(this.userId).add(this); // 增加该用户set中的连接实例
         } else {
             logger.debug("当前用户id:{}第一个终端登录", this.userId);
             Set<WebSocketService> addUserSet = new HashSet<>();
@@ -96,7 +96,7 @@ public class WebSocketService {
     @OnClose
     public void onClose() {
         onlineCount--;
-        //移除当前用户终端登录的websocket信息,如果该用户的所有终端都下线了，则删除该用户的记录
+        // 移除当前用户终端登录的websocket信息,如果该用户的所有终端都下线了，则删除该用户的记录
         if (userSocketMap.get(this.userId).size() == 0) {
             userSocketMap.remove(this.userId);
         } else {

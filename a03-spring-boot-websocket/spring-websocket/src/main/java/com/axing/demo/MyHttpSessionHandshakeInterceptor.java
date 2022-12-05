@@ -19,7 +19,7 @@ public class MyHttpSessionHandshakeInterceptor extends HttpSessionHandshakeInter
 
     @Override
     public boolean beforeHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
-        //为了区分连接,通过名字区分,获取用户名字
+        // 为了区分连接,通过名字区分,获取用户名字
 
         HttpServletRequest servletRequest = ((ServletServerHttpRequest) serverHttpRequest).getServletRequest();
 

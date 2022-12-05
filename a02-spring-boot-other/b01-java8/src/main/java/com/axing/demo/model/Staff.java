@@ -11,10 +11,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Staff {
-    //姓名
+    // 姓名
     String name;
-    //生产日期
+    // 生产日期
     Date date;
-    //产量
+    // 产量
     BigDecimal yield;
 }

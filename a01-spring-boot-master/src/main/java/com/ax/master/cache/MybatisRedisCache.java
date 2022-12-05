@@ -1,12 +1,12 @@
-//package com.ax.master.cache;
+// package com.ax.master.cache;
 //
-//import lombok.extern.slf4j.Slf4j;
-//import org.apache.ibatis.cache.Cache;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.redis.core.RedisTemplate;
+// import lombok.extern.slf4j.Slf4j;
+// import org.apache.ibatis.cache.Cache;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.data.redis.core.RedisTemplate;
 //
-//import java.util.concurrent.locks.ReadWriteLock;
-//import java.util.concurrent.locks.ReentrantReadWriteLock;
+// import java.util.concurrent.locks.ReadWriteLock;
+// import java.util.concurrent.locks.ReentrantReadWriteLock;
 //
 ///**
 // * @author xing
@@ -14,7 +14,7 @@
 //@Slf4j
 ////@Order(0)
 ////@Component
-//public class MybatisRedisCache implements Cache {
+// public class MybatisRedisCache implements Cache {
 //
 //    private static RedisTemplate redisTemplate;
 //

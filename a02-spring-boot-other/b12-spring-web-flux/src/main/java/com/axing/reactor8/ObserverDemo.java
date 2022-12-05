@@ -16,7 +16,7 @@ public class ObserverDemo extends Observable {
             System.out.println("发生了变换😝😝😝😝😝😝😝😝😝😝😝😝😝");
         });
 
-        demo.setChanged();//数据变换
-        demo.notifyObservers();//通知
+        demo.setChanged();// 数据变换
+        demo.notifyObservers();// 通知
     }
 }

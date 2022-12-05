@@ -25,7 +25,7 @@ public class OrderTest {
     void test_Ordering() {
 
         Ordering<Comparable> natural = Ordering.natural();
-        System.out.println("natural.max(1, 2) = " + natural.max(1, 2));//2
+        System.out.println("natural.max(1, 2) = " + natural.max(1, 2));// 2
         System.out.println("natural.min(1, 2) = " + natural.min(1, 2));
 
         List<Integer> list2 = Lists.newArrayList(5, 9, 3, 7, 4, null);

@@ -27,24 +27,24 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        //提取request请求内容
+        // 提取request请求内容
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().pathWithinApplication().value();
         String scheme = request.getURI().getScheme();
         HttpMethod method = request.getMethod();
         HttpHeaders httpHeaders = request.getHeaders();
         InetSocketAddress remoteAddress = request.getRemoteAddress();
-        //不建议提取body数据，因为请求体数据只能被消费一次。
+        // 不建议提取body数据，因为请求体数据只能被消费一次。
         log.info("\npath:{}\nscheme:{}\nmethod:{}\nheaders:{}\nremoteAddress:{}",
                 path, scheme, method, httpHeaders, remoteAddress);
 
-        //header增加token
+        // header增加token
         ServerHttpRequest newRequest = exchange.getRequest().mutate().headers(headers -> {
             headers.add("X-Gatewaw-Token", "2022ABC");
             headers.add("X-Gatewaw-Token", "2022ABC");
         }).build();
 
-        //计算请求时长
+        // 计算请求时长
         exchange.getAttributes().put("START_TIME", System.currentTimeMillis());
 
         return chain.filter(exchange.mutate().request(newRequest).build()).then(Mono.fromRunnable(() -> {

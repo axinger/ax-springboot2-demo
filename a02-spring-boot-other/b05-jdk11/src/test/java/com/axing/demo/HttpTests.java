@@ -27,7 +27,7 @@ public class HttpTests {
         String data = "";// json 请求数据
         HttpRequest request = HttpRequest.newBuilder(URI.create("https://www.baidu.com"))
                 .POST(HttpRequest.BodyPublishers.ofString(data, Charset.defaultCharset()))
-                .header("Content-Type", "application/json") //设置头部信息
+                .header("Content-Type", "application/json") // 设置头部信息
                 .timeout(Duration.ofSeconds(10)) // 设置响应超时时间
                 .build();
         HttpClient httpClient = HttpClient.newHttpClient();

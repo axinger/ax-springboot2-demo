@@ -30,7 +30,7 @@ public class ObjectMapperConfig {
         // 序列化枚举值
         objectMapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
 
-        //忽略value为null时key的输出
+        // 忽略value为null时key的输出
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         //
         // 序列化设置 关闭日志输出为时间戳的设置
@@ -41,8 +41,8 @@ public class ObjectMapperConfig {
         objectMapper.setLocale(Locale.CHINA);
 
         // 设置序列化反序列化采用直接处理字段的方式， 不依赖setter 和 getter
-        //objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
-        //objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        // objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
+        // objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         objectMapper.setDateFormat(simpleDateFormat);
 
@@ -50,11 +50,11 @@ public class ObjectMapperConfig {
 
         List<SimpleModule> moduleList = new ArrayList<>();
 
-        //序列化成json时，将所有的Long变成string，以解决js中的精度丢失。
-        //SimpleModule simpleModule = new SimpleModule();
-        //simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
-        //simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
-        //moduleList.add(simpleModule)
+        // 序列化成json时，将所有的Long变成string，以解决js中的精度丢失。
+        // SimpleModule simpleModule = new SimpleModule();
+        // simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+        // simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        // moduleList.add(simpleModule)
         Java8TimeModule java8TimeModule = new Java8TimeModule();
         moduleList.add(java8TimeModule);
 
@@ -63,8 +63,8 @@ public class ObjectMapperConfig {
 
         // 解决redis 反序列化问题, 自定义需要,需要绑定对象类型,不方便通用
         // 都序列化成map
-        //om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        //objectMapper.activateDefaultTyping(
+        // om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        // objectMapper.activateDefaultTyping(
         //        LaissezFaireSubTypeValidator.instance,
         //        ObjectMapper.DefaultTyping.NON_FINAL,
         //        JsonTypeInfo.As.PROPERTY);

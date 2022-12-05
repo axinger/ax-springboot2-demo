@@ -45,7 +45,7 @@ public class RedisService implements IRedisService {
     @Override
     public boolean set(final String key, Object value) {
 
-        //key的字符串序列化器
+        // key的字符串序列化器
         RedisSerializer redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
 

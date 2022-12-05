@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author axing
  */
-//public class Userinfo implements UserDetails {
+// public class Userinfo implements UserDetails {
 
 @Data
 @ToString

@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Aspect //生成代理对象
+@Aspect // 生成代理对象
 @Order(0) // 多个代理,设置顺序,
 public class UserProxy {
 

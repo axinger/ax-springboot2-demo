@@ -14,7 +14,7 @@ class Share {
     //+1
     void incr() throws InterruptedException {
 
-        //加锁
+        // 加锁
         lock.lock();
         try {
 
@@ -24,7 +24,7 @@ class Share {
             }
             num++;
             System.out.println("lock方式: num = " + num + "::" + Thread.currentThread().getName());
-            //通知其他线程
+            // 通知其他线程
             condition.signalAll();
         } finally {
             // 解锁
@@ -44,7 +44,7 @@ class Share {
             }
             num--;
             System.out.println("lock方式: num = " + num + "::" + Thread.currentThread().getName());
-            //通知其他线程
+            // 通知其他线程
             condition.signalAll();
         } finally {
             lock.unlock();

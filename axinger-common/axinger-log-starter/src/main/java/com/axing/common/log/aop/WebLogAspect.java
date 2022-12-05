@@ -10,11 +10,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +41,8 @@ public class WebLogAspect {
 //    }
 
     @Pointcut("@within(org.springframework.web.bind.annotation.RestController ) || @within(org.springframework.stereotype.Controller)")
-    public void webLog(){}
+    public void webLog() {
+    }
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
@@ -57,16 +55,16 @@ public class WebLogAspect {
     @Around("webLog()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
-        //获取当前请求对象
+        // 获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        //记录请求信息
+        // 记录请求信息
         WebLog webLog = new WebLog();
         Object result = joinPoint.proceed();
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
-        //if (method.isAnnotationPresent(ApiOperation.class)) {
+        // if (method.isAnnotationPresent(ApiOperation.class)) {
         //    ApiOperation apiOperation = method.getAnnotation(ApiOperation.class);
         //    webLog.setDescription(apiOperation.value());
         //}
@@ -93,12 +91,12 @@ public class WebLogAspect {
         List<Object> argList = new ArrayList<>();
         Parameter[] parameters = method.getParameters();
         for (int i = 0; i < parameters.length; i++) {
-            //将RequestBody注解修饰的参数作为请求参数
+            // 将RequestBody注解修饰的参数作为请求参数
             RequestBody requestBody = parameters[i].getAnnotation(RequestBody.class);
             if (requestBody != null) {
                 argList.add(args[i]);
             }
-            //将RequestParam注解修饰的参数作为请求参数
+            // 将RequestParam注解修饰的参数作为请求参数
             RequestParam requestParam = parameters[i].getAnnotation(RequestParam.class);
             if (requestParam != null) {
                 Map<String, Object> map = new HashMap<>();

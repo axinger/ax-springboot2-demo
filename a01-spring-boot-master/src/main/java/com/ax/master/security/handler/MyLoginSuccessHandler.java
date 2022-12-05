@@ -1,27 +1,27 @@
-//package com.ax.master.security.handler;
+// package com.ax.master.security.handler;
 //
-//import com.alibaba.fastjson2.JSON;
-//import com.ax.master.context.UserinfoContext;
-//import com.ax.master.entity.IpLog;
-//import com.ax.master.entity.Userinfo;
-//import com.ax.master.util.axUtil.AxResultStateEnum;
-//import lombok.SneakyThrows;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-//import org.springframework.stereotype.Component;
+// import com.alibaba.fastjson2.JSON;
+// import com.ax.master.context.UserinfoContext;
+// import com.ax.master.entity.IpLog;
+// import com.ax.master.entity.Userinfo;
+// import com.ax.master.util.axUtil.AxResultStateEnum;
+// import lombok.SneakyThrows;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
+// import org.springframework.security.core.Authentication;
+// import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+// import org.springframework.stereotype.Component;
 //
-//import javax.servlet.ServletException;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
-//import java.util.Date;
-//import java.util.HashMap;
-//import java.util.Map;
+// import javax.servlet.ServletException;
+// import javax.servlet.http.HttpServletRequest;
+// import javax.servlet.http.HttpServletResponse;
+// import java.io.IOException;
+// import java.util.Date;
+// import java.util.HashMap;
+// import java.util.Map;
 //
 //@Component
-//public class MyLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+// public class MyLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 //
 //    private Logger logger = LoggerFactory.getLogger(getClass());
 //

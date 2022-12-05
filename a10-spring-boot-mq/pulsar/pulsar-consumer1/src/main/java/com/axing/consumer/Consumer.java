@@ -34,7 +34,7 @@ public class Consumer {
     //@PulsarConsumer(topic = Topic.EXCLUSIVE_TOPIC,
     //        subscriptionType = SubscriptionType.Exclusive,
     //        clazz = Map.class)
-    //public void Exclusive2(Map message) {
+    // public void Exclusive2(Map message) {
     //    log.info("Exclusive2 time = {}, mes = {}", LocalDateTime.now(), message);
     //}
 
@@ -85,7 +85,7 @@ public class Consumer {
     //@PulsarConsumer(topic = Topic.SHARED_TOPIC,
     //        subscriptionType = SubscriptionType.Failover,
     //        clazz = Map.class)
-    //public void Shared2(Map message) {
+    // public void Shared2(Map message) {
     //    log.info("Shared2 time = {},  mes = {}", LocalDateTime.now(), message);
     //}
 
@@ -103,7 +103,7 @@ public class Consumer {
 
 
     @PulsarConsumer(topic = Topic.DELIVER_AFTER_TOPIC,
-            subscriptionType = SubscriptionType.Shared,//延迟消息必须是共享模式
+            subscriptionType = SubscriptionType.Shared,// 延迟消息必须是共享模式
             clazz = Map.class)
     public void deliverAfterTopic(Map message) {
         log.info("deliverAfterTopic接收到消息 time = {},  mes = {}", LocalDateTime.now(), message);
@@ -111,7 +111,7 @@ public class Consumer {
 
 
     @PulsarConsumer(topic = Topic.DELIVER_AT_TOPIC,
-            subscriptionType = SubscriptionType.Shared,//延迟消息必须是共享模式
+            subscriptionType = SubscriptionType.Shared,// 延迟消息必须是共享模式
             clazz = Map.class)
     public void deliverAt(Map message) {
         log.info("deliverAt接收到消息 time = {},  mes = {}", LocalDateTime.now(), message);

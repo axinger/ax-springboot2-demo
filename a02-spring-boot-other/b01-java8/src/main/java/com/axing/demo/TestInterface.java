@@ -1,6 +1,6 @@
 package com.axing.demo;
 
-//public interface TestInterface<T> {
+// public interface TestInterface<T> {
 public abstract class TestInterface<T> {
 //    private T t;
 

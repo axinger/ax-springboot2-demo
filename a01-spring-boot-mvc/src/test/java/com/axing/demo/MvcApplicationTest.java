@@ -3,13 +3,12 @@ package com.axing.demo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MvcApplicationTest {
 
 
     @Test
-    void test1(){
+    void test1() {
 
     }
 }

@@ -203,7 +203,7 @@ public class MinioServiceImpl implements MinioService {
                     .build();
             ObjectWriteResponse response = minioClient.putObject(args);
 
-            //关闭
+            // 关闭
             inputStream.close();
             String object = response.object();
             log.info("上传文件成功 = {}", object);

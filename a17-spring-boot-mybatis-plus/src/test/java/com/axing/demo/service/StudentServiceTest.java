@@ -5,7 +5,6 @@ import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.Student;
 import com.axing.demo.enums.Gender;
 import com.axing.demo.mapper.StudentMapper;
-import com.axing.demo.service.StudentService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -117,19 +116,17 @@ class StudentServiceTest {
     @Test
     public void find_4() {
         // SELECT id,name,age,gender,address,create_time,update_time,deleted,version FROM t_student WHERE deleted=0 AND (gender = 2)
-        //String address = null;
+        // String address = null;
 
         // SELECT id,name,age,gender,address,create_time,update_time,deleted,version FROM t_student WHERE deleted=0 AND (gender = 2 AND address = '幸福大街') /*eq 判断条件*/
         String address = "幸福大街";
         List<Student> list = service.lambdaQuery()
                 .eq(Student::getGender, Gender.female)
-                .eq(ObjUtil.isNotEmpty(address),Student::getAddress, address)
+                .eq(ObjUtil.isNotEmpty(address), Student::getAddress, address)
                 .comment("eq 判断条件")
                 .list();
         System.out.println("list = " + list);
     }
-
-
 
 
     @Test
@@ -228,9 +225,9 @@ class StudentServiceTest {
         Student student = new Student();
         student.setName("jim");
 
-        //设置条件
+        // 设置条件
         QueryWrapper<Student> wrapper = new QueryWrapper<>();
-        //eq是等于，ge是大于等于，gt是大于，le是小于等于，lt是小于，like是模糊查询
+        // eq是等于，ge是大于等于，gt是大于，le是小于等于，lt是小于，like是模糊查询
 
 
 //            wrapper.like("name","jim");

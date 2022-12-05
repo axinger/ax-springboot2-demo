@@ -19,7 +19,7 @@ class MainTest {
     RabbitTemplate rabbitTemplate;
 
 
-    //第一种模式(直连)
+    // 第一种模式(直连)
     @SneakyThrows
     @Test
     void simpleCustomerTest() {
@@ -34,7 +34,7 @@ class MainTest {
         }
     }
 
-    //参数1为交换机，参数2为路由key，“”表示为任意路由，参数3为消息内容
+    // 参数1为交换机，参数2为路由key，“”表示为任意路由，参数3为消息内容
     @Test
     void fanoutTest() {
         rabbitTemplate.convertAndSend("logs", " ", "fanout provider message");
@@ -78,7 +78,7 @@ class MainTest {
                 "user.add",
                 message,
                 messagePostProcessor -> {
-                    //配置消息的过期时间
+                    // 配置消息的过期时间
                     messagePostProcessor.getMessageProperties().setDelay(5 * 1000);
                     return messagePostProcessor;
                 }
@@ -103,7 +103,7 @@ class MainTest {
                 "user.save.xx",
                 message,
                 messagePostProcessor -> {
-                    //配置消息的过期时间
+                    // 配置消息的过期时间
                     messagePostProcessor.getMessageProperties().setDelay(5 * 1000);
                     return messagePostProcessor;
                 }

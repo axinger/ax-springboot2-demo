@@ -63,7 +63,7 @@ public class RedisTemplateTests {
             put("name", "jim");
         }});
 
-        //redisTemplate.opsForHash().put(key, "name", valuesMap);
+        // redisTemplate.opsForHash().put(key, "name", valuesMap);
         redisTemplate.opsForHash().putAll(key, valuesMap);
 
     }
@@ -93,7 +93,7 @@ public class RedisTemplateTests {
 
     @Test
     void opsForList_index() {
-        //弹出最左边的元素，弹出之后该值在列表中将不复存在
+        // 弹出最左边的元素，弹出之后该值在列表中将不复存在
         final String key = "test::list::1::User";
         User index = redisTemplateList.opsForList().index(key, 0);
         System.out.println("index = " + index);
@@ -104,7 +104,7 @@ public class RedisTemplateTests {
 
     @Test
     void opsForList_pop() {
-        //弹出最左边的元素，弹出之后该值在列表中将不复存在
+        // 弹出最左边的元素，弹出之后该值在列表中将不复存在
         final String key = "test::list::1::User";
         User user = redisTemplateList.opsForList().rightPop(key);
         System.out.println("user = " + user);
@@ -147,16 +147,16 @@ public class RedisTemplateTests {
                 .build();
 
         final String key = "test::user::1::User";
-        //this.redisTemplateUser.opsForValue().set(key, user);
+        // this.redisTemplateUser.opsForValue().set(key, user);
 
-        //设置键的字符串值并返回其旧值
+        // 设置键的字符串值并返回其旧值
         User andSet = this.redisTemplateUser.opsForValue().getAndSet(key, user);
 
         System.out.println("andSet = " + andSet);
 
         // 可以直接存, 不能直接取
-        //final Map user1 = (Map) this.redisTemplateUser.opsForValue().get(key);
-        //System.out.println("user1 = " + user1);
+        // final Map user1 = (Map) this.redisTemplateUser.opsForValue().get(key);
+        // System.out.println("user1 = " + user1);
 
 
         final User user2 = this.redisTemplateUser.opsForValue().get(key);
@@ -190,7 +190,7 @@ public class RedisTemplateTests {
                 .books(List.of(book))
                 .build();
 
-        //final String key = "test::user::1::Map";
+        // final String key = "test::user::1::Map";
 
 
         final String key = RedisUtil.getKey("test", "user", 1, "Map");

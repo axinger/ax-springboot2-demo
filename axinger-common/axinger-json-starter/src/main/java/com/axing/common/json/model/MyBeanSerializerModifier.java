@@ -1,7 +1,6 @@
 package com.axing.common.json.model;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializationConfig;
@@ -19,12 +18,12 @@ public class MyBeanSerializerModifier extends BeanSerializerModifier {
 
     @Override
     public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
-        //循环所有的beanPropertyWriter
+        // 循环所有的beanPropertyWriter
         for (BeanPropertyWriter writer : beanProperties) {
-            //BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
-            //判断字段的类型，如果是array，list，set则注册nullSerializer
+            // BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
+            // 判断字段的类型，如果是array，list，set则注册nullSerializer
             if (isArrayType(writer)) {
-                //给writer注册一个自己的nullSerializer
+                // 给writer注册一个自己的nullSerializer
                 writer.assignNullSerializer(new NullArrayJsonSerializer());
             } else if (isNumberType(writer)) {
                 writer.assignNullSerializer(new NullNumberJsonSerializer());

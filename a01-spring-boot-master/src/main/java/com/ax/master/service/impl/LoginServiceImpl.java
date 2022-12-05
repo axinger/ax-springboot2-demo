@@ -79,7 +79,7 @@ public class LoginServiceImpl implements ILoginService {
         System.out.println("插入登录ip = " + insert);
 
 
-        //验证身份和登陆
+        // 验证身份和登陆
 //        Subject subject = SecurityUtils.getSubject();
 //        UsernamePasswordToken token = new UsernamePasswordToken(username, password, true);
 //        // 设置记住我

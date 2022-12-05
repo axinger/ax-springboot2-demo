@@ -52,7 +52,7 @@ public class Userinfo implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password; //直接返回密码
+        return password; // 直接返回密码
     }
 
     //
@@ -88,8 +88,8 @@ public class Userinfo implements UserDetails {
      * @return
      */
     @Override
-    @JSONField(serialize = false) //JSONObject对有JSONField(serialize = false)的不会返回，null的也不返回
-    @JsonIgnore //ObjectMapper对有注解jsonIgnore的不会返回，其它全部返回
+    @JSONField(serialize = false) // JSONObject对有JSONField(serialize = false)的不会返回，null的也不返回
+    @JsonIgnore // ObjectMapper对有注解jsonIgnore的不会返回，其它全部返回
     public boolean isAccountNonLocked() {
         return true;
     }

@@ -29,11 +29,11 @@ public class InfluxDBConfig {
     @Value("${spring.influx.url}")
     private String url;
 
-    //数据库
+    // 数据库
     @Value("${spring.influx.database}")
     private String database;
 
-    //保留策略
+    // 保留策略
     private String retentionPolicy;
 
     private InfluxDB influxDB;
@@ -144,7 +144,7 @@ public class InfluxDBConfig {
     public List<Map<String, Object>> queryResultProcess(QueryResult queryResult) {
         List<Map<String, Object>> mapList = new ArrayList<>();
         List<QueryResult.Result> resultList = queryResult.getResults();
-        //把查询出的结果集转换成对应的实体对象，聚合成list
+        // 把查询出的结果集转换成对应的实体对象，聚合成list
         for (QueryResult.Result query : resultList) {
             List<QueryResult.Series> seriesList = query.getSeries();
             if (seriesList != null && seriesList.size() != 0) {

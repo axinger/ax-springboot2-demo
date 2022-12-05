@@ -43,15 +43,15 @@ public class MapTests {
         Map<Object, Object> map2 = Maps.newHashMap();
         map2.put("name", "tom");
         map2.put("high", 20);
-        //交集
+        // 交集
         MapDifference<Object, Object> difference = Maps.difference(map1, map2);
 
         System.out.println("求两个map集合的差集,key相同,value不同 = " + difference);
 
-        //左边差集
+        // 左边差集
         final Map<Object, Object> onlyOnLeft = difference.entriesOnlyOnLeft();
         System.out.println("map1 独有 = " + onlyOnLeft);
-        //右边差集
+        // 右边差集
         final Map<Object, Object> onlyOnRight = difference.entriesOnlyOnRight();
         System.out.println("map2 独有 = " + onlyOnRight);
         System.out.println("difference.entriesDiffering() = " + difference.entriesDiffering());

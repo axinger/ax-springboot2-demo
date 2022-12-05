@@ -1,12 +1,12 @@
-//package com.ax.master.listener.redis;
+// package com.ax.master.listener.redis;
 //
-//import com.ax.master.service.impl.RedisService;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.data.redis.connection.Message;
-//import org.springframework.data.redis.core.RedisTemplate;
-//import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
-//import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-//import org.springframework.stereotype.Component;
+// import com.ax.master.service.impl.RedisService;
+// import lombok.extern.slf4j.Slf4j;
+// import org.springframework.data.redis.connection.Message;
+// import org.springframework.data.redis.core.RedisTemplate;
+// import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
+// import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+// import org.springframework.stereotype.Component;
 //
 ///**
 // * 监听所有db的过期事件__keyevent@*__:expired"
@@ -15,7 +15,7 @@
 // */
 //@Component
 //@Slf4j
-//public class RedisKeyExpirationListener extends KeyExpirationEventMessageListener {
+// public class RedisKeyExpirationListener extends KeyExpirationEventMessageListener {
 //
 //
 //    public RedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer) {

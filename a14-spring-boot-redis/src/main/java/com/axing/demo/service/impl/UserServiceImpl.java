@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
             cacheable = {
                     @Cacheable(value = "emp", key = "#id")
             },
-            put = {                  //更新缓存可以通过id，email或者lastName进行key值查找。
+            put = {                  // 更新缓存可以通过id，email或者lastName进行key值查找。
                     @CachePut(value = "emp", key = "#result.id"),
                     @CachePut(value = "emp", key = "#result.name"),
                     @CachePut(value = "emp", key = "#result.date"),

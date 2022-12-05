@@ -1,9 +1,6 @@
 package com.xing.entity;
 
-import cn.hutool.core.util.StrUtil;
-import com.google.errorprone.annotations.concurrent.LazyInit;
 import lombok.Data;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
@@ -26,10 +23,10 @@ public class User {
     private String id;
 
     //@MongoId
-    //private ObjectId id;
+    // private ObjectId id;
     //
     //@MongoId
-    //private cn.hutool.core.lang.ObjectId id2;
+    // private cn.hutool.core.lang.ObjectId id2;
 
     //@MongoId
     private Integer age;

@@ -1,12 +1,9 @@
 package com.axing.demo;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.util.StringUtil;
 
 import java.util.List;
 
@@ -31,8 +28,8 @@ public class StrTests {
 
     @Test
     void test_2() {
-       Object obj = "null";
-       String string = "null";
+        Object obj = "null";
+        String string = "null";
         System.out.println("ObjectUtil.equals(obj,string) = " + ObjectUtil.equals(obj, string));
     }
 
@@ -40,7 +37,7 @@ public class StrTests {
     void test_3() {
         List<Integer> list = List.of(1, 2, 3);
 
-        //StrUtil.join(",",list);
+        // StrUtil.join(",",list);
 
         // 每个元素加前后缀 [1],[2],[3] , 不是 [1,2,3]
         String join = CollUtil.join(list, ",", "[", "]");

@@ -3,7 +3,6 @@ package com.axing.demo.service;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.Department;
 import com.axing.demo.mapper.DepartmentMapper;
-import com.axing.demo.service.DepartmentService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -62,7 +61,7 @@ class DepartmentServiceTest {
                 .eq(Department::getName, "销售部")
                 .apply("department.id={0}", 2)
 
-                //注入风险
+                // 注入风险
 //                .apply("department.id=2")
                 ;
 

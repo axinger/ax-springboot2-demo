@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
 
-    //category是缓存名称,#type是具体的key，可支持el表达式
+    // category是缓存名称,#type是具体的key，可支持el表达式
     @Cacheable(value = "category", key = "#type")
     public CategoryModel getCategory(Integer type) {
         return getCategoryByType(type);

@@ -28,7 +28,7 @@ public class MallSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        //获取登录用户信息
+        // 获取登录用户信息
         return username -> {
             UserDetails admin = adminService.loadUserByUsername(username);
             if (admin != null) {

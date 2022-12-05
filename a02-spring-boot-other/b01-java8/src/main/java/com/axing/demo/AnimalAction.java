@@ -1,8 +1,8 @@
 package com.axing.demo;
 
-//泛型接口。
+// 泛型接口。
 public interface AnimalAction<T> {
-//public interface AnimalAction<T extends Animal> {
+// public interface AnimalAction<T extends Animal> {
 
 
     T show(T t);

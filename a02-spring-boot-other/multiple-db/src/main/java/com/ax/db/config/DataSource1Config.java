@@ -25,19 +25,19 @@ public class DataSource1Config {
     @Value("${mybatis.db1.mapper-locations}")
     private String MAPPER_XML;
 
-    //指定名称
+    // 指定名称
     @Bean(name = "oneDataSource")
     @Qualifier("oneDataSource")
-    //指定配置的前缀
+    // 指定配置的前缀
     @ConfigurationProperties(prefix = "spring.datasource.db1")
     public DataSource dataSourceOne() {
-        //这里使用DruidDataSourceBuilder
+        // 这里使用DruidDataSourceBuilder
         return DruidDataSourceBuilder.create().build();
     }
 
 //	private static final String MAPPER_XML = "classpath:mapper/db1/*.xml";
 
-    //分别配置事物管理
+    // 分别配置事物管理
     @Bean(name = "oneTransaction")
     public DataSourceTransactionManager db1TransactionManager(
             @Qualifier("oneDataSource") DataSource dataSource) {

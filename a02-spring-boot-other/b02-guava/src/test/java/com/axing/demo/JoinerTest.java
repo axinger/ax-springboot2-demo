@@ -58,7 +58,7 @@ public class JoinerTest {
         list.add("c");
 
         String result = Joiner.on("-").join(list);
-        System.out.println("Joiner = "+result);
+        System.out.println("Joiner = " + result);
 
 
     }

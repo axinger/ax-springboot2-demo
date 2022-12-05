@@ -54,7 +54,7 @@ public class RedissonTests {
         long incr = redisCacheTemplate.incr(key, 1, 86400);
         // 左对齐
         String value = StrUtil.padPre(String.valueOf(incr), 6, "0");
-        //然后把 时间戳和优化后的 ID 拼接
+        // 然后把 时间戳和优化后的 ID 拼接
         String code = StrUtil.format("{}-{}", currentDate, value);
         System.out.println("code = " + code);
     }

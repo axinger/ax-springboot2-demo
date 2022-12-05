@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableAsync
 @Slf4j
 public class MyDefaultExecutor implements AsyncConfigurer {
-    //https://blog.csdn.net/qq_40428665/article/details/121680026
+    // https://blog.csdn.net/qq_40428665/article/details/121680026
     @Primary
     @Bean
     @Override
@@ -61,22 +61,22 @@ public class MyDefaultExecutor implements AsyncConfigurer {
         final int poolSize = (int) (cpuCore / (1 - 0.9));
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        //核心线程数目
+        // 核心线程数目
         executor.setCorePoolSize(65);
-        //指定最大线程数
+        // 指定最大线程数
         executor.setMaxPoolSize(65);
-        //队列中最大的数目
+        // 队列中最大的数目
         executor.setQueueCapacity(650);
-        //线程名称前缀
+        // 线程名称前缀
         executor.setThreadNamePrefix("🐛🐛🐛自定义线程池-");
-        //rejection-policy：当pool已经达到max size的时候，如何处理新任务
-        //CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行
-        //对拒绝task的处理策略
+        // rejection-policy：当pool已经达到max size的时候，如何处理新任务
+        // CALLER_RUNS：不在新线程中执行任务，而是由调用者所在的线程来执行
+        // 对拒绝task的处理策略
         // DiscardOldestPolicy
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
-        //线程空闲后的最大存活时间
+        // 线程空闲后的最大存活时间
         executor.setKeepAliveSeconds(60);
-        //加载
+        // 加载
         executor.initialize();
         return executor;
 

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(HelloProperties.class)//默认把HelloProperties 放入容器中
+@EnableConfigurationProperties(HelloProperties.class)// 默认把HelloProperties 放入容器中
 public class HelloServiceAutoConfiguration {
 
 

@@ -42,7 +42,7 @@ public class InitService {
     // 创建服务器完成适配
     public void createServer() {
 
-        //路由和handler适配
+        // 路由和handler适配
 
         RouterFunction<ServerResponse> routes = routerFunction();
         HttpHandler httpHandler = toHttpHandler(routes);

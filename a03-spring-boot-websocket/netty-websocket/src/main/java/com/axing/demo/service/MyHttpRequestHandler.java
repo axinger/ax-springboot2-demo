@@ -27,12 +27,12 @@ public class MyHttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRe
         log.info("初次链接 = ", webUri, request.uri());
 
         String uri = StringUtils.substringBefore(request.uri(), "?");
-        if (webUri.equalsIgnoreCase(uri)) {//获取webSocket参数
+        if (webUri.equalsIgnoreCase(uri)) {// 获取webSocket参数
             QueryStringDecoder query = new QueryStringDecoder(request.uri());
             Map<String, List<String>> map = query.parameters();
             List<String> tokens = map.get("uid");
             log.debug("tokens = " + tokens);
-            //根据参数保存当前登录对象, 并把该token加入到channel中
+            // 根据参数保存当前登录对象, 并把该token加入到channel中
             if (tokens != null && !tokens.isEmpty()) {
                 String token = tokens.get(0);
                 ChatConstants.addOnlines(token, new UserInfo(token));

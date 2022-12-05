@@ -56,26 +56,26 @@ class TestCompletableFuture {
         // 如果执行成功:
         future.thenAccept((result) -> {
             System.out.println("执行成功 = " + result);
-            //同步,无返回值
+            // 同步,无返回值
         });
 
         future.thenAcceptAsync(e -> {
-            //异步,无返回值
+            // 异步,无返回值
         });
 
         future.thenApplyAsync(e -> {
 
-            //异步,需要返回值
+            // 异步,需要返回值
             return "";
         });
         future.thenApply(e -> {
 
-            //同步,需要返回值
+            // 同步,需要返回值
             return "";
         });
 
         future.whenComplete((k, v) -> {
-            //结果
+            // 结果
             System.out.println("whenComplete k = " + k + ", v = " + v);
         });
 
@@ -321,7 +321,7 @@ class Exceptionally {
             // 执行任务
             return 10;
         }, executorService).exceptionally(throwable -> {
-            //返回默认值
+            // 返回默认值
             return 10;
         }).whenComplete((res, e) -> {
 
@@ -345,7 +345,7 @@ class Exceptionally {
             // 执行任务
             return "9";
         }, executorService).exceptionally(throwable -> {
-            //返回默认值
+            // 返回默认值
             return "返回默认值";
         }).whenCompleteAsync((res, e) -> {
 
@@ -365,7 +365,7 @@ class Exceptionally {
             // 执行任务
             return "9";
         }, executorService).handle((res, e) -> {
-            //返回默认值
+            // 返回默认值
             if (res != null) {
                 return res;
             }

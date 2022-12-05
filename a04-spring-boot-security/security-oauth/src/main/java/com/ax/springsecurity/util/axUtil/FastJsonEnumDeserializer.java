@@ -1,15 +1,15 @@
-package com.ax.springsecurity.util.axUtil;//package com.ax.shop.util.axtools;
+package com.ax.springsecurity.util.axUtil;// package com.ax.shop.util.axtools;
 //
-//import com.alibaba.fastjson2.JSONException;
-//import com.alibaba.fastjson2.parser.DefaultJSONParser;
-//import com.alibaba.fastjson2.parser.JSONLexer;
-//import com.alibaba.fastjson2.parser.JSONToken;
-//import com.alibaba.fastjson2.parser.deserializer.ObjectDeserializer;
+// import com.alibaba.fastjson2.JSONException;
+// import com.alibaba.fastjson2.parser.DefaultJSONParser;
+// import com.alibaba.fastjson2.parser.JSONLexer;
+// import com.alibaba.fastjson2.parser.JSONToken;
+// import com.alibaba.fastjson2.parser.deserializer.ObjectDeserializer;
 //
 //
-//import java.lang.reflect.Type;
+// import java.lang.reflect.Type;
 //
-//public class FastJsonEnumDeserializer implements ObjectDeserializer {
+// public class FastJsonEnumDeserializer implements ObjectDeserializer {
 //
 //    @Override
 //    public <T> T deserialze(DefaultJSONParser parser, Type type, Object o) {

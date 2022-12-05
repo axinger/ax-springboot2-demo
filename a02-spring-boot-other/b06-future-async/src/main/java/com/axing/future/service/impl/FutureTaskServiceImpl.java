@@ -255,7 +255,7 @@ public class FutureTaskServiceImpl implements FutureTaskService {
         });
         System.out.println("future1: " + future1.isDone() + " future2: " + future2.isDone());
 
-        //join() 的作用：让“主线程”等待“子线程”结束之后才能继续运行
+        // join() 的作用：让“主线程”等待“子线程”结束之后才能继续运行
         allOf.join();
 
         System.out.println("map = " + map);

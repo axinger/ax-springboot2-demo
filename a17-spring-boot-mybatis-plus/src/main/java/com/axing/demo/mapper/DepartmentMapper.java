@@ -60,7 +60,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     List<Department> getDepartmentEmpsList2(@Param(Constants.WRAPPER) Wrapper wrapper);
 
 
-    //参数加上@Param(Constants.WRAPPER),xml里加上${ew.customSqlSegment}可以实现复杂条件检索查询
+    // 参数加上@Param(Constants.WRAPPER),xml里加上${ew.customSqlSegment}可以实现复杂条件检索查询
 
 }
 

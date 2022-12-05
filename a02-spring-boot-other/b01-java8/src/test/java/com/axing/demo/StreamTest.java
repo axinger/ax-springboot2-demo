@@ -81,7 +81,7 @@ public class StreamTest {
         staffList.add(new Staff("张三", DateUtil.parse("2022-02-04", "yyyy-MM-dd"), new BigDecimal(10)));
 
 
-        //日期月分组
+        // 日期月分组
         Map<String, List<Staff>> collect = staffList.stream().collect(
                 Collectors.groupingBy(
                         o -> DateUtil.format(o.getDate(), "yyyy-MM")
@@ -90,7 +90,7 @@ public class StreamTest {
 
         System.out.println(collect);
 
-        //日期分组求和
+        // 日期分组求和
         Map<String, BigDecimal> collect1 = staffList.stream().collect(
                 Collectors.groupingBy(
                         o -> DateUtil.format(o.getDate(), "yyyy-MM"),
@@ -126,7 +126,7 @@ public class StreamTest {
 
     @Test
     void test_boxed() {
-        //boxed的作用就是将int类型的stream转成了Integer类型的Stream
+        // boxed的作用就是将int类型的stream转成了Integer类型的Stream
         List<Integer> integers = Stream.of("1", "2")
                 .mapToInt(Integer::parseInt)
                 .boxed()
@@ -137,7 +137,7 @@ public class StreamTest {
     @Test
     void test_peek_map() {
 
-        //peek 和 map 区别
+        // peek 和 map 区别
         // peek 没有返回值,可以直接修改当前值
         List<Person> list1 = personList
                 .stream()
@@ -146,7 +146,7 @@ public class StreamTest {
         System.out.println("list1 = " + list1);
     }
 
-    //统计个数
+    // 统计个数
     @Test
     void test_map_grouping_count() {
         List<DeviceModel> list = new ArrayList<>();
@@ -168,11 +168,11 @@ public class StreamTest {
                 .build());
 
 
-        //统计个数
+        // 统计个数
         Map<String, Long> collect = list.stream().filter(val -> val.getState().equals("1")).collect(Collectors.groupingBy(DeviceModel::getId, Collectors.counting()));
         System.out.println("collect = " + collect);
 
-        //map排序
+        // map排序
         List<Map.Entry<String, Long>> collect2 = collect.entrySet().stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .collect(Collectors.toList());
@@ -236,7 +236,7 @@ public class StreamTest {
         System.out.println("sum2 = " + sum2);
 
 
-        //分组求和
+        // 分组求和
         Map<String, Integer> collect = personList.stream()
                 .collect(Collectors.groupingBy(
                                 Person::getSex,
@@ -295,7 +295,7 @@ public class StreamTest {
         System.out.println("员工按性别、地区：" + group2);
 
 
-        //分组求和
+        // 分组求和
         Map<String, Integer> collect = personList.stream()
                 .collect(Collectors.groupingBy(
                                 Person::getSex,
@@ -304,7 +304,7 @@ public class StreamTest {
                 );
         System.out.println("分组求和 = " + collect);
 
-        //分组个数
+        // 分组个数
         Map<String, Long> collect1 = personList.stream()
                 .collect(Collectors.groupingBy(
                                 Person::getSex,
@@ -315,7 +315,7 @@ public class StreamTest {
 
 //        .sorted(Comparator.comparing(Person::getAge).reversed())
 //                .map(Person::getName).collect(Collectors.toList())
-        //map排序成list
+        // map排序成list
         List<Map.Entry<String, Long>> collect2 = collect1.entrySet().stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed()).collect(Collectors.toList());
 
@@ -367,7 +367,7 @@ public class StreamTest {
     }
 
 
-    //map排序
+    // map排序
     @Test
     void test_map() {
 //        Map<String, Object> map = new HashMap();
@@ -517,7 +517,7 @@ public class StreamTest {
         final Integer val = Optional.ofNullable(list2).orElse(new ArrayList<>()).stream().findFirst().orElse(-1);
         System.out.println("val = " + val);
 
-        //判空查找指定位置元素
+        // 判空查找指定位置元素
         list2 = Lists.newArrayList(1, 2, 3, 4);
         final Integer s2 = Optional.ofNullable(list2).orElse(new ArrayList<>()).stream().skip(2).findFirst().orElse(-1);
         System.out.println("s2 = " + s2);
@@ -586,9 +586,9 @@ public class StreamTest {
 
 
         final List<Double> collect2 = list.parallelStream()
-                //拍扁,同时检查 list中map是否null,给出默认空list
+                // 拍扁,同时检查 list中map是否null,给出默认空list
                 .flatMap(el -> Optional.ofNullable(el).map(Map::values).orElse(new ArrayList<>()).stream())
-                //转成double
+                // 转成double
                 .map(el -> Double.parseDouble(Optional.ofNullable(el).orElse(0).toString())).collect(Collectors.toList());
 
         System.out.println("collect2 = " + collect2);
@@ -831,7 +831,7 @@ public class StreamTest {
         System.out.println("mapToIntSum = " + mapToIntSum);
     }
 
-    //去重
+    // 去重
 
     // 根据name,sex两个属性去重
     @Test
@@ -976,7 +976,7 @@ class StreamTest_flatMap {
     }
 }
 
-//归约 减少 ，也称缩减，顾名思义，是把一个流缩减成一个值，能实现对集合求和、求乘积和求最值操作。
+// 归约 减少 ，也称缩减，顾名思义，是把一个流缩减成一个值，能实现对集合求和、求乘积和求最值操作。
 class StreamTest_reduce {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(0, 1, 3, 2, 8, 11, 4);
