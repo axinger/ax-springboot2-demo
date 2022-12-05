@@ -36,4 +36,6 @@ public class User {
     private String name;
     private Date birthday;
 
+    private Dog dog;
+
 }

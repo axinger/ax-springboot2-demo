@@ -24,4 +24,6 @@ public class Dog extends BaseMongoEntity {
     private String address;
     private Integer age;
     private LocalDateTime birthday;
+
+    private String description;
 }

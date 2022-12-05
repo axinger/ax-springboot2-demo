@@ -1,7 +1,9 @@
 package com.xing;
 
 import cn.hutool.core.lang.func.LambdaUtil;
+import cn.hutool.core.util.StrUtil;
 import com.mongodb.client.result.UpdateResult;
+import com.xing.entity.Dog;
 import com.xing.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @SpringBootTest
 @Slf4j
@@ -36,12 +39,20 @@ public class MongoTemplateCRUDTests {
     @Test
     void save_user() {
 
-        List list = new ArrayList<>(){{
+        List list = new ArrayList<>() {{
             {
                 User user = new User();
                 user.setId("1");
                 user.setName("jim");
                 user.setAge(10);
+
+                Dog dog = new Dog();
+                user.setDog(dog);
+                dog.setName("jim的狗");
+                dog.setAge(5);
+                dog.setDescription("address不传值");
+
+
                 add(user);
             }
             {
@@ -49,6 +60,15 @@ public class MongoTemplateCRUDTests {
                 user.setId("2");
                 user.setName("tom");
                 user.setAge(10);
+
+                Dog dog = new Dog();
+                user.setDog(dog);
+                dog.setName("tom的狗");
+                dog.setAge(5);
+                dog.setAddress("a号道");
+                dog.setDescription("address有值");
+
+
                 add(user);
             }
             {
@@ -56,6 +76,14 @@ public class MongoTemplateCRUDTests {
                 user.setId("3");
                 user.setName("jack");
                 user.setAge(10);
+
+                Dog dog = new Dog();
+                user.setDog(dog);
+                dog.setName("jack的狗");
+                dog.setAge(6);
+                dog.setAddress("a号道");
+                dog.setDescription("address有值");
+
                 add(user);
             }
             {
@@ -63,11 +91,19 @@ public class MongoTemplateCRUDTests {
                 user.setId("4");
                 user.setName("lili");
                 user.setAge(10);
+
+                Dog dog = new Dog();
+                user.setDog(dog);
+                dog.setName("lili的狗");
+                dog.setAge(5);
+                dog.setAddress("b号道");
+                dog.setDescription("address有值");
+
                 add(user);
             }
         }};
         mongoTemplate.<User>insertAll(list);
-        //mongoTemplate.save(list,"user"); //失败
+        // mongoTemplate.save(list,"user"); //失败
     }
 
 
@@ -122,6 +158,81 @@ public class MongoTemplateCRUDTests {
     }
 
     @Test
+    void find_or() {
+
+
+        Query query = new Query(Criteria
+                .where(LambdaUtil.getFieldName(User::getAge)).is(10)
+        );
+
+
+        Pattern name1 = Pattern.compile(StrUtil.format("^.*{}.*$", "jim"), Pattern.CASE_INSENSITIVE);
+        Pattern name2 = Pattern.compile(StrUtil.format("^.*{}.*$", "tom"), Pattern.CASE_INSENSITIVE);
+
+        Criteria criteria = new Criteria();
+        criteria.orOperator(Criteria.where("name").regex(name1),
+                Criteria.where("name").regex(name2));
+
+
+        query.addCriteria(criteria);
+
+
+        PageRequest request = PageRequest.of(0, 5);
+        query.with(request);
+
+        List<User> list = this.mongoTemplate.find(query, User.class);
+        System.out.println("list = " + list);
+        System.out.println("request = " + request);
+
+    }
+
+    @Test
+    void find_or_2() {
+
+
+        Query query = new Query(Criteria
+                .where(LambdaUtil.getFieldName(User::getAge)).is(10)
+        );
+
+        // like
+        // ^.* 开头,类似%开头
+        // .*$ 结尾,类似%结尾
+        {
+
+            Pattern name1 = Pattern.compile(StrUtil.format("^.*{}.*$", "b号道"), Pattern.CASE_INSENSITIVE);
+
+            Criteria criteria = new Criteria();
+            criteria.orOperator(Criteria.where("dog.address").regex(name1),
+                    // 是空
+                    Criteria.where("dog.address").isNull()
+            );
+            query.addCriteria(criteria);
+        }
+
+        // {
+        //     //  Criteria 没有where会报错,
+        //     Criteria criteria = new Criteria();
+        //     criteria.and("dog.age").gt(5);
+        //     query.addCriteria(criteria);
+        //
+        // }
+
+        {
+
+            Criteria gt = Criteria
+                    .where("dog.age").gt(5);
+            query.addCriteria(gt);
+        }
+
+        PageRequest request = PageRequest.of(0, 5);
+        query.with(request);
+
+        List<User> list = this.mongoTemplate.find(query, User.class);
+        System.out.println("list = " + list.stream().map(User::getId).toList());
+
+    }
+
+    @Test
     void find_page() {
         Query query = new Query(Criteria
                 .where(LambdaUtil.getFieldName(User::getAge)).is(10)
@@ -137,21 +248,19 @@ public class MongoTemplateCRUDTests {
         System.out.println("list = " + list);
         System.out.println("request = " + request);
 
-        //System.out.println("request.isPaged() = " + request.isPaged());
-        //System.out.println("request.isUnpaged() = " + request.isUnpaged());
-        //System.out.println("request.getPageNumber() = " + request.getPageNumber());
-        //System.out.println("request.getPageSize() = " + request.getPageSize());
-        //System.out.println("request.getOffset() = " + request.getOffset());
-
-
+        // System.out.println("request.isPaged() = " + request.isPaged());
+        // System.out.println("request.isUnpaged() = " + request.isUnpaged());
+        // System.out.println("request.getPageNumber() = " + request.getPageNumber());
+        // System.out.println("request.getPageSize() = " + request.getPageSize());
+        // System.out.println("request.getOffset() = " + request.getOffset());
 
 
         // 分页,需要总数量, 需要自定义查询总数量
-        //PageableExecutionUtils.getPage()
+        // PageableExecutionUtils.getPage()
         Page page = new PageImpl<>(list, request, count);
         System.out.println("page = " + page);
 
-        //mongoTemplate.
+        // mongoTemplate.
 
         // 有很多判断
         Page<User> page1 = PageableExecutionUtils.getPage(list, request, () -> count);
@@ -205,8 +314,6 @@ public class MongoTemplateCRUDTests {
         System.out.println("result = " + result);
 
     }
-
-
 
 
 }
