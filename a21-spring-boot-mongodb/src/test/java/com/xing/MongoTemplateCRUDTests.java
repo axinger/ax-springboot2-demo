@@ -92,8 +92,8 @@ public class MongoTemplateCRUDTests {
 
                 Dog dog = new Dog();
                 user.setDog(dog);
-                dog.setName("牧羊犬");
-                dog.setAge(6);
+                dog.setName("小斑点");
+                dog.setAge(8);
                 dog.setAddress("b号道");
                 dog.setDescription("address有值");
 
@@ -134,6 +134,27 @@ public class MongoTemplateCRUDTests {
         System.out.println("result = " + result);
     }
 
+
+    // mongoTemplate.upsert有三种用法，主要功能是更新数据，如果数据不存在就新增
+    @Test
+    void upsert() {
+
+        // 更新审核实例
+        Query query = new Query(Criteria
+                .where(LambdaUtil.getFieldName(User::getId)).is(12)
+                .and(LambdaUtil.getFieldName(User::getAge)).is(20)
+                // ne 不等于
+                .and(LambdaUtil.getFieldName(User::getName)).ne("jim")
+        );
+
+        // 会更新第一个 age =10, 且age!=jim的
+        Update update = new Update();
+        update.set(LambdaUtil.getFieldName(User::getAge), 21);
+
+        UpdateResult result = this.mongoTemplate.upsert(query, update, User.class);
+        System.out.println("result = " + result);
+    }
+
     /**
      * 迷糊查询
      */
@@ -163,9 +184,43 @@ public class MongoTemplateCRUDTests {
 
     }
 
-    @Test
-    void find_or() {
 
+    @Test
+    void find_id_list_one() {
+
+        User byId = mongoTemplate.findById(1, User.class);
+        System.out.println("byId = " + byId);
+
+        Query query = new Query(Criteria
+                .where(LambdaUtil.getFieldName(User::getId)).is(1)
+        );
+
+        List<User> list = this.mongoTemplate.find(query, User.class);
+
+        System.out.println("list = " + list);
+
+        Query query2 = new Query(Criteria
+                .where("_id").is(1)
+        );
+        User user = mongoTemplate.findOne(query2, User.class);
+        System.out.println("user = " + user);
+
+    }
+
+    @Test
+    void find_Pattern() {
+        //
+        // Pattern pattern = Pattern.compile("^ + content + .*");
+        // 模糊查询，满足XXX条件：^.*(content).*$
+        // 模糊查询，满足XXX条件或者YYY条件：^.*(content1|content2).*$
+        // 模糊查询，不满足XXX条件：^((?!content).)*$
+        // 模糊查询，查询以XXX开头：^content.*
+        // 模糊查询，不满足XXX开头：^(?!content).*$
+        //
+        // 查询开头满足：String begin="4305" 中间不等于String center = "00"  结尾满足String end="YYYYY"
+        //
+        // Pattern pattern1 = Pattern.compile("^"+begin+"((?!"+center+").).*"+end+"$");
+        // Pattern pattern1 = Pattern.compile("^4305((?!00).).*YYYYY$");
 
         Query query = new Query(Criteria
                 .where(LambdaUtil.getFieldName(User::getAge)).is(10)
@@ -192,6 +247,33 @@ public class MongoTemplateCRUDTests {
 
     }
 
+
+
+    @Test
+    void find_regex() {
+
+        // //完全匹配
+        // Pattern pattern = Pattern.compile("^hzb$", Pattern.CASE_INSENSITIVE);
+        // //右匹配
+        // Pattern pattern = Pattern.compile("^.*hzb$", Pattern.CASE_INSENSITIVE);
+        // //左匹配
+        // Pattern pattern = Pattern.compile("^hzb.*$", Pattern.CASE_INSENSITIVE);
+        // //模糊匹配
+        // Pattern pattern = Pattern.compile("^.*hzb.*$", Pattern.CASE_INSENSITIVE);
+
+        // Query query = new Query(Criteria
+        //         .where("name").regex("^ji.*$")
+        // );
+        Query query = new Query(Criteria
+                .where("name").regex("^.*om$")
+        );
+
+        List<User> list = this.mongoTemplate.find(query, User.class);
+        System.out.println("list = " + list);
+
+
+
+    }
     @Test
     void find_or_2() {
 
@@ -251,6 +333,90 @@ public class MongoTemplateCRUDTests {
 
         PageRequest request = PageRequest.of(0, 5);
         query.with(request);
+
+        List<User> list = this.mongoTemplate.find(query, User.class);
+        System.out.println("list = " + list.stream().map(User::getId).toList());
+
+    }
+
+    @Test
+    void find_or_3() {
+
+
+        Query query = new Query();
+
+        Criteria criteria = Criteria
+                .where(LambdaUtil.getFieldName(User::getAge)).is(10);
+
+        query.addCriteria(criteria);
+
+        ;
+        query.addCriteria(Criteria.where("dog.age").gte(6).lte(8));
+        // query.addCriteria(Criteria.where("dog.age").gte(6).lt(8));
+
+
+        List<User> list = this.mongoTemplate.find(query, User.class);
+        System.out.println("list = " + list.stream().map(User::getId).toList());
+
+    }
+
+    @Test
+    void find_or_4() {
+
+
+        Query query = new Query();
+
+        Criteria criteria = Criteria
+                .where(LambdaUtil.getFieldName(User::getAge)).is(10);
+
+        query.addCriteria(criteria);
+
+        // 分开写,不可以
+        // query.addCriteria(
+        //         new Criteria().orOperator(
+        //                 Criteria.where("dog.age").is(6),
+        //                 Criteria.where("dog.age").is(8)
+        //         )
+        // );
+        //
+        // query.addCriteria(
+        //         new Criteria().orOperator(
+        //                 Criteria.where("dog.name").is("牧羊犬"),
+        //                 Criteria.where("dog.name").is("大斑点")
+        //         )
+        // );
+
+
+        // 这个可以
+        // criteria.andOperator(
+        //
+        //         new Criteria().orOperator(
+        //                 Criteria.where("dog.name").is("牧羊犬"),
+        //                 Criteria.where("dog.name").is("大斑点")
+        //         ),
+        //
+        //         new Criteria().orOperator(
+        //                 Criteria.where("dog.age").is(6),
+        //                 Criteria.where("dog.age").is(8)
+        //         )
+        // );
+
+
+        // 可以
+        // query.addCriteria(new Criteria().andOperator(
+        //
+        //         new Criteria().orOperator(
+        //                 Criteria.where("dog.name").is("牧羊犬"),
+        //                 Criteria.where("dog.name").is("大斑点")
+        //         ),
+        //
+        //         new Criteria().orOperator(
+        //                 Criteria.where("dog.age").is(6),
+        //                 Criteria.where("dog.age").is(8)
+        //         )
+        //
+        // ));
+
 
         List<User> list = this.mongoTemplate.find(query, User.class);
         System.out.println("list = " + list.stream().map(User::getId).toList());
