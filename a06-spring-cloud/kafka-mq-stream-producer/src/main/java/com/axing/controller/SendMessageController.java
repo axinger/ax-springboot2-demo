@@ -27,18 +27,14 @@ import static com.axing.model.MessageConstant.*;
 public class SendMessageController {
 
     private final MessageService messageService;
+    @Autowired
+    private StreamBridge streamBridge;
 
     @Operation(summary = "发送主题消息")
     @GetMapping("/orderExchange")
     public void sendMethod() {
         messageService.orderExchange();
 
-    }
-
-    @Operation(summary = "发送交换机消息")
-    @GetMapping("/orderOut")
-    public void oder() {
-        messageService.orderOut();
     }
 
 
@@ -63,8 +59,11 @@ public class SendMessageController {
 //        streamBridge.send("sendMessage-in-0", message);
 //    }
 
-    @Autowired
-    private StreamBridge streamBridge;
+    @Operation(summary = "发送交换机消息")
+    @GetMapping("/orderOut")
+    public void oder() {
+        messageService.orderOut();
+    }
 
     /**
      * 1.普通消息发送

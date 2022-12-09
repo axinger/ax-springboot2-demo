@@ -16,22 +16,19 @@ import java.io.Serializable;
 @TableName(value = "t_user_role")
 @Data
 public class UserRole implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 主键id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      * 角色说明
      */
     private String roleName;
-
     /**
      * 关联User表id
      */
     private Integer userId;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

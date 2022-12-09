@@ -28,10 +28,10 @@ import java.util.Set;
 @Service
 public class WebSocketService {
 
-    // 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
-    private static int onlineCount = 0;
     // 记录每个用户下多个终端的连接
     private static final Map<Long, Set<WebSocketService>> userSocketMap = new HashMap<>();
+    // 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+    private static int onlineCount = 0;
     // 日志记录
     private final Logger logger = LoggerFactory.getLogger(WebSocketService.class);
     // 需要session来对用户发送数据, 获取连接特征userId

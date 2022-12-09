@@ -60,12 +60,21 @@ public class StreamTest {
         System.out.println("beforeAll====");
     }
 
+    public static Stream<Character> fromStringToStream(String str) {
+        List<Character> list = new ArrayList<>();
+        for (Character c : str.toCharArray()) {
+            list.add(c);
+        }
+
+
+        return list.stream();
+//        return  Arrays.asList(str.toCharArray()).stream();
+    }
 
     @BeforeEach
     void beforeEach() {
         System.out.println("beforeEach=======");
     }
-
 
     /**
      * 按照月分组
@@ -99,7 +108,6 @@ public class StreamTest {
         System.out.println("collect1 = " + collect1);
 
     }
-
 
     @Test
     void test_any() {
@@ -188,7 +196,6 @@ public class StreamTest {
 
     }
 
-
     @Test
     void test_sum() {
 
@@ -253,7 +260,6 @@ public class StreamTest {
                 );
         System.out.println("分组求个数 = " + collect1);
     }
-
 
     @Test
     void test_groupingBy() {
@@ -330,7 +336,6 @@ public class StreamTest {
         System.out.println("map排序top = " + collect3);
     }
 
-
     @Test
     void test() {
 
@@ -365,7 +370,6 @@ public class StreamTest {
 
         System.out.println("i = " + (4 % 2));
     }
-
 
     // map排序
     @Test
@@ -403,17 +407,6 @@ public class StreamTest {
 
         List listNull = null;
         Optional.ofNullable(listNull).orElse(new ArrayList<>()).stream().forEach(val -> System.out.println("Optional 和 Stream val = " + val));
-    }
-
-    public static Stream<Character> fromStringToStream(String str) {
-        List<Character> list = new ArrayList<>();
-        for (Character c : str.toCharArray()) {
-            list.add(c);
-        }
-
-
-        return list.stream();
-//        return  Arrays.asList(str.toCharArray()).stream();
     }
 
     @Test

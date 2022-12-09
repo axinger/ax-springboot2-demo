@@ -19,26 +19,22 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 public class Student extends BaseEntity {
 
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     private String name;
-
     /**
      *
      */
     private Integer age;
-
     /**
      *
      */
     private Gender gender;
-
     /**
      *
      */
     private String address;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

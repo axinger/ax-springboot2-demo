@@ -14,27 +14,23 @@ import java.io.Serializable;
 @TableName(value = "t_user")
 @Data
 public class User implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 主键
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      * 姓名
      */
     private String name;
-
     /**
      * 密码
      */
     private String password;
-
     /**
      * 0保密1男2女
      */
     private Integer sex;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

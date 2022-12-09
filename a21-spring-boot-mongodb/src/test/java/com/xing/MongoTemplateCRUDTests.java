@@ -37,7 +37,7 @@ public class MongoTemplateCRUDTests {
     @Test
     void save_user() {
 
-        List list = new ArrayList<>() {{
+        List<User> list = new ArrayList<>() {{
             {
                 User user = new User();
                 user.setId("1");
@@ -108,7 +108,7 @@ public class MongoTemplateCRUDTests {
                 add(user);
             }
         }};
-        mongoTemplate.<User>insertAll(list);
+        mongoTemplate.insertAll(list);
         // mongoTemplate.save(list,"user"); //失败
     }
 
@@ -248,7 +248,6 @@ public class MongoTemplateCRUDTests {
     }
 
 
-
     @Test
     void find_regex() {
 
@@ -261,9 +260,6 @@ public class MongoTemplateCRUDTests {
         // //模糊匹配
         // Pattern pattern = Pattern.compile("^.*hzb.*$", Pattern.CASE_INSENSITIVE);
 
-        // Query query = new Query(Criteria
-        //         .where("name").regex("^ji.*$")
-        // );
         Query query = new Query(Criteria
                 .where("name").regex("^.*om$")
         );
@@ -272,8 +268,8 @@ public class MongoTemplateCRUDTests {
         System.out.println("list = " + list);
 
 
-
     }
+
     @Test
     void find_or_2() {
 
@@ -448,7 +444,7 @@ public class MongoTemplateCRUDTests {
 
         // 分页,需要总数量, 需要自定义查询总数量
         // PageableExecutionUtils.getPage()
-        Page page = new PageImpl<>(list, request, count);
+        Page<User> page = new PageImpl<>(list, request, count);
         System.out.println("page = " + page);
 
         // mongoTemplate.

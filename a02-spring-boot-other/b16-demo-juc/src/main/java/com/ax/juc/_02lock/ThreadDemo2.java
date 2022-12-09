@@ -6,15 +6,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class ShareResource {
 
-    // 定义标志位
-    private Integer flag = 1;// 1 A1, 2 A2,3 A3
-
     private final Lock lock = new ReentrantLock();
     // 条件锁
     private final Condition conditionA1 = lock.newCondition();
     private final Condition conditionA2 = lock.newCondition();
     private final Condition conditionA3 = lock.newCondition();
-
+    // 定义标志位
+    private Integer flag = 1;// 1 A1, 2 A2,3 A3
 
     public void log5(int loop) throws InterruptedException {
         lock.lock();

@@ -16,27 +16,23 @@ import java.io.Serializable;
 @TableName(value = "t_user_info")
 @Data
 public class UserInfo implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 主键id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      * 姓名
      */
     private String userName;
-
     /**
      * 密码MD5加密的
      */
     private String password;
-
     /**
      * 用户类型 0 1 2
      */
     private Integer userType;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

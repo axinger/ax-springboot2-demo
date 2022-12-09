@@ -15,14 +15,14 @@ import java.io.File;
 public class Controller {
 
 
+    @Resource
+    private DocumentConverter converter;
+
     @GetMapping("/pdf")
     public void test() {
         Word2PdfUtil.doc2pdf("/Users/xing/Desktop/word.docx",
                 "/Users/xing/Desktop/word.pdf");
     }
-
-    @Resource
-    private DocumentConverter converter;
 
     @GetMapping("/pdf2")
     void contextLoads() {

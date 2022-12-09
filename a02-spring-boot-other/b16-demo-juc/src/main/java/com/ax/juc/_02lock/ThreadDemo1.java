@@ -6,10 +6,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class Share {
     private final Lock lock = new ReentrantLock();
-    private Integer num = 0;
     // 条件锁
     private final Condition condition = lock.newCondition();
-
+    private Integer num = 0;
 
     //+1
     void incr() throws InterruptedException {

@@ -13,6 +13,27 @@ import java.util.Arrays;
 public class EnumTest {
 
 
+    @Test
+    public void test1() {
+
+
+        System.out.println("Week.ONE = " + Week.ONE);
+        System.out.println("Week.ONE.name() = " + Week.ONE.name());
+        System.out.println("Week.ONE.ordinal() = " + Week.ONE.ordinal());
+        System.out.println("Week.valueOf(1) = " + Week.valueOf("ONE"));
+
+        System.out.println("Week.fromCode(1) = " + Week.fromCode(1));
+        System.out.println("Week.fromCode(0) = " + Week.fromCode(0));
+
+        System.out.println("Week.from(Week::getDescription,\"1\") = " + Week.from(Week::getName, "1"));
+
+        System.out.println("Week.from(Week::getDescription, \"一\") = " + Week.from(Week::getName, "一"));
+
+
+        System.out.println("Week.from(Week::getCode, 1) = " + Week.from(Week::getCode, 1));
+    }
+
+
     @Getter
     enum Week {
         NONE("", -1),
@@ -53,27 +74,6 @@ public class EnumTest {
                     .orElse(NONE);
         }
 
-    }
-
-
-    @Test
-    public void test1() {
-
-
-        System.out.println("Week.ONE = " + Week.ONE);
-        System.out.println("Week.ONE.name() = " + Week.ONE.name());
-        System.out.println("Week.ONE.ordinal() = " + Week.ONE.ordinal());
-        System.out.println("Week.valueOf(1) = " + Week.valueOf("ONE"));
-
-        System.out.println("Week.fromCode(1) = " + Week.fromCode(1));
-        System.out.println("Week.fromCode(0) = " + Week.fromCode(0));
-
-        System.out.println("Week.from(Week::getDescription,\"1\") = " + Week.from(Week::getName, "1"));
-
-        System.out.println("Week.from(Week::getDescription, \"一\") = " + Week.from(Week::getName, "一"));
-
-
-        System.out.println("Week.from(Week::getCode, 1) = " + Week.from(Week::getCode, 1));
     }
 
 

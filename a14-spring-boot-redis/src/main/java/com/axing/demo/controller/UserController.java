@@ -26,6 +26,8 @@ public class UserController {
     private RedisService redisService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisTemplate<String, User> redisTemplate2;
 
     @Operation(summary = "RedisTemplate获取数据")
     @GetMapping("/get/{id}")
@@ -51,7 +53,6 @@ public class UserController {
         return Result.ok(person);
     }
 
-
     @Operation(summary = "RedisTemplate添加数据")
     @GetMapping("/add/{id}")
     public Result addValue(@PathVariable Integer id) {
@@ -69,7 +70,6 @@ public class UserController {
         redisService.set("demo13::user::" + id, person);
         return Result.ok();
     }
-
 
     @Operation(summary = "Cacheable获取数据", description = "redis没有数据,就从数据库中取")
     @GetMapping(value = "/get")
@@ -100,16 +100,11 @@ public class UserController {
         return Result.ok(userService.getLastName(id));
     }
 
-
     @Cacheable(key = "#id")
     @GetMapping(value = "/key")
     public String getByKey(Long id) {
         return "我的jim" + id;
     }
-
-
-    @Autowired
-    private RedisTemplate<String, User> redisTemplate2;
 
     @GetMapping(value = "/user")
     public User user(Long id) {

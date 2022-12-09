@@ -30,6 +30,27 @@ public class BaseMessage<T> implements Serializable {
     private Map<String, Object> header;
 
 
+    public BaseMessage(String topic, String tag, T data, Map<String, Object> header) {
+        this.topic = topic;
+        this.tag = tag;
+        this.data = data;
+        this.header = header;
+    }
+
+    public BaseMessage(String topic, String tag, T data) {
+        this.topic = topic;
+        this.tag = tag;
+        this.data = data;
+    }
+
+    public BaseMessage(String topic, T data) {
+        this.topic = topic;
+        this.data = data;
+    }
+
+    public BaseMessage() {
+    }
+
     public String getTopic() {
         return topic;
     }
@@ -60,26 +81,5 @@ public class BaseMessage<T> implements Serializable {
 
     public void setHeader(Map<String, Object> header) {
         this.header = header;
-    }
-
-    public BaseMessage(String topic, String tag, T data, Map<String, Object> header) {
-        this.topic = topic;
-        this.tag = tag;
-        this.data = data;
-        this.header = header;
-    }
-
-    public BaseMessage(String topic, String tag, T data) {
-        this.topic = topic;
-        this.tag = tag;
-        this.data = data;
-    }
-
-    public BaseMessage(String topic, T data) {
-        this.topic = topic;
-        this.data = data;
-    }
-
-    public BaseMessage() {
     }
 }

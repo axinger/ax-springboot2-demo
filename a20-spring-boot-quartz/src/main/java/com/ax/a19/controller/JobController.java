@@ -22,17 +22,13 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/job")
 public class JobController implements Job {
 
+    private final CompletableFuture<Boolean> future = new CompletableFuture<>();
     @Autowired
     private QuartzService quartzService;
-
     @Autowired
     private StudentService studentService;
-
-
     @Autowired
     private Scheduler scheduler;
-
-    private final CompletableFuture<Boolean> future = new CompletableFuture<>();
 
     @GetMapping("/{id}")
     public Result addJob(@PathVariable String id) {

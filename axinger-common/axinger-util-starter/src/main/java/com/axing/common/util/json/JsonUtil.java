@@ -11,30 +11,6 @@ import java.text.SimpleDateFormat;
 
 public class JsonUtil {
 
-    /**
-     * 对象转string
-     *
-     * @param obj
-     * @return
-     */
-    @SneakyThrows
-    public static String writeValueAsString(Object obj) {
-        return mapper.writeValueAsString(obj);
-    }
-
-    /**
-     * string转对象
-     *
-     * @param str
-     * @param tClass
-     * @param <T>
-     * @return
-     */
-    @SneakyThrows
-    public static <T> T readValue(String str, Class<T> tClass) {
-        return mapper.readValue(str, tClass);
-    }
-
     // 创建ObjectMapper对象
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -67,6 +43,30 @@ public class JsonUtil {
         // 处理不同的时区偏移格式
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         // mapper.registerModule(new JavaTimeModule());
+    }
+
+    /**
+     * 对象转string
+     *
+     * @param obj
+     * @return
+     */
+    @SneakyThrows
+    public static String writeValueAsString(Object obj) {
+        return mapper.writeValueAsString(obj);
+    }
+
+    /**
+     * string转对象
+     *
+     * @param str
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    @SneakyThrows
+    public static <T> T readValue(String str, Class<T> tClass) {
+        return mapper.readValue(str, tClass);
     }
 
 

@@ -19,7 +19,8 @@ public class JUCController {
 
     @Autowired
     FutureTaskService taskService;
-
+    @Autowired
+    FutureTaskService futureTaskService;
 
     @RequestMapping("/async")
     public Object async() throws InterruptedException, ExecutionException {
@@ -44,7 +45,6 @@ public class JUCController {
         log.info("执行时长：{} 秒", seconds);
         return map;
     }
-
 
     @RequestMapping("/completableFuture")
     public Object test2() throws ExecutionException, InterruptedException {
@@ -98,12 +98,10 @@ public class JUCController {
         return taskService.asyncTes1And2_2();
     }
 
-
     @RequestMapping("/async4")
     public Object test4() throws ExecutionException, InterruptedException {
         return taskService.asyncTes1And2().join();
     }
-
 
     @RequestMapping("/completableAll")
     public Object completableAll() {
@@ -111,10 +109,6 @@ public class JUCController {
         System.out.println("all = " + all);
         return all;
     }
-
-    @Autowired
-    FutureTaskService futureTaskService;
-
 
     @RequestMapping("/in1")
     public Object test9() {

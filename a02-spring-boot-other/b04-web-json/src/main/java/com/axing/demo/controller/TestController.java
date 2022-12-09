@@ -26,6 +26,9 @@ import java.util.Map;
 @RestController
 public class TestController {
 
+    @Autowired
+    private Pig pig;
+
     @RequestMapping(value = "/json")
     public Object json() {
 
@@ -62,7 +65,6 @@ public class TestController {
         return map;
     }
 
-
     @RequestMapping(value = "/json1")
     public Object json1() {
 
@@ -85,9 +87,6 @@ public class TestController {
                 .build();
         return person;
     }
-
-    @Autowired
-    private Pig pig;
 
     @RequestMapping(value = "/pig")
     public void pig() {

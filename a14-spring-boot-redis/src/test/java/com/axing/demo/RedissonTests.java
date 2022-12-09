@@ -22,18 +22,16 @@ import java.time.LocalDateTime;
 @Slf4j
 public class RedissonTests {
 
+    private static final String SERIAL_NUM = "redis:serialNumber:";
     @Autowired
     RedissonClient redissonClient;
+    @Autowired
+    private RedisCacheTemplate redisCacheTemplate;
 
     @Test
     void test1() {
         System.out.println("redissonClient = " + redissonClient);
     }
-
-    private static final String SERIAL_NUM = "redis:serialNumber:";
-
-    @Autowired
-    private RedisCacheTemplate redisCacheTemplate;
 
     /**
      * 自增流水号

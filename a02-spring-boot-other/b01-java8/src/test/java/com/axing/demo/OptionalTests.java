@@ -1,11 +1,32 @@
 package com.axing.demo;
 
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.RandomUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class OptionalTest {
+import static java.util.Optional.of;
+import static java.util.Optional.ofNullable;
+
+public class OptionalTests {
+
+
+    @Test
+    void test() {
+        String string = null;
+        boolean empty = of(string).isEmpty();
+        System.out.println("empty = " + empty);
+    }
+
+    @Test
+    void test2() {
+        String string = null;
+        boolean empty = ofNullable(string).isEmpty();
+        System.out.println("empty = " + empty);
+    }
 
     @Test
     public void test_1() {

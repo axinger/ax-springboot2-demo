@@ -33,6 +33,8 @@ public class OrderController {
 
     @Value("${server-url.gateway-service}")
     private String gatewayService;
+    @Autowired
+    private OrderFeignService orderFeignService;
 
     /**
      * 直接请求测试一下
@@ -47,7 +49,6 @@ public class OrderController {
         return map;
 
     }
-
 
     /**
      * 请求nacos
@@ -92,10 +93,6 @@ public class OrderController {
         return map;
 
     }
-
-    @Autowired
-    private OrderFeignService orderFeignService;
-
 
     @GetMapping(value = "/gateway/feign/{id}")
     public Object gatewayFeign(@PathVariable("id") Integer id) {

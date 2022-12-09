@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Component
 public class WiselyTenantIdResolver implements CurrentTenantIdentifierResolver, // 1
-                                                HibernatePropertiesCustomizer  { // 2
+        HibernatePropertiesCustomizer { // 2
 
     private static final ThreadLocal<String> CURRENT_TENANT = new ThreadLocal<>(); // 1.1
 

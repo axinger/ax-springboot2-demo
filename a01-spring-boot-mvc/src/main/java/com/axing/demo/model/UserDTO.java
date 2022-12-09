@@ -17,12 +17,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /// @EnableConfigurationProperties(UserDTO.class) 配合使用
 public record UserDTO(String username, String password) {
 
-    public record range(int start, int end) {
-
-    }
-
     public String all() {
         return username + password;
+    }
+
+    public record range(int start, int end) {
+
     }
 
 }

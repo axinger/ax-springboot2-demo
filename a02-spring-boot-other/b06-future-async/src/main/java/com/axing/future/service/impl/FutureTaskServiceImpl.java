@@ -23,6 +23,10 @@ public class FutureTaskServiceImpl implements FutureTaskService {
     @Autowired
     @Qualifier("orderExecutor")
     private Executor threadPoolExecutor;
+    @Autowired
+    private ApplicationContext applicationContext;
+    @Autowired
+    private Executor executor;
 
     // AsyncResult 是spring的类型
     @Async("smsExecutor")
@@ -60,10 +64,6 @@ public class FutureTaskServiceImpl implements FutureTaskService {
         return new AsyncResult<String>("结果B");
     }
 
-    @Autowired
-    private ApplicationContext applicationContext;
-
-
     @Override
     @Async
     public CompletableFuture<String> asyncInternalCalls() {
@@ -90,9 +90,6 @@ public class FutureTaskServiceImpl implements FutureTaskService {
         log.info(s);
         return CompletableFuture.completedFuture(s);
     }
-
-    @Autowired
-    private Executor executor;
 
     /**
      * 内部调用,成功 ,用CompletableFuture

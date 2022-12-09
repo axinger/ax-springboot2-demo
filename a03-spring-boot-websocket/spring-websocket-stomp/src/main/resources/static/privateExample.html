@@ -4,8 +4,8 @@
     <title>聊起来</title>
     <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.0.min.js"
-            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 
     <script type="text/javascript">
         var stompClient = null;
@@ -70,25 +70,25 @@
 <div>
     <div>
         <labal>连接用户</labal>
-        <input type="text" id="user"/>
+        <input id="user" type="text"/>
         <button id="connect" onclick="connect();">Connect</button>
 
     </div>
 
     <div>
         <labal>取消连接</labal>
-        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        <button disabled="disabled" id="disconnect" onclick="disconnect();">Disconnect</button>
     </div>
 
     <div id="conversationDiv">
         <labal>发送消息</labal>
         <div>
             <labal>内容</labal>
-            <input type="text" id="content"/>
+            <input id="content" type="text"/>
         </div>
         <div>
             <labal>发给谁</labal>
-            <input type="text" id="to"/>
+            <input id="to" type="text"/>
         </div>
         <button id="sendMsg" onclick="sendMsg();">Send</button>
 

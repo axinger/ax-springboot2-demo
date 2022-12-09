@@ -14,25 +14,21 @@ import java.io.Serializable;
 @TableName(value = "t_person")
 @Data
 public class Person implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      *
      */
     private String name;
-
     /**
      *
      */
     private Integer age;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-
     @TableField(exist = false)
     private Integer age2;
 

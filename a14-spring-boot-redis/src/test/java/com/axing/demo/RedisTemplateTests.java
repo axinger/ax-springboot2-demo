@@ -34,7 +34,14 @@ public class RedisTemplateTests {
 
     @Autowired
     private RedisService redisService;
-
+    @Autowired
+    private RedisTemplate<String, User> redisTemplateList;
+    @Autowired
+    private RedisTemplate<String, User> redisTemplateUser;
+    @Autowired
+    private RedisTemplate<String, Map> redisTemplateMap;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     User user(Integer id) {
         final User.Book book = User.Book.builder()
@@ -67,9 +74,6 @@ public class RedisTemplateTests {
         redisTemplate.opsForHash().putAll(key, valuesMap);
 
     }
-
-    @Autowired
-    private RedisTemplate<String, User> redisTemplateList;
 
     @Test
     void opsForList_leftPush() {
@@ -126,9 +130,6 @@ public class RedisTemplateTests {
         this.redisTemplate.opsForValue().set("demo:dog2", jsonObject);
     }
 
-    @Autowired
-    private RedisTemplate<String, User> redisTemplateUser;
-
     @Test
     void test1_redisTemplateUser() {
 
@@ -165,12 +166,6 @@ public class RedisTemplateTests {
 
 
     }
-
-    @Autowired
-    private RedisTemplate<String, Map> redisTemplateMap;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @SneakyThrows
     @Test

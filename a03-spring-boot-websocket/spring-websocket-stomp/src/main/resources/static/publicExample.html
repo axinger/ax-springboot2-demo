@@ -4,8 +4,8 @@
     <title>等系统推消息</title>
     <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.0.min.js"
-            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 
     <script type="text/javascript">
         var stompClient = null;
@@ -56,11 +56,11 @@
         <labal>连接广播频道</labal>
         <button id="connect" onclick="connect();">Connect</button>
         <labal>取消连接</labal>
-        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        <button disabled="disabled" id="disconnect" onclick="disconnect();">Disconnect</button>
     </div>
     <div id="conversationDiv">
         <labal>广播消息</labal>
-        <input type="text" id="content"/>
+        <input id="content" type="text"/>
         <button id="sendMsg" onclick="sendMsg();">Send</button>
 
     </div>

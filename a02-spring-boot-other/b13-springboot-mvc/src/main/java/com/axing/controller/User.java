@@ -13,12 +13,12 @@ package com.axing.controller;
  */
 record User(String name, String password) {
 
-    public record range(int start, int end) {
-
-    }
-
     String all() {
         return name + password;
+    }
+
+    public record range(int start, int end) {
+
     }
 
 }

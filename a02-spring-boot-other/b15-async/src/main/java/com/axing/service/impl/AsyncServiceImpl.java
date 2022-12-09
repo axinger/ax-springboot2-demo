@@ -27,6 +27,12 @@ public class AsyncServiceImpl implements AsyncService {
 
     @Autowired
     ApplicationContext applicationContext;
+    @Autowired
+    private Executor executor;
+
+
+//    @Autowired
+//    AsyncService asyncService;
 
     /**
      * 最简单的异步调用，返回值为void
@@ -36,10 +42,6 @@ public class AsyncServiceImpl implements AsyncService {
     public void test1() {
         System.out.println("test1 currentThread = " + Thread.currentThread().getName());
     }
-
-
-//    @Autowired
-//    AsyncService asyncService;
 
     /**
      * 最简单的异步调用，返回值为void
@@ -104,9 +106,6 @@ public class AsyncServiceImpl implements AsyncService {
         log.info("Thread.currentThread() = {}, result = {}", Thread.currentThread().getName(), result);
 
     }
-
-    @Autowired
-    private Executor executor;
 
     //    @Async("customizeThreadPool")
     @Async

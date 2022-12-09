@@ -12,30 +12,6 @@ import java.util.List;
 public class StringTest {
 
 
-    public void antMatchers(String... antPatterns) {
-        System.out.println("antPatterns = " + antPatterns);
-    }
-
-    @Test
-    void test_antMatchers() {
-        List<String> list = ListUtil.of("1", "2");
-
-        String[] objects = list.toArray(new String[list.size()]);
-//        antMatchers(objects);
-        antMatchers("1", "2");
-    }
-
-    @Test
-    void test_str() {
-//        String s = "1/2-103";
-//        System.out.println("s = " + s);
-
-
-        BigDecimal run = new BigDecimal(String.valueOf(21 * 60 * 60)).divide(new BigDecimal("3600000"), 2, RoundingMode.HALF_UP);
-
-        System.out.println("run = " + run);
-    }
-
     String string = "good";
     char[] chars = {'t', 'e', 's', 't'};
     StringBuffer string2 = new StringBuffer("good");
@@ -61,6 +37,30 @@ public class StringTest {
 
         StringBuffer string2 = new StringBuffer("good");
         System.out.println("delete = " + string2.delete(2, 6));
+    }
+
+    public void antMatchers(String... antPatterns) {
+        System.out.println("antPatterns = " + antPatterns);
+    }
+
+    @Test
+    void test_antMatchers() {
+        List<String> list = ListUtil.of("1", "2");
+
+        String[] objects = list.toArray(new String[list.size()]);
+//        antMatchers(objects);
+        antMatchers("1", "2");
+    }
+
+    @Test
+    void test_str() {
+//        String s = "1/2-103";
+//        System.out.println("s = " + s);
+
+
+        BigDecimal run = new BigDecimal(String.valueOf(21 * 60 * 60)).divide(new BigDecimal("3600000"), 2, RoundingMode.HALF_UP);
+
+        System.out.println("run = " + run);
     }
 
     @Test

@@ -11,6 +11,7 @@ public class Pig {
      */
     @JSONField(name = "aName")
     private String aName;
+    private String aAge;
 
     public String getaName() {
         return aName;
@@ -27,6 +28,4 @@ public class Pig {
     public void setaAge(String aAge) {
         this.aAge = aAge;
     }
-
-    private String aAge;
 }

@@ -1,7 +1,9 @@
 package com.axing.demo;
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -56,7 +58,19 @@ public class MapTests {
         System.out.println("map2 独有 = " + onlyOnRight);
         System.out.println("difference.entriesDiffering() = " + difference.entriesDiffering());
         System.out.println("difference.entriesInCommon() = " + difference.entriesInCommon());
+    }
 
+    @Test
+    void test2() {
+        // map元素为list
+        Multimap<String, Object> map = ArrayListMultimap.create();
+        map.put("name", "jim");
+        map.put("name", "tom");
 
+        map.put("age", "1");
+        map.put("age", "2");
+
+        // map = {name=[jim, tom], age=[1, 2]}
+        System.out.println("map = " + map);
     }
 }
