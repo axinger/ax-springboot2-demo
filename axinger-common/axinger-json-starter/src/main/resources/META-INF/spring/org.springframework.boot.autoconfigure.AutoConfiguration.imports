@@ -1,2 +1,2 @@
-com.axing.common.json.config.JsonAutoConfig
+
 com.axing.common.json.config.ObjectMapperConfig

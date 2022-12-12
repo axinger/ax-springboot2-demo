@@ -1,11 +1,15 @@
 package com.axing.demo.controller;
 
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.NumberUtil;
 import com.axing.demo.entity.EmptyModel;
 import com.axing.demo.entity.Person;
 import com.axing.demo.entity.Pig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +32,8 @@ public class TestController {
 
     @Autowired
     private Pig pig;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @RequestMapping(value = "/json")
     public Object json() {
@@ -93,5 +99,18 @@ public class TestController {
 
         System.out.println("new Pig() = " + new Pig());
         System.out.println("pig = " + pig);
+
+
+        System.out.println("spring容器单例 objectMapper = " + objectMapper);
+        System.out.println("jdk 不是单例 new ObjectMapper() = " + new ObjectMapper());
+
+    }
+
+    @GetMapping(value = "/assert")
+    public Map pig(Integer val) {
+        Assert.isTrue(NumberUtil.isEven(val), "不是偶数{}{}", 1, 2);
+        Map map = new HashMap();
+        map.put("localDateTime", LocalDateTime.now());
+        return map;
     }
 }

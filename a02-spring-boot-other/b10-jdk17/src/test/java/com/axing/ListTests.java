@@ -9,7 +9,7 @@ import java.util.List;
 public class ListTests {
 
     @Test
-    void test(){
+    void test() {
 
         //  List.of 不可变,会报错
         List<Integer> list = List.of(1);

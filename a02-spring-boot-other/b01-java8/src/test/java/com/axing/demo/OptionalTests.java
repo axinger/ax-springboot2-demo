@@ -1,8 +1,5 @@
 package com.axing.demo;
 
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
-import cn.hutool.core.util.RandomUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

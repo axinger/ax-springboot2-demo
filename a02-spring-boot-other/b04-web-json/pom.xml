@@ -27,6 +27,11 @@
             <artifactId>axinger-config-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axinger-advice-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 
-/**
- * 你会发现Swagger3会报Unable to infer base url……的错误，这是因为统一返回体影响到了Swagger3的一些内置接口。
- * 解决方法是@RestControllerAdvice控制好生效的包范围,也就是配置其basePackages参数就行了，这个潜在的冲突浪费我了一个多小时。
- * https://jishuin.proginn.com/p/763bfbd5811f
- *
- * @author xing
+/*
+  你会发现Swagger3会报Unable to infer base url……的错误，这是因为统一返回体影响到了Swagger3的一些内置接口。
+  解决方法是@RestControllerAdvice控制好生效的包范围,也就是配置其basePackages参数就行了，这个潜在的冲突浪费我了一个多小时。
+  https://jishuin.proginn.com/p/763bfbd5811f
+
+  @author xing
  */
 
 /**
@@ -33,11 +33,14 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
 
     /**
      * 判断类或者方法是否使用了 @ResponseResultBody
+     *
+     * @param returnType    returnType
+     * @param converterType converterType
+     * @return return
      */
     @Override
-    public boolean supports(MethodParameter methodParameter,
-                            Class<? extends HttpMessageConverter<?>> converterType) {
-        return !methodParameter.getDeclaringClass().getName().contains("org.springdoc");
+    public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
+        return !returnType.getDeclaringClass().getName().contains("org.springdoc");
     }
 
 
@@ -52,6 +55,7 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request,
                                   ServerHttpResponse response) {
+
 
         if (body instanceof String) {
             ObjectMapper mapper = new ObjectMapper();
@@ -71,13 +75,8 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
             return body;
         }
 
-        if (body instanceof Boolean) {
-            boolean res = (boolean) body;
-            if (res) {
-                return Result.ok();
-            } else {
-                return Result.fail();
-            }
+        if (body instanceof Boolean res) {
+            return res ? Result.ok() : Result.fail();
         }
         return Result.ok(body);
     }

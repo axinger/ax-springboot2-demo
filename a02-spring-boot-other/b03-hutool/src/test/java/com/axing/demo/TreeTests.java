@@ -4,13 +4,11 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.TreeNode;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 public class TreeTests {
     @Test
-    void test(){
+    void test() {
         // 构建node列表
         List<TreeNode<String>> nodeList = CollUtil.newArrayList();
 

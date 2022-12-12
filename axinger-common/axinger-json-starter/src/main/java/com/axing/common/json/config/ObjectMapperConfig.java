@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,8 +20,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-@Configuration
 @Slf4j
+@Configuration
+@AutoConfigureBefore(JacksonAutoConfiguration.class)
 public class ObjectMapperConfig {
 
     @Bean

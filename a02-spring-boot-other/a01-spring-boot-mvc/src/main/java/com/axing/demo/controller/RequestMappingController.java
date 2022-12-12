@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class GetController {
+public class RequestMappingController {
 
     @Autowired
     private UserDTO userDTO;

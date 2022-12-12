@@ -14,7 +14,7 @@ public class CheckTests {
 
 
         // Preconditions.checkNotNull(null,"不能为空");
-        Preconditions.checkNotNull(null,"不能为空 = ","1");
+        Preconditions.checkNotNull(null, "不能为空 = ", "1");
         // List list = new ArrayList();
         // list.add("a");
         // System.out.println("checkElementIndex = " + Preconditions.checkElementIndex(1, list.size(), "越界"));
