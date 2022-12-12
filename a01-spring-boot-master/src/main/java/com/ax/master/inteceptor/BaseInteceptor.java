@@ -1,15 +1,14 @@
 package com.ax.master.inteceptor;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author axing
  */
-public class BaseInteceptor extends HandlerInterceptorAdapter {
+public class BaseInteceptor implements HandlerInterceptor {
 
 
     @Override
@@ -20,7 +19,7 @@ public class BaseInteceptor extends HandlerInterceptorAdapter {
 //        System.out.println("response.getStatus =preHandle " + response.getStatus());
 
 
-        return super.preHandle(request, response, handler);
+        return true;
     }
 
     @Override
@@ -28,7 +27,6 @@ public class BaseInteceptor extends HandlerInterceptorAdapter {
                            HttpServletResponse response,
                            Object handler,
                            ModelAndView modelAndView) throws Exception {
-        super.postHandle(request, response, handler, modelAndView);
     }
 
     @Override
@@ -36,13 +34,8 @@ public class BaseInteceptor extends HandlerInterceptorAdapter {
                                 HttpServletResponse response,
                                 Object handler,
                                 Exception ex) throws Exception {
-        super.afterCompletion(request, response, handler, ex);
     }
 
-    @Override
-    public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        super.afterConcurrentHandlingStarted(request, response, handler);
-    }
 
     //    /**
 //     * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，SpringMVC中的Interceptor拦截器是链式的，可以同时存在

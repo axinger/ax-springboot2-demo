@@ -2,10 +2,9 @@ package com.ax.master.context;
 
 import com.ax.master.entity.Userinfo;
 import com.ax.master.util.axUtil.AxConst;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author axing

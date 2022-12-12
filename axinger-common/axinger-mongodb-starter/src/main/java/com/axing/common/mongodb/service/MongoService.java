@@ -22,11 +22,12 @@ public interface MongoService {
      */
     <T> T add(T obj);
 
-    void batchAdd(Collection<? extends Object> objectsToSave);
+    <T> Collection<T> batchAdd(Collection<T> objectsToSave);
 
-    <T> List<T> findByQuery(String key, Object value, Class<?> entityClass);
 
-    <T> T findOneByQuery(String key, Object value, Class<?> entityClass);
+    <T> List<T> findByQuery(String key, Object value, Class<T> entityClass);
+
+    <T> T findOneByQuery(String key, Object value, Class<T> entityClass);
 
     void saveOrUpdate(Object obj);
 
@@ -40,11 +41,11 @@ public interface MongoService {
      */
     <T> T save(T objectToSave, String collectionName);
 
-    void findAndRemove(String key, Object value, Class<?> entityClass);
+    <T> T findAndRemove(String key, Object value, Class<T> entityClass);
 
-    void removeByQuery(String key, Object value, Class<?> entityClass);
+    <T> List<T> removeByQuery(String key, Object value, Class<T> entityClass);
 
-    void removeByQuery(Query query, Class<?> entityClass);
+    <T> List<T> removeByQuery(Query query, Class<T> entityClass);
 
     /**
      * 根据多条件进行查询
@@ -52,9 +53,9 @@ public interface MongoService {
      * @param query       是查询条件
      * @param entityClass 查询的对象
      */
-    <T> List<T> findByMultQuery(Query query, Class<?> entityClass);
+    <T> List<T> findList(Query query, Class<T> entityClass);
 
-    <T> T findOneByQuery(Query query, Class<?> entityClass);
+    <T> T findOne(Query query, Class<T> entityClass);
 
     /**
      * 改动符合条件的第一条记录

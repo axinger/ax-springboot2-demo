@@ -1,6 +1,7 @@
 package com.ax.master.entity.valid;
 
-import javax.validation.groups.Default;
+
+import jakarta.validation.groups.Default;
 
 public interface UsernameGroup extends Default {
 }

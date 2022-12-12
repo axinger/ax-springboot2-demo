@@ -1,6 +1,7 @@
 package com.ax.master.entity.valid;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+
 import java.util.*;
 
 public class ValidList<E> implements List<E> {

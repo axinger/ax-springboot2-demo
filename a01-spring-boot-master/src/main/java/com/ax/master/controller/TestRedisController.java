@@ -3,12 +3,11 @@ package com.ax.master.controller;
 import cn.hutool.core.util.IdUtil;
 import com.ax.master.entity.Userinfo;
 import com.axing.common.redis.service.RedisService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpSession;
 
 @RestController
 public class TestRedisController {

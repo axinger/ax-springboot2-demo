@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-<!--                        <version>2.7.5</version>-->
+        <!--                        <version>2.7.5</version>-->
         <version>3.0.0</version>
     </parent>
 
@@ -26,8 +26,8 @@
         <java.version>17</java.version>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
         <spring-boot-admin.version>2.7.7</spring-boot-admin.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <elasticsearch.version>7.17.0</elasticsearch.version>
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <okhttp3.version>4.8.1</okhttp3.version>
@@ -55,7 +55,6 @@
         <module>a01-spring-boot-master</module>
         <module>a02-spring-boot-other</module>
         <module>a03-spring-boot-websocket</module>
-        <module>a04-spring-boot-security</module>
         <module>a05-spring-boot-nginx</module>
         <module>a06-spring-cloud</module>
         <module>a07-spring-cloud-alibaba</module>
@@ -405,7 +404,7 @@
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>2.2.2</version>
+                <version>3.0.0</version>
             </dependency>
 
             <dependency>

@@ -1,6 +1,5 @@
 package com.axing.demo.controller;
 
-import cn.hutool.core.io.FileUtil;
 import com.axing.common.minio.service.MinioService;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.result.Result;
@@ -43,7 +42,7 @@ public class MinioController {
         String fileName = file.getOriginalFilename();
         InputStream inputStream = file.getInputStream();
         String contentType = file.getContentType();
-        String patchName = FilePathUtil.getFileName(fileName) ;
+        String patchName = FilePathUtil.getFileName(fileName);
         Object upload = minioService.uploadStream(inputStream, bucketName, patchName, contentType);
         return Result.ok(upload);
 

@@ -5,10 +5,10 @@ import com.axing.demo.entity.MessageInfo;
 import com.axing.demo.entity.MsgTypeEnum;
 import com.axing.demo.service.MessageService;
 import com.axing.demo.strategy.MessageStrategy;
+import jakarta.annotation.Resource;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;

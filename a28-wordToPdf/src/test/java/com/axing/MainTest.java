@@ -19,8 +19,8 @@ class MainTest {
 
     @Test
     void test() {
-        Word2PdfUtil.doc2pdf("/Users/xing/Desktop/word.docx",
-                "/Users/xing/Desktop/word.pdf");
+        // Word2PdfUtil.doc2pdf("/Users/xing/Desktop/word.docx",
+        //         "/Users/xing/Desktop/word.pdf");
     }
 
     @Test

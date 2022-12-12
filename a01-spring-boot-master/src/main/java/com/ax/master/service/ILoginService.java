@@ -2,8 +2,7 @@ package com.ax.master.service;
 
 import com.ax.master.entity.Userinfo;
 import com.ax.master.util.error.TokenException;
-
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author axing

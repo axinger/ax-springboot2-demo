@@ -9,10 +9,10 @@ import com.ax.master.service.ILoginService;
 import com.ax.master.util.axUtil.AxConst;
 import com.ax.master.util.axUtil.AxJwtUtil;
 import com.ax.master.util.error.TokenException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**

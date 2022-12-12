@@ -2,9 +2,7 @@ package com.ax.master.dto;
 
 import com.ax.master.entity.valid.PasswordGroup;
 import com.ax.master.entity.valid.UsernameGroup;
-
-import javax.validation.constraints.NotNull;
-
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author axing

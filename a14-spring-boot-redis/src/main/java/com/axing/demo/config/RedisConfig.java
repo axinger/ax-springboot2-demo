@@ -17,7 +17,7 @@
 // import org.springframework.data.redis.serializer.RedisSerializer;
 // import org.springframework.data.redis.serializer.StringRedisSerializer;
 //
-// import javax.annotation.Resource;
+// import jakarta.annotation.Resource;
 // import java.time.Duration;
 //
 //@EnableCaching

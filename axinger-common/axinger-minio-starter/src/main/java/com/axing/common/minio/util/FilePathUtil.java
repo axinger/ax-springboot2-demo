@@ -29,9 +29,8 @@ public class FilePathUtil {
         String suffix = FileUtil.getSuffix(fileName);
         String date = LocalDateTimeUtil.format(LocalDateTime.now(), "yyyyMMdd");
         String uuid = IdUtil.fastSimpleUUID();
-        return StrUtil.format("{}/{}.{}", date, uuid,suffix);
+        return StrUtil.format("{}/{}.{}", date, uuid, suffix);
     }
-
 
 
 }

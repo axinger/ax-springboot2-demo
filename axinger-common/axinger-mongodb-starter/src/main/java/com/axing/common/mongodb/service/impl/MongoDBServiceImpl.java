@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,8 +16,12 @@ import java.util.List;
  */
 @Slf4j
 public class MongoDBServiceImpl implements MongoService {
-    @Resource
-    protected MongoTemplate mongoTemplate;
+
+    private MongoTemplate mongoTemplate;
+
+    public MongoDBServiceImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     /**
      * 根据主键id返回对象
@@ -65,9 +68,9 @@ public class MongoDBServiceImpl implements MongoService {
      * @param entityClass 查询的对象
      */
     @Override
-    public void findAndRemove(String key, Object value, Class<?> entityClass) {
+    public <T> T findAndRemove(String key, Object value, Class<T> entityClass) {
         Query query = new Query(Criteria.where(key).is(value));
-        this.mongoTemplate.findAndRemove(query, entityClass);
+        return this.mongoTemplate.findAndRemove(query, entityClass);
     }
 
     /**
@@ -86,8 +89,8 @@ public class MongoDBServiceImpl implements MongoService {
      * @param objectsToSave 要添加的Mongo对象
      */
     @Override
-    public void batchAdd(Collection<? extends Object> objectsToSave) {
-        this.mongoTemplate.insertAll(objectsToSave);
+    public <T> Collection<T> batchAdd(Collection<T> objectsToSave) {
+        return this.mongoTemplate.insertAll(objectsToSave);
     }
 
     /**
@@ -98,9 +101,9 @@ public class MongoDBServiceImpl implements MongoService {
      * @param entityClass 查询的对象
      */
     @Override
-    public <T> List<T> findByQuery(String key, Object value, Class<?> entityClass) {
+    public <T> List<T> findByQuery(String key, Object value, Class<T> entityClass) {
         Query query = new Query(Criteria.where(key).is(value));
-        return (List<T>) this.mongoTemplate.find(query, entityClass);
+        return this.mongoTemplate.find(query, entityClass);
     }
 
     /**
@@ -111,9 +114,9 @@ public class MongoDBServiceImpl implements MongoService {
      * @param entityClass 查询的对象
      */
     @Override
-    public <T> T findOneByQuery(String key, Object value, Class<?> entityClass) {
+    public <T> T findOneByQuery(String key, Object value, Class<T> entityClass) {
         Query query = new Query(Criteria.where(key).is(value));
-        return (T) this.mongoTemplate.findOne(query, entityClass);
+        return this.mongoTemplate.findOne(query, entityClass);
     }
 
     /**
@@ -150,14 +153,14 @@ public class MongoDBServiceImpl implements MongoService {
      * @param entityClass 查询的对象
      */
     @Override
-    public void removeByQuery(String key, Object value, Class<?> entityClass) {
+    public <T> List<T> removeByQuery(String key, Object value, Class<T> entityClass) {
         Query query = new Query(Criteria.where(key).is(value));
-        this.mongoTemplate.findAllAndRemove(query, entityClass);
+        return this.mongoTemplate.findAllAndRemove(query, entityClass);
     }
 
     @Override
-    public void removeByQuery(Query query, Class<?> entityClass) {
-        this.mongoTemplate.findAllAndRemove(query, entityClass);
+    public <T> List<T> removeByQuery(Query query, Class<T> entityClass) {
+        return this.mongoTemplate.findAllAndRemove(query, entityClass);
     }
 
     /**
@@ -167,12 +170,12 @@ public class MongoDBServiceImpl implements MongoService {
      * @param entityClass 查询的对象
      */
     @Override
-    public <T> List<T> findByMultQuery(Query query, Class<?> entityClass) {
+    public <T> List<T> findList(Query query, Class<T> entityClass) {
         return (List<T>) this.mongoTemplate.find(query, entityClass);
     }
 
     @Override
-    public <T> T findOneByQuery(Query query, Class<?> entityClass) {
+    public <T> T findOne(Query query, Class<T> entityClass) {
         return (T) this.mongoTemplate.findOne(query, entityClass);
     }
 

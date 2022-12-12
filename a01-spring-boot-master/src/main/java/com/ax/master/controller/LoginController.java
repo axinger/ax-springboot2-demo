@@ -4,6 +4,7 @@ import com.ax.master.dto.LoginDto;
 import com.ax.master.service.ILoginService;
 import com.ax.master.util.error.TokenException;
 import com.axing.common.response.result.Result;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**

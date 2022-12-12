@@ -1,11 +1,10 @@
 package com.ax.master.handler;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author xing

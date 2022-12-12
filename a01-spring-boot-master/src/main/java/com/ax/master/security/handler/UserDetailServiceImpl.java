@@ -13,7 +13,7 @@ package com.ax.master.security.handler;// package com.example.security.handler;
 // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 // import org.springframework.stereotype.Service;
 //
-// import javax.servlet.http.HttpServletRequest;
+// import jakarta.servlet.http.HttpServletRequest;
 // import java.util.ArrayList;
 // import java.util.List;
 //
