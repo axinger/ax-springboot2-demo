@@ -12,10 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //@ComponentScan(basePackages = {"com.axing.common.response", "com.axing.common.util", "com.axing.demo"})
-public class A11DemoApplication {
+public class A12MinioDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(A11DemoApplication.class, args);
+        SpringApplication.run(A12MinioDemoApplication.class, args);
     }
 
 }

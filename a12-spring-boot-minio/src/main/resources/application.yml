@@ -13,7 +13,7 @@ axing:
   response:
     base-packages: com.axing.demo
   minio:
-    url: http://localhost:9000
-    access-key: admin #访问的key
-    secret-key: 12345678 #访问的秘钥
+    url: http://192.168.101.143:9000
+    username: admin #访问的key
+    password: 12345678 #访问的秘钥
 

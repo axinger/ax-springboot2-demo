@@ -20,10 +20,10 @@ public class MinioProperties {
     /**
      * minio 账户
      */
-    private String accessKey;
+    private String username;
 
     /**
      * minio 密码
      */
-    private String secretKey;
+    private String password;
 }

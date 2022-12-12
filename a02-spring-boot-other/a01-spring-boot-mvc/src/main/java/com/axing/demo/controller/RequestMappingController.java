@@ -5,11 +5,13 @@ import com.axing.demo.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 public class RequestMappingController {
+
 
     @Autowired
     private UserDTO userDTO;
@@ -33,6 +35,16 @@ public class RequestMappingController {
         System.out.println("userDTO.all() = " + userDTO.all());
         System.out.println("person = " + person);
         return map;
+    }
+
+    // 走的是get方式拼接参数,不要误会走body
+    // http://localhost:8080/post/data?name=d&age=111
+    @PostMapping("/post/data")
+    public Object PostMappingData(String name, Integer age) {
+        Map<String, Object> map = Map.of("name", name, "age", age);
+        System.out.println("map = " + map);
+        return map;
+
     }
 
     @PutMapping("/put")

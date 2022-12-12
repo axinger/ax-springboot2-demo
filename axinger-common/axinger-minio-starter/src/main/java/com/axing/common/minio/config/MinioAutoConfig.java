@@ -4,6 +4,7 @@ import com.axing.common.minio.bean.MinioProperties;
 import com.axing.common.minio.service.MinioService;
 import com.axing.common.minio.service.impl.MinioServiceImpl;
 import io.minio.MinioClient;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -23,6 +24,7 @@ import org.springframework.context.annotation.Configuration;
 })
 public class MinioAutoConfig {
 
+    public static String MINIO_HOST;
     @Autowired
     private MinioProperties minioProperties;
 
@@ -30,14 +32,19 @@ public class MinioAutoConfig {
     public MinioClient minioClient() {
         return MinioClient.builder()
                 .endpoint(minioProperties.getUrl())
-                .credentials(minioProperties.getAccessKey(), minioProperties.getSecretKey())
+                .credentials(minioProperties.getUsername(), minioProperties.getPassword())
                 .build();
     }
 
     @Bean
     @ConditionalOnMissingBean(MinioService.class)
     public MinioService minioService() {
-        return new MinioServiceImpl();
+        return new MinioServiceImpl(minioClient());
     }
 
+
+    @PostConstruct
+    void init() {
+        MINIO_HOST = minioProperties.getUrl();
+    }
 }

@@ -8,8 +8,6 @@
         <version>2.7.5.2.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.axing.demo</groupId>
     <artifactId>a01-spring-boot-mvc</artifactId>
 
     <dependencies>
@@ -38,5 +36,9 @@
             <artifactId>axinger-log-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axinger-doc-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>

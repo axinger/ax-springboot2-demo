@@ -1,19 +1,23 @@
 package com.axing.common.minio.service.impl;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.axing.common.minio.model.UploadFileBO;
 import com.axing.common.minio.service.MinioService;
+import com.axing.common.minio.util.FilePathUtil;
 import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
@@ -29,8 +33,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MinioServiceImpl implements MinioService {
 
-    @Autowired
     private MinioClient minioClient;
+
+    public MinioServiceImpl(MinioClient minioClient) {
+        this.minioClient = minioClient;
+    }
 
     /**
      * 检查存储桶是否存在
@@ -42,12 +49,9 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public boolean bucketExists(String bucketName) {
         try {
-            return minioClient.bucketExists(
-                    BucketExistsArgs.builder()
-                            .bucket(bucketName)
-                            .build()
-            );
+            return minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
         } catch (Exception e) {
+            log.error("检查存储桶是否存在失败 = {}", e.getMessage());
             throw new Exception(StrUtil.format("检查存储桶是否存在失败 = {}", e.getMessage()));
         }
     }
@@ -63,14 +67,13 @@ public class MinioServiceImpl implements MinioService {
     public boolean createBucket(String bucketName) {
         try {
             if (!this.bucketExists(bucketName)) {
-                MakeBucketArgs args = MakeBucketArgs.builder()
-                        .bucket(bucketName)
-                        .build();
+                MakeBucketArgs args = MakeBucketArgs.builder().bucket(bucketName).build();
                 minioClient.makeBucket(args);
                 log.info("创建存储桶成功");
             }
             return true;
         } catch (Exception e) {
+            log.error("创建存储桶失败 = {}", e.getMessage());
             throw new Exception(StrUtil.format("创建存储桶失败 = {}", e.getMessage()));
         }
     }
@@ -100,11 +103,7 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public boolean removeBucket(String bucketName) {
         try {
-            minioClient.removeBucket(
-                    RemoveBucketArgs.builder()
-                            .bucket(bucketName)
-                            .build()
-            );
+            minioClient.removeBucket(RemoveBucketArgs.builder().bucket(bucketName).build());
             return true;
         } catch (Exception e) {
             throw new Exception(StrUtil.format("根据存储桶删除信息失败 = {}", e.getMessage()));
@@ -125,11 +124,7 @@ public class MinioServiceImpl implements MinioService {
         try {
             List<Item> objectList = new ArrayList<>();
 
-            ListObjectsArgs args = ListObjectsArgs.builder()
-                    .bucket(bucketName)
-                    .prefix(prefix)
-                    .recursive(recursive)
-                    .build();
+            ListObjectsArgs args = ListObjectsArgs.builder().bucket(bucketName).prefix(prefix).recursive(recursive).build();
             Iterable<Result<Item>> objectsIterator = minioClient.listObjects(args);
             for (Result<Item> result : objectsIterator) {
                 objectList.add(result.get());
@@ -151,12 +146,7 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public InputStream getObject(String bucketName, String objectName) {
         try {
-            return minioClient.getObject(
-                    GetObjectArgs.builder()
-                            .bucket(bucketName)
-                            .object(objectName)
-                            .build()
-            );
+            return minioClient.getObject(GetObjectArgs.builder().bucket(bucketName).object(objectName).build());
         } catch (Exception e) {
             throw new Exception(StrUtil.format("获取文件失败 = {}", e.getMessage()));
         }
@@ -187,10 +177,7 @@ public class MinioServiceImpl implements MinioService {
      */
     @SneakyThrows
     @Override
-    public Map<String, Object> upload(InputStream inputStream,
-                                      String bucketName,
-                                      String objectName,
-                                      String contentType) {
+    public UploadFileBO uploadStream(InputStream inputStream, String bucketName, String objectName, String contentType) {
         try {
             // 检查存储桶是否已经存在，不存在则创建
             this.createBucket(bucketName);
@@ -202,13 +189,17 @@ public class MinioServiceImpl implements MinioService {
                     .contentType(contentType)
                     .build();
             ObjectWriteResponse response = minioClient.putObject(args);
+            Assert.notNull(response, "上传文件失败,response返回结果null");
 
             // 关闭
             inputStream.close();
-            String object = response.object();
-            log.info("上传文件成功 = {}", object);
-            return Map.of("bucket", bucketName, "object", object);
+            UploadFileBO bo = new UploadFileBO();
+            bo.setBucket(response.bucket());
+            bo.setObject(response.object());
+            log.info("上传文件成功 = {}", bo);
+            return bo;
         } catch (Exception e) {
+            log.error("uploadStream失败 = {}", e.getMessage());
             throw new Exception(StrUtil.format("上传文件失败 = {}", e.getMessage()));
         }
     }
@@ -222,13 +213,22 @@ public class MinioServiceImpl implements MinioService {
      */
     @SneakyThrows
     @Override
-    public Map<String, Object> upload(MultipartFile file, String bucketName) {
+    public UploadFileBO uploadFile(MultipartFile file, String bucketName) {
+        Assert.isTrue(file.getSize() > 0, "上传文件失败,文件大小不能为：0");
         try {
             String originalFilename = file.getOriginalFilename();
+            Assert.notNull(originalFilename, "上传文件失败,文件名为空");
             String contentType = file.getContentType();
-            return upload(file.getInputStream(), bucketName, originalFilename, contentType);
+            InputStream inputStream = file.getInputStream();
+            Assert.notNull(inputStream, "上传文件失败,getInputStream为空");
+            String objectName = FilePathUtil.getFileName(originalFilename);
+            UploadFileBO bo = uploadStream(inputStream, bucketName, objectName, contentType);
+            bo.setOriginalFilename(originalFilename);
+            bo.setSize(file.getSize());
+            bo.setContentType(contentType);
+            return bo;
         } catch (Exception e) {
-            throw new Exception(StrUtil.format("上传MultipartFile = {}", e.getMessage()));
+            throw new Exception(StrUtil.format("上传MultipartFile失败 = {}", e.getMessage()));
         }
     }
 
@@ -243,11 +243,7 @@ public class MinioServiceImpl implements MinioService {
     public void download(HttpServletResponse response, String bucketName, String objectName) {
         InputStream inputStream = null;
         try {
-
-            StatObjectArgs args = StatObjectArgs.builder()
-                    .bucket(bucketName)
-                    .object(objectName)
-                    .build();
+            StatObjectArgs args = StatObjectArgs.builder().bucket(bucketName).object(objectName).build();
             StatObjectResponse stat = minioClient.statObject(args);
             inputStream = this.getObject(bucketName, objectName);
             response.setContentType(stat.contentType());
@@ -255,6 +251,33 @@ public class MinioServiceImpl implements MinioService {
             IOUtils.copy(inputStream, response.getOutputStream());
         } catch (Exception e) {
             throw new Exception(StrUtil.format("下载文件失败 = {}", e.getMessage()));
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * 写入文件到本地路径
+     *
+     * @param bucketName   桶
+     * @param objectName   文件名
+     * @param fullFilePath 指定路径
+     */
+    @SneakyThrows
+    @Override
+    public File writeToPath(String bucketName, String objectName, String fullFilePath) {
+        InputStream inputStream = null;
+        try {
+            inputStream = this.getObject(bucketName, objectName);
+            return FileUtil.writeFromStream(inputStream, fullFilePath);
+        } catch (Exception e) {
+            throw new Exception(StrUtil.format("写入文件失败 = {}", e.getMessage()));
         } finally {
             if (inputStream != null) {
                 try {
@@ -277,17 +300,9 @@ public class MinioServiceImpl implements MinioService {
      */
     @SneakyThrows
     @Override
-    public String copyObject(String sourceBucket, String source,
-                             String targetBucket, String target) {
+    public String copyObject(String sourceBucket, String source, String targetBucket, String target) {
         try {
-            ObjectWriteResponse response = minioClient.copyObject(CopyObjectArgs.builder()
-                    .bucket(sourceBucket)
-                    .object(target)
-                    .source(CopySource.builder()
-                            .bucket(targetBucket)
-                            .object(source)
-                            .build())
-                    .build());
+            ObjectWriteResponse response = minioClient.copyObject(CopyObjectArgs.builder().bucket(sourceBucket).object(target).source(CopySource.builder().bucket(targetBucket).object(source).build()).build());
             log.info("minio复制文件成功 source = {},target = {}", source, target);
             return response.object();
         } catch (Exception e) {
@@ -306,11 +321,7 @@ public class MinioServiceImpl implements MinioService {
     public List<Item> list(String bucketName) {
         try {
             List<Item> list = new ArrayList<>();
-            Iterable<Result<Item>> results = minioClient.listObjects(
-                    ListObjectsArgs.builder()
-                            .bucket(bucketName)
-                            .build()
-            );
+            Iterable<Result<Item>> results = minioClient.listObjects(ListObjectsArgs.builder().bucket(bucketName).build());
             for (Result<Item> result : results) {
                 list.add(result.get());
             }
@@ -330,12 +341,7 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public boolean deleteObjectName(String bucketName, String objectName) {
         try {
-            minioClient.removeObject(
-                    RemoveObjectArgs.builder()
-                            .bucket(bucketName)
-                            .object(objectName)
-                            .build()
-            );
+            minioClient.removeObject(RemoveObjectArgs.builder().bucket(bucketName).object(objectName).build());
             return true;
         } catch (Exception e) {
             throw new Exception(StrUtil.format("删除文件失败 = {}", e.getMessage()));
@@ -367,14 +373,7 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public String createUploadUrl(String bucketName, String objectName, Integer expiry) {
         try {
-            return minioClient.getPresignedObjectUrl(
-                    GetPresignedObjectUrlArgs.builder()
-                            .method(Method.PUT)
-                            .bucket(bucketName)
-                            .object(objectName)
-                            .expiry(expiry)
-                            .build()
-            );
+            return minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder().method(Method.PUT).bucket(bucketName).object(objectName).expiry(expiry).build());
         } catch (Exception e) {
             throw new Exception(StrUtil.format("创建上传文件对象的外链失败 = {}", e.getMessage()));
         }
@@ -393,12 +392,7 @@ public class MinioServiceImpl implements MinioService {
     public String fileUrl(String bucketName, String objectName) {
         try {
             new GetPresignedObjectUrlArgs();
-            GetPresignedObjectUrlArgs build = GetPresignedObjectUrlArgs.builder()
-                    .method(Method.GET)
-                    .bucket(bucketName)
-                    .object(objectName)
-                    .expiry(7, TimeUnit.DAYS)
-                    .build();
+            GetPresignedObjectUrlArgs build = GetPresignedObjectUrlArgs.builder().method(Method.GET).bucket(bucketName).object(objectName).expiry(7, TimeUnit.DAYS).build();
             return minioClient.getPresignedObjectUrl(build);
         } catch (Exception e) {
             throw new Exception(StrUtil.format("获取文件url失败 = {}", e.getMessage()));
@@ -457,16 +451,9 @@ public class MinioServiceImpl implements MinioService {
         try {
             ListObjectsArgs listObjectsArgs;
             if (null == prefix) {
-                listObjectsArgs = ListObjectsArgs.builder()
-                        .bucket(bucketName)
-                        .recursive(true)
-                        .build();
+                listObjectsArgs = ListObjectsArgs.builder().bucket(bucketName).recursive(true).build();
             } else {
-                listObjectsArgs = ListObjectsArgs.builder()
-                        .bucket(bucketName)
-                        .prefix(prefix)
-                        .recursive(true)
-                        .build();
+                listObjectsArgs = ListObjectsArgs.builder().bucket(bucketName).prefix(prefix).recursive(true).build();
             }
             Iterable<Result<Item>> chunks = minioClient.listObjects(listObjectsArgs);
             List<String> chunkPaths = new ArrayList<>();
@@ -518,20 +505,9 @@ public class MinioServiceImpl implements MinioService {
         try {
             List<ComposeSource> sourceObjectList = new ArrayList<>(chunkNames.size());
             for (String chunk : chunkNames) {
-                sourceObjectList.add(
-                        ComposeSource.builder()
-                                .bucket(chunkBucKetName)
-                                .object(chunk)
-                                .build()
-                );
+                sourceObjectList.add(ComposeSource.builder().bucket(chunkBucKetName).object(chunk).build());
             }
-            minioClient.composeObject(
-                    ComposeObjectArgs.builder()
-                            .bucket(composeBucketName)
-                            .object(objectName)
-                            .sources(sourceObjectList)
-                            .build()
-            );
+            minioClient.composeObject(ComposeObjectArgs.builder().bucket(composeBucketName).object(objectName).sources(sourceObjectList).build());
             return true;
         } catch (Exception e) {
             throw new Exception(StrUtil.format("合并分片文件成对象文件失败 = {}", e.getMessage()));

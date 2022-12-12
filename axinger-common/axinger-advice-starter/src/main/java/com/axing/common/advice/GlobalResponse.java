@@ -1,11 +1,12 @@
 package com.axing.common.advice;
 
+import cn.hutool.core.util.StrUtil;
 import com.axing.common.response.result.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -40,7 +41,10 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
      */
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return !returnType.getDeclaringClass().getName().contains("org.springdoc");
+        boolean isSpringdoc = StrUtil.contains(returnType.getDeclaringClass().getName(), "org.springdoc");
+
+        System.out.println("isSpringdoc = " + isSpringdoc);
+        return !isSpringdoc;
     }
 
 

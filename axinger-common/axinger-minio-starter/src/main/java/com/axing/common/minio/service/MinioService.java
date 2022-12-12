@@ -1,11 +1,13 @@
 package com.axing.common.minio.service;
 
+import com.axing.common.minio.model.UploadFileBO;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -70,19 +72,6 @@ public interface MinioService {
     List<Bucket> getBuckets();
 
     /**
-     * 上传文件
-     *
-     * @param inputStream inputStream
-     * @param objectName  objectName
-     * @param bucketName  bucketName
-     * @param contentType contentType
-     */
-    Map<String, Object> upload(InputStream inputStream,
-                               String bucketName,
-                               String objectName,
-                               String contentType);
-
-    /**
      * 上传MultipartFile
      *
      * @param file
@@ -90,7 +79,17 @@ public interface MinioService {
      * @return
      * @throws IOException
      */
-    Map<String, Object> upload(MultipartFile file, String bucketName);
+    UploadFileBO uploadFile(MultipartFile file, String bucketName);
+
+    /**
+     * 上传文件
+     *
+     * @param inputStream inputStream
+     * @param objectName  objectName
+     * @param bucketName  bucketName
+     * @param contentType contentType
+     */
+    UploadFileBO uploadStream(InputStream inputStream, String bucketName, String objectName, String contentType);
 
     /**
      * 下载文件
@@ -101,14 +100,22 @@ public interface MinioService {
     void download(HttpServletResponse response, String bucketName, String objectName);
 
     /**
+     * 写入文件到本地路径
+     *
+     * @param bucketName   桶
+     * @param objectName   文件名
+     * @param fullFilePath 指定路径+文件名.后缀
+     */
+    File writeToPath(String bucketName, String objectName, String fullFilePath);
+
+    /**
      * 复制文件到指定位置
      *
      * @param source
      * @param target
      * @return
      */
-    String copyObject(String sourceBucket, String source,
-                      String targetBucket, String target);
+    String copyObject(String sourceBucket, String source, String targetBucket, String target);
 
     /**
      * 获取所有文件

@@ -35,6 +35,7 @@
         <module>b12-spring-web-flux</module>
         <module>b13-springboot-mvc</module>
         <module>b14-lombok</module>
+        <module>a01-spring-boot-mvc</module>
     </modules>
 
 
