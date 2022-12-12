@@ -66,7 +66,7 @@
         <module>a14-spring-boot-redis</module>
         <module>a15-spring-boot-netty</module>
         <module>a16-spring-boot-shiro</module>
-        <module>a17-spring-boot-mybatis-plus</module>
+        <module>a17-spring-boot-mybatis-plus-dynamic</module>
         <module>a18-custom-spring-boot-start</module>
         <module>a19-spring-boot-zipkin</module>
         <module>a20-spring-boot-quartz</module>
@@ -84,6 +84,7 @@
         <module>a30-spring-boot-sa-token</module>
         <module>a08-spring-boot-mapstruct</module>
         <module>a31-spring-boot-multitenant-partition</module>
+        <module>a17-spring-boot-mybatis-plus</module>
     </modules>
 
     <dependencies>
@@ -422,7 +423,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
+                <version>3.6.0</version>
             </dependency>
 
             <!--加密-->

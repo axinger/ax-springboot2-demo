@@ -1,40 +1,36 @@
 package com.axing.demo.domain;
 
-import com.axing.common.mybatis.entity.BaseEntity;
-import com.axing.demo.enums.Gender;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * @TableName t_student
  */
-@TableName(value = "t_student")
+@TableName(value ="t_student")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@SuperBuilder(toBuilder = true)
-public class Student extends BaseEntity {
+public class Student implements Serializable {
+    private Long id;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-    /**
-     *
-     */
     private String name;
-    /**
-     *
-     */
+
     private Integer age;
-    /**
-     *
-     */
-    private Gender gender;
-    /**
-     *
-     */
+
+    private Integer gender;
+
     private String address;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    private Long version;
+
+    private Integer deleted;
+
+    private static final long serialVersionUID = 1L;
 }

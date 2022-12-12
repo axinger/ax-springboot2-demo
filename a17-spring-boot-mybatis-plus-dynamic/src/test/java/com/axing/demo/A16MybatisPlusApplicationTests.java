@@ -17,30 +17,16 @@ class A16MybatisPlusApplicationTests {
 
 
     @Test
-    void contextLoads() {
+    void test1() {
 
-        final LambdaQueryWrapper<Person> queryWrapper = Wrappers.<Person>lambdaQuery()
-                .eq(Person::getName, "jim")
-                .last("limit 1");
-
-
-//        final Person one = personService.getOne(queryWrapper, false);
-        final Person one = personService.getOne(queryWrapper, false);
-        System.out.println("one = " + one);
-
+        Integer age = 10;
 
         final Person jim = personService.lambdaQuery()
                 .eq(Person::getName, "jim")
+                // .eq(age > 10, Person::getAge, age)
                 .last("limit 1")
                 .one();
         System.out.println("jim = " + jim);
-    }
-
-
-    @Test
-    void one() {
-
-
     }
 
 

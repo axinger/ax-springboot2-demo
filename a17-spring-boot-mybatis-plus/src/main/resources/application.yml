@@ -1,12 +1,40 @@
-server:
-  port: 7600
 spring:
 
   application:
     name: a17-spring-boot-mybatis-plus
-  profiles:
-    active: dev
-axing:
-  response:
-    base-packages: com.axing.demo
+  datasource:
+    url: jdbc:mysql://192.168.101.143:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
+  #    log颜色
+  output:
+    ansi:
+      enabled: always
+
+mybatis-plus:
+  #枚举包,必须有 3.5.1 取消了
+  #  type-enums-package: com.ax.a16.enums
+  #  mapper-locations: classpath*:/mybatis/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  #  typeAliasesPackage: com.example.demo.model
+  #  configuration:
+  #开启下划线转驼峰
+  #  map-underscore-to-camel-case: true
+  #  #开启返回map结果集的下划线转驼峰
+  #  object-wrapper-factory: com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+
+logging:
+  #  file:
+  #    path:
+  #  config: classpath:log4j2.xml
+  #  file:
+  #    name: log/myspringboot.log
+  #    path: log
+  level:
+    com.ax.a22.mapper: debug
+#  pattern:
+#    console: '%clr(%d{HH:mm:ss}){yellow} [%clr(%thread){red}] %-5level --- %clr(%logger){green} | %msg%n'
