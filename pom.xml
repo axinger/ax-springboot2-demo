@@ -44,7 +44,7 @@
         <!--        <jackson.version>2.14.0</jackson.version>-->
         <!--        <jackson-bom.version>2.14.0</jackson-bom.version>-->
 
-        <redisson.version>3.17.7</redisson.version>
+        <redisson.version>3.18.1</redisson.version>
         <snakeyaml.version>1.33</snakeyaml.version>
         <springdoc-version>1.6.13</springdoc-version>
     </properties>
@@ -81,9 +81,9 @@
         <module>a27-springdoc2</module>
         <module>a28-wordToPdf</module>
         <module>a29-elk</module>
-        <module>a30-spring-boot-sa-token</module>
+        <module>a30-sa-token</module>
         <module>a08-spring-boot-mapstruct</module>
-        <module>a31-spring-boot-multitenant-partition</module>
+        <module>a31-multi-tenant-partition</module>
         <module>a17-spring-boot-mybatis-plus</module>
     </modules>
 
@@ -104,10 +104,10 @@
             <artifactId>fastjson2</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2-extension</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.fastjson2</groupId>-->
+<!--            <artifactId>fastjson2-extension</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -470,26 +470,25 @@
                 <version>${springdoc-version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-common</artifactId>
-                <version>${springdoc-version}</version>
-                <scope>compile</scope>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>org.springdoc</groupId>-->
+            <!--                <artifactId>springdoc-openapi-common</artifactId>-->
+            <!--                <version>${springdoc-version}</version>-->
+            <!--                <scope>compile</scope>-->
+            <!--            </dependency>-->
 
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${springdoc-version}</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>org.springdoc</groupId>-->
+            <!--                <artifactId>springdoc-openapi-webmvc-core</artifactId>-->
+            <!--                <version>${springdoc-version}</version>-->
+            <!--            </dependency>-->
 
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-security</artifactId>
-                <version>${springdoc-version}</version>
-            </dependency>
+            <!--            <dependency>-->
+            <!--                <groupId>org.springdoc</groupId>-->
+            <!--                <artifactId>springdoc-openapi-security</artifactId>-->
+            <!--                <version>${springdoc-version}</version>-->
+            <!--            </dependency>-->
 
-            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

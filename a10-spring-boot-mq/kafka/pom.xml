@@ -14,7 +14,6 @@
     <modules>
         <module>kafka-api</module>
         <module>kafka-consumer</module>
-        <module>kafka-consumer2</module>
         <module>kafka-producer</module>
     </modules>
 

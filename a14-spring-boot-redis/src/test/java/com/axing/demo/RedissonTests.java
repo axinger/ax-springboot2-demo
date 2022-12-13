@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @Slf4j
 public class RedissonTests {
 
-    private static final String SERIAL_NUM = "redis:serialNumber:";
+    private static final String SERIAL_NUM = "order::serialNo::";
     @Autowired
     RedissonClient redissonClient;
     @Autowired
@@ -37,7 +37,7 @@ public class RedissonTests {
      * 自增流水号
      */
     @Test
-    void contextLoads() {
+    void orderSerialNo() {
         for (int i = 0; i < 100; i++) {
             testNum();
         }

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <artifactId>a30-spring-boot-sa-token</artifactId>
+    <artifactId>a30-sa-token</artifactId>
 
     <modules>
         <module>token-demo</module>
