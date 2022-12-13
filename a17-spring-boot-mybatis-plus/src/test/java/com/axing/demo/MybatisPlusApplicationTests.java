@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class Springboot3ApplicationTests {
+class MybatisPlusApplicationTests {
 
     @Autowired
     private StudentService studentService;
