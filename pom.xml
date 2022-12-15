@@ -85,6 +85,7 @@
         <module>a08-spring-boot-mapstruct</module>
         <module>a31-multi-tenant-partition</module>
         <module>a17-spring-boot-mybatis-plus</module>
+        <module>a32-springboot3</module>
     </modules>
 
     <dependencies>

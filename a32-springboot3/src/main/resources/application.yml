@@ -1,0 +1,8 @@
+server:
+  port: 12032
+
+remote:
+  baseUrl: http://localhost:12032/
+
+
+
