@@ -33,7 +33,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-log-starter</artifactId>
+            <artifactId>axinger-weblog-starter</artifactId>
         </dependency>
 
         <dependency>

@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
@@ -26,6 +27,7 @@ import java.util.TimeZone;
 public class ObjectMapperConfig {
 
     @Bean
+    @Primary
     public ObjectMapper objectMapper() {
 
         ObjectMapper objectMapper = new ObjectMapper();

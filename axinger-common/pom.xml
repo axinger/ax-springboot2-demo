@@ -38,7 +38,7 @@
         <module>axinger-minio-starter</module>
         <module>axinger-advice-starter</module>
         <module>axinger-json-starter</module>
-        <module>axinger-log-starter</module>
+        <module>axinger-weblog-starter</module>
     </modules>
 
     <dependencies>

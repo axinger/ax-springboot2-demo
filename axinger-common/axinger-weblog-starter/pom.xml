@@ -9,7 +9,7 @@
         <version>2.7.5.2.1</version>
     </parent>
 
-    <artifactId>axinger-log-starter</artifactId>
+    <artifactId>axinger-weblog-starter</artifactId>
 
     <dependencies>
         <dependency>

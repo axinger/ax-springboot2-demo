@@ -153,7 +153,7 @@
 
             <dependency>
                 <groupId>com.axing</groupId>
-                <artifactId>axinger-log-starter</artifactId>
+                <artifactId>axinger-weblog-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
