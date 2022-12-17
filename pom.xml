@@ -86,6 +86,7 @@
         <module>a31-multi-tenant-partition</module>
         <module>a17-spring-boot-mybatis-plus</module>
         <module>a32-springboot3</module>
+        <module>a09-spring-boot-es2</module>
     </modules>
 
     <dependencies>
