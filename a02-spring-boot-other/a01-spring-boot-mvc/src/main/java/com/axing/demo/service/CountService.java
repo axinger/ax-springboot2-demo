@@ -1,6 +1,6 @@
 package com.axing.demo.service;
 
-public interface TestService {
+public interface CountService {
 
     Integer count();
 }

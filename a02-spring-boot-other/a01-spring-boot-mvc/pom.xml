@@ -38,6 +38,11 @@
 
         <dependency>
             <groupId>com.axing</groupId>
+            <artifactId>axinger-util-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
             <artifactId>axinger-doc-starter</artifactId>
         </dependency>
     </dependencies>

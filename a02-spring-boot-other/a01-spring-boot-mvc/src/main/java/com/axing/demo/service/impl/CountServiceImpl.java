@@ -1,10 +1,10 @@
 package com.axing.demo.service.impl;
 
-import com.axing.demo.service.TestService;
+import com.axing.demo.service.CountService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TestServiceImpl implements TestService {
+public class CountServiceImpl implements CountService {
 
     private int count;
 

@@ -1,0 +1,10 @@
+# application.yml,会优先加载
+user:
+  user:
+    username: lili
+    password: 132456
+  list:
+    - username: jim
+      password: 132456
+    - username: tom
+      password: 132456

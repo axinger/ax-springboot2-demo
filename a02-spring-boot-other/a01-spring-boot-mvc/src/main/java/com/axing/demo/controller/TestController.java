@@ -1,6 +1,6 @@
 package com.axing.demo.controller;
 
-import com.axing.demo.service.TestService;
+import com.axing.demo.service.CountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +13,7 @@ public class TestController {
     private int count;
 
     @Autowired
-    private TestService testService;
+    private CountService countService;
 
     @GetMapping("/count")
     public Object count1() {
@@ -23,6 +23,6 @@ public class TestController {
 
     @GetMapping("/count2")
     public Object count2() {
-        return List.of(testService.count());
+        return List.of(countService.count());
     }
 }
