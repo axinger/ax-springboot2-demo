@@ -10,8 +10,8 @@
 
         <collection property="empList" ofType="com.axing.demo.domain.Employee">
             <!--            含有相同的字段名-->
-            <id property="id" column="s_id" jdbcType="BIGINT"/>
-            <result property="name" column="s_name" jdbcType="VARCHAR"/>
+            <id property="id" column="e_id" jdbcType="BIGINT"/>
+            <result property="name" column="e_id" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
@@ -27,14 +27,47 @@
 
     <select id="listLeft" resultMap="BaseResultMap">
         SELECT d.*,
-               e.id      as s_id,
-               e.name    as s_name,
-               e.gender  as gender,
-               e.dept_id as dept_id
+        e.id as e_id,
+        e.name as e_name,
+        e.gender as gender,
+        e.dept_id as dept_id
         FROM department d
-                 LEFT JOIN employee e
-                           ON e.dept_id = d.id
-            ${ew.customSqlSegment}
+        LEFT JOIN employee e
+        ON e.dept_id = d.id
+        ${ew.customSqlSegment}
+    </select>
+
+    <!--  SELECT *,封装一下的格式 可以用
+        Wrappers.<Department>lambdaQuery().eq(Department::getId, 1)
+      d.* 这样格式，只能用
+      Wrappers.query().eq("d.id", 1)
+      -->
+    <select id="listLeftSon" resultMap="BaseResultMap">
+
+        SELECT *
+        FROM (SELECT d.*,
+        e.id as e_id,
+        e.name as e_name,
+        e.gender as gender,
+        e.dept_id as dept_id
+        FROM department d
+        JOIN employee e ON e.dept_id = d.id) AS t
+        ${ew.customSqlSegment}
+    </select>
+
+    <!--    全表子查询-->
+    <select id="listAllSon" resultMap="BaseResultMap">
+        SELECT d.*, e.id as e_id, e.name as e_name, e.gender as gender, e.dept_id as dept_id
+        FROM department d,
+        employee e
+        where e.dept_id = d.id
+        <if test="ew != null">
+            <if test="ew.nonEmptyOfWhere">
+                AND
+            </if>
+            ${ew.sqlSegment}
+        </if>
+
     </select>
 
 </mapper>

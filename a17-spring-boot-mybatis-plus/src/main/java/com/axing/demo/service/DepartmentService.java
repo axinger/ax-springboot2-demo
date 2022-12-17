@@ -17,4 +17,10 @@ public interface DepartmentService extends IService<Department> {
 
     List<Department> getDepartmentByEmployee(@Param(Constants.WRAPPER) Wrapper wrapper);
     List<Department> listLeft(@Param(Constants.WRAPPER) Wrapper wrapper);
+
+    List<Department> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+
+    List<Department> listAllSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+
+
 }

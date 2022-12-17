@@ -41,6 +41,13 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      */
     List<Department> listLeft(@Param(Constants.WRAPPER) Wrapper wrapper);
 
+
+    List<Department> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+
+    List<Department> listAllSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+
+
+
 }
 
 

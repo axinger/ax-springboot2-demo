@@ -25,6 +25,16 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     public List<Department> listLeft(Wrapper wrapper) {
         return this.baseMapper.listLeft(wrapper);
     }
+
+    @Override
+    public List<Department> listLeftSon(Wrapper wrapper) {
+        return this.baseMapper.listLeftSon(wrapper);
+    }
+
+    @Override
+    public List<Department> listAllSon(Wrapper wrapper) {
+        return this.baseMapper.listAllSon(wrapper);
+    }
 }
 
 
