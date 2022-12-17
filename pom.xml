@@ -15,6 +15,7 @@
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
+    <!--前3位与spring-boot版本号对应    -->
     <version>3.0.0.1</version>
     <name>spring-boot 案例</name>
     <description>个人代码总结</description>
@@ -87,6 +88,7 @@
         <module>a17-spring-boot-mybatis-plus</module>
         <module>a32-springboot3</module>
         <module>a09-spring-boot-es2</module>
+        <module>a17-spring-boot-jpa</module>
     </modules>
 
     <dependencies>

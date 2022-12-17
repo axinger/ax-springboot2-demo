@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.axing.demo.mapper.SchoolMapper">
+
+    <resultMap id="BaseResultMap" type="com.axing.demo.domain.School">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="area" column="area" jdbcType="DOUBLE"/>
+        <result property="schoolName" column="school_name" jdbcType="VARCHAR"/>
+        <result property="zone" column="zone" jdbcType="VARCHAR"/>
+
+        <collection property="roomList" ofType="com.axing.demo.domain.Room">
+            <id property="id" column="school_id"/>
+            <result property="layer" column="layer" jdbcType="VARCHAR"/>
+            <result property="roomName" column="room_name" jdbcType="VARCHAR"/>
+            <result property="schoolId" column="school_id" jdbcType="BIGINT"/>
+        </collection>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,area,school_name,
+        zone
+    </sql>
+
+    <select id="schoolList" resultMap="BaseResultMap">
+        select s.*, r.*
+        from t_school s
+                 left join t_room r on r.school_id = s.id ${ew.customSqlSegment}
+    </select>
+
+</mapper>

@@ -2,8 +2,6 @@ package com.axing.demo;
 
 import com.axing.demo.domain.Person;
 import com.axing.demo.service.PersonService;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

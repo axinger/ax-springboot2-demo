@@ -1,5 +1,4 @@
 spring:
-
   application:
     name: a17-spring-boot-mybatis-plus
   datasource:
