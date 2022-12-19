@@ -22,38 +22,13 @@ import java.time.LocalDateTime;
 @Slf4j
 public class RedissonTests {
 
-    private static final String SERIAL_NUM = "order::serialNo::";
     @Autowired
     RedissonClient redissonClient;
-    @Autowired
-    private RedisCacheTemplate redisCacheTemplate;
+
 
     @Test
     void test1() {
         System.out.println("redissonClient = " + redissonClient);
     }
 
-    /**
-     * 自增流水号
-     */
-    @Test
-    void orderSerialNo() {
-        for (int i = 0; i < 100; i++) {
-            testNum();
-        }
-    }
-
-    void testNum() {
-        LocalDateTime dateTime = LocalDateTime.now();
-        dateTime = dateTime.plusDays(1);
-        final String currentDate = LocalDateTimeUtil.format(dateTime, "yyyy-MM-dd");
-        String key = SERIAL_NUM + currentDate;
-        // 过期时间 60*60*24
-        long incr = redisCacheTemplate.incr(key, 1, 86400);
-        // 左对齐
-        String value = StrUtil.padPre(String.valueOf(incr), 6, "0");
-        // 然后把 时间戳和优化后的 ID 拼接
-        String code = StrUtil.format("{}-{}", currentDate, value);
-        System.out.println("code = " + code);
-    }
 }

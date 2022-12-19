@@ -1,4 +1,6 @@
-#
+server:
+  port: 11004
+
 spring:
   application:
     name: @artifactId@
@@ -34,5 +36,10 @@ spring:
 #    # JsonGenerator在jackson中负责编写json内容,具体特性请看JsonGenerator.Feature
 #
 #
-
-
+axing:
+  advice:
+    print-stack-trace: true
+  doc-info:
+    title: 测试JSON
+    description: 测试JSON描述
+    version: @version@

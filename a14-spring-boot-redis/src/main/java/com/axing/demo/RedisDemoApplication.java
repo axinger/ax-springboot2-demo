@@ -7,9 +7,9 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @EnableCaching
 //@ComponentScan(basePackages = {"com.axing.demo"})
-public class Demo13RedisApplication {
+public class RedisDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Demo13RedisApplication.class, args);
+        SpringApplication.run(RedisDemoApplication.class, args);
     }
 }

@@ -35,7 +35,7 @@ public class TestController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @RequestMapping(value = "/json")
+    @GetMapping(value = "/json")
     public Object json() {
 
         Map map = new HashMap();
@@ -71,7 +71,7 @@ public class TestController {
         return map;
     }
 
-    @RequestMapping(value = "/json1")
+    @GetMapping(value = "/json1")
     public Object json1() {
 
         final Person person = Person.builder()
@@ -94,7 +94,7 @@ public class TestController {
         return person;
     }
 
-    @RequestMapping(value = "/pig")
+    @GetMapping(value = "/pig")
     public void pig() {
 
         System.out.println("new Pig() = " + new Pig());

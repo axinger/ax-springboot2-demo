@@ -1,8 +1,11 @@
 package com.axing.demo.controller;
 
 import com.axing.demo.service.SecondsKillService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -12,6 +15,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @RestController
+@Slf4j
+@Tag(name = "SecondsKillController", description = "秒杀")
 public class SecondsKillController {
 
     /**
@@ -23,7 +28,7 @@ public class SecondsKillController {
     @Autowired
     SecondsKillService secondsKillService;
 
-    @RequestMapping(value = "/doSecKill")
+    @GetMapping(value = "/doSecKill")
     public boolean doSecKill() {
 
         Integer userId = new Random().nextInt(500);
@@ -32,7 +37,7 @@ public class SecondsKillController {
         return secondsKillService.doSecKill(userId, prodId);
     }
 
-    @RequestMapping(value = "/secKill")
+    @GetMapping(value = "/secKill")
     public Object doSecKill2() {
         Integer prodId = 101;
         secondsKillService.createProductCount(prodId);
@@ -59,14 +64,27 @@ public class SecondsKillController {
     }
 
 
-    @RequestMapping(value = "/doSecKill3")
-    public boolean doSecKill_2() {
-
-        Integer userId = new Random().nextInt(40);
+    @Operation(summary = "redisson锁,解决秒杀")
+    @GetMapping(value = "/doSecKillByRedisson")
+    public boolean doSecKillByRedisson() {
+        // 300个人,抢100个产品
+        Integer userId = new Random().nextInt(300);
         Integer prodId = 101;
-
         return secondsKillService.doSecKillOfRedissonLock(userId, prodId);
     }
 
+    @Operation(summary = "添加秒杀产品库存")
+    @GetMapping(value = "/addSk")
+    public Integer addSk() {
+        Integer prodId = 101;
+        Integer sk = secondsKillService.addSk(prodId);
+        return sk;
+    }
+
+    @Operation(summary = "多线程秒杀产品库存")
+    @GetMapping(value = "/doSecKillByRedissonExecute")
+    public Object doSecKillByRedissonExecute() {
+        return secondsKillService.killExecute();
+    }
 
 }

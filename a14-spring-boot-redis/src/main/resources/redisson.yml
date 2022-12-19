@@ -16,7 +16,7 @@ singleServerConfig:
   # 单个连接最大订阅数量
   subscriptionsPerConnection: 5
   # 客户端名称
-  clientName: axin
+  clientName: axing-demo
   #  # 节点地址
   #  address: redis://47.101.156.93:6379
   # 发布和订阅连接的最小空闲连接数

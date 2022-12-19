@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Random;
 
 @SpringBootTest
-class Demo13RedisApplicationTests {
+class RedisDemoApplicationTests {
 
     @Test
     void contextLoads() {

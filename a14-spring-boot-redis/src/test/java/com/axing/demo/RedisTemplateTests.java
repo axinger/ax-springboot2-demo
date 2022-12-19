@@ -1,9 +1,12 @@
 package com.axing.demo;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.util.RedisUtil;
 import com.axing.demo.model.User;
+import com.axing.demo.service.RedisCacheTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -245,8 +248,32 @@ public class RedisTemplateTests {
         final String key = "test::expire::1::Map";
         this.redisTemplate.opsForValue().set(key, "1");
         this.redisTemplate.expire(key, 5, TimeUnit.SECONDS);
-
-
     }
 
+    /**
+     * 自增流水号
+     */
+    @Test
+    void orderSerialNo() {
+        for (int i = 0; i < 100; i++) {
+            testNum();
+        }
+    }
+
+    private static final String SERIAL_NUM = "order::serialNo::";
+    @Autowired
+    private RedisCacheTemplate redisCacheTemplate;
+    void testNum() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        dateTime = dateTime.plusDays(1);
+        final String currentDate = LocalDateTimeUtil.format(dateTime, "yyyy-MM-dd");
+        String key = SERIAL_NUM + currentDate;
+        // 过期时间 60*60*24
+        long incr = redisCacheTemplate.incr(key, 1, 86400);
+        // 左对齐
+        String value = StrUtil.padPre(String.valueOf(incr), 6, "0");
+        // 然后把 时间戳和优化后的 ID 拼接
+        String code = StrUtil.format("{}-{}", currentDate, value);
+        System.out.println("code = " + code);
+    }
 }
