@@ -1,10 +1,15 @@
 package com.axing.common.advice;
 
+import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Import;
 import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,11 +27,21 @@ import java.util.*;
 @Slf4j
 @ResponseBody
 @RestControllerAdvice
+@EnableConfigurationProperties({
+        AdviceProperties.class
+})
 public class GlobalException {
+
+    @Autowired
+    AdviceProperties adviceProperties;
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public Result<Map<String, Object>> exception(HttpServletRequest request, Exception exception) {
+    public Result<Map<String, Object>> exception(HttpServletRequest request, Exception e) {
+
+        if (adviceProperties.isPrintStackTrace()) {
+            e.printStackTrace();
+        }
 
         String method = request.getMethod();
         String uri = request.getRequestURI();
@@ -35,20 +50,22 @@ public class GlobalException {
         map.put("method", method);
         map.put("path", uri);
 
-        String msg = null;
-        if (Optional.of(exception).map(Throwable::getMessage).isPresent()) {
-            msg = exception.getMessage();
-        }
-        if (Optional.of(exception).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
-            msg = exception.getCause().getMessage();
+        String msg = "";
+        if (Optional.of(e).map(Throwable::getMessage).isPresent()) {
+            msg = e.getMessage();
+        } else if (Optional.of(e).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
+            msg = e.getCause().getMessage();
         }
         final Result<Map<String, Object>> result = Result.build(201, map, msg);
-        log.error("全局异常 result = {}", result);
+        log.error("全局异常 result = {}, e = {}", result, e.getMessage());
         return result;
     }
 
     @ExceptionHandler(value = ServiceException.class)
-    public Result serviceException(ServiceException e) {
+    public Result<Map<String, Object>> serviceException(ServiceException e) {
+        if (adviceProperties.isPrintStackTrace()) {
+            e.printStackTrace();
+        }
         final Result<Map<String, Object>> result = Result.build(e.getCode(), e.getMessage());
         log.error("自定义业务异常 result =  {}", result);
         return result;
@@ -57,19 +74,17 @@ public class GlobalException {
     /**
      * 对方法参数校验异常处理方法
      */
-    @ExceptionHandler(value = {
-            MethodArgumentNotValidException.class,
-            BindException.class,
-            MissingServletRequestParameterException.class,
-    })
-    public Result handlerNotValidException(Exception validException) {
-
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class, MissingServletRequestParameterException.class,})
+    public Result<Map<String, Object>> handlerNotValidException(Exception e) {
+        if (adviceProperties.isPrintStackTrace()) {
+            e.printStackTrace();
+        }
         List<ObjectError> list = new ArrayList<>();
 
-        if (validException instanceof MethodArgumentNotValidException) {
-            list = ((MethodArgumentNotValidException) validException).getBindingResult().getAllErrors();
-        } else if (validException instanceof BindException) {
-            list = ((BindException) validException).getBindingResult().getAllErrors();
+        if (e instanceof MethodArgumentNotValidException validException) {
+            list = Optional.ofNullable(validException).map(MethodArgumentNotValidException::getBindingResult).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
+        } else if (e instanceof BindException bindException) {
+            list = Optional.ofNullable(bindException).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
         }
 
         Map<String, Object> map = new HashMap<>(16);

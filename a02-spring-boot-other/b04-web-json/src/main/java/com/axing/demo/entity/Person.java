@@ -22,6 +22,9 @@ import java.util.Map;
 @NoArgsConstructor
 public class Person implements Serializable {
 
+    private String name;
+    private Integer age;
+
     String string1 = "A";
 
     String string2 = "B";

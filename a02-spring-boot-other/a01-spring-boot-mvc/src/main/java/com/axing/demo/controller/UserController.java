@@ -1,5 +1,7 @@
 package com.axing.demo.controller;
 
+import com.axing.demo.model.Person;
+import com.axing.demo.model.PersonDTO;
 import com.axing.demo.model.UserDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +22,12 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("/person")
+    public PersonDTO person() {
+
+        PersonDTO person = new PersonDTO();
+        person.setName("jim");
+        return person;
+    }
 }
 
