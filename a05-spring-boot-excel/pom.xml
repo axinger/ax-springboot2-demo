@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>a05-spring-boot-nginx</artifactId>
+    <artifactId>a05-spring-boot-excel</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
