@@ -19,10 +19,11 @@ public interface SecondsKillService {
 
     /**
      * 添加秒杀产品库存
+     *
      * @param prodId
      * @return
      */
     Integer addSk(Integer prodId);
 
-    Map<String,Object> killExecute();
+    Map<String, Object> killExecute();
 }

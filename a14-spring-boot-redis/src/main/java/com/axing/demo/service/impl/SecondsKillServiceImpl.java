@@ -134,7 +134,7 @@ public class SecondsKillServiceImpl implements SecondsKillService {
             Integer count = (Integer) prodValue;
             // 判断库存
             if (count <= 0) {
-                log.info("库存为0,活动结束: {}",prodValue);
+                log.info("库存为0,活动结束: {}", prodValue);
                 return false;
             }
             // 判断用户
@@ -144,9 +144,9 @@ public class SecondsKillServiceImpl implements SecondsKillService {
                 return false;
             }
             Long decrement = redisTemplate.opsForValue().decrement(prodKey);
-            log.info("秒杀成功 {} 抢到了 {} 商品,剩余商品个数 {}",userId,prodValue,decrement);
+            log.info("秒杀成功 {} 抢到了 {} 商品,剩余商品个数 {}", userId, prodValue, decrement);
             Long add = redisTemplate.opsForSet().add(userKilledKey, userId);
-            log.info("userKilledKey add = {}",add);
+            log.info("userKilledKey add = {}", add);
 
             return true;
         } finally {
@@ -170,7 +170,7 @@ public class SecondsKillServiceImpl implements SecondsKillService {
             redisTemplate.opsForValue().set(prodKey, 100);
             String userKilledKey = userKilledKey(prodId);
             Boolean delete = redisTemplate.delete(userKilledKey);
-            log.info("userKilledKey delete = {}",delete);
+            log.info("userKilledKey delete = {}", delete);
 
         }
         Integer count = (Integer) redisTemplate.opsForValue().get(prodKey);
@@ -195,8 +195,8 @@ public class SecondsKillServiceImpl implements SecondsKillService {
                     boolean secKill = this.doSecKillOfRedissonLock(userId, prodId);
                     if (secKill) {
                         successSet.add(userId);
-                    }else {
-                        log.info("秒杀失败,{} 未抢到商品",userId);
+                    } else {
+                        log.info("秒杀失败,{} 未抢到商品", userId);
                     }
                 }));
             }
