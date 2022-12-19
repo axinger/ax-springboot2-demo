@@ -11,7 +11,7 @@ spring:
   data:
     redis:
       host: 192.168.101.143 # Redis服务器地址
-      #    password: AXing#631122 # Redis服务器连接密码（默认为空）
+      #    password:  # Redis服务器连接密码（默认为空）
       database: 8 # Redis数据库索引（默认为0）
       port: 6379 # Redis服务器连接端口
       timeout: 5000 # 连接超时时间（毫秒）\
