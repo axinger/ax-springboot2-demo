@@ -2,7 +2,9 @@ package com.axing.demo.entity;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 public class User {
@@ -11,4 +13,6 @@ public class User {
     private Integer age;
 
     private LocalDateTime localDateTime = LocalDateTime.now();
+    private LocalDate localDate = LocalDate.now();
+    private LocalTime localTime = LocalTime.now();
 }
