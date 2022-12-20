@@ -28,7 +28,18 @@ class JpaDemoApplicationTest {
 
     @Autowired
     private UsersJpaRepository usersJpaRepository;
+    /**
+     * 2.一对多 Users 有多个 Address
+     */
 
+    @Autowired
+    private AddressJpaRepository addressJpaRepository;
+    @Autowired
+    private SchoolJpaRepository schoolJpaRepository;
+    @Autowired
+    private StudentDao studentDao;
+    @Autowired
+    private SubjectDao subjectDao;
 
     @Test
     void addUser() {
@@ -37,7 +48,6 @@ class JpaDemoApplicationTest {
         user.setUserName("jim");
         usersJpaRepository.save(user);
     }
-
 
     @Test
     public void findAll() {
@@ -75,7 +85,6 @@ class JpaDemoApplicationTest {
         int id = 1;
         usersJpaRepository.deleteById(id);
     }
-
 
     /**
      * {
@@ -130,7 +139,6 @@ class JpaDemoApplicationTest {
 
     }
 
-
     @Test
     void addUserOneToOne() {
         Users user = new Users();
@@ -143,14 +151,6 @@ class JpaDemoApplicationTest {
         user.setCard(card);
         usersJpaRepository.save(user);
     }
-
-
-    /**
-     * 2.一对多 Users 有多个 Address
-     */
-
-    @Autowired
-    private AddressJpaRepository addressJpaRepository;
 
     @Test
     void OneToMany_saveUser() {
@@ -199,9 +199,6 @@ class JpaDemoApplicationTest {
         System.out.println("all = " + all);
     }
 
-    @Autowired
-    private SchoolJpaRepository schoolJpaRepository;
-
     @Test
     void OneToMany_saveSchool() {
 
@@ -237,13 +234,6 @@ class JpaDemoApplicationTest {
         System.out.println("list = " + list);
     }
 
-
-    @Autowired
-    private StudentDao studentDao;
-
-
-    @Autowired
-    private SubjectDao subjectDao;
     @Test
     void ManyToMany_saveSubject() {
 
@@ -264,7 +254,7 @@ class JpaDemoApplicationTest {
         subject4.setId(4);
         subject4.setName("化学");
 
-        subjectDao.saveAll(Lists.newArrayList(subject1, subject2,subject3,subject4));
+        subjectDao.saveAll(Lists.newArrayList(subject1, subject2, subject3, subject4));
     }
 
     @Test
@@ -321,7 +311,7 @@ class JpaDemoApplicationTest {
 
         // id 为 1 的学生选修了 subject1，subject2 两门课
         // id 为 2 的学生选修了 subject3，subject4 两门课
-        student1.setSubjectList(Lists.newArrayList(subject1, subject2,subject5,subject6));
+        student1.setSubjectList(Lists.newArrayList(subject1, subject2, subject5, subject6));
         student2.setSubjectList(Lists.newArrayList(subject3, subject4));
 
         studentDao.saveAll(Lists.newArrayList(student1, student2));
@@ -344,7 +334,6 @@ class JpaDemoApplicationTest {
         subject.setId(5);
         subject.setName("物理");
         subjectDao.save(subject);
-
 
 
         // 添加

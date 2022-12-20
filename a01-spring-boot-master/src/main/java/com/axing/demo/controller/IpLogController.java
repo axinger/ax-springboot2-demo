@@ -1,9 +1,9 @@
 package com.axing.demo.controller;
 
+import com.axing.common.response.result.Result;
 import com.axing.demo.dto.UpdateListDTO;
 import com.axing.demo.entity.IpLog;
 import com.axing.demo.service.IIpLogService;
-import com.axing.common.response.result.Result;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

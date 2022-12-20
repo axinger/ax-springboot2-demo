@@ -29,8 +29,7 @@ class KafkaProducerApplicationTests {
         map.put("topic", Topic.SIMPLE);
 
 
-
-        CompletableFuture future = kafkaTemplate.send(Topic.SIMPLE,map);
+        CompletableFuture future = kafkaTemplate.send(Topic.SIMPLE, map);
 
         // future.w(new ListenableFutureCallback<SendResult<String, Object>>() {
         //     @Override
@@ -44,7 +43,7 @@ class KafkaProducerApplicationTests {
         //     }
         // });
 
-        future.whenComplete((res, error) ->{
+        future.whenComplete((res, error) -> {
 
             System.out.println("res = " + res);
             System.out.println("error = " + error);

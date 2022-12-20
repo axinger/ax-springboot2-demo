@@ -1,14 +1,14 @@
 package com.axing.demo;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.axing.demo.domain.Department;
 import com.axing.demo.domain.Room;
 import com.axing.demo.domain.School;
 import com.axing.demo.service.DepartmentService;
 import com.axing.demo.service.RoomService;
 import com.axing.demo.service.SchoolService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,8 +19,9 @@ import java.util.List;
 class MybatisPlusApplicationTests {
 
     @Autowired
+    DepartmentService departmentService;
+    @Autowired
     private SchoolService schoolService;
-
     @Autowired
     private RoomService roomService;
 
@@ -46,9 +47,6 @@ class MybatisPlusApplicationTests {
         System.out.println("list = " + list);
     }
 
-    @Autowired
-    DepartmentService departmentService;
-
     @Test
     void test3() {
         // List<Department> list = departmentService.getDepartmentByEmployee(Wrappers.<Department>lambdaQuery()
@@ -59,10 +57,11 @@ class MybatisPlusApplicationTests {
         System.out.println("list = " + list);
 
     }
+
     @Test
     void test4() {
         // 可以 335ms
-        List<Department> list1= departmentService.listLeft(Wrappers.query()
+        List<Department> list1 = departmentService.listLeft(Wrappers.query()
                 .eq("d.id", 1));
         System.out.println("list1 = " + list1);
     }

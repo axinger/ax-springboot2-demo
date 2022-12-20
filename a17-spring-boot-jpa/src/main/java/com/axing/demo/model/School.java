@@ -1,7 +1,8 @@
 package com.axing.demo.model;
 
-import lombok.Data;
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
 
 /**

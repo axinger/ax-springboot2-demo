@@ -1,6 +1,7 @@
 package com.axing.demo.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.util.RedisUtil;
 import com.axing.common.response.result.Result;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @CacheConfig(cacheNames = "demo14::user")
@@ -73,7 +75,7 @@ public class UserController {
 
     @Operation(summary = "Cacheable获取数据", description = "redis没有数据,就从数据库中取")
     @GetMapping(value = "/get")
-    public Object getUser(Integer id) {
+    public Object getUserFromCacheable(Integer id) {
         System.out.println("getUser...........");
         return userService.findUser(id);
     }
@@ -132,5 +134,60 @@ public class UserController {
         return user1;
     }
 
+    @Autowired
+    private RedisTemplate<String, User> redisTemplateUser;
+
+    private User getUser(Integer id) {
+        final User.Book book = User.Book.builder()
+                .id(id)
+                .name("海底两万里")
+                .build();
+
+        final User user = User.builder()
+                .id(id)
+                .name("jim")
+                .age(21)
+                .date(new Date())
+                .localDateTime(LocalDateTime.now())
+                .books(List.of(book))
+                .build();
+
+        return user;
+    }
+
+
+    private String getUserKey(Integer id) {
+        return StrUtil.format("test::value::{}::User", id);
+    }
+
+    @GetMapping(value = "/opsForValue/set")
+    public Object opsForValue() {
+        redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 120, TimeUnit.SECONDS);
+        return true;
+    }
+
+    @GetMapping(value = "/opsForValue/setIfAbsent")
+    public Object setIfAbsent() {
+        // 当前key不存在，写入值, 并返回true; 当前key已经存在，不处理, 返回false;  Absent: 缺少的，
+        Boolean ifAbsent = redisTemplateUser.opsForValue().setIfAbsent(getUserKey(1), getUser(1));
+        System.out.println("ifAbsent = " + ifAbsent);
+        return ifAbsent;
+    }
+
+    @GetMapping(value = "/opsForValue/setIfPresent")
+    public Object setIfPresent() {
+        // 当前key已经存在，写入值, 并返回true; 当前key不存在，不处理, 返回false;  ;Present: 存在的
+        Boolean ifPresent = redisTemplateUser.opsForValue().setIfPresent(getUserKey(1), getUser(1));
+        System.out.println("ifPresent = " + ifPresent);
+        return ifPresent;
+    }
+
+    @GetMapping(value = "/opsForValue/getAndSet")
+    public Object getAndSet() {
+        // 获取原来key的value, 再将新的value写入
+        User andSet = redisTemplateUser.opsForValue().getAndSet(getUserKey(1), getUser(1));
+        System.out.println("andSet = " + andSet);
+        return andSet;
+    }
 
 }

@@ -9,7 +9,7 @@ spring:
     #    property-naming-strategy: SNAKE_CASE
     # 全局设置@JsonFormat的格式pattern
     date-format: yyyy年MM-dd HH:mm:ss
-    local-date-format:  yyyy年MM月dd
+    local-date-format: yyyy年MM月dd
 
     #    # 当地时区
     #    locale: zh

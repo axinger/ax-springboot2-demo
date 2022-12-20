@@ -1,7 +1,7 @@
 package com.axing.demo.controller;
 
-import com.axing.demo.service.IRegisterService;
 import com.axing.common.response.result.Result;
+import com.axing.demo.service.IRegisterService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

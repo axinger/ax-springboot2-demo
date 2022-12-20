@@ -1,17 +1,20 @@
 package com.axing.common.redis.configure;
 
+import com.axing.common.json.config.ObjectMapperConfig;
 import com.axing.common.redis.bean.RedisProperties;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -28,22 +31,28 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @description
  * @createTime 2022年01月18日 22:56:00
  */
-@Configuration
+@AutoConfiguration
 @EnableCaching
 @RequiredArgsConstructor
 @EnableConfigurationProperties(RedisProperties.class)
+@AutoConfigureAfter(ObjectMapperConfig.class)
 public class RedisAutoConfig {
 
     private final RedisConnectionFactory redisConnectionFactory;
 
-    private final ObjectMapper objectMapper;
+    private final ObjectMapperConfig objectMapperConfig;
 
     private final RedisProperties redisProperties;
+
+    @Bean
+    public RedisService redisService(RedisConnectionFactory factory) {
+        return new RedisServiceImpl(this.redisTemplate(factory));
+    }
 
     /**
      * 自定义key规则
      *
-     * @return
+     * @return KeyGenerator
      */
     @Bean
     public KeyGenerator keyGenerator() {
@@ -61,18 +70,18 @@ public class RedisAutoConfig {
     /**
      * 设置RedisTemplate规则
      *
-     * @return
+     * @return RedisTemplate
      */
     @Bean
-    public RedisTemplate redisTemplate() {
+    public RedisTemplate redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.setConnectionFactory(factory);
 
         // 序列号key value
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(this.jsonRedisSerializer());
+        redisTemplate.setValueSerializer(this.redisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(this.jsonRedisSerializer());
+        redisTemplate.setHashValueSerializer(this.redisSerializer());
 
         redisTemplate.afterPropertiesSet();
 
@@ -82,7 +91,7 @@ public class RedisAutoConfig {
     /**
      * 设置CacheManager缓存规则
      *
-     * @return
+     * @return CacheManager
      */
     @Bean
     public CacheManager cacheManager() {
@@ -91,23 +100,23 @@ public class RedisAutoConfig {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))
                 .serializeValuesWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(this.jsonRedisSerializer()))
+                        RedisSerializationContext.SerializationPair.fromSerializer(this.redisSerializer()))
                 .disableCachingNullValues();
-
-        RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(config).build();
-        return cacheManager;
+        return RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(config).build();
     }
 
 
     /**
      * 还有一个 GenericJackson2JsonRedisSerializer
      *
-     * @return
+     * @return RedisSerializer
      */
     @Bean
-    public RedisSerializer jsonRedisSerializer() {
-        ObjectMapper objectMapper = this.objectMapper;
-        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
+    @ConditionalOnMissingBean(RedisSerializer.class)
+    public RedisSerializer<Object> redisSerializer() {
+        ObjectMapper objectMapper = objectMapperConfig.getObjectMapper();
+
+        // // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
         if (redisProperties.isSavePackageName()) {
             objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         }
@@ -115,9 +124,12 @@ public class RedisAutoConfig {
         // 解决jackson2无法反序列化LocalDateTime的问题
         // objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
-        return jackson2JsonRedisSerializer;
+        // jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+
+        return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
+
+        // return  new GenericJackson2JsonRedisSerializer(this.objectMapper());
+        // return new Jackson2JsonRedisSerializer<>(Object.class);
 
         // GenericJackson2JsonRedisSerializer redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
         // return redisSerializer;
@@ -129,10 +141,4 @@ public class RedisAutoConfig {
 
     }
 
-
-    @Bean
-    public RedisService redisService() {
-        RedisService redisService = new RedisServiceImpl(this.redisTemplate());
-        return redisService;
-    }
 }

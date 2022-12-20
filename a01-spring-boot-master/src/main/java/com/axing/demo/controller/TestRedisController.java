@@ -1,8 +1,8 @@
 package com.axing.demo.controller;
 
 import cn.hutool.core.util.IdUtil;
-import com.axing.demo.entity.Userinfo;
 import com.axing.common.redis.service.RedisService;
+import com.axing.demo.entity.Userinfo;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

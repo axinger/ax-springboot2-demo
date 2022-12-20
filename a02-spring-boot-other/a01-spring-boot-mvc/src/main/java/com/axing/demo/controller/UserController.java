@@ -1,6 +1,5 @@
 package com.axing.demo.controller;
 
-import com.axing.demo.model.Person;
 import com.axing.demo.model.PersonDTO;
 import com.axing.demo.model.UserDTO;
 import org.springframework.web.bind.annotation.GetMapping;

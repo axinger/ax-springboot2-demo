@@ -23,8 +23,8 @@ class ESDemoApplicationTest {
         book.setId(890);
         book.setName("深入理解Java虚拟机");
         book.setAuthor("xxx");
-        //添加一个文档
-        //这是一个同步请求，请求会卡在这里
+        // 添加一个文档
+        // 这是一个同步请求，请求会卡在这里
         IndexResponse response = client.index(i -> i.index("books").document(book).id("890"));
         System.out.println("response.result() = " + response.result());
         System.out.println("response.id() = " + response.id());

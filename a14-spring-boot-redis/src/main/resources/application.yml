@@ -6,6 +6,8 @@ server:
 spring:
   application:
     name: redis-demo
+  jackson:
+    date-format: yyyy年MM月dd日 HH:mm:ss
   cache:
     type: redis
   data:
@@ -42,8 +44,12 @@ spring:
 
 
 axing:
-  response:
-    base-packages: com.axing.demo
+#  response:
+#    base-packages: com.axing.demo
+  redis:
+    save-package-name: true
+  doc-info:
+    title: redis测试项目
 
 
 

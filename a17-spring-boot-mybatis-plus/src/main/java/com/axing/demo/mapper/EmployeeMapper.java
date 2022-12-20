@@ -7,11 +7,11 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
-* @author xing
-* @description 针对表【employee】的数据库操作Mapper
-* @createDate 2022-12-17 20:22:09
-* @Entity com.axing.demo.domain.Employee
-*/
+ * @author xing
+ * @description 针对表【employee】的数据库操作Mapper
+ * @createDate 2022-12-17 20:22:09
+ * @Entity com.axing.demo.domain.Employee
+ */
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
     /**

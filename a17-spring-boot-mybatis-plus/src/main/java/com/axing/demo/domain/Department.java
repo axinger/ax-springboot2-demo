@@ -10,26 +10,22 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @TableName department
  */
-@TableName(value ="department")
+@TableName(value = "department")
 @Data
 public class Department implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      *
      */
     private String name;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-
     @TableField(exist = false)
     private List<Employee> empList;
 }

@@ -10,11 +10,11 @@ import org.hibernate.annotations.Proxy;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Proxy(lazy=false)
+@Proxy(lazy = false)
 public class Cards {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "card_type")

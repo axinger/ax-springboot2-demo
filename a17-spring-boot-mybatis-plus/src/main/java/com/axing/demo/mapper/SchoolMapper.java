@@ -9,11 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
-* @author xing
-* @description 针对表【t_school】的数据库操作Mapper
-* @createDate 2022-12-17 19:13:05
-* @Entity com.axing.demo.domain.School
-*/
+ * @author xing
+ * @description 针对表【t_school】的数据库操作Mapper
+ * @createDate 2022-12-17 19:13:05
+ * @Entity com.axing.demo.domain.School
+ */
 public interface SchoolMapper extends BaseMapper<School> {
 
     // @Results({

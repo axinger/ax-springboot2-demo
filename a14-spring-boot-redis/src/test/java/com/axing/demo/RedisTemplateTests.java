@@ -32,9 +32,9 @@ import java.util.concurrent.TimeUnit;
 @CacheConfig(cacheNames = "demo13::user")
 public class RedisTemplateTests {
 
+    private static final String SERIAL_NUM = "order::serialNo::";
     @Autowired
     private RedisTemplate redisTemplate;
-
     @Autowired
     private RedisService redisService;
     @Autowired
@@ -45,8 +45,10 @@ public class RedisTemplateTests {
     private RedisTemplate<String, Map> redisTemplateMap;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private RedisCacheTemplate redisCacheTemplate;
 
-    User user(Integer id) {
+    private User getUser(Integer id) {
         final User.Book book = User.Book.builder()
                 .id(id)
                 .name("海底两万里")
@@ -62,6 +64,36 @@ public class RedisTemplateTests {
                 .build();
 
         return user;
+    }
+
+    private String getUserKey(Integer id) {
+        return StrUtil.format("test::value::{}::User", id);
+    }
+
+    @Test
+    void opsForValue() {
+        redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 120, TimeUnit.SECONDS);
+    }
+
+    @Test
+    void setIfAbsent() {
+        // 当前key不存在，写入值, 并返回true; 当前key已经存在，不处理, 返回false;  Absent: 缺少的，
+        Boolean ifAbsent = redisTemplateUser.opsForValue().setIfAbsent(getUserKey(1), getUser(1));
+        System.out.println("ifAbsent = " + ifAbsent);
+    }
+
+    @Test
+    void setIfPresent() {
+        // 当前key已经存在，写入值, 并返回true; 当前key不存在，不处理, 返回false;  ;Present: 存在的
+        Boolean ifPresent = redisTemplateUser.opsForValue().setIfPresent(getUserKey(1), getUser(1));
+        System.out.println("ifPresent = " + ifPresent);
+    }
+
+    @Test
+    void getAndSet() {
+        // 获取原来key的value, 再将新的value写入
+        User andSet = redisTemplateUser.opsForValue().getAndSet(getUserKey(1), getUser(1));
+        log.info("andSet = {}", andSet);
     }
 
     @Test
@@ -83,10 +115,10 @@ public class RedisTemplateTests {
         // 将所有指定的值插入存储在键的列表的头部
         final String key = "test::list::1::User";
 
-        Long aLong = redisTemplateList.opsForList().leftPush(key, user(1));
+        Long aLong = redisTemplateList.opsForList().leftPush(key, getUser(1));
         System.out.println("aLong = " + aLong);
 
-        Long aLon2 = redisTemplateList.opsForList().leftPush(key, user(2));
+        Long aLon2 = redisTemplateList.opsForList().leftPush(key, getUser(2));
         System.out.println("aLong = " + aLon2);
     }
 
@@ -229,18 +261,15 @@ public class RedisTemplateTests {
         System.out.println("o = " + o);
     }
 
-
     @Test
     void test_Cacheable() {
         System.out.println("getByKey(1L) = " + getByKey(1L));
     }
 
-
     @Cacheable(key = "#id")
     public String getByKey(final Long id) {
         return "我的jim" + id;
     }
-
 
     @Test
     void test_expire() {
@@ -260,9 +289,6 @@ public class RedisTemplateTests {
         }
     }
 
-    private static final String SERIAL_NUM = "order::serialNo::";
-    @Autowired
-    private RedisCacheTemplate redisCacheTemplate;
     void testNum() {
         LocalDateTime dateTime = LocalDateTime.now();
         dateTime = dateTime.plusDays(1);

@@ -82,7 +82,7 @@ public class Users {
     private List<Address> addressList;
 
     @ManyToMany
-    @JoinTable(name = "user_task",joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "user_task", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id"))
     private List<Tasks> tasksList;
 

@@ -22,55 +22,37 @@ import java.util.Map;
 @NoArgsConstructor
 public class Person implements Serializable {
 
-    private String name;
-    private Integer age;
-
     String string1 = "A";
-
     String string2 = "B";
-
     List<String> list;
     List<String> list2;
-
     Map map1;
     Map map2;
-
     //    @JsonProperty(value = "aBoolean")//jackson,第二个字母大写,需要指定
     Boolean aBoolean;
-
     @JsonProperty(value = "aBoolean2")
     Boolean aBoolean2;
-
-
     @JsonFormat(pattern = "yyyyMM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     Date date;
-
-
     @JsonFormat(pattern = "yyyy\uD83C\uDF1EMM-dd HH:mm:ss", timezone = "GMT+8")
     @JSONField(format = "yyyy\uD83C\uDF1EMM-dd HH:mm:ss")
     LocalDateTime localDateTime;
-
-
     LocalDateTime localDateTime2;
-
     LocalDate localDate2;
-
     @JsonProperty(value = "aLong")
     Long aLong;
     @JsonProperty(value = "aDouble")
     Double aDouble;
     @JsonProperty(value = "aFloat")
     Float aFloat;
-
     @JsonProperty(value = "aList")
     List aList;
-
     @JsonIgnore
     String jsonIgnore;
-
     Dog dog;
-
+    private String name;
+    private Integer age;
     private transient String aTransient;
     private transient String aaTransient;
 }

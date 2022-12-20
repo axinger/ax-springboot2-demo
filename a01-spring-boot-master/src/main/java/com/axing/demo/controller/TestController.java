@@ -1,6 +1,7 @@
 package com.axing.demo.controller;
 
 import com.alibaba.fastjson2.JSON;
+import com.axing.common.response.result.Result;
 import com.axing.demo.dto.LoginDto;
 import com.axing.demo.dto.LoginListDto;
 import com.axing.demo.entity.TStudent;
@@ -10,7 +11,6 @@ import com.axing.demo.entity.valid.UsernameGroup;
 import com.axing.demo.entity.valid.ValidList;
 import com.axing.demo.service.HttpClientService;
 import com.axing.demo.service.TStudentService;
-import com.axing.common.response.result.Result;
 import com.axing.starter.service.HelloService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.Operation;

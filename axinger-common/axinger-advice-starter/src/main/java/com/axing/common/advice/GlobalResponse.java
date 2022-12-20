@@ -42,9 +42,9 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         boolean isSpringdoc = StrUtil.contains(returnType.getDeclaringClass().getName(), "org.springdoc");
-
-        System.out.println("isSpringdoc = " + isSpringdoc);
+        log.info("isSpringdoc = {}", isSpringdoc);
         return !isSpringdoc;
+
     }
 
 

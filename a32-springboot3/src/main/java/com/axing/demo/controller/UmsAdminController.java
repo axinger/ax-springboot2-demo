@@ -27,7 +27,7 @@ public class UmsAdminController {
         Map<String, Object> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
-        tokenHolder.putToken("token:"+username);
+        tokenHolder.putToken("token:" + username);
         return map;
     }
 

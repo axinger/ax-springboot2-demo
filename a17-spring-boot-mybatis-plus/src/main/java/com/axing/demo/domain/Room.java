@@ -9,33 +9,28 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- *
  * @TableName t_room
  */
-@TableName(value ="t_room")
+@TableName(value = "t_room")
 @Data
 public class Room implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      *
      */
     private String layer;
-
     /**
      *
      */
     private String roomName;
-
     /**
      *
      */
     private Long schoolId;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

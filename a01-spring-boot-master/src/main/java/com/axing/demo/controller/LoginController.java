@@ -1,9 +1,9 @@
 package com.axing.demo.controller;
 
+import com.axing.common.response.result.Result;
 import com.axing.demo.dto.LoginDto;
 import com.axing.demo.service.ILoginService;
 import com.axing.demo.util.error.TokenException;
-import com.axing.common.response.result.Result;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

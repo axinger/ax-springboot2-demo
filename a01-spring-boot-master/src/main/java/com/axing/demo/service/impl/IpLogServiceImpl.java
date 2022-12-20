@@ -1,11 +1,11 @@
 package com.axing.demo.service.impl;
 
+import com.axing.common.response.result.Result;
 import com.axing.demo.entity.IpLog;
 import com.axing.demo.mapper.IpLogMapper;
 import com.axing.demo.query.IpLogQueryObject;
 import com.axing.demo.service.IIpLogService;
 import com.axing.demo.util.axUtil.AxPageResultEntity;
-import com.axing.common.response.result.Result;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

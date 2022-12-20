@@ -5,15 +5,16 @@
 <mapper namespace="com.axing.demo.mapper.EmployeeMapper">
 
     <resultMap id="BaseResultMap" type="com.axing.demo.domain.Employee">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="email" column="email" jdbcType="VARCHAR"/>
-            <result property="gender" column="gender" jdbcType="INTEGER"/>
-            <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,email,
+        id
+        ,name,email,
         gender,dept_id
     </sql>
 </mapper>

@@ -1,7 +1,9 @@
 package com.axing.demo.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * (Room)实体类
@@ -35,7 +37,7 @@ public class Room {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     // @JoinTable(name = "t_school_to_room") // 用一个中间表
 
-    @JoinTable(name = "t_room_to_school",joinColumns = @JoinColumn(name = "room_id"),
+    @JoinTable(name = "t_room_to_school", joinColumns = @JoinColumn(name = "room_id"),
             inverseJoinColumns = @JoinColumn(name = "school_id"))
     private School school;
 

@@ -17,7 +17,7 @@ public class Subject {
      * SEQUENCE：根据底层数据库的序列来生成主键，条件是数据库支持序列。 
      * IDENTITY：主键由数据库自动生成（主要是自动增长型） 主键则由数据库自动维护，使用起来很简单
      * AUTO：主键由程序控制。 
-     *
+     * <p>
      * mysql数据库一般使用IDENTITY
      */
     @Id
@@ -28,5 +28,5 @@ public class Subject {
     private String name;
 
     @ManyToMany(mappedBy = "subjectList")
-    private List<Student> studentList= new ArrayList<>();
+    private List<Student> studentList = new ArrayList<>();
 }

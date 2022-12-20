@@ -10,36 +10,30 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @TableName t_school
  */
-@TableName(value ="t_school")
+@TableName(value = "t_school")
 @Data
 public class School implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
-
     /**
      *
      */
     private Double area;
-
     /**
      *
      */
     private String schoolName;
-
     /**
      *
      */
     private String zone;
-
     @TableField(exist = false)
     private List<Room> roomList;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

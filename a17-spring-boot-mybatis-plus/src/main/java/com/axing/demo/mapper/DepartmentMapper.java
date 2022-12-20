@@ -36,6 +36,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
 
     /**
      * 不简单,但是精确
+     *
      * @param wrapper
      * @return
      */
@@ -45,7 +46,6 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     List<Department> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
 
     List<Department> listAllSon(@Param(Constants.WRAPPER) Wrapper wrapper);
-
 
 
 }
