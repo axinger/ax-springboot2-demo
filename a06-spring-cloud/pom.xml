@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-doc-starter</artifactId>
+            <artifactId>axing-doc-starter</artifactId>
         </dependency>
 
     </dependencies>

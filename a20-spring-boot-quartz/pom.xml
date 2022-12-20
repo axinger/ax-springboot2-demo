@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-advice-starter</artifactId>
+            <artifactId>axing-advice-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -51,12 +51,12 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-quartz-starter</artifactId>
+            <artifactId>axing-quartz-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-util-starter</artifactId>
+            <artifactId>axing-util-starter</artifactId>
         </dependency>
 
     </dependencies>

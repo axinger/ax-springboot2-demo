@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ax-spring-boot-demo</artifactId>
+        <groupId>com.axing</groupId>
+        <version>3.0.0.1</version>
+    </parent>
+
+    <!--    <parent>-->
+    <!--        <groupId>org.springframework.boot</groupId>-->
+    <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--        <version>2.7.5</version>-->
+    <!--    </parent>-->
+
+    <!--    <groupId>com.axing</groupId>-->
+    <artifactId>axing-common</artifactId>
+    <!--    <version>2.7.5.2.1</version>-->
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <name>阿星common工具类</name>
+
+    <properties>
+        <java.version>17</java.version>
+        <axing-project.version>${project.version}</axing-project.version>
+    </properties>
+
+    <modules>
+        <module>axing-util-starter</module>
+        <module>axing-response-starter</module>
+        <module>axing-quartz-starter</module>
+        <module>axing-doc-starter</module>
+        <module>axing-redis-starter</module>
+        <module>axing-config-starter</module>
+        <module>axing-mybatis-starter</module>
+        <module>axing-mongodb-starter</module>
+        <module>axing-minio-starter</module>
+        <module>axing-advice-starter</module>
+        <module>axing-json-starter</module>
+        <module>axing-weblog-starter</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <!--    <dependencyManagement>-->
+    <!--        <dependencies>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-quartz-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-redis-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-doc-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-util-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-log-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-response-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-config-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-mybatis-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-mongodb-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-minio-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-advice-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.axing</groupId>-->
+    <!--                <artifactId>axing-json-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+    <!--        </dependencies>-->
+    <!--    </dependencyManagement>-->
+</project>

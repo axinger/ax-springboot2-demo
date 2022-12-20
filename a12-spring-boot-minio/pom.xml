@@ -46,26 +46,26 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-util-starter</artifactId>
+            <artifactId>axing-util-starter</artifactId>
         </dependency>
 
         <!--        <dependency>-->
         <!--            <groupId>com.axing</groupId>-->
-        <!--            <artifactId>axinger-advice-starter</artifactId>-->
+        <!--            <artifactId>axing-advice-starter</artifactId>-->
         <!--        </dependency>-->
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-doc-starter</artifactId>
+            <artifactId>axing-doc-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-minio-starter</artifactId>
+            <artifactId>axing-minio-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-response-starter</artifactId>
+            <artifactId>axing-response-starter</artifactId>
         </dependency>
     </dependencies>
 

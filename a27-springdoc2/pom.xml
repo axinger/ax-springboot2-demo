@@ -43,7 +43,7 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-response-starter</artifactId>
+            <artifactId>axing-response-starter</artifactId>
         </dependency>
     </dependencies>
 

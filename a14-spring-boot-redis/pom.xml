@@ -26,17 +26,17 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-advice-starter</artifactId>
+            <artifactId>axing-advice-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-redis-starter</artifactId>
+            <artifactId>axing-redis-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-doc-starter</artifactId>
+            <artifactId>axing-doc-starter</artifactId>
         </dependency>
 
         <!--分布式锁-->

@@ -42,7 +42,7 @@
     <dependencies>
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-util-starter</artifactId>
+            <artifactId>axing-util-starter</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -33,17 +33,17 @@
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-weblog-starter</artifactId>
+            <artifactId>axing-weblog-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-util-starter</artifactId>
+            <artifactId>axing-util-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.axing</groupId>
-            <artifactId>axinger-doc-starter</artifactId>
+            <artifactId>axing-doc-starter</artifactId>
         </dependency>
     </dependencies>
 </project>
