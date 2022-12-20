@@ -66,36 +66,6 @@ public class RedisTemplateTests {
         return user;
     }
 
-    private String getUserKey(Integer id) {
-        return StrUtil.format("test::value::{}::User", id);
-    }
-
-    @Test
-    void opsForValue() {
-        redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 120, TimeUnit.SECONDS);
-    }
-
-    @Test
-    void setIfAbsent() {
-        // 当前key不存在，写入值, 并返回true; 当前key已经存在，不处理, 返回false;  Absent: 缺少的，
-        Boolean ifAbsent = redisTemplateUser.opsForValue().setIfAbsent(getUserKey(1), getUser(1));
-        System.out.println("ifAbsent = " + ifAbsent);
-    }
-
-    @Test
-    void setIfPresent() {
-        // 当前key已经存在，写入值, 并返回true; 当前key不存在，不处理, 返回false;  ;Present: 存在的
-        Boolean ifPresent = redisTemplateUser.opsForValue().setIfPresent(getUserKey(1), getUser(1));
-        System.out.println("ifPresent = " + ifPresent);
-    }
-
-    @Test
-    void getAndSet() {
-        // 获取原来key的value, 再将新的value写入
-        User andSet = redisTemplateUser.opsForValue().getAndSet(getUserKey(1), getUser(1));
-        log.info("andSet = {}", andSet);
-    }
-
     @Test
     void opsForHash() {
         final String key = "test::hash::1::User";
