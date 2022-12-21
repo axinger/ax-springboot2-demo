@@ -13,7 +13,7 @@ spring:
 axing:
   response:
     base-packages: cn.axing.demo
-  doc-info:
+  doc:
     title: 测试项目1
 
 

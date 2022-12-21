@@ -41,7 +41,7 @@ spring:
 axing:
   advice:
     print-stack-trace: true
-  doc-info:
+  doc:
     title: 测试JSON
     description: 测试JSON描述
     version: @version@

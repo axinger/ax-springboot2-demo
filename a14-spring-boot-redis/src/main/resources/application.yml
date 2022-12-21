@@ -48,7 +48,7 @@ axing:
 #    base-packages: com.axing.demo
   redis:
     save-package-name: true
-  doc-info:
+  doc:
     title: redis测试项目
 
 
