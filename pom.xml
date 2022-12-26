@@ -89,6 +89,8 @@
         <module>a32-springboot3</module>
         <module>a09-spring-boot-es2</module>
         <module>a17-spring-boot-jpa</module>
+        <module>a16-spring-security</module>
+        <module>a14-spring-boot-redis-om</module>
     </modules>
 
     <dependencies>
