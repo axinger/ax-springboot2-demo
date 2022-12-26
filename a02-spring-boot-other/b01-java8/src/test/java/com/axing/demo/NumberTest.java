@@ -58,7 +58,7 @@ public class NumberTest {
     }
 
     @Test
-    void tet1() {
+    void test2() {
 //        float num= (float)6/3;
 //        DecimalFormat df = new DecimalFormat("0.00");//格式化小数
 //        String s = df.format(num);//返回的是String类型
@@ -89,6 +89,37 @@ public class NumberTest {
 
         System.out.printf("%.1f%n", bigDecimal);
 
+    }
+
+    @Test
+    void test4() {
+
+        System.out.println("m*(2的n次方）====================");
+        // m<<n: 等于m*(2的n次方）
+        System.out.println(2 << 2); // 8 2*2的2次方
+        System.out.println(2 << 3); // 16
+        System.out.println(2 << 4); // 32
+        System.out.println(2 << 5); // 64
+
+        System.out.println(3 << 2); // 12 3*2的2次方
+        System.out.println(3 << 3); // 24 3*2的3次方
+
+        System.out.println(1 << 3); // 8 1*2的3次方
+
+
+        System.out.println("m的n次方====================");
+        // Math.pow(m，n)，表示m的n次方
+        System.out.println(Math.pow(2, 6));
+        System.out.println(Math.pow(2.1, 6));
+
+        System.out.println("指定进制====================");
+        // 源的指定进制,转换为十进制结果
+        System.out.println(Integer.valueOf("10",2));
+        System.out.println(Integer.valueOf("10",8));
+        System.out.println(Integer.valueOf("10",10));
+        System.out.println(Integer.valueOf("10",16));
+        System.out.println(Integer.valueOf("01",16));
+        System.out.println(Integer.valueOf("0a",16));
     }
 
 }
