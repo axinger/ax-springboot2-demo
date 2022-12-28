@@ -12,6 +12,7 @@ import java.util.Set;
 @RequiredArgsConstructor(staticName = "of")
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Data
+@NoArgsConstructor
 @Document
 public class Person {
     // Id Field, also indexed

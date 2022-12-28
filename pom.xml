@@ -91,6 +91,7 @@
         <module>a17-spring-boot-jpa</module>
         <module>a16-spring-security</module>
         <module>a14-spring-boot-redis-om</module>
+        <module>a14-spring-boot-redisson</module>
     </modules>
 
     <dependencies>
