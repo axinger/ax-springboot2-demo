@@ -13,7 +13,7 @@ import lombok.Singular;
 public class BuilderExample {
 
     @Default
-    private int age = 0;
+    private int age = 1;
 
     @Singular
     private List<String> fingers;
@@ -25,16 +25,16 @@ public class BuilderExample {
     }
 
     public static void main(String[] args) {
-        BuilderExample.builder()
-            .age(0)
-            .fingers(new ArrayList<>())
-            .build();
-        //
-        BuilderExample build = BuilderExample.builder()
-                .finger("小拇指")
-                .clearFingers()
+        BuilderExample build1 = BuilderExample.builder()
+                .fingers(new ArrayList<>())
                 .build();
-        build.fingers.add("1");
+        System.out.println("build1 = " + build1);
+        //
+        // BuilderExample build = BuilderExample.builder()
+        //         .finger("小拇指")
+        //         .clearFingers()
+        //         .build();
+        // build.fingers.add("1");
 
         // BuilderExample example = new BuilderExample();
         // example.fingers.add("1");
