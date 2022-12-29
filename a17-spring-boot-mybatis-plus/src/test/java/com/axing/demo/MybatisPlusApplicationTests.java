@@ -35,14 +35,14 @@ class MybatisPlusApplicationTests {
                 .eq("s.id", 1));
         System.out.println("list1 = " + list1);
 
-        List<School> List2 = schoolService.schoolList(Wrappers.<School>lambdaQuery()
-                .eq(School::getId, 1));
-        System.out.println("List2 = " + List2);
+        // 这个不可以
+        // List<School> List2 = schoolService.schoolList(Wrappers.<School>lambdaQuery()
+        //         .eq(School::getId, 1));
+        // System.out.println("List2 = " + List2);
     }
 
     @Test
     void test2() {
-
         List<Room> list = roomService.list();
         System.out.println("list = " + list);
     }
@@ -98,10 +98,9 @@ class MybatisPlusApplicationTests {
     @Test
     void test7_listAllSon2() {
 
-        // 不可以
+        // 可以
         QueryWrapper<Object> wrapper = Wrappers.query()
                 .eq("d.id", 1);
-
         List<Department> list2 = departmentService.listAllSon(wrapper);
         System.out.println("list = " + list2);
     }
