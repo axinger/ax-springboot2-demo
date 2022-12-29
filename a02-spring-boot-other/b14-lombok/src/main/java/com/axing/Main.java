@@ -1,6 +1,7 @@
 package com.axing;
 
 import com.axing.common.util.json.JsonUtil;
+import com.axing.model.GetterSetterExample;
 import com.axing.model.Person;
 
 public class Main {
@@ -13,5 +14,16 @@ public class Main {
 
         String string = JsonUtil.writeValueAsString(person);
         System.out.println("string = " + string);
+    }
+}
+
+
+class Main2 {
+    public static void main(String[] args) {
+
+
+        GetterSetterExample example = new GetterSetterExample();
+        example.setAge(1);
+
     }
 }
