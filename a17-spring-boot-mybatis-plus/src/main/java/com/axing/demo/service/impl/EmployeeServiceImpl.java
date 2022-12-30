@@ -3,8 +3,11 @@ package com.axing.demo.service.impl;
 import com.axing.demo.domain.Employee;
 import com.axing.demo.mapper.EmployeeMapper;
 import com.axing.demo.service.EmployeeService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author xing
@@ -15,6 +18,10 @@ import org.springframework.stereotype.Service;
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         implements EmployeeService {
 
+    @Override
+    public List<Employee> listLeftSon(Wrapper wrapper) {
+        return this.baseMapper.listLeftSon(wrapper);
+    }
 }
 
 

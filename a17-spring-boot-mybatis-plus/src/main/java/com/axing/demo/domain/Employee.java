@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @TableName employee
@@ -41,4 +42,8 @@ public class Employee implements Serializable {
      */
     @TableField(value = "dept_id")
     private Integer deptId;
+
+
+    @TableField(exist = false)
+    private Department department;
 }

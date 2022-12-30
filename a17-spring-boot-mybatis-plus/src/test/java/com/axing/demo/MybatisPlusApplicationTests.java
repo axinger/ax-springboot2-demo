@@ -1,13 +1,16 @@
 package com.axing.demo;
 
 import com.axing.demo.domain.Department;
+import com.axing.demo.domain.Employee;
 import com.axing.demo.domain.Room;
 import com.axing.demo.domain.School;
 import com.axing.demo.service.DepartmentService;
+import com.axing.demo.service.EmployeeService;
 import com.axing.demo.service.RoomService;
 import com.axing.demo.service.SchoolService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,10 @@ class MybatisPlusApplicationTests {
 
     @Autowired
     DepartmentService departmentService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
     @Autowired
     private SchoolService schoolService;
     @Autowired
@@ -82,6 +89,13 @@ class MybatisPlusApplicationTests {
         List<Department> list2 = departmentService.listLeftSon(Wrappers.<Department>lambdaQuery()
                 .eq(Department::getId, 1));
         System.out.println("list = " + list2);
+    }
+
+    @Test
+    void test6_2() {
+
+        List<Employee> list = employeeService.listLeftSon(Wrappers.<Department>lambdaQuery());
+        System.out.println("list = " + list);
     }
 
     @Test

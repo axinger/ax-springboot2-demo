@@ -1,7 +1,13 @@
 package com.axing.demo.service;
 
+import com.axing.demo.domain.Department;
 import com.axing.demo.domain.Employee;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author xing
@@ -10,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EmployeeService extends IService<Employee> {
 
+    List<Employee> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
 }
