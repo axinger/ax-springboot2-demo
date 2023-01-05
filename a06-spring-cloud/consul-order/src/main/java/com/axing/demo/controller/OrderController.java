@@ -1,6 +1,6 @@
 package com.axing.demo.controller;
 
-import com.axing.service.OrderPaymentService;
+import com.axing.demo.service.OrderPaymentService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;

@@ -41,6 +41,10 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-cloud-fetch-gateway-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

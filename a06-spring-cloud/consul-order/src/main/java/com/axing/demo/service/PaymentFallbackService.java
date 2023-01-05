@@ -1,4 +1,4 @@
-package com.axing.service;
+package com.axing.demo.service;
 
 import org.springframework.stereotype.Component;
 

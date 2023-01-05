@@ -29,3 +29,6 @@ server-url:
 
 server-name:
   payment-service: mall-payment-app
+axing:
+  cloud:
+    must-fetch-gateway: false

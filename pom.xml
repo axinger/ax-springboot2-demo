@@ -27,7 +27,7 @@
         <java.version>17</java.version>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
         <spring-boot-admin.version>2.7.7</spring-boot-admin.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <elasticsearch.version>7.17.0</elasticsearch.version>
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
@@ -92,6 +92,7 @@
         <module>a16-spring-security</module>
         <module>a14-spring-boot-redis-om</module>
         <module>a14-spring-boot-redisson</module>
+        <module>axing-cloud</module>
     </modules>
 
     <dependencies>
@@ -133,6 +134,12 @@
             <!--                <type>pom</type>-->
             <!--                <scope>import</scope>-->
             <!--            </dependency>-->
+
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>axing-cloud-fetch-gateway-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
