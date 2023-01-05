@@ -40,8 +40,8 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
         // header增加token
         ServerHttpRequest newRequest = exchange.getRequest().mutate().headers(headers -> {
-            headers.add("X-Gatewaw-Token", "2022ABC");
-            headers.add("X-Gatewaw-Token", "2022ABC");
+            headers.add("X-Gateway-Token", "2022ABC");
+            headers.add("X-Gateway-Token", "2022ABC");
         }).build();
 
         // 计算请求时长
