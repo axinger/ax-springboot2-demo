@@ -27,18 +27,18 @@ public class CacheableAspect {
     @SneakyThrows
     @Around("@annotation(cacheable)")
     public Object around(ProceedingJoinPoint joinPoint, Cacheable cacheable) {
-        String[] value1 = cacheable.value();
+        // String[] value1 = cacheable.value();
+        // //
+        // //
+        // System.out.println("cacheable.value() = " + Arrays.toString(value1));
         //
+        // // 获取方法的参数名和参数值
+        // MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        // List<String> paramNameList = Arrays.asList(methodSignature.getParameterNames());
+        // List<Object> paramList = Arrays.asList(joinPoint.getArgs());
         //
-        System.out.println("cacheable.value() = " + Arrays.toString(value1));
-
-        // 获取方法的参数名和参数值
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        List<String> paramNameList = Arrays.asList(methodSignature.getParameterNames());
-        List<Object> paramList = Arrays.asList(joinPoint.getArgs());
-
-        System.out.println("paramNameList = " + paramNameList);
-        System.out.println("paramList = " + paramList);
+        // System.out.println("paramNameList = " + paramNameList);
+        // System.out.println("paramList = " + paramList);
 
 
         // InvocationHandler invocationHandler = Proxy.getInvocationHandler(cacheable);

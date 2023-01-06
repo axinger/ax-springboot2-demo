@@ -32,7 +32,7 @@
         <elasticsearch.version>7.17.0</elasticsearch.version>
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <!--        <okhttp.version>4.10.0</okhttp.version>-->
-        <mybatis-plus.version>3.5.3</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
 
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.8.9</hutool.version>

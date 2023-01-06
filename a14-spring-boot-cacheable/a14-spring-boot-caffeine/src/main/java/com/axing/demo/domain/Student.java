@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -46,20 +50,24 @@ public class Student implements Serializable {
      *
      */
     @TableField(value = "create_time")
+    @Schema(hidden = true)
     private Date createTime;
     /**
      *
      */
     @TableField(value = "update_time")
+    @Schema(hidden = true)
     private Date updateTime;
     /**
      *
      */
     @TableField(value = "version")
+    @Schema(hidden = true)
     private Long version;
     /**
      *
      */
     @TableField(value = "deleted")
+    @Schema(hidden = true)
     private Integer deleted;
 }
