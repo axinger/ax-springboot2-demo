@@ -2,8 +2,6 @@ package com.axing.demo.controller;
 
 import com.axing.demo.annotation.DS_DB1;
 import com.axing.demo.annotation.DS_MASTER;
-import com.axing.demo.db2.service.UserRoleService;
-import com.axing.demo.service.StudentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,17 +21,12 @@ import java.util.List;
 @Tag(name = "TestController", description = "测试控制器")
 public class TestController {
 
-    @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private UserRoleService userRoleService;
 
     @GetMapping("/student")
     @DS_MASTER
     @ResponseBody
     public List studentService() {
-        return studentService.list();
+        return null;
     }
 
     @GetMapping("/error")
@@ -48,6 +41,6 @@ public class TestController {
 //    @DS("db_ax_demo")
     @DS_DB1
     public List userRoleService() {
-        return userRoleService.list();
+        return null;
     }
 }

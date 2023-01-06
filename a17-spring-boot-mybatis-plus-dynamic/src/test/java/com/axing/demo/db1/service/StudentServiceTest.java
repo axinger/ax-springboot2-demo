@@ -1,6 +1,6 @@
-package com.axing.demo.db2.service;
+package com.axing.demo.db1.service;
 
-import com.axing.demo.db2.entity.UserInfo;
+import com.axing.demo.db1.domain.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,15 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class UserInfoServiceTest {
+class StudentServiceTest {
 
     @Autowired
-    UserInfoService userInfoService;
-
+    StudentService studentService;
 
     @Test
     void test1() {
-        final List<UserInfo> list = userInfoService.list();
+        List<Student> list = studentService.list();
         System.out.println("list = " + list);
     }
 }

@@ -22,6 +22,11 @@ spring:
   #          username: ENC(xxxxx)
   #          password: ENC(xxxxx)
   #          driver-class-name: com.mysql.jdbc.Driver
+        db_ax_pgsql:
+          driver-class-name: org.postgresql.Driver
+          url: jdbc:postgresql://192.168.101.131:5532/ax_pg_test
+          username: postgres
+          password: 123456
 
   #    log颜色
   output:
