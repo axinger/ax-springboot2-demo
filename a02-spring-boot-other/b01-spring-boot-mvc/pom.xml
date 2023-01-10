@@ -45,5 +45,10 @@
             <groupId>com.axing</groupId>
             <artifactId>axing-doc-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>same-class-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>

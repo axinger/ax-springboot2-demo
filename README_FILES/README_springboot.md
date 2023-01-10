@@ -17,3 +17,7 @@ Spring Boot Starter的工作原理如下：
 3. 根据 @Conditional注解的条件，进行自动配置并将Bean注入Spring Context 
 ```
 
+```text
+a.b.c 和 a.b.d 包格式,相同类名会冲突
+a.b.c 和 a.d.c 包格式,相同类名不会冲突
+```

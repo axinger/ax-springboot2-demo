@@ -37,6 +37,7 @@
         <module>b14-lombok</module>
         <module>b01-spring-boot-mvc</module>
         <module>b18-spring-aop</module>
+        <module>same-class-starter</module>
     </modules>
 
 
