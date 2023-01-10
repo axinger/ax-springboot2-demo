@@ -44,8 +44,8 @@ spring:
 
 
 axing:
-#  response:
-#    base-packages: com.axing.demo
+  #  response:
+  #    base-packages: com.axing.demo
   redis:
     save-package-name: true
   doc:

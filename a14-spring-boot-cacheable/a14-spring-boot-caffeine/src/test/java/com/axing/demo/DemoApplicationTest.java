@@ -5,7 +5,6 @@ import com.axing.demo.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestComponent;
 
 @SpringBootTest
 class DemoApplicationTest {
@@ -14,8 +13,8 @@ class DemoApplicationTest {
     StudentService studentService;
 
     @Test
-    void test1(){
-        String name =  "jim22";
+    void test1() {
+        String name = "jim22";
 
         Student one = studentService.lambdaQuery()
                 .eq(Student::getName, name)

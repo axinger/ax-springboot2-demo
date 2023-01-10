@@ -7,7 +7,7 @@ public interface PersonService {
 
     // @ApiVersion
     // 在接口中,不会被apo
-    String add(String a,String b);
+    String add(String a, String b);
 
-    String add2(String a,String b);
+    String add2(String a, String b);
 }

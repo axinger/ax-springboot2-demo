@@ -55,11 +55,6 @@ public class Person {
     @Getter
     private String testPre2;
 
-
-    void test() {
-
-    }
-
     @SneakyThrows
     public static void main(String[] args) {
         Person person = new Person();
@@ -86,6 +81,10 @@ public class Person {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Person person1 = objectMapper.readValue(jsonStr, Person.class);
         System.out.println("person1 = " + person1);
+    }
+
+    void test() {
+
     }
 
 }

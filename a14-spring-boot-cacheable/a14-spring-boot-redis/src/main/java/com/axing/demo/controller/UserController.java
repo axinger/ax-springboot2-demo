@@ -30,6 +30,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private RedisTemplate<String, User> redisTemplate2;
+    @Autowired
+    private RedisTemplate<String, User> redisTemplateUser;
 
     @Operation(summary = "RedisTemplate获取数据")
     @GetMapping("/get/{id}")
@@ -133,9 +135,6 @@ public class UserController {
 
         return user1;
     }
-
-    @Autowired
-    private RedisTemplate<String, User> redisTemplateUser;
 
     private User getUser(Integer id) {
         final User.Book book = User.Book.builder()

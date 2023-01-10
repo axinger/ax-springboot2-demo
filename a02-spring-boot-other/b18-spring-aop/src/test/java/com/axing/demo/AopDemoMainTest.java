@@ -3,7 +3,6 @@ package com.axing.demo;
 import com.axing.demo.controller.TestController;
 import com.axing.demo.service.UserService;
 import com.axing.demo.service2.PersonService;
-import com.axing.demo.service2.impl.PersonServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +12,10 @@ class AopDemoMainTest {
 
     @Autowired
     UserService service;
+    @Autowired
+    PersonService personService;
+    @Autowired
+    TestController testController;
 
     @Test
     void test1() {
@@ -20,8 +23,6 @@ class AopDemoMainTest {
         System.out.println("str = " + str);
     }
 
-    @Autowired
-    PersonService personService;
     // PersonServiceImpl personService;
     @Test
     void test2() {
@@ -35,11 +36,8 @@ class AopDemoMainTest {
         // System.out.println("add3 = " + add3);
     }
 
-    @Autowired
-    TestController testController;
-
     @Test
-    void test_TestController(){
+    void test_TestController() {
         testController.index();
     }
 }

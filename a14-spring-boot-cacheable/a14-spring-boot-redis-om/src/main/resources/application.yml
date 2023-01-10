@@ -21,8 +21,8 @@ spring:
           max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
 
 axing:
-#  response:
-#    base-packages: com.axing.demo
+  #  response:
+  #    base-packages: com.axing.demo
   redis:
     save-package-name: true
   doc:

@@ -114,12 +114,12 @@ public class NumberTest {
 
         System.out.println("指定进制====================");
         // 源的指定进制,转换为十进制结果
-        System.out.println(Integer.valueOf("10",2));
-        System.out.println(Integer.valueOf("10",8));
-        System.out.println(Integer.valueOf("10",10));
-        System.out.println(Integer.valueOf("10",16));
-        System.out.println(Integer.valueOf("01",16));
-        System.out.println(Integer.valueOf("0a",16));
+        System.out.println(Integer.valueOf("10", 2));
+        System.out.println(Integer.valueOf("10", 8));
+        System.out.println(Integer.valueOf("10", 10));
+        System.out.println(Integer.valueOf("10", 16));
+        System.out.println(Integer.valueOf("01", 16));
+        System.out.println(Integer.valueOf("0a", 16));
     }
 
 }

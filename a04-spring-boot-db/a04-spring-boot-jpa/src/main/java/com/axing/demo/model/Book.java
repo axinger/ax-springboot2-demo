@@ -8,5 +8,5 @@ public class Book {
     private String bookName;
     private Double bookPrice;
     private String bookAuthor;
-	// set/get 省略
+    // set/get 省略
 }

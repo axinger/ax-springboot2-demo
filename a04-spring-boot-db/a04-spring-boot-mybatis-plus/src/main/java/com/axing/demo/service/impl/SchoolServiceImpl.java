@@ -25,6 +25,7 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School>
     public List<School> schoolList(@Param(Constants.WRAPPER) Wrapper<School> queryWrapper) {
         return this.baseMapper.schoolList(queryWrapper);
     }
+
     @Override
     public List<School> schoolList() {
         return this.schoolList(Wrappers.emptyWrapper());

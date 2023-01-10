@@ -6,10 +6,10 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 @Accessors(
-    // getAge()-> age(), setAge(int age)-> age(int age)
-    fluent = true,
-    // void setAge(int age)   ->  AccessorsExample setAge(int age), 就可以连续调用了
-    chain = true
+        // getAge()-> age(), setAge(int age)-> age(int age)
+        fluent = true,
+        // void setAge(int age)   ->  AccessorsExample setAge(int age), 就可以连续调用了
+        chain = true
 )
 public class AccessorsExample {
     @Getter

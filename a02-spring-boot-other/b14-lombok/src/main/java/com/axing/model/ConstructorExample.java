@@ -9,6 +9,14 @@ public class ConstructorExample<T> {
     @NonNull
     private T description;
 
+    public static void main(String[] args) {
+        ConstructorExample example = new ConstructorExample(1, 2, "2");
+
+        // 无参构造,静态方法
+        NoArgsExample of = NoArgsExample.of();
+        NoArgsExample of2 = new NoArgsExample();
+    }
+
     @NoArgsConstructor(
             // 如果不为空，会生成一个静态的无参构造函数
             staticName = "of",
@@ -23,13 +31,5 @@ public class ConstructorExample<T> {
     public static class NoArgsExample {
         @NonNull
         private String field;
-    }
-
-    public static void main(String[] args) {
-        ConstructorExample example = new ConstructorExample(1, 2, "2");
-
-        // 无参构造,静态方法
-        NoArgsExample of = NoArgsExample.of();
-        NoArgsExample of2 =  new NoArgsExample();
     }
 }

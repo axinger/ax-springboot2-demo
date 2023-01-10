@@ -5,14 +5,15 @@
 <mapper namespace="com.axing.demo.mapper.SchoolMapper">
 
     <resultMap id="BaseResultMap" type="com.axing.demo.domain.School">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="area" column="area" jdbcType="DOUBLE"/>
-            <result property="schoolName" column="school_name" jdbcType="VARCHAR"/>
-            <result property="zone" column="zone" jdbcType="VARCHAR"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="area" column="area" jdbcType="DOUBLE"/>
+        <result property="schoolName" column="school_name" jdbcType="VARCHAR"/>
+        <result property="zone" column="zone" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,area,school_name,
+        id
+        ,area,school_name,
         zone
     </sql>
 </mapper>

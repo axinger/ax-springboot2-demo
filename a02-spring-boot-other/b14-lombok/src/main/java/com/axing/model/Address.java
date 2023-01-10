@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 public class Address {
 
     @NonNull // lombok.NonNull, 可以校验,初始化
-    @NotEmpty //只能是请求参数校验
+    @NotEmpty // 只能是请求参数校验
     private String houseNumber;
 
     @NonNull
@@ -27,9 +27,10 @@ public class Address {
     @NonNull
     private String country;
 
-    public static void test(@Validated Address address){
+    public static void test(@Validated Address address) {
 
     }
+
     public static void main(String[] args) {
         // Address address = Address.of("1", "2", "3");
         // System.out.println("address = " + address);

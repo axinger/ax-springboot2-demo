@@ -1,13 +1,10 @@
 package com.axing.demo;
 
-import com.axing.demo.dao.*;
+import com.axing.demo.dao.UsersJpaRepository;
 import com.axing.demo.model.Book;
 import com.axing.demo.model.Users;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,7 +35,7 @@ public class JdbcTests {
     }
 
     @Test
-    void test1(){
+    void test1() {
         String sql = "select * from book ";
         List<Book> query = jdbcTemplate.query(sql, new Object[]{}, new BeanPropertyRowMapper<>(Book.class));
         System.out.println("query = " + query);

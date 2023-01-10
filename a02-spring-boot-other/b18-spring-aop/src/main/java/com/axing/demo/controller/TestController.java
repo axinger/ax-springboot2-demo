@@ -9,7 +9,7 @@ import java.util.List;
 public class TestController {
 
     @GetMapping("/a")
-    public Object index(){
-       return List.of(1);
+    public Object index() {
+        return List.of(1);
     }
 }

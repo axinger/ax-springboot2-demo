@@ -10,14 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class MvcApplicationTest {
 
     @Autowired
+    UserService userService;
+    @Autowired
     private UserProperties userProperties;
-
-    @Test
-    void test1() {
-        System.out.println("userConfig.getList() = " + userProperties);
-        String username = userProperties.getUser().username();
-        System.out.println("username = " + username);
-    }
 
     // @Autowired
     // private UserService userService;
@@ -27,11 +22,15 @@ class MvcApplicationTest {
     //     System.out.println("userService = " + userService);
     // }
 
-    @Autowired
-    UserService userService;
+    @Test
+    void test1() {
+        System.out.println("userConfig.getList() = " + userProperties);
+        String username = userProperties.getUser().username();
+        System.out.println("username = " + username);
+    }
 
     @Test
-    void test_UserService2(){
+    void test_UserService2() {
         System.out.println("userService2 = " + userService);
     }
 

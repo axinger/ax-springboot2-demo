@@ -1,6 +1,5 @@
 package com.axing.demo.service;
 
-import com.axing.demo.domain.Department;
 import com.axing.demo.domain.Employee;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;

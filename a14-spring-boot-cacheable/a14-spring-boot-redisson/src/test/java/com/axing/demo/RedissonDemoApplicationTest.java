@@ -211,25 +211,25 @@ class RedissonDemoApplicationTest {
     /**
      * 2.9、分布式锁
      * Redisson 最大的亮点，也是使用最多的功能，就是提供了强大的分布式锁实现，特点是：使用简单、安全！
-     *
+     * <p>
      * 简单使用样例如下！
      */
     @Test
-    void test9(){
-//获取锁对象实例
+    void test9() {
+// 获取锁对象实例
         final String lockKey = "abc";
         RLock rLock = redissonClient.getLock(lockKey);
         try {
-            //尝试5秒内获取锁，如果获取到了，最长60秒自动释放
+            // 尝试5秒内获取锁，如果获取到了，最长60秒自动释放
             boolean res = rLock.tryLock(5L, 60L, TimeUnit.SECONDS);
             if (res) {
-                //成功获得锁，在这里处理业务
+                // 成功获得锁，在这里处理业务
                 System.out.println("获取锁成功");
             }
         } catch (Exception e) {
             System.out.println("获取锁失败，失败原因：" + e.getMessage());
         } finally {
-            //无论如何, 最后都要解锁
+            // 无论如何, 最后都要解锁
             rLock.unlock();
         }
     }

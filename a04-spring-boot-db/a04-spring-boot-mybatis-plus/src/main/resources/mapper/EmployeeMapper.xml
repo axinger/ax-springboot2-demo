@@ -27,7 +27,7 @@
 
     <select id="listLeftSon" resultMap="BaseResultMap">
         SELECT *
-        FROM (SELECT d.id as d_id,
+        FROM (SELECT d.id   as d_id,
                      d.name as d_name,
                      e.*
               FROM department d

@@ -5,15 +5,17 @@ package com.axing.service;
  * @description 用户上下文信息
  */
 public class OauthContext {
-    private static  final  ThreadLocal<String> loginValThreadLocal= ThreadLocal.withInitial(() -> "tom");
+    private static final ThreadLocal<String> loginValThreadLocal = ThreadLocal.withInitial(() -> "tom");
 
-    public static  String get(){
+    public static String get() {
         return loginValThreadLocal.get();
     }
-    public static void set(String loginVal){
+
+    public static void set(String loginVal) {
         loginValThreadLocal.set(loginVal);
     }
-    public static void clear(){
+
+    public static void clear() {
         loginValThreadLocal.remove();
     }
 }
