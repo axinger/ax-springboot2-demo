@@ -16,4 +16,6 @@ import java.util.List;
 public interface SchoolService extends IService<School> {
 
     List<School> schoolList(@Param(Constants.WRAPPER) Wrapper<School> queryWrapper);
+
+    List<School> schoolList();
 }

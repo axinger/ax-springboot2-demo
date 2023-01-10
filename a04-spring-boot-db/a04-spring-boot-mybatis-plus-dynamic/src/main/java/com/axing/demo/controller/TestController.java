@@ -2,6 +2,10 @@ package com.axing.demo.controller;
 
 import com.axing.demo.annotation.DS_DB1;
 import com.axing.demo.annotation.DS_MASTER;
+import com.axing.demo.db2.domain.Department;
+import com.axing.demo.db2.service.DepartmentService;
+import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +25,9 @@ import java.util.List;
 @Tag(name = "TestController", description = "测试控制器")
 public class TestController {
 
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @GetMapping("/student")
     @DS_MASTER
@@ -43,4 +50,5 @@ public class TestController {
     public List userRoleService() {
         return null;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.axing.demo.db3.domain;
+package com.axing.demo.db2.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -9,18 +9,18 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @TableName company
+ * @TableName employee
  */
-@TableName(value = "company")
+@TableName(value = "employee")
 @Data
-public class Company implements Serializable {
+public class Employee implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Object id;
+    private Long id;
     /**
      *
      */
@@ -29,16 +29,20 @@ public class Company implements Serializable {
     /**
      *
      */
-    @TableField(value = "age")
-    private Object age;
+    @TableField(value = "email")
+    private String email;
     /**
      *
      */
-    @TableField(value = "address")
-    private String address;
+    @TableField(value = "gender")
+    private Integer gender;
     /**
      *
      */
-    @TableField(value = "salary")
-    private Float salary;
+    @TableField(value = "dept_id")
+    private Integer deptId;
+
+
+    @TableField(exist = false)
+    private Department department;
 }

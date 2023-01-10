@@ -33,7 +33,7 @@ class MybatisPlusApplicationTests {
     private RoomService roomService;
 
     @Test
-    void test() {
+    void test_School_schoolList_可以() {
 
         List<School> list = schoolService.list();
         System.out.println("list = " + list);
@@ -66,7 +66,7 @@ class MybatisPlusApplicationTests {
     }
 
     @Test
-    void test4() {
+    void test_Department_listLeft_可以() {
         // 可以 335ms
         List<Department> list1 = departmentService.listLeft(Wrappers.query()
                 .eq("d.id", 1));
@@ -74,7 +74,7 @@ class MybatisPlusApplicationTests {
     }
 
     @Test
-    void test5() {
+    void test_Department_listLeft_不可以() {
 
         // 不可以
         List<Department> list2 = departmentService.listLeft(Wrappers.<Department>lambdaQuery()
@@ -83,7 +83,7 @@ class MybatisPlusApplicationTests {
     }
 
     @Test
-    void test6() {
+    void test_Department_listLeftSon_可以() {
 
         // 可以
         List<Department> list2 = departmentService.listLeftSon(Wrappers.<Department>lambdaQuery()
@@ -93,25 +93,21 @@ class MybatisPlusApplicationTests {
 
     @Test
     void test6_2() {
-
         List<Employee> list = employeeService.listLeftSon(Wrappers.<Department>lambdaQuery());
         System.out.println("list = " + list);
     }
 
     @Test
-    void test7_listAllSon() {
-
+    void test7_Department_listAllSon_不可以() {
         // 不可以
         LambdaQueryWrapper<Department> wrapper = Wrappers.lambdaQuery();
-
         wrapper.eq(Department::getId, 1);
         List<Department> list2 = departmentService.listAllSon(wrapper);
         System.out.println("list = " + list2);
     }
 
     @Test
-    void test7_listAllSon2() {
-
+    void test7_Department_listAllSon_可以() {
         // 可以
         QueryWrapper<Object> wrapper = Wrappers.query()
                 .eq("d.id", 1);

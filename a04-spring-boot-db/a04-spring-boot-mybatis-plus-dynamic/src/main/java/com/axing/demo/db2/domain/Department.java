@@ -1,4 +1,4 @@
-package com.axing.demo.db3.domain;
+package com.axing.demo.db2.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -7,28 +7,25 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * @TableName users
+ * @TableName department
  */
-@TableName(value = "users")
+@TableName(value = "department")
 @Data
-public class Users implements Serializable {
+public class Department implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
      *
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Object id;
+    @TableId(type = IdType.AUTO)
+    private Long id;
     /**
      *
      */
-    @TableField(value = "name")
     private String name;
-    /**
-     *
-     */
-    @TableField(value = "password")
-    private String password;
+    @TableField(exist = false)
+    private List<Employee> empList;
 }

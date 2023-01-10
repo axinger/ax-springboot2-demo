@@ -5,6 +5,7 @@ import com.axing.demo.mapper.SchoolMapper;
 import com.axing.demo.service.SchoolService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class SchoolServiceImpl extends ServiceImpl<SchoolMapper, School>
     @Override
     public List<School> schoolList(@Param(Constants.WRAPPER) Wrapper<School> queryWrapper) {
         return this.baseMapper.schoolList(queryWrapper);
+    }
+    @Override
+    public List<School> schoolList() {
+        return this.schoolList(Wrappers.emptyWrapper());
     }
 }
 

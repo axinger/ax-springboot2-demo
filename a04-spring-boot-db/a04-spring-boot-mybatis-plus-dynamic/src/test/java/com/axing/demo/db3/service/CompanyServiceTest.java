@@ -25,8 +25,8 @@ class CompanyServiceTest {
         List<Company> list = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             Company company = new Company();
-            company.setName("jim_"+i);
-            company.setAge(10+i);
+            company.setName("jim_" + i);
+            company.setAge(10 + i);
             list.add(company);
         }
         companyService.saveBatch(list);

@@ -433,7 +433,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>3.6.0</version>
+                <version>3.6.1</version>
             </dependency>
 
             <!--加密-->

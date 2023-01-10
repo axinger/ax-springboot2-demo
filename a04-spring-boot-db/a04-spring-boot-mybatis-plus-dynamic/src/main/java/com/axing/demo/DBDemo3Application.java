@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // @MapperScan(value = {"com.axing.demo.mapper", "com.axing.demo.db2.mapper","com.axing.demo.db3.mapper"})
 // @MapperScan(value = {"com.axing.demo.mapper","com.axing.demo.*.mapper"})
 @MapperScan(value = {"com.axing.demo.*.mapper"})
-public class A16MybatisPlusApplication {
+public class DBDemo3Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(A16MybatisPlusApplication.class, args);
+        SpringApplication.run(DBDemo3Application.class, args);
     }
 
 }
