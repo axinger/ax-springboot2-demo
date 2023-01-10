@@ -1,7 +1,7 @@
 package com.axing.demo;
 
-import com.axing.demo.db2.domain.Department;
-import com.axing.demo.db2.service.DepartmentService;
+import com.axing.db.domain.Department;
+import com.axing.db.service.DepartmentService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

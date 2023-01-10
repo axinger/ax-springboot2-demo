@@ -1,11 +1,8 @@
 package com.axing.demo.controller;
 
+import com.axing.db.service.DepartmentService;
 import com.axing.demo.annotation.DS_DB1;
 import com.axing.demo.annotation.DS_MASTER;
-import com.axing.demo.db2.domain.Department;
-import com.axing.demo.db2.service.DepartmentService;
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

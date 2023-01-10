@@ -1,8 +1,8 @@
-package com.axing.demo.db2.service.impl;
+package com.axing.db.service.impl;
 
-import com.axing.demo.db2.domain.Employee;
-import com.axing.demo.db2.mapper.EmployeeMapper;
-import com.axing.demo.db2.service.EmployeeService;
+import com.axing.db.domain.Employee;
+import com.axing.db.mapper.EmployeeMapper;
+import com.axing.db.service.EmployeeService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

@@ -16,6 +16,7 @@
         <module>a04-spring-boot-mybatis-plus</module>
         <module>a04-spring-boot-mybatis-plus-dynamic</module>
         <module>a04-spring-boot-jpa</module>
+        <module>db-mysql-starter</module>
     </modules>
 
 </project>

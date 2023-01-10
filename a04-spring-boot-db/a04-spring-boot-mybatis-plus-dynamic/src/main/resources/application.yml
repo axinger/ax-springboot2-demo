@@ -9,4 +9,3 @@ spring:
 axing:
   response:
     base-packages: com.axing.demo
-

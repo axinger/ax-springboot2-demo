@@ -1,9 +1,8 @@
-package com.axing.demo.db2.service.impl;
+package com.axing.db.service.impl;
 
-import com.axing.demo.db2.domain.Department;
-import com.axing.demo.db2.mapper.DepartmentMapper;
-import com.axing.demo.db2.service.DepartmentService;
-import com.baomidou.dynamic.datasource.annotation.DS;
+import com.axing.db.domain.Department;
+import com.axing.db.mapper.DepartmentMapper;
+import com.axing.db.service.DepartmentService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import java.util.List;
  * @createDate 2022-12-17 19:55:51
  */
 @Service
-@DS("db_ax_test")
 public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department>
         implements DepartmentService {
 
@@ -30,10 +28,11 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         return this.baseMapper.listLeft(wrapper);
     }
 
-    @DS("db_ax_test")
+
     @Override
     public List<Department> listLeftEmployee(Wrapper wrapper) {
-        this.list();
+
+        System.out.println("this.getBaseMapper().getClass() = " + this.getBaseMapper().getClass());
         return this.getBaseMapper().listLeftEmployee(wrapper);
     }
 

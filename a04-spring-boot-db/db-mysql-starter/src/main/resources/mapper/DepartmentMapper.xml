@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.axing.demo.db2.mapper.DepartmentMapper">
+<mapper namespace="com.axing.db.mapper.DepartmentMapper">
 
-    <resultMap id="BaseResultMap" type="com.axing.demo.db2.domain.Department">
+    <resultMap id="BaseResultMap" type="com.axing.db.domain.Department">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
 
-        <collection property="empList" ofType="com.axing.demo.db2.domain.Employee">
+        <collection property="empList" ofType="com.axing.db.domain.Employee">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
             <result property="name" column="e_id" jdbcType="VARCHAR"/>

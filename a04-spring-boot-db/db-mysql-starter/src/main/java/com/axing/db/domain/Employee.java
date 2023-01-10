@@ -1,4 +1,4 @@
-package com.axing.demo.db2.domain;
+package com.axing.db.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

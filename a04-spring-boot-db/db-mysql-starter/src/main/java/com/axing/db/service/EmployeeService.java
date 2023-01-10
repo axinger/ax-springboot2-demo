@@ -1,6 +1,6 @@
-package com.axing.demo.db2.service;
+package com.axing.db.service;
 
-import com.axing.demo.db2.domain.Employee;
+import com.axing.db.domain.Employee;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.service.IService;

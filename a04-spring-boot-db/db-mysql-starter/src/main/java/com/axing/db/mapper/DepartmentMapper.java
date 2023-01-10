@@ -1,6 +1,6 @@
-package com.axing.demo.db2.mapper;
+package com.axing.db.mapper;
 
-import com.axing.demo.db2.domain.Department;
+import com.axing.db.domain.Department;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

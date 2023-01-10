@@ -62,6 +62,11 @@
             <groupId>com.axing</groupId>
             <artifactId>axing-advice-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.axing.db</groupId>
+            <artifactId>db-mysql-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
