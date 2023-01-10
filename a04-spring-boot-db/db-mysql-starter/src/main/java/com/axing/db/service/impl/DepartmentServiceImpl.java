@@ -31,8 +31,6 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 
     @Override
     public List<Department> listLeftEmployee(Wrapper wrapper) {
-
-        System.out.println("this.getBaseMapper().getClass() = " + this.getBaseMapper().getClass());
         return this.getBaseMapper().listLeftEmployee(wrapper);
     }
 
