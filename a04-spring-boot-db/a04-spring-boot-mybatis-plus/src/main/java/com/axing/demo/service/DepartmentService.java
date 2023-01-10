@@ -2,9 +2,7 @@ package com.axing.demo.service;
 
 import com.axing.demo.domain.Department;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,13 +13,13 @@ import java.util.List;
  */
 public interface DepartmentService extends IService<Department> {
 
-    List<Department> getDepartmentByEmployee(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> getDepartmentByEmployee(Wrapper wrapper);
 
-    List<Department> listLeft(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> listLeft(Wrapper wrapper);
 
-    List<Department> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> listLeftSon(Wrapper wrapper);
 
-    List<Department> listAllSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> listAllSon(Wrapper wrapper);
 
 
 }
