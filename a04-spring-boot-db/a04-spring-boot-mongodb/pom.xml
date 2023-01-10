@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>ax-spring-boot-demo</artifactId>
         <groupId>com.axing</groupId>
+        <artifactId>a04-spring-boot-db</artifactId>
         <version>3.0.0.1</version>
     </parent>
 
     <groupId>com.xing</groupId>
-    <artifactId>a21-spring-boot-mongodb</artifactId>
+    <artifactId>a04-spring-boot-mongodb</artifactId>
     <name>a21-spring-boot-mongodb</name>
     <description>a21-spring-boot-mongodb</description>
 

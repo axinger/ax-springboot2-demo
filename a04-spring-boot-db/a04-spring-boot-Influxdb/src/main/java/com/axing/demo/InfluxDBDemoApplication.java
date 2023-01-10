@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class A22DemoApplication {
+public class InfluxDBDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(A22DemoApplication.class, args);
+        SpringApplication.run(InfluxDBDemoApplication.class, args);
 
     }
 

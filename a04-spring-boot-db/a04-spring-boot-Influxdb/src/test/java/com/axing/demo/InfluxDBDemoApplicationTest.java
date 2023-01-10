@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootTest
-class A22DemoApplicationTest {
+class InfluxDBDemoApplicationTest {
 
     @Autowired
     private InfluxDBConfig influxDBConfig;
