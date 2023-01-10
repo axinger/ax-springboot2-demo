@@ -1,14 +1,13 @@
 package com.axing.demo.service2.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.axing.demo.model.ApiVersion;
+import com.axing.demo.annotation.ApiVersion;
 import com.axing.demo.service2.PersonService;
-import org.checkerframework.checker.units.qual.C;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 @Service
-@ApiVersion
+@ApiVersion(value = 2)
 public class PersonServiceImpl implements PersonService  {
     @Override
 

@@ -1,6 +1,6 @@
 package com.axing.demo.service2;
 
-import com.axing.demo.model.ApiVersion;
+import com.axing.demo.annotation.ApiVersion;
 
 @ApiVersion
 public interface PersonService {

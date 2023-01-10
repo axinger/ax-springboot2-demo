@@ -1,7 +1,7 @@
 package com.axing.demo.service2.impl;
 
 import cn.hutool.core.util.StrUtil;
-import com.axing.demo.model.ApiVersion;
+import com.axing.demo.annotation.ApiVersion;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,5 +1,6 @@
 package com.axing.demo;
 
+import com.axing.demo.controller.TestController;
 import com.axing.demo.service.UserService;
 import com.axing.demo.service2.PersonService;
 import com.axing.demo.service2.impl.PersonServiceImpl;
@@ -27,10 +28,18 @@ class AopDemoMainTest {
         String str = personService.add("1", "2");
         System.out.println("str = " + str);
 
-        String st2 = personService.add2("1", "2");
-        System.out.println("st2 = " + st2);
+        // String st2 = personService.add2("1", "2");
+        // System.out.println("st2 = " + st2);
 
         // String add3 = personService.add3("1", "2");
         // System.out.println("add3 = " + add3);
+    }
+
+    @Autowired
+    TestController testController;
+
+    @Test
+    void test_TestController(){
+        testController.index();
     }
 }

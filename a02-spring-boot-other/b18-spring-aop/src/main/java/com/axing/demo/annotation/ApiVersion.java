@@ -1,4 +1,4 @@
-package com.axing.demo.model;
+package com.axing.demo.annotation;
 
 import java.lang.annotation.*;
 
