@@ -1,4 +1,4 @@
-package com.axing.interceptor;
+package com.axing;
 
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
@@ -9,18 +9,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class WiselyTenantIdResolver implements CurrentTenantIdentifierResolver, // 1
-        HibernatePropertiesCustomizer { // 2
-
-    private static final ThreadLocal<String> CURRENT_TENANT = new ThreadLocal<>(); // 1.1
-
-    public void setCurrentTenant(String currentTenant) { // 1.2
+public class WiselyTenantIdResolver implements CurrentTenantIdentifierResolver, HibernatePropertiesCustomizer {
+    private static final ThreadLocal<String> CURRENT_TENANT = new ThreadLocal<>();
+    public void setCurrentTenant(String currentTenant) {
         CURRENT_TENANT.set(currentTenant);
     }
 
     @Override
-    public String resolveCurrentTenantIdentifier() { // 1
-        return Optional.ofNullable(CURRENT_TENANT.get()).orElse("unknown");
+    public String resolveCurrentTenantIdentifier() {
+        return Optional.ofNullable(CURRENT_TENANT.get()).orElse("public");
     }
 
     @Override
@@ -29,7 +26,7 @@ public class WiselyTenantIdResolver implements CurrentTenantIdentifierResolver, 
     }
 
     @Override
-    public void customize(Map<String, Object> hibernateProperties) { // 2
+    public void customize(Map<String, Object> hibernateProperties) {
         hibernateProperties.put(AvailableSettings.MULTI_TENANT_IDENTIFIER_RESOLVER, this);
     }
 

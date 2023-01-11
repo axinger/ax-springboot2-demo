@@ -1,8 +1,5 @@
-package com.axing.controller;
+package com.axing;
 
-import com.axing.entity.Person;
-import com.axing.jpa.PersonRepository;
-import com.axing.model.dto.PersonDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,13 +15,13 @@ public class PersonController {
     }
 
 
-    @PostMapping
-    public Person save(@RequestBody PersonDto personDto) { // 1
-        return personRepository.save(personDto.createPerson());
+    @PostMapping("/save")
+    public Person save(@RequestBody PersonDto personDto){
+        return  personRepository.save(personDto.createPerson());
     }
 
-    @GetMapping
-    private List<Person> all() { // 2
+    @GetMapping("/all")
+    private List<Person> all(){
         return personRepository.findAll();
     }
 }
