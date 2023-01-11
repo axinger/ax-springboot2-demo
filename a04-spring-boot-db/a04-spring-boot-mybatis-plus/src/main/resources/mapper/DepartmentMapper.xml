@@ -11,7 +11,7 @@
         <collection property="empList" ofType="com.axing.demo.domain.Employee">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
-            <result property="name" column="e_id" jdbcType="VARCHAR"/>
+            <result property="name" column="e_name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="deptId" column="dept_id" jdbcType="INTEGER"/>

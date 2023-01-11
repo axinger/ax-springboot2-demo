@@ -26,6 +26,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("insertFill = {}", metaObject);
+        // 使用domain中的字段,不要用数据库的字段,mp会进行映射
         this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
         this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
         this.setFieldValByName("version", 1, metaObject);

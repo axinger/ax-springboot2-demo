@@ -1,5 +1,6 @@
 package com.axing.demo.domain;
 
+import com.axing.demo.model.Gender;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -30,12 +31,14 @@ public class Employee implements Serializable {
      *
      */
     @TableField(value = "email")
-    private String email;
+    private String email = "";
+
     /**
      *
      */
     @TableField(value = "gender")
-    private Integer gender;
+    // 默认值,数据库为null, mp不会解析,代码可以默认值
+    private Gender gender = Gender.unknown;
     /**
      *
      */

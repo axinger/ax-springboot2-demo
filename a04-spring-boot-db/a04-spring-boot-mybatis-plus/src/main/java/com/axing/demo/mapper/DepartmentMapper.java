@@ -31,7 +31,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     })
     @Select("SELECT * FROM department d LEFT JOIN employee e ON (e.dept_id = d.id) "
             + "${ew.customSqlSegment}")
-    List<Department> getDepartmentByEmployee(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Department> departByEmployeeList(@Param(Constants.WRAPPER) Wrapper wrapper);
 
 
     /**

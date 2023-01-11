@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface DepartmentService extends IService<Department> {
 
-    List<Department> getDepartmentByEmployee(Wrapper wrapper);
+    List<Department> departByEmployeeList(Wrapper wrapper);
 
     List<Department> listLeft(Wrapper wrapper);
 

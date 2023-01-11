@@ -4,6 +4,7 @@ import com.axing.demo.domain.Department;
 import com.axing.demo.domain.Employee;
 import com.axing.demo.domain.Room;
 import com.axing.demo.domain.School;
+import com.axing.demo.model.Gender;
 import com.axing.demo.service.DepartmentService;
 import com.axing.demo.service.EmployeeService;
 import com.axing.demo.service.RoomService;
@@ -54,11 +55,21 @@ class MybatisPlusApplicationTests {
     }
 
     @Test
-    void test3() {
+    void test_save_Employee() {
+        Employee employee = new Employee();
+        employee.setName("jim");
+        employee.setGender(Gender.male);
+        employee.setDeptId(1);
+        boolean save = employeeService.save(employee);
+        System.out.println("save = " + save);
+    }
+
+    @Test
+    void test_Department_departByEmployeeList_不可以() {
         // List<Department> list = departmentService.getDepartmentByEmployee(Wrappers.<Department>lambdaQuery()
         //         .eq(Department::getId, 1));
 
-        List<Department> list = departmentService.getDepartmentByEmployee(Wrappers.query()
+        List<Department> list = departmentService.departByEmployeeList(Wrappers.query()
                 .eq("d.id", 1));
         System.out.println("list = " + list);
 
@@ -66,7 +77,6 @@ class MybatisPlusApplicationTests {
 
     @Test
     void test_Department_listLeft_可以() {
-        // 可以 335ms
         List<Department> list1 = departmentService.listLeft(Wrappers.query()
                 .eq("d.id", 1));
         System.out.println("list1 = " + list1);
@@ -83,7 +93,6 @@ class MybatisPlusApplicationTests {
 
     @Test
     void test_Department_listLeftSon_可以() {
-
         // 可以
         List<Department> list2 = departmentService.listLeftSon(Wrappers.<Department>lambdaQuery()
                 .eq(Department::getId, 1));
@@ -97,7 +106,7 @@ class MybatisPlusApplicationTests {
     }
 
     @Test
-    void test7_Department_listAllSon_不可以() {
+    void test_Department_listAllSon_不可以() {
         // 不可以
         LambdaQueryWrapper<Department> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(Department::getId, 1);

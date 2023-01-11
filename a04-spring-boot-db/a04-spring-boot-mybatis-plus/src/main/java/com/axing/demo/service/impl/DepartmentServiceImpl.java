@@ -19,8 +19,8 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         implements DepartmentService {
 
     @Override
-    public List<Department> getDepartmentByEmployee(Wrapper wrapper) {
-        return this.baseMapper.getDepartmentByEmployee(wrapper);
+    public List<Department> departByEmployeeList(Wrapper wrapper) {
+        return this.baseMapper.departByEmployeeList(wrapper);
     }
 
     @Override
