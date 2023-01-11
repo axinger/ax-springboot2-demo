@@ -17,15 +17,18 @@ import java.util.List;
 public class Department implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
     /**
      *
      */
     @TableId(type = IdType.AUTO)
     private Long id;
+
     /**
      *
      */
     private String name;
+
     @TableField(exist = false)
     private List<Employee> empList;
 }

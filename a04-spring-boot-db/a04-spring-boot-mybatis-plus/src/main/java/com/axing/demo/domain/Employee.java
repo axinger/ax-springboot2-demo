@@ -45,7 +45,6 @@ public class Employee implements Serializable {
     @TableField(value = "dept_id")
     private Integer deptId;
 
-
     @TableField(exist = false)
     private Department department;
 }

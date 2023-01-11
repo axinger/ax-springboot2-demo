@@ -19,16 +19,16 @@ public enum Gender {
     private int code;
     private String description;
 
-    @Override
-    public String toString() {
-        return this.description;
-    }
-
     public static void main(String[] args) {
         // 枚举字面值
         System.out.println("Gender.unknown.name() = " + Gender.unknown.name());
         System.out.println("Gender.valueOf = " + Gender.valueOf("female"));
         System.out.println("Gender.female.ordinal() = " + Gender.female.ordinal());
         System.out.println("Gender.female.getDeclaringClass() = " + Gender.female.getDeclaringClass());
+    }
+
+    @Override
+    public String toString() {
+        return this.description;
     }
 }
