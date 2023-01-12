@@ -20,6 +20,7 @@
         <module>a04-spring-boot-mongodb</module>
         <module>a04-spring-boot-Influxdb</module>
         <module>a04-spring-boot-iotdb</module>
+        <module>a04-spring-boot-postgres</module>
     </modules>
 
 </project>

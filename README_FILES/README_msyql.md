@@ -467,3 +467,17 @@ a表小于b的数据,exists优于in
 ```text
 https://zhuanlan.zhihu.com/p/307288925
 ```
+
+## GROUP BY
+8.0语法
+
+```mysql
+SELECT
+	age,
+	GROUP_CONCAT( id ),
+	GROUP_CONCAT( `name` ) 
+FROM
+	t_student 
+GROUP BY
+	age
+```

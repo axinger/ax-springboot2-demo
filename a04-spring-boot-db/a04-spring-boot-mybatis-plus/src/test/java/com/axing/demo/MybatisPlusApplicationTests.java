@@ -49,9 +49,17 @@ class MybatisPlusApplicationTests {
     }
 
     @Test
-    void test2() {
+    void test_Room() {
         List<Room> list = roomService.list();
         System.out.println("list = " + list);
+
+        // 5.7 可以* group by
+        // 8.0 查询的字段要和group by字段保持一致
+        List<Room> list1 = roomService.lambdaQuery()
+                .select(Room::getRoomName)
+                .groupBy(Room::getRoomName)
+                .list();
+        System.out.println("list1 = " + list1);
     }
 
     @Test
