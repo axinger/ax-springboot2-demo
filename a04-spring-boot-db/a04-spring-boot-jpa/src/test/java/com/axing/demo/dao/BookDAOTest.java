@@ -14,7 +14,7 @@ class BookDAOTest {
     BookDAO bookDAO;
 
     @Test
-    void test(){
+    void test() {
         Book book = new Book();
         book.setBookName("海底两万里");
         LocalDateTime dateTime = LocalDateTime.now().plusDays(-1);

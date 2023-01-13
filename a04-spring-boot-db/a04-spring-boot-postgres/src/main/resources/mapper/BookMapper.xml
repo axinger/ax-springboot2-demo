@@ -5,14 +5,15 @@
 <mapper namespace="com.axing.demo.mapper.BookMapper">
 
     <resultMap id="BaseResultMap" type="com.axing.demo.domain.BookEntity">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="bookAuthor" column="book_author" jdbcType="VARCHAR"/>
-            <result property="bookName" column="book_name" jdbcType="VARCHAR"/>
-            <result property="bookPrice" column="book_price" jdbcType="DOUBLE"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="bookAuthor" column="book_author" jdbcType="VARCHAR"/>
+        <result property="bookName" column="book_name" jdbcType="VARCHAR"/>
+        <result property="bookPrice" column="book_price" jdbcType="DOUBLE"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,book_author,book_name,
+        id
+        ,book_author,book_name,
         book_price
     </sql>
 </mapper>

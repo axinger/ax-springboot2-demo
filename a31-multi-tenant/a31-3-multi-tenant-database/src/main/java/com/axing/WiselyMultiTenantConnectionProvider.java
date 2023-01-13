@@ -18,7 +18,7 @@ public class WiselyMultiTenantConnectionProvider implements MultiTenantConnectio
 
     private final DataSource dataSource;
 
-    public WiselyMultiTenantConnectionProvider(DataSource dataSource){
+    public WiselyMultiTenantConnectionProvider(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

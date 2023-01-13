@@ -6,7 +6,6 @@ import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.stereotype.Component;
 
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class WiselyMultiTenantConnectionProvider implements MultiTenantConnectio
 
     private final DataSource dataSource;
 
-    public WiselyMultiTenantConnectionProvider(DataSource dataSource){
+    public WiselyMultiTenantConnectionProvider(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

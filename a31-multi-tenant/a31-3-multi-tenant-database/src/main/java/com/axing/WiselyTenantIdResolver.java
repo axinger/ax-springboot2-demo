@@ -11,6 +11,7 @@ import java.util.Optional;
 @Component
 public class WiselyTenantIdResolver implements CurrentTenantIdentifierResolver, HibernatePropertiesCustomizer {
     private static final ThreadLocal<String> CURRENT_TENANT = new ThreadLocal<>();
+
     public void setCurrentTenant(String currentTenant) {
         CURRENT_TENANT.set(currentTenant);
     }

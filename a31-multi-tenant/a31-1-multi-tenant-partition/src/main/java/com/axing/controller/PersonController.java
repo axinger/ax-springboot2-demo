@@ -19,7 +19,7 @@ public class PersonController {
 
     /**
      * 1、通过设置在头信息中设置不同的TenantId，数据库中的tenant_id字段将自动存储头中的租户；
-     *
+     * <p>
      * 2、通过设置在头信息中设置不同的TenantId，只能查询到该租户下的数据。
      */
 

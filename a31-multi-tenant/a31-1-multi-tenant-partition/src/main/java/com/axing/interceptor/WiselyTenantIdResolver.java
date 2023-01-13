@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * 1、通过实现
  * CurrentTenantIdentifierResolver接口来获取确定TenantId的来源。
- *
+ * <p>
  * 1.1、 使用线程本地变量CURRENT_TENANT来存储当前的TenantId；
  * 1.2、通过setCurrentTenant方法接受外部设置当前访问者的TenantId，并存储在线程本地变量CURRENT_TENANT中；
  * 1.3、通过重写接口的

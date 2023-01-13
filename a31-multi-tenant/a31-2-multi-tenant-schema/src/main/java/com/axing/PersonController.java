@@ -16,12 +16,12 @@ public class PersonController {
 
 
     @PostMapping("/save")
-    public Person save(@RequestBody PersonDto personDto){
-        return  personRepository.save(personDto.createPerson());
+    public Person save(@RequestBody PersonDto personDto) {
+        return personRepository.save(personDto.createPerson());
     }
 
     @GetMapping("/all")
-    private List<Person> all(){
+    private List<Person> all() {
         return personRepository.findAll();
     }
 }

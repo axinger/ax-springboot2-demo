@@ -3,7 +3,6 @@ package com.axing.demo.service;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.axing.demo.domain.BookEntity;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,7 @@ class BookServiceTest {
         BookEntity book = new BookEntity();
         book.setBookName("海底两万里");
         List<BookEntity> list1 = bookService.lambdaQuery(book)
-                .eq(BookEntity::getId,1)
+                .eq(BookEntity::getId, 1)
                 .list();
         System.out.println("list1 = " + list1);
     }
@@ -95,7 +94,7 @@ class BookServiceTest {
         // bookService.saveOrUpdate(book, Wrappers.<BookEntity>lambdaQuery()
         //         .eq(BookEntity::getBookAuthor, "tom"));
 
-        bookService.saveOrUpdate(book,bookService.lambdaQuery()
+        bookService.saveOrUpdate(book, bookService.lambdaQuery()
                 .eq(BookEntity::getBookAuthor, "tom")
                 .getWrapper());
 

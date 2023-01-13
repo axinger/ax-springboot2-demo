@@ -80,7 +80,7 @@ public class MapTests {
         //     System.out.println("val.getValue() = " + val.getValue());
         // }));
         //
-        map.keys().stream().forEach(val->{
+        map.keys().stream().forEach(val -> {
 
             System.out.println("val = " + val);
         });
@@ -91,7 +91,7 @@ public class MapTests {
     }
 
     @Test
-    void test_双keymap(){
+    void test_双keymap() {
         Table<String, String, List<Object>> tables = HashBasedTable.create();
         tables.put("阿里", "java", Lists.newArrayList(1));
         tables.put("腾讯", "java", Lists.newArrayList(2));
@@ -100,9 +100,7 @@ public class MapTests {
         List<Object> tableResult = tables.get("腾讯", "java");
 
 
-
-
-        tables.cellSet().stream().forEach((k1)->{
+        tables.cellSet().stream().forEach((k1) -> {
 
 
             System.out.println("k1.getRowKey() = " + k1.getRowKey());
@@ -115,7 +113,7 @@ public class MapTests {
 
 
         for (Object o : tableResult) {
-            System.out.println("table-----"+o);
+            System.out.println("table-----" + o);
         }
     }
 
