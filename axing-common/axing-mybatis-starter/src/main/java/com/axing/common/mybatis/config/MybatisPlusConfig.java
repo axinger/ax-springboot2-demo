@@ -54,7 +54,21 @@ public class MybatisPlusConfig implements MetaObjectHandler {
         // this.strictUpdateFill(metaObject, field, () -> LocalDateTime.now(), LocalDateTime.class);
     }
 
-
+    /**
+     * 修改通用策略
+     *
+     * @return
+     */
+// @Override
+    // public MetaObjectHandler strictFillStrategy(MetaObject metaObject, String fieldName, Supplier<?> fieldVal) {
+    //     // if (metaObject.getValue(fieldName) == null) { //不判断空值情况即可
+    //     Object obj = fieldVal.get();
+    //     if (Objects.nonNull(obj)) {
+    //         metaObject.setValue(fieldName, obj);
+    //     }
+    //     // }
+    //     return this;
+    // }
     @Bean
     public MybatisPlusInterceptor optimisticLockerInnerInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();

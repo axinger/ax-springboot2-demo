@@ -40,6 +40,26 @@ class BookServiceTest {
         bookService.updateById(book);
     }
 
+
+    @Test
+    void test_lambdaUpdate(){
+        BookEntity book = bookService.getById(1);
+        bookService.lambdaUpdate()
+                .ge(BookEntity::getId,1)
+                .set(BookEntity::getBookName,book.getBookName()+"_v1")
+                .update();
+    }
+
+    @Test
+    void test_lambdaUpdate2(){
+        //  才会自动填充
+        BookEntity book = bookService.getById(1);
+        bookService.lambdaUpdate()
+                .ge(BookEntity::getId,1)
+                .set(BookEntity::getBookName,book.getBookName()+"_v1")
+                .update(new BookEntity());
+    }
+
     @Test
     void test_saveOrUpdateBatch(){
         BookEntity book = bookService.getById(1);
