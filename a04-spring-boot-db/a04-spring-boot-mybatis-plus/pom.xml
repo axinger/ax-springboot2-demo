@@ -36,8 +36,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-mybatis-starter</artifactId>
         </dependency>
     </dependencies>
 

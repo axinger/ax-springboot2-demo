@@ -1,7 +1,10 @@
 package com.axing.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Entity(name = "book")
 @Data
@@ -18,4 +21,18 @@ public class Book {
 
     @Column(name = "book_author")
     private String bookAuthor;
+
+    /**
+     * 开始时间
+     */
+    @Column(name = "start_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime startTime;
+    /**
+     * 结束时间
+     */
+    @Column(name = "end_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime endTime;
+
 }

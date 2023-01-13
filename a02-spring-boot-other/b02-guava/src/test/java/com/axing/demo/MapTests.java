@@ -1,12 +1,10 @@
 package com.axing.demo;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.MapDifference;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
+import com.google.common.collect.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapTests {
@@ -73,4 +71,35 @@ public class MapTests {
         // map = {name=[jim, tom], age=[1, 2]}
         System.out.println("map = " + map);
     }
+
+    @Test
+    void test_双keymap(){
+        Table<String, String, List<Object>> tables = HashBasedTable.create();
+        tables.put("阿里", "java", Lists.newArrayList(1));
+        tables.put("腾讯", "java", Lists.newArrayList(2));
+        tables.put("腾讯", "python", Lists.newArrayList(3));
+
+        List<Object> tableResult = tables.get("腾讯", "java");
+
+
+
+
+        tables.cellSet().stream().forEach((k1)->{
+
+
+            System.out.println("k1.getRowKey() = " + k1.getRowKey());
+            System.out.println("k1.getColumnKey() = " + k1.getColumnKey());
+            System.out.println("k1.getValue() = " + k1.getValue());
+
+            System.out.println("tables.get( k1.getRowKey(),k1.getColumnKey()) = " + tables.get(k1.getRowKey(), k1.getColumnKey()));
+            k1.getValue().add(10);
+        });
+
+
+        for (Object o : tableResult) {
+            System.out.println("table-----"+o);
+        }
+    }
+
+
 }

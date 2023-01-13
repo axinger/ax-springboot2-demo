@@ -34,6 +34,6 @@ logging:
   #    name: log/myspringboot.log
   #    path: log
   level:
-    com.ax.a22.mapper: debug
+    com.axing.common.mybatis: debug
 #  pattern:
 #    console: '%clr(%d{HH:mm:ss}){yellow} [%clr(%thread){red}] %-5level --- %clr(%logger){green} | %msg%n'

@@ -1,4 +1,4 @@
-package com.axing.common.mybatis;
+package com.axing.common.mybatis.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author xing
@@ -25,17 +26,32 @@ public class MybatisPlusConfig implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("insertFill = {}", metaObject);
-        // 使用domain中的字段,不要用数据库的字段,mp会进行映射
-        this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
-        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
-        this.setFieldValByName("version", 1, metaObject);
+        log.debug("insertFill================================================================");
+        this.strictInsertFill(metaObject, "version", Long.class, 1L);
+        this.insertDateFill("createTime", metaObject);
+        this.insertDateFill("updateTime", metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info("updateFill = {}", metaObject);
-        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+        log.debug("updateFill================================================================");
+        this.updateDateFill("updateTime", metaObject);
+    }
+
+
+    // 官方已更新setFieldValByName方法为strictInsertFill或fillStrategy等
+    protected void insertDateFill(String field, MetaObject metaObject) {
+        this.strictInsertFill(metaObject, field, Date.class, new Date());
+        this.strictInsertFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
+    }
+
+    protected void updateDateFill(String field, MetaObject metaObject) {
+        metaObject.setValue(field, null);
+        this.strictUpdateFill(metaObject, field, Date.class, new Date());
+        this.strictUpdateFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
+
+        // this.strictUpdateFill(metaObject, field, () -> new Date(), Date.class);
+        // this.strictUpdateFill(metaObject, field, () -> LocalDateTime.now(), LocalDateTime.class);
     }
 
 
