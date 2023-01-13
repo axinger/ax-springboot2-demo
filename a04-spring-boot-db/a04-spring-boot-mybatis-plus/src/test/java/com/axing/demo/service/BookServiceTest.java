@@ -36,7 +36,9 @@ class BookServiceTest {
     @Test
     void test_updateById(){
         BookEntity book = bookService.getById(1);
-        book.setBookName(book.getBookName()+"_v1");
+        // book.setBookName(book.getBookName()+"_v1");
+        // book.setBookName("_v1");
+        book.setBookPrice(10D);
         bookService.updateById(book);
     }
 
@@ -52,11 +54,12 @@ class BookServiceTest {
 
     @Test
     void test_lambdaUpdate2(){
-        //  才会自动填充
+        //  1.才会自动填充
+        //  2. 乐观锁失效,不支持
         BookEntity book = bookService.getById(1);
         bookService.lambdaUpdate()
                 .ge(BookEntity::getId,1)
-                .set(BookEntity::getBookName,book.getBookName()+"_v1")
+                .set(BookEntity::getBookName,"海底两万里")
                 .update(new BookEntity());
     }
 
