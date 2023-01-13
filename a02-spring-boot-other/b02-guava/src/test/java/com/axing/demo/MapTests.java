@@ -70,6 +70,24 @@ public class MapTests {
 
         // map = {name=[jim, tom], age=[1, 2]}
         System.out.println("map = " + map);
+
+        // map.entries().stream().forEach((val->{
+        //
+        //     // System.out.println("val.getClass() = " + val.getClass());
+        //     // System.out.println("val.getValue().getClass() = " + val.getValue().getClass());
+        //
+        //     System.out.println("val.getKey() = " + val.getKey());
+        //     System.out.println("val.getValue() = " + val.getValue());
+        // }));
+        //
+        map.keys().stream().forEach(val->{
+
+            System.out.println("val = " + val);
+        });
+        map.isEmpty();
+        System.out.println("map.keys() = " + map.keys().stream().distinct().toList());
+
+        System.out.println("map.get(\"name\") = " + map.get("name"));
     }
 
     @Test

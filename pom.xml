@@ -10,13 +10,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!--        <version>2.7.5</version>-->
-        <version>3.0.0</version>
+        <version>3.0.1</version>
     </parent>
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
     <!--前3位与spring-boot版本号对应    -->
-    <version>3.0.0.1</version>
+    <version>3.0.1.1</version>
     <name>spring-boot 案例</name>
     <description>个人代码总结</description>
     <!--pom总的父工程-->

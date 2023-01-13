@@ -98,6 +98,7 @@ class BookServiceTest {
         bookService.saveOrUpdate(book,bookService.lambdaQuery()
                 .eq(BookEntity::getBookAuthor, "tom")
                 .getWrapper());
+
     }
 
     @Test
