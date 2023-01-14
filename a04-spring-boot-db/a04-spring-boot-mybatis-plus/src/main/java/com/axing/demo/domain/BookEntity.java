@@ -33,7 +33,8 @@ public class BookEntity implements Serializable {
     /**
      *
      */
-    @TableField(value = "book_price", update = "%s+1") // 自动+1,再set值,就无效,@Version原理如此
+    // @TableField(value = "book_price",updateStrategy = FieldStrategy.NEVER) // 自动+1,再set值,就无效,@Version原理如此
+    @TableField(value = "book_price") // 自动+1,再set值,就无效,@Version原理如此
     private Double bookPrice;
     /**
      *

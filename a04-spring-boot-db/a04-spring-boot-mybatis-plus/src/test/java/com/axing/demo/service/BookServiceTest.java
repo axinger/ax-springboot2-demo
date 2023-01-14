@@ -71,6 +71,28 @@ class BookServiceTest {
     }
 
     @Test
+    void test_updateById_bookPrice() {
+        bookService.lambdaUpdate()
+                .ge(BookEntity::getId, 1)
+                .setSql("book_price = book_price+10")
+                .update(new BookEntity());
+
+    }
+
+    @Test
+    void test_updateById_bookPrice_2() {
+// 有bug
+        BookEntity entity = new BookEntity();
+        entity.setBookPrice(10d);
+        entity.setId(1L);
+
+        bookService.saveOrUpdate(entity, bookService.lambdaUpdate()
+                .eq(BookEntity::getId, 1)
+                .setSql("book_price = book_price+10")
+                .getWrapper());
+    }
+
+    @Test
     void test_lambdaUpdate() {
         //  1.不会会自动填充
         BookEntity book = bookService.getById(1);
