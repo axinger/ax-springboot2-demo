@@ -27,3 +27,14 @@ class Main2 {
 
     }
 }
+
+
+class Main3 {
+    public static void main(String[] args) {
+        Person person = new Person();
+        // person.setAddress(null);
+        person.setAddress("aaa");
+        System.out.println("person = " + person);
+
+    }
+}
