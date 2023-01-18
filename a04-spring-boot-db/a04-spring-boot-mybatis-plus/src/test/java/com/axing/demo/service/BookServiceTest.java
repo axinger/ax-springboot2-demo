@@ -1,8 +1,12 @@
 package com.axing.demo.service;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
+import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.BookEntity;
+import com.axing.demo.mapper.BookMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
@@ -22,7 +26,6 @@ class BookServiceTest {
     void test() {
         List<BookEntity> list = bookService.list();
         System.out.println("list = " + list);
-
     }
 
     @Test
@@ -51,6 +54,31 @@ class BookServiceTest {
         bookService.save(book1);
     }
 
+    @Test
+    void test_save_list() {
+        String jsonList = """
+                [
+                    {
+                        "bookName": "海底两万里",
+                        "bookPrice": 10.0,
+                        "id": 1
+                    },
+                    {
+                        "bookName": "一千零一夜",
+                        "bookPrice": 20.0,
+                        "id": 2
+                    },
+                    {
+                        "bookName": "葫芦娃",
+                        "bookPrice": 30.0,
+                        "id": 3
+                    }
+                ]
+                """;
+
+        List<BookEntity> entityList = JSON.parseArray(jsonList, BookEntity.class);
+        bookService.saveBatch(entityList);
+    }
 
     @Test
     void test_page() {
@@ -81,7 +109,7 @@ class BookServiceTest {
 
     @Test
     void test_updateById_bookPrice_2() {
-// 有bug
+        // 有bug
         BookEntity entity = new BookEntity();
         entity.setBookPrice(10d);
         entity.setId(1L);
@@ -163,7 +191,6 @@ class BookServiceTest {
 
         List<BookEntity> list = List.of(book, book1);
         bookService.saveOrUpdateBatch(list);
-
     }
 
 
@@ -177,5 +204,43 @@ class BookServiceTest {
                 .ge(BookEntity::getStartTime, startTime)
                 .list();
         System.out.println("list = " + list);
+    }
+
+    @Test
+    void test_remove() {
+        boolean remove = bookService.lambdaUpdate()
+                .remove();
+        System.out.println("remove = " + remove);
+    }
+
+
+    @Test
+    void test3() {
+
+        BookMapper baseMapper = (BookMapper) bookService.getBaseMapper();
+        IPage<BookEntity> page = baseMapper.customSqlSegment(Wrappers.<BookEntity>lambdaQuery()
+                        .select(BookEntity::getId)
+                        .gt(BookEntity::getBookPrice, 10),
+                Page.of(1, 3));
+        System.out.println("page.getSize() = " + page.getSize());
+        System.out.println("page.getPages() = " + page.getPages());
+        System.out.println("page.getCurrent() = " + page.getCurrent());
+        System.out.println("page.getTotal() = " + page.getTotal());
+        System.out.println(page.getRecords());
+    }
+
+    @Test
+    void test_tableListHasDelete() {
+
+        BookMapper baseMapper = (BookMapper) bookService.getBaseMapper();
+        IPage<BookEntity> page = baseMapper.sqlSegment(Wrappers.<BookEntity>lambdaQuery()
+                        // .select(BookEntity::getId)
+                        .gt(BookEntity::getBookPrice, 10),
+                Page.of(1, 3));
+        System.out.println("page.getSize() = " + page.getSize());
+        System.out.println("page.getPages() = " + page.getPages());
+        System.out.println("page.getCurrent() = " + page.getCurrent());
+        System.out.println("page.getTotal() = " + page.getTotal());
+        System.out.println(page.getRecords());
     }
 }

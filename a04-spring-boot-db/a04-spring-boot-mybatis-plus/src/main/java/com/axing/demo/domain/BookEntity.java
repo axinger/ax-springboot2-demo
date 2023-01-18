@@ -65,4 +65,8 @@ public class BookEntity implements Serializable {
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Long version;
+
+    @TableField(value = "deleted")
+    @TableLogic
+    private Integer deleted;
 }

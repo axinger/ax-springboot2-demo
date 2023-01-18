@@ -6,7 +6,6 @@
 
     <resultMap id="BaseResultMap" type="com.axing.demo.domain.BookEntity">
         <id property="id" column="id" jdbcType="BIGINT"/>
-        <id property="version" column="version" jdbcType="BIGINT"/>
         <result property="bookAuthor" column="book_author" jdbcType="VARCHAR"/>
         <result property="bookName" column="book_name" jdbcType="VARCHAR"/>
         <result property="bookPrice" column="book_price" jdbcType="DOUBLE"/>
@@ -14,11 +13,54 @@
         <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="version" column="version" jdbcType="BIGINT"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id
         ,book_author,book_name,
-        book_price,end_time,start_time
+        book_price,end_time,start_time,
+        create_time,update_time,version,
+        deleted
     </sql>
+
+
+    <select id="customSqlSegment" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="ew != null and ew.SqlSelect != null and ew.SqlSelect != ''">
+                ${ew.SqlSelect}
+            </when>
+            <otherwise>
+                <include refid="Base_Column_List"/>
+            </otherwise>
+        </choose>
+        FROM
+        book
+        ${ew.customSqlSegment}
+
+    </select>
+
+    <select id="sqlSegment" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="ew != null and ew.SqlSelect != null and ew.SqlSelect != ''">
+                ${ew.SqlSelect}
+            </when>
+            <otherwise>
+                <include refid="Base_Column_List"/>
+            </otherwise>
+        </choose>
+        FROM
+        book
+        where deleted != 1
+        <if test="ew != null">
+            <if test="ew.nonEmptyOfWhere">
+                AND
+            </if>
+            ${ew.sqlSegment}
+        </if>
+
+    </select>
 </mapper>
