@@ -1,5 +1,6 @@
 package com.axing.common.advice.model;
 
+import com.alibaba.fastjson2.JSON;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xing
@@ -72,37 +74,31 @@ public class GlobalException {
      * 对方法参数校验异常处理方法
      */
     @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class, MissingServletRequestParameterException.class,})
-    public Result<Map<String, Object>> handlerNotValidException(Exception e) {
+    public Result<Object> handlerNotValidException(Exception e) {
         if (adviceProperties.isPrintStackTrace()) {
             e.printStackTrace();
         }
         List<ObjectError> list = new ArrayList<>();
 
         if (e instanceof MethodArgumentNotValidException validException) {
-            list = Optional.ofNullable(validException).map(MethodArgumentNotValidException::getBindingResult).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
+            list = Optional.of(validException).map(MethodArgumentNotValidException::getBindingResult).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
         } else if (e instanceof BindException bindException) {
-            list = Optional.ofNullable(bindException).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
+            list = Optional.of(bindException).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
         }
 
-        Map<String, Object> map = new HashMap<>(16);
-
-        list.forEach(error -> {
-            String key;
-            // 字段错误
-            if (error instanceof FieldError) {
+        Map<String, Object> map = list.stream().collect(Collectors.toMap(error -> {
+            if (error instanceof FieldError error1) {
                 // 获取错误验证字段名
-                key = ((FieldError) error).getField();
+                return error1.getField();
             } else {
                 // 非字段错误
                 // 获取验证对象名称
-                key = error.getObjectName();
+                return error.getObjectName();
             }
-            // 错误信息
-            String msg = error.getDefaultMessage();
-            map.put(key, msg);
-        });
-
-        final Result<Map<String, Object>> result = Result.build(201, map, "方法参数校验异常");
+        }, error -> Optional.of(error).map(ObjectError::getDefaultMessage).orElse(""), (key1, key2) -> key2));
+        // final Result<Map<String, Object>> result = Result.build(201, map, "参数校验异常");
+        Result<Object> result = Result.failMessage(map.toString());
+        // Result<Object> result = Result.fail(map);
         log.error("方法参数校验异常 result =  {}", result);
         return result;
     }

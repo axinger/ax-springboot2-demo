@@ -12,7 +12,7 @@ public class AdviceUtil {
 
     public static Boolean filter(AdviceProperties adviceProperties, MethodParameter methodParameter) {
 
-        log.info("filterPackageAllSet = {}", adviceProperties.filterPackageAllSet());
+        log.debug("filterPackageAllSet = {}", adviceProperties.filterPackageAllSet());
 
         Class<?> declaringClass = methodParameter.getDeclaringClass();
         // 检查过滤包路径

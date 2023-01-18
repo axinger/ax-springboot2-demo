@@ -4,13 +4,17 @@ package com.axing.demo.controller;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.NumberUtil;
 import com.axing.common.advice.annotation.IgnoreResponseAdvice;
+import com.axing.demo.dto.UserDTO;
 import com.axing.demo.entity.EmptyModel;
 import com.axing.demo.entity.Person;
 import com.axing.demo.entity.Pig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -114,4 +118,11 @@ public class TestController {
         map.put("localDateTime", LocalDateTime.now());
         return map;
     }
+
+
+    @PostMapping(value = "/age")
+    public Object json1(@RequestBody @Validated UserDTO userDTO) {
+        return userDTO;
+    }
 }
+

@@ -89,6 +89,10 @@ public class Result<T> implements Serializable {
         return build(ResultCodeEnum.FAIL.getCode(), message);
     }
 
+    public static <T> Result<T> failMessage(String message) {
+        return build(ResultCodeEnum.FAIL.getCode(), message);
+    }
+
     public static <T> Result<T> fail() {
         return Result.fail(null);
     }
