@@ -21,7 +21,7 @@ public class ListTest {
     void test1() {
 
         // guava 可变
-        List list = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> list = Lists.newArrayList(1, 2, 3, 4, 5, 6, 7, 8);
         list.add(9);
         System.out.println("list = " + list);
 
@@ -29,11 +29,14 @@ public class ListTest {
         // guava
         // 指定大小分组
         // [[1, 2], [3, 4], [5]]
-        final List list1 = Lists.partition(list, 2);
+        final List<List<Integer>> list1 = Lists.partition(list, 2);
         System.out.println("list1 = " + list1);
 
-        list1.add(10);
+        // 修改源list,分割数组也会变化, 不能直接修改变化数组
+        list.add(10);
+        System.out.println("list1 = " + list1);
 
+        // list1.add(List.of(11)); // 报错
 
         // hutool
         ListUtil.page(list, 3, (val) -> {
