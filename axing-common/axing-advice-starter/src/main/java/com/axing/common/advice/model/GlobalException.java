@@ -1,14 +1,11 @@
 package com.axing.common.advice.model;
 
-import com.alibaba.fastjson2.JSON;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ public class ListTests {
 
 
     @Test
-    void test1(){
+    void test1() {
 
         User user1 = new User();
         user1.setId(1);
