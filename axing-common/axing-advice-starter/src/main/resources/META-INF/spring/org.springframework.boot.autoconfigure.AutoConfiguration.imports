@@ -1,2 +1,1 @@
-com.axing.common.advice.GlobalException
-com.axing.common.advice.GlobalResponse
+com.axing.common.advice.config.AdviceAutoConfig

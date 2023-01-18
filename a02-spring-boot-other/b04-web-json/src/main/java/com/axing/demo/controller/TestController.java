@@ -3,6 +3,7 @@ package com.axing.demo.controller;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.NumberUtil;
+import com.axing.common.advice.annotation.IgnoreResponseAdvice;
 import com.axing.demo.entity.EmptyModel;
 import com.axing.demo.entity.Person;
 import com.axing.demo.entity.Pig;
@@ -71,6 +72,7 @@ public class TestController {
     }
 
     @GetMapping(value = "/json1")
+    @IgnoreResponseAdvice(value = false)
     public Object json1() {
 
         final Person person = Person.builder()

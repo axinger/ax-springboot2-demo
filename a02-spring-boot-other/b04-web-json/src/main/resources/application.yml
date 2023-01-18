@@ -41,6 +41,10 @@ spring:
 axing:
   advice:
     print-stack-trace: true
+    filter-package:
+      - a.b.c
+
+
   doc:
     title: 测试JSON
     description: 测试JSON描述

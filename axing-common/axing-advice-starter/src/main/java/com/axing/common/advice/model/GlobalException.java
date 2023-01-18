@@ -1,9 +1,10 @@
-package com.axing.common.advice;
+package com.axing.common.advice.model;
 
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -26,13 +27,10 @@ import java.util.*;
 @Slf4j
 @ResponseBody
 @RestControllerAdvice
-@EnableConfigurationProperties({
-        AdviceProperties.class
-})
+@RequiredArgsConstructor
 public class GlobalException {
 
-    @Autowired
-    AdviceProperties adviceProperties;
+    private final AdviceProperties adviceProperties;
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
