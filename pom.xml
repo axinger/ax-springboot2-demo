@@ -30,12 +30,12 @@
         <spring-cloud.version>2022.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
-                <okhttp.version>4.10.0</okhttp.version>
+        <okhttp.version>4.10.0</okhttp.version>
         <mybatis.version>3.0.1</mybatis.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.8.11</hutool.version>
-        <fastjson2.version>2.0.19</fastjson2.version>
+        <fastjson2.version>2.0.23</fastjson2.version>
         <lombok.version>1.18.24</lombok.version>
         <druid.version>1.2.15</druid.version>
         <netty-all.version>4.1.87.Final</netty-all.version>
@@ -44,7 +44,7 @@
         <!--        <jackson-bom.version>2.14.0</jackson-bom.version>-->
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
-<!--        <snakeyaml.version>1.33</snakeyaml.version>-->
+        <!--        <snakeyaml.version>1.33</snakeyaml.version>-->
         <springdoc.version>1.6.13</springdoc.version>
     </properties>
 
@@ -404,11 +404,11 @@
             <!--                <version>1.7.0</version>-->
             <!--            </dependency>-->
             <!-- Shiro-redis插件 -->
-<!--            <dependency>-->
-<!--                <groupId>org.crazycake</groupId>-->
-<!--                <artifactId>shiro-redis</artifactId>-->
-<!--                <version>3.1.0</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.crazycake</groupId>-->
+            <!--                <artifactId>shiro-redis</artifactId>-->
+            <!--                <version>3.1.0</version>-->
+            <!--            </dependency>-->
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
