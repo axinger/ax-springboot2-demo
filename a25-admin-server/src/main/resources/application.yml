@@ -1,9 +1,9 @@
 server:
-  port: 8090
+  port: 10252
 
 spring:
   application:
-    name: admin-server # 给client应用取个名字
+    name: admin-server-demo # 给client应用取个名字
   jackson:
     serialization:
       indent_output: true

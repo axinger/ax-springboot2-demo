@@ -21,11 +21,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api")
 public class HelloController {
     private final AtomicInteger count = new AtomicInteger(0);
 
-    @GetMapping("hi")
+    @GetMapping("/hi")
     private String sayHi() {
         // 每次进来如打印下日志
         log.info("{} 啪...我第{}次进来了.", LocalDateTime.now(), count.addAndGet(1));
@@ -33,5 +32,14 @@ public class HelloController {
         byte[] bytes = new byte[100 * 1024 * 1024];
         log.info("new了 100MB");
         return "hi springboot addmin " + LocalDateTime.now();
+    }
+
+    @GetMapping("/log")
+    private void log() {
+        log.info("info================");
+        log.debug("debug================");
+        log.error("error================");
+        log.warn("warn================");
+        log.trace("trace================");
     }
 }

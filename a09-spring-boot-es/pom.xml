@@ -11,10 +11,6 @@
 
     <artifactId>a09-spring-boot-es</artifactId>
 
-    <properties>
-        <elasticsearch.version>7.17.0</elasticsearch.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

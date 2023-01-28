@@ -1,6 +1,6 @@
 # 端口
 server:
-  port: 8070
+  port: 10251
 #开放端点用于SpringBoot Admin的监控
 management:
   endpoints:
@@ -9,11 +9,11 @@ management:
         include: '*'
 spring:
   application:
-    name: admin-client # 给client应用取个名字
+    name: admin-client-demo # 给client应用取个名字
   boot:
     admin:
       client:
-        url: http://localhost:8090   #这里配置admin server 的地址
+        url: http://localhost:10252   #这里配置admin server 的地址
 
 logging:
   config: classpath:logback-spring.xml

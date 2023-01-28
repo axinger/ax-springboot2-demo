@@ -11,10 +11,6 @@
 
     <artifactId>a01-spring-boot-master</artifactId>
 
-    <properties>
-        <docker.image.prefix>ax-mall</docker.image.prefix>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.axing</groupId>
