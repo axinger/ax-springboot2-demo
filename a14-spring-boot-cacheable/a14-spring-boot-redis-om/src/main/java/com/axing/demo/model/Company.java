@@ -19,38 +19,38 @@ import java.util.Set;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Document
 public class Company {
-  @Id
-  private String id;
+    @Id
+    private String id;
 
-  @NonNull
-  @Searchable
-  private String name;
+    @NonNull
+    @Searchable
+    private String name;
 
-  @Indexed
-  private Set<String> tags = new HashSet<String>();
+    @Indexed
+    private Set<String> tags = new HashSet<String>();
 
-  @NonNull
-  private String url;
+    @NonNull
+    private String url;
 
-  @NonNull
-  @Indexed
-  private Point location;
+    @NonNull
+    @Indexed
+    private Point location;
 
-  @NonNull
-  @Indexed
-  private Integer numberOfEmployees;
+    @NonNull
+    @Indexed
+    private Integer numberOfEmployees;
 
-  @NonNull
-  @Indexed
-  private Integer yearFounded;
+    @NonNull
+    @Indexed
+    private Integer yearFounded;
 
-  private boolean publiclyListed;
+    private boolean publiclyListed;
 
-  // audit fields
+    // audit fields
 
-  @CreatedDate
-  private Date createdDate;
+    @CreatedDate
+    private Date createdDate;
 
-  @LastModifiedDate
-  private Date lastModifiedDate;
+    @LastModifiedDate
+    private Date lastModifiedDate;
 }

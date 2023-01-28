@@ -18,13 +18,14 @@ class RedisOmDemoApplicationTest {
 
     @Autowired
     PeopleRepository repo;
+    @Autowired
+    CompanyRepository companyRepo;
 
     @Test
     void tes1() {
         List<Person> list = repo.findAll();
         System.out.println("list = " + list);
     }
-
 
     @Test
     void tes2() {
@@ -34,12 +35,8 @@ class RedisOmDemoApplicationTest {
         System.out.println("person1 = " + person1);
     }
 
-
-    @Autowired
-    CompanyRepository companyRepo;
-
     @Test
-    void test3(){
+    void test3() {
         companyRepo.deleteAll();
         Company redis = Company.of("Redis", "https://redis.com", new Point(-122.066540, 37.377690), 526, 2011);
         redis.setTags(Set.of("fast", "scalable", "reliable"));
