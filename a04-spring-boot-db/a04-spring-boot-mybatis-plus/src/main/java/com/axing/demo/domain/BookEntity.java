@@ -1,6 +1,8 @@
 package com.axing.demo.domain;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.*;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,43 +12,55 @@ import java.util.Date;
 /**
  * @TableName book
  */
-@TableName(value = "book")
 @Data
+@TableName(value = "book")
+@Entity(name = "book")
 public class BookEntity implements Serializable {
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(value = "id", type = IdType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
     /**
      *
      */
     @TableField(value = "book_author")
+    @Column
     private String bookAuthor;
     /**
      *
      */
     @TableField(value = "book_name")
+    @Column
     private String bookName;
     /**
      *
      */
     // @TableField(value = "book_price",updateStrategy = FieldStrategy.NEVER) // 自动+1,再set值,就无效,@Version原理如此
     @TableField(value = "book_price") // 自动+1,再set值,就无效,@Version原理如此
+    @Column
     private Double bookPrice;
     /**
      *
      */
     @TableField(value = "end_time")
+    @Column
     private LocalDateTime endTime;
     /**
      *
      */
     @TableField(value = "start_time")
+    @Column
     private LocalDateTime startTime;
+
     @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @Column
     private LocalDateTime createTime;
     /**
      * 每种策略的作用：
@@ -62,11 +76,14 @@ public class BookEntity implements Serializable {
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     private Date updateTime; // 这个用date
+
     @Version
     @TableField(fill = FieldFill.INSERT)
+    @Column
     private Long version;
 
     @TableField(value = "deleted")
     @TableLogic
-    private Integer deleted;
+    @Column
+    private int deleted;
 }
