@@ -2,10 +2,22 @@ spring:
   application:
     name: a17-spring-boot-mybatis-plus
   datasource:
-    url: jdbc:mysql://192.168.101.143:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    #    url: jdbc:mysql://192.168.101.143:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.120.181:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      #create----每次运行该程序，没有表格会新建表格，表内有数据会清空
+      #create-drop----每次程序结束的时候会清空表
+      #update----每次运行程序，没有表格会新建表格，表内有数据不会清空，只会更新
+      #validate----运行程序会校验数据与数据库的字段类型是否相同，不同会报错
+  #      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
   #    log颜色
   output:
@@ -26,14 +38,4 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
 
-logging:
-  #  file:
-  #    path:
-  #  config: classpath:log4j2.xml
-  #  file:
-  #    name: log/myspringboot.log
-  #    path: log
-  level:
-    com.axing.common.mybatis: debug
-#  pattern:
-#    console: '%clr(%d{HH:mm:ss}){yellow} [%clr(%thread){red}] %-5level --- %clr(%logger){green} | %msg%n'
+
