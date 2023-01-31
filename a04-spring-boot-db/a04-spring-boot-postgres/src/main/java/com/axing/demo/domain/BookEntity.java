@@ -46,7 +46,7 @@ public class BookEntity implements Serializable {
     /**
      * 字段“text”，指定建表时SQL语句 如“varchar(50) NOT NULL”
      */
-    @Column(name = "book_name", length = 50)
+    @Column(name = "book_name", length = 50, nullable = false)
     @Comment("书名")
     @TableField(value = "book_name")
     private String bookName;
