@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Comment;
 
 import java.io.Serializable;
 import java.util.List;
@@ -29,22 +30,24 @@ public class School implements Serializable {
     // jpa注解
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "bigint comment '主键ID'")
+    @Column(name = "id")
+    @Comment("主键")
     private Long id;
     /**
      *
      */
-    @Column(name = "area", columnDefinition = "double comment '区域'")
+    @Column(name = "area")
     private Double area;
     /**
      *
      */
-    @Column(name = "school_name", columnDefinition = "varchar(100) comment '学校名称'")
+    @Column(name = "school_name", length = 50)
+    @Comment("学校名称")
     private String schoolName;
     /**
      *
      */
-    @Column(name = "zone", columnDefinition = "varchar(100) comment '区'")
+    @Column(name = "zone")
     private String zone;
 
 

@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.axing.demo.mapper")
-public class Main {
+public class PostgresDemoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(PostgresDemoApplication.class, args);
     }
 }
