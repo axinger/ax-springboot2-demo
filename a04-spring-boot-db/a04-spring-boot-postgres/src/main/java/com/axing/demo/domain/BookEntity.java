@@ -17,6 +17,15 @@ import java.math.BigDecimal;
 @Data
 @TableName(value = "book")
 @Entity(name = "book")
+// @Table(indexes = {
+//         @Index(columnList = "book_name"),
+//         @Index(columnList = "book_price")
+// })
+@Table(indexes = {
+        @Index(columnList = "book_name"),
+        @Index(columnList = "book_price")
+})
+// @Table(name = "book", uniqueConstraints = @UniqueConstraint(columnNames = {"book_name", "book_price"}))
 public class BookEntity implements Serializable {
 
     @TableField(exist = false)
