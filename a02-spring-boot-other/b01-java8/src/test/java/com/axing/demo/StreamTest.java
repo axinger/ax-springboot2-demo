@@ -60,6 +60,15 @@ public class StreamTest {
         System.out.println("beforeAll====");
     }
 
+    @Test
+    void test_mapToInt() {
+
+        List<String> list2 = List.of("a", "bb", "ccc", "dddd");
+
+        int sum = list2.stream().mapToInt(a -> a.length()).sum();
+        System.out.println("sum = " + sum);
+    }
+
     public static Stream<Character> fromStringToStream(String str) {
         List<Character> list = new ArrayList<>();
         for (Character c : str.toCharArray()) {
@@ -97,7 +106,7 @@ public class StreamTest {
                 ));
 
 
-        System.out.println(collect);
+        System.out.println("日期月分组 = " + collect);
 
         // 日期分组求和
         Map<String, BigDecimal> collect1 = staffList.stream().collect(
@@ -105,7 +114,7 @@ public class StreamTest {
                         o -> DateUtil.format(o.getDate(), "yyyy-MM"),
                         Collectors.mapping(Staff::getYield, Collectors.reducing(BigDecimal.ZERO, BigDecimal::add)
                         )));
-        System.out.println("collect1 = " + collect1);
+        System.out.println("日期分组求和 = " + collect1);
 
     }
 

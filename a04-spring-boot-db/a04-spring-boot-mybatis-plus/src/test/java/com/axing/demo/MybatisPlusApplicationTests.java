@@ -1,5 +1,6 @@
 package com.axing.demo;
 
+import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.Department;
 import com.axing.demo.domain.Employee;
 import com.axing.demo.domain.Room;
@@ -33,6 +34,54 @@ class MybatisPlusApplicationTests {
     private RoomService roomService;
 
     @Test
+    void test_save_Employee() {
+
+        String emStr = """
+                [
+                                
+                    {
+                        "deptId": 1,
+                        "email": "",
+                        "gender": 1,
+                        "id": 1,
+                        "name": "jim"
+                    }
+                    ,{
+                        "deptId": 2,
+                        "email": "",
+                        "gender": 1,
+                        "id": 2,
+                        "name": "tom"
+                    },
+                    {
+                        "deptId": 1,
+                        "email": "",
+                        "gender": 2,
+                        "id": 3,
+                        "name": "lili"
+                    }
+                ]
+                """;
+
+        String depStr = """
+                [
+                    {
+                        "id": 1,
+                        "name": "财务部"
+                    },
+                    {
+                        "id": 2,
+                        "name": "研发部"
+                    }
+                ]
+                """;
+
+        employeeService.saveBatch(JSON.parseArray(emStr,Employee.class));
+        departmentService.saveBatch(JSON.parseArray(depStr,Department.class));
+    }
+
+
+    @Test
     void test_School_schoolList_可以() {
 
         List<School> list = schoolService.list();
@@ -62,15 +111,7 @@ class MybatisPlusApplicationTests {
         System.out.println("list1 = " + list1);
     }
 
-    @Test
-    void test_save_Employee() {
-        Employee employee = new Employee();
-        employee.setName("jim");
-        employee.setGender(Gender.male);
-        employee.setDeptId(1);
-        boolean save = employeeService.save(employee);
-        System.out.println("save = " + save);
-    }
+
 
     @Test
     void test_Department_departByEmployeeList_不可以() {
@@ -99,17 +140,26 @@ class MybatisPlusApplicationTests {
         System.out.println("list = " + list2);
     }
 
+
+    /**
+     * 查询指定部门所有人
+     */
     @Test
     void test_Department_listLeftSon_可以() {
         // 可以
         List<Department> list2 = departmentService.listLeftSon(Wrappers.<Department>lambdaQuery()
-                .eq(Department::getId, 1));
+                .eq(Department::getId, 1)
+
+        );
         System.out.println("list = " + list2);
     }
 
     @Test
     void test6_2() {
-        List<Employee> list = employeeService.listLeftSon(Wrappers.<Department>lambdaQuery());
+        List<Employee> list = employeeService.listLeftSon(Wrappers.<Employee>lambdaQuery()
+                .eq(Employee::getDeptId,1)
+                .eq(Employee::getGender,Gender.female)
+        );
         System.out.println("list = " + list);
     }
 
