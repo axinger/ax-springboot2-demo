@@ -136,6 +136,11 @@
                 <artifactId>axing-quartz-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>axing-excel-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.axing</groupId>
@@ -527,7 +532,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
-                <version>3.2.0</version>
+                <version>3.2.1</version>
             </dependency>
 
             <dependency>

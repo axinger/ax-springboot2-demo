@@ -56,7 +56,7 @@ public class ExcelUtils {
                                   Class excelClass,
                                   String fileName,
                                   String sheetName) {
-        OutputStream outputStream = ExcelUtils.excelStream(response, fileName, ExcelTypeEnum.XLSX.getValue());
+        OutputStream outputStream = excelStream(response, fileName, ExcelTypeEnum.XLSX.getValue());
         EasyExcel.write(outputStream, excelClass)
                 .excelType(ExcelTypeEnum.XLSX)
                 .sheet(sheetName)
