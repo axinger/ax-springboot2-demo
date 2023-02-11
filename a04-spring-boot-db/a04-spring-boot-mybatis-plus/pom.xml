@@ -47,6 +47,12 @@
             <groupId>com.axing</groupId>
             <artifactId>axing-mybatis-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-excel-starter</artifactId>
+            <version>3.0.2.1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

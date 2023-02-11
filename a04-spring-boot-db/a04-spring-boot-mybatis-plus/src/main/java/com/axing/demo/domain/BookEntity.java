@@ -1,5 +1,6 @@
 package com.axing.demo.domain;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.*;
 import jakarta.persistence.*;
@@ -32,6 +33,7 @@ public class BookEntity implements Serializable {
      */
     @TableField(value = "book_author")
     @Column
+    @ExcelProperty("作者")
     private String bookAuthor;
     /**
      *

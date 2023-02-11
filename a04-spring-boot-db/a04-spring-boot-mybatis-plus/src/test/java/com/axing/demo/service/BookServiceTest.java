@@ -13,8 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 class BookServiceTest {
@@ -22,11 +24,28 @@ class BookServiceTest {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private BookMapper bookMapper;
+    @Test
+    void test_stream() throws InterruptedException {
+
+        bookMapper.streamSelect(val->{
+            BookEntity entity = val.getResultObject();
+            System.out.println("entity = " + entity);
+        });
+
+        TimeUnit.SECONDS.sleep(10);
+    }
+
+
     @Test
     void test() {
         List<BookEntity> list = bookService.list();
         System.out.println("list = " + list);
     }
+
+
+
 
     @Test
     void test_lambdaQuery() {

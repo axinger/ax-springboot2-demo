@@ -39,6 +39,7 @@
         <module>axing-advice-starter</module>
         <module>axing-json-starter</module>
         <module>axing-weblog-starter</module>
+        <module>axing-excel-starter</module>
     </modules>
 
     <dependencies>

@@ -167,6 +167,7 @@
                 <version>${project.version}</version>
             </dependency>
 
+
             <dependency>
                 <groupId>com.axing</groupId>
                 <artifactId>axing-config-starter</artifactId>
@@ -523,7 +524,17 @@
                 <artifactId>knife4j-springdoc-ui</artifactId>
                 <version>3.0.3</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>3.2.0</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.5.11</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
