@@ -25,18 +25,18 @@ public class ExcelController {
     @GetMapping("/utilExport")
     public void utilExport(HttpServletResponse response) throws IOException {
         System.out.println("response = " + response.getOutputStream());
-        //
-        // CommonResultHandler<BookEntity> resultHandler = new CommonResultHandler<>(response, BookEntity.class) {
-        //     @Override
-        //     public BookEntity processing(BookEntity order) {
-        //         System.out.println("order = " + order);
-        //         return order;
-        //     }
-        // };
-        //
-        // bookMapper.streamSelect(resultHandler);
-        // StreamExportUtil.download("hello", resultHandler);
-        ExcelUtils.writeExcel(response,BookEntity.class,"123","456");
+
+        CommonResultHandler<BookEntity> resultHandler = new CommonResultHandler<>(response, BookEntity.class) {
+            @Override
+            public BookEntity processing(BookEntity order) {
+                System.out.println("order = " + order);
+                return order;
+            }
+        };
+
+        bookMapper.streamSelect(resultHandler);
+        StreamExportUtil.download("hello", resultHandler);
+        // ExcelUtils.writeExcel(response,BookEntity.class,"123","456");
 
 
     }
