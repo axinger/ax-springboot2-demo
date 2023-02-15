@@ -10,9 +10,11 @@ import com.alibaba.excel.metadata.property.ExcelContentProperty;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**excel 导入 类型转换器yyyy-MM-dd
- *  @ ExcelProperty(value = "结束时间",converter = LocalDateConverter.class)
+/**
+ * excel 导入 类型转换器yyyy-MM-dd
+ *
  * @author zms
+ * @ ExcelProperty(value = "结束时间",converter = LocalDateConverter.class)
  * @date 2021-12-15
  **/
 public class LocalDateConverter implements Converter<LocalDate> {
@@ -30,14 +32,14 @@ public class LocalDateConverter implements Converter<LocalDate> {
     @Override
     public LocalDate convertToJavaData(ReadCellData<?> cellData, ExcelContentProperty contentProperty, GlobalConfiguration globalConfiguration) throws Exception {
         System.out.println("cellData.getStringValue() = " + cellData);
-        if(cellData.getType().equals(CellDataTypeEnum.NUMBER)){
+        if (cellData.getType().equals(CellDataTypeEnum.NUMBER)) {
             LocalDate localDate = LocalDate.of(1900, 1, 1);
-            //execl有些奇怪的bug, 导致日期数差2
-            localDate = localDate.plusDays(cellData.getNumberValue().longValue()-2);
+            // execl有些奇怪的bug, 导致日期数差2
+            localDate = localDate.plusDays(cellData.getNumberValue().longValue() - 2);
             return localDate;
-        }else if(cellData.getType().equals(CellDataTypeEnum.STRING)) {
+        } else if (cellData.getType().equals(CellDataTypeEnum.STRING)) {
             return LocalDate.parse(cellData.getStringValue(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }else{
+        } else {
             return null;
         }
     }

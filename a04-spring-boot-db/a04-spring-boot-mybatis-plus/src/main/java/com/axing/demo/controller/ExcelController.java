@@ -1,8 +1,5 @@
 package com.axing.demo.controller;
 
-import com.alibaba.excel.EasyExcel;
-import com.alibaba.excel.support.ExcelTypeEnum;
-import com.axing.common.excel.ExcelUtils;
 import com.axing.common.excel.StreamExportUtil;
 import com.axing.common.excel.handler.CommonResultHandler;
 import com.axing.demo.domain.BookEntity;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 @RestController
 public class ExcelController {

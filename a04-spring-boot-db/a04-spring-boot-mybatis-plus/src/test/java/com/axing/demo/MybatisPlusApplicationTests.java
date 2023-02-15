@@ -76,8 +76,8 @@ class MybatisPlusApplicationTests {
                 ]
                 """;
 
-        employeeService.saveBatch(JSON.parseArray(emStr,Employee.class));
-        departmentService.saveBatch(JSON.parseArray(depStr,Department.class));
+        employeeService.saveBatch(JSON.parseArray(emStr, Employee.class));
+        departmentService.saveBatch(JSON.parseArray(depStr, Department.class));
     }
 
 
@@ -110,7 +110,6 @@ class MybatisPlusApplicationTests {
                 .list();
         System.out.println("list1 = " + list1);
     }
-
 
 
     @Test
@@ -157,8 +156,8 @@ class MybatisPlusApplicationTests {
     @Test
     void test6_2() {
         List<Employee> list = employeeService.listLeftSon(Wrappers.<Employee>lambdaQuery()
-                .eq(Employee::getDeptId,1)
-                .eq(Employee::getGender,Gender.female)
+                .eq(Employee::getDeptId, 1)
+                .eq(Employee::getGender, Gender.female)
         );
         System.out.println("list = " + list);
     }

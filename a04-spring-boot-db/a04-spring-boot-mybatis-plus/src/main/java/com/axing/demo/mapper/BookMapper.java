@@ -10,14 +10,13 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.ResultSetType;
 import org.apache.ibatis.session.ResultHandler;
 
-import java.util.List;
-
 /**
  * @author xing
  * @description 针对表【book】的数据库操作Mapper
  * @createDate 2023-01-18 10:00:35
  * @Entity com.axing.demo.domain.BookEntity
- */@Mapper
+ */
+@Mapper
 public interface BookMapper extends BaseMapper<BookEntity> {
 
     IPage<BookEntity> customSqlSegment(@Param(Constants.WRAPPER) Wrapper<BookEntity> wrapper, Page<Object> page);

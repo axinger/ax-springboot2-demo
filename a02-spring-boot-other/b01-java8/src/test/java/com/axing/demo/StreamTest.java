@@ -60,15 +60,6 @@ public class StreamTest {
         System.out.println("beforeAll====");
     }
 
-    @Test
-    void test_mapToInt() {
-
-        List<String> list2 = List.of("a", "bb", "ccc", "dddd");
-
-        int sum = list2.stream().mapToInt(a -> a.length()).sum();
-        System.out.println("sum = " + sum);
-    }
-
     public static Stream<Character> fromStringToStream(String str) {
         List<Character> list = new ArrayList<>();
         for (Character c : str.toCharArray()) {
@@ -78,6 +69,15 @@ public class StreamTest {
 
         return list.stream();
 //        return  Arrays.asList(str.toCharArray()).stream();
+    }
+
+    @Test
+    void test_mapToInt() {
+
+        List<String> list2 = List.of("a", "bb", "ccc", "dddd");
+
+        int sum = list2.stream().mapToInt(a -> a.length()).sum();
+        System.out.println("sum = " + sum);
     }
 
     @BeforeEach

@@ -2,9 +2,7 @@ package com.axing.common.excel.handler;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import com.axing.common.excel.ExcelUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -25,10 +23,8 @@ public abstract class CommonResultHandler<T> implements ResultHandler<T> {
     protected final HttpServletResponse response;
 
     protected final ExcelWriter writer;
-
-    protected WriteSheet sheet;
-
     protected final List<T> rowDataList;
+    protected WriteSheet sheet;
 
     public CommonResultHandler(HttpServletResponse response, Class<? extends T> clazz) throws IOException {
         this.response = response;
@@ -38,16 +34,16 @@ public abstract class CommonResultHandler<T> implements ResultHandler<T> {
     }
 
 
-    public void initSheet(){
+    public void initSheet() {
         this.sheet = EasyExcel.writerSheet().build();
     }
 
     @Override
     @SneakyThrows
-    public void handleResult(ResultContext<? extends T> resultContext){
+    public void handleResult(ResultContext<? extends T> resultContext) {
         T obj = resultContext.getResultObject();
         rowDataList.add(processing(obj));
-        writer.write(rowDataList,sheet);
+        writer.write(rowDataList, sheet);
         rowDataList.clear();
     }
 
