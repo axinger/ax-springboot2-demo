@@ -37,6 +37,12 @@ class BookServiceTest {
         TimeUnit.SECONDS.sleep(10);
     }
 
+    @Test
+    void test_findAll() {
+
+        List<BookEntity> list = bookMapper.findAll();
+        System.out.println("list = " + list);
+    }
 
     @Test
     void test() {

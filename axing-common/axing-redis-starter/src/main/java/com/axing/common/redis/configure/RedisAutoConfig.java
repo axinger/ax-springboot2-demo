@@ -1,13 +1,14 @@
 package com.axing.common.redis.configure;
 
+import com.axing.common.json.bean.JsonProperties;
 import com.axing.common.json.config.ObjectMapperConfig;
+import com.axing.common.json.model.CommonObjectMapper;
 import com.axing.common.redis.bean.RedisProperties;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.service.impl.RedisServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -15,6 +16,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -31,7 +33,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @description
  * @createTime 2022年01月18日 22:56:00
  */
-@AutoConfiguration
+@Configuration
 @EnableCaching
 @RequiredArgsConstructor
 @EnableConfigurationProperties(RedisProperties.class)
@@ -43,6 +45,7 @@ public class RedisAutoConfig {
     private final ObjectMapperConfig objectMapperConfig;
 
     private final RedisProperties redisProperties;
+    private final JsonProperties jsonProperties;
 
     @Bean
     public RedisService redisService(RedisConnectionFactory factory) {
@@ -114,8 +117,9 @@ public class RedisAutoConfig {
     @Bean
     @ConditionalOnMissingBean(RedisSerializer.class)
     public RedisSerializer<Object> redisSerializer() {
-        ObjectMapper objectMapper = objectMapperConfig.getObjectMapper();
+        // ObjectMapper objectMapper = objectMapperConfig.getObjectMapper();
 
+        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
         // // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
         if (redisProperties.isSavePackageName()) {
             objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);

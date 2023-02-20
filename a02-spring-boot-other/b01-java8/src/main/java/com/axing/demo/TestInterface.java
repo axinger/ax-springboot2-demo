@@ -1,9 +1,7 @@
 package com.axing.demo;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,7 +13,7 @@ public interface TestInterface<T> {
 }
 
 
-class BInterface  {
+class BInterface {
 
     Runnable runnable;
 
@@ -70,13 +68,13 @@ class Test3 {
     }
 }
 
-class Test4{
+class Test4 {
     public static void main(String[] args) {
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("name", "jim");
         // after JDK1.8
-        map.computeIfAbsent("name", key ->{
+        map.computeIfAbsent("name", key -> {
             System.out.println("key = " + key);
             return key;
         });

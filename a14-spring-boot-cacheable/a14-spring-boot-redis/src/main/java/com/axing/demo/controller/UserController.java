@@ -6,7 +6,7 @@ import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.util.RedisUtil;
 import com.axing.common.response.result.Result;
 import com.axing.demo.model.User;
-import com.axing.demo.service.UserService;
+import com.axing.demo.service.DemoUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private RedisService redisService;
     @Autowired
-    private UserService userService;
+    private DemoUserService demoUserService;
     @Autowired
     private RedisTemplate<String, User> redisTemplate2;
     @Autowired
@@ -79,21 +79,21 @@ public class UserController {
     @GetMapping(value = "/get")
     public Object getUserFromCacheable(Integer id) {
         System.out.println("getUser...........");
-        return userService.findUser(id);
+        return demoUserService.findUser(id);
     }
 
     @Operation(summary = "Cacheable更新数据")
     @PostMapping(value = "/update")
     public Object update(Integer id) {
         User user = User.builder().id(id).name("jim" + new Random().nextInt(100)).age(10).build();
-        return userService.updateUser(user);
+        return demoUserService.updateUser(user);
     }
 
     @Operation(summary = "Cacheable删除数据")
     @DeleteMapping(value = "/delete")
     public boolean deleteUser(Integer id) {
         System.out.println("deleteUser...........");
-        userService.deleteUser(id);
+        demoUserService.deleteUser(id);
         return true;
     }
 
@@ -101,7 +101,7 @@ public class UserController {
     @GetMapping(value = "/last")
     public Result getLastName(Integer id) {
         System.out.println("getLastName...........");
-        return Result.ok(userService.getLastName(id));
+        return Result.ok(demoUserService.getLastName(id));
     }
 
     @Cacheable(key = "#id")

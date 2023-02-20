@@ -1,6 +1,7 @@
 # 基础镜像使用java
 #FROM openjdk:8-jdk-alpine
 FROM eclipse-temurin:17-jre-alpine
+#FROM eclipse-temurin:17-jre-jammy # bin/bash 有 mkdir命令
 #作者
 MAINTAINER 阿星
 

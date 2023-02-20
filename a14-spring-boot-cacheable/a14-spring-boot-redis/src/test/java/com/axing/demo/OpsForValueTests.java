@@ -43,7 +43,8 @@ public class OpsForValueTests {
 
     @Test
     void opsForValue() {
-        redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 120, TimeUnit.SECONDS);
+        redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 10, TimeUnit.MINUTES);
+        System.out.println("opsForValue");
     }
 
     @Test

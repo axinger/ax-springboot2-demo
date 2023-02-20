@@ -1,8 +1,8 @@
 package com.axing.demo.mapper;
 
 import com.axing.demo.domain.BookEntity;
+import com.axing.demo.injector.MyBaseMapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,7 +17,7 @@ import org.apache.ibatis.session.ResultHandler;
  * @Entity com.axing.demo.domain.BookEntity
  */
 @Mapper
-public interface BookMapper extends BaseMapper<BookEntity> {
+public interface BookMapper extends MyBaseMapper<BookEntity> {
 
     IPage<BookEntity> customSqlSegment(@Param(Constants.WRAPPER) Wrapper<BookEntity> wrapper, Page<Object> page);
 
@@ -28,6 +28,8 @@ public interface BookMapper extends BaseMapper<BookEntity> {
     @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 500)
     @ResultType(BookEntity.class)
     void streamSelect(ResultHandler<BookEntity> handler);
+
+
 }
 
 
