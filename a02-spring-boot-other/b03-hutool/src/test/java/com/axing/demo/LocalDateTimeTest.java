@@ -46,11 +46,12 @@ public class LocalDateTimeTest {
     @Test
     void test_withDayOfYear() {
 
-        System.out.println("月初 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(1)));
-        System.out.println("月末 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(31)));
+        // System.out.println("月初 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(1)));
+        // System.out.println("月末 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfMonth(31)));
 
 
-        LocalDateTime _2th = LocalDateTimeUtil.parse("2022-02-28 12:00:00", "yyyy-MM-dd HH:mm:ss").with(TemporalAdjusters.lastDayOfMonth());
+        LocalDateTime _2th = LocalDateTimeUtil.parse("2022-02-28 09:00:00", "yyyy-MM-dd HH:mm:ss").with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println("_2th = " + _2th);
         System.out.println("2月末 = " + LocalDateTimeUtil.endOfDay(_2th));
 
         System.out.println("年初 = " + LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withDayOfYear(1)));
