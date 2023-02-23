@@ -278,4 +278,26 @@ public class FutureTaskServiceImpl implements FutureTaskService {
         return future3.get();
     }
 
+    @Override
+    public CompletableFuture<String> test(boolean success) {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+            log.info("异步执行数据");
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if (success) {
+                return "111";
+            } else {
+                throw new RuntimeException("数据错误");
+            }
+        }, executor).exceptionally(e -> {
+            log.error("e = {}", e.getCause().getMessage());
+            return null;
+        });
+
+        return future;
+    }
+
 }

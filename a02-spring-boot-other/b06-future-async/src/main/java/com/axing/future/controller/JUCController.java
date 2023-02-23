@@ -4,6 +4,7 @@ package com.axing.future.controller;
 import com.axing.future.service.FutureTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,18 @@ public class JUCController {
     FutureTaskService taskService;
     @Autowired
     FutureTaskService futureTaskService;
+
+    @GetMapping("/test")
+    public Object test(boolean success) {
+        CompletableFuture<String> future = futureTaskService.test(success);
+        future.whenComplete((k, v) -> {
+            System.out.println("whenComplete k = " + k + ", v = " + v);
+        });
+        String join = future.join();
+        System.out.println("future.join() = " + join);
+        return join;
+    }
+
 
     @RequestMapping("/async")
     public Object async() throws InterruptedException, ExecutionException {

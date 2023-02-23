@@ -37,5 +37,5 @@ public interface FutureTaskService {
 
     Object completableAll();
 
-
+    CompletableFuture<String> test(boolean success);
 }
