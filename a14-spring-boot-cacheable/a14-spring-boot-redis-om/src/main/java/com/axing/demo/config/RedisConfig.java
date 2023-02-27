@@ -12,14 +12,13 @@ public class RedisConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
 
-        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
 
         // String的序列化方式
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         // Jackson2JsonRedisSerializer序列化类
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
 
         // key采用String的序列化方式
         template.setKeySerializer(stringRedisSerializer);

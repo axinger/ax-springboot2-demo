@@ -41,9 +41,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisAutoConfig {
 
     private final RedisConnectionFactory redisConnectionFactory;
-
-    private final ObjectMapperConfig objectMapperConfig;
-
     private final RedisProperties redisProperties;
     private final JsonProperties jsonProperties;
 
@@ -118,31 +115,12 @@ public class RedisAutoConfig {
     @ConditionalOnMissingBean(RedisSerializer.class)
     public RedisSerializer<Object> redisSerializer() {
         // ObjectMapper objectMapper = objectMapperConfig.getObjectMapper();
-
         ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
-        // // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
+        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
         if (redisProperties.isSavePackageName()) {
             objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         }
-
-        // 解决jackson2无法反序列化LocalDateTime的问题
-        // objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-        // jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
-
         return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
-
-        // return  new GenericJackson2JsonRedisSerializer(this.objectMapper());
-        // return new Jackson2JsonRedisSerializer<>(Object.class);
-
-        // GenericJackson2JsonRedisSerializer redisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
-        // return redisSerializer;
-
-//        FastJson2JsonRedisSerializer redisSerializer = new FastJson2JsonRedisSerializer<>(Object.class);
-//        return redisSerializer;
-//        GenericFastJsonRedisSerializer redisSerializer = new GenericFastJsonRedisSerializer();
-//        return redisSerializer;
-
     }
 
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +29,7 @@ public class OpsForValueTests {
                 .name("jim")
                 .age(21)
                 .date(new Date())
-                .localDateTime(LocalDateTime.now())
+                // .localDateTime(LocalDateTime.now())
                 .books(List.of(book))
                 .build();
 
@@ -42,13 +41,17 @@ public class OpsForValueTests {
     }
 
     @Test
-    void opsForValue() {
+    void opsForValue_set() {
+        // redisTemplateUser.setValueSerializer(RedisSerializer.java());
+        // redisTemplateUser.setValueSerializer(RedisSerializer.json());
         redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 10, TimeUnit.MINUTES);
         System.out.println("opsForValue");
     }
 
     @Test
     void opsForValue_get() {
+        // redisTemplateUser.setValueSerializer(RedisSerializer.java());
+        // redisTemplateUser.setValueSerializer(RedisSerializer.json());
         User user = redisTemplateUser.opsForValue().get(getUserKey(1));
         System.out.println("user = " + user);
     }

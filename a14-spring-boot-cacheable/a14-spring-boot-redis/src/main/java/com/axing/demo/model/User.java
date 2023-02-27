@@ -25,6 +25,7 @@ public class User implements Serializable {
     //@JsonDeserialize(using = LocalDateTimeDeserializer.class)
     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     // @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    // @Transient
     private LocalDateTime localDateTime = LocalDateTime.now();
     private List<User.Book> books;
 
