@@ -2,6 +2,7 @@ package com.axing.demo;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.util.RedisUtil;
@@ -67,23 +68,49 @@ public class RedisTemplateTests {
     }
 
     @Test
-    void opsForHash() {
-        final String key = "test::hash::1::User";
-
-        Map valuesMap = new HashMap<>();
-        valuesMap.put("map", new HashMap<>() {{
-            put("name", "jim");
-        }});
-
-        // redisTemplate.opsForHash().put(key, "name", valuesMap);
-        redisTemplate.opsForHash().putAll(key, valuesMap);
-
+    void opsForHash_put() {
+        final String key = "test::hash:::User";
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "jim");
+        map.put("age", 10);
+        redisTemplateMap.opsForHash().putAll(key, map);
     }
+
+    @Test
+    void opsForHash_put2() {
+        final String key = "test::hash:::User";
+        redisTemplateMap.opsForHash().put(key, "height", 10);
+    }
+
+    @Test
+    void opsForHash_put3() {
+        final String key = "test::hash:::User";
+        redisTemplateMap.opsForHash().put(key, "user", JSON.toJSONString(getUser(1)));
+        Object name = redisTemplateMap.opsForHash().get(key, "user");
+        System.out.println("name = " + name);
+    }
+
+    @Test
+    void opsForHash_put4() {
+        final String key = "test::hash:::User";
+        redisTemplateMap.opsForHash().put(key, "users", List.of(JSON.toJSONString(getUser(1))));
+        // 存list ,无法取出
+        Object name = redisTemplateMap.opsForHash().get(key, "users");
+        System.out.println("name = " + name);
+    }
+
+    @Test
+    void opsForHash_get() {
+        final String key = "test::hash:::User";
+        Object name = redisTemplateMap.opsForHash().get(key, "name");
+        System.out.println("name = " + name);
+    }
+
 
     @Test
     void opsForList_leftPush() {
         // 将所有指定的值插入存储在键的列表的头部
-        final String key = "test::list::1::User";
+        final String key = "test::list::User";
 
         Long aLong = redisTemplateList.opsForList().leftPush(key, getUser(1));
         System.out.println("aLong = " + aLong);
@@ -93,9 +120,20 @@ public class RedisTemplateTests {
     }
 
     @Test
+    void opsForList_pop() {
+        // 弹出最左边的元素，弹出之后该值在列表中将不复存在
+        final String key = "test::list::User";
+        User user = redisTemplateList.opsForList().rightPop(key);
+        System.out.println("user = " + user);
+
+        User user2 = redisTemplateList.opsForList().leftPop(key);
+        System.out.println("user2 = " + user2);
+    }
+
+    @Test
     void opsForList_range() {
         // 不会越界
-        final String key = "test::list::1::User";
+        final String key = "test::list::User";
         List<User> range = redisTemplateList.opsForList().range(key, 1, 3);
         System.out.println("range = " + range);
     }
@@ -103,7 +141,7 @@ public class RedisTemplateTests {
     @Test
     void opsForList_index() {
         // 弹出最左边的元素，弹出之后该值在列表中将不复存在
-        final String key = "test::list::1::User";
+        final String key = "test::list::User";
         User index = redisTemplateList.opsForList().index(key, 0);
         System.out.println("index = " + index);
 
@@ -111,16 +149,6 @@ public class RedisTemplateTests {
         System.out.println("index = " + index1);
     }
 
-    @Test
-    void opsForList_pop() {
-        // 弹出最左边的元素，弹出之后该值在列表中将不复存在
-        final String key = "test::list::1::User";
-        User user = redisTemplateList.opsForList().rightPop(key);
-        System.out.println("user = " + user);
-
-        User user2 = redisTemplateList.opsForList().leftPop(key);
-        System.out.println("user2 = " + user2);
-    }
 
     @Test
     void test() {
