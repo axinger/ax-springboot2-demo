@@ -33,6 +33,11 @@
             <groupId>com.axing</groupId>
             <artifactId>axing-advice-starter</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-doc-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

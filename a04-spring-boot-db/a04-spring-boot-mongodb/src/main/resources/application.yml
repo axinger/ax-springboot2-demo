@@ -2,10 +2,10 @@ spring:
   data:
     # 这2个方式都可以
     mongodb:
-      host: 192.168.101.143
-      port: 27018
+      host: 192.168.120.130
+      port: 27017
       username: admin
-      password: '123456'
+      password: 'admin123'
       database: demo
       authentication-database: admin
 
