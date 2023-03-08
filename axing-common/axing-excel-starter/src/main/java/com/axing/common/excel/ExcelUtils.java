@@ -24,17 +24,22 @@ import java.util.ArrayList;
 /**
  * @author xing
  * @version 1.0.0
- * @ClassName ExceUtils.java
- * @description
- * @createTime 2022年04月17日 13:52:00
  */
 
 @Slf4j
 public class ExcelUtils {
 
-    public static void readExcel(MultipartFile file,
-                                 Class excelClass,
-                                 ReadListener readListener) {
+    /**
+     * 读取excel
+     *
+     * @param file         file
+     * @param excelClass   excelClass
+     * @param readListener readListener
+     * @param <T>          T
+     */
+    public static <T> void readExcel(MultipartFile file,
+                                     Class<T> excelClass,
+                                     ReadListener<T> readListener) {
 
         InputStream inputStream;
         try {
@@ -48,7 +53,6 @@ public class ExcelUtils {
         EasyExcel.read(inputStream, excelClass, readListener)
                 .sheet()
                 .doRead();
-
     }
 
 
@@ -70,8 +74,6 @@ public class ExcelUtils {
      * @param response HttpServletResponse
      * @param fileName 文件名
      * @param suffix   文件后缀名,包含.
-     * @return
-     * @throws IOException
      */
     public static OutputStream excelStream(HttpServletResponse response, String fileName, String suffix) {
         fileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8);

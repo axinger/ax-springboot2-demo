@@ -8,7 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 @Slf4j
 public class CommonExcelHandler<T> extends AnalysisEventListener<T> {
@@ -16,8 +17,14 @@ public class CommonExcelHandler<T> extends AnalysisEventListener<T> {
     @Getter
     protected final List<String> failList = new ArrayList<>();
 
-    public CompletableFuture<T> future = new CompletableFuture<>();
+    private Consumer<T> consumer;
 
+    private CommonExcelHandler() {
+    }
+
+    public CommonExcelHandler(Consumer<T> consumer) {
+        this.consumer = consumer;
+    }
 
     @Override
     public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
@@ -27,8 +34,10 @@ public class CommonExcelHandler<T> extends AnalysisEventListener<T> {
 
     @Override
     public void invoke(T data, AnalysisContext context) {
-        System.out.println("data = " + data);
-        future.complete(data);
+        log.info("每行invoke = {}", data);
+        if (Optional.ofNullable(consumer).isPresent()) {
+            consumer.accept(data);
+        }
     }
 
     /**
@@ -39,9 +48,6 @@ public class CommonExcelHandler<T> extends AnalysisEventListener<T> {
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
         // 这里也要保存数据，确保最后遗留的数据也存储到数据库
-        log.info("所有数据解析完成！,是否失败 = {}", failList);
-        if (!failList.isEmpty()) {
-            String str = String.format("重复导入:{%s}", String.join(",", failList));
-        }
+        log.info("所有数据解析完成");
     }
 }
