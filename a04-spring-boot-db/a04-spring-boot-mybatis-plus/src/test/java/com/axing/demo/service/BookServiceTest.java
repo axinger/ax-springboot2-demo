@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +54,33 @@ class BookServiceTest {
 
     @Test
     void test_lambdaQuery() {
+        // lambdaQuery ( 对象 ) 就相当于 ==
         BookEntity book = new BookEntity();
         book.setBookName("海底两万里");
+        book.setBookName("海底两万里1");
         List<BookEntity> list1 = bookService.lambdaQuery(book)
                 .eq(BookEntity::getId, 1)
                 .list();
         System.out.println("list1 = " + list1);
+    }
+
+    @Test
+    void test_lambdaQuery2() {
+
+        LambdaQueryChainWrapper<BookEntity> wrapper = bookService.lambdaQuery();
+
+        wrapper.or(w->{
+            w.eq(BookEntity::getBookName,"海底两万里")
+                    .eq(BookEntity::getBookPrice,10);
+        });
+
+        wrapper.or(w->{
+            w.eq(BookEntity::getBookName,"一千零一夜")
+                    .eq(BookEntity::getBookPrice,20);
+        });
+
+        List<BookEntity> list = wrapper.list();
+        System.out.println("list = " + list);
     }
 
     @Test

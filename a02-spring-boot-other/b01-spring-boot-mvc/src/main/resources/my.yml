@@ -1,5 +1,5 @@
 # application.yml,会优先加载
-user:
+my:
   user:
     username: lili
     password: 132456

@@ -7,6 +7,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
@@ -16,10 +17,7 @@ import java.util.Properties;
  */
 public class YamlAndPropertySourceFactory extends DefaultPropertySourceFactory {
     @Override
-    public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
-        if (resource == null) {
-            return super.createPropertySource(name, resource);
-        }
+    public PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) throws IOException {
         Resource resourceResource = resource.getResource();
         if (!resourceResource.exists()) {
             return new PropertiesPropertySource(null, new Properties());

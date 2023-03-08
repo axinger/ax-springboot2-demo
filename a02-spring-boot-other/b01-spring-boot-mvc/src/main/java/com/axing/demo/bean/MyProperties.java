@@ -1,4 +1,4 @@
-package com.axing.demo.config;
+package com.axing.demo.bean;
 
 import com.axing.common.util.factory.YamlAndPropertySourceFactory;
 import lombok.Data;
@@ -10,9 +10,10 @@ import java.util.List;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "user")
-@PropertySource(value = {"classpath:user.yml"}, factory = YamlAndPropertySourceFactory.class)
-public class UserProperties {
+@ConfigurationProperties(prefix = "my")
+// 需要自定义yaml解析
+@PropertySource(value = {"classpath:my.yml"}, factory = YamlAndPropertySourceFactory.class)
+public class MyProperties {
     private User user;
 
     private List<User> list;

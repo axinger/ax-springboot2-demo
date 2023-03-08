@@ -15,6 +15,14 @@ axing:
 #    - username: user222
 #      password: 132456
 
-
+show:
+  # 湿度
+  humidity:
+    min: 40.0
+    max: 65.0
+  # 温度
+  temperature:
+    min: 15
+    max: 30
 
 

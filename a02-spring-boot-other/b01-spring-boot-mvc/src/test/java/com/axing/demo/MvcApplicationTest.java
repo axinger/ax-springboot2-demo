@@ -1,6 +1,7 @@
 package com.axing.demo;
 
-import com.axing.demo.config.UserProperties;
+import com.axing.demo.bean.HumitureRuleProperties;
+import com.axing.demo.bean.MyProperties;
 import com.axing.same.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ class MvcApplicationTest {
     @Autowired
     UserService userService;
     @Autowired
-    private UserProperties userProperties;
+    private MyProperties myProperties;
 
     // @Autowired
     // private UserService userService;
@@ -24,9 +25,17 @@ class MvcApplicationTest {
 
     @Test
     void test1() {
-        System.out.println("userConfig.getList() = " + userProperties);
-        String username = userProperties.getUser().username();
+        System.out.println("userConfig.getList() = " + myProperties);
+        String username = myProperties.getUser().username();
         System.out.println("username = " + username);
+    }
+
+    @Autowired
+    private HumitureRuleProperties humitureRuleProperties;
+
+    @Test
+    void test2(){
+        System.out.println("humitureRuleProperties = " + humitureRuleProperties);
     }
 
     @Test
