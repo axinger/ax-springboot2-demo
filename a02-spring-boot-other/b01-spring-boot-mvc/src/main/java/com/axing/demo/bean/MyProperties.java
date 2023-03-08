@@ -1,6 +1,6 @@
 package com.axing.demo.bean;
 
-import com.axing.common.util.factory.YamlAndPropertySourceFactory;
+import com.axing.common.util.factory.YamlPropertySourceFactory;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties(prefix = "my")
 // 需要自定义yaml解析
-@PropertySource(value = {"classpath:my.yml"}, factory = YamlAndPropertySourceFactory.class)
+@PropertySource(value = {"classpath:my.yml"}, factory = YamlPropertySourceFactory.class)
 public class MyProperties {
     private User user;
 
