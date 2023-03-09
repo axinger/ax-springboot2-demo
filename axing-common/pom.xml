@@ -40,6 +40,7 @@
         <module>axing-json-starter</module>
         <module>axing-weblog-starter</module>
         <module>axing-excel-starter</module>
+        <module>axing-dto-starter</module>
     </modules>
 
     <dependencies>

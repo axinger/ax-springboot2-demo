@@ -22,6 +22,8 @@ class MvcApplicationTest {
     // void test_UserService(){
     //     System.out.println("userService = " + userService);
     // }
+    @Autowired
+    private HumitureRuleProperties humitureRuleProperties;
 
     @Test
     void test1() {
@@ -30,11 +32,11 @@ class MvcApplicationTest {
         System.out.println("username = " + username);
     }
 
-    @Autowired
-    private HumitureRuleProperties humitureRuleProperties;
-
     @Test
-    void test2(){
+    void test2() {
+        HumitureRuleProperties.HumidityDto humidity = humitureRuleProperties.humidity();
+        System.out.println("humidity = " + humidity);
+        System.out.println("humitureRuleProperties.humidity().max() = " + humitureRuleProperties.humidity().max());
         System.out.println("humitureRuleProperties = " + humitureRuleProperties);
     }
 
