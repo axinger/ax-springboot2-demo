@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.TreeSet;
 
 public class StringTest {
 
@@ -18,6 +19,14 @@ public class StringTest {
     private Long totalSpent;
 
     public static void main(String[] args) {
+
+        TreeSet<String> set = new TreeSet<>();
+
+        set.add("3");
+        set.add("1");
+        set.add("10");
+        System.out.println("set = " + set);
+
         StringTest test = new StringTest();
         test.change(test.string, test.chars);
         System.out.println("test.string = " + test.string);

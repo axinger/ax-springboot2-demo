@@ -53,6 +53,4 @@ class Student implements Man, People {
         Man.super.eat();
 
     }
-
-
 }
