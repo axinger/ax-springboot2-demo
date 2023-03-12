@@ -69,14 +69,14 @@ class BookServiceTest {
 
         LambdaQueryChainWrapper<BookEntity> wrapper = bookService.lambdaQuery();
 
-        wrapper.or(w->{
-            w.eq(BookEntity::getBookName,"海底两万里")
-                    .eq(BookEntity::getBookPrice,10);
+        wrapper.or(w -> {
+            w.eq(BookEntity::getBookName, "海底两万里")
+                    .eq(BookEntity::getBookPrice, 10);
         });
 
-        wrapper.or(w->{
-            w.eq(BookEntity::getBookName,"一千零一夜")
-                    .eq(BookEntity::getBookPrice,20);
+        wrapper.or(w -> {
+            w.eq(BookEntity::getBookName, "一千零一夜")
+                    .eq(BookEntity::getBookPrice, 20);
         });
 
         List<BookEntity> list = wrapper.list();

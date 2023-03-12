@@ -15,6 +15,7 @@ import java.util.List;
 public class MyProperties {
     private User user;
     private List<User> list;
+
     /**
      * record 和顺序没有关系,要对应名称. 且不用static修饰
      *

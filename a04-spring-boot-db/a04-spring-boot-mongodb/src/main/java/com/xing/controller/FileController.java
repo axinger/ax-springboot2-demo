@@ -73,7 +73,7 @@ public class FileController {
         GridFsUpload<ObjectId> build = GridFsUpload.fromStream(file.getInputStream())
                 .filename(fileName)
                 .contentType(contentType)
-                .metadata(new Document(Map.of("name", "jim", "age", 10,"MD5","1111")))
+                .metadata(new Document(Map.of("name", "jim", "age", 10, "MD5", "1111")))
                 .build();
 
         ObjectId objectId = gridFsTemplate.store(build);

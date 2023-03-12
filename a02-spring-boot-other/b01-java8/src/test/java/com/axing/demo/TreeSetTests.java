@@ -2,15 +2,13 @@ package com.axing.demo;
 
 import org.junit.jupiter.api.Test;
 
-import javax.swing.tree.TreeNode;
-import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class TreeSetTests {
 
     @Test
-    void test1(){
+    void test1() {
         TreeSet<String> set = new TreeSet<>();
         set.add("2");
         set.add("1");
