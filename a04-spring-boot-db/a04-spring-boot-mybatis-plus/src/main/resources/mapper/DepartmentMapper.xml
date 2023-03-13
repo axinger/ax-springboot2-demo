@@ -7,7 +7,9 @@
     <resultMap id="BaseResultMap" type="com.axing.demo.domain.Department">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
 
+    <resultMap id="BaseResultMapOfEmployee" type="com.axing.demo.domain.Department" extends="BaseResultMap">
         <collection property="empList" ofType="com.axing.demo.domain.Employee">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
@@ -15,17 +17,16 @@
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
-
         </collection>
-
     </resultMap>
+
 
     <sql id="Base_Column_List">
         id
         ,name
     </sql>
 
-    <select id="listLeft" resultMap="BaseResultMap">
+    <select id="listLeft" resultMap="BaseResultMapOfEmployee">
         SELECT d.*,
                e.id      as e_id,
                e.name    as e_name,
@@ -42,7 +43,7 @@
       d.* 这样格式，只能用
       Wrappers.query().eq("d.id", 1)
       -->
-    <select id="listLeftSon" resultMap="BaseResultMap">
+    <select id="listLeftSon" resultMap="BaseResultMapOfEmployee">
 
         SELECT *
         FROM (SELECT d.*,
@@ -51,12 +52,12 @@
                      e.gender  as gender,
                      e.dept_id as dept_id
               FROM department d
-                       JOIN employee e ON e.dept_id = d.id) AS t
+                       LEFT JOIN employee e ON e.dept_id = d.id) AS t
             ${ew.customSqlSegment}
     </select>
 
     <!--    全表子查询-->
-    <select id="listAllSon" resultMap="BaseResultMap">
+    <select id="listWhere" resultMap="BaseResultMapOfEmployee">
         SELECT d.*, e.id as e_id, e.name as e_name, e.gender as gender, e.dept_id as dept_id
         FROM department d,
         employee e

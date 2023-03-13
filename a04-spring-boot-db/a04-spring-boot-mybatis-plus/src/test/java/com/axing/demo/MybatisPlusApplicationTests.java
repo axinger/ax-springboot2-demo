@@ -23,63 +23,9 @@ import java.util.List;
 class MybatisPlusApplicationTests {
 
     @Autowired
-    DepartmentService departmentService;
-
-    @Autowired
-    private EmployeeService employeeService;
-
-    @Autowired
     private SchoolService schoolService;
     @Autowired
     private RoomService roomService;
-
-    @Test
-    void test_save_Employee() {
-
-        String emStr = """
-                [
-                                
-                    {
-                        "deptId": 1,
-                        "email": "",
-                        "gender": 1,
-                        "id": 1,
-                        "name": "jim"
-                    }
-                    ,{
-                        "deptId": 2,
-                        "email": "",
-                        "gender": 1,
-                        "id": 2,
-                        "name": "tom"
-                    },
-                    {
-                        "deptId": 1,
-                        "email": "",
-                        "gender": 2,
-                        "id": 3,
-                        "name": "lili"
-                    }
-                ]
-                """;
-
-        String depStr = """
-                [
-                    {
-                        "id": 1,
-                        "name": "财务部"
-                    },
-                    {
-                        "id": 2,
-                        "name": "研发部"
-                    }
-                ]
-                """;
-
-        employeeService.saveBatch(JSON.parseArray(emStr, Employee.class));
-        departmentService.saveBatch(JSON.parseArray(depStr, Department.class));
-    }
-
 
     @Test
     void test_School_schoolList_可以() {
@@ -110,74 +56,4 @@ class MybatisPlusApplicationTests {
                 .list();
         System.out.println("list1 = " + list1);
     }
-
-
-    @Test
-    void test_Department_departByEmployeeList_不可以() {
-        // List<Department> list = departmentService.getDepartmentByEmployee(Wrappers.<Department>lambdaQuery()
-        //         .eq(Department::getId, 1));
-
-        List<Department> list = departmentService.departByEmployeeList(Wrappers.query()
-                .eq("d.id", 1));
-        System.out.println("list = " + list);
-
-    }
-
-    @Test
-    void test_Department_listLeft_可以() {
-        List<Department> list1 = departmentService.listLeft(Wrappers.query()
-                .eq("d.id", 1));
-        System.out.println("list1 = " + list1);
-    }
-
-    @Test
-    void test_Department_listLeft_不可以() {
-
-        // 不可以
-        List<Department> list2 = departmentService.listLeft(Wrappers.<Department>lambdaQuery()
-                .eq(Department::getId, 1));
-        System.out.println("list = " + list2);
-    }
-
-
-    /**
-     * 查询指定部门所有人
-     */
-    @Test
-    void test_Department_listLeftSon_可以() {
-        // 可以
-        List<Department> list2 = departmentService.listLeftSon(Wrappers.<Department>lambdaQuery()
-                .eq(Department::getId, 1)
-
-        );
-        System.out.println("list = " + list2);
-    }
-
-    @Test
-    void test6_2() {
-        List<Employee> list = employeeService.listLeftSon(Wrappers.<Employee>lambdaQuery()
-                .eq(Employee::getDeptId, 1)
-                .eq(Employee::getGender, Gender.female)
-        );
-        System.out.println("list = " + list);
-    }
-
-    @Test
-    void test_Department_listAllSon_不可以() {
-        // 不可以
-        LambdaQueryWrapper<Department> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(Department::getId, 1);
-        List<Department> list2 = departmentService.listAllSon(wrapper);
-        System.out.println("list = " + list2);
-    }
-
-    @Test
-    void test7_Department_listAllSon_可以() {
-        // 可以
-        QueryWrapper<Object> wrapper = Wrappers.query()
-                .eq("d.id", 1);
-        List<Department> list2 = departmentService.listAllSon(wrapper);
-        System.out.println("list = " + list2);
-    }
-
 }

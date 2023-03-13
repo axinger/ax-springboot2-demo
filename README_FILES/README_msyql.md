@@ -482,3 +482,18 @@ FROM
 GROUP BY
 	age
 ```
+
+返回表中没有的字段,
+```mysql
+select  id,name , '10岁' as age from user;
+```
+
+逆序分页查询
+需要传上次最后的一个值,每次查询,num始终为0
+```mysql
+select * from tb_order  WHERE id<4 order by order_id desc limit 0,2;
+```
+顺序查询,一般的格式
+```mysql
+select * from tb_order limit 2,2;
+```

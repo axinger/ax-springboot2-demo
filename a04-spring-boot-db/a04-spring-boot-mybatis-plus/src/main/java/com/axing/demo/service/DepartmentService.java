@@ -13,13 +13,24 @@ import java.util.List;
  */
 public interface DepartmentService extends IService<Department> {
 
-    List<Department> departByEmployeeList(Wrapper wrapper);
+    List<Department> departByEmployeeList(Wrapper<Department> wrapper);
 
-    List<Department> listLeft(Wrapper wrapper);
+    List<Department> listLeft(Wrapper<Department> wrapper);
 
-    List<Department> listLeftSon(Wrapper wrapper);
+    /**
+     * select 返回结果,再包装一个select
+     * @param wrapper
+     * @return
+     */
+    List<Department> listLeftSon(Wrapper<Department> wrapper);
 
-    List<Department> listAllSon(Wrapper wrapper);
+    /**
+     * 不支持 lambda 方法引用
+     * 使用where 左边会丢数据,不推荐
+     * @param wrapper
+     * @return
+     */
+    List<Department> listWhere(Wrapper<Department> wrapper);
 
 
 }

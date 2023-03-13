@@ -5,6 +5,7 @@ import com.axing.demo.mapper.EmployeeMapper;
 import com.axing.demo.service.EmployeeService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,10 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         implements EmployeeService {
 
     @Override
-    public List<Employee> listLeftSon(Wrapper wrapper) {
-        return this.baseMapper.listLeftSon(wrapper);
+    public List<Employee> leftDepartmentList(Wrapper wrapper) {
+        return this.baseMapper.leftDepartment(wrapper);
     }
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.axing.demo.service;
 
+import com.axing.demo.domain.Department;
 import com.axing.demo.domain.Employee;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -13,5 +14,5 @@ import java.util.List;
  */
 public interface EmployeeService extends IService<Employee> {
 
-    List<Employee> listLeftSon(Wrapper wrapper);
+    List<Employee> leftDepartmentList(Wrapper wrapper);
 }

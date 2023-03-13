@@ -10,12 +10,13 @@
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="gender" column="gender" jdbcType="INTEGER"/>
         <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
+    </resultMap>
 
-        <collection property="department" ofType="com.axing.demo.domain.Department">
+    <resultMap id="BaseResultMapOfDepartment" type="com.axing.demo.domain.Employee" extends="BaseResultMap">
+        <collection property="department" ofType="com.axing.demo.domain.Department" >
             <!--            含有相同的字段名-->
             <id property="id" column="d_id" jdbcType="BIGINT"/>
             <result property="name" column="d_name" jdbcType="VARCHAR"/>
-
         </collection>
     </resultMap>
 
@@ -25,13 +26,13 @@
         gender,dept_id
     </sql>
 
-    <select id="listLeftSon" resultMap="BaseResultMap">
+    <select id="leftDepartment" resultMap="BaseResultMapOfDepartment">
         SELECT *
         FROM (SELECT d.id   as d_id,
                      d.name as d_name,
                      e.*
               FROM department d
-                       JOIN employee e ON e.dept_id = d.id) AS t
+                      left JOIN employee e ON e.dept_id = d.id) AS t
             ${ew.customSqlSegment}
     </select>
 </mapper>

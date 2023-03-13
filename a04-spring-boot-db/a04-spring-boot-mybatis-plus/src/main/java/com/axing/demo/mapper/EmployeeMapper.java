@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
-    List<Employee> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Employee> leftDepartment(@Param(Constants.WRAPPER) Wrapper<Employee> wrapper);
 }
 
 

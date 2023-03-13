@@ -1,10 +1,14 @@
 package com.axing.demo.service.impl;
 
+import com.axing.demo.domain.BookEntity;
 import com.axing.demo.domain.Department;
 import com.axing.demo.mapper.DepartmentMapper;
 import com.axing.demo.service.DepartmentService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.toolkit.ChainWrappers;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,23 +23,22 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         implements DepartmentService {
 
     @Override
-    public List<Department> departByEmployeeList(Wrapper wrapper) {
+    public List<Department> departByEmployeeList(Wrapper<Department> wrapper) {
         return this.baseMapper.departByEmployeeList(wrapper);
     }
 
     @Override
-    public List<Department> listLeft(Wrapper wrapper) {
+    public List<Department> listLeft(Wrapper<Department> wrapper) {
         return this.baseMapper.listLeft(wrapper);
     }
 
     @Override
-    public List<Department> listLeftSon(Wrapper wrapper) {
+    public List<Department> listLeftSon(Wrapper<Department> wrapper) {
         return this.baseMapper.listLeftSon(wrapper);
     }
-
     @Override
-    public List<Department> listAllSon(Wrapper wrapper) {
-        return this.baseMapper.listAllSon(wrapper);
+    public List<Department> listWhere(Wrapper<Department> wrapper) {
+        return this.baseMapper.listWhere(wrapper);
     }
 }
 
