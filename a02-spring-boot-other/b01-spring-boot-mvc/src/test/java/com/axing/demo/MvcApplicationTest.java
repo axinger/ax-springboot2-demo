@@ -28,7 +28,7 @@ class MvcApplicationTest {
     @Test
     void test1() {
         System.out.println("userConfig.getList() = " + myProperties);
-        String username = myProperties.getUser().username();
+        String username = myProperties.user().username();
         System.out.println("username = " + username);
     }
 

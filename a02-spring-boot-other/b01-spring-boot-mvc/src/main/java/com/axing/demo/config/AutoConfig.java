@@ -15,4 +15,5 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
         MyProperties.class
 })
 public class AutoConfig {
+
 }

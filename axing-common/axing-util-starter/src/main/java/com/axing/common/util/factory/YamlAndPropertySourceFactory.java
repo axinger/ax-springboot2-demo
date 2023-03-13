@@ -17,9 +17,6 @@ import java.util.Properties;
 public class YamlAndPropertySourceFactory extends DefaultPropertySourceFactory {
     @Override
     public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
-        if (resource == null) {
-            return super.createPropertySource(name, resource);
-        }
         Resource resourceResource = resource.getResource();
         if (!resourceResource.exists()) {
             return new PropertiesPropertySource(null, new Properties());

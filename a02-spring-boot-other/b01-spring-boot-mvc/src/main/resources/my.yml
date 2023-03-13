@@ -2,7 +2,7 @@
 my:
   user:
     username: lili
-    password: 132456
+    password: 123456
   list:
     - username: jim
       password: 132456
