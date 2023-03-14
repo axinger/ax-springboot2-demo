@@ -84,6 +84,7 @@
         <module>a32-springboot3</module>
         <module>axing-cloud</module>
         <module>a33-docker-package</module>
+        <module>a34-keycloak</module>
     </modules>
 
     <dependencies>
