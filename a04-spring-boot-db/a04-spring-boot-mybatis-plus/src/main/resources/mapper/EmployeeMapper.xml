@@ -13,7 +13,7 @@
     </resultMap>
 
     <resultMap id="BaseResultMapOfDepartment" type="com.axing.demo.domain.Employee" extends="BaseResultMap">
-        <collection property="department" ofType="com.axing.demo.domain.Department" >
+        <collection property="department" ofType="com.axing.demo.domain.Department">
             <!--            含有相同的字段名-->
             <id property="id" column="d_id" jdbcType="BIGINT"/>
             <result property="name" column="d_name" jdbcType="VARCHAR"/>
@@ -32,7 +32,7 @@
                      d.name as d_name,
                      e.*
               FROM department d
-                      left JOIN employee e ON e.dept_id = d.id) AS t
+                       left JOIN employee e ON e.dept_id = d.id) AS t
             ${ew.customSqlSegment}
     </select>
 </mapper>

@@ -19,6 +19,7 @@ public interface DepartmentService extends IService<Department> {
 
     /**
      * select 返回结果,再包装一个select
+     *
      * @param wrapper
      * @return
      */
@@ -27,6 +28,7 @@ public interface DepartmentService extends IService<Department> {
     /**
      * 不支持 lambda 方法引用
      * 使用where 左边会丢数据,不推荐
+     *
      * @param wrapper
      * @return
      */

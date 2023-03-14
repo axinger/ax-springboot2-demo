@@ -17,7 +17,7 @@ public class LoginController {
 
     @GetMapping("/a")
     public Object index() {
-       return List.of(1);
+        return List.of(1);
     }
 
     @GetMapping("/articles")

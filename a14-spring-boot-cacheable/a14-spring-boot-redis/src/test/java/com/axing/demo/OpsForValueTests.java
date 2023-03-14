@@ -7,11 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Range;
-import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -87,7 +84,7 @@ public class OpsForValueTests {
 
 
     @Test
-    void hash(){
+    void hash() {
         String id = "jim";
         System.out.println("HashUtil.apHash(id) = " + HashUtil.apHash(id));
         System.out.println("HashUtil.additiveHash(id,1) = " + HashUtil.additiveHash(id, 1));
@@ -96,20 +93,20 @@ public class OpsForValueTests {
     }
 
     @Test
-    void setBit(){
+    void setBit() {
         String key = "bitmap";
-        redisTemplate.opsForValue().setBit(key,0,true);
-        redisTemplate.opsForValue().setBit(key,1,true);
-        redisTemplate.opsForValue().setBit(key,4,true);
-        redisTemplate.opsForValue().setBit(key,2,true);
-        redisTemplate.opsForValue().setBit(key,5,true);
+        redisTemplate.opsForValue().setBit(key, 0, true);
+        redisTemplate.opsForValue().setBit(key, 1, true);
+        redisTemplate.opsForValue().setBit(key, 4, true);
+        redisTemplate.opsForValue().setBit(key, 2, true);
+        redisTemplate.opsForValue().setBit(key, 5, true);
 
-        System.out.println(redisTemplate.opsForValue().getBit(key,2));
-        System.out.println(redisTemplate.opsForValue().getBit(key,3));
-        System.out.println(redisTemplate.opsForValue().getBit(key,5));
+        System.out.println(redisTemplate.opsForValue().getBit(key, 2));
+        System.out.println(redisTemplate.opsForValue().getBit(key, 3));
+        System.out.println(redisTemplate.opsForValue().getBit(key, 5));
 
         // 获取当天签到人数
-        Long count = redisTemplate.execute((RedisCallback<Long>) conn ->  conn.bitCount(key.getBytes()));
+        Long count = redisTemplate.execute((RedisCallback<Long>) conn -> conn.bitCount(key.getBytes()));
 
         // 获取签到用户的列表
         List<Integer> userList = new ArrayList<>();
@@ -135,19 +132,19 @@ public class OpsForValueTests {
     }
 
     @Test
-    void setBit_has(){
-        String key = "sign:"+LocalDate.now();
+    void setBit_has() {
+        String key = "sign:" + LocalDate.now();
         String id = "jim";
         int offset = HashUtil.fnvHash(id);
-        redisTemplate.opsForValue().setBit(key,offset,true);
-        System.out.println(redisTemplate.opsForValue().getBit(key,offset));
+        redisTemplate.opsForValue().setBit(key, offset, true);
+        System.out.println(redisTemplate.opsForValue().getBit(key, offset));
     }
 
     @Test
-    void setBit_has_get(){
-        String key = "sign:"+LocalDate.now();
+    void setBit_has_get() {
+        String key = "sign:" + LocalDate.now();
         String id = "jim";
         int offset = HashUtil.fnvHash(id);
-        System.out.println(redisTemplate.opsForValue().getBit(key,offset));
+        System.out.println(redisTemplate.opsForValue().getBit(key, offset));
     }
 }
