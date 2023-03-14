@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Range;
+import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,6 +107,31 @@ public class OpsForValueTests {
         System.out.println(redisTemplate.opsForValue().getBit(key,2));
         System.out.println(redisTemplate.opsForValue().getBit(key,3));
         System.out.println(redisTemplate.opsForValue().getBit(key,5));
+
+        // 获取当天签到人数
+        Long count = redisTemplate.execute((RedisCallback<Long>) conn ->  conn.bitCount(key.getBytes()));
+
+        // 获取签到用户的列表
+        List<Integer> userList = new ArrayList<>();
+        Long pos = redisTemplate.execute((RedisCallback<Long>) conn -> conn.bitPos(key.getBytes(), true));
+        // while (pos != -1) {
+        //     userList.add(pos.intValue());
+        //     Long finalPos = pos;
+        //     pos = redisTemplate.execute((RedisCallback<Long>) conn ->{
+        //       RedisZSetCommands.Range<Long> range = new RedisZSetCommands.Range();
+        //
+        //
+        //        return conn.bitPos(key.getBytes(), true, range);
+        //
+        //     });
+        // }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("count", count);
+        result.put("userList", userList);
+        System.out.println("result = " + result);
+
+
     }
 
     @Test
