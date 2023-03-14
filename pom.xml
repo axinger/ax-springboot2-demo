@@ -83,6 +83,7 @@
         <module>a31-multi-tenant</module>
         <module>a32-springboot3</module>
         <module>axing-cloud</module>
+        <module>a33-docker-package</module>
     </modules>
 
     <dependencies>

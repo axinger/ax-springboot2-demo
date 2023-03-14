@@ -1,15 +1,19 @@
 package com.axing.demo;
 
+import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.StrUtil;
 import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Range;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -17,6 +21,9 @@ import java.util.concurrent.TimeUnit;
 public class OpsForValueTests {
     @Autowired
     private RedisTemplate<String, User> redisTemplateUser;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     private User getUser(Integer id) {
         final User.Book book = User.Book.builder()
@@ -75,5 +82,46 @@ public class OpsForValueTests {
         // 获取原来key的value, 再将新的value写入
         User andSet = redisTemplateUser.opsForValue().getAndSet(getUserKey(1), getUser(1));
         log.info("andSet = {}", andSet);
+    }
+
+
+    @Test
+    void hash(){
+        String id = "jim";
+        System.out.println("HashUtil.apHash(id) = " + HashUtil.apHash(id));
+        System.out.println("HashUtil.additiveHash(id,1) = " + HashUtil.additiveHash(id, 1));
+        System.out.println("HashUtil.elfHash(id) = " + HashUtil.elfHash(id));
+        System.out.println("HashUtil.fnvHash(id) = " + HashUtil.fnvHash(id));
+    }
+
+    @Test
+    void setBit(){
+        String key = "bitmap";
+        redisTemplate.opsForValue().setBit(key,0,true);
+        redisTemplate.opsForValue().setBit(key,1,true);
+        redisTemplate.opsForValue().setBit(key,4,true);
+        redisTemplate.opsForValue().setBit(key,2,true);
+        redisTemplate.opsForValue().setBit(key,5,true);
+
+        System.out.println(redisTemplate.opsForValue().getBit(key,2));
+        System.out.println(redisTemplate.opsForValue().getBit(key,3));
+        System.out.println(redisTemplate.opsForValue().getBit(key,5));
+    }
+
+    @Test
+    void setBit_has(){
+        String key = "sign:"+LocalDate.now();
+        String id = "jim";
+        int offset = HashUtil.fnvHash(id);
+        redisTemplate.opsForValue().setBit(key,offset,true);
+        System.out.println(redisTemplate.opsForValue().getBit(key,offset));
+    }
+
+    @Test
+    void setBit_has_get(){
+        String key = "sign:"+LocalDate.now();
+        String id = "jim";
+        int offset = HashUtil.fnvHash(id);
+        System.out.println(redisTemplate.opsForValue().getBit(key,offset));
     }
 }
