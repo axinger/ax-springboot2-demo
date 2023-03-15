@@ -39,10 +39,10 @@ spring:
 #
 #
 axing:
-  advice:
-    print-stack-trace: true
-    filter-package:
-      - a.b.c
+  #  advice:
+  #    print-stack-trace: true
+  #    filter-package:
+  #      - a.b.c
 
 
   doc:

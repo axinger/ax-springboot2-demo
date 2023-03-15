@@ -1,0 +1,13 @@
+server:
+  port: 12033
+
+spring:
+  profiles:
+    active: dev
+
+axing:
+  axing:
+    doc:
+      title: docker打包项目
+      description: docker打包项目
+      version: @version@

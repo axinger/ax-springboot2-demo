@@ -84,12 +84,7 @@ public class Result<T> implements Serializable {
         return build(resultCodeEnum, data);
     }
 
-
     public static <T> Result<T> fail(String message) {
-        return build(ResultCodeEnum.FAIL.getCode(), message);
-    }
-
-    public static <T> Result<T> failMessage(String message) {
         return build(ResultCodeEnum.FAIL.getCode(), message);
     }
 
@@ -105,16 +100,5 @@ public class Result<T> implements Serializable {
     public Result<T> code(Integer code) {
         this.setCode(code);
         return this;
-    }
-
-    /**
-     * 不序列化
-     *
-     * @return 状态是否等于200
-     */
-    @Transient
-    @JsonIgnore
-    public boolean isSuccess() {
-        return this.getCode().intValue() == ResultCodeEnum.SUCCESS.getCode().intValue();
     }
 }

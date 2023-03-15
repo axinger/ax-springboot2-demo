@@ -12,9 +12,6 @@
     <artifactId>a33-docker-package</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jib-maven-plugin.version>3.3.1</jib-maven-plugin.version>
         <docker.registry.username>axingrun</docker.registry.username>
         <docker.registry.password>X631122x123</docker.registry.password>
@@ -29,11 +26,30 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-json-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-advice-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.axing</groupId>
+            <artifactId>axing-doc-starter</artifactId>
+        </dependency>
     </dependencies>
 
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <!-- maven 打包时跳过测试 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -51,6 +67,8 @@
             <!--                    <target>${maven.compiler.target}</target>-->
             <!--                </configuration>-->
             <!--            </plugin>-->
+
+            <!--      打包上传值docker hub      -->
             <!--            <plugin>-->
             <!--                <groupId>com.google.cloud.tools</groupId>-->
             <!--                <artifactId>jib-maven-plugin</artifactId>-->
@@ -60,7 +78,7 @@
             <!--                        <image>eclipse-temurin:17-jre-jammy</image>-->
             <!--                    </from>-->
             <!--                    <to>-->
-            <!--&lt;!&ndash;                        <image>registry.hub.docker.com/axingrun/demo</image>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                        <image>registry.hub.docker.com/axingrun/demo</image>&ndash;&gt;-->
             <!--                        <image>axingrun/demo</image>-->
             <!--                        <tags>-->
             <!--                            &lt;!&ndash;版本号&ndash;&gt;-->

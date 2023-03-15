@@ -94,7 +94,7 @@ public class GlobalException {
             }
         }, error -> Optional.of(error).map(ObjectError::getDefaultMessage).orElse(""), (key1, key2) -> key2));
         // final Result<Map<String, Object>> result = Result.build(201, map, "参数校验异常");
-        Result<Object> result = Result.failMessage(map.toString());
+        Result<Object> result = Result.fail(map.toString());
         // Result<Object> result = Result.fail(map);
         log.error("方法参数校验异常 result =  {}", result);
         return result;
