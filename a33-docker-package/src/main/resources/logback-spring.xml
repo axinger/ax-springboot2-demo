@@ -4,8 +4,8 @@
     <!--    <contextName>logback-demo</contextName>-->
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
-    <!--  /logs，在跟目录, logs 在java包目录  -->
-    <springProperty scope="context" name="logback.dir" source="logging.file.path" defaultValue="/logs"/>
+    <!--  /logs，在跟目录, ./logs 或者 logs 在java包目录  -->
+    <springProperty scope="context" name="logback.dir" source="logging.file.path" defaultValue="./logs"/>
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->

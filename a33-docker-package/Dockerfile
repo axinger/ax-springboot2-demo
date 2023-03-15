@@ -1,8 +1,9 @@
 # 基础镜像使用java
-#FROM openjdk:8-jdk-alpine
+# 使用 docker exec -it ID /bin/sh
 FROM eclipse-temurin:17-jre-alpine
-# bin/bash 有 mkdir命令 ,使用 docker exec -it ID /bin/sh
+# bin/bash 有 mkdir命令
 #FROM eclipse-temurin:17-jre-jammy
+
 #作者
 MAINTAINER 阿星
 
@@ -11,25 +12,23 @@ MAINTAINER 阿星
 
 VOLUME /logs
 VOLUME /data
-
-ENV APP_NAME=server.jar
-ENV APP_PATH=/app
+#ENV APP_NAME=server.jar
 
 #设置工作目录，设置了工作目录，它将会作用于该指令后面的 RUN, CMD, ENTRYPOINT, COPY , ADD 指令
-WORKDIR ${APP_PATH}
+#WORKDIR /app
 
 #RUN bash -c 'mkdir -p {config,target}'
 RUN sh -c 'mkdir config target'
 
 #将配置文件添加到容器中
-COPY /docker/application.yml application.yml
+COPY /docker/application.yml /config/application.yml
 
 #将本地文件添加到容器中
-COPY /target/*.jar ${APP_NAME}
+COPY /target/*.jar /target/server.jar
 
 #配置容器，使其可执行化
 # 自动识别config/application.yml
-ENTRYPOINT java -jar ${APP_NAME}
+ENTRYPOINT java -jar /target/server.jar
 
 #配置时区，不然会发现打包到docker中启动的容器日志里的时间是差8个小时的
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
