@@ -1,6 +1,0 @@
-server:
-  port: 8091
-spring:
-  application:
-    name: name_app_dev
-    description: 开发环境
