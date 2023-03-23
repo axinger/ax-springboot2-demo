@@ -7,13 +7,11 @@ import com.axing.demo.model.PersonDTO;
 import com.axing.demo.model.UserDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "UserController")
+@RequestMapping("/a")
 public class UserController {
 
     @GetMapping("/user")
