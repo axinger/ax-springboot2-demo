@@ -30,7 +30,7 @@ COPY /target/*.jar /target/server.jar
 # 自动识别config/application.yml
 
 # 指定环境
-ENTRYPOINT java -jar -Dspring.profiles.active=prd /target/server.jar
+#ENTRYPOINT java -jar -Dspring.profiles.active=prd /target/server.jar
 
 # 不指定,用application.yml 控制
 ENTRYPOINT java -jar  /target/server.jar
