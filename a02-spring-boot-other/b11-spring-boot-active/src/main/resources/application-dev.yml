@@ -1,7 +1,6 @@
 server:
   port: 8091
-
 spring:
   application:
     name: name_app_dev
-    boot-name: 开发环境
+    description: 开发环境

@@ -1,0 +1,28 @@
+version: 1.0.0
+server:
+  port: 8080
+
+spring:
+  application:
+    version: 1.0.1
+    description: 开发环境
+
+axing:
+  config:
+    username: jim
+    password: 1234
+  person:
+    id: 1
+
+show:
+  # 湿度
+  humidity:
+    min: 40.0
+    max: 65.0
+  # 温度
+  temperature:
+    min: 150
+    max: 300
+
+
+

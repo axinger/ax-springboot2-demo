@@ -1,0 +1,7 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: name_app_prd
+    description: 生产环境

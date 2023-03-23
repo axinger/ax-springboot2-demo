@@ -21,14 +21,14 @@ VOLUME /data
 RUN sh -c 'mkdir config target'
 
 #将配置文件添加到容器中
-COPY /docker/application.yml /config/application.yml
+#COPY /docker/application.yml /config/application.yml
 
 #将本地文件添加到容器中
 COPY /target/*.jar /target/server.jar
 
 #配置容器，使其可执行化
 # 自动识别config/application.yml
-ENTRYPOINT java -jar /target/server.jar
+ENTRYPOINT java -jar -Dspring.profiles.active=prd /target/server.jar
 
 #配置时区，不然会发现打包到docker中启动的容器日志里的时间是差8个小时的
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone

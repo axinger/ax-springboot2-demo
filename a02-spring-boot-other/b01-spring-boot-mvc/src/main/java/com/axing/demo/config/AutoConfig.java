@@ -1,5 +1,6 @@
 package com.axing.demo.config;
 
+import com.axing.demo.bean.ApplicationInfo;
 import com.axing.demo.bean.HumitureRuleProperties;
 import com.axing.demo.bean.MyProperties;
 import com.axing.demo.model.Person;
@@ -12,7 +13,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
         UserDTO.class,
         Person.class,
         HumitureRuleProperties.class,
-        MyProperties.class
+        MyProperties.class,
+        ApplicationInfo.class
 })
 public class AutoConfig {
 

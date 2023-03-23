@@ -1,9 +1,10 @@
-package com.axing.demo;
+package com.axing.demo.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,27 +19,27 @@ import java.util.Map;
 @RestController
 public class TestController {
 
-    @Value("${server.port}")
+    @Value("${spring.profiles.port:8080}")
     Integer port;
 
     @Value("${spring.profiles.active}")
     String active;
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:空}")
     String name;
 
-    @Value("${spring.application.boot-name:空}")
+    @Value("${spring.application.description}")
     String bootName;
 
 
     @GetMapping("/")
     public Map<String, Object> test() {
-        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
+        map.put("time", LocalDateTime.now());
         map.put("port", port);
         map.put("active", active);
         map.put("name", name);
         map.put("bootName", bootName);
-        map.put("name2", "22222");
         return map;
     }
 }

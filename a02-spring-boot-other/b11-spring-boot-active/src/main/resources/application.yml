@@ -1,5 +1,12 @@
+
+server:
+  port: 8080
 spring:
   profiles:
     # 这个用来打包
     #    active: @env@
     active: dev
+
+  application:
+    name: name_app
+    description: 总环境

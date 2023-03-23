@@ -1,29 +1,7 @@
-version: 1.0.0
-
-
-axing:
-  config:
-    username: jim
-    password: 1234
-  person:
-    id: 1
-
-#user:
-#  list:
-#    - username: user1
-#      password: 132456
-#    - username: user222
-#      password: 132456
-
-show:
-  # 湿度
-  humidity:
-    min: 40.0
-    max: 65.0
-  # 温度
-  temperature:
-    min: 15
-    max: 30
-
+spring:
+  profiles:
+    active: dev
+    # 这个用来打包
+#    active: @env@
 
 

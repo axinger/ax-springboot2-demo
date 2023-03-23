@@ -9,14 +9,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <!--        <version>2.7.5</version>-->
-        <version>3.0.2</version>
+        <version>3.0.4</version>
     </parent>
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
     <!--前3位与spring-boot版本号对应    -->
-    <version>3.0.2.1</version>
+    <version>3.0.4.1</version>
     <name>spring-boot 案例</name>
     <description>个人代码总结</description>
     <!--pom总的父工程-->
@@ -32,20 +31,18 @@
         <!--        <spring-cloud-alibaba-dependencies.version>2022.0.0.0-RC1</spring-cloud-alibaba-dependencies.version>-->
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <okhttp.version>4.10.0</okhttp.version>
-        <mybatis.version>3.0.1</mybatis.version>
+        <mybatis-starter.version>3.0.1</mybatis-starter.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <guava.version>31.1-jre</guava.version>
         <hutool.version>5.8.11</hutool.version>
         <fastjson2.version>2.0.23</fastjson2.version>
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <druid.version>1.2.15</druid.version>
         <netty-all.version>4.1.87.Final</netty-all.version>
-        <!--                <jackson.version>2.14.0</jackson.version>-->
-        <!--                <jackson-bom.version>2.14.0</jackson-bom.version>-->
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
         <snakeyaml.version>1.33</snakeyaml.version>
-        <springdoc.version>1.6.13</springdoc.version>
+        <springdoc.version>1.6.15</springdoc.version>
     </properties>
 
 
@@ -424,11 +421,16 @@
                 <version>3.12.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.5.13</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
+                <version>${mybatis-starter.version}</version>
             </dependency>
 
             <dependency>
@@ -488,59 +490,15 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc.version}</version>
-            </dependency>
-
-            <!--            <dependency>-->
-            <!--                <groupId>org.springdoc</groupId>-->
-            <!--                <artifactId>springdoc-openapi-common</artifactId>-->
-            <!--                <version>${springdoc.version}</version>-->
-            <!--                <scope>compile</scope>-->
-            <!--            </dependency>-->
-
-            <!--            <dependency>-->
-            <!--                <groupId>org.springdoc</groupId>-->
-            <!--                <artifactId>springdoc-openapi-webmvc-core</artifactId>-->
-            <!--                <version>${springdoc.version}</version>-->
-            <!--            </dependency>-->
-
-            <!--            <dependency>-->
-            <!--                <groupId>org.springdoc</groupId>-->
-            <!--                <artifactId>springdoc-openapi-security</artifactId>-->
-            <!--                <version>${springdoc.version}</version>-->
-            <!--            </dependency>-->
-
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>2.0.0</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-common -->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-common</artifactId>
-                <version>2.0.0</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-springdoc-ui</artifactId>
-                <version>3.0.3</version>
-            </dependency>
-            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
                 <version>3.2.1</version>
             </dependency>
 
             <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>3.5.11</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>2.0.4</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -569,6 +527,19 @@
                     <generateBackupPoms>false</generateBackupPoms>
                 </configuration>
             </plugin>
+
+            <!--跳过测试-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
+
+
+
 </project>
