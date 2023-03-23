@@ -34,15 +34,14 @@
         <mybatis-starter.version>3.0.1</mybatis-starter.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.8.11</hutool.version>
-        <fastjson2.version>2.0.23</fastjson2.version>
+        <hutool.version>5.8.15</hutool.version>
+        <fastjson2.version>2.0.26</fastjson2.version>
         <lombok.version>1.18.26</lombok.version>
         <druid.version>1.2.15</druid.version>
         <netty-all.version>4.1.87.Final</netty-all.version>
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
-        <snakeyaml.version>1.33</snakeyaml.version>
-        <springdoc.version>1.6.15</springdoc.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
 
 
