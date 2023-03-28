@@ -4,7 +4,6 @@
     <!--    <contextName>logback-demo</contextName>-->
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
-    <!--  /logs，在跟目录, ./logs 或者 logs 在java包目录  -->
     <springProperty scope="context" name="logback.dir" source="logging.file.path" defaultValue="./logs"/>
 
     <!-- 彩色日志 -->
@@ -56,7 +55,7 @@
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
-            <!--<totalSizeCap>1GB</totalSizeCap>-->
+            <!--<totalSizeCap>10GB</totalSizeCap>-->
         </rollingPolicy>
         <!-- 追加方式记录日志 -->
         <append>true</append>
@@ -89,7 +88,7 @@
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
-            <!--<totalSizeCap>1GB</totalSizeCap>-->
+            <!--<totalSizeCap>10GB</totalSizeCap>-->
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
@@ -120,7 +119,7 @@
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
-            <!--<totalSizeCap>1GB</totalSizeCap>-->
+            <!--<totalSizeCap>10GB</totalSizeCap>-->
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
@@ -151,7 +150,7 @@
             <!--只保留最近90天的日志-->
             <maxHistory>90</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
-            <!--<totalSizeCap>1GB</totalSizeCap>-->
+            <!--<totalSizeCap>10GB</totalSizeCap>-->
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
