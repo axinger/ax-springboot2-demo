@@ -1,22 +1,17 @@
-package com.axing.demo.controller;
+package com.axing.demo.service;
 
 import com.axing.demo.model.User;
-import com.axing.demo.service.MQProducerService;
-import org.apache.rocketmq.client.producer.SendResult;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@RestController
-@RequestMapping("/rocketmq")
-public class RocketMQController {
+@SpringBootTest
+class MQProducerServiceTest {
 
     @Autowired
     private MQProducerService mqProducerService;
 
-    @GetMapping("/send")
+    @Test
     void send() {
         User user = new User();
         user.setName("jim");
@@ -24,7 +19,7 @@ public class RocketMQController {
         mqProducerService.send(user);
     }
 
-    @GetMapping("/sendMsg")
+    @Test
     void sendMsg() {
         User user = new User();
         user.setName("jim");
@@ -32,7 +27,7 @@ public class RocketMQController {
         mqProducerService.sendMsg(user);
     }
 
-    @GetMapping("/sendAsyncMsg")
+    @Test
     void sendAsyncMsg() {
         User user = new User();
         user.setName("jim");
@@ -40,15 +35,15 @@ public class RocketMQController {
         mqProducerService.sendAsyncMsg(user);
     }
 
-    @GetMapping("/sendDelayMsg")
+    @Test
     void sendDelayMsg() {
         User user = new User();
         user.setName("延迟消息");
         user.setAge(10);
-        mqProducerService.sendDelayMsg(user,2);
+        mqProducerService.sendDelayMsg(user,5);
     }
 
-    @GetMapping("/sendOneWayMsg")
+    @Test
     void sendOneWayMsg() {
         User user = new User();
         user.setName("jim");
@@ -56,10 +51,10 @@ public class RocketMQController {
         mqProducerService.sendOneWayMsg(user);
     }
 
-    @GetMapping("/sendTagMsg")
+    @Test
     void sendTagMsg() {
         User user = new User();
-        user.setName("带有tag的字符消息");
+        user.setName("jim");
         user.setAge(10);
         mqProducerService.sendTagMsg(user);
     }
