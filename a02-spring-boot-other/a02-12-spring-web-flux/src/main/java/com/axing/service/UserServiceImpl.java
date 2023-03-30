@@ -6,6 +6,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Flux<User> getAllUser() {
+    public Flux<Object> getAllUser() {
         User user1 = User.builder()
                 .id(1)
                 .name("name" + 1)
@@ -31,11 +32,28 @@ public class UserServiceImpl implements UserService {
                 .id(2)
                 .name("name" + 2)
                 .build();
+        return Flux.fromIterable(List.of(user1,user2));
 
-        List<User> list = List.of(user1, user2);
-
-        return Flux.fromIterable(list);
+        // List<CompletableFuture<User>> list = List.of(getUserBy(1), getUserBy(2));
+        // return Flux.fromStream(list.stream()).map(val -> val.join());
     }
+
+    public CompletableFuture<User> getUserBy(int time) {
+
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(time);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            User user = User.builder()
+                    .id(time)
+                    .name("name" + time)
+                    .build();
+            return user;
+        });
+    }
+
 
     @Override
     public Mono<Void> addUser(Mono<User> userMono) {

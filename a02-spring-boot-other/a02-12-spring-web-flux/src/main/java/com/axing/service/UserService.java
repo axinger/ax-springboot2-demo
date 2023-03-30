@@ -10,7 +10,7 @@ public interface UserService {
     Mono<User> getUserById(Integer id);
 
     // 查询所有用户 Flux 多个返回值
-    Flux<User> getAllUser();
+    Flux<Object> getAllUser();
 
 
     // 添加用户, 注意 参数类型 Mono<User>

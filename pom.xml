@@ -44,7 +44,6 @@
         <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
 
-
     <modules>
         <module>axing-common</module>
         <module>a01-spring-boot-master</module>
@@ -110,7 +109,6 @@
             <artifactId>guava</artifactId>
         </dependency>
     </dependencies>
-
 
     <dependencyManagement>
         <dependencies>
@@ -532,6 +530,5 @@
 
         </plugins>
     </build>
-
 
 </project>

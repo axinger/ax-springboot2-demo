@@ -41,7 +41,7 @@ public class UserHandler {
 
     public Mono<ServerResponse> getAllUser(ServerRequest request) {
 
-        Flux<User> allUser = userService.getAllUser();
+        Flux<Object> allUser = userService.getAllUser();
 
         return ServerResponse.ok().body(BodyInserters.fromValue(allUser));
 
