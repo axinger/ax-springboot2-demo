@@ -642,10 +642,19 @@ public class StreamTest {
             }
         };
 
-        ArrayList<Person> collect = list.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getAge))), ArrayList::new));
+        // 单个属性去重
+        ArrayList<Person> collect = list.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(
+                                Comparator.comparing(Person::getAge))), ArrayList::new));
         System.out.println("去重年龄重复的 = " + collect);
 
-
+        // 多个属性去重
+        ArrayList<Person> collect2 = list.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(
+                                Comparator.comparing(p -> p.getName() + ";" + p.getAge()))), ArrayList::new));
+        System.out.println("多个属性去重 = " + collect2);
         /// 顺序流
         list.stream().forEach(System.out::println);
 
