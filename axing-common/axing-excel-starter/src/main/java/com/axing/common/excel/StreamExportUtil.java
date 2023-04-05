@@ -1,9 +1,9 @@
 package com.axing.common.excel;
 
 import com.axing.common.excel.handler.CommonResultHandler;
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletResponse;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**

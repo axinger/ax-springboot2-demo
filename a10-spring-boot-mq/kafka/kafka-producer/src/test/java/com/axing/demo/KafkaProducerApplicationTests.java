@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -29,7 +29,7 @@ class KafkaProducerApplicationTests {
         map.put("topic", Topic.SIMPLE);
 
 
-        CompletableFuture future = kafkaTemplate.send(Topic.SIMPLE, map);
+        ListenableFuture future = kafkaTemplate.send(Topic.SIMPLE, map);
 
         // future.w(new ListenableFutureCallback<SendResult<String, Object>>() {
         //     @Override
@@ -43,12 +43,12 @@ class KafkaProducerApplicationTests {
         //     }
         // });
 
-        future.whenComplete((res, error) -> {
-
-            System.out.println("res = " + res);
-            System.out.println("error = " + error);
-
-        });
+        // future.whenComplete((res, error) -> {
+        //
+        //     System.out.println("res = " + res);
+        //     System.out.println("error = " + error);
+        //
+        // });
 
         TimeUnit.MINUTES.sleep(5);
     }

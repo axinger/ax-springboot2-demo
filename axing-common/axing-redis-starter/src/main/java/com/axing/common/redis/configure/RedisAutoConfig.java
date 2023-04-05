@@ -107,7 +107,8 @@ public class RedisAutoConfig {
 
 
     /**
-     * 还有一个 GenericJackson2JsonRedisSerializer
+     * new Jackson2JsonRedisSerializer
+     * new GenericJackson2JsonRedisSerializer(objectMapper);
      *
      * @return RedisSerializer
      */
@@ -120,7 +121,9 @@ public class RedisAutoConfig {
         if (redisProperties.isSavePackageName()) {
             objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         }
-        return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        serializer.setObjectMapper(objectMapper);
+        return serializer;
     }
 
 }

@@ -7,12 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.lang.NonNull;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class HomeController {
@@ -33,12 +34,17 @@ public class HomeController {
         User user = new User();
         user.setLastName("jim");
         user.setBirthday(LocalDateTime.now());
-        CompletableFuture<SendResult<String, User>> future = kafkaTemplate.send(Topic.USER, user);
-        future.whenComplete((res, error) -> {
-            if (Optional.ofNullable(error).isEmpty()) {
-                System.out.println("res = " + res);
-            } else {
-                System.out.println("error = " + error);
+        ListenableFuture<SendResult<String, User>> send = kafkaTemplate.send(Topic.USER, user);
+        send.addCallback(new ListenableFutureCallback<SendResult<String, User>>() {
+
+            @Override
+            public void onFailure(@NonNull Throwable throwable) {
+                log.info("发送消息失败,{}", throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(SendResult<String, User> sendResult) {
+                log.info("发送消息成功,{}", sendResult.toString());
             }
         });
         return "success";
@@ -56,7 +62,7 @@ public class HomeController {
             User user = new User();
             user.setLastName("jim");
             user.setBirthday(LocalDateTime.now());
-            CompletableFuture future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", user);
+            ListenableFuture future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", user);
             // future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             //     @Override
             //     public void onFailure(Throwable throwable) {

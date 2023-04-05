@@ -3,7 +3,7 @@ package com.axing.demo.controller;
 import com.axing.common.minio.service.MinioService;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.result.Result;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

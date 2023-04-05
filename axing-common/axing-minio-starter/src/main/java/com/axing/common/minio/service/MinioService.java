@@ -3,7 +3,7 @@ package com.axing.common.minio.service;
 import com.axing.common.minio.model.UploadFileBO;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import org.springframework.web.multipart.MultipartFile;
 

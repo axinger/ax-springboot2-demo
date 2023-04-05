@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.springframework.boot.jackson.JsonMixinModule;
 
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
@@ -37,7 +36,8 @@ public class CommonObjectMapper extends ObjectMapper {
         if (Optional.ofNullable(jsonProperties).isPresent()) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(jsonProperties.getDateFormat());
             objectMapper.setDateFormat(simpleDateFormat);
-            objectMapper.registerModules(new JsonMixinModule(), new Java8TimeModule(jsonProperties));
+            // objectMapper.registerModules(new JsonMixinModule(), new Java8TimeModule(jsonProperties));
+            objectMapper.registerModules(new Java8TimeModule(jsonProperties));
         }
 
         // 自定义

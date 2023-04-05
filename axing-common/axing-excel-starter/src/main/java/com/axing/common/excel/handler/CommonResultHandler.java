@@ -3,7 +3,7 @@ package com.axing.common.excel.handler;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.apache.ibatis.session.ResultContext;
