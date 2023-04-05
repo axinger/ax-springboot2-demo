@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class StreamTestFlatMap {
+public class StreamFlatMapTests {
     // "Hello","World" 拆开每个字符集
     @Test
     void test1() {

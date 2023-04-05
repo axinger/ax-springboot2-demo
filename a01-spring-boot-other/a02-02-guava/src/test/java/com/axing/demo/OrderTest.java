@@ -40,26 +40,32 @@ public class OrderTest {
     @Test
     void test_Comparator() {
 
-        UserInfo build = UserInfo.builder().gender(1).build();
-        UserInfo build1 = UserInfo.builder().uid(3L).uid(2L).gender(0).build();
-        UserInfo build2 = UserInfo.builder().uid(3L).gender(0).build();
+        UserInfo build0 = UserInfo.builder().uid(1L).gender(1).build(); // 这个不要uid2
+        UserInfo build1 = UserInfo.builder().uid(2L).uid2(2L).gender(0).build();
+        UserInfo build2 = UserInfo.builder().uid(3L).uid2(2L).gender(0).build();
 
+        List<UserInfo> list = List.of(build0, build1, build2);
 
+        // 多重排序
         // list 无 null ,但对比的 key 可能null
-        List<UserInfo> list1 = Arrays.asList(build, build1, build2).stream()
-                .sorted(Comparator.comparing(item -> item.getUid(), Comparator.nullsFirst(Long::compareTo)))
-                .collect(Collectors.toList());
+        List<UserInfo> list1 = list.stream()
+                .sorted(
+                        Comparator.comparing(UserInfo::getUid2, Comparator.nullsFirst(Long::compareTo)).reversed() // 这个逆序
+                                .thenComparing(UserInfo::getUid) // 这个正序
+                )
+                .toList();
+
         System.out.println("list 无 null ,但对比的 key 可能null = " + list1);
 
         UserInfo build3 = null;
 
-        List<UserInfo> list = Arrays.asList(build, build1, build2, build3);
+        List<UserInfo> list2 = Arrays.asList(build0, build1, build2, build3);
 
         // list 可能有 null ,同时对比的 key 可能null
-        final List<UserInfo> list2 = list.stream()
+        final List<UserInfo> list3 = list2.stream()
                 .sorted(Comparator.nullsFirst(Comparator.comparing(item -> item.getUid(), Comparator.nullsFirst(Long::compareTo))))
                 .collect(Collectors.toList());
 
-        System.out.println("list 可能有 null ,同时对比的 key 可能null = " + list2);
+        System.out.println("list 可能有 null ,同时对比的 key 可能null = " + list3);
     }
 }
