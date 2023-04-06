@@ -17,7 +17,6 @@ public class TransactionalConsumer {
     @Autowired
     private TransactionTemplate transactionTemplate;
 
-
     public void sendTransactionalMessage(String message) {
 
         transactionTemplate.execute(status -> {
