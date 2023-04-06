@@ -1,4 +1,4 @@
-package com.axing._5routingtopic;
+package com.axing.demo._5routingtopic;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;

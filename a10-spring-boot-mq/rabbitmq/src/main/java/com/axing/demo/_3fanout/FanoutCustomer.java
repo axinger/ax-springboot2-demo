@@ -1,4 +1,4 @@
-package com.axing._3fanout;
+package com.axing.demo._3fanout;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;

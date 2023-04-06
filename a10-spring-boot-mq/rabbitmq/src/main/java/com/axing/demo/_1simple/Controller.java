@@ -1,4 +1,4 @@
-package com.axing._1simple;
+package com.axing.demo._1simple;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

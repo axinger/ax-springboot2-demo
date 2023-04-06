@@ -1,4 +1,4 @@
-package com.axing._4routingdirect;
+package com.axing.demo._4routingdirect;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;

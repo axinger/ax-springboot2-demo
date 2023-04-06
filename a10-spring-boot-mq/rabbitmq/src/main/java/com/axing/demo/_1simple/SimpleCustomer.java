@@ -1,4 +1,4 @@
-package com.axing._1simple;
+package com.axing.demo._1simple;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Queue;
