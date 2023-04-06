@@ -1,4 +1,4 @@
-package com.axing._2work;
+package com.axing.demo._2work;
 
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

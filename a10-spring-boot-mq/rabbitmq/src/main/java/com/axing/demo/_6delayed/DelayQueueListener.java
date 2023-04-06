@@ -1,4 +1,4 @@
-package com.axing._6delayed;
+package com.axing.demo._6delayed;
 
 import com.rabbitmq.client.Channel;
 import lombok.SneakyThrows;

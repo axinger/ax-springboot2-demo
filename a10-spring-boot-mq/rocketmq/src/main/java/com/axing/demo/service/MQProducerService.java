@@ -1,16 +1,22 @@
 package com.axing.demo.service;
 
+import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.config.Topic;
 import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
+import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 
 @Slf4j
 @Component
@@ -81,4 +87,31 @@ public class MQProducerService {
         return rocketMQTemplate.syncSend(Topic.RLT_TEST_TOPIC + ":tag2", MessageBuilder.withPayload(msgBody).build());
     }
 
+    /**
+     * MQ半消息, 事务
+     *
+     * @param topic target topic
+     * @param tag   topic's tag
+     * @param msg   message
+     * @return send status
+     */
+    public <T extends Serializable> SendStatus sendMessageInTransaction(String topic, String tag, T msg) {
+
+        String destination = String.format("%s:%s", topic, tag);
+
+        Message<T> message = MessageBuilder.withPayload(msg)
+                .setHeader("KEYS", IdUtil.simpleUUID())
+                .setHeader("DESTINATION", destination)
+                .build();
+
+        TransactionSendResult result =
+                rocketMQTemplate.sendMessageInTransaction(destination, message, msg);
+
+        // 发送状态
+        String sendStatus = result.getSendStatus().name();
+        // 本地事务执行状态
+        String localTxState = result.getLocalTransactionState().name();
+        log.info("send tx message sendStatus:{},localTXState:{}", sendStatus, localTxState);
+        return result.getSendStatus();
+    }
 }
