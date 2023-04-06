@@ -11,6 +11,9 @@
     <packaging>pom</packaging>
     <artifactId>a01-spring-boot-other</artifactId>
 
+    <properties>
+        <java.version>17</java.version>
+    </properties>
 
     <modules>
         <module>a02-01-spring-boot-mvc</module>

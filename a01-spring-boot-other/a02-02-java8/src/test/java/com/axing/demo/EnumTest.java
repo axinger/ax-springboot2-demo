@@ -11,8 +11,6 @@ import java.util.Arrays;
 
 
 public class EnumTest {
-
-
     @Test
     public void test1() {
 
@@ -32,8 +30,6 @@ public class EnumTest {
 
         System.out.println("Week.from(Week::getCode, 1) = " + Week.from(Week::getCode, 1));
     }
-
-
     @Getter
     enum Week {
         NONE("", -1),
@@ -76,6 +72,23 @@ public class EnumTest {
 
     }
 
+    public enum OuterEnum {
+        A,
+        B,
+        C;
 
+        public enum InnerEnum {
+            X,
+            Y,
+            Z;
+        }
+    }
+
+    @Test
+    void test2(){
+        OuterEnum.InnerEnum e = OuterEnum.InnerEnum.X;
+
+        System.out.println("e = " + e);
+    }
 }
 
