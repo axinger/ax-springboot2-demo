@@ -36,6 +36,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.debug("updateFill================================================================");
         this.updateDateFill("updateTime", metaObject);
+        this.updateDateFill("updateUserId", metaObject);
     }
 
 
@@ -49,41 +50,24 @@ public class MybatisPlusConfig implements MetaObjectHandler {
         metaObject.setValue(field, null);
         this.strictUpdateFill(metaObject, field, Date.class, new Date());
         this.strictUpdateFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
-
         // this.strictUpdateFill(metaObject, field, () -> new Date(), Date.class);
         // this.strictUpdateFill(metaObject, field, () -> LocalDateTime.now(), LocalDateTime.class);
     }
 
-    /**
-     * 修改通用策略
-     *
-     * @return
-     */
-// @Override
-    // public MetaObjectHandler strictFillStrategy(MetaObject metaObject, String fieldName, Supplier<?> fieldVal) {
-    //     // if (metaObject.getValue(fieldName) == null) { //不判断空值情况即可
-    //     Object obj = fieldVal.get();
-    //     if (Objects.nonNull(obj)) {
-    //         metaObject.setValue(fieldName, obj);
-    //     }
-    //     // }
-    //     return this;
-    // }
     @Bean
     public MybatisPlusInterceptor optimisticLockerInnerInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
 
-        /**
-         * 乐观锁
-         */
+        // 乐观锁
         OptimisticLockerInnerInterceptor lockerInnerInterceptor = new OptimisticLockerInnerInterceptor();
         interceptor.addInnerInterceptor(lockerInnerInterceptor);
 
-        /**
-         * 分页
-         */
+        // 分页
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
         interceptor.addInnerInterceptor(paginationInnerInterceptor);
+
+        // 禁止删除数据库表中的所有内容
+        // interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
         return interceptor;
     }
 
