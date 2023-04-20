@@ -2,4 +2,6 @@ spring:
   profiles:
     active: prd
 
-
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
