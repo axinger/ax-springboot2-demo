@@ -10,3 +10,6 @@ CREATE TABLE students (
 
 
 INSERT INTO students (name, age, birthday) VALUES ('Alice', 20, '2022-01-01 12:00:00');
+
+
+-- CREATE TABLE child_table () INHERITS (parent_table); 继承表
