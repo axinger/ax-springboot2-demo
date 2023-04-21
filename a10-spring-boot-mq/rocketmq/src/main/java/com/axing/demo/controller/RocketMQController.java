@@ -2,8 +2,6 @@ package com.axing.demo.controller;
 
 import com.axing.demo.model.User;
 import com.axing.demo.service.MQProducerService;
-import org.apache.rocketmq.client.producer.SendResult;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

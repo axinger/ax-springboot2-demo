@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -100,7 +99,8 @@ public class UserController {
             Thread.sleep(1000);
             // emitter.send(User.builder().id(3).build(), new MediaType("application", "another-person"));
             emitter.send(User.builder().id(3).build(), MediaType.APPLICATION_JSON);
-            emitter.complete();;
+            emitter.complete();
+            ;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

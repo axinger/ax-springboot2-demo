@@ -2,9 +2,58 @@ package com.axing.demo;
 
 public final class DrinkEnumExample {
 
-    public interface DrinkTypeInterface {
-        String getDisplayableType();
+    public static void main(String[] args) {
+
+        System.out.println("DrinkType.TEA.getDisplayableType() = " + DrinkType.TEA.getDisplayableType());
+
+        System.out.println("DrinkType.COFFEE.getDisplayableType() = " + DrinkType.COFFEE.getDisplayableType());
+
+        System.out.println("Drink.MINT_TEA.type.getDisplayableType() = " + Drink.MINT_TEA.type.getDisplayableType());
+
+        System.out.println("Drink.COLUMBIAN.type.getDisplayableType() = " + Drink.COLUMBIAN.type.getDisplayableType());
+        System.out.println("Drink.MINT_TEA.getLabel() = " + Drink.MINT_TEA.getLabel());
+        //
+        // System.out.println("All drink types");
+        //
+        // for (DrinkType type : DrinkType.values()) {
+        //
+        //     displayType(type);
+        //
+        //     System.out.println();
+        //
+        // }
+        //
+        // System.out.println("All drinks");
+        //
+        // for (Drink drink : Drink.values()) {
+        //
+        //     displayDrink(drink);
+        //
+        //     System.out.println();
+        //
+        // }
+
     }
+
+    private static void displayDrink(Drink drink) {
+
+        displayType(drink);
+
+        System.out.print(" - ");
+
+        System.out.print(drink.getLabel());
+
+    }
+
+    private static void displayType(DrinkTypeInterface displayable) {
+
+        System.out.print(displayable.getDisplayableType());
+
+    }
+
+    // public DrinkEnumExample() {
+    //     super();
+    // }
 
     public static enum DrinkType implements DrinkTypeInterface {
 
@@ -60,57 +109,8 @@ public final class DrinkEnumExample {
 
     }
 
-    // public DrinkEnumExample() {
-    //     super();
-    // }
-
-    public static void main(String[] args) {
-
-        System.out.println("DrinkType.TEA.getDisplayableType() = " + DrinkType.TEA.getDisplayableType());
-
-        System.out.println("DrinkType.COFFEE.getDisplayableType() = " + DrinkType.COFFEE.getDisplayableType());
-
-        System.out.println("Drink.MINT_TEA.type.getDisplayableType() = " + Drink.MINT_TEA.type.getDisplayableType());
-
-        System.out.println("Drink.COLUMBIAN.type.getDisplayableType() = " + Drink.COLUMBIAN.type.getDisplayableType());
-        System.out.println("Drink.MINT_TEA.getLabel() = " + Drink.MINT_TEA.getLabel());
-        //
-        // System.out.println("All drink types");
-        //
-        // for (DrinkType type : DrinkType.values()) {
-        //
-        //     displayType(type);
-        //
-        //     System.out.println();
-        //
-        // }
-        //
-        // System.out.println("All drinks");
-        //
-        // for (Drink drink : Drink.values()) {
-        //
-        //     displayDrink(drink);
-        //
-        //     System.out.println();
-        //
-        // }
-
-    }
-
-    private static void displayDrink(Drink drink) {
-
-        displayType(drink);
-
-        System.out.print(" - ");
-
-        System.out.print(drink.getLabel());
-
-    }
-
-    private static void displayType(DrinkTypeInterface displayable) {
-
-        System.out.print(displayable.getDisplayableType());
-
+    public interface DrinkTypeInterface {
+        String getDisplayableType();
     }
 
 }

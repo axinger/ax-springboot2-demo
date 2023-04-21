@@ -1,7 +1,6 @@
 package com.axing;
 
 import cn.hutool.core.io.FileUtil;
-import jakarta.annotation.Resource;
 import org.jodconverter.core.DocumentConverter;
 import org.jodconverter.core.document.DefaultDocumentFormatRegistry;
 import org.jodconverter.core.document.DocumentFormat;
@@ -9,6 +8,7 @@ import org.jodconverter.core.office.OfficeException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.io.File;
 
 @RestController

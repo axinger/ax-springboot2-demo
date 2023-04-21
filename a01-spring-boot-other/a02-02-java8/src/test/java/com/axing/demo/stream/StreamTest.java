@@ -973,8 +973,6 @@ class StreamTest_max_str {
 }
 
 
-
-
 // 归约 减少 ，也称缩减，顾名思义，是把一个流缩减成一个值，能实现对集合求和、求乘积和求最值操作。
 class StreamTest_reduce {
     public static void main(String[] args) {

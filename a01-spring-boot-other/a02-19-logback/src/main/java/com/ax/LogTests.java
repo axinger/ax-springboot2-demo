@@ -4,7 +4,7 @@ import lombok.CustomLog;
 
 @CustomLog
 public class LogTests {
-	public static void main(String[] args) {
-		log.info("CustomLog=======================");
-	}
+    public static void main(String[] args) {
+        log.info("CustomLog=======================");
+    }
 }

@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Comment;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 

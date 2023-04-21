@@ -10,10 +10,10 @@ import lombok.*;
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
 public class User {
+    private final int age;
     private Integer id;
     private String name;
     private String area;
-    private final int age;
     private City city;
 
     public static void main(String[] args) {

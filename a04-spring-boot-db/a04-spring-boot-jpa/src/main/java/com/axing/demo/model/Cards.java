@@ -1,10 +1,11 @@
 package com.axing.demo.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
 
 @Entity(name = "cards")
 @Data

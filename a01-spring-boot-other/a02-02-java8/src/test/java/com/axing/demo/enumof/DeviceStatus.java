@@ -1,13 +1,5 @@
 package com.axing.demo.enumof;
 
-interface DeviceType {
-    // default int code() {
-    //     return 0;
-    // }
-
-    int code();
-}
-
 enum DeviceSwitch implements DeviceType {
     OFF(0),
     ON(1),
@@ -60,6 +52,14 @@ public enum DeviceStatus implements DeviceType {
     // public String toString(){
     //     return code;
     // }
+}
+
+interface DeviceType {
+    // default int code() {
+    //     return 0;
+    // }
+
+    int code();
 }
 
 

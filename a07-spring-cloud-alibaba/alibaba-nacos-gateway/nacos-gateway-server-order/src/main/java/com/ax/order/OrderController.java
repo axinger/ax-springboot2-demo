@@ -22,9 +22,9 @@ public class OrderController {
 
 
     @GetMapping("/{id}")
-    public Map test(@PathVariable String id) {
+    public Map<String,Object> test(@PathVariable String id) {
 
-        Map map = new HashMap(2);
+        Map<String,Object> map = new HashMap<>(2);
         map.put("orderId", id);
         return map;
     }

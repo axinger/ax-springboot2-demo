@@ -32,10 +32,10 @@ public class ForwardAuthFilter implements WebFilter {
         String path = serverHttpRequest.getPath().toString();
 
         // 需要校验权限
-        if(!whitePaths.contains(path)){
+        if (!whitePaths.contains(path)) {
 
             // 判断用户是否有该权限
-            if(!StpUtil.hasPermission(path)){
+            if (!StpUtil.hasPermission(path)) {
                 throw new NotPermissionException(path);
             }
         }

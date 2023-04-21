@@ -1,11 +1,11 @@
 package com.axing.demo.advice;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 

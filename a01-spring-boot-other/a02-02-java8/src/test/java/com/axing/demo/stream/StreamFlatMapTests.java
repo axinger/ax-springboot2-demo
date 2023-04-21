@@ -32,12 +32,12 @@ public class StreamFlatMapTests {
     //  Map<String,List<String>> 拍扁
     @Test
     void test3() {
-        Map<String,List<String>> map = new HashMap<>(){{
-            put("姓名",Arrays.asList("小明", "小红","小明"));
-            put("属性",Arrays.asList("升高", "体重"));
+        Map<String, List<String>> map = new HashMap<>() {{
+            put("姓名", Arrays.asList("小明", "小红", "小明"));
+            put("属性", Arrays.asList("升高", "体重"));
         }};
         // 将每个元素转换成一个stream
-        List<String> list1 = map.entrySet().stream().flatMap(val->val.getValue().stream()).toList();
+        List<String> list1 = map.entrySet().stream().flatMap(val -> val.getValue().stream()).toList();
         System.out.println("list1 = " + list1); // list1 = [小明, 小红, 升高, 体重]
 
         Set<String> set = map.entrySet().stream().flatMap(val -> val.getValue().stream()).collect(Collectors.toSet());

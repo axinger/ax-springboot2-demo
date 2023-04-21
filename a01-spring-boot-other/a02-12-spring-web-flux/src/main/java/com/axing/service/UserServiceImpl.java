@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
                 .id(2)
                 .name("name" + 2)
                 .build();
-        return Flux.fromIterable(List.of(user1,user2));
+        return Flux.fromIterable(List.of(user1, user2));
 
         // List<CompletableFuture<User>> list = List.of(getUserBy(1), getUserBy(2));
         // return Flux.fromStream(list.stream()).map(val -> val.join());

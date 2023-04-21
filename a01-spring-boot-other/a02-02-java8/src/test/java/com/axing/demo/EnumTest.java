@@ -30,6 +30,14 @@ public class EnumTest {
 
         System.out.println("Week.from(Week::getCode, 1) = " + Week.from(Week::getCode, 1));
     }
+
+    @Test
+    void test2() {
+        OuterEnum.InnerEnum e = OuterEnum.InnerEnum.X;
+
+        System.out.println("e = " + e);
+    }
+
     @Getter
     enum Week {
         NONE("", -1),
@@ -82,13 +90,6 @@ public class EnumTest {
             Y,
             Z;
         }
-    }
-
-    @Test
-    void test2(){
-        OuterEnum.InnerEnum e = OuterEnum.InnerEnum.X;
-
-        System.out.println("e = " + e);
     }
 }
 
