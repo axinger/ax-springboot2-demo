@@ -1,8 +1,5 @@
-package com.axing.common.advice.model;
+package com.axing.demo.config;
 
-import com.axing.common.advice.bean.AdviceProperties;
-import com.axing.common.response.exception.ServiceException;
-import com.axing.common.response.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -32,14 +29,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GlobalException {
 
-    private final AdviceProperties adviceProperties;
 
     @ExceptionHandler(value = Exception.class)
-    public Result<Map<String, Object>> exception(HttpServletRequest request, Exception e) {
-
-        if (adviceProperties.isPrintStackTrace()) {
-            e.printStackTrace();
-        }
+    @ResponseBody
+    public Object exception(HttpServletRequest request, Exception e) {
 
         String method = request.getMethod();
         String uri = request.getRequestURI();
@@ -54,40 +47,21 @@ public class GlobalException {
         } else if (Optional.of(e).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
             msg = e.getCause().getMessage();
         }
-        final Result<Map<String, Object>> result = Result.build(201, map, msg);
-        log.error("全局异常 result = {}, e = {}", result, e.getMessage());
-        return result;
-    }
-
-    @ExceptionHandler(value = ServiceException.class)
-    public Result<Map<String, Object>> serviceException(ServiceException e) {
-        if (adviceProperties.isPrintStackTrace()) {
-            e.printStackTrace();
-        }
-        final Result<Map<String, Object>> result = Result.build(e.getCode(), e.getMessage());
-        log.error("自定义业务异常 result =  {}", result);
-        return result;
+        return map;
     }
 
     /**
      * 对方法参数校验异常处理方法
      */
     @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class, MissingServletRequestParameterException.class,})
-    public Result<Object> handlerNotValidException(Exception e) {
-        if (adviceProperties.isPrintStackTrace()) {
-            e.printStackTrace();
-        }
+    public Object handlerNotValidException(Exception e) {
+
         List<ObjectError> list = new ArrayList<>();
 
         if (e instanceof MethodArgumentNotValidException validException) {
-            list = Optional.of(validException)
-                    .map(MethodArgumentNotValidException::getBindingResult)
-                    .map(BindingResult::getAllErrors)
-                    .orElse(new ArrayList<>());
+            list = Optional.of(validException).map(MethodArgumentNotValidException::getBindingResult).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
         } else if (e instanceof BindException bindException) {
-            list = Optional.of(bindException)
-                    .map(BindingResult::getAllErrors)
-                    .orElse(new ArrayList<>());
+            list = Optional.of(bindException).map(BindingResult::getAllErrors).orElse(new ArrayList<>());
         }
 
         Map<String, Object> map = list.stream().collect(Collectors.toMap(error -> {
@@ -100,31 +74,33 @@ public class GlobalException {
                 return error.getObjectName();
             }
         }, error -> Optional.of(error).map(ObjectError::getDefaultMessage).orElse(""), (key1, key2) -> key2));
-        // final Result<Map<String, Object>> result = Result.build(201, map, "参数校验异常");
-        Result<Object> result = Result.fail(map.toString());
-        log.error("方法参数校验异常 result =  {}", result);
-        return result;
+        return map;
     }
 
     /**
-     * get 请求校验参数
-     *
-     * @param e
+     * jsr 规范中的验证异常，嵌套检验问题
+     * @param ex
      * @return
      */
     @ExceptionHandler(ConstraintViolationException.class)
-    public Object constraintViolationException(ConstraintViolationException e) {
-        Set<ConstraintViolation<?>> set = e.getConstraintViolations();
-        Map<String, Object> map = set.stream()
-                .collect(Collectors.toMap(val -> {
+    // @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public Object constraintViolationException(ConstraintViolationException ex, HttpServletRequest request) {
+        Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
+        // String message = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(";"));
 
-                    val.getPropertyPath().iterator();
+       // ConstraintViolation<?> violation = violations.iterator().next();
+       // String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
+       // String message = String.format("%s:%s", path, violation.getMessage());
+       //
+       //  Map<String, Object> map = new HashMap<>(16);
+       //  map.put("参数校验错误", message);
 
-                    return ((PathImpl) val.getPropertyPath()).getLeafNode().getName();
-                        },
-                        ConstraintViolation::getMessage, (key1, key2) -> key2));
-        Result<Object> result = Result.fail(map.toString());
-        log.error("方法参数校验异常 result =  {}", result);
-        return result;
+        Map<String, Object> map = violations.stream()
+                .collect(Collectors.toMap(val -> ((PathImpl) val.getPropertyPath()).getLeafNode().getName(),
+                ConstraintViolation::getMessage, (key1, key2) -> key2));
+        return map;
     }
+
+
 }

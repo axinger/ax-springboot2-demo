@@ -5,12 +5,10 @@ import com.axing.common.dto.PageDTO;
 import com.axing.demo.model.Dog;
 import com.axing.demo.model.PersonDTO;
 import com.axing.demo.model.UserDTO;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "UserController")
+// @Tag(name = "UserController")
 @RequestMapping("/a")
 public class UserController {
 
@@ -35,7 +33,7 @@ public class UserController {
         return person;
     }
 
-    @Operation(summary = "post分页参数")
+    // @Operation(summary = "post分页参数")
     @PostMapping("/page")
     public Object person(@RequestBody PageDTO<Dog> dto) {
         System.out.println("dto = " + dto);
