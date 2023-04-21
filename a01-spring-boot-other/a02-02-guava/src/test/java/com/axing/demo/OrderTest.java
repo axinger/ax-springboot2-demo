@@ -68,4 +68,37 @@ public class OrderTest {
 
         System.out.println("list 可能有 null ,同时对比的 key 可能null = " + list3);
     }
+
+    @Test
+    void test_Comparator_key_null() {
+
+        UserInfo build0 = UserInfo.builder().uid(1L).gender(1).build(); // 这个不要uid2
+        UserInfo build1 = UserInfo.builder().uid(2L).uid2(2L).gender(0).build();
+        UserInfo build2 = UserInfo.builder().uid(3L).uid2(2L).gender(0).build();
+
+        List<UserInfo> list = List.of(build0, build1, build2);
+
+        // 多重排序
+        // list 无 null ,但对比的 key 可能null,Comparator.nullsFirst(Comparator.naturalOrder())
+        List<UserInfo> list1 = list.stream()
+                .sorted(
+                        Comparator.comparing(UserInfo::getUid2, Comparator.nullsFirst(Long::compareTo))
+                                .reversed() // 这个逆序
+                                .thenComparing(UserInfo::getUid) // 这个正序
+                )
+                .toList();
+
+        System.out.println("key 可能null = " + list1);
+
+
+        List<UserInfo> list2 = list.stream()
+                .sorted(
+                        Comparator.comparing(UserInfo::getUid2, Comparator.nullsFirst(Comparator.naturalOrder()))
+                                .reversed() // 这个逆序
+                                .thenComparing(UserInfo::getUid) // 这个正序
+                )
+                .toList();
+
+        System.out.println("key 可能null = " + list2);
+    }
 }
