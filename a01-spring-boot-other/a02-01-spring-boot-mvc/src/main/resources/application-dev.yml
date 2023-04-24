@@ -6,13 +6,14 @@ spring:
   application:
     version: 1.0.1
     description: 开发环境
-
 axing:
   config:
     username: jim
     password: 1234
   person:
     id: 1
+  doc:
+    title: mvc测试
 
 show:
   # 湿度
