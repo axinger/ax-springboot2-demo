@@ -272,80 +272,6 @@ public class StreamTest {
         System.out.println("分组求个数 = " + collect1);
     }
 
-    @Test
-    void test_groupingBy() {
-        List<Person> personList = new ArrayList<Person>();
-        personList.add(Person.builder()
-                .id(1)
-                .sex("男")
-                .age(10)
-                .area("安徽")
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .sex("女")
-                .age(10)
-                .area("安徽")
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .sex("女")
-                .age(11)
-                .area("安徽")
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .sex("女")
-                .age(12)
-                .area("江苏")
-                .build());
-
-
-        // 将员工按薪资是否高于2组
-        Map<Boolean, List<Person>> part = personList.stream().collect(Collectors.partitioningBy(x -> x.getAge() > 2));
-        // 将员工按性别分组
-        Map<String, List<Person>> group = personList.stream().collect(Collectors.groupingBy(Person::getSex));
-        // 将员工先按性别分组，再按地区分组
-        Map<String, Map<String, List<Person>>> group2 = personList.stream().collect(Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getArea)));
-        System.out.println("员工按薪资是否大于8000分组情况：" + part);
-        System.out.println("员工按性别分组情况：" + group);
-        System.out.println("员工按性别、地区：" + group2);
-
-
-        // 分组求和
-        Map<String, Integer> collect = personList.stream()
-                .collect(Collectors.groupingBy(
-                                Person::getSex,
-                                Collectors.summingInt(Person::getAge)
-                        )
-                );
-        System.out.println("分组求和 = " + collect);
-
-        // 分组个数
-        Map<String, Long> collect1 = personList.stream()
-                .collect(Collectors.groupingBy(
-                                Person::getSex,
-                                Collectors.counting()
-                        )
-                );
-        System.out.println("分组个数 = " + collect1);
-
-//        .sorted(Comparator.comparing(Person::getAge).reversed())
-//                .map(Person::getName).collect(Collectors.toList())
-        // map排序成list
-        List<Map.Entry<String, Long>> collect2 = collect1.entrySet().stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed()).collect(Collectors.toList());
-
-        System.out.println("map排序 = " + collect2);
-
-
-        List<Map.Entry<String, Long>> collect3 = collect1.entrySet().stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-                .limit(1)
-                .collect(Collectors.toList());
-
-        System.out.println("map排序top = " + collect3);
-    }
 
     @Test
     void test() {
@@ -949,19 +875,19 @@ class StreamTest_max_str {
                 .id(1)
                 .build());
         personList.add(Person.builder()
-                .id(1)
+                .id(2)
                 .build());
         personList.add(Person.builder()
-                .id(1)
+                .id(3)
                 .build());
         personList.add(Person.builder()
-                .id(1)
+                .id(4)
                 .build());
         personList.add(Person.builder()
-                .id(1)
+                .id(5)
                 .build());
         personList.add(Person.builder()
-                .id(1)
+                .id(6)
                 .build());
 
         final Optional<Person> optionalPerson = personList.stream().max(Comparator.comparingInt(Person::getAge));

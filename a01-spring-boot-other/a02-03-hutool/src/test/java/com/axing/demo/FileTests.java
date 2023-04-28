@@ -18,7 +18,8 @@ public class FileTests {
 
     @Test
     void test() {
-        File file = new File("a/b/c.jpg");
+        String fileUrl = "a/b/c.jpg";
+        File file = new File(fileUrl);
         String name = FileUtil.getName(file);
         System.out.println("name = " + name);
         String suffix = FileUtil.getSuffix(file);
@@ -30,6 +31,14 @@ public class FileTests {
         System.out.println("extName = " + extName);
         String mainName = FileUtil.mainName(file);
         System.out.println("mainName = " + mainName);
+
+        System.out.println("FileUtil.getAbsolutePath(file) = " + FileUtil.getAbsolutePath(file));
+        System.out.println("FileUtil.getLastPathEle(file.toPath()) = " + FileUtil.getLastPathEle(file.toPath()));
+
+
+        String replace = StrUtil.replace(fileUrl, "." + FileUtil.extName(fileUrl), ".pdf");
+        System.out.println("replace = " + replace);
+//        System.out.println("FileUtil.listFileNames(fileUrl) = " + FileUtil.listFileNames(fileUrl));
 
         String tmpDirPath = FileUtil.getTmpDirPath();
         System.out.println("tmpDirPath = " + tmpDirPath);
@@ -45,8 +54,8 @@ public class FileTests {
         String path1 = FileUtil.mkdir(userHomePath + "/f/b/c").getPath();
         System.out.println("path1 = " + path1);
 
-        String type = FileTypeUtil.getTypeByPath("/Users/xing/Develop/work/iot-document/118-加热炉-设备.xlsx");
-        System.out.println("type = " + type);
+//        String type = FileTypeUtil.getTypeByPath("/Users/xing/Develop/work/iot-document/118-加热炉-设备.xlsx");
+//        System.out.println("type = " + type);
     }
 
 
