@@ -63,4 +63,17 @@
         </if>
 
     </select>
+
+
+
+    <select id="findMaxIdList" resultMap="BaseResultMap">
+
+        SELECT *
+        FROM `device_status_timeline` bb
+                 INNER JOIN (SELECT MAX(`id`) AS mid, `device_id` AS m_device_id
+                             FROM `device_status_timeline` ${ew.customSqlSegment}
+                             GROUP BY `device_id`) AS tb ON bb.`id` = tb.mid
+
+    </select>
+
 </mapper>

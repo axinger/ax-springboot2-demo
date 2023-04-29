@@ -1,11 +1,13 @@
 package com.axing.demo;
 
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 
 /**
  * @author xing
@@ -83,6 +85,14 @@ public class LocalDateTimeTest {
     void test_2() {
         final LocalDateTime localDateTime = LocalDateTimeUtil.beginOfDay(LocalDateTime.now().withMonth(1).withDayOfMonth(1));
         System.out.println("localDateTime = " + localDateTime);
+
+    }
+
+    @Test
+    void test_3() {
+        // 将 LocalDateTime 对象转化为 Date 对象
+        Date dateTime = new DateTime(LocalDateTime.now());
+        System.out.println("dateTime = " + dateTime);
 
     }
 }
