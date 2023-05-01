@@ -1,40 +1,33 @@
 package com.axing;
 
-import cn.hutool.core.io.FileUtil;
-import org.jodconverter.core.DocumentConverter;
-import org.jodconverter.core.document.DefaultDocumentFormatRegistry;
-import org.jodconverter.core.document.DocumentFormat;
-import org.jodconverter.core.office.OfficeException;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 class MainTest {
 
-    @Autowired
-    private DocumentConverter converter;
 
+    @SneakyThrows
     @Test
-    void test() {
-        // Word2PdfUtil.doc2pdf("/Users/xing/Desktop/word.docx",
-        //         "/Users/xing/Desktop/word.pdf");
+    void test1() {
+
+        WordToPdfConverter.convert("/Users/xing/Desktop/poi笔记.docx",
+                "/Users/xing/Desktop/poi笔记.pdf");
+
+        TimeUnit.SECONDS.sleep(5);
+
     }
 
+
+    @SneakyThrows
     @Test
-    void contextLoads() {
-        System.out.println("converter = " + converter);
+    void test2() {
 
-
-        try {
-            File file = FileUtil.file("/Users/xing/Desktop/123.docx");
-            File out = FileUtil.file("/Users/xing/Desktop/123.pdf");
-            final DocumentFormat targetFormat = DefaultDocumentFormatRegistry.PDF;
-            converter.convert(file).to(out).as(targetFormat).execute();
-        } catch (OfficeException e) {
-            System.out.println("e = " + e);
-        }
+        Word2PdfUtil.doc2Pdf("/Users/xing/Desktop/test.docx",
+                "/Users/xing/Desktop/poi笔记.pdf");
+        TimeUnit.SECONDS.sleep(5);
     }
 }
