@@ -8,6 +8,12 @@ import java.io.*;
 
 public class WordToPdfConverter {
 
+    /**
+     * 使用 fr.opensagres.poi.xwpf.converter.pdf 包
+     * @param sourceFileName
+     * @param destinationFileName
+     * @throws IOException
+     */
     public static void convert(String sourceFileName,
                                String destinationFileName) throws IOException {
 

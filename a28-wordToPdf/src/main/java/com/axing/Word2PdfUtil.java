@@ -2,14 +2,15 @@
 
  import com.aspose.words.License;
  import com.aspose.words.SaveFormat;
+ import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
+ import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
  import lombok.extern.slf4j.Slf4j;
+ import org.apache.poi.xwpf.usermodel.XWPFDocument;
  import org.springframework.core.io.ClassPathResource;
  import org.springframework.core.io.Resource;
  import com.aspose.words.Document;
- import java.io.File;
- import java.io.FileOutputStream;
- import java.io.IOException;
- import java.io.InputStream;
+
+ import java.io.*;
 
  @Slf4j
  public class Word2PdfUtil {
@@ -65,4 +66,5 @@
          }
          return true;
      }
+
  }
