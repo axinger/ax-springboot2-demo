@@ -79,6 +79,7 @@ public class GlobalException {
 
     /**
      * jsr 规范中的验证异常，嵌套检验问题
+     *
      * @param ex
      * @return
      */
@@ -89,16 +90,16 @@ public class GlobalException {
         Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
         // String message = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(";"));
 
-       // ConstraintViolation<?> violation = violations.iterator().next();
-       // String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
-       // String message = String.format("%s:%s", path, violation.getMessage());
-       //
-       //  Map<String, Object> map = new HashMap<>(16);
-       //  map.put("参数校验错误", message);
+        // ConstraintViolation<?> violation = violations.iterator().next();
+        // String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
+        // String message = String.format("%s:%s", path, violation.getMessage());
+        //
+        //  Map<String, Object> map = new HashMap<>(16);
+        //  map.put("参数校验错误", message);
 
         Map<String, Object> map = violations.stream()
                 .collect(Collectors.toMap(val -> ((PathImpl) val.getPropertyPath()).getLeafNode().getName(),
-                ConstraintViolation::getMessage, (key1, key2) -> key2));
+                        ConstraintViolation::getMessage, (key1, key2) -> key2));
         return map;
     }
 

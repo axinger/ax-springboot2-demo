@@ -38,8 +38,8 @@ class MainTest {
     @Test
     void test3() {
 
-        Map<String,Object> datas = new HashMap<>();
-        datas.put("title","我是活动标题");
+        Map<String, Object> datas = new HashMap<>();
+        datas.put("title", "我是活动标题");
         XWPFTemplate template = XWPFTemplate.compile("/Users/xing/Desktop/test.docx");
         template.render(datas);
         FileOutputStream out = new FileOutputStream("/Users/xing/Desktop/test1.docx");

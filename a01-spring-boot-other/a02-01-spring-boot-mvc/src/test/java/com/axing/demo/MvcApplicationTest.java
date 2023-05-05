@@ -27,6 +27,8 @@ class MvcApplicationTest {
     // }
     @Autowired
     private HumitureRuleProperties humitureRuleProperties;
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Test
     void test1() {
@@ -47,11 +49,6 @@ class MvcApplicationTest {
     void test_UserService2() {
         System.out.println("userService2 = " + userService);
     }
-
-
-    @Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
-
 
     @Test
     void test_event() {

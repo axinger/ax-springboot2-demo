@@ -1,7 +1,6 @@
 package com.axing.demo;
 
 import cn.hutool.core.comparator.CompareUtil;
-import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;

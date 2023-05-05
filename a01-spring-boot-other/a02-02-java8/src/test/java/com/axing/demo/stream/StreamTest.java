@@ -1052,10 +1052,10 @@ class StreamTest_sorted {
         // 按工资倒序排序
         List<String> newList2 = personList.stream().sorted(Comparator.comparing(Person::getAge).reversed())
                 .map(Person::getName).collect(Collectors.toList());
-        //多种排序 先按工资再按年龄升序排序
+        // 多种排序 先按工资再按年龄升序排序
         List<String> newList3 = personList.stream()
-                .sorted(Comparator.comparing(Person::getAge,Comparator.nullsLast(Comparator.naturalOrder())) // 判断null
-                        .thenComparing(Person::getAge,Comparator.nullsLast(Comparator.naturalOrder())))
+                .sorted(Comparator.comparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())) // 判断null
+                        .thenComparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())))
                 .map(Person::getName)
                 .collect(Collectors.toList());
         // 先按工资再按年龄自定义排序（降序）

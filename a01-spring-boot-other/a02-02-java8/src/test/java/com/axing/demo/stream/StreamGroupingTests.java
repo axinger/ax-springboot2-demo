@@ -45,11 +45,11 @@ public class StreamGroupingTests {
     void test_groupingBy() {
 
 
-        //分组转list
+        // 分组转list
         Collection<List<Person>> listCollection = personList().stream().collect(Collectors.groupingBy(Person::getSex)).values();
         System.out.println("分组转list = " + listCollection);
 
-        //分组后排序
+        // 分组后排序
         Map<String, List<Person>> sortedGroupedPeople = personList().stream()
                 .collect(Collectors.groupingBy(Person::getSex))
                 .entrySet()
@@ -113,21 +113,21 @@ public class StreamGroupingTests {
     @Test
     void test_groupingBy2() {
 
-        //分组转list
+        // 分组转list
         Collection<List<Person>> listCollection = personList().stream().collect(Collectors.groupingBy(Person::getSex)).values();
         System.out.println("分组转list = " + listCollection);
 
-        //分组后排序
+        // 分组后排序
         Map<Integer, List<Person>> sortedGroupedPeople = personList().stream()
                 .sorted(Comparator.comparing(Person::getId))
                 .collect(Collectors.groupingBy(Person::getAge))
-                        .entrySet()
-                        .stream()
-                        .sorted(Map.Entry.comparingByKey())
-                        .collect(Collectors.toMap(Map.Entry::getKey,
-                                Map.Entry::getValue,
-                                (oldValue, newValue) -> oldValue,
-                                LinkedHashMap::new));
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue,
+                        LinkedHashMap::new));
 
         System.out.println("分组后排序map = " + sortedGroupedPeople);
 

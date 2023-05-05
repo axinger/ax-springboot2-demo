@@ -118,9 +118,9 @@ public class GlobalException {
         Map<String, Object> map = set.stream()
                 .collect(Collectors.toMap(val -> {
 
-                    val.getPropertyPath().iterator();
+                            val.getPropertyPath().iterator();
 
-                    return ((PathImpl) val.getPropertyPath()).getLeafNode().getName();
+                            return ((PathImpl) val.getPropertyPath()).getLeafNode().getName();
                         },
                         ConstraintViolation::getMessage, (key1, key2) -> key2));
         Result<Object> result = Result.fail(map.toString());

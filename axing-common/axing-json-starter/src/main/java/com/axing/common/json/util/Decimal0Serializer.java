@@ -1,7 +1,6 @@
 package com.axing.common.json.util;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- *  使用@JsonSerialize(using = Decimal0Serializer.class)
+ * 使用@JsonSerialize(using = Decimal0Serializer.class)
  */
 public class Decimal0Serializer extends JsonSerializer<Object> {
 
