@@ -1,12 +1,15 @@
 package com.wit.iot;
 
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.ListItem;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PDFFiller {
@@ -23,6 +26,17 @@ public class PDFFiller {
         AcroFields fields = stamper.getAcroFields();
         fields.setField("name", "123");
         fields.setFieldProperty("name", "textcolor", BaseColor.RED, null);
+
+        // fields.setListSelection("list", List.of("a","b").toArray(String[]::new));
+
+Map<String,String> map = new HashMap<>();
+map.put("name","jim");
+
+
+        fields.setListOption("list", map.keySet().toArray(String[]::new),
+                map.values().toArray(String[]::new));
+
+
 
 
 //         // 获取PDF表单字段

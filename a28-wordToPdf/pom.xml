@@ -101,6 +101,12 @@
             <systemPath>${pom.basedir}/lib/aspose-words-15.8.0-jdk16.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-cells</artifactId>
+            <version>8.6.3</version>
+        </dependency>
+
         <!--        <dependency>-->
         <!--            <groupId>com.aspose</groupId>-->
         <!--            <artifactId>aspose-words</artifactId>-->
