@@ -39,11 +39,7 @@ public class ListTest {
 
     @Test
     void test2() {
-
         List<String> list = new ArrayList<>();
-        ObjUtil.defaultIfEmpty(list,List.of(""));
-
         System.out.println("list.get(0) = " + list.get(0));
-
     }
 }

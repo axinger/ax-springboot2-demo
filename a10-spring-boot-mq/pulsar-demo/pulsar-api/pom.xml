@@ -3,20 +3,12 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ax-spring-boot-demo</artifactId>
+        <artifactId>pulsar-demo</artifactId>
         <groupId>com.axing</groupId>
         <version>2.7.10.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
 
-    <artifactId>a10-spring-boot-mq</artifactId>
-
-    <modules>
-        <module>kafka</module>
-        <module>rabbitmq</module>
-        <module>rocketmq</module>
-        <module>pulsar-demo</module>
-    </modules>
+    <artifactId>pulsar-api</artifactId>
 
 </project>
