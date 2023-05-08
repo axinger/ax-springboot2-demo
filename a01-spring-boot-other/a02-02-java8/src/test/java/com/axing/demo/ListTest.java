@@ -1,8 +1,11 @@
 package com.axing.demo;
 
+import cn.hutool.core.util.ObjUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author xing
@@ -32,5 +35,15 @@ public class ListTest {
                 break;
             }
         }
+    }
+
+    @Test
+    void test2() {
+
+        List<String> list = new ArrayList<>();
+        ObjUtil.defaultIfEmpty(list,List.of(""));
+
+        System.out.println("list.get(0) = " + list.get(0));
+
     }
 }
