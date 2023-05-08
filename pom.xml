@@ -42,10 +42,12 @@
         <fastjson2.version>2.0.26</fastjson2.version>
         <lombok.version>1.18.26</lombok.version>
         <druid.version>1.2.15</druid.version>
-        <netty-all.version>4.1.91.Final</netty-all.version>
+        <netty-all.version>4.1.77.Final</netty-all.version>
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
         <snakeyaml.version>2.0</snakeyaml.version>
+        <poi-version>5.2.0</poi-version>
+        <itextpdf.version>5.5.13.3</itextpdf.version>
     </properties>
 
     <modules>
@@ -307,6 +309,42 @@
                 <version>8.0.32</version>
             </dependency>
 
+            <!--=================office=================-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.deepoove</groupId>
+                <artifactId>poi-tl</artifactId>
+                <version>1.12.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.opensagres.xdocreport</groupId>
+                <artifactId>fr.opensagres.poi.xwpf.converter.pdf</artifactId>
+                <version>2.0.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.itextpdf</groupId>
+                <artifactId>itextpdf</artifactId>
+                <version>${itextpdf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.itextpdf.tool</groupId>
+                <artifactId>xmlworker</artifactId>
+                <version>${itextpdf.version}</version>
+            </dependency>
 
             <!--=================缓存类=================-->
 
@@ -342,12 +380,6 @@
             <!--                <artifactId>fastjson2-extension</artifactId>-->
             <!--                <version>${fastjson2.version}</version>-->
             <!--            </dependency>-->
-
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi</artifactId>
-                <version>5.0.0</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.google.protobuf</groupId>

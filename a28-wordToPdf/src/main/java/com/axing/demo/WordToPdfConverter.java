@@ -1,4 +1,4 @@
-package com.axing;
+package com.axing.demo;
 
 import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;

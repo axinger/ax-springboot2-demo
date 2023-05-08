@@ -1,14 +1,19 @@
-package com.wit.iot;
+package com.axing.demo;
 
-import java.io.*;
-    import org.apache.poi.xwpf.usermodel.XWPFDocument;
-    import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-    import org.apache.poi.xwpf.usermodel.XWPFRun;
-    import com.itextpdf.text.pdf.PdfReader;
-    import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import lombok.SneakyThrows;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.junit.jupiter.api.Test;
+
+import java.io.FileOutputStream;
 
     public class PdfToWord {
-        public static void main(String[] args) throws Exception {
+        @SneakyThrows
+        @Test
+        void test1() {
             // load PDF document
             PdfReader pdfReader = new PdfReader("D:\\Users\\cepai\\Desktop\\123.pdf");
             // extract text from PDF document

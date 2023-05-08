@@ -23,7 +23,7 @@ public class PulsarController {
 
     @GetMapping(value = "/sendMessage")
     public void sendMessage() {
-        Map map = new HashMap<>();
+        Map<Object, Object> map = new HashMap<>();
         map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
         map.put("data", "发送普通消息");
         pulsarProducer.send(map);

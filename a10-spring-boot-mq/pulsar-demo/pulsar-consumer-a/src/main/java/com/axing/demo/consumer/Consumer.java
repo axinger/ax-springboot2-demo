@@ -1,6 +1,12 @@
 package com.axing.demo.consumer;
 
 
+import com.axing.demo.topic.Topic;
+import io.github.majusko.pulsar.annotation.PulsarConsumer;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.pulsar.client.api.SubscriptionType;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 import java.util.Map;
 

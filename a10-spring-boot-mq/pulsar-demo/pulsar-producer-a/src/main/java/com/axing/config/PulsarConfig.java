@@ -1,6 +1,6 @@
 package com.axing.config;
 
-import com.axing.topic.Topic;
+import com.axing.demo.topic.Topic;
 import io.github.majusko.pulsar.producer.ProducerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

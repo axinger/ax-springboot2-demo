@@ -1,19 +1,20 @@
-package com.wit.iot;
+package com.axing.demo;
 
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.ListItem;
 import com.itextpdf.text.pdf.AcroFields;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PDFFiller {
-    public static void main(String[] args) throws Exception {
+    @SneakyThrows
+    @Test
+    void test1() {
         InputStream is = new FileInputStream("D:\\Users\\cepai\\Desktop\\123.pdf");
         OutputStream os = new FileOutputStream("D:\\Users\\cepai\\Desktop\\123_2.pdf");
 

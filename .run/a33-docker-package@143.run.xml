@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="a33-docker-package@143" type="docker-deploy" factoryName="dockerfile" server-name="西派-143">
+    <deployment type="dockerfile">
+      <settings>
+        <option name="imageTag" value="axinger/demo" />
+        <option name="containerName" value="axinger-demo" />
+        <option name="portBindings">
+          <list>
+            <DockerPortBindingImpl>
+              <option name="containerPort" value="12033" />
+              <option name="hostPort" value="12033" />
+            </DockerPortBindingImpl>
+          </list>
+        </option>
+        <option name="commandLineOptions" value="--restart=always --privileged=true" />
+        <option name="sourceFilePath" value="a33-docker-package/Dockerfile" />
+      </settings>
+    </deployment>
+    <method v="2" />
+  </configuration>
+</component>
