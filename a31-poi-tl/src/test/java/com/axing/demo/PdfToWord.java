@@ -10,26 +10,26 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileOutputStream;
 
-    public class PdfToWord {
-        @SneakyThrows
-        @Test
-        void test1() {
-            // load PDF document
-            PdfReader pdfReader = new PdfReader("D:\\Users\\cepai\\Desktop\\123.pdf");
-            // extract text from PDF document
-            String text = PdfTextExtractor.getTextFromPage(pdfReader, 1);
+public class PdfToWord {
+    @SneakyThrows
+    @Test
+    void test1() {
+        // load PDF document
+        PdfReader pdfReader = new PdfReader("D:\\Users\\cepai\\Desktop\\123.pdf");
+        // extract text from PDF document
+        String text = PdfTextExtractor.getTextFromPage(pdfReader, 1);
 
-            // create Word document
-            XWPFDocument document = new XWPFDocument();
-            XWPFParagraph paragraph = document.createParagraph();
-            XWPFRun run = paragraph.createRun();
-            // set text to Word document
-            run.setText(text);
+        // create Word document
+        XWPFDocument document = new XWPFDocument();
+        XWPFParagraph paragraph = document.createParagraph();
+        XWPFRun run = paragraph.createRun();
+        // set text to Word document
+        run.setText(text);
 
-            // save Word document
-            FileOutputStream out = new FileOutputStream("D:\\Users\\cepai\\Desktop\\123_2.docx");
-            document.write(out);
-            out.close();
-            document.close();
-        }
+        // save Word document
+        FileOutputStream out = new FileOutputStream("D:\\Users\\cepai\\Desktop\\123_2.docx");
+        document.write(out);
+        out.close();
+        document.close();
     }
+}

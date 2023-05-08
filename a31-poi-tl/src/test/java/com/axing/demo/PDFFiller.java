@@ -30,14 +30,12 @@ public class PDFFiller {
 
         // fields.setListSelection("list", List.of("a","b").toArray(String[]::new));
 
-Map<String,String> map = new HashMap<>();
-map.put("name","jim");
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "jim");
 
 
         fields.setListOption("list", map.keySet().toArray(String[]::new),
                 map.values().toArray(String[]::new));
-
-
 
 
 //         // 获取PDF表单字段

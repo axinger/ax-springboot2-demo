@@ -69,7 +69,7 @@ public class StreamGroupingTests {
         Map<String, List<Person>> group = personList().stream().collect(Collectors.groupingBy(Person::getSex));
 
         // 将员工先按性别分组，再按地区分组
-        //多重分组
+        // 多重分组
         Map<String, Map<String, List<Person>>> group2 = personList().stream().collect(Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getArea)));
         System.out.println("员工按薪资是否大于8000分组情况：" + part);
         System.out.println("员工按性别分组情况：" + group);
