@@ -31,28 +31,28 @@ public class StreamTest {
                     .name("jim")
                     .sex("男")
                     .age(10)
-                    .area("安徽")
+                    .address("安徽")
                     .build());
             add(Person.builder()
                     .id(1)
                     .name("lili")
                     .sex("女")
                     .age(10)
-                    .area("安徽")
+                    .address("安徽")
                     .build());
             add(Person.builder()
                     .id(1)
                     .name("Lucy")
                     .sex("女")
                     .age(18)
-                    .area("安徽")
+                    .address("安徽")
                     .build());
             add(Person.builder()
                     .id(1)
                     .name("小红")
                     .sex("女")
                     .age(20)
-                    .area("江苏")
+                    .address("江苏")
                     .build());
         }};
     }
@@ -535,100 +535,6 @@ public class StreamTest {
     }
 
     @Test
-    void test1() {
-
-
-        List<Person> list = new ArrayList<>() {
-            {
-
-
-                Person.builder()
-                        .id(1)
-                        .name("jim")
-                        .age(9)
-                        .build();
-
-                Person.builder()
-                        .id(2)
-                        .name("tom")
-                        .age(10)
-                        .build();
-
-                Person.builder()
-                        .id(3)
-                        .name("lili")
-                        .age(11)
-                        .build();
-
-                Person.builder()
-                        .id(1)
-                        .name("lick")
-                        .age(11)
-                        .build();
-
-
-            }
-        };
-
-        // 单个属性去重
-        ArrayList<Person> collect = list.stream()
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(
-                                Comparator.comparing(Person::getAge))), ArrayList::new));
-        System.out.println("去重年龄重复的 = " + collect);
-
-        // 多个属性去重
-        ArrayList<Person> collect2 = list.stream()
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(
-                                Comparator.comparing(p -> p.getName() + ";" + p.getAge()))), ArrayList::new));
-        System.out.println("多个属性去重 = " + collect2);
-        /// 顺序流
-        list.stream().forEach(System.out::println);
-
-        // limit 截断流
-        list.stream().limit(2).forEach(e -> {
-            System.out.println("limit e = " + e);
-        });
-
-        // 跳过 和 limit 互补
-        list.stream().skip(2).forEach(e -> {
-            System.out.println("skip e = " + e);
-        });
-
-        // 去重: 筛选,根据 hashcode,equals,去重
-        list.stream().distinct().forEach(e -> {
-            System.out.println("distinct e = " + e);
-        });
-
-
-        /// parallelStream 并行流
-        list.parallelStream().forEach(e -> {
-            System.out.println("parallelStream e = " + e);
-        });
-
-
-        List<Person> mapList = list.stream().map(e -> {
-            System.out.println("e = " + e);
-            e.setName(e.getName() + "__A");
-            return e;
-        }).collect(Collectors.toList());
-        System.out.println("mapList = " + mapList);
-
-
-        List<Person> filterList = list.stream().filter(e -> {
-
-            return e.getAge() > 10;
-        }).collect(Collectors.toList());
-        System.out.println("filterList = " + filterList);
-
-
-        Set<Person> personSet = list.stream().filter(e -> e.getAge() > 10).collect(Collectors.toSet());
-        System.out.println("personSet = " + personSet);
-
-    }
-
-    @Test
     void test2() {
 
 
@@ -1053,6 +959,7 @@ class StreamTest_sorted {
         List<String> newList2 = personList.stream().sorted(Comparator.comparing(Person::getAge).reversed())
                 .map(Person::getName).collect(Collectors.toList());
         // 多种排序 先按工资再按年龄升序排序
+        //避免null
         List<String> newList3 = personList.stream()
                 .sorted(Comparator.comparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())) // 判断null
                         .thenComparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())))

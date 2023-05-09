@@ -16,26 +16,26 @@ public class StreamGroupingTests {
                 .id(2)
                 .sex("女")
                 .age(10)
-                .area("安徽")
+                .address("安徽")
                 .build());
         list.add(Person.builder()
                 .id(4)
                 .sex("女")
                 .age(12)
-                .area("江苏")
+                .address("江苏")
                 .build());
 
         list.add(Person.builder()
                 .id(1)
                 .sex("男")
                 .age(10)
-                .area("安徽")
+                .address("安徽")
                 .build());
         list.add(Person.builder()
                 .id(3)
                 .sex("女")
                 .age(11)
-                .area("安徽")
+                .address("安徽")
                 .build());
 
         return list;
@@ -70,7 +70,7 @@ public class StreamGroupingTests {
 
         // 将员工先按性别分组，再按地区分组
         // 多重分组
-        Map<String, Map<String, List<Person>>> group2 = personList().stream().collect(Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getArea)));
+        Map<String, Map<String, List<Person>>> group2 = personList().stream().collect(Collectors.groupingBy(Person::getSex, Collectors.groupingBy(Person::getAddress)));
         System.out.println("员工按薪资是否大于8000分组情况：" + part);
         System.out.println("员工按性别分组情况：" + group);
         System.out.println("员工按性别、地区：" + group2);
@@ -109,6 +109,16 @@ public class StreamGroupingTests {
                 .collect(Collectors.toList());
 
         System.out.println("map排序top = " + collect3);
+
+
+        // 多种排序 先按工资再按年龄升序排序
+        //避免null
+        List<String> newList3 = personList().stream()
+                .sorted(Comparator.comparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())) // 判断null
+                        .thenComparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())))
+                .map(Person::getName)
+                .toList();
+        System.out.println("newList3 = " + newList3);
     }
 
     @Test
@@ -136,5 +146,23 @@ public class StreamGroupingTests {
 
         System.out.println("分组后排序转list = " + listCollection1);
 
+    }
+
+
+    @Test
+    void test3() {
+
+        List<Person> personedList = personList();
+        System.out.println("personList() = " + personedList);
+        personedList.get(0).setAge(null);
+        System.out.println("personList setAge = " + personedList);
+
+        // 多种排序 先按工资再按年龄升序排序
+        //避免null
+        List<Person> newList3 = personedList.stream()
+                .sorted(Comparator.comparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())) // 属性值为null的,也可以排序,按照顺序排序
+                        .thenComparing(Person::getId, Comparator.nullsLast(Comparator.naturalOrder())))
+                .toList();
+        System.out.println("newList3 = " + newList3);
     }
 }

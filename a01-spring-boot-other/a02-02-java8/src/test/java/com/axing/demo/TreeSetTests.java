@@ -18,4 +18,12 @@ public class TreeSetTests {
         TreeSet<Integer> set1 = set.stream().map(Integer::valueOf).collect(Collectors.toCollection(TreeSet::new));
         System.out.println("set1 = " + set1);
     }
+
+
+
+    @Test
+    void test2() {
+
+
+    }
 }
