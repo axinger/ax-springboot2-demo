@@ -1,8 +1,9 @@
 package com.axing.demo.controller;
 
-import com.axing.demo.dto.LoginDTO;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -10,15 +11,9 @@ import java.util.List;
 @RequestMapping("/postTest")
 public class PostController {
 
-    // 这个请求不行
-    @PostMapping("/login1")
+    @PostMapping("/login")
     public Object login(@RequestParam("username") String username,
                         @RequestParam("password") String password) {
         return List.of(username, password);
-    }
-
-    @PostMapping("/login2")
-    public Object login2(@RequestBody @Validated LoginDTO dto) {
-        return dto;
     }
 }

@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>a31-multi-tenant</module>
+        <module>springboot3-mvc</module>
     </modules>
 
     <!--统一管理jar包版本-->
