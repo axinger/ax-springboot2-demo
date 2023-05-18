@@ -60,7 +60,7 @@ public class MapTests {
 
     @Test
     void test2() {
-        // map元素为list
+        // map元素为list,Key 可以重复
         Multimap<String, Object> map = ArrayListMultimap.create();
         map.put("name", "jim");
         map.put("name", "tom");
