@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 /**
  * @author xing
@@ -76,8 +75,18 @@ public class CollectionUtilTests {
     @Test
     public void test1_2() {
 
-        List<String> listA = Stream.of("甲","乙","丙").toList();
-        List<String> listB = Stream.of("丙").toList();
+        List<Person> build = List.of(
+                Person.builder().name("甲").build(),
+                Person.builder().name("乙").build(),
+                Person.builder().name("丙").build()
+        );
+
+        List<Person> build2 = List.of(
+                Person.builder().name("丙").build()
+        );
+
+        List<String> listA = build.stream().map(Person::getName).toList();
+        List<String> listB = build2.stream().map(Person::getName).toList();
 
         Collection<String> subtract = CollectionUtil.subtract(listA, listB);
         Collection<String> subtract2 = CollectionUtil.subtractToList(listA, listB);
