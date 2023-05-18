@@ -83,7 +83,7 @@
         <module>axing-cloud</module>
         <module>a33-docker-package</module>
         <module>a34-keycloak</module>
-        <module>a31-poi-tl</module>
+        <module>a31-poi</module>
     </modules>
 
     <dependencies>
