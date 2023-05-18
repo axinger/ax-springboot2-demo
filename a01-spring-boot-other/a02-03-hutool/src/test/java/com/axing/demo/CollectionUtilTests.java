@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * @author xing
@@ -70,6 +71,18 @@ public class CollectionUtilTests {
         Collection<String> subtract = CollectionUtil.subtract(listA, listB);
         System.out.println("差集(集合相减) subtract  ：" + subtract);
 
+    }
+
+    @Test
+    public void test1_2() {
+
+        List<String> listA = Stream.of("甲","乙","丙").toList();
+        List<String> listB = Stream.of("丙").toList();
+
+        Collection<String> subtract = CollectionUtil.subtract(listA, listB);
+        Collection<String> subtract2 = CollectionUtil.subtractToList(listA, listB);
+        System.out.println("差集(集合相减) subtract  ：" + subtract);
+        System.out.println("subtract2 = " + subtract2);
     }
 
     @Test
