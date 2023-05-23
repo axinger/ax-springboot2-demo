@@ -1,4 +1,4 @@
-package com.axing.demo.handler;
+package com.axing.demo.taskHandler;
 
 import org.flowable.engine.delegate.TaskListener;
 import org.flowable.task.service.delegate.DelegateTask;
@@ -9,4 +9,3 @@ public class ManagerTaskHandler implements TaskListener {
         delegateTask.setAssignee("经理");
     }
 }
-

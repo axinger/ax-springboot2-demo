@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef" exporter="Flowable Open Source Modeler" exporterVersion="6.7.2">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
     <process id="Expense" name="ExpenseProcess" isExecutable="true">
         <documentation>报销流程</documentation>
-        <startEvent id="start" name="开始" flowable:formFieldValidation="true"></startEvent>
-        <userTask id="fillTask" name="出差报销" flowable:assignee="${taskUser}" flowable:formFieldValidation="true">
+        <startEvent id="start" name="开始"></startEvent>
+        <userTask id="fillTask" name="出差报销" flowable:assignee="${taskUser}">
             <extensionElements>
-                <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
+                <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler">
+                    <![CDATA[false]]></modeler:initiator-can-complete>
             </extensionElements>
         </userTask>
         <exclusiveGateway id="judgeTask"></exclusiveGateway>
-        <userTask id="directorTak" name="经理审批" flowable:formFieldValidation="true">
+        <userTask id="directorTak" name="经理审批">
             <extensionElements>
-                <flowable:taskListener event="create" class="com.axing.demo.handler.ManagerTaskHandler"></flowable:taskListener>
+                <flowable:taskListener event="create"
+                                       class="com.axing.demo.taskHandler.ManagerTaskHandler"></flowable:taskListener>
             </extensionElements>
         </userTask>
-        <userTask id="bossTask" name="老板审批" flowable:formFieldValidation="true">
+        <userTask id="bossTask" name="老板审批">
             <extensionElements>
-                <flowable:taskListener event="create" class="com.axing.demo.handler.BossTaskHandler"></flowable:taskListener>
+                <flowable:taskListener event="create"
+                                       class="com.axing.demo.taskHandler.BossTaskHandler"></flowable:taskListener>
             </extensionElements>
         </userTask>
         <endEvent id="end" name="结束"></endEvent>
@@ -27,15 +34,15 @@
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='驳回'}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow1" sourceRef="start" targetRef="fillTask"></sequenceFlow>
+        <sequenceFlow id="flow2" sourceRef="fillTask" targetRef="judgeTask"></sequenceFlow>
+        <sequenceFlow id="judgeMore" name="大于500元" sourceRef="judgeTask" targetRef="bossTask">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money > 500}]]></conditionExpression>
+        </sequenceFlow>
         <sequenceFlow id="bossPassFlow" name="通过" sourceRef="bossTask" targetRef="end">
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='通过'}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="directorPassFlow" name="通过" sourceRef="directorTak" targetRef="end">
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='通过'}]]></conditionExpression>
-        </sequenceFlow>
-        <sequenceFlow id="flow2" sourceRef="fillTask" targetRef="judgeTask"></sequenceFlow>
-        <sequenceFlow id="judgeMore" name="大于500元" sourceRef="judgeTask" targetRef="bossTask">
-            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money > 500}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="judgeLess" name="小于500元" sourceRef="judgeTask" targetRef="directorTak">
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money <= 500}]]></conditionExpression>
@@ -61,40 +68,40 @@
             <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
                 <omgdc:Bounds height="28.0" width="28.0" x="771.0" y="281.0"></omgdc:Bounds>
             </bpmndi:BPMNShape>
-            <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1" flowable:sourceDockerX="15.0" flowable:sourceDockerY="15.0" flowable:targetDockerX="50.0" flowable:targetDockerY="40.0">
-                <omgdi:waypoint x="314.9499992392744" y="150.0"></omgdi:waypoint>
-                <omgdi:waypoint x="404.9999999999684" y="150.0"></omgdi:waypoint>
+            <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+                <omgdi:waypoint x="315.0" y="150.0"></omgdi:waypoint>
+                <omgdi:waypoint x="405.0" y="150.0"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2" flowable:sourceDockerX="50.0" flowable:sourceDockerY="40.0" flowable:targetDockerX="20.0" flowable:targetDockerY="20.0">
-                <omgdi:waypoint x="504.95000000000005" y="150.0"></omgdi:waypoint>
-                <omgdi:waypoint x="585.0" y="150.0"></omgdi:waypoint>
+            <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+                <omgdi:waypoint x="505.0" y="150.16611295681062"></omgdi:waypoint>
+                <omgdi:waypoint x="585.4333333333333" y="150.43333333333334"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="judgeLess" id="BPMNEdge_judgeLess" flowable:sourceDockerX="20.0" flowable:sourceDockerY="20.0" flowable:targetDockerX="50.0" flowable:targetDockerY="40.0">
-                <omgdi:waypoint x="624.9444614102993" y="150.0"></omgdi:waypoint>
-                <omgdi:waypoint x="734.9999999999723" y="150.0"></omgdi:waypoint>
+            <bpmndi:BPMNEdge bpmnElement="judgeLess" id="BPMNEdge_judgeLess">
+                <omgdi:waypoint x="624.5530726256983" y="150.44692737430168"></omgdi:waypoint>
+                <omgdi:waypoint x="735.0" y="150.1392757660167"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="directorNotPassFlow" id="BPMNEdge_directorNotPassFlow" flowable:sourceDockerX="50.0" flowable:sourceDockerY="40.0" flowable:targetDockerX="50.0" flowable:targetDockerY="40.0">
+            <bpmndi:BPMNEdge bpmnElement="directorNotPassFlow" id="BPMNEdge_directorNotPassFlow">
                 <omgdi:waypoint x="785.0" y="110.0"></omgdi:waypoint>
                 <omgdi:waypoint x="785.0" y="37.0"></omgdi:waypoint>
                 <omgdi:waypoint x="455.0" y="37.0"></omgdi:waypoint>
                 <omgdi:waypoint x="455.0" y="110.0"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="bossPassFlow" id="BPMNEdge_bossPassFlow" flowable:sourceDockerX="50.0" flowable:sourceDockerY="40.0" flowable:targetDockerX="14.0" flowable:targetDockerY="14.0">
-                <omgdi:waypoint x="654.9499999999431" y="295.0"></omgdi:waypoint>
+            <bpmndi:BPMNEdge bpmnElement="bossPassFlow" id="BPMNEdge_bossPassFlow">
+                <omgdi:waypoint x="655.0" y="295.0"></omgdi:waypoint>
                 <omgdi:waypoint x="771.0" y="295.0"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="judgeMore" id="BPMNEdge_judgeMore" flowable:sourceDockerX="20.0" flowable:sourceDockerY="20.0" flowable:targetDockerX="50.0" flowable:targetDockerY="40.0">
-                <omgdi:waypoint x="605.0" y="169.94312543073747"></omgdi:waypoint>
-                <omgdi:waypoint x="605.0" y="255.0"></omgdi:waypoint>
+            <bpmndi:BPMNEdge bpmnElement="judgeMore" id="BPMNEdge_judgeMore">
+                <omgdi:waypoint x="605.4340277777778" y="169.56597222222223"></omgdi:waypoint>
+                <omgdi:waypoint x="605.1384083044983" y="255.0"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="directorPassFlow" id="BPMNEdge_directorPassFlow" flowable:sourceDockerX="50.0" flowable:sourceDockerY="40.0" flowable:targetDockerX="14.0" flowable:targetDockerY="14.0">
-                <omgdi:waypoint x="785.0" y="189.95"></omgdi:waypoint>
+            <bpmndi:BPMNEdge bpmnElement="directorPassFlow" id="BPMNEdge_directorPassFlow">
+                <omgdi:waypoint x="785.0" y="190.0"></omgdi:waypoint>
                 <omgdi:waypoint x="785.0" y="281.0"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
-            <bpmndi:BPMNEdge bpmnElement="bossNotPassFlow" id="BPMNEdge_bossNotPassFlow" flowable:sourceDockerX="50.0" flowable:sourceDockerY="40.0" flowable:targetDockerX="50.0" flowable:targetDockerY="40.0">
+            <bpmndi:BPMNEdge bpmnElement="bossNotPassFlow" id="BPMNEdge_bossNotPassFlow">
                 <omgdi:waypoint x="555.0" y="295.0"></omgdi:waypoint>
                 <omgdi:waypoint x="455.0" y="295.0"></omgdi:waypoint>
-                <omgdi:waypoint x="455.0" y="189.95"></omgdi:waypoint>
+                <omgdi:waypoint x="455.0" y="190.0"></omgdi:waypoint>
             </bpmndi:BPMNEdge>
         </bpmndi:BPMNPlane>
     </bpmndi:BPMNDiagram>

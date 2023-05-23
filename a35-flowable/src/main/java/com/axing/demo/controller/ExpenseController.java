@@ -18,6 +18,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "expense")
@@ -30,6 +32,7 @@ public class ExpenseController {
     private RepositoryService repositoryService;
     @Autowired
     private ProcessEngine processEngine;
+
 
     /**
      * 添加报销
@@ -59,11 +62,35 @@ public class ExpenseController {
     @RequestMapping(value = "/list")
     public Object list(String userId) {
         List<Task> tasks = taskService.createTaskQuery().taskAssignee(userId).orderByTaskCreateTime().desc().list();
-        for (Task task : tasks) {
-            System.out.println(task.toString());
-        }
-        return tasks.toArray().toString();
+
+        return tasks.stream().map(task -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", task.getId());
+            map.put("processInstanceId", task.getProcessInstanceId());
+            map.put("name", task.getName());
+            map.put("assignee", task.getAssignee());
+            map.put("description", task.getDescription());
+            map.put("delegationState", task.getDelegationState());
+            return map;
+        }).collect(Collectors.toSet());
     }
+
+    @RequestMapping(value = "/list/2")
+    public Object listComple() {
+        List<Task> tasks = taskService.createTaskQuery().list();
+
+        return tasks.stream().map(task -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", task.getId());
+            map.put("processInstanceId", task.getProcessInstanceId());
+            map.put("name", task.getName());
+            map.put("assignee", task.getAssignee());
+            map.put("description", task.getDescription());
+            map.put("delegationState", task.getDelegationState());
+            return map;
+        }).collect(Collectors.toSet());
+    }
+
 
     /**
      * 批准
@@ -98,7 +125,7 @@ public class ExpenseController {
     /**
      * 生成流程图
      *
-     * @param processId 任务ID
+     * @param processId 流程ID,不是任务id
      */
     @RequestMapping(value = "processDiagram")
     public void genProcessDiagram(HttpServletResponse httpServletResponse, String processId) throws Exception {
@@ -148,4 +175,6 @@ public class ExpenseController {
             }
         }
     }
+
+
 }
