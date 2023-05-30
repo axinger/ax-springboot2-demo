@@ -1,7 +1,8 @@
 server:
   servlet:
     context-path: /
-  port: 11011
+  port: 11012
+
 
 spring: # 等待连接获取的最大超时时间
   kafka:
@@ -35,11 +36,10 @@ spring: # 等待连接获取的最大超时时间
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       # 值的反序列化方式
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      group-id: myGroup1
+      group-id: myGroup2
 
     listener:
       # 在侦听器容器中运行的线程数。
       concurrency: 5
       ack-mode: manual_immediate
-
 

@@ -35,7 +35,7 @@ public class HomeController {
         user.setLastName("jim");
         user.setBirthday(LocalDateTime.now());
         ListenableFuture<SendResult<String, User>> send = kafkaTemplate.send(Topic.USER, user);
-        send.addCallback(new ListenableFutureCallback<SendResult<String, User>>() {
+        send.addCallback(new ListenableFutureCallback<>() {
 
             @Override
             public void onFailure(@NonNull Throwable throwable) {
