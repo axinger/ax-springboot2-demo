@@ -1,7 +1,7 @@
 package com.axing.demo;
 
 import com.axing.demo.api.Topic;
-import com.axing.demo.model.User;
+import com.axing.demo.model.ProducerUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class HomeController {
 
 
     @Autowired
-    private KafkaTemplate<String, User> kafkaTemplate;
+    private KafkaTemplate<String, ProducerUser> kafkaTemplate;
 
 
     /***
@@ -31,10 +31,10 @@ public class HomeController {
     @GetMapping("/sendSimple")
     public String sendSimple() {
 
-        User user = new User();
-        user.setLastName("jim");
-        user.setBirthday(LocalDateTime.now());
-        ListenableFuture<SendResult<String, User>> send = kafkaTemplate.send(Topic.USER, user);
+        ProducerUser ProducerUser = new ProducerUser();
+        ProducerUser.setLastName("jim");
+        ProducerUser.setBirthday(LocalDateTime.now());
+        ListenableFuture<SendResult<String, ProducerUser>> send = kafkaTemplate.send(Topic.USER, ProducerUser);
         send.addCallback(new ListenableFutureCallback<>() {
 
             @Override
@@ -43,7 +43,7 @@ public class HomeController {
             }
 
             @Override
-            public void onSuccess(SendResult<String, User> sendResult) {
+            public void onSuccess(SendResult<String, ProducerUser> sendResult) {
                 log.info("发送消息成功,{}", sendResult.toString());
             }
         });
@@ -59,10 +59,10 @@ public class HomeController {
             // 第二个参数指定分区，第三个参数指定消息键 分区优先
             int i2 = i % 4;
             log.info("partition = {}", i2);
-            User user = new User();
-            user.setLastName("jim");
-            user.setBirthday(LocalDateTime.now());
-            ListenableFuture future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", user);
+            ProducerUser ProducerUser = new ProducerUser();
+            ProducerUser.setLastName("jim");
+            ProducerUser.setBirthday(LocalDateTime.now());
+            ListenableFuture future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", ProducerUser);
             // future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             //     @Override
             //     public void onFailure(Throwable throwable) {

@@ -1,15 +1,15 @@
 package com.axing.demo.consumer;
 
 import com.axing.demo.api.Topic;
-import com.axing.demo.model.User;
+import com.axing.demo.model.ConsumerUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Component;
 
 
@@ -62,34 +62,38 @@ public class DemoConsumer {
     // 注意：kafkaListenerContainerFactory 是一个支持手动确认和异步提交偏移量的自定义工厂。
     // 如果您使用的是默认工厂，则将自动确认和同步提交偏移量。
     @KafkaListener(id = "ax_kafka_demo1",
-            topics = Topic.USER,
+            topics = Topic.USER_JSON,
             groupId = "my_group_id1",
             containerFactory = "kafkaListenerContainerFactory")
-    public void listen(ConsumerRecord<String, String> record,
-                       @Payload String data, Acknowledgment ack,
-                       Consumer<?, ?> consumer) {
+    public void listen(
+            // ConsumerRecord<String, User> record,
+            GenericMessage<String> message,
+            @Payload String data,
+            Acknowledgment ack,
+            Consumer<?, ?> consumer) {
         log.info("ax_kafka_demo1==================================================");
         try {
             // 模拟业务处理
             // handleBusiness(record);
 
             // 获取主题名称
-            String topic = record.topic();
+            // String topic = record.topic();
+            //
+            // // 获取主题分区 ID
+            // int partition = record.partition();
+            //
+            // // 获取偏移量
+            // long offset = record.offset();
+            //
+            // // 获取键和值
+            // String key = record.key();
+            // User value = record.value();
+            // log.info("Received message. Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}", topic, partition, offset, key, value);
+            // log.info("解析data = {}", data);
 
-            // 获取主题分区 ID
-            int partition = record.partition();
-
-            // 获取偏移量
-            long offset = record.offset();
-
-            // 获取键和值
-            String key = record.key();
-            String value = record.value();
-            log.info("Received message. Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}", topic, partition, offset, key, value);
-            log.info("解析data = {}", data);
-
-            User user = objectMapper.readValue(data, User.class);
-            log.info("解析data user = {}", user);
+            ConsumerUser user = objectMapper.readValue(data, ConsumerUser.class);
+            log.info("解析data objectMapper user = {}", user);
+            log.info(" message.getPayload = {}", message.getPayload());
             // 手动确认消息状态，并异步提交最新的消息偏移量。
             ack.acknowledge();
             consumer.commitAsync((offsets, exception) -> {
