@@ -34,7 +34,7 @@ public class ConfigController {
     @GetMapping("/")
     public Object getInfo() {
         System.out.println("getInfo = " + info);
-        Map map = new HashMap(16);
+        Map<String, Object> map = new HashMap<>(16);
         map.put("info", info);
         map.put("name", name);
         map.put("personName", personName);
