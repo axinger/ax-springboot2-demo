@@ -46,7 +46,7 @@
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
         <snakeyaml.version>2.0</snakeyaml.version>
-        <poi-version>5.2.0</poi-version>
+        <poi-version>5.2.1</poi-version>
         <itextpdf.version>5.5.13.3</itextpdf.version>
     </properties>
 
@@ -320,6 +320,12 @@
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
+                <version>${poi-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-scratchpad</artifactId>
                 <version>${poi-version}</version>
             </dependency>
 
