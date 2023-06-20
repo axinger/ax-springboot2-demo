@@ -4,6 +4,7 @@ import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.BookEntity;
 import com.axing.demo.mapper.BookMapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -146,9 +148,31 @@ class BookServiceTest {
     @Test
     void test_updateById_bookPrice() {
         bookService.lambdaUpdate()
-                .ge(BookEntity::getId, 1)
-                .setSql("book_price = book_price+10")
+                .eq(BookEntity::getId, 1)
+                .setSql("book_price = book_price+1")
                 .update(new BookEntity());
+    }
+
+    @Test
+    void test_updateById_bookPrice2() {
+
+
+//        LambdaUpdateWrapper<BookEntity> updateWrapper = Wrappers.lambdaUpdate();
+
+        LambdaUpdateWrapper<BookEntity> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(BookEntity::getId, 1);
+
+
+
+        // 对 age 字段进行自增操作
+
+        // 对 salary 字段进行数学计算
+        updateWrapper.set(BookEntity::getBookPrice, (item)->{
+        return  1D;
+        });
+
+
+
 
     }
 
