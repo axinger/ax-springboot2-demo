@@ -74,7 +74,7 @@ public class RedisAutoConfig {
      */
     @Bean
     public RedisTemplate redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(factory);
 
         // 序列号key value
