@@ -7,10 +7,7 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.TableCell;
 import org.apache.poi.hwpf.usermodel.TableIterator;
 import org.apache.poi.hwpf.usermodel.TableRow;
-import org.apache.poi.xwpf.usermodel.IBodyElement;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.apache.poi.xwpf.usermodel.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -49,8 +46,8 @@ public class PoiTests {
     @Test
     void test2() throws IOException {
         com.google.common.collect.Table<Integer, Integer,String> tables = HashBasedTable.create();
-        HWPFDocument doc = new HWPFDocument(new FileInputStream("D:\\Users\\cepai\\Desktop\\123.doc"));
-        TableIterator tableIter = new TableIterator(doc.getRange());
+        HWPFDocument document = new HWPFDocument(new FileInputStream("D:\\Users\\cepai\\Desktop\\123.doc"));
+        TableIterator tableIter = new TableIterator(document.getRange());
         while (tableIter.hasNext()) {
             org.apache.poi.hwpf.usermodel.Table table = tableIter.next();
             for (int i = 0; i < table.numRows(); i++) {
@@ -62,6 +59,8 @@ public class PoiTests {
                 }
             }
         }
+
+
         doc.close();
         System.out.println("tables = " + tables);
         System.out.println("tables.get(1,1) = " + Objects.requireNonNull(tables.get(1, 1)).replace("\u0007",""));

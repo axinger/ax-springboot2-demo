@@ -46,7 +46,7 @@
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
         <snakeyaml.version>2.0</snakeyaml.version>
-        <poi-version>5.2.1</poi-version>
+        <poi-version>5.2.3</poi-version>
         <itextpdf.version>5.5.13.3</itextpdf.version>
     </properties>
 
@@ -411,11 +411,11 @@
                 <version>${redisson.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>3.18.2</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.auth0</groupId>-->
+<!--                <artifactId>java-jwt</artifactId>-->
+<!--                <version>3.18.2</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>commons-fileupload</groupId>
@@ -423,11 +423,11 @@
                 <version>1.5</version>
             </dependency>
 
-            <dependency>
-                <groupId>net.coobird</groupId>
-                <artifactId>thumbnailator</artifactId>
-                <version>0.4.15</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>net.coobird</groupId>-->
+<!--                <artifactId>thumbnailator</artifactId>-->
+<!--                <version>0.4.15</version>-->
+<!--            </dependency>-->
 
 
             <!--            <dependency>-->
@@ -497,11 +497,11 @@
             </dependency>
 
             <!--加密-->
-            <dependency>
-                <groupId>com.github.ulisesbocchio</groupId>
-                <artifactId>jasypt-spring-boot-starter</artifactId>
-                <version>3.0.4</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.github.ulisesbocchio</groupId>-->
+<!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
+<!--                <version>3.0.4</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>org.influxdb</groupId>
@@ -531,7 +531,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
-                <version>3.2.1</version>
+                <version>3.3.2</version>
             </dependency>
 
             <!--            springboot3-->

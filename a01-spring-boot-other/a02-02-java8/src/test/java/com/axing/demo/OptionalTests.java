@@ -1,12 +1,10 @@
 package com.axing.demo;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static java.util.Optional.of;
-import static java.util.Optional.ofNullable;
+
+import org.junit.jupiter.api.Test;
 
 public class OptionalTests {
 
@@ -14,14 +12,29 @@ public class OptionalTests {
     @Test
     void test() {
         String string = null;
-        boolean empty = of(string).isEmpty();
+        boolean empty = Optional.of(string).isEmpty();
         System.out.println("empty = " + empty);
     }
 
     @Test
+    void test1() {
+        String string = "123";
+        Optional.ofNullable(string).filter(val -> val.length() > 2).ifPresentOrElse(val -> {
+            System.out.println("val = " + val);
+        }, () -> {
+            System.out.println("长度没有2");
+        });
+
+        Optional.ofNullable(string)
+                .filter(val -> val.length() > 2)
+                .orElseThrow(() -> new RuntimeException("长度没有2"));
+    }
+
+
+    @Test
     void test2() {
         String string = null;
-        boolean empty = ofNullable(string).isEmpty();
+        boolean empty = Optional.ofNullable(string).isEmpty();
         System.out.println("empty = " + empty);
     }
 
@@ -51,15 +64,16 @@ public class OptionalTests {
     @Test
     public void test_list() {
 
-        List<Integer> list = new ArrayList();
-        list.add(10);
+        List<Integer> list = new ArrayList<>();
+        {
+            list.add(10);
+        }
 //        list.add("b");
 
 
         // 为指定的值创建一个Optional，如果指定的值为null，则返回一个空的Optional。
         /// 用stream试一试
         Optional.ofNullable(list).map(List::size).filter(val -> {
-
             System.out.println("filter val = " + val);
             return val > 0;
         }).ifPresent(val -> System.out.println("val = " + list.get(val - 1)));
