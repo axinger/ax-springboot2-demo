@@ -49,6 +49,7 @@ public class OpsForValueTests {
     void opsForValue_set() {
         // redisTemplateUser.setValueSerializer(RedisSerializer.java());
         // redisTemplateUser.setValueSerializer(RedisSerializer.json());
+        // 这个报错
         redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 10, TimeUnit.MINUTES);
         System.out.println("opsForValue");
     }
@@ -60,6 +61,23 @@ public class OpsForValueTests {
         User user = redisTemplateUser.opsForValue().get(getUserKey(1));
         System.out.println("user = " + user);
     }
+
+
+    @Autowired
+    private RedisTemplate<String, List<User>> redisTemplateUserList;
+
+    @Test
+    void opsForValue_set2() {
+
+        redisTemplateUserList.opsForValue().set(getUserKey(1), List.of(getUser(1)), 10, TimeUnit.MINUTES);
+        System.out.println("opsForValue");
+
+
+        List<User> users = redisTemplateUserList.opsForValue().get(getUserKey(1));
+        System.out.println("user = " + users);
+    }
+
+
 
     @Test
     void setIfAbsent() {
