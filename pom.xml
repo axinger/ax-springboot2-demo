@@ -10,13 +10,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!--        <version>3.0.4</version>-->
-        <version>2.7.11</version>
+        <version>2.7.12</version>
     </parent>
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
     <!--前3位与spring-boot版本号对应    -->
-    <version>2.7.10.1</version>
+    <version>2.7.13.1</version>
     <name>spring-boot 案例</name>
     <description>个人代码总结</description>
     <!--pom总的父工程-->
@@ -45,7 +45,7 @@
         <netty-all.version>4.1.77.Final</netty-all.version>
         <redisson.version>3.19.0</redisson.version>
         <minio.version>8.5.1</minio.version>
-        <snakeyaml.version>2.0</snakeyaml.version>
+<!--        <snakeyaml.version>2.0</snakeyaml.version>-->
         <poi-version>5.2.3</poi-version>
         <itextpdf.version>5.5.13.3</itextpdf.version>
     </properties>

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>a01-spring-boot-other</artifactId>
         <groupId>com.axing</groupId>
-        <version>2.7.10.1</version>
+        <version>2.7.13.1</version>
     </parent>
 
     <artifactId>a02-20-spring5</artifactId>

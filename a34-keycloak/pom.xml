@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.axing</groupId>
         <artifactId>ax-spring-boot-demo</artifactId>
-        <version>2.7.10.1</version>
+        <version>2.7.13.1</version>
     </parent>
 
     <artifactId>a34-keycloak</artifactId>
