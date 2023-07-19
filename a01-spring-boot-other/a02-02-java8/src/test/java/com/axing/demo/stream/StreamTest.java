@@ -1,8 +1,10 @@
 package com.axing.demo.stream;
 
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ObjUtil;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.DeviceModel;
 import com.axing.demo.Person;
@@ -71,6 +73,44 @@ public class StreamTest {
 
         return list.stream();
 //        return  Arrays.asList(str.toCharArray()).stream();
+    }
+
+    @Test
+    void test_1() {
+//        List<String> list = null;
+        List<String> list = null;
+        //这个不会, null,count = 0
+        long count = Stream.ofNullable(list).count();
+        System.out.println("count = " + count);
+        //这个空指针
+//        System.out.println("list.stream().count() = " + list.stream().count());
+        List<Integer> list1 = Stream.ofNullable(list).map(List::size).toList();
+        System.out.println("list1 = " + list1);
+
+        Stream.ofNullable(list).findFirst().ifPresentOrElse(val->{
+            System.out.println("val = " + val);
+        },()->{
+            System.out.println("null值");
+        });
+
+        Optional<String> element = Optional.ofNullable(list)
+                .flatMap(l -> l.size() > 2 ? Optional.ofNullable(l.get(2)) : Optional.empty());
+
+        System.out.println("element = " + element);
+
+
+        list = List.of("a","b");
+         Optional.ofNullable(list)
+                .map(l ->{
+                    System.out.println("l = " + l);
+                   return l.size() > 1 ? l.get(1) : null;
+                }).ifPresentOrElse(val->{
+                     System.out.println("val = " + val);
+                 },()->{
+                     System.out.println("index2: null值");
+                 });
+
+
     }
 
     @Test
@@ -729,282 +769,17 @@ public class StreamTest {
 }
 
 
-class StreamTest_filter_map {
-    public static void main(String[] args) {
-        List<Person> personList = new ArrayList<>();
-        personList.add(new Person(1, "tom", "man", 20, "安徽"));
-        personList.add(new Person(2, "jack", "man", 22, "安徽"));
-        personList.add(new Person(3, "jim", "man", 20, "江苏"));
-        personList.add(new Person(4, "lili", "man", 24, "上海"));
-
-        List<String> list = personList.stream().filter(x -> x.getAge() > 20)
-                .map(Person::getName)
-                .collect(Collectors.toList());
-        System.out.println("age>20的 姓名：" + list);
-    }
-}
 
 
-class StreamTest_max {
-    public static void main(String[] args) {
-        List<String> list = Arrays.asList("adnm", "admmt", "pot", "xbangd", "weoujgsd");
-
-        Optional<String> max = list.stream().max(Comparator.comparing(String::length));
-        System.out.println("最长的字符串：" + max.get());
-    }
-}
-
-class StreamTest_max_int {
-    public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(7, 6, 9, 4, 11, 6);
-
-        // 自然排序
-        Optional<Integer> max = list.stream().max(Integer::compareTo);
-        System.out.println("自然排序的最大值：" + max.get());
 
 
-        // 自定义排序
-        Optional<Integer> max2 = list.stream().max(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1.compareTo(o2);
-            }
-        });
-        System.out.println("自定义排序的最大值：" + max2.get());
-    }
-}
-
-class StreamTest_max_str {
-    public static void main(String[] args) {
-        List<Person> personList = new ArrayList<Person>();
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(2)
-                .build());
-        personList.add(Person.builder()
-                .id(3)
-                .build());
-        personList.add(Person.builder()
-                .id(4)
-                .build());
-        personList.add(Person.builder()
-                .id(5)
-                .build());
-        personList.add(Person.builder()
-                .id(6)
-                .build());
-
-        final Optional<Person> optionalPerson = personList.stream().max(Comparator.comparingInt(Person::getAge));
-        System.out.println("员工工资最大值：" + optionalPerson.get().getAge());
-
-        final Optional<String> optional = personList.stream().max(Comparator.comparingInt(Person::getAge)).map(Person::getName);
-        System.out.println("员工工资最大值的姓名 = " + optional.orElse(null));
-    }
-}
 
 
-// 归约 减少 ，也称缩减，顾名思义，是把一个流缩减成一个值，能实现对集合求和、求乘积和求最值操作。
-class StreamTest_reduce {
-    public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(0, 1, 3, 2, 8, 11, 4);
-        // 求和方式1
-        Optional<Integer> sum = list.stream().reduce((x, y) -> x + y);
-        // 求和方式2
-        Optional<Integer> sum2 = list.stream().reduce(Integer::sum);
-        // 求和方式3
-        Integer sum3 = list.stream().reduce(0, Integer::sum);
-
-        final Integer sum4 = list.stream().collect(Collectors.summingInt(value -> value));
-
-        System.out.println("list求和：" + sum.get() + "," + sum2.get() + "," + sum3 + " Collectors方式求和 sum4 = " + sum4);
 
 
-        // 求乘积
-        Optional<Integer> product = list.stream().reduce((x, y) -> x * y);
-
-        System.out.println("list求积：" + product.get());
-
-        // 求最大值方式1
-        Optional<Integer> max = list.stream().reduce((x, y) -> x > y ? x : y);
-
-        // Stream的错误使用：Stream.max(Integer::max)和Stream.min(Integer::min)
-        Optional<Integer> max1 = list.stream().max(Integer::max);
-
-//        Optional<Integer> max2 = list.stream().max(Integer::compare);
-        Optional<Integer> max2 = list.stream().max(Comparator.naturalOrder());
-
-        System.out.println("降序,查找最小 = " + list.stream().max(Comparator.reverseOrder()));
-
-        // 求最大值写法2
-        Integer max3 = list.stream().reduce(1, Integer::max);
-
-        System.out.println("最大值：" + max.get() + ",max1错误用法 = " + max1.get() + ",max2 = " + max2 + ",max3 = " + max3);
 
 
-        List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5, 6);
 
 
-        System.out.println("最大值 max 正确用法,所以需要用排序方法：" + list1.stream().max((a, b) -> {
-            if (a > b) {
-                return 1;
-            } else return -1;
-        }).get());
 
 
-        // 其实result返回的一直是两个值的最大值，而数据中全部都为正数，所以返回值总是正数。
-        int a = Stream.of(2, 1, 4, 5, 3).max((v, k) -> {
-            System.out.println("v = " + v);
-            System.out.println("k = " + k);
-            int result = Integer.max(v, k);
-            System.out.println("result = " + result);
-            return result;
-        }).get();
-        System.out.println(a);
-
-
-    }
-}
-
-
-class StreamTest_joining {
-    public static void main(String[] args) {
-        List<Person> personList = new ArrayList<Person>();
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-
-        String names = personList.stream().map(Person::getName).collect(Collectors.joining(","));
-        System.out.println("所有员工的姓名：" + names);
-
-
-        List<String> list = Arrays.asList("A", "B", "C");
-        String string = list.stream().collect(Collectors.joining("-"));
-        System.out.println("拼接后的字符串：" + string);
-
-        String string2 = list.stream().collect(Collectors.joining("-", "头", "尾"));
-        System.out.println("拼接后的字符串：" + string2);
-    }
-}
-
-// Collectors类提供的reducing方法，相比于stream本身的reduce方法，增加了对自定义归约的支持。
-class StreamTest_reducing {
-    public static void main(String[] args) {
-        List<Person> personList = new ArrayList<Person>();
-        personList.add(Person.builder()
-                .id(1)
-                .name("jim")
-                .age(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .name("tom")
-                .age(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .name("jack")
-                .age(1)
-                .build());
-        // 这3个效果一样的
-
-        // 每个员工减去起征点后的薪资之和（这个例子并不严谨，但一时没想到好的例子）
-        Integer sum = personList.stream().map(Person::getAge).reduce(0, (i, j) -> (i + j + 1));
-        System.out.println("员工扣税薪资总和：" + sum);
-
-        // stream的reduce
-        Optional<Integer> sum2 = personList.stream().map(val -> val.getAge() + 1).reduce(Integer::sum);
-        System.out.println("员工薪资总和：" + sum2.get());
-
-        int sum1 = personList.stream().map(val -> val.getAge() + 1).mapToInt(Integer::valueOf).sum();
-        System.out.println("sum1 = " + sum1);
-
-        Optional<String> reduce = personList.stream().map(val -> val.getName()).reduce(String::join);
-        System.out.println("String::join = " + reduce);
-    }
-}
-
-
-class StreamTest_sorted {
-    public static void main(String[] args) {
-        List<Person> personList = new ArrayList<Person>();
-
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-        personList.add(Person.builder()
-                .id(1)
-                .build());
-
-        // 按工资升序排序（自然排序）
-        List<String> newList = personList.stream().sorted(Comparator.comparing(Person::getAge)).map(Person::getName)
-                .collect(Collectors.toList());
-        // 按工资倒序排序
-        List<String> newList2 = personList.stream().sorted(Comparator.comparing(Person::getAge).reversed())
-                .map(Person::getName).collect(Collectors.toList());
-        // 多种排序 先按工资再按年龄升序排序
-        //避免null
-        List<String> newList3 = personList.stream()
-                .sorted(Comparator.comparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())) // 判断null
-                        .thenComparing(Person::getAge, Comparator.nullsLast(Comparator.naturalOrder())))
-                .map(Person::getName)
-                .collect(Collectors.toList());
-        // 先按工资再按年龄自定义排序（降序）
-        List<String> newList4 = personList.stream().sorted((p1, p2) -> {
-            if (p1.getAge() == p2.getAge()) {
-                return p2.getAge() - p1.getAge();
-            } else {
-                return p2.getAge() - p1.getAge();
-            }
-        }).map(Person::getName).collect(Collectors.toList());
-
-        System.out.println("按工资升序排序：" + newList);
-        System.out.println("按工资降序排序：" + newList2);
-        System.out.println("先按工资再按年龄升序排序：" + newList3);
-        System.out.println("先按工资再按年龄自定义降序排序：" + newList4);
-    }
-}
-
-// 流也可以进行合并、去重、限制、跳过等操作。
-class StreamTest_distinct {
-    public static void main(String[] args) {
-        String[] arr1 = {"a", "b", "c", "d"};
-        String[] arr2 = {"d", "e", "f", "g"};
-
-        Stream<String> stream1 = Stream.of(arr1);
-        Stream<String> stream2 = Stream.of(arr2);
-        // concat:合并两个流 distinct 清楚的：去重
-        List<String> newList = Stream.concat(stream1, stream2).distinct().collect(Collectors.toList());
-        System.out.println("流合并去重 distinct：" + newList);
-
-
-        // limit：限制从流中获得前n个数据
-        System.out.println("Stream.iterate(1, x -> x + 2) = " + Stream.iterate(1, x -> x + 2));
-
-        List<Integer> collect = Stream.iterate(1, x -> x + 2).limit(10).collect(Collectors.toList());
-        System.out.println("limit：" + collect);
-
-        List<Integer> collect1 = Stream.iterate(1, x -> x + 1).limit(10).collect(Collectors.toList());
-        System.out.println("limit collect1：" + collect1);
-
-        // skip：跳过前n个数据
-        List<Integer> collect2 = Stream.iterate(1, x -> x + 2).skip(3).limit(5).collect(Collectors.toList());
-        System.out.println("skip：" + collect2);
-    }
-}

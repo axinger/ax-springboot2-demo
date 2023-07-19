@@ -1,11 +1,9 @@
 package com.axing.demo.stream;
 
-import cn.hutool.core.util.ObjUtil;
 import com.axing.demo.Person;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -71,7 +69,7 @@ public class StreamDistinctTests {
                 .collect(Collectors.collectingAndThen(
                         Collectors.toCollection(() -> new TreeSet<>(
                                 Comparator.comparing(Person::getAge)
-                                        .thenComparing(Person::getAddress,Comparator.nullsLast(Comparator.naturalOrder()))
+                                        .thenComparing(Person::getAddress, Comparator.nullsLast(Comparator.naturalOrder()))
                                 //保留最后一个
                         )), ArrayList::new));
         System.out.println("多个属性去重collect2 = " + collect2);
@@ -81,7 +79,7 @@ public class StreamDistinctTests {
                 .filter(Objects::nonNull)  // 过滤掉 null 的 Person 对象
                 .collect(Collectors.toCollection(() -> new TreeSet<>(
                         Comparator.comparing(Person::getAge)
-                                .thenComparing(Person::getAddress,Comparator.nullsLast(Comparator.naturalOrder()))
+                                .thenComparing(Person::getAddress, Comparator.nullsLast(Comparator.naturalOrder()))
                 )))
                 .stream()
                 .toList();
