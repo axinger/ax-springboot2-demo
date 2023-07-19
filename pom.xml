@@ -85,6 +85,7 @@
         <module>a34-keycloak</module>
         <module>a31-poi</module>
         <module>a35-flowable</module>
+        <module>a01-spring-boot-other/a02-21-annotation</module>
     </modules>
 
     <dependencies>
