@@ -1,15 +1,18 @@
 package com.axing.common.redis.service.impl;
 
 import com.axing.common.redis.service.RedisService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
+@Service
 public class RedisServiceImpl implements RedisService {
 
 
