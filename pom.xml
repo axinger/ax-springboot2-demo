@@ -9,17 +9,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <!--        <version>3.0.4</version>-->
-        <version>2.7.12</version>
+        <version>2.7.14</version>
     </parent>
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
     <!--前3位与spring-boot版本号对应    -->
-    <version>2.7.13.1</version>
-    <name>spring-boot 案例</name>
+    <version>2.7.14.1</version>
+    <name>spring-boot案例</name>
     <description>个人代码总结</description>
-    <!--pom总的父工程-->
     <packaging>pom</packaging>
 
     <!--统一管理jar包版本-->
@@ -85,7 +83,6 @@
         <module>a34-keycloak</module>
         <module>a31-poi</module>
         <module>a35-flowable</module>
-        <module>a01-spring-boot-other/a02-21-annotation</module>
     </modules>
 
     <dependencies>

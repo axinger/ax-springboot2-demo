@@ -1,4 +1,4 @@
-package com.axing.common.redis.configure;
+package com.axing.common.redis.config;
 
 import com.axing.common.json.bean.JsonProperties;
 import com.axing.common.json.config.ObjectMapperConfig;
