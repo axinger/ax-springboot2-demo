@@ -37,6 +37,10 @@
         <module>a02-19-logback</module>
         <module>a02-20-spring5</module>
         <module>same-class-starter</module>
+
+        <module>a02-21-annotation</module>
+        <module>a02-22-main-a</module>
+        <module>a02-22-main-b</module>
     </modules>
 
 
@@ -45,5 +49,19 @@
             <groupId>com.axing</groupId>
             <artifactId>axing-util-starter</artifactId>
         </dependency>
+
     </dependencies>
+
+
+    <dependencyManagement>
+
+
+        <dependencies>
+            <dependency>
+                <groupId>com.axing</groupId>
+                <artifactId>a02-22-main-b</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
