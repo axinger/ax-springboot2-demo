@@ -14,7 +14,6 @@
 
     <groupId>com.axing</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
-    <!--前3位与spring-boot版本号对应    -->
     <version>2.7.14.1</version>
     <name>spring-boot案例</name>
     <description>个人代码总结</description>
@@ -50,7 +49,7 @@
 
     <modules>
         <module>axing-common</module>
-        <module>a01-spring-boot-other</module>
+        <module>a02-spring-boot-other</module>
         <module>a03-spring-boot-websocket</module>
         <module>a04-spring-boot-db</module>
         <module>a05-spring-boot-excel</module>
@@ -83,7 +82,6 @@
         <module>a34-keycloak</module>
         <module>a31-poi</module>
         <module>a35-flowable</module>
-
         <module>a36-logback</module>
     </modules>
 

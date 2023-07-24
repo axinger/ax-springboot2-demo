@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MinioServiceImpl implements MinioService {
 
-    private MinioClient minioClient;
+    private final MinioClient minioClient;
 
     public MinioServiceImpl(MinioClient minioClient) {
         this.minioClient = minioClient;
