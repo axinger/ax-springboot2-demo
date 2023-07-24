@@ -34,7 +34,6 @@
         <module>a02-16-demo-juc</module>
         <module>a02-17-http-request</module>
         <module>a02-18-spring-aop</module>
-        <module>a02-19-logback</module>
         <module>a02-20-spring5</module>
         <module>same-class-starter</module>
 

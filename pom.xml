@@ -83,6 +83,8 @@
         <module>a34-keycloak</module>
         <module>a31-poi</module>
         <module>a35-flowable</module>
+
+        <module>a36-logback</module>
     </modules>
 
     <dependencies>
