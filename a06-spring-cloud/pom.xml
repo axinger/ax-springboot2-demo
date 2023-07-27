@@ -18,6 +18,7 @@
         <module>getaway-payment</module>
         <module>kafka-mq-stream-producer</module>
         <module>kafka-mq-stream-consumer</module>
+        <module>mq-stream-api</module>
     </modules>
 
     <dependencies>

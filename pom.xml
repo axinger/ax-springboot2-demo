@@ -235,7 +235,7 @@
             </dependency>
 
             <dependency>
-                <groupId>com.axing.db</groupId>
+                <groupId>com.github.axinger</groupId>
                 <artifactId>db-mysql-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>

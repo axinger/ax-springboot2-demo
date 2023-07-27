@@ -8,10 +8,8 @@
         <version>2.7.14.2</version>
     </parent>
 
-    <groupId>com.xing</groupId>
     <artifactId>a04-spring-boot-mongodb</artifactId>
-    <name>a21-spring-boot-mongodb</name>
-    <description>a21-spring-boot-mongodb</description>
+
 
     <dependencies>
         <dependency>
