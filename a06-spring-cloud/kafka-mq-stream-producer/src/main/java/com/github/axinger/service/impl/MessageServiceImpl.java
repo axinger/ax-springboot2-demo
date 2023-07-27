@@ -1,6 +1,6 @@
-package com.axing.service.impl;
+package com.github.axinger.service.impl;
 
-import com.axing.service.MessageService;
+import com.github.axinger.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.messaging.Message;

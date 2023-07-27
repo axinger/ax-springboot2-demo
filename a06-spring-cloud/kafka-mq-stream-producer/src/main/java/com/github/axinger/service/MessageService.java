@@ -1,4 +1,4 @@
-package com.axing.service;
+package com.github.axinger.service;
 
 public interface MessageService {
     void orderExchange();

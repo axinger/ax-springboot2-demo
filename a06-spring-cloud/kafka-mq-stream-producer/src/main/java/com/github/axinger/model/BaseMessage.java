@@ -1,4 +1,4 @@
-package com.axing.model;
+package com.github.axinger.model;
 
 import lombok.ToString;
 

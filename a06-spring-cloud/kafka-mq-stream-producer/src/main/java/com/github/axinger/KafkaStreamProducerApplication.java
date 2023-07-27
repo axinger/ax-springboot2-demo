@@ -1,4 +1,4 @@
-package com.axing;
+package com.github.axinger;
 
 
 import org.springframework.boot.SpringApplication;

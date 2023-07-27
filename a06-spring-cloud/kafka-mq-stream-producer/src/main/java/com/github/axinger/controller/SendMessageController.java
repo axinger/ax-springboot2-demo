@@ -1,7 +1,8 @@
-package com.axing.controller;
+package com.github.axinger.controller;
 
-import com.axing.model.BaseMessage;
-import com.axing.service.MessageService;
+import com.github.axinger.model.BaseMessage;
+import com.github.axinger.model.MessageConstant;
+import com.github.axinger.service.MessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.axing.model.MessageConstant.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -72,8 +72,8 @@ public class SendMessageController {
      */
     @PostMapping(value = "/cluster")
     public void sendClusterMsg(@RequestParam("message") String message) {
-        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(CLUSTER_MESSAGE_OUTPUT, "", message));
-        boolean result = streamBridge.send(CLUSTER_MESSAGE_OUTPUT, msg);
+        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(MessageConstant.CLUSTER_MESSAGE_OUTPUT, "", message));
+        boolean result = streamBridge.send(MessageConstant.CLUSTER_MESSAGE_OUTPUT, msg);
         System.out.println(Thread.currentThread().getName() + " 消息集群发送: " + msg.getPayload().getData());
     }
 
@@ -83,8 +83,8 @@ public class SendMessageController {
      */
     @PostMapping(value = "/broadcast")
     public void sendBroadcastMsg(@RequestParam("message") String message) {
-        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(BROADCAST_MESSAGE_OUTPUT, "", message));
-        boolean result = streamBridge.send(BROADCAST_MESSAGE_OUTPUT, msg);
+        Message<BaseMessage<String>> msg = new GenericMessage<>(new BaseMessage<>(MessageConstant.BROADCAST_MESSAGE_OUTPUT, "", message));
+        boolean result = streamBridge.send(MessageConstant.BROADCAST_MESSAGE_OUTPUT, msg);
         System.out.println(Thread.currentThread().getName() + " 消息广播发送: " + msg.getPayload().getData());
     }
 
@@ -99,7 +99,7 @@ public class SendMessageController {
                 .withPayload(map)
                 .setHeader("x-delay", 5 * 1000)
                 .build();
-        streamBridge.send(DELAYED_MESSAGE_OUTPUT, message);
+        streamBridge.send(MessageConstant.DELAYED_MESSAGE_OUTPUT, message);
     }
 }
 
