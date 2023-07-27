@@ -2,17 +2,17 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>ax-spring-boot-demo</artifactId>
         <groupId>com.github.axinger</groupId>
+        <artifactId>ax-spring-boot-demo</artifactId>
         <version>2.7.14.1</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <artifactId>a18-custom-spring-boot-start</artifactId>
-    <modules>
-        <module>axinger-spring-boot-starter</module>
-        <module>custom-spring-boot-start-demo</module>
-    </modules>
 
+    <packaging>pom</packaging>
+    <artifactId>axinger-cloud</artifactId>
+    <name>阿星cloud工具类</name>
+    <modules>
+        <module>axinger-cloud-fetch-gateway-starter</module>
+    </modules>
 </project>

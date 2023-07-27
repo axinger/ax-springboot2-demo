@@ -3,26 +3,23 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>a18-custom-spring-boot-start</artifactId>
         <groupId>com.github.axinger</groupId>
+        <artifactId>axinger-common</artifactId>
         <version>2.7.14.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>custom-spring-boot-start-demo</artifactId>
+    <artifactId>axinger-quartz-spring-boot-starter</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.axinger</groupId>
-            <artifactId>axinger-spring-boot-starter</artifactId>
-        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.data</groupId>-->
+        <!--            <artifactId>spring-data-commons</artifactId>-->
+        <!--        </dependency>-->
     </dependencies>
 </project>

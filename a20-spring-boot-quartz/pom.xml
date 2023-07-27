@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axing-advice-starter</artifactId>
+            <artifactId>axinger-advice-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -51,12 +51,12 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axing-quartz-starter</artifactId>
+            <artifactId>axinger-quartz-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axing-util-starter</artifactId>
+            <artifactId>axinger-util-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>

@@ -4,13 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
+        <artifactId>axinger-cloud</artifactId>
         <groupId>com.github.axinger</groupId>
-        <artifactId>a14-spring-boot-cacheable</artifactId>
         <version>2.7.14.1</version>
     </parent>
-
-    <artifactId>a14-spring-boot-redisson</artifactId>
-
+    <artifactId>axinger-cloud-fetch-gateway-starter</artifactId>
 
     <dependencies>
 
@@ -21,19 +19,13 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--分布式锁-->
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.github.axinger</groupId>
-            <artifactId>axinger-doc-spring-boot-starter</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
-
 </project>

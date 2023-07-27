@@ -43,7 +43,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axing-cloud-fetch-gateway-starter</artifactId>
+            <artifactId>axinger-cloud-fetch-gateway-starter</artifactId>
         </dependency>
     </dependencies>
 

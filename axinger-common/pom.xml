@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ax-spring-boot-demo</artifactId>
+        <groupId>com.github.axinger</groupId>
+        <version>2.7.14.1</version>
+    </parent>
+
+    <!--    <parent>-->
+    <!--        <groupId>org.springframework.boot</groupId>-->
+    <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--        <version>2.7.5</version>-->
+    <!--    </parent>-->
+
+    <!--    <groupId>com.github.axinger</groupId>-->
+    <artifactId>axinger-common</artifactId>
+    <!--    <version>2.7.5.2.1</version>-->
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <name>阿星common工具类</name>
+
+    <properties>
+        <java.version>17</java.version>
+        <axing-project.version>${project.version}</axing-project.version>
+    </properties>
+
+    <modules>
+        <module>axinger-util-spring-boot-starter</module>
+        <module>axinger-response-spring-boot-starter</module>
+        <module>axinger-quartz-spring-boot-starter</module>
+        <module>axinger-doc-spring-boot-starter</module>
+        <module>axinger-redis-spring-boot-starter</module>
+        <module>axinger-config-spring-boot-starter</module>
+        <module>axinger-mybatis-spring-boot-starter</module>
+        <module>axinger-mongodb-spring-boot-starter</module>
+        <module>axinger-minio-spring-boot-starter</module>
+        <module>axinger-advice-spring-boot-starter</module>
+        <module>axinger-json-spring-boot-starter</module>
+        <module>axinger-weblog-spring-boot-starter</module>
+        <module>axinger-excel-spring-boot-starter</module>
+        <module>axinger-dto-spring-boot-starter</module>
+        <module>axinger-http-spring-boot-starter</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <!--    <dependencyManagement>-->
+    <!--        <dependencies>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-quartz-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-redis-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-doc-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-util-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-log-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-response-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-config-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-mybatis-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-mongodb-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-minio-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-advice-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+
+    <!--            <dependency>-->
+    <!--                <groupId>com.github.axinger</groupId>-->
+    <!--                <artifactId>axing-json-starter</artifactId>-->
+    <!--                <version>${project.version}</version>-->
+    <!--            </dependency>-->
+    <!--        </dependencies>-->
+    <!--    </dependencyManagement>-->
+</project>

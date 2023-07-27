@@ -45,11 +45,11 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axing-mybatis-starter</artifactId>
+            <artifactId>axinger-mybatis-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axing-excel-starter</artifactId>
+            <artifactId>axinger-excel-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
