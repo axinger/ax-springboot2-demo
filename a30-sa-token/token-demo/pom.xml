@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>a30-sa-token</artifactId>
-        <groupId>com.axing</groupId>
+        <groupId>com.github.axinger</groupId>
         <version>2.7.14.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -46,17 +46,17 @@
         </dependency>
 
         <dependency>
-            <groupId>com.axing</groupId>
+            <groupId>com.github.axinger</groupId>
             <artifactId>axing-response-starter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.axing</groupId>
+            <groupId>com.github.axinger</groupId>
             <artifactId>axing-doc-starter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.axing</groupId>
+            <groupId>com.github.axinger</groupId>
             <artifactId>axing-advice-starter</artifactId>
         </dependency>
     </dependencies>

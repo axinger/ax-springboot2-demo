@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.axing</groupId>
+        <groupId>com.github.axinger</groupId>
         <artifactId>kafka</artifactId>
         <version>2.7.14.1</version>
     </parent>
@@ -34,7 +34,7 @@
         <!--        </dependency>-->
 
         <dependency>
-            <groupId>com.axing</groupId>
+            <groupId>com.github.axinger</groupId>
             <artifactId>kafka-api</artifactId>
         </dependency>
         <dependency>

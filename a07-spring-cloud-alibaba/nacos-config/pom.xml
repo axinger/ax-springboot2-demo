@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.axing</groupId>
+        <groupId>com.github.axinger</groupId>
         <artifactId>a07-spring-cloud-alibaba</artifactId>
         <version>2.7.14.1</version>
     </parent>
