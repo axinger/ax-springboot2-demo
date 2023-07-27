@@ -41,6 +41,7 @@
         <module>axing-weblog-starter</module>
         <module>axing-excel-starter</module>
         <module>axing-dto-starter</module>
+        <module>axing-http-starter</module>
     </modules>
 
     <dependencies>
