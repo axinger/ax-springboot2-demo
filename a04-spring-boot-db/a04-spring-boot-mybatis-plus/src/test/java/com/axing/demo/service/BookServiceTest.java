@@ -167,9 +167,9 @@ class BookServiceTest {
         // 对 age 字段进行自增操作
 
         // 对 salary 字段进行数学计算
-        updateWrapper.set(BookEntity::getBookPrice, (item)->{
-        return  1D;
-        });
+//        updateWrapper.set(BookEntity::getBookPrice, (item)->{
+//        return  1D;
+//        });
 
 
 
