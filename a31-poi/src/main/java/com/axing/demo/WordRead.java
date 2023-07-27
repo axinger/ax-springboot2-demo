@@ -24,15 +24,6 @@ import java.util.List;
  */
 public class WordRead {
 
-	public static void main(String[] args) {
-		try {
-			String result = readWord();
-			System.out.println(result);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	/**
 	 * 方式一：读取word中的文本内容（段落、表格统计获取）--- doc\docx 都可
 	 */

@@ -61,7 +61,7 @@ public class PoiTests {
         }
 
 
-        doc.close();
+        document.close();
         System.out.println("tables = " + tables);
         System.out.println("tables.get(1,1) = " + Objects.requireNonNull(tables.get(1, 1)).replace("\u0007",""));
     }
