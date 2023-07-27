@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>axinger-common</artifactId>
-        <version>2.7.14.1</version>
+        <version>2.7.14.2</version>
     </parent>
 
     <artifactId>axinger-dto-spring-boot-starter</artifactId>

@@ -1,6 +1,6 @@
-package com.axing.api;
+package com.github.axinger.api;
 
-import com.axing.model.MessageDTO;
+import com.github.axinger.model.MessageDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.Message;
 
