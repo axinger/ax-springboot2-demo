@@ -7,6 +7,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.DeviceModel;
+import com.axing.demo.FlowBean;
 import com.axing.demo.Person;
 import com.axing.demo.model.Staff;
 import com.google.common.collect.Lists;
@@ -21,6 +22,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class StreamTest {
 
@@ -87,9 +89,9 @@ public class StreamTest {
         List<Integer> list1 = Stream.ofNullable(list).map(List::size).toList();
         System.out.println("list1 = " + list1);
 
-        Stream.ofNullable(list).findFirst().ifPresentOrElse(val->{
+        Stream.ofNullable(list).findFirst().ifPresentOrElse(val -> {
             System.out.println("val = " + val);
-        },()->{
+        }, () -> {
             System.out.println("null值");
         });
 
@@ -99,16 +101,16 @@ public class StreamTest {
         System.out.println("element = " + element);
 
 
-        list = List.of("a","b");
-         Optional.ofNullable(list)
-                .map(l ->{
+        list = List.of("a", "b");
+        Optional.ofNullable(list)
+                .map(l -> {
                     System.out.println("l = " + l);
-                   return l.size() > 1 ? l.get(1) : null;
-                }).ifPresentOrElse(val->{
-                     System.out.println("val = " + val);
-                 },()->{
-                     System.out.println("index2: null值");
-                 });
+                    return l.size() > 1 ? l.get(1) : null;
+                }).ifPresentOrElse(val -> {
+                    System.out.println("val = " + val);
+                }, () -> {
+                    System.out.println("index2: null值");
+                });
 
 
     }
@@ -277,6 +279,25 @@ public class StreamTest {
         System.out.println("collect1.getMin() = " + collect1.getMin());
         System.out.println("collect1.getAverage() = " + collect1.getAverage());
 
+    }
+
+
+    @Test
+    void test_sum2() {
+
+        String concat = Stream.of("a","2").collect(StringBuilder::new, StringBuilder::append,
+                StringBuilder::append)
+                .toString();
+        System.out.println("concat = " + concat);
+
+        //多个求和
+        List<FlowBean> list = List.of(
+                FlowBean.builder().upFlow(10).downFlow(11).build(),
+                FlowBean.builder().upFlow(20).downFlow(21).build()
+        );
+
+        FlowBean outV = list.stream().collect(FlowBean::new, FlowBean::accumulate, FlowBean::combine);
+        System.out.println("outV = " + outV);
     }
 
     @Test

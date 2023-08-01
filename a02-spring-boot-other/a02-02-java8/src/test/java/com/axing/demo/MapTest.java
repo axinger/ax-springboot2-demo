@@ -15,7 +15,7 @@ public class MapTest {
     @Test
     public void tes1() throws IOException {
 
-        new ConcurrentHashMap();
+
 
         HashMap<Object, Object> hashMap = new HashMap<>();//
         hashMap.put("d", "d");
@@ -30,6 +30,9 @@ public class MapTest {
             System.out.println(" stream val = " + val);
         });
 
+
+        //默认值
+        hashMap.getOrDefault("name","test");
 
         new LinkedHashMap<>();
 
