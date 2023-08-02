@@ -40,15 +40,12 @@ public class ListTest {
     void test2() {
         List<String> list = new ArrayList<>();
         System.out.println("list.get(0) = " + list.get(0));
-
-
     }
 
 
     @Test
     void test3() {
         List<Integer> list = List.of(1,3,2,4);
-
 
         System.out.println("list.stream().unordered() = " + list.stream().unordered().toList());;
         System.out.println("list.stream().sorted() = " + list.stream().sorted().toList());
