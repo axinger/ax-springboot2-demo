@@ -53,4 +53,10 @@ public class ListTest {
         System.out.println("list.stream().unordered() = " + list.stream().unordered().toList());;
         System.out.println("list.stream().sorted() = " + list.stream().sorted().toList());
     }
+
+    @Test
+    void test4() {
+        List<Integer> list = List.of(1,3,2,4);
+        System.out.println("list.indexOf(5) = " + list.indexOf(5));
+    }
 }
