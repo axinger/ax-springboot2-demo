@@ -59,6 +59,36 @@ class BookDAOTest {
     }
 
     @Test
+    void test_jpa_save_list2() {
+
+        String json = """
+                [
+                    {
+                        "bookAuthor": "jim",
+                        "bookName": "海底两万里",
+                        "bookPrice": 10.1
+                    },
+                    {
+                        "bookAuthor": "jim",
+                        "bookName": "一千零一夜",
+                        "bookPrice": 11.0
+                    },
+                    {
+                        "bookAuthor": "tom",
+                        "bookName": "阿里巴巴与四十大盗",
+                        "bookPrice": 12.0
+                    }
+                ]
+                  """;
+
+        List<BookEntity> bookEntityList = JSON.parseArray(json, BookEntity.class);
+        System.out.println("bookEntityList = " + JSON.toJSONString(bookEntityList));
+        // mbp 可以insert id
+        boolean save = bookService.saveBatch(bookEntityList);
+
+    }
+
+    @Test
     void test_mbp_list() {
         List<BookEntity> list1 = bookService.list();
         System.out.println("list1 = " + list1);

@@ -3,7 +3,7 @@ spring:
     name: a04-spring-boot-postgres
   datasource:
     url: jdbc:postgresql://192.168.101.143:5432/ax_test
-    username: postgres
+    username: root
     password: 123456
     driver-class-name: org.postgresql.Driver
 

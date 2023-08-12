@@ -1,13 +1,11 @@
 package com.axing.demo.domain;
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -28,13 +26,14 @@ import java.math.BigDecimal;
 // @Table(name = "book", uniqueConstraints = @UniqueConstraint(columnNames = {"book_name", "book_price"}))
 public class BookEntity implements Serializable {
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /**
      *
      */
-    @TableId(value = "id")
+    @TableId(value = "id",type = IdType.AUTO)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增,有nextval('book_id_seq'::regclass),连续
     // @GeneratedValue(strategy = GenerationType.AUTO) // 自增但不连续
