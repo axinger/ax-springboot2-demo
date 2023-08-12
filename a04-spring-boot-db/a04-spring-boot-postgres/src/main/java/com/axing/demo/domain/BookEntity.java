@@ -69,6 +69,7 @@ public class BookEntity implements Serializable {
 
     /**
      * 分组求个数
+     * select 需要排除
      */
     @Transient
     @TableField(value = "count(*)", insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)

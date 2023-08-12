@@ -90,7 +90,20 @@ class BookDAOTest {
 
     @Test
     void test_mbp_list() {
-        List<BookEntity> list1 = bookService.list();
+        // 会报错, 因为添加了其他聚合字段
+//        List<BookEntity> list1 = bookService.list();
+        List<BookEntity> list1 = bookService.lambdaQuery()
+                .select(BookEntity::getId,BookEntity::getBookName,BookEntity::getBookPrice)
+                        .list();
+        System.out.println("list1 = " + list1);
+    }
+
+    @Test
+    void test_mbp_one() {
+        List<BookEntity> list1 = bookService.lambdaQuery()
+                .select(BookEntity::getId,BookEntity::getBookName,BookEntity::getBookPrice)
+                        .last("limit 1")
+                                .list();
         System.out.println("list1 = " + list1);
     }
 
