@@ -1,6 +1,5 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.domain.School;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;

@@ -4,20 +4,23 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
  * @TableName book
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName(value = "book")
 @Entity(name = "book")
-public class BookEntity implements Serializable {
+public class BookEntity extends BaseEntity {
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @TableName(value = "employee")
 @Data
 public class Employee implements Serializable {
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**

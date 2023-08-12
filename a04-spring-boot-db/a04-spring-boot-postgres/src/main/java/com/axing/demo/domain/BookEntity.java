@@ -33,7 +33,7 @@ public class BookEntity implements Serializable {
     /**
      *
      */
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 自增,有nextval('book_id_seq'::regclass),连续
     // @GeneratedValue(strategy = GenerationType.AUTO) // 自增但不连续

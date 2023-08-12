@@ -1,6 +1,5 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.domain.Room;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

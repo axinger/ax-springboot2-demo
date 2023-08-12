@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -17,6 +18,7 @@ import java.io.Serializable;
 @TableName(value = "employee")
 @Entity(name = "employee")
 public class Employee implements Serializable {
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
