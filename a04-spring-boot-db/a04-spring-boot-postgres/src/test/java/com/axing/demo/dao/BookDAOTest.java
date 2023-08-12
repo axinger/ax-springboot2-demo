@@ -3,11 +3,13 @@ package com.axing.demo.dao;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.BookEntity;
 import com.axing.demo.service.BookService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class BookDAOTest {
@@ -91,11 +93,40 @@ class BookDAOTest {
     @Test
     void test_mbp_list() {
         // 会报错, 因为添加了其他聚合字段
-//        List<BookEntity> list1 = bookService.list();
-        List<BookEntity> list1 = bookService.lambdaQuery()
-                .select(BookEntity::getId, BookEntity::getBookName, BookEntity::getBookPrice)
-                .list();
+        List<BookEntity> list1 = bookService.list();
         System.out.println("list1 = " + list1);
+    }
+
+    @Test
+    void test_update() {
+
+        // 这个不可以
+        boolean update = bookService.lambdaUpdate()
+                .eq(BookEntity::getBookName, "海底两万里")
+                .set(BookEntity::getBookName, "海底两万里1")
+                .update();
+        System.out.println("update = " + update);
+
+
+        // 这个可以
+        BookEntity one = bookService.lambdaQuery()
+                .eq(BookEntity::getBookName, "海底两万里")
+                .last("limit 1")
+                .one();
+
+        bookService.updateById(one);
+
+
+        // 这个也可以
+        bookService.lambdaUpdate()
+                .eq(BookEntity::getBookName, "海底两万里")
+                .set(BookEntity::getBookName, "海底两万里1")
+                .update(new BookEntity());
+
+        // 这个可以
+        bookService.update(new BookEntity(), bookService.lambdaUpdate()
+                .eq(BookEntity::getBookName, "海底两万里")
+                .set(BookEntity::getBookName, "海底两万里1").getWrapper());
     }
 
     @Test
@@ -122,10 +153,10 @@ class BookDAOTest {
         List<BookEntity> list = bookService.lambdaQuery()
                 .select(BookEntity::getBookAuthor, BookEntity::getCount)
                 .groupBy(BookEntity::getBookAuthor)
-
                 .list();
         System.out.println("list = " + list);
     }
+
 
     @Test
     void test_groupBy_sum() {

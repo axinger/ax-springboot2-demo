@@ -56,7 +56,8 @@ public class BookEntity implements Serializable {
      */
     @Column(name = "book_name", length = 50, nullable = false)
     @Comment("书名")
-    @TableField(value = "book_name")
+//    @TableField(value = "book_name")
+    @TableField(value = "book_name",condition = SqlCondition.LIKE)
     private String bookName;
 
     /**
@@ -67,34 +68,57 @@ public class BookEntity implements Serializable {
     @TableField(value = "book_price")
     private BigDecimal bookPrice;
 
+
+    //  update = "%s+1" 不走 lambdaUpdate
+    /**
+     * 该方式绑定在 entity 上,baseMapper提供的 update(entity,updateWrapper) 中的entity不能null,而且所有的update方法均不能再改变此值为字段实际的指定值
+     */
+    @Column(name = "update_count")
+    @Comment("更新次数")
+    @TableField(value = "update_count",updateStrategy = FieldStrategy.IGNORED, update = "%s+1")
+    private int updateCount;
+
+
     /**
      * 分组求个数
      * select 需要排除
      */
     @Transient
-    @TableField(value = "count(*)", insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)
-    private Long count;
+    @TableField(value = "count(*)",
+            insertStrategy = FieldStrategy.NEVER,
+            updateStrategy = FieldStrategy.NEVER,
+            select = false)
+    public Long count;
 
 
     /**
      * 分组求和
      */
     @Transient
-    @TableField(value = "sum(book_price)", insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)
+    @TableField(value = "sum(book_price)",
+            insertStrategy = FieldStrategy.NEVER,
+            updateStrategy = FieldStrategy.NEVER,
+            select = false)
     private BigDecimal sumBookPrice;
 
     /**
      * 分组平均值
      */
     @Transient
-    @TableField(value = "avg(book_price)", insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)
+    @TableField(value = "avg(book_price)",
+            insertStrategy = FieldStrategy.NEVER,
+            updateStrategy = FieldStrategy.NEVER,
+            select = false)
     private BigDecimal avgBookPrice;
 
     /**
      * 分组最小值
      */
     @Transient
-    @TableField(value = "min(book_price)", insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)
+    @TableField(value = "min(book_price)",
+            insertStrategy = FieldStrategy.NEVER,
+            updateStrategy = FieldStrategy.NEVER,
+            select = false)
     private BigDecimal minBookPrice;
 
     /**
@@ -102,6 +126,9 @@ public class BookEntity implements Serializable {
      */
     @Transient
     // @TableField(value = "max(book_price)", exist = false)// mbp这个不可以
-    @TableField(value = "max(book_price)", insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)
+    @TableField(value = "max(book_price)",
+            insertStrategy = FieldStrategy.NEVER,
+            updateStrategy = FieldStrategy.NEVER,
+            select = false)
     private BigDecimal maxBookPrice;
 }
