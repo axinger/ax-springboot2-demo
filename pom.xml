@@ -48,6 +48,7 @@
     </properties>
 
     <modules>
+        <module>axinger-cloud</module>
         <module>axinger-common</module>
         <module>a02-spring-boot-other</module>
         <module>a03-spring-boot-websocket</module>
@@ -77,10 +78,9 @@
         <module>a28-wordToPdf</module>
         <module>a29-elk</module>
         <module>a30-sa-token</module>
-        <module>axinger-cloud</module>
+        <module>a31-poi</module>
         <module>a33-docker-package</module>
         <module>a34-keycloak</module>
-        <module>a31-poi</module>
         <module>a35-flowable</module>
         <module>a36-logback</module>
     </modules>
