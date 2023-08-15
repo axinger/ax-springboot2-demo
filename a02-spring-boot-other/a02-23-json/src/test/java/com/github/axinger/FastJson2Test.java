@@ -7,12 +7,35 @@ import com.alibaba.fastjson2.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
 
-class MainTest {
+class FastJson2Test {
+
+    static Person person;
+
+    @BeforeAll
+    public static void before() {
+        person = Person.builder()
+                .id("1")
+                .name("jin")
+                .books(List.of(
+
+                        Book.builder()
+                                .id("1")
+                                .name("西游记")
+                                .build(),
+
+                        Book.builder()
+                                .id("2")
+                                .name("水浒传")
+                                .build()
+                ))
+                .build();
+    }
 
     @Test
     void test1() throws JsonProcessingException {
@@ -125,6 +148,21 @@ class MainTest {
 
         System.out.println("jsonNode.path(\"name\").asText() = " + jsonNode.path("name").asText());
 
+
+    }
+
+
+    @Test
+    void test4() {
+
+        System.out.println("person = " + person);
+
+        String jsonString = JSONObject.toJSONString(person);
+        System.out.println("jsonString = " + jsonString);
+
+
+        Person person1 = JSONObject.parseObject(jsonString).to(Person.class);
+        System.out.println("person1 = " + person1);
 
     }
 }
