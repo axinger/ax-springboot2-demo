@@ -5,19 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.axinger</groupId>
-        <artifactId>a31-multi-tenant</artifactId>
+        <artifactId>springboot3-multi-tenant</artifactId>
         <version>3.0.4.1</version>
     </parent>
 
-    <artifactId>a31-3-multi-tenant-database</artifactId>
+    <artifactId>b01-1-multi-tenant-partition</artifactId>
+    <description>多租户,分库</description>
+
 
     <dependencies>
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
