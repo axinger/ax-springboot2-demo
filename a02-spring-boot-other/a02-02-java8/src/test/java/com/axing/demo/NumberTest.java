@@ -15,16 +15,7 @@ import java.text.DecimalFormat;
  * @description TODO
  * @createTime 2022年05月20日 22:00:00
  */
-class FormatDemo {
-    // 此方法用于完成数字的格式化显示
-    public void format1(String parrent, double value) {
-        DecimalFormat decimalFormat = null;// 声明对象
-        decimalFormat = new DecimalFormat(parrent);// 实例化并传入模板
-        String string = decimalFormat.format(value);// 格式化数字
-        System.out.println("string = " + string);
-    }
 
-}
 
 public class NumberTest {
 
