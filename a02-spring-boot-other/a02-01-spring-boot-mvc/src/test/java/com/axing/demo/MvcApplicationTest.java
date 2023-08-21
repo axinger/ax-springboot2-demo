@@ -1,7 +1,6 @@
 package com.axing.demo;
 
 import com.axing.demo.bean.HumitureRuleProperties;
-import com.axing.demo.bean.MyProperties;
 import com.axing.demo.event.MyCustomEvent;
 import com.axing.demo.event.MyCustomEvent2;
 import com.axing.same.UserService;
@@ -15,8 +14,7 @@ class MvcApplicationTest {
 
     @Autowired
     UserService userService;
-    @Autowired
-    private MyProperties myProperties;
+
 
     // @Autowired
     // private UserService userService;
@@ -30,12 +28,7 @@ class MvcApplicationTest {
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
-    @Test
-    void test1() {
-        System.out.println("userConfig.getList() = " + myProperties);
-        String username = myProperties.user().username();
-        System.out.println("username = " + username);
-    }
+
 
     @Test
     void test2() {
