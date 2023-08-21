@@ -21,13 +21,13 @@ public class LogTests {
         );
 
         Console.print("a={},b=2", 1, 2); //不换行
-        Console.printProgress('#',3);
+        Console.printProgress('#', 3);
         Console.print("\n");
-        Console.printProgress('#',10,0.6);
+        Console.printProgress('#', 10, 0.6);
         Console.print("\n");
-        Console.log(new Throwable("aa"),"Throwable:a={},b={}", 1, 2);
+        Console.log(new Throwable("aa"), "Throwable:a={},b={}", 1, 2);
         Console.print("\n");
-        Console.error(new Throwable("aa"),"Throwable:a={},b={}", 3, 4);
+        Console.error(new Throwable("aa"), "Throwable:a={},b={}", 3, 4);
 
         System.out.println("Console.where() = " + Console.where());
 
@@ -55,7 +55,7 @@ public class LogTests {
 
 
     @Test
-    void test4(){
+    void test4() {
         Console.print("请输入值===================");
 
         Scanner scanner = Console.scanner();

@@ -1,7 +1,6 @@
 package com.axing.common.redis.service.impl;
 
 import com.axing.common.redis.service.RedisService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.BoundSetOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;

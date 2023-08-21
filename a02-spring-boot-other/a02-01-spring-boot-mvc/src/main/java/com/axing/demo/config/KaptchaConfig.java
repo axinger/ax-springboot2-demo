@@ -11,7 +11,7 @@ import java.util.Properties;
 public class KaptchaConfig {
 
     @Bean
-    public DefaultKaptcha getDefaultKaptcha(){
+    public DefaultKaptcha getDefaultKaptcha() {
         com.google.code.kaptcha.impl.DefaultKaptcha defaultKaptcha = new com.google.code.kaptcha.impl.DefaultKaptcha();
         Properties properties = new Properties();
         properties.put("kaptcha.border", "no");

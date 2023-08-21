@@ -1,10 +1,9 @@
 package com.axing.demo;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
-
-
-import org.junit.jupiter.api.Test;
 
 public class OptionalTests {
 

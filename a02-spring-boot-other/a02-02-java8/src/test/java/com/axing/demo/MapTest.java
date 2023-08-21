@@ -8,13 +8,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Properties;
 import java.util.TreeMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MapTest {
 
     @Test
     public void tes1() throws IOException {
-
 
 
         HashMap<Object, Object> hashMap = new HashMap<>();//
@@ -32,7 +30,7 @@ public class MapTest {
 
 
         //默认值
-        hashMap.getOrDefault("name","test");
+        hashMap.getOrDefault("name", "test");
 
         new LinkedHashMap<>();
 

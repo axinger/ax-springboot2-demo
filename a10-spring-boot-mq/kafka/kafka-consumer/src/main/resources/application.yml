@@ -17,10 +17,10 @@ spring: # 等待连接获取的最大超时时间
       #      # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
       enable-auto-commit: false
       # 键的反序列化方式
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      # 值的反序列化方式
-#      #      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #      # 值的反序列化方式
+      #      #      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #      value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: myGroup1
       # 表示接受反序列化任意的类，也可限定包路径
       properties:

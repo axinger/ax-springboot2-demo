@@ -12,6 +12,6 @@ public class BServiceImpl implements BService {
 
     @Override
     public String test() {
-        return "b==============="+name;
+        return "b===============" + name;
     }
 }

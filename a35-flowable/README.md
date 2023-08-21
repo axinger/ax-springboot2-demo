@@ -3,14 +3,15 @@
 
 在简单了解flowable后与activiti框架相比的第一感觉就是开发方便快速，易与springBoot等各种框架快速整合。如果项目中需要快速实现一些工作流的相关功能那么用此框架是一个不错的选择。我先给大家简单的对flowable做个介绍吧。
 
-Flowable提供了一个组高效的核心开源业务流程引擎，为开发人员，系统管理员和业务用户提供工作流和业务流程管理（BPM）平台。全部用Java编写，并且基于Apache 2.0许可的开源，代码在社区维护。其核心是一个快速，经过试验和测试的动态BPMN流程引擎，附带DMN决策表和CMMN Case管理引擎。
+Flowable提供了一个组高效的核心开源业务流程引擎，为开发人员，系统管理员和业务用户提供工作流和业务流程管理（BPM）平台。全部用Java编写，并且基于Apache
+2.0许可的开源，代码在社区维护。其核心是一个快速，经过试验和测试的动态BPMN流程引擎，附带DMN决策表和CMMN Case管理引擎。
 
-通俗来讲，Flowable是BPMN的一个基于java的软件实现，不过Flowable不仅仅包括BPMN，还有DMN决策表和CMMN Case管理引擎，并且有自己的用户管理、微服务API等一系列功能，是一个服务平台。
+通俗来讲，Flowable是BPMN的一个基于java的软件实现，不过Flowable不仅仅包括BPMN，还有DMN决策表和CMMN
+Case管理引擎，并且有自己的用户管理、微服务API等一系列功能，是一个服务平台。
 对于flowable是什么以及关于此框架的具体信息可以参看此项目的官方文档：https://www.flowable.org/docs/userguide/index.html
 
-
-
 我们下面的操作需要用到flowable-ui，所以大家安装一下，此处给出docker下的安装方案：
+
 * [《Docker部署Flowable-UI》](https://blog.csdn.net/zhiyikeji/article/details/124882628)
 
 我们下面实现一个请假的审批流程，流程图如下所示：
@@ -19,6 +20,7 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
 下面我就开始带着大家从绘制流程到导出流程数据，到和Spring Boot整合来实现一个流程的控制。
 
 # 1.使用flowable-ui绘制流程图
+
 首先要确保你已经安装并且能够正常使用flowable，然后进到以下页面：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/1a7d8e8dbdb14c868a3b862ba9c15703.png#pic_center)
 
@@ -33,7 +35,6 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6f85aa8773bd4d9380560682b26f541b.gif#pic_center)
 
 [video(video-ApMbqfZB-1658041474253)(type-csdn)(url-https://live.csdn.net/v/embed/224967)(image-https://live-file.csdnimg.cn/release/live/file/1657983138046.png?x-oss-process=image/resize,l_300)(title-flowable-operation)]
-
 
 同时，我们需要给我们的用户任务添加监听器
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/bb7a25271c6c43a38728d43528754767.png#pic_center)
@@ -50,16 +51,20 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/cbf4c59bf75946f2b948ef9af5b49449.png#pic_center)
 
 我么可以看到我们这里的流程图使用的是排他网关，下面还有三种网关，我大致给大家简单介绍一下。
+
 ## 1.1 网关
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/ea4cf06d25384beb9c328da804f60cdc.png#pic_center)
 
-互斥网关（Exclusive Gateway），又称排他网关，他有且仅有一个有效出口，可以理解为if......else if...... else if......else，就和我们平时写代码的一样。
+互斥网关（Exclusive Gateway），又称排他网关，他有且仅有一个有效出口，可以理解为if......else if...... else
+if......else，就和我们平时写代码的一样。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/85c220238c9d42c8977640c40d45150a.png#pic_center)
 
 并行网关（Parallel Gateway），他的所有出口都会被执行，可以理解为开多线程同时执行多个任务。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/03c3f895dda447ca9d28cc3d5e26e3cf.png#pic_center)
 
-包容性网关（Inclusive Gateway），只要满足条件的出口都会执行，可以理解为 if(......) do, if (......) do, if (......) do，所有的条件判断都是同级别的。
+包容性网关（Inclusive Gateway），只要满足条件的出口都会执行，可以理解为 if(......) do, if (......) do, if (......)
+do，所有的条件判断都是同级别的。
 
 有了网关，我们就需要有判断的执行条件
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/9986a91e0bc3446a8f1b8c0b294ec1ec.png#pic_center)
@@ -75,8 +80,8 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
 我们需要导出该流程模型：点击进入之后点击下载按钮即可。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6fcb97e95564446fa59c14d97a5033fd.png#pic_center)
 
-
 如果你不想自己画，想直接开始流程相关的操作，可以把我下面的内容复制下来，文件名建议命名为：ExpenseProcess.bpmn20.xml，然后在flowable-ui上直接导入便可以看到流程图了。
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef" exporter="Flowable Open Source Modeler" exporterVersion="6.7.2">
@@ -180,9 +185,14 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
   </bpmndi:BPMNDiagram>
 </definitions>
 ```
-尽管上面的BPMN文件很长，但放心，毕竟那是通过相关的工具生成出来的，对于核心的逻辑部分也很少（主要在process 标签内） ，如需要详细了解的可自行学习下BPMN的标签即可！当然，在flowable的使用文档中也有相关的描述,详见：[《Creating a ProcessEngine》](https://www.flowable.org/docs/userguide/index.html#configuration)
+
+尽管上面的BPMN文件很长，但放心，毕竟那是通过相关的工具生成出来的，对于核心的逻辑部分也很少（主要在process 标签内）
+，如需要详细了解的可自行学习下BPMN的标签即可！当然，在flowable的使用文档中也有相关的描述,详见：[《Creating a ProcessEngine》](https://www.flowable.org/docs/userguide/index.html#configuration)
+
 # 2.SpringBoot集成flowable
+
 ## 2.1 添加Maven依赖
+
 ```xml
         <!-- https://mvnrepository.com/artifact/org.flowable/flowable-spring-boot-starter -->
         <dependency>
@@ -191,7 +201,9 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
             <version>6.7.2</version>
         </dependency>
 ```
+
 由于我们的流程需要数据库的支持，所以还需添加数据库连接依赖
+
 ```xml
        <dependency>
             <groupId>mysql</groupId>
@@ -205,10 +217,14 @@ Flowable提供了一个组高效的核心开源业务流程引擎，为开发人
             <artifactId>lombok</artifactId>
         </dependency>
 ```
+
 PS：
+
 * 我的数据库版本8.0+;
 * SpringBoot版本：2.4.0
+
 ## 2.2 添加配置
+
 ```java
 # 应用名称
 spring.application.name=flowable
@@ -222,8 +238,11 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 # 开发可开启会提高些效率，上线需要关闭
 flowable.async-executor-activate=true
 ```
+
 注意：你需要新建一个数据库，我把数据库命名为：flowable_demo，大家自己随意。
+
 ## 2.3 添加代理类
+
 ```java
 import org.flowable.engine.delegate.TaskListener;
 import org.flowable.task.service.delegate.DelegateTask;
@@ -235,6 +254,7 @@ public class BossTaskHandler implements TaskListener {
     }
 }
 ```
+
 ```java
 import org.flowable.engine.delegate.TaskListener;
 import org.flowable.task.service.delegate.DelegateTask;
@@ -247,6 +267,7 @@ public class ManagerTaskHandler implements TaskListener {
 }
 
 ```
+
 > 我们需要把这两个handler的相对路径添加到你流程图里所对应的监听器里。
 
 
@@ -259,8 +280,11 @@ public class ManagerTaskHandler implements TaskListener {
 
 这样当此框架启动的时候它会默认加载resource目录下的processes时就可以将此流程配置加载到数据库进行持久化了（注意：项目启动之后系统会自动建表）
 <font color='red'>注意：监听的相对路径未修改之前，请务必不要启动项目，否则项目启动之后会将该路径持久化到数据库中</font>
+
 ## 2.4 流程开发
+
 通过传入流程ID生成当前流程的流程图给前端,如果流程中使用到中文且生成的图片是乱码的，则需要进配置下字体：
+
 ```java
 import org.flowable.spring.SpringProcessEngineConfiguration;
 import org.flowable.spring.boot.EngineConfigurationConfigurer;
@@ -283,7 +307,9 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
     }
 }
 ```
+
 编写Controller
+
 ```java
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.*;
@@ -436,6 +462,7 @@ public class ExpenseController {
     }
 }
 ```
+
 大家复制的自己的idea中认真读一下，上面基本包含流程的所有内容
 启动项目，下面开始测试
 
@@ -443,8 +470,10 @@ public class ExpenseController {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e3b70b25611f4c5dba49e1c5305b96e7.png#pic_center)
 
 解决办法：
+
 * 方式1：将jdk的版本退回到jdk8，因为jdk8还支持自带javax.xml.bind.annotation包。
 * 方式2：新增依赖
+
 ```xml
 <dependency>
   <groupId>javax.xml.bind</groupId>
@@ -470,31 +499,34 @@ public class ExpenseController {
 ```
 
 ## 2.5 测试
+
 ### 1.创建流程
+
 访问接口：http://localhost:8080/expense/add?userId=ninesun&money=300&descption=500元以下的流程测试
 返回结果：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/e36acb267df1421da880c7ae58073bb5.png#pic_center)
 
 ### 2.查询待办列表
+
 访问接口：http://localhost:8080/expense/list?userId=ninesun
 返回结果： （PS:此处的返回结果为控制台返回结果，页面返回值，我没做处理，所以返回内容为地址）
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/9db4d3660de84faba4ca895510434903.png#pic_center)
 
 ### 3.同意
+
 访问接口：http://localhost:8080/expense/apply?taskId=7e81f54d-051d-11ed-b447-1263c841b217
-返回结果： 
+返回结果：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d11166b3163141bc8a817fd3814fa2c1.png#pic_center)
 
 ### 4.生成流程图
+
 由于我们到第三步的时候流程已经走完了，所以我们在重新新增一个任务，你直接调用第一步创建流程即可
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/161ee094c5274791a6eeb618eb841a8f.png#pic_center)
 
-
 然后访问接口：http://localhost:8080/expense/processDiagram?processId=50fe234f-059d-11ed-9016-1263c841b217
-返回结果： 
+返回结果：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/95bb055c845c45acb841619a659cf197.png#pic_center)
 
 至此，一个完整的流程就走完了。
-
 
 项目开源地址：https://gitee.com/ninesuntec/flowable

@@ -22,6 +22,8 @@ public class OpsForValueTests {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    private RedisTemplate<String, List<User>> redisTemplateUserList;
 
     private User getUser(Integer id) {
         final User.Book book = User.Book.builder()
@@ -62,10 +64,6 @@ public class OpsForValueTests {
         System.out.println("user = " + user);
     }
 
-
-    @Autowired
-    private RedisTemplate<String, List<User>> redisTemplateUserList;
-
     @Test
     void opsForValue_set2() {
 
@@ -76,7 +74,6 @@ public class OpsForValueTests {
         List<User> users = redisTemplateUserList.opsForValue().get(getUserKey(1));
         System.out.println("user = " + users);
     }
-
 
 
     @Test

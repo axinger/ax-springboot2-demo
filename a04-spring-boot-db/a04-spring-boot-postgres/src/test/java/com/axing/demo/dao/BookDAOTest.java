@@ -3,13 +3,11 @@ package com.axing.demo.dao;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.BookEntity;
 import com.axing.demo.service.BookService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Map;
 
 @SpringBootTest
 class BookDAOTest {

@@ -170,7 +170,7 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId> axinger-http-spring-boot-starter</artifactId>
+                <artifactId>axinger-http-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -424,11 +424,11 @@
                 <version>${redisson.version}</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>com.auth0</groupId>-->
-<!--                <artifactId>java-jwt</artifactId>-->
-<!--                <version>3.18.2</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.auth0</groupId>-->
+            <!--                <artifactId>java-jwt</artifactId>-->
+            <!--                <version>3.18.2</version>-->
+            <!--            </dependency>-->
 
             <dependency>
                 <groupId>commons-fileupload</groupId>
@@ -436,11 +436,11 @@
                 <version>1.5</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>net.coobird</groupId>-->
-<!--                <artifactId>thumbnailator</artifactId>-->
-<!--                <version>0.4.15</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>net.coobird</groupId>-->
+            <!--                <artifactId>thumbnailator</artifactId>-->
+            <!--                <version>0.4.15</version>-->
+            <!--            </dependency>-->
 
 
             <!--            <dependency>-->
@@ -510,11 +510,11 @@
             </dependency>
 
             <!--加密-->
-<!--            <dependency>-->
-<!--                <groupId>com.github.ulisesbocchio</groupId>-->
-<!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
-<!--                <version>3.0.4</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.ulisesbocchio</groupId>-->
+            <!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
+            <!--                <version>3.0.4</version>-->
+            <!--            </dependency>-->
 
             <dependency>
                 <groupId>org.influxdb</groupId>

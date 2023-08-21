@@ -19,7 +19,7 @@ public class IndexController {
 
     @GetMapping("/")
     public Object login() {
-        return List.of(name,bService.test());
+        return List.of(name, bService.test());
     }
 
 

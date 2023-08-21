@@ -1,10 +1,8 @@
 package com.axing.demo.stream;
 
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.ObjUtil;
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.DeviceModel;
 import com.axing.demo.FlowBean;
@@ -22,7 +20,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class StreamTest {
 
@@ -285,8 +282,8 @@ public class StreamTest {
     @Test
     void test_sum2() {
 
-        String concat = Stream.of("a","2").collect(StringBuilder::new, StringBuilder::append,
-                StringBuilder::append)
+        String concat = Stream.of("a", "2").collect(StringBuilder::new, StringBuilder::append,
+                        StringBuilder::append)
                 .toString();
         System.out.println("concat = " + concat);
 

@@ -7,7 +7,10 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.TableCell;
 import org.apache.poi.hwpf.usermodel.TableIterator;
 import org.apache.poi.hwpf.usermodel.TableRow;
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.IBodyElement;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -33,7 +36,7 @@ public class PoiTests {
             }
             // 表格
             else if (element instanceof XWPFTable xwpfTable) {
-                Table<Integer, Integer,String> table = WordRead.getTableText(xwpfTable);
+                Table<Integer, Integer, String> table = WordRead.getTableText(xwpfTable);
                 System.out.println("表格text = " + table);
             }
         }
@@ -41,11 +44,12 @@ public class PoiTests {
 
     /**
      * 读取doc
+     *
      * @throws IOException
      */
     @Test
     void test2() throws IOException {
-        com.google.common.collect.Table<Integer, Integer,String> tables = HashBasedTable.create();
+        com.google.common.collect.Table<Integer, Integer, String> tables = HashBasedTable.create();
         HWPFDocument document = new HWPFDocument(new FileInputStream("D:\\Users\\cepai\\Desktop\\123.doc"));
         TableIterator tableIter = new TableIterator(document.getRange());
         while (tableIter.hasNext()) {
@@ -55,7 +59,7 @@ public class PoiTests {
                 for (int j = 0; j < row.numCells(); j++) {
                     TableCell cell = row.getCell(j);
                     String content = cell.getParagraph(0).text();
-                    tables.put(i,j,content);
+                    tables.put(i, j, content);
                 }
             }
         }
@@ -63,6 +67,6 @@ public class PoiTests {
 
         document.close();
         System.out.println("tables = " + tables);
-        System.out.println("tables.get(1,1) = " + Objects.requireNonNull(tables.get(1, 1)).replace("\u0007",""));
+        System.out.println("tables.get(1,1) = " + Objects.requireNonNull(tables.get(1, 1)).replace("\u0007", ""));
     }
 }

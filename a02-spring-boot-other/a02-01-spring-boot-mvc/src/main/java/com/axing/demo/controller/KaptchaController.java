@@ -5,7 +5,6 @@ import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -55,8 +54,8 @@ public class KaptchaController {
                                       HttpSession session) {
         String captchaCode = String.valueOf(session.getAttribute("verifyCode"));
         if (code.equals(captchaCode)) {
-            return Map.of("captchaCode", "成功"+captchaCode);
+            return Map.of("captchaCode", "成功" + captchaCode);
         }
-        return Map.of("captchaCode", "过期"+captchaCode);
+        return Map.of("captchaCode", "过期" + captchaCode);
     }
 }

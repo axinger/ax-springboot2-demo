@@ -17,7 +17,7 @@ spring: # 等待连接获取的最大超时时间
       # 键的序列化方式
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       # 值的序列化方式
-#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring:

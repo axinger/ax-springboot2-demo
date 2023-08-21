@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class SteamIterableTests {
 
     @Test
-    void test1(){
+    void test1() {
         Iterable<String> iterable
                 = Arrays.asList("Testing", "Iterable", "conversion", "to", "Stream");
         List<String> result = StreamSupport.stream(iterable.spliterator(), false)
