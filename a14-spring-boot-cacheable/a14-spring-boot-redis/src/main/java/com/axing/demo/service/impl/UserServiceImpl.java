@@ -21,7 +21,7 @@ import java.util.List;
  * allEntries：true表示清除value中的全部缓存，默认为false。
  */
 @Service
-@CacheConfig(cacheNames = "demo14::user")
+@CacheConfig(cacheNames = "user")
 public class UserServiceImpl implements UserService {
 
     @Override
@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
                 .id(1)
                 .name("海底两万里")
                 .build();
-
         return User.builder().id(id).name("jim").age(21).books(List.of(book)).build();
     }
 

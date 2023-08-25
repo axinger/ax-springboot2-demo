@@ -21,7 +21,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-@CacheConfig(cacheNames = "demo14::user")
+@CacheConfig(cacheNames = "demo14:user")
 public class UserController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class UserController {
         String key = RedisUtil.getKey("demo13", "person", id);
         User person;
         if (redisService.hasKey(key)) {
-            person = redisService.getCacheObject("demo13::person::" + id);
+            person = redisService.getCacheObject("demo13:person:" + id);
         } else {
             User.Book book = User.Book.builder()
                     .id(1)
@@ -71,7 +71,7 @@ public class UserController {
                 .date(new Date())
                 .books(List.of(book))
                 .build();
-        redisService.set("demo13::user::" + id, person);
+        redisService.set("demo13:user:" + id, person);
         return Result.ok();
     }
 
@@ -127,7 +127,7 @@ public class UserController {
                 .books(List.of(book))
                 .build();
 
-        String key = "test::user";
+        String key = "test:user";
         redisTemplate2.opsForValue().set(key, user);
 
         User user1 = redisTemplate2.opsForValue().get(key);
@@ -156,7 +156,7 @@ public class UserController {
 
 
     private String getUserKey(Integer id) {
-        return StrUtil.format("test::value::{}::User", id);
+        return StrUtil.format("test:value:{}:User", id);
     }
 
     @GetMapping(value = "/opsForValue/set")

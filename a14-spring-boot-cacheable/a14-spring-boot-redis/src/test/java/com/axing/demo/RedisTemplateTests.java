@@ -30,10 +30,10 @@ import java.util.concurrent.TimeUnit;
  */
 @SpringBootTest
 @Slf4j
-@CacheConfig(cacheNames = "demo13::user")
+@CacheConfig(cacheNames = "demo13:user")
 public class RedisTemplateTests {
 
-    private static final String SERIAL_NUM = "order::serialNo::";
+    private static final String SERIAL_NUM = "order:serialNo:";
     @Autowired
     private RedisTemplate redisTemplate;
     @Autowired
@@ -43,7 +43,7 @@ public class RedisTemplateTests {
     @Autowired
     private RedisTemplate<String, User> redisTemplateUser;
     @Autowired
-    private RedisTemplate<String, Map> redisTemplateMap;
+    private RedisTemplate<String, Map<String,Object>> redisTemplateMap;
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
@@ -69,7 +69,7 @@ public class RedisTemplateTests {
 
     @Test
     void opsForHash_put() {
-        final String key = "test::hash:::User";
+        final String key = "test:hash::User";
         Map<String, Object> map = new HashMap<>();
         map.put("name", "jim");
         map.put("age", 10);
@@ -77,14 +77,22 @@ public class RedisTemplateTests {
     }
 
     @Test
-    void opsForHash_put2() {
-        final String key = "test::hash:::User";
-        redisTemplateMap.opsForHash().put(key, "height", 10);
+    void map_set() {
+        final String key = "test:map";
+        redisTemplateMap.opsForHash().putAll(key,Map.of("name","jim"));
     }
 
     @Test
+    void map_put2() {
+        final String key = "test:map";
+        Object name = redisTemplateMap.opsForHash().get(key, "name");
+        System.out.println("name = " + name);
+    }
+
+
+    @Test
     void opsForHash_put3() {
-        final String key = "test::hash:::User";
+        final String key = "test:hash::User";
         redisTemplateMap.opsForHash().put(key, "user", JSON.toJSONString(getUser(1)));
         Object name = redisTemplateMap.opsForHash().get(key, "user");
         System.out.println("name = " + name);
@@ -92,7 +100,7 @@ public class RedisTemplateTests {
 
     @Test
     void opsForHash_put4() {
-        final String key = "test::hash:::User";
+        final String key = "test:hash::User";
         redisTemplateMap.opsForHash().put(key, "users", List.of(JSON.toJSONString(getUser(1))));
         // 存list ,无法取出
         Object name = redisTemplateMap.opsForHash().get(key, "users");
@@ -101,7 +109,7 @@ public class RedisTemplateTests {
 
     @Test
     void opsForHash_get() {
-        final String key = "test::hash:::User";
+        final String key = "test:hash::User";
         Object name = redisTemplateMap.opsForHash().get(key, "name");
         System.out.println("name = " + name);
     }
@@ -110,7 +118,7 @@ public class RedisTemplateTests {
     @Test
     void opsForList_leftPush() {
         // 将所有指定的值插入存储在键的列表的头部
-        final String key = "test::list::User";
+        final String key = "test:list:User";
 
         Long aLong = redisTemplateList.opsForList().leftPush(key, getUser(1));
         System.out.println("aLong = " + aLong);
@@ -122,7 +130,7 @@ public class RedisTemplateTests {
     @Test
     void opsForList_pop() {
         // 弹出最左边的元素，弹出之后该值在列表中将不复存在
-        final String key = "test::list::User";
+        final String key = "test:list:User";
         User user = redisTemplateList.opsForList().rightPop(key);
         System.out.println("user = " + user);
 
@@ -133,7 +141,7 @@ public class RedisTemplateTests {
     @Test
     void opsForList_range() {
         // 不会越界
-        final String key = "test::list::User";
+        final String key = "test:list:User";
         List<User> range = redisTemplateList.opsForList().range(key, 1, 3);
         System.out.println("range = " + range);
     }
@@ -141,7 +149,7 @@ public class RedisTemplateTests {
     @Test
     void opsForList_index() {
         // 弹出最左边的元素，弹出之后该值在列表中将不复存在
-        final String key = "test::list::User";
+        final String key = "test:list:User";
         User index = redisTemplateList.opsForList().index(key, 0);
         System.out.println("index = " + index);
 
@@ -159,7 +167,7 @@ public class RedisTemplateTests {
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "jim");
 
-        this.redisTemplate.opsForValue().set("demo::dog1", jsonObject);
+        this.redisTemplate.opsForValue().set("demo:dog1", jsonObject);
         this.redisTemplate.opsForValue().set("demo:dog2", jsonObject);
     }
 
@@ -180,7 +188,7 @@ public class RedisTemplateTests {
                 .books(List.of(book))
                 .build();
 
-        final String key = "test::user::1::User";
+        final String key = "test:user:1:User";
         // this.redisTemplateUser.opsForValue().set(key, user);
 
         // 设置键的字符串值并返回其旧值
@@ -196,8 +204,6 @@ public class RedisTemplateTests {
         final User user2 = this.redisTemplateUser.opsForValue().get(key);
 
         System.out.println("user2 = " + user2);
-
-
     }
 
     @SneakyThrows
@@ -218,7 +224,7 @@ public class RedisTemplateTests {
                 .books(List.of(book))
                 .build();
 
-        // final String key = "test::user::1::Map";
+        // final String key = "test:user:1:Map";
 
 
         final String key = RedisUtil.getKey("test", "user", 1, "Map");
@@ -242,14 +248,14 @@ public class RedisTemplateTests {
     @Test
     void test_map_to_user() {
 
-        final String key = "test::user::1::Map";
+        final String key = "test:user:1:Map";
         User user = redisTemplateUser.opsForValue().get(key);
         System.out.println("user = " + user);
     }
 
     @Test
     void test_json() {
-        final Object o = this.redisTemplate.opsForValue().get("test::json::user.id");
+        final Object o = this.redisTemplate.opsForValue().get("test:json:user.id");
         System.out.println("o = " + o);
     }
 
@@ -272,7 +278,7 @@ public class RedisTemplateTests {
     @Test
     void test_expire() {
 
-        final String key = "test::expire::1::Map";
+        final String key = "test:expire:1:Map";
         this.redisTemplate.opsForValue().set(key, "1");
         this.redisTemplate.expire(key, 5, TimeUnit.SECONDS);
     }

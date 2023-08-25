@@ -44,7 +44,7 @@ public class OpsForValueTests {
     }
 
     private String getUserKey(Integer id) {
-        return StrUtil.format("test::value::{}::User", id);
+        return StrUtil.format("test:value:{}:User", id);
     }
 
     @Test
