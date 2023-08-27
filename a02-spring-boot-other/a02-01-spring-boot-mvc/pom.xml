@@ -77,6 +77,10 @@
             <version>2.3.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>axinger-advice-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
