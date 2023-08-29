@@ -21,4 +21,6 @@ public class Person {
     private String name;
 
     private Boolean big;
+
+    private Integer age;
 }
