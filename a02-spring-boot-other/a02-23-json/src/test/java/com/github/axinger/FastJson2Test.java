@@ -8,8 +8,10 @@ import com.alibaba.fastjson2.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NonNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Map;
@@ -176,5 +178,24 @@ class FastJson2Test {
         System.out.println("person2 = " + person);
 
         System.out.println(JSONPath.of("$.books[1].name").eval(person));
+    }
+
+
+    //    void test6(@NonNull String name){
+//        System.out.println("name = " + name);
+//    }
+    void test6(@Validated @NonNull Book name) {
+        System.out.println("name = " + name);
+    }
+
+    @Test
+    void test7() {
+        var obj = new Object() {
+            String name;
+        };
+        obj.name = "jim";
+        System.out.println("obj = " + obj);
+
+        test6(null);
     }
 }
