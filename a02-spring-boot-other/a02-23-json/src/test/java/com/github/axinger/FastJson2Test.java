@@ -3,6 +3,7 @@ package com.github.axinger;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONPath;
 import com.alibaba.fastjson2.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -164,5 +165,16 @@ class FastJson2Test {
         Person person1 = JSONObject.parseObject(jsonString).to(Person.class);
         System.out.println("person1 = " + person1);
 
+    }
+
+    @Test
+    void test5() {
+        System.out.println("person = " + person);
+        System.out.println(JSONPath.of("$.books[1].name").eval(person));
+
+        JSONPath.set(person, "$.books[1].name", "红楼梦");
+        System.out.println("person2 = " + person);
+
+        System.out.println(JSONPath.of("$.books[1].name").eval(person));
     }
 }

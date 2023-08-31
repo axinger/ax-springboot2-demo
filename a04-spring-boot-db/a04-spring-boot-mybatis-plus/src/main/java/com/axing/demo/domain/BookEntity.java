@@ -14,11 +14,11 @@ import java.util.Date;
 /**
  * @TableName book
  */
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @TableName(value = "book")
 @Entity(name = "book")
-public class BookEntity extends BaseEntity {
+public class BookEntity {
 
     @Serial
     @TableField(exist = false)
