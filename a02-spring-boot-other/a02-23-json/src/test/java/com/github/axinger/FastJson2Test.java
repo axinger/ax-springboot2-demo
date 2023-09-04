@@ -171,13 +171,14 @@ class FastJson2Test {
 
     @Test
     void test5() {
-        System.out.println("person = " + person);
-        System.out.println(JSONPath.of("$.books[1].name").eval(person));
+        System.out.println("path修改值前person = " + person);
 
         JSONPath.set(person, "$.books[1].name", "红楼梦");
-        System.out.println("person2 = " + person);
 
-        System.out.println(JSONPath.of("$.books[1].name").eval(person));
+        System.out.println("path修改值后person = " + person);
+
+        System.out.println("path修改值后books[1].name = " + JSONPath.of("$.books[1].name").eval(person));
+        System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(person));
     }
 
 
