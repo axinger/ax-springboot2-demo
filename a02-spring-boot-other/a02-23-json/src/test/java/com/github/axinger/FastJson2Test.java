@@ -181,6 +181,21 @@ class FastJson2Test {
         System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(person));
     }
 
+    @Test
+    void test51() {
+
+        Map<String, Object> map = JSON.parseObject(JSON.toJSONString(person), new TypeReference<>() {
+        });
+
+        System.out.println("path修改值前map = " + map);
+
+        JSONPath.set(map, "$.books[1].name", "红楼梦");
+
+        System.out.println("path修改值后map = " + map);
+
+        System.out.println("path修改值后books[1].name = " + JSONPath.of("$.books[1].name").eval(map));
+        System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(map));
+    }
 
     //    void test6(@NonNull String name){
 //        System.out.println("name = " + name);
