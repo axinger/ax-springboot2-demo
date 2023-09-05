@@ -36,7 +36,7 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <guava.version>32.1.2-jre</guava.version>
         <hutool.version>5.8.21</hutool.version>
-        <fastjson2.version>2.0.38</fastjson2.version>
+        <fastjson2.version>2.0.40</fastjson2.version>
         <lombok.version>1.18.28</lombok.version>
         <druid.version>1.2.15</druid.version>
         <netty-all.version>4.1.95.Final</netty-all.version>

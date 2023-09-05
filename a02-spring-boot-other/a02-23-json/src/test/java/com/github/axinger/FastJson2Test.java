@@ -116,7 +116,7 @@ class FastJson2Test {
         JSONObject jsonObject = JSONObject.from(person);
         jsonObject.put("name", "修改用户名");
         jsonObject.getJSONArray("books").getJSONObject(1).put("name", "修改书名");
-        System.out.println("jsonObject2 = " + jsonObject);
+        System.out.println("JSONObject.from = " + jsonObject);
     }
 
     @Test
