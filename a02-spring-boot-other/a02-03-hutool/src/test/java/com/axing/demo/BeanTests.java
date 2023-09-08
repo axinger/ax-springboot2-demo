@@ -1,6 +1,7 @@
 package com.axing.demo;
 
 import cn.hutool.core.bean.BeanDesc;
+import cn.hutool.core.bean.BeanPath;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.DynaBean;
 import cn.hutool.core.collection.CollUtil;
@@ -9,6 +10,7 @@ import cn.hutool.core.lang.tree.TreeNode;
 import cn.hutool.core.lang.tree.TreeUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +34,15 @@ public class BeanTests {
 //        Object property = BeanUtil.getProperty(list, "[0].name");
         Object property = BeanUtil.getProperty(list, "[1].name");
         System.out.println("property = " + property);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",1);
+
+        Object resolver = new BeanPath("[id=1]").get(map);
+        System.out.println("resolver = " + resolver);
+
+//        Object result = resolver.get(tempMap);//ID为1
+
     }
 
 

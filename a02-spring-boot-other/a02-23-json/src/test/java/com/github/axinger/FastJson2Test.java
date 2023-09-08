@@ -1,10 +1,7 @@
 package com.github.axinger;
 
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
-import com.alibaba.fastjson2.JSONPath;
-import com.alibaba.fastjson2.TypeReference;
+import com.alibaba.fastjson2.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,8 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class FastJson2Test {
 
@@ -25,6 +21,7 @@ class FastJson2Test {
         person = Person.builder()
                 .id("1")
                 .name("jin")
+                .age(10)
                 .books(List.of(
 
                         Book.builder()
@@ -121,6 +118,7 @@ class FastJson2Test {
         jsonObject.put("name", "修改用户名");
         jsonObject.getJSONArray("books").getJSONObject(1).put("name", "修改书名");
         System.out.println("JSONObject.from = " + jsonObject);
+
     }
 
     @Test
@@ -183,6 +181,10 @@ class FastJson2Test {
 
         System.out.println("path修改值后books[1].name = " + JSONPath.of("$.books[1].name").eval(person));
         System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(person));
+
+        Object eval = JSONPath.eval(person, "[age = 10]");
+        System.out.println("eval = " + eval);
+
     }
 
     @Test
@@ -201,6 +203,50 @@ class FastJson2Test {
         System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(map));
     }
 
+    @Test
+    void test52() {
+
+        Person person = new Person();
+        person.setId("1");
+        person.setAge(10);
+
+        Object eval = JSONPath.eval(person, "[age=10]");
+        System.out.println("eval = " + eval);
+
+    }
+
+    @Test
+    void test53() {
+        List<Person> list = new ArrayList<>();
+
+        Person person = new Person();
+        person.setId("1");
+        person.setAge(10);
+
+        list.add(person);
+
+
+//        List<Person> result = (List<Person>) JSONPath.of("[age in (1)]").extract(list);
+        List<Person> result = (List<Person>) JSONPath.eval(list, "[age in (1)]");
+        System.out.println("result = " + result);
+
+        JSONPath.eval(list, "$.[(age in (1)]");
+
+    }
+
+    @Test
+    void test55() {
+        String text = "{code:1,msg:'Hello world',data:{list:[1,2,3,4,5], ary2:[{a:2},{a:3,b:{c:'ddd'}}]}}";
+        JSONObject obj = new JSONObject();
+
+
+        System.out.println("obj = " + obj);
+
+        Object eval = JSONPath.eval(text, "$..ary2[0].a");
+        System.out.println("eval = " + eval);
+    }
+
+
     //    void test6(@NonNull String name){
 //        System.out.println("name = " + name);
 //    }
@@ -217,5 +263,66 @@ class FastJson2Test {
         System.out.println("obj = " + obj);
 
         test6(null);
+    }
+
+    @Test
+    void test8() {
+
+        // 不可变集合,不能被修改
+//        Map<String, Object> map = Map.of("name","jim");
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "jim");
+        map.put("books", Arrays.asList("1", "2"));
+//
+//        JSONPath 	语义
+//        $ 	根对象
+//        $[-1] 	最后元素
+//        $[:-2] 	第1个至倒数第2个
+//        $[1:] 	第2个之后所有元素
+//        $[1,2,3] 	集合中1,2,3个元素
+
+        System.out.println("path修改值前map = " + map);
+        JSONPath.of("$.name").set(map, "tom");
+        JSONPath.set(map, "$.name", "红楼梦");
+        JSONPath.set(map, "$.age", "红楼梦");
+        JSONPath.set(map, "$.books[0]", "2");
+        JSONPath.set(map, "$.books[-1]", "2");
+        System.out.println("path修改值后map = " + map);
+
+        JSONPath.of("$.books").arrayAdd(map, "4"); //将value字段的数组添加元素1,2,3
+
+        System.out.println("path修改值后map = " + map);
+    }
+
+    @Test
+    void test9() {
+        JSONObject object = JSONObject.of("item", 1);
+        JSONPath path = JSONPath.of("$.item");
+        path.set(object, 2, JSONReader.Feature.DuplicateKeyValueAsArray);
+        System.out.println("object = " + object);
+
+        path.set(object, 3);
+        System.out.println("object = " + object);
+
+//        JSONPath.set(object,4,JSONReader.Feature.DuplicateKeyValueAsArray);
+//        System.out.println("object = " + object);
+    }
+
+    @Test
+    void test10() {
+
+        // 不可变集合,不能被修改
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "jim");
+
+//        JSONObject from = JSONObject.from(map);
+        JSONObject from = new JSONObject(map);
+
+        map.put("name", "tom");
+        System.out.println("from = " + from);
+        System.out.println("map = " + map);
+
+
     }
 }
