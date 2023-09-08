@@ -60,14 +60,18 @@ class FastJson2Test {
                 ))
                 .build();
 
+        Map map = JSON.parseObject(JSON.toJSONString(person), Map.class);
 
-        JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(person), JSONObject.class);
+        JSONObject jsonObject = JSONObject.from(map);
+
+//        JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(person), JSONObject.class);
 
 
         String book1Name = jsonObject.getJSONArray("books").getJSONObject(1).getString("name");
         System.out.println("book1Name = " + book1Name);
         jsonObject.getJSONArray("books").getJSONObject(1).put("name", "tom");
         System.out.println("jsonObject = " + jsonObject);
+        System.out.println("map = " + map);
     }
 
 
