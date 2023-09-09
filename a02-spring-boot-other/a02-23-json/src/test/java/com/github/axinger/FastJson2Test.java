@@ -217,20 +217,21 @@ class FastJson2Test {
 
     @Test
     void test53() {
-        List<Person> list = new ArrayList<>();
 
         Person person = new Person();
         person.setId("1");
         person.setAge(10);
+        Object eval = JSONPath.eval(person, "[age=10]");
+        System.out.println("eval = " + eval);
 
+
+        List<Person> list = new ArrayList<>();
         list.add(person);
-
-
 //        List<Person> result = (List<Person>) JSONPath.of("[age in (1)]").extract(list);
-        List<Person> result = (List<Person>) JSONPath.eval(list, "[age in (1)]");
-        System.out.println("result = " + result);
-
-        JSONPath.eval(list, "$.[(age in (1)]");
+//        List<Person> result = (List<Person>) JSONPath.eval(list, "[age in (1)]");
+//        System.out.println("result = " + result);
+//
+//        JSONPath.eval(list, "$.[(age in (1)]");
 
     }
 
