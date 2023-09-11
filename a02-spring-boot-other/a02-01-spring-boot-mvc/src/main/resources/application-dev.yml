@@ -1,6 +1,6 @@
 version: 1.0.0
 server:
-  port: 8080
+  port: 12021
 
 spring:
   application:

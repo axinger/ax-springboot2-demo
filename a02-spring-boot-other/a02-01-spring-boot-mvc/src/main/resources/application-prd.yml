@@ -1,6 +1,6 @@
 version: 1.0.0
 server:
-  port: 9090
+  port: 12121
 
 spring:
   application:
