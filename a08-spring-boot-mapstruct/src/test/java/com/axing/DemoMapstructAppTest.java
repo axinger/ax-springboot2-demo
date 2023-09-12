@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class DemoMapstructAppTest {
 
@@ -32,14 +34,43 @@ class DemoMapstructAppTest {
 
     @Test
     public void test2() {
-
         UserRoleDto userRoleDto = userRoleMapper.toUserRoleDto(user);
         System.out.println("userRoleDto = " + userRoleDto);
     }
+
 
     @Test
     public void test3() {
         UserRoleDto userRoleDto = userRoleMapper.defaultConvert();
         System.out.println(userRoleDto);
+    }
+
+
+    @Test
+    public void test4() {
+        Role role1 = Role.builder()
+                .roleName("管理员")
+                .build();
+        User user1 = User.builder()
+                .id(1L)
+                .username("jim")
+                .role(role1)
+                .build();
+        UserRoleDto userRoleDto = userRoleMapper.toUserRoleDto(user1);
+        System.out.println("builder方式userRoleDto = " + userRoleDto);
+    }
+
+    @Test
+    public void test5() {
+        Role role1 = Role.builder()
+                .roleName("管理员")
+                .build();
+        User user1 = User.builder()
+                .id(1L)
+                .username("jim")
+                .role(role1)
+                .build();
+        List<UserRoleDto> list = userRoleMapper.toUserRoleDtoList(List.of(user1));
+        System.out.println("list = " + list);
     }
 }

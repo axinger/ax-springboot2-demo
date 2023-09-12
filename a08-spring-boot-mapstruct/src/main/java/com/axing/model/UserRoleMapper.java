@@ -5,6 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @Mapper 定义这是一个MapStruct对象属性转换接口，在这个类里面规定转换规则
  * 在项目构建时，会自动生成改接口的实现类，这个实现类将实现对象属性值复制
@@ -16,13 +18,6 @@ public interface UserRoleMapper {
     /**
      * 获取该类自动生成的实现类的实例
      * 接口中的属性都是 public static final 的 方法都是public abstract的
-     */
-//    UserRoleMapper INSTANCES = Mappers.getMapper(UserRoleMapper.class);
-
-    /**
-     * 提供默认方法，方法自己定义，这个方法是我随便写的，不是要按照这个格式来的
-     *
-     * @return
      */
     default UserRoleDto defaultConvert() {
         UserRoleDto userRoleDto = new UserRoleDto();
@@ -46,6 +41,13 @@ public interface UserRoleMapper {
             @Mapping(source = "role.roleName", target = "roleName")
     })
     UserRoleDto toUserRoleDto(User user);
+
+    @Mappings({
+            @Mapping(source = "id", target = "userId"),
+            @Mapping(source = "username", target = "name"),
+            @Mapping(source = "role.roleName", target = "roleName")
+    })
+    List<UserRoleDto> toUserRoleDtoList(List<User> user);
 
     /**
      * 多个参数中的值绑定
