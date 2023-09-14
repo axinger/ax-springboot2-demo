@@ -16,6 +16,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
         MyYmlBean.class,
         ApplicationInfo.class
 })
-public class AutoConfig {
+public class MyAutoImportConfig {
 
 }
