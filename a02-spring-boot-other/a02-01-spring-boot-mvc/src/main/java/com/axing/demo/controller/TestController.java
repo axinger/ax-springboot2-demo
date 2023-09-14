@@ -33,4 +33,5 @@ public class TestController {
     public Object getInfoByCode(@PathVariable("materialCode") String materialCode) {
         return List.of(materialCode);
     }
+
 }

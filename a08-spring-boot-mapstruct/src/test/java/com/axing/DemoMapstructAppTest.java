@@ -10,31 +10,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class DemoMapstructAppTest {
 
-    Role role = null;
-    User user = null;
+
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-    @BeforeEach
-    public void before() {
-        role = new Role(2L, "administrator", "超级管理员");
-        user = new User(1L, "zhangsan", "12345", "17677778888", "123@qq.com", role);
-    }
-
     @Test
     public void test() {
-        UserRoleDto userRoleDto = userRoleMapper.useParameter(user, "myUserRole");
-        System.out.println(userRoleDto);
+        Role role = new Role(2L, "administrator", "超级管理员");
+        User user = new User();
+        user.setId(1L);
+        user.setAge(20);
+        user.setUsername("jm");
+        user.setRole(role);
+
+
+//        UserRoleDto userRoleDto = userRoleMapper.useParameter(user, "myUserRole");
+//        System.out.println(userRoleDto);
     }
 
 
     @Test
     public void test2() {
-        UserRoleDto userRoleDto = userRoleMapper.toUserRoleDto(user);
+        Role role1 = Role.builder()
+                .roleName("管理员")
+                .build();
+        User user1 = User.builder()
+                .id(1L)
+                .username("jim")
+                .role(role1)
+                .age(20)
+                .form(Map.of("other", "p2"))
+                .build();
+
+        UserRoleDto userRoleDto = userRoleMapper.toUserRoleDto(user1);
         System.out.println("userRoleDto = " + userRoleDto);
     }
 

@@ -3,6 +3,7 @@ package com.axing.model;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.mapstruct.Named;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -38,9 +39,17 @@ public interface UserRoleMapper {
     @Mappings({
             @Mapping(source = "id", target = "userId"),
             @Mapping(source = "username", target = "name"),
-            @Mapping(source = "role.roleName", target = "roleName")
+            @Mapping(source = "role.roleName", target = "roleName"),
+            @Mapping(expression = "java(user.getAge() >= 18)", target = "isAdult"),
+            @Mapping(source = "form.other", target = "other", qualifiedByName = {"objectToString"})
     })
     UserRoleDto toUserRoleDto(User user);
+
+    @Named("objectToString")
+    default String mapObjectToString(Object object) {
+        return object != null ? object.toString() : null;
+    }
+
 
     @Mappings({
             @Mapping(source = "id", target = "userId"),
@@ -70,10 +79,13 @@ public interface UserRoleMapper {
      * @param myRoleName
      * @return
      */
-    @Mappings({
-            @Mapping(source = "user.id", target = "userId"), // 把user中的id绑定到目标对象的userId属性中
-            @Mapping(source = "user.username", target = "name"), // 把user中的username绑定到目标对象的name属性中
-            @Mapping(source = "myRoleName", target = "roleName") // 把role对象的roleName属性值绑定到目标对象的roleName中
-    })
-    UserRoleDto useParameter(User user, String myRoleName);
+//    @Mappings({
+//            @Mapping(source = "user.id", target = "userId"), // 把user中的id绑定到目标对象的userId属性中
+//            @Mapping(source = "user.username", target = "name"), // 把user中的username绑定到目标对象的name属性中
+//            @Mapping(source = "myRoleName", target = "roleName"),
+//            @Mapping(target = "isAdult", expression = "java(source.getAge() >= 18)"),
+//            @Mapping(source = "form.other", target = "other", qualifiedByName = {"objectToString"})
+//
+//    })
+//    UserRoleDto useParameter(User user, String myRoleName);
 }

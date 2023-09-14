@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,4 +18,7 @@ public class User {
     private String phoneNum;
     private String email;
     private Role role;
+    private int age;
+
+    private Map<String,Object> form;
 }
