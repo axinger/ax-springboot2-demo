@@ -16,6 +16,7 @@ public class JSONPathTests {
         private String name;
         private Object value;
 
+        @SuppressWarnings("unused")
         public Entity() {
         }
 
@@ -31,30 +32,6 @@ public class JSONPathTests {
 
         public Entity(String name) {
             this.name = name;
-        }
-
-        public Integer getId() {
-            return id;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public void setValue(Object value) {
-            this.value = value;
         }
     }
 
@@ -76,6 +53,7 @@ public class JSONPathTests {
         entities.add(new Entity("wenshao"));
         entities.add(new Entity("ljw2083"));
 
+        @SuppressWarnings("unchecked")
         List<String> names = (List<String>) JSONPath.eval(entities, "$.name"); // 返回enties的所有名称
         System.out.println("names = " + names);
         assertSame(entities.get(0).getName(), names.get(0));
@@ -90,6 +68,7 @@ public class JSONPathTests {
         entities.add(new Entity("ljw2083"));
         entities.add(new Entity("Yako"));
 
+        @SuppressWarnings("unchecked")
         List<Entity> result = (List<Entity>) JSONPath.eval(entities, "[1,2]"); // 返回list中下标为1和2的元素
         System.out.println("result = " + result);
 
@@ -109,6 +88,7 @@ public class JSONPathTests {
         entities.add(new Entity("ljw2083"));
         entities.add(new Entity("Yako"));
 
+        @SuppressWarnings("unchecked")
         List<Entity> result = (List<Entity>) JSONPath.eval(entities, "[0:2]"); // 返回下标从0到2的元素
         System.out.println("result = " + result);
         assertEquals(3, result.size());
@@ -127,6 +107,7 @@ public class JSONPathTests {
         entities.add(new Entity(1003, "yakolee"));
         entities.add(new Entity(1004, null));
 
+        @SuppressWarnings("unchecked")
         List<Object> result = (List<Object>) JSONPath.eval(entities, "[?(@.id in (1001,1002))]");
         System.out.println("result = " + result);
         assertEquals(2, result.size());
@@ -138,7 +119,7 @@ public class JSONPathTests {
 //        3.6 例6
 //        根据属性值过滤条件判断是否返回对象，修改对象，数组属性添加元素
         Entity entity = new Entity(1001, "ljw2083");
-        assertSame(entity , JSONPath.eval(entity, "[?(@.id = 1001)]"));
+        assertSame(entity, JSONPath.eval(entity, "[?(@.id = 1001)]"));
 
         JSONPath.set(entity, "id", 123456); //将id字段修改为123456
         System.out.println("entity = " + entity);
@@ -151,7 +132,7 @@ public class JSONPathTests {
     @Test
     public void test7() {
 
-        Map root = Collections.singletonMap("company",
+        Map<String, Map<String, List<Map<String, Integer>>>> root = Collections.singletonMap("company",
                 Collections.singletonMap("departs",
                         Arrays.asList(
                                 Collections.singletonMap("id", 1001),
@@ -161,6 +142,7 @@ public class JSONPathTests {
                 ));
 
         //deepScan属性访问，例如$..name
+        @SuppressWarnings("unchecked")
         List<Object> ids = (List<Object>) JSONPath.eval(root, "$..id");
 
         System.out.println("ids = " + ids);
@@ -173,8 +155,6 @@ public class JSONPathTests {
 //        assertEquals(1001, ids.get(0));
 //        assertEquals(1002, ids.get(1));
 //        assertEquals(1003, ids.get(2));
-
-
 
 
         Person person = Person.builder()
