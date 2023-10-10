@@ -200,7 +200,11 @@ class FastJson2Test {
         System.out.println("path修改值后map = " + map);
 
         System.out.println("path修改值后books[1].name = " + JSONPath.of("$.books[1].name").eval(map));
-        System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(map));
+        System.out.println("path修改值后books[1].name = " + JSONPath.eval(map, "$.books[1].name"));
+        System.out.println("path修改值后books[3].name越界 = " + JSONPath.of("$.books[3].name").eval(map));
+        System.out.println("path修改值后books[3].name越界 = " + JSONPath.eval(map, "$.books[3].name"));
+
+
     }
 
     @Test
@@ -210,61 +214,87 @@ class FastJson2Test {
         person.setId("1");
         person.setAge(10);
 
-        Object eval = JSONPath.eval(person, "[age=10]");
+//        Object eval = JSONPath.eval(person, "[age=10]");
+        //fastjson2需要使用标准语法，如下：
+//        Object eval = JSONPath.eval(person, "@[?age=10]");
+        Object eval = JSONPath.eval(person, "[?(@.age=10)]");
         System.out.println("eval = " + eval);
 
     }
 
+    //https://alibaba.github.io/fastjson2/jsonpath_cn.html
     @Test
     void test53() {
-
-        Person person = new Person();
-        person.setId("1");
-        person.setAge(10);
-        Object eval = JSONPath.eval(person, "[age=10]");
-        System.out.println("eval = " + eval);
-
-
         List<Person> list = new ArrayList<>();
-        list.add(person);
-//        List<Person> result = (List<Person>) JSONPath.of("[age in (1)]").extract(list);
-//        List<Person> result = (List<Person>) JSONPath.eval(list, "[age in (1)]");
-//        System.out.println("result = " + result);
-//
-//        JSONPath.eval(list, "$.[(age in (1)]");
+
+
+        {
+            Person person = new Person();
+            person.setId("1");
+            person.setAge(10);
+            list.add(person);
+        }
+        {
+            Person person = new Person();
+            person.setId("2");
+            person.setAge(11);
+            list.add(person);
+        }
+
+        @SuppressWarnings("unchecked")
+        List<Person> list2 = (List<Person>) JSONPath.eval(list, "[?(@.age in (10))]");
+        System.out.println("list2 = " + list2);
 
     }
 
     @Test
     void test55() {
-        String text = "{code:1,msg:'Hello world',data:{list:[1,2,3,4,5], ary2:[{a:2},{a:3,b:{c:'ddd'}}]}}";
-        JSONObject obj = new JSONObject();
+//        String text = "{code:1,msg:'Hello world',data:{list:[1,2,3,4,5], ary2:[{a:2},{a:3,b:{c:'ddd'}}]}}";
+//        JSONObject obj = JSONObject.parseObject(text);
+//
+//
+//        System.out.println("obj = " + obj);
+//
+////        Object eval = JSONPath.eval(obj, "$..ary2[0].a");
+//////        Object eval = JSONPath.eval(obj, "$..ary2");
+////        System.out.println("eval = " + eval);
 
 
-        System.out.println("obj = " + obj);
+        String text = """
+                {
+                    "code": 1,
+                    "data": {
+                        "list": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ],
+                        "list2":{
+                            "ary2": [
+                                {
+                                    "a": 2
+                                },
+                                {
+                                    "a": 3,
+                                    "b": {
+                                        "c": 4
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+                """;
+        JSONObject obj = JSONObject.parseObject(text);
 
-        Object eval = JSONPath.eval(text, "$..ary2[0].a");
+        Object eval = JSONPath.eval(obj, "$..ary2[0].a");
         System.out.println("eval = " + eval);
     }
 
 
-    //    void test6(@NonNull String name){
-//        System.out.println("name = " + name);
-//    }
-    void test6(@Validated @NonNull Book name) {
-        System.out.println("name = " + name);
-    }
 
-    @Test
-    void test7() {
-        var obj = new Object() {
-            String name;
-        };
-        obj.name = "jim";
-        System.out.println("obj = " + obj);
-
-        test6(null);
-    }
 
     @Test
     void test8() {
