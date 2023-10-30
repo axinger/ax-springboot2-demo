@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ import java.util.Date;
 @Data
 @TableName(value = "book")
 @Entity(name = "book")
-public class BookEntity {
+public class BookEntity implements Serializable {
 
     @Serial
     @TableField(exist = false)
