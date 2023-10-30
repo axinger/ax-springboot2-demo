@@ -3,6 +3,7 @@ package com.axing.demo.mapper;
 import com.axing.demo.domain.BookEntity;
 import com.axing.demo.injector.MyBaseMapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -30,6 +31,10 @@ public interface BookMapper extends MyBaseMapper<BookEntity> {
     void streamSelect(ResultHandler<BookEntity> handler);
 
 
+    @Select("select * from book t ${ew.customSqlSegment}")
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 2)
+    @ResultType(BookEntity.class)
+    void getBigData(@Param(Constants.WRAPPER) QueryWrapper<BookEntity> wrapper, ResultHandler<BookEntity> handler);
 }
 
 
