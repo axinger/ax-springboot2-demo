@@ -36,9 +36,9 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.debug("updateFill================================================================");
         this.updateDateFill("updateTime", metaObject);
-        Object val = getFieldValByName("updateUserId", metaObject);
+        Object val = getFieldValByName("updateBy", metaObject);
         if (val != null) {
-            this.updateDateFill("updateUserId", metaObject);
+            this.updateDateFill("updateBy", metaObject);
         }
     }
 

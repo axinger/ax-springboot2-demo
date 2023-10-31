@@ -1,10 +1,13 @@
 package com.axing.demo.domain;
 
-import com.alibaba.excel.annotation.ExcelProperty;
+import com.axing.demo.model.Gender;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -12,14 +15,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-/**
- * @TableName book
- */
-
 @Data
-@TableName(value = "book")
-@Entity(name = "book")
-public class BookEntity implements Serializable {
+@TableName(value = "person")
+@Entity(name = "person")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class PersonEntity implements Serializable {
 
     @Serial
     @TableField(exist = false)
@@ -30,44 +32,59 @@ public class BookEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column()
     private Long id;
-    /**
-     *
-     */
-    @TableField(value = "book_author")
+
+    @TableField(value = "name")
     @Column
-    @ExcelProperty("作者")
-    private String bookAuthor;
-    /**
-     *
-     */
-    @TableField(value = "book_name")
+    @Comment("姓名")
+    private String name;
+
+    @TableField(value = "age")
     @Column
-    private String bookName;
+    @Comment("年龄")
+    @OrderColumn(name = "age")
+    private Integer age;
+
+    @Column
+    @TableField(value = "gender")
+    // 默认值,数据库为null, mp不会解析,代码可以默认值
+    @Comment("性别")
+    @OrderColumn()
+    private Gender gender = Gender.unknown;
+
     /**
      *
      */
     // @TableField(value = "book_price",updateStrategy = FieldStrategy.NEVER) // 自动+1,再set值,就无效,@Version原理如此
-    @TableField(value = "book_price") // 自动+1,再set值,就无效,@Version原理如此
+    @TableField(value = "height") // 自动+1,再set值,就无效,@Version原理如此
     @Column
-    private Double bookPrice;
-    /**
-     *
-     */
-    @TableField(value = "end_time")
+    @Comment("身高")
+    private Double height;
+
+    @TableField(value = "weight")
     @Column
-    private LocalDateTime endTime;
-    /**
-     *
-     */
-    @TableField(value = "start_time")
+    @Comment("体重")
+    private Double weight;
+
+    @TableField(value = "birthday")
     @Column
-    private LocalDateTime startTime;
+    @Comment("生日")
+    private LocalDateTime birthday;
+
+
+    @TableField(value = "tenant_id")
+    @Column
+    @Comment("多租户id")
+    private String tenantId;
+
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     @Column
+    @Comment("创建时间")
     private LocalDateTime createTime;
+
+
     /**
      * 每种策略的作用：
      * 值	描述
@@ -81,15 +98,17 @@ public class BookEntity implements Serializable {
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE,update="now()")
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
+    @Comment("更新时间")
     private Date updateTime; // 这个用date
 
     @Version
     @TableField(fill = FieldFill.INSERT)
-    @Column
+    @Comment("版本号")
     private Long version;
 
     @TableField(value = "deleted")
     @TableLogic
     @Column
-    private int deleted;
+    @Comment("逻辑删除")
+    private Integer deleted = 0;
 }

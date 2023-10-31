@@ -1,9 +1,17 @@
 package com.axing.demo;
 
+import com.axing.demo.config.MyTableNameHandler;
+import com.axing.demo.config.MyTenantLineHandler;
+import com.axing.demo.domain.PersonEntity;
+import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.core.toolkit.AES;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 
+@SpringBootTest
 class MybatisPlusApplicationTests {
 
     String randomKey = "abcdef1234567890";
@@ -42,4 +50,12 @@ class MybatisPlusApplicationTests {
 
         System.out.println("解密后：" + AES.decrypt(result, randomKey));
     }
+
+    @Autowired
+    private PersonService personService;
+
+
+
+
+
 }
