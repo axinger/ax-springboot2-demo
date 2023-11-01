@@ -2,10 +2,10 @@ package com.axing.controller;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.axing.server.UserServiceHttp;
+import com.axing.common.response.result.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -29,10 +29,33 @@ public class IndexController {
 
     @PostMapping("/data1")
     public Object data1(@RequestBody Map map) {
-        Map resultMap = new HashMap();
+        Map<String, Object> resultMap = new HashMap();
         resultMap.put("date", new Date());
         resultMap.putAll(map);
         return resultMap;
+    }
+
+
+    @Autowired
+    private UserServiceHttp userServiceHttp;
+
+    @GetMapping("/http")
+    public void http() {
+        Result<Map<String, Object>> useToken = userServiceHttp.getUseToken("jim", "123", "abcv");
+        System.out.println("useToken = " + useToken);
+    }
+
+
+    @GetMapping("/getUserToken")
+    public Result<?> data1(@RequestParam("username") String username,
+                           @RequestParam("password") String password,
+                           @RequestHeader("token") String token) {
+        Map<String, Object> resultMap = new HashMap();
+        resultMap.put("date", new Date());
+        resultMap.put("username", username);
+        resultMap.put("password", password);
+        resultMap.put(token, token);
+        return Result.ok(resultMap);
     }
 
 
