@@ -26,7 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/person")
-    public PersonDTO person() {
+    public PersonDTO person() throws InterruptedException {
+        Thread.sleep(1000L);
 
         PersonDTO person = new PersonDTO();
         person.setName("jim");

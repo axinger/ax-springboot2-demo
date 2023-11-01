@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -34,4 +36,21 @@ public class TestController {
         return List.of(materialCode);
     }
 
+
+    @Autowired
+    private  WebClient webClient;
+
+
+
+
+    //方式一，直接调用create()方法
+    @GetMapping("/test1")
+    public String test1() {
+        Mono<String> mono = webClient
+                .get() // GET 请求
+                .uri("http://localhost:8080/a/person")  // 请求路径
+                .retrieve() // 获取响应体
+                .bodyToMono(String.class); //响应数据类型转换
+        return "from test1 " + mono.block();
+    }
 }
