@@ -9,6 +9,7 @@ import java.util.Map;
 
 @Component
 
+// name 或者 name 必须有，
 @FeignClient(value = "abc", url = "http://localhost:8080")
 
 public interface UserServiceHttp {
