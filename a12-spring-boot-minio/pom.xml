@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>ax-spring-boot-demo</artifactId>
-        <version>2.7.14.2</version>
+        <version>2.7.14.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -46,7 +46,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axinger-util-spring-boot-starter</artifactId>
+            <artifactId>util-spring-boot-starter</artifactId>
         </dependency>
 
         <!--        <dependency>-->
@@ -56,16 +56,16 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axinger-doc-spring-boot-starter</artifactId>
+            <artifactId>doc-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axinger-minio-spring-boot-starter</artifactId>
+            <artifactId>minio-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>axinger-response-spring-boot-starter</artifactId>
+            <artifactId>response-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

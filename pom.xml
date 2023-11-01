@@ -14,7 +14,7 @@
 
     <groupId>com.github.axinger</groupId>
     <artifactId>ax-spring-boot-demo</artifactId>
-    <version>2.7.14.2</version>
+    <version>2.7.14.3</version>
     <name>spring-boot案例</name>
     <description>个人代码总结</description>
     <packaging>pom</packaging>
@@ -130,97 +130,97 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-cloud-fetch-gateway-starter</artifactId>
+                <artifactId>cloud-fetch-gateway-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-quartz-spring-boot-starter</artifactId>
+                <artifactId>quartz-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-excel-spring-boot-starter</artifactId>
+                <artifactId>excel-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-redis-spring-boot-starter</artifactId>
+                <artifactId>redis-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-doc-spring-boot-starter</artifactId>
+                <artifactId>doc-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-util-spring-boot-starter</artifactId>
+                <artifactId>util-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-weblog-spring-boot-starter</artifactId>
+                <artifactId>weblog-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-http-spring-boot-starter</artifactId>
+                <artifactId>http-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-response-spring-boot-starter</artifactId>
+                <artifactId>response-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-dto-spring-boot-starter</artifactId>
+                <artifactId>dto-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-config-spring-boot-starter</artifactId>
+                <artifactId>config-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-mybatis-spring-boot-starter</artifactId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-mongodb-spring-boot-starter</artifactId>
+                <artifactId>mongodb-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-minio-spring-boot-starter</artifactId>
+                <artifactId>minio-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-advice-spring-boot-starter</artifactId>
+                <artifactId>advice-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-json-spring-boot-starter</artifactId>
+                <artifactId>json-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
