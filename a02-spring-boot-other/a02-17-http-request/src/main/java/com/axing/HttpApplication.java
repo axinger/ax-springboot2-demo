@@ -8,9 +8,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 //@EnableFeignClients
 
 @EnableFeignClients(basePackages = {"com.axing.server"})
-public class Main {
+public class HttpApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(HttpApplication.class, args);
     }
 }

@@ -15,10 +15,9 @@ import java.util.Map;
 public interface UserServiceHttp {
 
     @GetMapping("/getUserToken")
-    Result<Map<String,Object>> getUseToken(@RequestParam("username") String username,
-                            @RequestParam("password") String password,
-                            @RequestHeader("token") String token);
-
+    Result<Map<String, Object>> getUseToken(@RequestParam("username") String username,
+                                            @RequestParam("password") String password,
+                                            @RequestHeader("token") String token);
 
 
 }

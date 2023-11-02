@@ -50,7 +50,7 @@ public class IndexController {
     public Result<?> data1(@RequestParam("username") String username,
                            @RequestParam("password") String password,
                            @RequestHeader("token") String token) {
-        Map<String, Object> resultMap = new HashMap();
+        Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("date", new Date());
         resultMap.put("username", username);
         resultMap.put("password", password);
