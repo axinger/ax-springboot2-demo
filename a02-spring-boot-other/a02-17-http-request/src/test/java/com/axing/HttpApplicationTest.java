@@ -2,6 +2,7 @@ package com.axing;
 
 import com.axing.common.response.result.Result;
 import com.axing.server.UserServiceHttp;
+import org.apache.coyote.Request;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.MultiValueMapAdapter;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
 

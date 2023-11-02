@@ -1,6 +1,7 @@
 package com.axing.demo;
 
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.db.Session;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
