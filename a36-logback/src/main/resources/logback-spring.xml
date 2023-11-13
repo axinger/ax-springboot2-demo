@@ -190,4 +190,150 @@
     <logger name="org.springframework" level="WARN"/>
     <!-- 打印sql语句 -->
     <logger name="com.alex.springboot.dao" level="DEBUG"/>
+
+
+
+    <appender name="SERVICE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 此日志文件只记录info级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>info</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则
+            如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
+            的日志改名为今天的日期。即，<File> 的日志都是当天的。
+        -->
+        <File>${logback.dir}/info_a_service.log</File>
+        <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
+        <!--                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+        <!--滚动策略，按照尺寸和时间滚动 SizeAndTimeBasedRollingPolicy-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
+            <!--<FileNamePattern>${logback.dir}/info.%d{yyyy-MM-dd}.log</FileNamePattern>-->
+            <!--fileNamePattern 中的 %i 占位符会在相同日期的日志文件之间加以区分，避免覆盖旧文件-->
+            <!--归档文件名称-->
+            <fileNamePattern>${logback.dir}/info_a_service.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--文件最大保存历史数量-->
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <!--单个日志最大容量 至少10MB才能看得出来-->
+            <maxFileSize>${log.maxFileSize}</maxFileSize>
+            <!--所有日志最多占多大容量-->
+            <totalSizeCap>${log.totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <!--日志输出编码格式化-->
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>-->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="SERVICE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 此日志文件记录error级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则
+            如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
+            的日志改名为今天的日期。即，<File> 的日志都是当天的。
+        -->
+        <File>${logback.dir}/error_a_service.log</File>
+        <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
+            <FileNamePattern>${logback.dir}/error_a_service.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--只保留最近90天的日志-->
+            <maxHistory>90</maxHistory>
+            <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
+            <!--<totalSizeCap>1GB</totalSizeCap>-->
+        </rollingPolicy>
+        <!--日志输出编码格式化-->
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 下面就是根据业务-->
+    <logger name="A_SERVICE_LOG" additivity="false" level="INFO">
+        <appender-ref ref="SERVICE_INFO"/>
+        <appender-ref ref="SERVICE_ERROR"/>
+    </logger>
+
+
+    <appender name="B_SERVICE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 此日志文件只记录info级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>info</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则
+            如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
+            的日志改名为今天的日期。即，<File> 的日志都是当天的。
+        -->
+        <File>${logback.dir}/info_b_service.log</File>
+        <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
+        <!--                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+        <!--滚动策略，按照尺寸和时间滚动 SizeAndTimeBasedRollingPolicy-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
+            <!--<FileNamePattern>${logback.dir}/info.%d{yyyy-MM-dd}.log</FileNamePattern>-->
+            <!--fileNamePattern 中的 %i 占位符会在相同日期的日志文件之间加以区分，避免覆盖旧文件-->
+            <!--归档文件名称-->
+            <fileNamePattern>${logback.dir}/info_b_service.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--文件最大保存历史数量-->
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <!--单个日志最大容量 至少10MB才能看得出来-->
+            <maxFileSize>${log.maxFileSize}</maxFileSize>
+            <!--所有日志最多占多大容量-->
+            <totalSizeCap>${log.totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+        <!--日志输出编码格式化-->
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>-->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="B_SERVICE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 此日志文件记录error级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--日志名称，如果没有File 属性，那么只会使用FileNamePattern的文件路径规则
+            如果同时有<File>和<FileNamePattern>，那么当天日志是<File>，明天会自动把今天
+            的日志改名为今天的日期。即，<File> 的日志都是当天的。
+        -->
+        <File>${logback.dir}/error_b_service.log</File>
+        <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
+            <FileNamePattern>${logback.dir}/error_b_service.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--只保留最近90天的日志-->
+            <maxHistory>90</maxHistory>
+            <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
+            <!--<totalSizeCap>1GB</totalSizeCap>-->
+        </rollingPolicy>
+        <!--日志输出编码格式化-->
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="B_SERVICE_LOG" additivity="false" level="INFO">
+        <appender-ref ref="B_SERVICE_INFO"/>
+        <appender-ref ref="B_SERVICE_ERROR"/>
+    </logger>
+
 </configuration>
