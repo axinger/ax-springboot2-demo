@@ -176,21 +176,11 @@
         </encoder>
     </appender>
 
-    <!--指定最基础的日志输出级别-->
-    <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
-    <root level="INFO">
-        <appender-ref ref="ERROR"/>
-        <appender-ref ref="WARN"/>
-        <appender-ref ref="INFO"/>
-        <appender-ref ref="DEBUG"/>
-        <appender-ref ref="CONSOLE"/>
-    </root>
 
     <!-- FrameworkServlet日志-->
     <logger name="org.springframework" level="WARN"/>
     <!-- 打印sql语句 -->
     <logger name="com.alex.springboot.dao" level="DEBUG"/>
-
 
 
     <appender name="SERVICE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -258,12 +248,6 @@
         </encoder>
     </appender>
 
-    <!-- 下面就是根据业务-->
-    <logger name="A_SERVICE_LOG" additivity="false" level="INFO">
-        <appender-ref ref="SERVICE_INFO"/>
-        <appender-ref ref="SERVICE_ERROR"/>
-    </logger>
-
 
     <appender name="B_SERVICE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 此日志文件只记录info级别的 -->
@@ -294,11 +278,21 @@
             <totalSizeCap>${log.totalSizeCap}</totalSizeCap>
         </rollingPolicy>
         <!--日志输出编码格式化-->
+        <!--        <encoder>-->
+        <!--            <charset>UTF-8</charset>-->
+        <!--            &lt;!&ndash;            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>&ndash;&gt;-->
+        <!--            <pattern>${log.pattern}</pattern>-->
+        <!--        </encoder>-->
+
         <encoder>
+            <!--            https://www.jb51.net/article/247048.htm-->
+            <!--          此处可能有一个坑，就是可能会丢失类名  没有效果-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [${PID:- }] [%thread] %-5level %X{CLASSNAME}#%method:%L -%msg%n
+            </pattern>
             <charset>UTF-8</charset>
-            <!--            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>-->
             <pattern>${log.pattern}</pattern>
         </encoder>
+
     </appender>
 
 
@@ -331,9 +325,64 @@
     </appender>
 
 
-    <logger name="B_SERVICE_LOG" additivity="false" level="INFO">
-        <appender-ref ref="B_SERVICE_INFO"/>
-        <appender-ref ref="B_SERVICE_ERROR"/>
-    </logger>
+    <!-- Configure the discriminator -->
+    <!--    <discriminator>-->
+    <!--        <key>business</key>-->
+    <!--        <defaultValue>common</defaultValue>-->
+    <!--    </discriminator>-->
+
+    <!--指定最基础的日志输出级别-->
+    <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
+
+
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="WARN"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="DEBUG"/>
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <!-- 下面就是根据业务-->
+        <logger name="A_SERVICE_LOG" additivity="false" level="DEBUG">
+            <appender-ref ref="SERVICE_INFO"/>
+            <appender-ref ref="SERVICE_ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <logger name="B_SERVICE_LOG" additivity="false" level="DEBUG">
+            <appender-ref ref="B_SERVICE_INFO"/>
+            <appender-ref ref="B_SERVICE_ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+
+    </springProfile>
+
+    <springProfile name="prd">
+        <root level="INFO">
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="WARN"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="DEBUG"/>
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <!-- 下面就是根据业务-->
+        <logger name="A_SERVICE_LOG" additivity="false" level="INFO">
+            <appender-ref ref="SERVICE_INFO"/>
+            <appender-ref ref="SERVICE_ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <logger name="B_SERVICE_LOG" additivity="false" level="INFO">
+            <appender-ref ref="B_SERVICE_INFO"/>
+            <appender-ref ref="B_SERVICE_ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+
+    </springProfile>
 
 </configuration>
