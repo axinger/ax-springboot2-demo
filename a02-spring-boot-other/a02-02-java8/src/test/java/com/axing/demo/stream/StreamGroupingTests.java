@@ -76,7 +76,7 @@ public class StreamGroupingTests {
         System.out.println("员工按性别、地区：" + group2);
 
 
-        // 分组求和
+        // 分组求和--summingInt
         Map<String, Integer> collect = personList().stream()
                 .collect(Collectors.groupingBy(
                                 Person::getSex,
