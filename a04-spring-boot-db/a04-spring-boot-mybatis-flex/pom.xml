@@ -51,6 +51,11 @@
             <version>1.7.4</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.mybatis-flex</groupId>
+            <artifactId>mybatis-flex-codegen</artifactId>
+            <version>1.7.4</version>
+        </dependency>
 
     </dependencies>
 

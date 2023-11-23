@@ -1,13 +1,14 @@
 package com.github.axinger;
 
-import com.github.axinger.domain.Account;
-import com.github.axinger.domain.Article;
-import com.github.axinger.domain.Department;
-import com.github.axinger.domain.Employee;
-import com.github.axinger.service.DepartmentService;
-import com.github.axinger.service.EmployeeService;
-import com.github.axinger.service.ITbAccountService;
-import com.github.axinger.service.ITbArticleService;
+import com.github.axinger.domain.*;
+import com.github.axinger.dto.DepartmentDTO;
+import com.github.axinger.dto.EmployeeDTO;
+import com.github.axinger.dto.EmployeeDTO2;
+import com.github.axinger.mapper.PersonMapper;
+import com.github.axinger.service.*;
+import com.mybatisflex.core.logicdelete.LogicDeleteManager;
+import com.mybatisflex.core.query.FunctionQueryColumn;
+import com.mybatisflex.core.query.QueryChain;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.row.Db;
 import com.mybatisflex.core.update.UpdateChain;
@@ -24,7 +25,9 @@ import static com.github.axinger.domain.table.AccountTableDef.ACCOUNT;
 import static com.github.axinger.domain.table.ArticleTableDef.ARTICLE;
 import static com.github.axinger.domain.table.DepartmentTableDef.DEPARTMENT;
 import static com.github.axinger.domain.table.EmployeeTableDef.EMPLOYEE;
-
+import static com.github.axinger.domain.table.PersonTableDef.PERSON;
+import static com.mybatisflex.core.constant.FuncName.*;
+import static com.mybatisflex.core.query.QueryMethods.*;
 
 @SpringBootTest
 class MybatisFlexApplicationTest {
@@ -32,6 +35,8 @@ class MybatisFlexApplicationTest {
     @Autowired
     private ITbAccountService iTbAccountService;
 
+    @Autowired
+    private PersonService personService;
 
     //    insert(entity)：插入实体类数据，不忽略 null 值。
 //    insertSelective(entity)：插入实体类数据，但是忽略 null 的数据，只对有值的内容进行插入。这样的好处是数据库已经配置了一些默认值，这些默认值才会生效。
@@ -57,7 +62,7 @@ class MybatisFlexApplicationTest {
 
 
     @Test
-    void test_删除(){
+    void test_删除() {
         QueryWrapper queryWrapper = QueryWrapper.create()
                 .from(ACCOUNT);
         queryWrapper.where(ACCOUNT.ID.eq(1));
@@ -69,7 +74,7 @@ class MybatisFlexApplicationTest {
     }
 
     @Test
-    void test_更新1(){
+    void test_更新1() {
 
         Account account = UpdateEntity.of(Account.class, 1);
         account.setUserName(null);
@@ -80,7 +85,7 @@ class MybatisFlexApplicationTest {
     }
 
     @Test
-    void test_更新2(){
+    void test_更新2() {
 
         Account account = new Account();
         account.setId(1);
@@ -91,7 +96,7 @@ class MybatisFlexApplicationTest {
     }
 
     @Test
-    void test_更新3(){
+    void test_更新3() {
 
         // QueryWrapper 条件修改
         Account account = new Account();
@@ -100,12 +105,12 @@ class MybatisFlexApplicationTest {
 
         QueryWrapper queryWrapper = QueryWrapper.create()
                 .from(ACCOUNT)
-                .where(ACCOUNT.ID.ge(1));
-        iTbAccountService.update(account,queryWrapper);
+                .where(ACCOUNT.ID.eq(1));
+        iTbAccountService.update(account, queryWrapper);
     }
 
     @Test
-    void test_更新4(){
+    void test_更新4() {
 
         Account account = UpdateEntity.of(Account.class, 1);
 
@@ -131,12 +136,33 @@ class MybatisFlexApplicationTest {
     }
 
     @Test
-    void test_更新5(){
+    void test_更新5() {
         UpdateChain.of(Account.class)
                 .from(ACCOUNT)
                 .set(Account::getUserName, "张三")
                 .setRaw(Account::getAge, "age + 1")
                 .where(Account::getId).eq(1)
+                .update();
+
+    }
+
+
+    @Test
+    void test_更新_填充() {
+
+        Person person = personService.getById(2);
+//
+        UpdateWrapper<Person> wrapper = UpdateWrapper.of(person);
+        wrapper.set(PERSON.AGE, PERSON.AGE.add(1));
+//        personService.updateById(wrapper.toEntity());
+
+
+        UpdateChain.of(personService.getMapper())
+                .from(PERSON)
+                .set(PERSON.AGE, PERSON.AGE.add(1))
+                .where(PERSON.ID.eq(2)
+                        .and(PERSON.VERSION.eq(person.getVersion()))
+                )
                 .update();
 
     }
@@ -181,6 +207,61 @@ class MybatisFlexApplicationTest {
         });
     }
 
+    @Test
+    public void test_查询_自动映射() {
+        Account list = QueryChain.of(iTbAccountService.getMapper())
+                .from(ACCOUNT)
+                .select(
+                        groupConcat(ACCOUNT.ID),
+                        max(ACCOUNT.AGE).as(Account::getMaxAge),
+                        min(ACCOUNT.AGE).as(Account::getMimAge),
+                        avg(ACCOUNT.AGE).as(Account::getAvgAge)
+                ).where(ACCOUNT.ID.ge(1))
+                .one();
+        System.out.println("list = " + list);
+    }
+
+    @Test
+    public void test_查询_分组() {
+        List<Account> list = QueryChain.of(iTbAccountService.getMapper())
+                .from(ACCOUNT)
+                .select(
+                        groupConcat(ACCOUNT.ID).as(Account::getGroupAfterId),
+                        new FunctionQueryColumn(GROUP_CONCAT, ACCOUNT.USER_NAME).as(Account::getUserName),
+                        ACCOUNT.AGE
+                )
+                .where(ACCOUNT.ID.ge(1))
+                .groupBy(ACCOUNT.AGE)
+                .list();
+        System.out.println("list = " + list);
+    }
+
+
+    @Test
+    public void test_查询_逻辑删除() {
+
+        List<Person> list = personService.list();
+        System.out.println("list = " + list);
+
+        List<Person> list1 = QueryChain.of(personService.getMapper())
+                .from(PERSON)
+                .select(PERSON.ALL_COLUMNS)
+                .list();
+        System.out.println("list1 = " + list1);
+
+
+        // 跳过逻辑删除,查询
+        LogicDeleteManager.execWithoutLogicDelete(() -> {
+            List<Person> list2 = QueryChain.of(personService.getMapper())
+                    .from(PERSON)
+                    .select(PERSON.DEFAULT_COLUMNS)
+                    .list();
+
+            System.out.println("list2 = " + list2);
+        });
+
+    }
+
     @Autowired
     private ITbArticleService iTbArticleService;
 
@@ -196,8 +277,8 @@ class MybatisFlexApplicationTest {
         QueryWrapper query = QueryWrapper.create()
                 .select(ARTICLE.ALL_COLUMNS)
                 .select(ACCOUNT.USER_NAME.as(Article::getAuthorName)
-                        ,ACCOUNT.AGE.as(Article::getAuthorAge)
-                        ,ACCOUNT.BIRTHDAY
+                        , ACCOUNT.AGE.as(Article::getAuthorAge)
+                        , ACCOUNT.BIRTHDAY
                 )
                 .from(ARTICLE)
                 .leftJoin(ACCOUNT).on(ARTICLE.ACCOUNT_ID.eq(ACCOUNT.ID))
@@ -205,6 +286,37 @@ class MybatisFlexApplicationTest {
 
         List<Article> results = iTbArticleService.getMapper().selectListByQueryAs(query, Article.class);
         System.out.println(results);
+
+    }
+
+    @Test
+    public void test_多表查询_自定义对象字段映射() {
+        List<EmployeeDTO> list = QueryChain.of(employeeService.getMapper())
+                .select(
+                        EMPLOYEE.ALL_COLUMNS, //员工所有字段
+                        DEPARTMENT.NAME.as(EmployeeDTO::getDeptName) //部门字段,别名
+                ).from(EMPLOYEE)
+                .leftJoin(DEPARTMENT).on(DEPARTMENT.ID.eq(EMPLOYEE.DEPT_ID))
+                .where(EMPLOYEE.ID.ge(1))
+                .listAs(EmployeeDTO.class);
+        System.out.println("list = " + list);
+
+    }
+
+    @Test
+    public void test_多表查询_自定义对象字段映射2() {
+
+        List<EmployeeDTO2> list = QueryChain.of(employeeService.getMapper())
+                .select(
+                        EMPLOYEE.DEFAULT_COLUMNS, //员工所有字段
+                        DEPARTMENT.DEFAULT_COLUMNS //部门字段,别名
+//                        DEPARTMENT.ID.as(DepartmentDTO::getId),
+//                        DEPARTMENT.NAME.as(DepartmentDTO::getName)
+                ).from(EMPLOYEE)
+                .leftJoin(DEPARTMENT).on(DEPARTMENT.ID.eq(EMPLOYEE.DEPT_ID))
+                .where(EMPLOYEE.ID.ge(1))
+                .listAs(EmployeeDTO2.class);
+        System.out.println("list = " + list);
 
     }
 
@@ -224,7 +336,7 @@ class MybatisFlexApplicationTest {
 //                .from(EMPLOYEE);
 //        queryWrapper.select(EMPLOYEE.ID,EMPLOYEE.NAME,EMPLOYEE.DEPT_ID,EMPLOYEE.DEPARTMENT);
 //        List<Employee> employees = employeeService.getMapper().selectListByQuery(queryWrapper)
-                ;
+        ;
         System.out.println(employees);
     }
 }

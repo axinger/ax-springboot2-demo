@@ -35,4 +35,14 @@ public class Account implements Serializable {
     @Column(value = "birthday")
     private LocalDateTime birthday;
 
+    //最大年龄
+    private int maxAge;
+    private int mimAge;
+
+    //平均年龄
+    private int avgAge;
+
+    // 分组后多个id逗号分割
+    private String groupAfterId;
+    private String groupAfterName;
 }

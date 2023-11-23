@@ -501,3 +501,16 @@ select * from tb_order  WHERE id<4 order by order_id desc limit 0,2;
 ```mysql
 select * from tb_order limit 2,2;
 ```
+
+分组获得所有字段,默认逗号分割 GROUP_CONCAT
+```mysql
+SELECT
+	GROUP_CONCAT( id ),
+	age 
+FROM
+	`tb_account` 
+WHERE
+	`id` >= 1 
+GROUP BY
+	age
+```
