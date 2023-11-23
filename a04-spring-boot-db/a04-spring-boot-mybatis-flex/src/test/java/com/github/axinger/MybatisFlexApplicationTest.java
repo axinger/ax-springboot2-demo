@@ -11,6 +11,8 @@ import com.mybatisflex.core.query.FunctionQueryColumn;
 import com.mybatisflex.core.query.QueryChain;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.row.Db;
+import com.mybatisflex.core.tenant.TenantFactory;
+import com.mybatisflex.core.tenant.TenantManager;
 import com.mybatisflex.core.update.UpdateChain;
 import com.mybatisflex.core.update.UpdateWrapper;
 import com.mybatisflex.core.util.UpdateEntity;
@@ -18,6 +20,8 @@ import org.apache.ibatis.cursor.Cursor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import java.util.List;
 
@@ -256,11 +260,28 @@ class MybatisFlexApplicationTest {
                     .from(PERSON)
                     .select(PERSON.DEFAULT_COLUMNS)
                     .list();
-
             System.out.println("list2 = " + list2);
         });
 
     }
+
+    @Test
+    public void test_查询_多租户() {
+
+        TenantManager.setTenantFactory(() -> {
+            RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+            Long tenantId = (Long) attributes.getAttribute("tenantId", RequestAttributes.SCOPE_REQUEST);
+
+
+            //通过这里返回当前租户 ID
+            return new Object[]{100};
+        });
+        List<Person> list = personService.list();
+        System.out.println("list = " + list);
+
+    }
+
+
 
     @Autowired
     private ITbArticleService iTbArticleService;

@@ -65,7 +65,7 @@ public class Person {
     /**
      * 多租户id
      */
-    @Column(value = "tenant_id")
+    @Column(value = "tenant_id",tenantId = true)
     private String tenantId;
 
     /**
