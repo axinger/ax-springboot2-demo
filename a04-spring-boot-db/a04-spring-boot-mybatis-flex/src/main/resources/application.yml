@@ -37,6 +37,8 @@ spring:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
 mybatis-flex:
+  global-config:
+    print-banner: false
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   datasource:
