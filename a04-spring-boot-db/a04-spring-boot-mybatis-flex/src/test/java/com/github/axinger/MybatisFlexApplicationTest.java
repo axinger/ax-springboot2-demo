@@ -9,6 +9,7 @@ import com.github.axinger.service.*;
 import com.mybatisflex.core.logicdelete.LogicDeleteManager;
 import com.mybatisflex.core.query.FunctionQueryColumn;
 import com.mybatisflex.core.query.QueryChain;
+import com.mybatisflex.core.query.QueryCondition;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.row.Db;
 import com.mybatisflex.core.tenant.TenantFactory;
@@ -180,6 +181,21 @@ class MybatisFlexApplicationTest {
                 .where(ACCOUNT.ID.eq(1));
         Account account = iTbAccountService.getOne(wrapper);
         System.out.println("account = " + account);
+
+
+        QueryWrapper wrapper2 =  QueryWrapper.create()
+                .from(ACCOUNT)
+                .select(Account::getId)
+                .where(Account::getId).eq(1)
+                .and(Account::getAge).eq(20);
+
+        List<Account> list = iTbAccountService.list(wrapper2);
+
+
+        iTbAccountService.list(QueryWrapper.create()
+                .select(Account::getId)
+                .where(Account::getId).eq(1)
+                .and(Account::getAge).eq(20));
 
     }
 
