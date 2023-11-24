@@ -1,10 +1,8 @@
 package com.github.axinger;
 
 import com.github.axinger.domain.*;
-import com.github.axinger.dto.DepartmentDTO;
 import com.github.axinger.dto.EmployeeDTO;
 import com.github.axinger.dto.EmployeeDTO2;
-import com.github.axinger.mapper.PersonMapper;
 import com.github.axinger.service.*;
 import com.mybatisflex.core.logicdelete.LogicDeleteManager;
 import com.mybatisflex.core.query.FunctionQueryColumn;
@@ -12,7 +10,6 @@ import com.mybatisflex.core.query.QueryChain;
 import com.mybatisflex.core.query.QueryCondition;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.row.Db;
-import com.mybatisflex.core.tenant.TenantFactory;
 import com.mybatisflex.core.tenant.TenantManager;
 import com.mybatisflex.core.update.UpdateChain;
 import com.mybatisflex.core.update.UpdateWrapper;
@@ -31,7 +28,7 @@ import static com.github.axinger.domain.table.ArticleTableDef.ARTICLE;
 import static com.github.axinger.domain.table.DepartmentTableDef.DEPARTMENT;
 import static com.github.axinger.domain.table.EmployeeTableDef.EMPLOYEE;
 import static com.github.axinger.domain.table.PersonTableDef.PERSON;
-import static com.mybatisflex.core.constant.FuncName.*;
+import static com.mybatisflex.core.constant.FuncName.GROUP_CONCAT;
 import static com.mybatisflex.core.query.QueryMethods.*;
 
 @SpringBootTest
@@ -42,6 +39,12 @@ class MybatisFlexApplicationTest {
 
     @Autowired
     private PersonService personService;
+    @Autowired
+    private ITbArticleService iTbArticleService;
+    @Autowired
+    private DepartmentService departmentService;
+    @Autowired
+    private EmployeeService employeeService;
 
     //    insert(entity)：插入实体类数据，不忽略 null 值。
 //    insertSelective(entity)：插入实体类数据，但是忽略 null 的数据，只对有值的内容进行插入。这样的好处是数据库已经配置了一些默认值，这些默认值才会生效。
@@ -64,7 +67,6 @@ class MybatisFlexApplicationTest {
         iTbAccountService.save(newAccount); // 不可以
 //        iTbAccountService.getMapper().insert(newAccount);
     }
-
 
     @Test
     void test_删除() {
@@ -151,7 +153,6 @@ class MybatisFlexApplicationTest {
 
     }
 
-
     @Test
     void test_更新_填充() {
 
@@ -197,7 +198,6 @@ class MybatisFlexApplicationTest {
 
         List<Account> list2 = iTbAccountService.list(and);
         System.out.println("list2 = " + list2);
-
 
 
 //        QueryChain.of(iTbAccountService.getMapper())
@@ -271,7 +271,6 @@ class MybatisFlexApplicationTest {
         System.out.println("list = " + list);
     }
 
-
     @Test
     public void test_查询_逻辑删除() {
 
@@ -311,17 +310,6 @@ class MybatisFlexApplicationTest {
         System.out.println("list = " + list);
 
     }
-
-
-
-    @Autowired
-    private ITbArticleService iTbArticleService;
-
-    @Autowired
-    private DepartmentService departmentService;
-
-    @Autowired
-    private EmployeeService employeeService;
 
     @Test
     public void test_多表查询() {

@@ -3,7 +3,6 @@ package com.axing.demo.config;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.LongValue;
 import net.sf.jsqlparser.expression.NullValue;
 import net.sf.jsqlparser.expression.StringValue;
 
@@ -11,16 +10,11 @@ import net.sf.jsqlparser.expression.StringValue;
 public class MyTenantLineHandler implements TenantLineHandler {
 
 
+    private static final ThreadLocal<String> TENANT_ID = new ThreadLocal<>();
     private final TenantProperties tenantProperties;
 
     public MyTenantLineHandler(TenantProperties tenantProperties) {
         this.tenantProperties = tenantProperties;
-    }
-
-    private static final ThreadLocal<String> TENANT_ID = new ThreadLocal<>();
-
-    public static void setTenantId(String tenantId) {
-        TENANT_ID.set(tenantId);
     }
 
     /**
@@ -37,12 +31,15 @@ public class MyTenantLineHandler implements TenantLineHandler {
         if (tenantId != null) {
             return new StringValue(tenantId);
         } else {
-            return new  NullValue();
+            return new NullValue();
 //            return new StringValue("");
 
         }
     }
 
+    public static void setTenantId(String tenantId) {
+        TENANT_ID.set(tenantId);
+    }
 
     /**
      * 获取多租户的字段名

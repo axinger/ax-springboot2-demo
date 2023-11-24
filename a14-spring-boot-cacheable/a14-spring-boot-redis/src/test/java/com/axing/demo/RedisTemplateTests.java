@@ -43,7 +43,7 @@ public class RedisTemplateTests {
     @Autowired
     private RedisTemplate<String, User> redisTemplateUser;
     @Autowired
-    private RedisTemplate<String, Map<String,Object>> redisTemplateMap;
+    private RedisTemplate<String, Map<String, Object>> redisTemplateMap;
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
@@ -79,7 +79,7 @@ public class RedisTemplateTests {
     @Test
     void map_set() {
         final String key = "test:map";
-        redisTemplateMap.opsForHash().putAll(key,Map.of("name","jim"));
+        redisTemplateMap.opsForHash().putAll(key, Map.of("name", "jim"));
     }
 
     @Test

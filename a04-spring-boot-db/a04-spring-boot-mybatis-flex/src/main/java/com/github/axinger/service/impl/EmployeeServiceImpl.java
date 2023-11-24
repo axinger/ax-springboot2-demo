@@ -1,11 +1,11 @@
 package com.github.axinger.service.impl;
 
 
-import org.springframework.stereotype.Service;
-import com.github.axinger.service.EmployeeService;
 import com.github.axinger.domain.Employee;
 import com.github.axinger.mapper.EmployeeMapper;
+import com.github.axinger.service.EmployeeService;
 import com.mybatisflex.spring.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
  * 服务层实现。

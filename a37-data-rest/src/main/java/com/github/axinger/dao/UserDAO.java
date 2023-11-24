@@ -3,8 +3,6 @@ package com.github.axinger.dao;
 
 import com.github.axinger.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.Description;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -45,7 +43,6 @@ public interface UserDAO extends JpaRepository<User, Long> {
 //    @Override
 //    @RestResource(exported = false)
 //    void delete(User entity);
-
     @Override
     @RestResource(exported = true)
     List<User> findAll();

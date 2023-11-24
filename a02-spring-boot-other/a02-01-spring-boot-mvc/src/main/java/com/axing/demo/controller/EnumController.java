@@ -13,7 +13,7 @@ public class EnumController {
     @PostMapping("/gender")
     public Object login(@RequestBody Person person) {
         System.out.println("枚举作为参数 = " + person);
-        return Map.of("枚举参数",person);
+        return Map.of("枚举参数", person);
     }
 
 }

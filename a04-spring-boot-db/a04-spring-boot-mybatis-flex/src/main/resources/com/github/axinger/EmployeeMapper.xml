@@ -11,7 +11,8 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
     </resultMap>
     <sql id="Base_Column_List">
-        `id`, `dept_id`, `email`, `gender`, `name`
+        `id`
+        , `dept_id`, `email`, `gender`, `name`
     </sql>
 
 </mapper>

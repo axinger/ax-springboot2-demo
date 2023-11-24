@@ -3,10 +3,10 @@ services:
   axinger-demo:
     container_name: axinger-demo
     image: 'axinger/demo'
-#    build:
-#      dockerfile: Dockerfile
+    #    build:
+    #      dockerfile: Dockerfile
     ports:
       - "12033:12033"
-#    volumes:
-#      - ./broker01:/bitnami/kafka:rw
+    #    volumes:
+    #      - ./broker01:/bitnami/kafka:rw
     restart: always

@@ -17,6 +17,8 @@ public class TestController {
 
     @Autowired
     private CountService countService;
+    @Autowired
+    private WebClient webClient;
 
     @GetMapping("/count")
     public Object count1() {
@@ -29,19 +31,11 @@ public class TestController {
         return List.of(countService.count());
     }
 
-
     // @Operation(summary = "MTR-获取物料信息")
     @GetMapping("/b/{materialCode:.*}")
     public Object getInfoByCode(@PathVariable("materialCode") String materialCode) {
         return List.of(materialCode);
     }
-
-
-    @Autowired
-    private  WebClient webClient;
-
-
-
 
     //方式一，直接调用create()方法
     @GetMapping("/test1")

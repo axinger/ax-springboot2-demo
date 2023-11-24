@@ -1,6 +1,5 @@
 package com.github.axinger.dto;
 
-import com.github.axinger.domain.Department;
 import com.github.axinger.model.Gender;
 import lombok.Data;
 

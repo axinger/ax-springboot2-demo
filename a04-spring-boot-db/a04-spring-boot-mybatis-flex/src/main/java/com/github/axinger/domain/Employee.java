@@ -2,7 +2,6 @@ package com.github.axinger.domain;
 
 import com.github.axinger.model.Gender;
 import com.mybatisflex.annotation.*;
-import com.mybatisflex.core.relation.RelationManager;
 import lombok.Data;
 
 /**
@@ -31,8 +30,7 @@ public class Employee {
     private String name;
 
 
-
-    @RelationManyToOne(selfField = "deptId", targetField = "id",selectColumns = {"id","name"})
+    @RelationManyToOne(selfField = "deptId", targetField = "id", selectColumns = {"id", "name"})
     private Department department;
 
 }

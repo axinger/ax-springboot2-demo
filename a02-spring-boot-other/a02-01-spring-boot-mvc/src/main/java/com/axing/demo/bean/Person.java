@@ -11,6 +11,6 @@ public class Person {
     private int id;
     private String name;
 
-    @EnumValidator(value =Gender.class)
+    @EnumValidator(value = Gender.class)
     private Gender gender;
 }

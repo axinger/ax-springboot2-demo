@@ -21,7 +21,7 @@ public class WebController {
      */
     @PostMapping(value = "/web1")
     public Object fromData(@RequestParam("name") String name, @RequestParam Integer age) {
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("localDateTime", LocalDateTime.now());
         map.put("name", name);
         map.put("age", age);
@@ -36,7 +36,7 @@ public class WebController {
      */
     @PostMapping(value = "/web2")
     public Object json(@RequestBody JSONObject json) {
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("localDateTime", LocalDateTime.now());
         map.put("name", json.getString("name"));
         map.put("age", json.getIntValue("age"));

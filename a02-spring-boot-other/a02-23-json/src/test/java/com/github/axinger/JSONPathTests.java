@@ -10,32 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JSONPathTests {
 
-    @Data
-    public static class Entity {
-        private Integer id;
-        private String name;
-        private Object value;
-
-        @SuppressWarnings("unused")
-        public Entity() {
-        }
-
-        public Entity(Integer id, Object value) {
-            this.id = id;
-            this.value = value;
-        }
-
-        public Entity(Integer id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public Entity(String name) {
-            this.name = name;
-        }
-    }
-
-
     @Test
     public void test_entity() throws Exception {
         Entity entity = new Entity(123, new Object());
@@ -45,7 +19,6 @@ public class JSONPathTests {
         assertEquals(2, JSONPath.size(entity, "$"));
         assertEquals(0, JSONPath.size(new Object[0], "$"));
     }
-
 
     @Test
     public void test2() {
@@ -128,7 +101,6 @@ public class JSONPathTests {
         JSONPath.set(entity, "value", new int[0]); //将value字段赋值为长度为0的数组
     }
 
-
     @Test
     public void test7() {
 
@@ -174,6 +146,31 @@ public class JSONPathTests {
 
         System.out.println(JSONPath.eval(person, "$..name"));
 
+    }
+
+    @Data
+    public static class Entity {
+        private Integer id;
+        private String name;
+        private Object value;
+
+        @SuppressWarnings("unused")
+        public Entity() {
+        }
+
+        public Entity(Integer id, Object value) {
+            this.id = id;
+            this.value = value;
+        }
+
+        public Entity(Integer id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public Entity(String name) {
+            this.name = name;
+        }
     }
 }
 

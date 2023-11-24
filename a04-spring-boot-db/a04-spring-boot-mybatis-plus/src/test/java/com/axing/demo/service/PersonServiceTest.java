@@ -51,7 +51,7 @@ class PersonServiceTest {
     @Test
     void test() {
         List<PersonEntity> list = personService.list();
-        System.out.println("list = " +  JSON.toJSON(list));
+        System.out.println("list = " + JSON.toJSON(list));
     }
 
 
@@ -133,6 +133,7 @@ class PersonServiceTest {
                 .page(Page.of(1, 100));
         System.out.println("page = " + page.getRecords());
     }
+
     @Test
     void test_更新全表() {
         personService.lambdaUpdate()
@@ -328,7 +329,7 @@ class PersonServiceTest {
 
     @Test
     @SuppressWarnings(value = "all")
-    void test_多租户(){
+    void test_多租户() {
         MyTenantLineHandler.setTenantId("100");
         List<PersonEntity> list = personService.list();
         System.out.println("list = " + list);

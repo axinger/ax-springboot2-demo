@@ -19,7 +19,8 @@
         <result column="deleted" jdbcType="INTEGER" property="deleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-        `id`, `age`, `birthday`, `gender`, `height`, `name`, `weight`, `tenant_id`, `create_time`, `update_time`,
+        `id`
+        , `age`, `birthday`, `gender`, `height`, `name`, `weight`, `tenant_id`, `create_time`, `update_time`,
         `update_count`, `version`, `deleted`
     </sql>
 

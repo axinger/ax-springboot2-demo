@@ -1,2 +1,4 @@
-package com.axing.demo;public class TupleTests {
+package com.axing.demo;
+
+public class TupleTests {
 }

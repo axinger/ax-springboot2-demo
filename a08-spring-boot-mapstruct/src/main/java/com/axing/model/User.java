@@ -20,5 +20,5 @@ public class User {
     private Role role;
     private int age;
 
-    private Map<String,Object> form;
+    private Map<String, Object> form;
 }

@@ -10,7 +10,8 @@
         <result column="content" jdbcType="CLOB" property="content"/>
     </resultMap>
     <sql id="Base_Column_List">
-        `id`, `account_id`, `title`, `content`
+        `id`
+        , `account_id`, `title`, `content`
     </sql>
 
 </mapper>

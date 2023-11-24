@@ -35,8 +35,8 @@ public class BeanTests {
         Object property = BeanUtil.getProperty(list, "[1].name");
         System.out.println("property = " + property);
 
-        Map<String,Object> map = new HashMap<>();
-        map.put("id",1);
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 1);
 
         Object resolver = new BeanPath("[id=1]").get(map);
         System.out.println("resolver = " + resolver);
@@ -46,9 +46,8 @@ public class BeanTests {
     }
 
 
-
     @Test
-   void test3(){
+    void test3() {
         // 构建node列表
         List<TreeNode<String>> nodeList = CollUtil.newArrayList();
 
@@ -80,7 +79,7 @@ public class BeanTests {
     }
 
     @Test
-    void test5(){
+    void test5() {
         BeanDesc desc = BeanUtil.getBeanDesc(Person.class);
 // User
         System.out.println(desc.getSimpleName());

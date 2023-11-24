@@ -1,8 +1,6 @@
 package com.github.axinger.dto;
 
-import com.github.axinger.domain.Department;
 import com.github.axinger.model.Gender;
-import com.mybatisflex.annotation.*;
 import lombok.Data;
 
 /**

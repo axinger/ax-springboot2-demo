@@ -2,8 +2,8 @@ package com.axing.controller;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.axing.server.UserServiceHttp;
 import com.axing.common.response.result.Result;
+import com.axing.server.UserServiceHttp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +27,9 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
+    @Autowired
+    private UserServiceHttp userServiceHttp;
+
     @PostMapping("/data1")
     public Object data1(@RequestBody Map map) {
         Map<String, Object> resultMap = new HashMap();
@@ -34,10 +37,6 @@ public class IndexController {
         resultMap.putAll(map);
         return resultMap;
     }
-
-
-    @Autowired
-    private UserServiceHttp userServiceHttp;
 
     @GetMapping("/http")
     public void http() {

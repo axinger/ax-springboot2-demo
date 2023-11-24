@@ -2,10 +2,10 @@ package com.github.axinger.service.impl;
 
 
 import com.github.axinger.domain.Account;
-import com.github.axinger.service.ITbAccountService;
-import org.springframework.stereotype.Service;
 import com.github.axinger.mapper.TbAccountMapper;
+import com.github.axinger.service.ITbAccountService;
 import com.mybatisflex.spring.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
  * 服务层实现。

@@ -32,7 +32,8 @@ class MvcApplicationTest {
     private HumitureRuleProperties humitureRuleProperties;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
-
+    @Autowired
+    private WebClient webClient;
 
     @Test
     void test2() {
@@ -58,10 +59,6 @@ class MvcApplicationTest {
         applicationEventPublisher.publishEvent(new MyCustomEvent2("abc"));
     }
 
-
-    @Autowired
-    private WebClient webClient;
-
     @Test
     void test_10() {
 
@@ -85,8 +82,6 @@ class MvcApplicationTest {
 //            logger.info("Created " + response.getStatusCode());
 //            logger.info("New URL " + response.getHeaders().getLocation());
         }
-
-
 
 
     }

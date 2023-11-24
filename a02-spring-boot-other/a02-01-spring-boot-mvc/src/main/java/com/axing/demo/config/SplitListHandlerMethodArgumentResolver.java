@@ -1,6 +1,5 @@
 package com.axing.demo.config;
 
-import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.WebDataBinder;
@@ -10,13 +9,8 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.annotation.Nonnull;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Get方法里将逗号转成list

@@ -15,10 +15,10 @@ public class UserDTO {
     @Min(value = 18, message = "年龄不能小于18岁")
     private int age;
 
-    @NotEmpty(message = "username不能为空",groups = ILoginGroup.class)
+    @NotEmpty(message = "username不能为空", groups = ILoginGroup.class)
     private String username;
 
 
-    @NotEmpty(message = "password不能为空",groups = ILoginGroup.class)
+    @NotEmpty(message = "password不能为空", groups = ILoginGroup.class)
     private String password;
 }

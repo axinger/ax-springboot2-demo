@@ -4,7 +4,6 @@ import com.axing.model.Role;
 import com.axing.model.User;
 import com.axing.model.UserRoleDto;
 import com.axing.model.UserRoleMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -10,7 +10,8 @@
         <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
     </resultMap>
     <sql id="Base_Column_List">
-        `id`, `user_name`, `age`, `birthday`
+        `id`
+        , `user_name`, `age`, `birthday`
     </sql>
 
 </mapper>

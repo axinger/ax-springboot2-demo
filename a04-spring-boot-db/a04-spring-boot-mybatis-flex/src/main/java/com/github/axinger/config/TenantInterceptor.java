@@ -1,8 +1,6 @@
 package com.github.axinger.config;
 
 import com.mybatisflex.core.tenant.TenantManager;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +10,7 @@ public class TenantInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request
-        , HttpServletResponse response, Object handler) throws Exception {
+            , HttpServletResponse response, Object handler) throws Exception {
 
         //通过 request 去获取租户 ID
 //        Long tenantId = getTenantIdByReuqest(request);

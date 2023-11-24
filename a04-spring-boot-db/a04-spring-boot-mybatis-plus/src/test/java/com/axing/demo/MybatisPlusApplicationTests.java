@@ -1,20 +1,17 @@
 package com.axing.demo;
 
-import com.axing.demo.config.MyTableNameHandler;
-import com.axing.demo.config.MyTenantLineHandler;
-import com.axing.demo.domain.PersonEntity;
 import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.core.toolkit.AES;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-
 @SpringBootTest
 class MybatisPlusApplicationTests {
 
     String randomKey = "abcdef1234567890";
+    @Autowired
+    private PersonService personService;
 
     //    // Jar 启动参数（ idea 设置 Program arguments , 服务器可以设置为启动环境变量 ）
 //--mpw.key=d1104d7c3b616f0b
@@ -35,7 +32,6 @@ class MybatisPlusApplicationTests {
         System.out.println("解密后：" + AES.decrypt(result, randomKey));
     }
 
-
     @Test
     void test1_pwd() {
         // 生成16位密钥
@@ -50,12 +46,6 @@ class MybatisPlusApplicationTests {
 
         System.out.println("解密后：" + AES.decrypt(result, randomKey));
     }
-
-    @Autowired
-    private PersonService personService;
-
-
-
 
 
 }

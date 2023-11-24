@@ -2,24 +2,18 @@ package com.axing;
 
 import com.axing.common.response.result.Result;
 import com.axing.server.UserServiceHttp;
-import org.apache.coyote.Request;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.MultiValueMapAdapter;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 
 @SpringBootTest
@@ -27,16 +21,14 @@ class HttpApplicationTest {
 
     @Autowired
     private UserServiceHttp userServiceHttp;
+    @Autowired
+    private WebClient webClient;
 
     @Test
     public void http() {
         Result<Map<String, Object>> useToken = userServiceHttp.getUseToken("jim", "123", "abcv");
         System.out.println("useToken = " + useToken);
     }
-
-
-    @Autowired
-    private WebClient webClient;
 
     @Test
     public void test1() throws InterruptedException {

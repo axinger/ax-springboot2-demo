@@ -1,10 +1,7 @@
 package com.github.axinger.dto;
 
-import com.github.axinger.domain.Employee;
-import com.mybatisflex.annotation.*;
+import com.mybatisflex.annotation.Table;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * 实体类。

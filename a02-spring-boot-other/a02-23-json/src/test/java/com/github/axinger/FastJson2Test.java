@@ -5,10 +5,8 @@ import com.alibaba.fastjson2.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.NonNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.*;
 
@@ -292,8 +290,6 @@ class FastJson2Test {
         Object eval = JSONPath.eval(obj, "$..ary2[0].a");
         System.out.println("eval = " + eval);
     }
-
-
 
 
     @Test

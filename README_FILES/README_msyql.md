@@ -503,6 +503,7 @@ select * from tb_order limit 2,2;
 ```
 
 分组获得所有字段,默认逗号分割 GROUP_CONCAT
+
 ```mysql
 SELECT
 	GROUP_CONCAT( id ),

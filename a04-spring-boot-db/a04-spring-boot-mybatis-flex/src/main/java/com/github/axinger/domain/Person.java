@@ -1,15 +1,13 @@
 package com.github.axinger.domain;
 
 import com.github.axinger.model.Gender;
-import lombok.Data;
 import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
 
-import java.lang.Double;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -65,7 +63,7 @@ public class Person {
     /**
      * 多租户id
      */
-    @Column(value = "tenant_id",tenantId = true)
+    @Column(value = "tenant_id", tenantId = true)
     private String tenantId;
 
     /**
@@ -90,7 +88,7 @@ public class Person {
      * 版本号
      */
     @Column(value = "version", version = true)
-    private Long version=0L;
+    private Long version = 0L;
 
     /**
      * 逻辑删除

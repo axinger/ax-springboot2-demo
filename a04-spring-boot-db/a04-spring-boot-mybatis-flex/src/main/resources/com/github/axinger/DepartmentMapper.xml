@@ -8,7 +8,8 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
     </resultMap>
     <sql id="Base_Column_List">
-        `id`, `name`
+        `id`
+        , `name`
     </sql>
 
 </mapper>

@@ -47,9 +47,9 @@ public class StreamFindTest {
 
 
     @Test
-    void test1(){
+    void test1() {
 
-        personList.stream().filter(val->val.getName().equals("jim")).findFirst().ifPresent(val->{
+        personList.stream().filter(val -> val.getName().equals("jim")).findFirst().ifPresent(val -> {
 
             System.out.println("val = " + val);
 
