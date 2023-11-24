@@ -176,26 +176,41 @@ class MybatisFlexApplicationTest {
     public void test_查询1() {
 
         QueryWrapper wrapper = QueryWrapper.create()
-                .from(ACCOUNT)
                 .select()
+                .from(ACCOUNT)
                 .where(ACCOUNT.ID.eq(1));
         Account account = iTbAccountService.getOne(wrapper);
         System.out.println("account = " + account);
 
+        QueryWrapper queryWrapper = QueryWrapper.create()
+                .select()
+//                .from(ACCOUNT)
+                .where(Account::getId).eq(1)
+                .and(Account::getAge).eq(15)
+                .orderBy(Account::getId)
+                .desc();
+        List<Account> list1 = iTbAccountService.list(queryWrapper);
+        System.out.println("list1 = " + list1);
 
-        QueryWrapper wrapper2 =  QueryWrapper.create()
+        QueryCondition and = QueryCondition.createEmpty()
+                .and(ACCOUNT.ID.eq(1));
+
+        List<Account> list2 = iTbAccountService.list(and);
+        System.out.println("list2 = " + list2);
+
+
+
+//        QueryChain.of(iTbAccountService.getMapper())
+        Account one = QueryChain.of(Account.class)
                 .from(ACCOUNT)
                 .select(Account::getId)
-                .where(Account::getId).eq(1)
-                .and(Account::getAge).eq(20);
-
-        List<Account> list = iTbAccountService.list(wrapper2);
-
-
-        iTbAccountService.list(QueryWrapper.create()
-                .select(Account::getId)
-                .where(Account::getId).eq(1)
-                .and(Account::getAge).eq(20));
+//                .where(ACCOUNT.ID.eq(1))
+                .and(Account::getId).eq(1)
+                .and(Account::getAge).eq(15)
+                .orderBy(Account::getId)
+                .desc()
+                .one();
+        System.out.println("one = " + one);
 
     }
 
