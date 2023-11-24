@@ -153,6 +153,15 @@ class MybatisFlexApplicationTest {
 
     }
 
+
+    @Test
+    void test_更新6() {
+        iTbAccountService.updateChain()
+                .set(Account::getAge, 20)
+                .where(Account::getId).eq(1)
+                .update();
+    }
+
     @Test
     void test_更新_填充() {
 
@@ -211,6 +220,31 @@ class MybatisFlexApplicationTest {
                 .desc()
                 .one();
         System.out.println("one = " + one);
+
+
+        Account one1 = new Account()
+                .where(Account::getId).eq(1L)
+                .one();
+        System.out.println("one1 = " + one1);
+
+        // 继承model
+        Account one2 = Account.create()
+                .where(Account::getId).eq(1L)
+                .one();
+        System.out.println("one2 = " + one2);
+
+
+        String sql = iTbAccountService.queryChain()
+                .select()
+                .from(ACCOUNT)
+                .where(Account::getId).eq(1L)
+                .and(val -> {
+                    val.and(Account::getAge).eq(1L)
+                            .or(Account::getBirthday).eq(1L);
+
+                }).toSQL();
+        System.out.println("sql = " + sql);
+
 
     }
 
