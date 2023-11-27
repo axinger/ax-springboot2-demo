@@ -16,6 +16,7 @@ class RedissonDemoApplicationTest {
     RedissonClient redissonClient;
 
 
+
     @Test
     void test1() {
         // 获取所有的key
@@ -31,7 +32,7 @@ class RedissonDemoApplicationTest {
         // 字符串操作
         RBucket<String> rBucket = redissonClient.getBucket("strKey");
         // 设置value和key的有效期
-        rBucket.set("张三", 30, TimeUnit.SECONDS);
+        rBucket.set("张三", 60, TimeUnit.SECONDS);
         // 通过key获取
         Object strKey = redissonClient.getBucket("strKey").get();
         System.out.println("strKey = " + strKey);
@@ -49,12 +50,14 @@ class RedissonDemoApplicationTest {
         student.setName("张三");
         student.setAge(18);
 
-// 对象操作
+        // 对象操作
         RBucket<Student> rBucket = redissonClient.getBucket("objKey");
-// 设置value和key的有效期
-        rBucket.set(student, 30, TimeUnit.SECONDS);
-// 通过key获取value
+        // 设置value和key的有效期
+        rBucket.set(student, 60, TimeUnit.SECONDS);
+        // 通过key获取value
         System.out.println(redissonClient.getBucket("objKey").get());
+
+
     }
 
     /**
@@ -62,7 +65,7 @@ class RedissonDemoApplicationTest {
      * Redisson 支持通过RMap对象来操作哈希数据结构，简单样例如下！
      */
     @Test
-    void test4() {
+    void test4_getMap() {
         // 哈希操作
         RMap<String, String> rMap = redissonClient.getMap("mapkey");
 // 设置map中key-value
@@ -81,7 +84,7 @@ class RedissonDemoApplicationTest {
      * Redisson 支持通过RList对象来操作列表数据结构，简单样例如下！
      */
     @Test
-    void test5() {
+    void test5_getList() {
         // 字符串操作
         RList<Student> rList = redissonClient.getList("listkey");
 

@@ -423,7 +423,7 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson.version}</version>
+                <version>3.17.7</version>
             </dependency>
 
             <!--            <dependency>-->
