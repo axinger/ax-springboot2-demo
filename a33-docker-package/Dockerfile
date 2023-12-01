@@ -4,8 +4,23 @@
 #相反，eclipse-temurin:17-jre-alpine 则是一个基于 Alpine Linux 发行版的 JDK 镜像，它使用较轻量的 base image，并且在资源占用方面表现得更好，因此适合于资源受限的环境中。
 #通常而言，如果您需要最新的 Java 技术和性能优化，请选择 eclipse-temurin:17-jre-jammy 这样的 JDK 镜像。但在某些情况下，如需求有限、资源受限或考虑 Docker 映像的大小等因素，则可以选择 eclipse-temurin:17-jre-alpine。
 
+
+#FROM eclipse-temurin:17-jdk
+#FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:17-jdk-centos7
+#FROM eclipse-temurin:17-jdk-focal
+#FROM eclipse-temurin:17-jdk-alpine
+
+
+#FROM eclipse-temurin:17-jre
 # bin/bash 有 mkdir命令
-FROM eclipse-temurin:17-jre-jammy
+#FROM eclipse-temurin:17-jre-jammy
+#FROM eclipse-temurin:17-jre-focal
+#FROM eclipse-temurin:17-jre-centos7
+#FROM eclipse-temurin:17-jre-alpine
+
+
+
 
 #作者
 MAINTAINER 阿星
