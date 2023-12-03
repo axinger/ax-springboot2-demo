@@ -39,6 +39,19 @@
             <groupId>com.github.axinger</groupId>
             <artifactId>redis-spring-boot-starter</artifactId>
         </dependency>
+        <!-- Lock4j -->
+        <!-- 若使用redisTemplate作为分布式锁底层，则需要引入 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>lock4j-redis-template-spring-boot-starter</artifactId>
+            <version>2.2.5</version>
+        </dependency>
+        <!-- 若使用redisson作为分布式锁底层，则需要引入 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>lock4j-redisson-spring-boot-starter</artifactId>
+            <version>2.2.5</version>
+        </dependency>
     </dependencies>
 
 </project>
