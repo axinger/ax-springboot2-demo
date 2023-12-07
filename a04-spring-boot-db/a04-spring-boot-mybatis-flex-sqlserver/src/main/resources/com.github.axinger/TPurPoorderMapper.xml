@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.axinger.mapper.TPurPoorderMapper">
+    <resultMap id="BaseResultMap" type="com.github.axinger.domain.TPurPoorder">
+        <id column="FID" jdbcType="INTEGER" property="fid"/>
+        <result column="FBILLTYPEID" jdbcType="VARCHAR" property="fbilltypeid"/>
+        <result column="FBILLNO" jdbcType="VARCHAR" property="fbillno"/>
+        <result column="FDATE" jdbcType="DATE" property="fdate"/>
+        <result column="FSUPPLIERID" jdbcType="INTEGER" property="fsupplierid"/>
+        <result column="FPURCHASEORGID" jdbcType="INTEGER" property="fpurchaseorgid"/>
+        <result column="FPURCHASERGROUPID" jdbcType="INTEGER" property="fpurchasergroupid"/>
+        <result column="FPURCHASEDEPTID" jdbcType="INTEGER" property="fpurchasedeptid"/>
+        <result column="FPURCHASERID" jdbcType="INTEGER" property="fpurchaserid"/>
+        <result column="FCREATORID" jdbcType="INTEGER" property="fcreatorid"/>
+        <result column="FCREATEDATE" jdbcType="DATE" property="fcreatedate"/>
+        <result column="FMODIFIERID" jdbcType="INTEGER" property="fmodifierid"/>
+        <result column="FMODIFYDATE" jdbcType="DATE" property="fmodifydate"/>
+        <result column="FDOCUMENTSTATUS" jdbcType="CHAR" property="fdocumentstatus"/>
+        <result column="FAPPROVERID" jdbcType="INTEGER" property="fapproverid"/>
+        <result column="FAPPROVEDATE" jdbcType="DATE" property="fapprovedate"/>
+        <result column="FCLOSESTATUS" jdbcType="CHAR" property="fclosestatus"/>
+        <result column="FCLOSERID" jdbcType="INTEGER" property="fcloserid"/>
+        <result column="FCLOSEDATE" jdbcType="DATE" property="fclosedate"/>
+        <result column="FCANCELSTATUS" jdbcType="CHAR" property="fcancelstatus"/>
+        <result column="FCANCELLERID" jdbcType="INTEGER" property="fcancellerid"/>
+        <result column="FCANCELDATE" jdbcType="DATE" property="fcanceldate"/>
+        <result column="FPROVIDERID" jdbcType="INTEGER" property="fproviderid"/>
+        <result column="FSETTLEID" jdbcType="INTEGER" property="fsettleid"/>
+        <result column="FCHARGEID" jdbcType="INTEGER" property="fchargeid"/>
+        <result column="FVERSIONNO" jdbcType="VARCHAR" property="fversionno"/>
+        <result column="FCHANGEREASON" jdbcType="VARCHAR" property="fchangereason"/>
+        <result column="FCHANGEDATE" jdbcType="DATE" property="fchangedate"/>
+        <result column="FCHANGERID" jdbcType="INTEGER" property="fchangerid"/>
+        <result column="FISCONVERT" jdbcType="CHAR" property="fisconvert"/>
+        <result column="FPURCATALOGID" jdbcType="INTEGER" property="fpurcatalogid"/>
+        <result column="FBUSINESSTYPE" jdbcType="VARCHAR" property="fbusinesstype"/>
+        <result column="FPROVIDERADDRESS" jdbcType="VARCHAR" property="fprovideraddress"/>
+        <result column="FOBJECTTYPEID" jdbcType="VARCHAR" property="fobjecttypeid"/>
+        <result column="FASSIGNSUPPLIERID" jdbcType="INTEGER" property="fassignsupplierid"/>
+        <result column="FCORRESPONDORGID" jdbcType="INTEGER" property="fcorrespondorgid"/>
+        <result column="FPROVIDERCONTACT" jdbcType="VARCHAR" property="fprovidercontact"/>
+        <result column="FNETORDERBILLNO" jdbcType="VARCHAR" property="fnetorderbillno"/>
+        <result column="FNETORDERBILLID" jdbcType="INTEGER" property="fnetorderbillid"/>
+        <result column="FCONFIRMSTATUS" jdbcType="CHAR" property="fconfirmstatus"/>
+        <result column="FCONFIRMERID" jdbcType="INTEGER" property="fconfirmerid"/>
+        <result column="FCONFIRMDATE" jdbcType="DATE" property="fconfirmdate"/>
+        <result column="FPROVIDERCONTACTID" jdbcType="INTEGER" property="fprovidercontactid"/>
+        <result column="FBILLTYPEIDVM" jdbcType="VARCHAR" property="fbilltypeidvm"/>
+        <result column="FCHANGESTATUS" jdbcType="CHAR" property="fchangestatus"/>
+        <result column="FSOURCEBILLNO" jdbcType="VARCHAR" property="fsourcebillno"/>
+        <result column="F_XPJT_TEXT" jdbcType="VARCHAR" property="fXpjtText"/>
+        <result column="FACCTYPE" jdbcType="VARCHAR" property="facctype"/>
+        <result column="FRELREQSTATUS" jdbcType="CHAR" property="frelreqstatus"/>
+        <result column="FISTONGBU" jdbcType="CHAR" property="fistongbu"/>
+        <result column="FISTONGBU1" jdbcType="CHAR" property="fistongbu1"/>
+        <result column="FORDERID" jdbcType="VARCHAR" property="forderid"/>
+        <result column="FSEQ_YPK" jdbcType="INTEGER" property="fseqYpk"/>
+        <result column="FSTOCKID_YPK" jdbcType="INTEGER" property="fstockidYpk"/>
+        <result column="FMANUALCLOSE" jdbcType="CHAR" property="fmanualclose"/>
+        <result column="FPROVIDEREMAIL" jdbcType="VARCHAR" property="fprovideremail"/>
+        <result column="F_QCET_CHECKBOX" jdbcType="CHAR" property="fQcetCheckbox"/>
+        <result column="F_QSUA_TEXT" jdbcType="VARCHAR" property="fQsuaText"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        `FID`, `FBILLTYPEID`, `FBILLNO`, `FDATE`, `FSUPPLIERID`, `FPURCHASEORGID`, `FPURCHASERGROUPID`,
+        `FPURCHASEDEPTID`, `FPURCHASERID`, `FCREATORID`, `FCREATEDATE`, `FMODIFIERID`, `FMODIFYDATE`, `FDOCUMENTSTATUS`,
+        `FAPPROVERID`, `FAPPROVEDATE`, `FCLOSESTATUS`, `FCLOSERID`, `FCLOSEDATE`, `FCANCELSTATUS`, `FCANCELLERID`,
+        `FCANCELDATE`, `FPROVIDERID`, `FSETTLEID`, `FCHARGEID`, `FVERSIONNO`, `FCHANGEREASON`, `FCHANGEDATE`,
+        `FCHANGERID`, `FISCONVERT`, `FPURCATALOGID`, `FBUSINESSTYPE`, `FPROVIDERADDRESS`, `FOBJECTTYPEID`,
+        `FASSIGNSUPPLIERID`, `FCORRESPONDORGID`, `FPROVIDERCONTACT`, `FNETORDERBILLNO`, `FNETORDERBILLID`,
+        `FCONFIRMSTATUS`, `FCONFIRMERID`, `FCONFIRMDATE`, `FPROVIDERCONTACTID`, `FBILLTYPEIDVM`, `FCHANGESTATUS`,
+        `FSOURCEBILLNO`, `F_XPJT_TEXT`, `FACCTYPE`, `FRELREQSTATUS`, `FISTONGBU`, `FISTONGBU1`, `FORDERID`, `FSEQ_YPK`,
+        `FSTOCKID_YPK`, `FMANUALCLOSE`, `FPROVIDEREMAIL`, `F_QCET_CHECKBOX`, `F_QSUA_TEXT`
+    </sql>
+
+</mapper>
