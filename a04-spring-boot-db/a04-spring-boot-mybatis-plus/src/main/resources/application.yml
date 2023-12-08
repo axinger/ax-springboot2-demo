@@ -2,13 +2,19 @@ spring:
   application:
     name: a04-spring-boot-mybatis-plus
   datasource:
-    url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test
+    username: sa
+    password: Cepai@wit2022
 
   jpa:
-    database: mysql
+#    database: mysql
+    database: sql_server
     show-sql: true
     hibernate:
       ddl-auto: update
