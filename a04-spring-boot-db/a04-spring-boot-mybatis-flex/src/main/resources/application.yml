@@ -4,9 +4,13 @@ spring:
 
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2
-    username: sa
-    password: Cepai@wit2022
+#    url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2
+#    username: sa
+#    password: Cepai@wit2022
+
+    url: jdbc:sqlserver://192.168.101.137:1433;DatabaseName=WIT_AIS
+    username: witsoft
+    password: witsoft@xp
 
 #      url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
 #      username: root
@@ -59,6 +63,12 @@ mybatis-flex:
       url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2
       username: sa
       password: Cepai@wit2022
+
+
+#      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#      url: jdbc:sqlserver://192.168.101.137:1433;DatabaseName=WIT_AIS
+#      username: witsoft
+#      password: witsoft@xp
 
     ds2:
       url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
