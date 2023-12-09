@@ -22,7 +22,6 @@
         <module>a04-spring-boot-iotdb</module>
         <module>a04-spring-boot-postgres</module>
         <module>a04-spring-boot-mybatis-flex</module>
-        <module>a04-spring-boot-mybatis-flex-sqlserver</module>
     </modules>
 
 </project>

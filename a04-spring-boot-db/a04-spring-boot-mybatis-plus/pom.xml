@@ -48,10 +48,16 @@
             <artifactId>excel-spring-boot-starter</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.microsoft.sqlserver</groupId>-->
+<!--            <artifactId>sqljdbc4</artifactId>-->
+<!--            <version>4.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>4.0</version>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.3.jre17</version>
         </dependency>
 
     </dependencies>

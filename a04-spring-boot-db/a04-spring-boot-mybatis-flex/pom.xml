@@ -43,19 +43,19 @@
         <dependency>
             <groupId>com.mybatis-flex</groupId>
             <artifactId>mybatis-flex-spring-boot-starter</artifactId>
-            <version>1.7.4</version>
+            <version>1.7.5</version>
         </dependency>
-        <dependency>
-            <groupId>com.mybatis-flex</groupId>
-            <artifactId>mybatis-flex-processor</artifactId>
-            <version>1.7.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.mybatis-flex</groupId>
-            <artifactId>mybatis-flex-codegen</artifactId>
-            <version>1.7.4</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.mybatis-flex</groupId>-->
+<!--            <artifactId>mybatis-flex-processor</artifactId>-->
+<!--            <version>1.7.4</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.mybatis-flex</groupId>-->
+<!--            <artifactId>mybatis-flex-codegen</artifactId>-->
+<!--            <version>1.7.4</version>-->
+<!--        </dependency>-->
 
 <!--        <dependency>-->
 <!--            <groupId>com.microsoft.sqlserver</groupId>-->
@@ -63,10 +63,16 @@
 <!--            <version>4.0</version>-->
 <!--        </dependency>-->
 
+<!--        <dependency>-->
+<!--            <groupId>com.microsoft</groupId>-->
+<!--            <artifactId>sqljdbc4</artifactId>-->
+<!--            <version>4.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>com.microsoft</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>4.0</version>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.3.jre17</version>
         </dependency>
 
     </dependencies>
