@@ -57,7 +57,7 @@ class MybatisFlexApplicationTest {
             account.setId(1);
             account.setAge(10);
             account.setUserName("jim");
-            account.setBirthday(LocalDateTimeUtil.parse("1990-05-01 12:00:00","yyyy-MM-dd HH:mm:ss"));
+            account.setBirthday(LocalDateTimeUtil.parse("1990-05-01 12:00:00", "yyyy-MM-dd HH:mm:ss"));
             list.add(account);
         }
         {
@@ -65,7 +65,7 @@ class MybatisFlexApplicationTest {
             account.setId(2);
             account.setAge(11);
             account.setUserName("tom");
-            account.setBirthday(LocalDateTimeUtil.parse("1990-05-01 12:00:00","yyyy-MM-dd HH:mm:ss"));
+            account.setBirthday(LocalDateTimeUtil.parse("1990-05-01 12:00:00", "yyyy-MM-dd HH:mm:ss"));
             list.add(account);
         }
         iTbAccountService.saveBatch(list);

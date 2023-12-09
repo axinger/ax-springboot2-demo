@@ -8,17 +8,17 @@ spring:
     username: sa
     password: Cepai@wit2022
 
-#    url: jdbc:sqlserver://192.168.101.137:1433;DatabaseName=WIT_AIS
-#    username: witsoft
-#    password: witsoft@xp
+  #    url: jdbc:sqlserver://192.168.101.137:1433;DatabaseName=WIT_AIS
+  #    username: witsoft
+  #    password: witsoft@xp
 
-#      url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-#      username: root
-#      password: 123456
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+  #      url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+  #      username: root
+  #      password: 123456
+  #      driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-#    database: mysql
+    #    database: mysql
     database: sql_server
     show-sql: true
     hibernate:
@@ -54,10 +54,10 @@ mybatis-flex:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   datasource:
     ds1:
-#      url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-#      username: root
-#      password: 123456
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+      #      url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      #      username: root
+      #      password: 123456
+      #      driver-class-name: com.mysql.cj.jdbc.Driver
 
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
       url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2;encrypt=false;trustServerCertificate=false
@@ -65,10 +65,10 @@ mybatis-flex:
       password: Cepai@wit2022
 
 
-#      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#      url: jdbc:sqlserver://192.168.101.137:1433;DatabaseName=WIT_AIS
-#      username: witsoft
-#      password: witsoft@xp
+    #      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #      url: jdbc:sqlserver://192.168.101.137:1433;DatabaseName=WIT_AIS
+    #      username: witsoft
+    #      password: witsoft@xp
 
     ds2:
       url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true

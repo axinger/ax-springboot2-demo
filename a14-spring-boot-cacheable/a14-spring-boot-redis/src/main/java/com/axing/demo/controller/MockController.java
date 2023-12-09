@@ -24,6 +24,7 @@ public class MockController {
         ThreadUtil.sleep(5000);
         return Result.ok(key);
     }
+
     //完全配置，支持spel
     @Lock4j(keys = {"#user.id", "#user.name"}, expire = 60000, acquireTimeout = 1000)
     public User customMethod(User user) {

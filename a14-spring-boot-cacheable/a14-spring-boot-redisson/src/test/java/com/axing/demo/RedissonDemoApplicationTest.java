@@ -16,7 +16,6 @@ class RedissonDemoApplicationTest {
     RedissonClient redissonClient;
 
 
-
     @Test
     void test1() {
         // 获取所有的key

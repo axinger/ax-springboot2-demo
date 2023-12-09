@@ -31,11 +31,11 @@ import java.time.LocalDateTime;
 //@AllArgsConstructor
 //@NoArgsConstructor
 //@Data(staticConstructor = "create") // 会私有无参构造方法
-public class Account extends Model<Account>  implements Serializable {
+public class Account extends Model<Account> implements Serializable {
 
     @Id(keyType = KeyType.Auto)
     @javax.persistence.Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @javax.persistence.Column(name = "id")
     @Comment("id")
     private Integer id;
@@ -79,7 +79,7 @@ public class Account extends Model<Account>  implements Serializable {
     private String groupAfterName;
 
 
-    public static Account create(){
+    public static Account create() {
         return new Account();
     }
 }
