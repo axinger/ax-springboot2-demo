@@ -5,10 +5,8 @@ import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
 import com.mybatisflex.core.activerecord.Model;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.Comment;
 
@@ -37,7 +35,7 @@ public class Account extends Model<Account>  implements Serializable {
 
     @Id(keyType = KeyType.Auto)
     @javax.persistence.Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @javax.persistence.Column(name = "id")
     @Comment("id")
     private Integer id;

@@ -1,5 +1,6 @@
 package com.github.axinger;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import com.github.axinger.domain.*;
 import com.github.axinger.dto.EmployeeDTO;
 import com.github.axinger.dto.EmployeeDTO2;
@@ -21,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.github.axinger.domain.table.AccountTableDef.ACCOUNT;
@@ -46,10 +48,33 @@ class MybatisFlexApplicationTest {
     @Autowired
     private EmployeeService employeeService;
 
+    @Test
+    public void test_新增1() {
+
+        List<Account> list = new ArrayList<>();
+        {
+            Account account = new Account();
+            account.setId(1);
+            account.setAge(10);
+            account.setUserName("jim");
+            account.setBirthday(LocalDateTimeUtil.parse("1990-05-01 12:00:00","yyyy-MM-dd HH:mm:ss"));
+            list.add(account);
+        }
+        {
+            Account account = new Account();
+            account.setId(2);
+            account.setAge(11);
+            account.setUserName("tom");
+            account.setBirthday(LocalDateTimeUtil.parse("1990-05-01 12:00:00","yyyy-MM-dd HH:mm:ss"));
+            list.add(account);
+        }
+        iTbAccountService.saveBatch(list);
+    }
+
     //    insert(entity)：插入实体类数据，不忽略 null 值。
 //    insertSelective(entity)：插入实体类数据，但是忽略 null 的数据，只对有值的内容进行插入。这样的好处是数据库已经配置了一些默认值，这些默认值才会生效。
     @Test
-    public void testInsertWithRaw() {
+    public void test_新增2() {
         Account account = new Account();
         account.setUserName("michael");
 
@@ -245,6 +270,39 @@ class MybatisFlexApplicationTest {
                 }).toSQL();
         System.out.println("sql = " + sql);
 
+
+    }
+
+    @Test
+    public void test_查询_one() {
+
+        Account one = iTbAccountService.queryChain()
+                .select("top 1 * ")
+                .from(ACCOUNT)
+                .where(Account::getAge).ge(1)
+//                .limit(1) // 会自动匹配数据库,但是sql语句不好
+                .one();
+        System.out.println("one = " + one);
+
+    }
+
+    @Test
+    public void test_查询_list() {
+
+        List<Account> list = iTbAccountService.queryChain()
+                .select()
+                .from(ACCOUNT)
+                .where(Account::getAge).ge(1)
+                .list();
+        System.out.println("list = " + list);
+
+
+        List<Account> list2 = iTbAccountService.queryChain()
+                .select()
+                .from(Account.class)
+                .where(Account::getAge).ge(1)
+                .list();
+        System.out.println("list2 = " + list2);
 
     }
 

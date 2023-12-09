@@ -21,6 +21,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class PersonEntity implements Serializable {
 
     @Serial

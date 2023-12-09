@@ -60,7 +60,7 @@ mybatis-flex:
 #      driver-class-name: com.mysql.cj.jdbc.Driver
 
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-      url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2
+      url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2;encrypt=false;trustServerCertificate=false
       username: sa
       password: Cepai@wit2022
 
