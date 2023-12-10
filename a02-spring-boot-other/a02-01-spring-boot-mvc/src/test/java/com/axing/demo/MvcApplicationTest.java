@@ -4,6 +4,8 @@ import com.axing.demo.bean.HumitureRuleProperties;
 import com.axing.demo.event.MyCustomEvent;
 import com.axing.demo.event.MyCustomEvent2;
 import com.axing.demo.model.Person;
+import com.axing.demo.statemachine.Events;
+import com.axing.demo.statemachine.States;
 import com.axing.same.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -86,5 +91,25 @@ class MvcApplicationTest {
 
     }
 
+    @Autowired
+    StateMachine<States, Events> stateMachine;
+
+    @Test
+    void test_statemachine() {
+//        stateMachine.start();
+//        stateMachine.sendEvent(Events.ONLINE);
+//        stateMachine.sendEvent(Events.PUBLISH);
+//        stateMachine.sendEvent(Events.ROLLBACK);
+
+
+        Message<Events> event = MessageBuilder.withPayload(Events.ONLINE).build();
+
+        stateMachine.sendEvent(Mono.just(event))
+                .doOnComplete(() -> {
+                    System.out.println("Event handling complete");
+                })
+                .subscribe();
+
+    }
 
 }
