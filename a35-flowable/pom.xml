@@ -15,6 +15,7 @@
         <java.version>17</java.version>
         <maven.test.skip>true</maven.test.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
+        <flowable.version>6.8.0</flowable.version>
     </properties>
 
 
@@ -30,36 +31,44 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 不知道自己项目需要那些依赖的朋友直接引入这个 -->
-        <!--                <dependency>-->
-        <!--                    <groupId>org.flowable</groupId>-->
-        <!--                    <artifactId>flowable-spring-boot-starter</artifactId>-->
-        <!--                    <version>6.8.0</version>-->
-        <!--                </dependency>-->
+
         <!-- flowable 执行器（里面包含了引擎启动器等等） -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.flowable</groupId>-->
-        <!--            <artifactId>flowable-spring-boot-starter-actuator</artifactId>-->
-        <!--            <version>6.8.0</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-actuator</artifactId>
+            <version>${flowable.version}</version>
+        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.flowable/flowable-spring-boot-starter -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.flowable</groupId>-->
-        <!--            <artifactId>flowable-spring-boot-starter</artifactId>-->
-        <!--            <version>7.0.0.M1</version>-->
-        <!--        </dependency>-->
-
-        <!--                <dependency>-->
-        <!--                    <groupId>org.flowable</groupId>-->
-        <!--                    <artifactId>flowable-spring-boot-starter-actuator</artifactId>-->
-        <!--                    <version>7.0.0.M1</version>-->
-        <!--                </dependency>-->
 
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-spring-boot-starter</artifactId>
-            <version>6.8.0</version>
+            <version>${flowable.version}</version>
+        </dependency>
+
+        <!-- 添加flowable-ui依赖 -->
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-ui-modeler</artifactId>
+            <version>${flowable.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-ui-admin</artifactId>
+            <version>${flowable.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-ui-idm</artifactId>
+            <version>${flowable.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-ui-task</artifactId>
+            <version>${flowable.version}</version>
         </dependency>
 
         <dependency>

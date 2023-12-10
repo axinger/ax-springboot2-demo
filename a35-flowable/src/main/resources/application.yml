@@ -1,0 +1,17 @@
+server:
+  port: 12035
+spring:
+  application:
+    name: a35-flowable
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    url: jdbc:mysql://192.168.101.131:3308/flowable_demo?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
+    username: root
+    password: 123456
+
+flowable:
+  async-executor-activate: true
+  #关闭定时任务JOB
+  database-schema-update: true
+
