@@ -3,31 +3,18 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>a10-spring-boot-mq</artifactId>
         <groupId>com.github.axinger</groupId>
+        <artifactId>kafka-demo</artifactId>
         <version>2.7.14.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rocketmq</artifactId>
+    <artifactId>kafka-api</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <version>2.2.3</version>
-        </dependency>
     </dependencies>
-
 </project>

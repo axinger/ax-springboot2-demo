@@ -13,9 +13,9 @@
     <artifactId>a10-spring-boot-mq</artifactId>
 
     <modules>
-        <module>kafka</module>
-        <module>rabbitmq</module>
-        <module>rocketmq</module>
+        <module>kafka-demo</module>
+        <module>rabbitmq-demo</module>
+        <module>rocketmq-demo</module>
         <module>pulsar-demo</module>
     </modules>
 
