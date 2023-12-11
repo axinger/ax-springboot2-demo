@@ -8,12 +8,6 @@ import java.util.List;
 // @Proxy(lazy = false)
 @Entity(name = "users")
 @Data
-// @Getter
-// @Setter
-// @AllArgsConstructor
-// @NoArgsConstructor
-// @ToString(exclude = "addressList")
-// @EqualsAndHashCode(exclude = "addressList")
 public class Users {
 
     @Id

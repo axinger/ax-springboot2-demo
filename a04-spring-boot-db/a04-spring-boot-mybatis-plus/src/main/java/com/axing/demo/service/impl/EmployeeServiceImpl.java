@@ -1,6 +1,6 @@
 package com.axing.demo.service.impl;
 
-import com.axing.demo.domain.Employee;
+import com.axing.demo.domain.EmployeeEntity;
 import com.axing.demo.mapper.EmployeeMapper;
 import com.axing.demo.service.EmployeeService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -15,11 +15,11 @@ import java.util.List;
  * @createDate 2022-12-17 20:22:09
  */
 @Service
-public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
+public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, EmployeeEntity>
         implements EmployeeService {
 
     @Override
-    public List<Employee> leftDepartmentList(Wrapper wrapper) {
+    public List<EmployeeEntity> leftDepartmentList(Wrapper wrapper) {
         return this.baseMapper.leftDepartment(wrapper);
     }
 

@@ -1,6 +1,6 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.domain.Employee;
+import com.axing.demo.domain.EmployeeEntity;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
@@ -14,9 +14,9 @@ import java.util.List;
  * @createDate 2022-12-17 20:22:09
  * @Entity com.axing.demo.domain.Employee
  */
-public interface EmployeeMapper extends BaseMapper<Employee> {
+public interface EmployeeMapper extends BaseMapper<EmployeeEntity> {
 
-    List<Employee> leftDepartment(@Param(Constants.WRAPPER) Wrapper<Employee> wrapper);
+    List<EmployeeEntity> leftDepartment(@Param(Constants.WRAPPER) Wrapper<EmployeeEntity> wrapper);
 }
 
 

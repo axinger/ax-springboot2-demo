@@ -1,8 +1,8 @@
 package com.axing.demo.service;
 
 import com.alibaba.fastjson2.JSON;
-import com.axing.demo.domain.Department;
-import com.axing.demo.domain.Employee;
+import com.axing.demo.domain.DepartmentEntity;
+import com.axing.demo.domain.EmployeeEntity;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class DepartmentServiceTest {
+class DepartmentEntityServiceTest {
 
     @Autowired
     DepartmentService departmentService;
@@ -69,8 +69,8 @@ class DepartmentServiceTest {
                 ]
                 """;
 
-        employeeService.saveBatch(JSON.parseArray(emStr, Employee.class));
-        departmentService.saveBatch(JSON.parseArray(depStr, Department.class));
+        employeeService.saveBatch(JSON.parseArray(emStr, EmployeeEntity.class));
+        departmentService.saveBatch(JSON.parseArray(depStr, DepartmentEntity.class));
     }
 
     @Test
@@ -78,7 +78,7 @@ class DepartmentServiceTest {
         // List<Department> list = departmentService.getDepartmentByEmployee(Wrappers.<Department>lambdaQuery()
         //         .eq(Department::getId, 1));
 
-        List<Department> list = departmentService.departByEmployeeList(Wrappers.<Department>query()
+        List<DepartmentEntity> list = departmentService.departByEmployeeList(Wrappers.<DepartmentEntity>query()
                 .eq("d.id", 1));
         System.out.println("list = " + list);
 
@@ -86,7 +86,7 @@ class DepartmentServiceTest {
 
     @Test
     void test_Department_listLeft_可以() {
-        List<Department> list1 = departmentService.listLeft(Wrappers.<Department>query()
+        List<DepartmentEntity> list1 = departmentService.listLeft(Wrappers.<DepartmentEntity>query()
                 .eq("d.id", 1));
         System.out.println("list1 = " + list1);
     }
@@ -95,8 +95,8 @@ class DepartmentServiceTest {
     void test_Department_listLeft_不可以() {
 
         // 不可以
-        List<Department> list2 = departmentService.listLeft(Wrappers.<Department>lambdaQuery()
-                .eq(Department::getId, 1));
+        List<DepartmentEntity> list2 = departmentService.listLeft(Wrappers.<DepartmentEntity>lambdaQuery()
+                .eq(DepartmentEntity::getId, 1));
         System.out.println("list = " + list2);
     }
 
@@ -107,12 +107,12 @@ class DepartmentServiceTest {
     @Test
     void test_Department_listLeftSon_可以() {
 
-        List<Department> list = departmentService.listLeftSon(Wrappers.lambdaQuery());
+        List<DepartmentEntity> list = departmentService.listLeftSon(Wrappers.lambdaQuery());
         System.out.println("list = " + list);
 
         // 可以
-        List<Department> list2 = departmentService.listLeftSon(Wrappers.<Department>lambdaQuery()
-                .eq(Department::getId, 1)
+        List<DepartmentEntity> list2 = departmentService.listLeftSon(Wrappers.<DepartmentEntity>lambdaQuery()
+                .eq(DepartmentEntity::getId, 1)
 
         );
         System.out.println("list2 = " + list2);
@@ -122,18 +122,18 @@ class DepartmentServiceTest {
     @Test
     void test_Department_listAllSon_不可以() {
         // 不可以
-        LambdaQueryWrapper<Department> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(Department::getId, 1);
-        List<Department> list2 = departmentService.listWhere(wrapper);
+        LambdaQueryWrapper<DepartmentEntity> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(DepartmentEntity::getId, 1);
+        List<DepartmentEntity> list2 = departmentService.listWhere(wrapper);
         System.out.println("list = " + list2);
     }
 
     @Test
     void test7_Department_listAllSon_可以() {
         // 可以
-        QueryWrapper<Department> wrapper = Wrappers.<Department>query()
+        QueryWrapper<DepartmentEntity> wrapper = Wrappers.<DepartmentEntity>query()
                 .eq("d.id", 1);
-        List<Department> list2 = departmentService.listWhere(wrapper);
+        List<DepartmentEntity> list2 = departmentService.listWhere(wrapper);
         System.out.println("list = " + list2);
     }
 

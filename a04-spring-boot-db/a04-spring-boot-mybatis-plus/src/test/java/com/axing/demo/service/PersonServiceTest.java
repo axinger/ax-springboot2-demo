@@ -34,7 +34,7 @@ class PersonServiceTest {
 
 
     @Test
-    void test_插入list() {
+    void test_新增list() {
         String jsonList = """
                 [
                     {
@@ -56,12 +56,11 @@ class PersonServiceTest {
                 """;
 
         List<PersonEntity> entityList = JSON.parseArray(jsonList, PersonEntity.class);
-
         personService.saveBatch(entityList);
     }
 
     @Test
-    void test_一个() {
+    void test_新增一个() {
         String jsonList = """
                     {
                         "name": "jim",

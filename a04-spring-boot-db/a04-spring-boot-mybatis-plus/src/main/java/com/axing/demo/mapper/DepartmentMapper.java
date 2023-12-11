@@ -1,6 +1,6 @@
 package com.axing.demo.mapper;
 
-import com.axing.demo.domain.Department;
+import com.axing.demo.domain.DepartmentEntity;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
@@ -14,7 +14,7 @@ import java.util.List;
  * @createDate 2022-12-17 19:55:51
  * @Entity com.axing.demo.domain.Department
  */
-public interface DepartmentMapper extends BaseMapper<Department> {
+public interface DepartmentMapper extends BaseMapper<DepartmentEntity> {
 
 
     /**
@@ -31,7 +31,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
     })
     @Select("SELECT * FROM department d LEFT JOIN employee e ON (e.dept_id = d.id) "
             + "${ew.customSqlSegment}")
-    List<Department> departByEmployeeList(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<DepartmentEntity> departByEmployeeList(@Param(Constants.WRAPPER) Wrapper wrapper);
 
 
     /**
@@ -40,12 +40,12 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      * @param wrapper
      * @return
      */
-    List<Department> listLeft(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<DepartmentEntity> listLeft(@Param(Constants.WRAPPER) Wrapper wrapper);
 
 
-    List<Department> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<DepartmentEntity> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
 
-    List<Department> listWhere(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<DepartmentEntity> listWhere(@Param(Constants.WRAPPER) Wrapper wrapper);
 
 
 }

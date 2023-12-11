@@ -1,6 +1,6 @@
 package com.axing.demo.service.impl;
 
-import com.axing.demo.domain.Department;
+import com.axing.demo.domain.DepartmentEntity;
 import com.axing.demo.mapper.DepartmentMapper;
 import com.axing.demo.service.DepartmentService;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -15,26 +15,26 @@ import java.util.List;
  * @createDate 2022-12-17 19:55:51
  */
 @Service
-public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department>
+public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, DepartmentEntity>
         implements DepartmentService {
 
     @Override
-    public List<Department> departByEmployeeList(Wrapper<Department> wrapper) {
+    public List<DepartmentEntity> departByEmployeeList(Wrapper<DepartmentEntity> wrapper) {
         return this.baseMapper.departByEmployeeList(wrapper);
     }
 
     @Override
-    public List<Department> listLeft(Wrapper<Department> wrapper) {
+    public List<DepartmentEntity> listLeft(Wrapper<DepartmentEntity> wrapper) {
         return this.baseMapper.listLeft(wrapper);
     }
 
     @Override
-    public List<Department> listLeftSon(Wrapper<Department> wrapper) {
+    public List<DepartmentEntity> listLeftSon(Wrapper<DepartmentEntity> wrapper) {
         return this.baseMapper.listLeftSon(wrapper);
     }
 
     @Override
-    public List<Department> listWhere(Wrapper<Department> wrapper) {
+    public List<DepartmentEntity> listWhere(Wrapper<DepartmentEntity> wrapper) {
         return this.baseMapper.listWhere(wrapper);
     }
 }

@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.axing.demo.mapper.DepartmentMapper">
 
-    <resultMap id="BaseResultMap" type="com.axing.demo.domain.Department">
+    <resultMap id="BaseResultMap" type="com.axing.demo.domain.DepartmentEntity">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="BaseResultMapOfEmployee" type="com.axing.demo.domain.Department" extends="BaseResultMap">
-        <collection property="empList" ofType="com.axing.demo.domain.Employee">
+    <resultMap id="BaseResultMapOfEmployee" type="com.axing.demo.domain.DepartmentEntity" extends="BaseResultMap">
+        <collection property="empList" ofType="com.axing.demo.domain.EmployeeEntity">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
             <result property="name" column="e_name" jdbcType="VARCHAR"/>

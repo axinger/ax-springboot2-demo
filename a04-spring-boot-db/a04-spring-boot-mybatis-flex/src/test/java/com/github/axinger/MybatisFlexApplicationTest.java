@@ -49,7 +49,7 @@ class MybatisFlexApplicationTest {
     private EmployeeService employeeService;
 
     @Test
-    public void test_新增1() {
+    public void test_新增list() {
 
         List<Account> list = new ArrayList<>();
         {

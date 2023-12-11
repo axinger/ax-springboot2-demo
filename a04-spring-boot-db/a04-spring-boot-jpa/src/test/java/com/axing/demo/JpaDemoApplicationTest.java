@@ -42,11 +42,32 @@ class JpaDemoApplicationTest {
     private SubjectDao subjectDao;
 
     @Test
-    void addUser() {
+    void test_增one() {
         Users user = new Users();
         user.setId(1);
         user.setUserName("jim");
         usersJpaRepository.save(user);
+    }
+
+    @Test
+    void test_增list() {
+
+        List<Users> list = new ArrayList<>();
+        {
+            Users user = new Users();
+            user.setId(1);
+            user.setUserName("jim");
+            list.add(user);
+        }
+        {
+            Users user = new Users();
+            user.setId(2);
+            user.setUserName("tom");
+            list.add(user);
+        }
+
+
+        usersJpaRepository.saveAll(list);
     }
 
     @Test

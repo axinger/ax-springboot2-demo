@@ -1,6 +1,6 @@
 package com.axing.demo.service;
 
-import com.axing.demo.domain.Department;
+import com.axing.demo.domain.DepartmentEntity;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -11,11 +11,11 @@ import java.util.List;
  * @description 针对表【department】的数据库操作Service
  * @createDate 2022-12-17 19:55:51
  */
-public interface DepartmentService extends IService<Department> {
+public interface DepartmentService extends IService<DepartmentEntity> {
 
-    List<Department> departByEmployeeList(Wrapper<Department> wrapper);
+    List<DepartmentEntity> departByEmployeeList(Wrapper<DepartmentEntity> wrapper);
 
-    List<Department> listLeft(Wrapper<Department> wrapper);
+    List<DepartmentEntity> listLeft(Wrapper<DepartmentEntity> wrapper);
 
     /**
      * select 返回结果,再包装一个select
@@ -23,7 +23,7 @@ public interface DepartmentService extends IService<Department> {
      * @param wrapper
      * @return
      */
-    List<Department> listLeftSon(Wrapper<Department> wrapper);
+    List<DepartmentEntity> listLeftSon(Wrapper<DepartmentEntity> wrapper);
 
     /**
      * 不支持 lambda 方法引用
@@ -32,7 +32,7 @@ public interface DepartmentService extends IService<Department> {
      * @param wrapper
      * @return
      */
-    List<Department> listWhere(Wrapper<Department> wrapper);
+    List<DepartmentEntity> listWhere(Wrapper<DepartmentEntity> wrapper);
 
 
 }
