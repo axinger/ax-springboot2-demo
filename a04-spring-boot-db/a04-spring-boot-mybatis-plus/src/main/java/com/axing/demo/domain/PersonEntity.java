@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.annotations.Options;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
@@ -21,7 +22,6 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class PersonEntity implements Serializable {
 
     @Serial

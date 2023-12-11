@@ -2,6 +2,7 @@ package com.axing.demo.service;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.axing.demo.config.MyTableNameHandler;
 import com.axing.demo.config.MyTenantLineHandler;
 import com.axing.demo.domain.PersonEntity;
@@ -13,6 +14,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Options;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +31,69 @@ class PersonServiceTest {
 
     @Autowired
     private PersonMapper personMapper;
+
+
+    @Test
+    void test_插入list() {
+        String jsonList = """
+                [
+                    {
+                        "name": "jim",
+                        "age": 10,
+                        "id":1
+                    },
+                    {
+                        "name": "tom",
+                        "age": 10,
+                        "id":2
+                    },
+                    {
+                        "name": "lili",
+                        "age": 11,
+                        "id":3
+                    }
+                ]
+                """;
+
+        List<PersonEntity> entityList = JSON.parseArray(jsonList, PersonEntity.class);
+
+        personService.saveBatch(entityList);
+    }
+
+    @Test
+    void test_一个() {
+        String jsonList = """
+                    {
+                        "name": "jim",
+                        "age": 10,
+                        "id":1
+                    }
+                """;
+
+
+        PersonEntity person = JSONObject.parseObject(jsonList, PersonEntity.class);
+        personService.save(person);
+    }
+
+    @Test
+    void test_saveOrUpdateBatch() {
+        PersonEntity book = personService.getById(1);
+        book.setName(book.getName() + "_v1");
+        List<PersonEntity> list = List.of(book);
+        personService.saveOrUpdateBatch(list);
+    }
+
+    @Test
+    void test_saveOrUpdateBatch2() {
+        PersonEntity book = personService.getById(1);
+        book.setName(book.getName() + "_v1");
+
+        PersonEntity book1 = new PersonEntity();
+        book1.setName("一千零一夜");
+
+        List<PersonEntity> list = List.of(book, book1);
+        personService.saveOrUpdateBatch(list);
+    }
 
     @Test
     void test_stream() throws InterruptedException {
@@ -99,32 +164,6 @@ class PersonServiceTest {
         book1.setId(1L);
         book1.setName("tom");
         personService.save(book1);
-    }
-
-    @Test
-    void test_save_list() {
-        String jsonList = """
-                [
-                    {
-                        "name": "jim",
-                        "age": 10,
-                        "id": 1
-                    },
-                    {
-                        "name": "tom",
-                        "age": 10,
-                        "id": 2
-                    },
-                    {
-                        "name": "lili",
-                        "age": 11,
-                        "id": 3
-                    }
-                ]
-                """;
-
-        List<PersonEntity> entityList = JSON.parseArray(jsonList, PersonEntity.class);
-        personService.saveBatch(entityList);
     }
 
     @Test
@@ -244,26 +283,6 @@ class PersonServiceTest {
                 .set(PersonEntity::getName, "jim")
                 .set(PersonEntity::getVersion, book.getVersion() + 1)
                 .update(new PersonEntity());
-    }
-
-    @Test
-    void test_saveOrUpdateBatch() {
-        PersonEntity book = personService.getById(1);
-        book.setName(book.getName() + "_v1");
-        List<PersonEntity> list = List.of(book);
-        personService.saveOrUpdateBatch(list);
-    }
-
-    @Test
-    void test_saveOrUpdateBatch2() {
-        PersonEntity book = personService.getById(1);
-        book.setName(book.getName() + "_v1");
-
-        PersonEntity book1 = new PersonEntity();
-        book1.setName("一千零一夜");
-
-        List<PersonEntity> list = List.of(book, book1);
-        personService.saveOrUpdateBatch(list);
     }
 
 
