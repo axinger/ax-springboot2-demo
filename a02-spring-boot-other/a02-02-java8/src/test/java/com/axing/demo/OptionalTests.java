@@ -9,6 +9,7 @@ public class OptionalTests {
 
 
     @Test
+    @SuppressWarnings("all")
     void test() {
         String string = null;
         boolean empty = Optional.of(string).isEmpty();
@@ -16,6 +17,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     void test1() {
         String string = "123";
         Optional.ofNullable(string).filter(val -> val.length() > 2).ifPresentOrElse(val -> {
@@ -31,6 +33,7 @@ public class OptionalTests {
 
 
     @Test
+    @SuppressWarnings("all")
     void test2() {
         String string = null;
         boolean empty = Optional.ofNullable(string).isEmpty();
@@ -38,6 +41,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     public void test_1() {
         // isEmpty == !isPresent
         //       String str = "";
@@ -51,6 +55,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     public void test_add() {
 
         Long a = null;
@@ -61,6 +66,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     public void test_list() {
 
         List<Integer> list = new ArrayList<>();
@@ -244,6 +250,7 @@ public class OptionalTests {
 
 
     @Test
+    @SuppressWarnings("all")
     void test_get_1() {
         String val = null;
 
@@ -259,6 +266,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     void test_orElseThrow_1() throws Exception {
         Person person = null;
         Optional.ofNullable(person).orElseThrow(() -> new Exception("null值,就抛异常"));
@@ -270,6 +278,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     void test_orElseThrow() throws Exception {
         Person person = Person.builder().name("nam").build();
         Optional.ofNullable(person).orElseThrow(() -> new Exception("null值,就抛异常"));
