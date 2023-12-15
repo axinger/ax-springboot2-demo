@@ -90,6 +90,7 @@ public class OptionalTests {
 
 
     @Test
+    @SuppressWarnings("all")
     public void test_01() {
 
         User user = null;
@@ -190,6 +191,7 @@ public class OptionalTests {
     }
 
     @Test
+    @SuppressWarnings("all")
     public void tes1() {
 
         Person person = null;
@@ -203,8 +205,43 @@ public class OptionalTests {
         if (present) {
             System.out.println("get = " + person1.get());
         }
+    }
+
+
+    @Test
+    @SuppressWarnings("all")
+    public void tes_optional_stream() {
+
+        Person person = null;
+
+        {
+            person = new Person();
+            person.setAge(10);
+        }
+        double sum = Optional.ofNullable(person)
+                .stream()
+                .mapToDouble(val -> val.getAge())
+                .sum();
+        System.out.println("sum = " + sum);
+
+
+        List<Person> personList = null;
+        {
+            personList = new ArrayList<>();
+            personList.add(person);
+        }
+
+
+        Double sum1 = Optional.ofNullable(personList)
+                .stream()
+                .flatMap(value -> value.stream())
+                .mapToDouble(value -> value.getAge())
+                .sum();
+        System.out.println("sum1 = " + sum1);
+
 
     }
+
 
     @Test
     void test_get_1() {

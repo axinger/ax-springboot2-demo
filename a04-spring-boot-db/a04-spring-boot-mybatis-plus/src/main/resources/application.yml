@@ -2,4 +2,5 @@ spring:
   application:
     name: a04-spring-boot-mybatis-plus
   profiles:
-    active: sqlserver
+#    active: sqlserver
+    active: mysql
