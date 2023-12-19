@@ -1,4 +1,4 @@
-package com.axing.demo.model;
+package com.axing.demo.redis.model;
 
 import lombok.*;
 
@@ -26,6 +26,7 @@ public class User implements Serializable {
     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     // @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     // @Transient
+    @Builder.Default
     private LocalDateTime localDateTime = LocalDateTime.now();
     private List<User.Book> books;
 

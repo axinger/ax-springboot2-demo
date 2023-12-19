@@ -1,13 +1,10 @@
-package com.axing.demo;
+package com.axing.demo.redis;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.axing.common.redis.service.RedisService;
-import com.axing.common.redis.util.RedisUtil;
-import com.axing.demo.model.User;
-import com.axing.demo.service.RedisCacheTemplate;
+import com.axing.demo.redis.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +33,7 @@ public class RedisTemplateTests {
     private static final String SERIAL_NUM = "order:serialNo:";
     @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
-    private RedisService redisService;
+
     @Autowired
     private RedisTemplate<String, User> redisTemplateList;
     @Autowired
@@ -46,8 +42,6 @@ public class RedisTemplateTests {
     private RedisTemplate<String, Map<String, Object>> redisTemplateMap;
     @Autowired
     private ObjectMapper objectMapper;
-    @Autowired
-    private RedisCacheTemplate redisCacheTemplate;
 
     private User getUser(Integer id) {
         final User.Book book = User.Book.builder()
@@ -227,7 +221,7 @@ public class RedisTemplateTests {
         // final String key = "test:user:1:Map";
 
 
-        final String key = RedisUtil.getKey("test", "user", 1, "Map");
+        final String key = "test:user:Map";
         System.out.println("key = " + key);
 
         Map map = objectMapper.readValue(objectMapper.writeValueAsString(user), Map.class);
@@ -299,7 +293,7 @@ public class RedisTemplateTests {
         final String currentDate = LocalDateTimeUtil.format(dateTime, "yyyy-MM-dd");
         String key = SERIAL_NUM + currentDate;
         // 过期时间 60*60*24
-        long incr = redisCacheTemplate.incr(key, 1, 86400);
+        long incr = redisTemplate.opsForValue().increment(key, 1);
         // 左对齐
         String value = StrUtil.padPre(String.valueOf(incr), 6, "0");
         // 然后把 时间戳和优化后的 ID 拼接

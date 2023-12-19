@@ -8,6 +8,11 @@ spring:
     name: redis-demo
   jackson:
     date-format: yyyy年MM月dd日 HH:mm:ss
+  datasource:
+    url: jdbc:mysql://192.168.101.131:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
   cache:
     type: redis
     redis:
@@ -50,11 +55,3 @@ axing:
     save-package-name: true
   doc:
     title: redis测试项目
-
-
-
-lock4j:
-  acquire-timeout: 3000 #默认值3s，可不设置
-  expire: 30000 #默认值30s，可不设置
-  primary-executor: com.baomidou.lock.executor.RedisTemplateLockExecutor #默认redisson>redisTemplate>zookeeper，可不设置
-  lock-key-prefix: lock4j #锁key前缀, 默认值lock4j，可不设置

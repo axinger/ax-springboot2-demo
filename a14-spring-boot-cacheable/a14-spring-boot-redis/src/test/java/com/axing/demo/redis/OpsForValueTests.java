@@ -1,8 +1,8 @@
-package com.axing.demo;
+package com.axing.demo.redis;
 
 import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.StrUtil;
-import com.axing.demo.model.User;
+import com.axing.demo.redis.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class OpsForValueTests {
                 .name("海底两万里")
                 .build();
 
-        final User user = User.builder()
+        return User.builder()
                 .id(id)
                 .name("jim")
                 .age(21)
@@ -39,12 +39,11 @@ public class OpsForValueTests {
                 // .localDateTime(LocalDateTime.now())
                 .books(List.of(book))
                 .build();
-
-        return user;
     }
 
-    private String getUserKey(Integer id) {
-        return StrUtil.format("test:value:{}:User", id);
+
+    private String getUserKey(String key) {
+        return StrUtil.format("test:value:{}:User", key);
     }
 
     @Test
@@ -52,7 +51,7 @@ public class OpsForValueTests {
         // redisTemplateUser.setValueSerializer(RedisSerializer.java());
         // redisTemplateUser.setValueSerializer(RedisSerializer.json());
         // 这个报错
-        redisTemplateUser.opsForValue().set(getUserKey(1), getUser(1), 10, TimeUnit.MINUTES);
+        redisTemplateUser.opsForValue().set(getUserKey("1"), getUser(1), 10, TimeUnit.MINUTES);
         System.out.println("opsForValue");
     }
 
@@ -60,18 +59,18 @@ public class OpsForValueTests {
     void opsForValue_get() {
         // redisTemplateUser.setValueSerializer(RedisSerializer.java());
         // redisTemplateUser.setValueSerializer(RedisSerializer.json());
-        User user = redisTemplateUser.opsForValue().get(getUserKey(1));
+        User user = redisTemplateUser.opsForValue().get(getUserKey("1"));
         System.out.println("user = " + user);
     }
 
     @Test
     void opsForValue_set2() {
 
-        redisTemplateUserList.opsForValue().set(getUserKey(1), List.of(getUser(1)), 10, TimeUnit.MINUTES);
+        redisTemplateUserList.opsForValue().set(getUserKey("1and2"), List.of(getUser(1), getUser(2)), 10, TimeUnit.MINUTES);
         System.out.println("opsForValue");
 
 
-        List<User> users = redisTemplateUserList.opsForValue().get(getUserKey(1));
+        List<User> users = redisTemplateUserList.opsForValue().get(getUserKey("1"));
         System.out.println("user = " + users);
     }
 
@@ -79,21 +78,21 @@ public class OpsForValueTests {
     @Test
     void setIfAbsent() {
         // 当前key不存在，写入值, 并返回true; 当前key已经存在，不处理, 返回false;  Absent: 缺少的，
-        Boolean ifAbsent = redisTemplateUser.opsForValue().setIfAbsent(getUserKey(1), getUser(1));
+        Boolean ifAbsent = redisTemplateUser.opsForValue().setIfAbsent(getUserKey("1"), getUser(1));
         System.out.println("ifAbsent = " + ifAbsent);
     }
 
     @Test
     void setIfPresent() {
         // 当前key已经存在，写入值, 并返回true; 当前key不存在，不处理, 返回false;  ;Present: 存在的
-        Boolean ifPresent = redisTemplateUser.opsForValue().setIfPresent(getUserKey(1), getUser(1));
+        Boolean ifPresent = redisTemplateUser.opsForValue().setIfPresent(getUserKey("1"), getUser(1));
         System.out.println("ifPresent = " + ifPresent);
     }
 
     @Test
     void getAndSet() {
         // 获取原来key的value, 再将新的value写入
-        User andSet = redisTemplateUser.opsForValue().getAndSet(getUserKey(1), getUser(1));
+        User andSet = redisTemplateUser.opsForValue().getAndSet(getUserKey("1"), getUser(1));
         log.info("andSet = {}", andSet);
     }
 

@@ -1,4 +1,4 @@
-package com.axing.demo.model;
+package com.axing.demo.redis.model;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
