@@ -31,7 +31,7 @@ import java.util.Optional;
 public class ObjectMapperConfig {
 
     @Autowired
-    private JsonProperties jsonProperties;
+    private JsonProperties properties;
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
@@ -39,22 +39,22 @@ public class ObjectMapperConfig {
             builder.locale(Locale.CHINA);
             builder.serializationInclusion(JsonInclude.Include.NON_NULL);
 
-            builder.simpleDateFormat(jsonProperties.getDateFormat());
+            builder.simpleDateFormat(properties.getDateFormat());
 
-            if (Optional.ofNullable(jsonProperties).isPresent()) {
+            if (Optional.ofNullable(properties).isPresent()) {
                 // 使用这个方式, 使用modules,会影响其他设置 builder.modules(new Java8TimeModule());
-                // builder.modules(new Java8TimeModule(jsonProperties));
+                // builder.modules(new Java8TimeModule(properties));
                 // yyyy-MM-dd HH:mm:ss
-                builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(jsonProperties.getDateFormat())));
-                builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(jsonProperties.getDateFormat())));
+                builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(properties.getDateFormat())));
+                builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(properties.getDateFormat())));
 
                 // yyyy-MM-dd
-                builder.serializerByType(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(jsonProperties.getLocalDateFormat())));
-                builder.deserializerByType(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(jsonProperties.getLocalDateFormat())));
+                builder.serializerByType(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(properties.getLocalDateFormat())));
+                builder.deserializerByType(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(properties.getLocalDateFormat())));
 
                 // HH:mm:ss
-                builder.serializerByType(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(jsonProperties.getLocalTimeFormat())));
-                builder.deserializerByType(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(jsonProperties.getLocalTimeFormat())));
+                builder.serializerByType(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(properties.getLocalTimeFormat())));
+                builder.deserializerByType(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(properties.getLocalTimeFormat())));
             }
 
         };

@@ -1,13 +1,9 @@
 package com.axing.demo.redis.config;
 
-import com.alibaba.fastjson2.support.spring6.data.redis.FastJsonRedisSerializer;
-import com.alibaba.fastjson2.support.spring6.data.redis.GenericFastJsonRedisSerializer;
 import com.axing.common.json.bean.JsonProperties;
-import com.axing.common.json.model.CommonObjectMapper;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.axing.common.json.model.ObjectMapperFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,16 +13,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.*;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 
 @Configuration
 @EnableCaching
-@RequiredArgsConstructor
 public class RedisConfig {
 
+    @Autowired
+    private JsonProperties jsonProperties;
 
     /**
      * 自定义key规则
@@ -76,8 +75,6 @@ public class RedisConfig {
      */
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
-
-
         // 配置序列化（解决乱码的问题）,
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(this.keySerializer()))
@@ -85,12 +82,8 @@ public class RedisConfig {
                 .disableCachingNullValues()
                 // 创建默认缓存配置对象、 将@Cacheable缓存key值时默认会给value或cacheNames后加上双冒号 改为 单冒号
                 .computePrefixWith(name -> name + ":");
-
         return RedisCacheManager.builder(factory).cacheDefaults(config).build();
-
-
     }
-
 
 
     @Bean
@@ -98,13 +91,15 @@ public class RedisConfig {
         return new StringRedisSerializer();
     }
 
-    @Autowired
-    private JsonProperties jsonProperties;
 
     @Bean
     public RedisSerializer<Object> valueSerializer() {
 
-        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
+//        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
+
+        ObjectMapper objectMapper = ObjectMapperFactory.factory(jsonProperties);
+
+
 //        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
 

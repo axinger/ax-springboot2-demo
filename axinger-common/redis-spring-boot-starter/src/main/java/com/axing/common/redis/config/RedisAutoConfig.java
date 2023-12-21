@@ -2,7 +2,7 @@ package com.axing.common.redis.config;
 
 import com.axing.common.json.bean.JsonProperties;
 import com.axing.common.json.config.ObjectMapperConfig;
-import com.axing.common.json.model.CommonObjectMapper;
+import com.axing.common.json.model.ObjectMapperFactory;
 import com.axing.common.redis.bean.RedisProperties;
 import com.axing.common.redis.service.RedisService;
 import com.axing.common.redis.service.impl.RedisServiceImpl;
@@ -36,7 +36,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @AutoConfigureAfter(ObjectMapperConfig.class)
 public class RedisAutoConfig {
 
-    private final RedisConnectionFactory redisConnectionFactory;
+//    private final RedisConnectionFactory redisConnectionFactory;
     private final RedisProperties redisProperties;
     private final JsonProperties jsonProperties;
 
@@ -74,11 +74,11 @@ public class RedisAutoConfig {
         redisTemplate.setConnectionFactory(factory);
 
         // 序列号key value
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setKeySerializer(this.keySerializer());
         redisTemplate.setValueSerializer(this.valueSerializer());
-
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(this.valueSerializer2());
+        // hash
+        redisTemplate.setHashKeySerializer(this.keySerializer());
+        redisTemplate.setHashValueSerializer(this.valueSerializer());
 
         redisTemplate.afterPropertiesSet();
 
@@ -91,25 +91,23 @@ public class RedisAutoConfig {
      * @return CacheManager
      */
     @Bean
-    public CacheManager cacheManager() {
-        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
-
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         // 配置序列化（解决乱码的问题）,
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer)
-                )
-                .serializeValuesWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(this.valueSerializer())
-                )
-                .disableCachingNullValues()
-                // 创建默认缓存配置对象、 将@Cacheable缓存key值时默认会给value或cacheNames后加上双冒号 改为 单冒号
-                .computePrefixWith(name -> name + ":");
-
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(this.keySerializer()))
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(this.valueSerializer()))
+                .disableCachingNullValues() // 不存储null
+                .computePrefixWith(name -> name + ":"); // 创建默认缓存配置对象、 将@Cacheable缓存key值时默认会给value或cacheNames后加上双冒号 改为 单冒号
         return RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(config).build();
 
 
     }
 
+
+    @Bean
+    public RedisSerializer<String> keySerializer() {
+        return new StringRedisSerializer();
+    }
 
     /**
      * new Jackson2JsonRedisSerializer
@@ -120,11 +118,12 @@ public class RedisAutoConfig {
     @Bean
     public RedisSerializer<Object> valueSerializer() {
 //         ObjectMapper objectMapper = objectMapperConfig.getObjectMapper();
-        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
-//        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
+//        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
+        ObjectMapper objectMapper = ObjectMapperFactory.factory(jsonProperties);
         if (redisProperties.isSavePackageName()) {
             objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         }
+
 //        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
 //        serializer.setObjectMapper(objectMapper);
 //        return serializer;
@@ -145,11 +144,5 @@ public class RedisAutoConfig {
         return new GenericJackson2JsonRedisSerializer(objectMapper);
     }
 
-
-    @Bean
-    public RedisSerializer<Object> valueSerializer2() {
-        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
-        return new GenericJackson2JsonRedisSerializer(objectMapper);
-    }
 
 }
