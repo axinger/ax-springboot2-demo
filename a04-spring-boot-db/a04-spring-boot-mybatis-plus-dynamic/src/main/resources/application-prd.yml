@@ -15,7 +15,7 @@ spring:
 
         db_ax_pgsql:
           driver-class-name: org.postgresql.Driver
-          url: jdbc:postgresql://192.168.101.131:5532/ax_pg_test
+          url: jdbc:postgresql://192.168.101.132:5532/ax_pg_test
           username: postgres
           password: 123456
 
