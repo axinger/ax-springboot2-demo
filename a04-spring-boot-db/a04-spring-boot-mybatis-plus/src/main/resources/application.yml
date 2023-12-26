@@ -4,3 +4,4 @@ spring:
   profiles:
 #    active: sqlserver
     active: mysql
+#    active: pgsql

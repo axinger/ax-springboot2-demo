@@ -1,5 +1,6 @@
 package com.axing.demo;
 
+import com.axing.demo.dao.BookDAO;
 import com.axing.demo.dao.UsersJpaRepository;
 import com.axing.demo.model.Book;
 import com.axing.demo.model.Users;
@@ -9,16 +10,55 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
-public class JdbcTests {
+public class JdbcDemo1Tests {
 
+    // JpaRepository
     @Autowired
     private UsersJpaRepository usersJpaRepository;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    // JpaRepository
+    @Autowired
+    private BookDAO bookDAO;
+
+    @Test
+    void test_book_save() {
+        Book book = new Book();
+        book.setId(1L);
+        book.setBookName("海底两万里");
+        LocalDateTime dateTime = LocalDateTime.now().plusDays(-1);
+        book.setStartTime(dateTime);
+        book.setEndTime(dateTime.plusHours(2));
+        bookDAO.save(book);
+    }
+
+    @Test
+    void test_book_save2() {
+        Book book = new Book();
+        book.setBookName("十万个为什么");
+        LocalDateTime dateTime = LocalDateTime.now().plusDays(-1);
+        book.setStartTime(dateTime);
+        book.setEndTime(dateTime.plusHours(2));
+        bookDAO.save(book);
+    }
+
+    @Test
+    void test_book_saveAndFlush() {
+        Book book = new Book();
+        book.setId(1L);
+        book.setBookName("海底两万里2");
+        LocalDateTime dateTime = LocalDateTime.now().plusDays(-1);
+        book.setStartTime(dateTime);
+        book.setEndTime(dateTime.plusHours(2));
+        bookDAO.saveAndFlush(book);
+    }
+
 
     @Test
     void addUser() {
@@ -27,6 +67,7 @@ public class JdbcTests {
         user.setUserName("jim");
         usersJpaRepository.save(user);
     }
+
 
     @Test
     public void findAll() {

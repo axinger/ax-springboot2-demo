@@ -19,7 +19,7 @@ class BookDAOTest {
     BookService bookService;
 
     @Test
-    void test_jpa_save_list() {
+    void test_save_list_指定id() {
 
         String json = """
                 [
@@ -53,39 +53,38 @@ class BookDAOTest {
 
         // List<BookEntity> bookEntityList2 = bookDAO.saveAllAndFlush(bookEntityList);
         // System.out.println("bookEntityList2 = " + JSON.toJSONString(bookEntityList2));
-        // mbp 可以insert id
+        // mbp 可以insert id, 然后再不指定id,会报错,会重新插入刚刚指定id的,重复完,就可以成功了
         boolean save = bookService.saveBatch(bookEntityList);
 
     }
 
     @Test
-    void test_jpa_save_list2() {
+    void test_save_list2_不指定id() {
 
         String json = """
                 [
                     {
                         "bookAuthor": "jim",
-                        "bookName": "海底两万里",
+                        "bookName": "十万个为什么",
                         "bookPrice": 10.1
-                    },
-                    {
-                        "bookAuthor": "jim",
-                        "bookName": "一千零一夜",
-                        "bookPrice": 11.0
-                    },
-                    {
-                        "bookAuthor": "tom",
-                        "bookName": "阿里巴巴与四十大盗",
-                        "bookPrice": 12.0
                     }
                 ]
                   """;
 
         List<BookEntity> bookEntityList = JSON.parseArray(json, BookEntity.class);
         System.out.println("bookEntityList = " + JSON.toJSONString(bookEntityList));
-        // mbp 可以insert id
+        // mbp 可以insert id, 然后再不指定id,会报错,会重新插入刚刚指定id的,重复完,就可以成功了
         boolean save = bookService.saveBatch(bookEntityList);
 
+    }
+
+    @Test
+    void test_saveOrUpdate() {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setId(4L);
+        bookEntity.setBookName("海底两万里2");
+        boolean save = bookService.saveOrUpdate(bookEntity);
+        System.out.println("save = " + save);
     }
 
     @Test

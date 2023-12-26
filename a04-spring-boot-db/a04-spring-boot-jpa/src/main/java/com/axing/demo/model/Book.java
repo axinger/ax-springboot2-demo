@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //pgsql使用 自增,有nextval('book_id_seq'::regclass),连续
     private Long id;
 
     @Column(name = "book_name")
