@@ -463,11 +463,11 @@
                 <version>1.8.0</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>1.4.2</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.github.pagehelper</groupId>-->
+<!--                <artifactId>pagehelper-spring-boot-starter</artifactId>-->
+<!--                <version>1.4.2</version>-->
+<!--            </dependency>-->
 
             <!-- Shiro 核心依赖 -->
             <!--            <dependency>-->
