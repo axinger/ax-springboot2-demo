@@ -1,5 +1,6 @@
 package com.axing.demo.controller;
 
+import com.axing.common.response.result.Result;
 import com.axing.demo.model.User;
 import com.axing.demo.service.MQProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class RocketMQController {
     private MQProducerService mqProducerService;
 
     @GetMapping("/send")
-    void send() {
+    public void send() {
         User user = new User();
         user.setName("jim");
         user.setAge(10);
@@ -23,11 +24,11 @@ public class RocketMQController {
     }
 
     @GetMapping("/sendMsg")
-    void sendMsg() {
+    public Object sendMsg() {
         User user = new User();
         user.setName("jim");
         user.setAge(10);
-        mqProducerService.sendMsg(user);
+        return Result.ok(mqProducerService.sendMsg(user));
     }
 
     @GetMapping("/sendAsyncMsg")
