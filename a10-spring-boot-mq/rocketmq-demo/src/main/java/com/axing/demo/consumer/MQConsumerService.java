@@ -2,9 +2,11 @@ package com.axing.demo.consumer;
 
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.config.Topic;
+import com.axing.demo.model.MessageWrapper;
 import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.apache.rocketmq.spring.annotation.ConsumeMode;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.annotation.SelectorType;
 import org.apache.rocketmq.spring.core.RocketMQListener;
@@ -23,7 +25,7 @@ public class MQConsumerService {
             consumerGroup = "Con_Group_One",
             topic = Topic.RLT_TEST_TOPIC,
             selectorExpression = "tag1")
-    public class ConsumerSendTag1 implements RocketMQListener<User> {
+    public static class ConsumerSendTag1 implements RocketMQListener<User> {
         // 监听到消息就会执行此方法
         @Override
         public void onMessage(User user) {
@@ -36,7 +38,7 @@ public class MQConsumerService {
             consumerGroup = "Con_Group_One",
             topic = Topic.RLT_TEST_TOPIC,
             selectorExpression = "tag2")
-    public class ConsumerSendTag2 implements RocketMQListener<User> {
+    public static class ConsumerSendTag2 implements RocketMQListener<User> {
         @Override
         public void onMessage(User user) {
             log.info("Con_Group_One tag2 监听到消息：user={}", JSON.toJSONString(user));
@@ -63,7 +65,7 @@ public class MQConsumerService {
     // @RocketMQMessageListener(topic = Topic.RLT_TEST_TOPIC, consumerGroup = "Con_Group_Two")
     @Service
     @RocketMQMessageListener(topic = "java1234-filter-rocketmq", consumerGroup = "${rocketmq.consumer.group}", selectorExpression = "type='user' or a <7", selectorType = SelectorType.SQL92)
-    public class ConsumerSend2 implements RocketMQListener<String> {
+    public static class ConsumerSend2 implements RocketMQListener<String> {
         @Override
         public void onMessage(String str) {
             log.info("Con_Group_Two 监听到消息：str={}", str);
@@ -73,7 +75,7 @@ public class MQConsumerService {
     // MessageExt：是一个消息接收通配符，不管发送的是String还是对象，都可接收，当然也可以像上面明确指定类型（我建议还是指定类型较方便）
     @Service
     @RocketMQMessageListener(topic = Topic.RLT_TEST_TOPIC, selectorExpression = "tag2", consumerGroup = "Con_Group_Three")
-    public class Consumer implements RocketMQListener<MessageExt> {
+    public static class Consumer implements RocketMQListener<MessageExt> {
         @Override
         public void onMessage(MessageExt messageExt) {
             byte[] body = messageExt.getBody();
@@ -84,7 +86,7 @@ public class MQConsumerService {
 
     @Service
     @RocketMQMessageListener(topic = "TBW102", consumerGroup = "Con_Group_Three")
-    public class Consumer1 implements RocketMQListener<MessageExt> {
+    public static class Consumer1 implements RocketMQListener<MessageExt> {
         @Override
         public void onMessage(MessageExt messageExt) {
             byte[] body = messageExt.getBody();
@@ -92,5 +94,19 @@ public class MQConsumerService {
             log.info("Con_Group_Three 监听到消息：msg={}", msg);
         }
     }
+
+// 顺序消费
+    @Service
+    @RocketMQMessageListener(topic = Topic.sync_user_topic, consumerGroup = "user_consumer", selectorExpression = "*"
+           , consumeMode = ConsumeMode.ORDERLY
+    )
+    @Slf4j
+    public static class syncUserConsumer implements RocketMQListener<MessageWrapper> {
+        @Override
+        public void onMessage(MessageWrapper mes) {
+            log.info("user consumer message : {}", JSON.toJSONString(mes));
+        }
+    }
+
 
 }
