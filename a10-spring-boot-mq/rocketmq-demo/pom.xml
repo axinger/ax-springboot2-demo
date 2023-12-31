@@ -28,6 +28,16 @@
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <version>2.2.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>doc-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>response-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

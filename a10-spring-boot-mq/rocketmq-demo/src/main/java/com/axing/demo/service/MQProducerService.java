@@ -2,6 +2,7 @@ package com.axing.demo.service;
 
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson2.JSON;
+import com.axing.common.response.result.Result;
 import com.axing.demo.config.Topic;
 import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +32,10 @@ public class MQProducerService {
     /**
      * 普通发送（这里的参数对象User可以随意定义，可以发送个对象，也可以是字符串等）
      */
-    public void send(User user) {
+    public Object send(User user) {
         rocketMQTemplate.convertAndSend(Topic.RLT_TEST_TOPIC + ":tag1", user);
 //        rocketMQTemplate.send(topic + ":tag1", MessageBuilder.withPayload(user).build()); // 等价于上面一行
+        return Result.ok("发送成功");
     }
 
     /**
