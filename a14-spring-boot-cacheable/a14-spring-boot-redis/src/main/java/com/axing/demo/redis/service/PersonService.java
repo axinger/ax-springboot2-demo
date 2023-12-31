@@ -2,9 +2,6 @@ package com.axing.demo.redis.service;
 
 import com.axing.demo.redis.domain.PersonEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 
 import java.util.List;
 

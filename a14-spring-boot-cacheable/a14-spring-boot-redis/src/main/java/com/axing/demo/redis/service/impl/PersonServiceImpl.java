@@ -1,9 +1,9 @@
 package com.axing.demo.redis.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.axing.demo.redis.domain.PersonEntity;
-import com.axing.demo.redis.service.PersonService;
 import com.axing.demo.redis.mapper.PersonMapper;
+import com.axing.demo.redis.service.PersonService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;

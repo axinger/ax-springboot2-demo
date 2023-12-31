@@ -7,7 +7,7 @@ import org.springframework.statemachine.region.Region;
 import reactor.core.publisher.Mono;
 
 @Data
-public class EventResult implements StateMachineEventResult<States,Events> {
+public class EventResult implements StateMachineEventResult<States, Events> {
 
     private final Region<States, Events> region;
     private final Message<Events> message;

@@ -20,15 +20,15 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<States
     @Override
     public void configure(StateMachineTransitionConfigurer<States, Events> transitions) throws Exception {
         transitions.withExternal()
-            .source(States.DRAFT).target(States.PUBLISH_TODO)
-            .event(Events.ONLINE)
-            .and()
-            .withExternal()
-            .source(States.PUBLISH_TODO).target(States.PUBLISH_DONE)
-            .event(Events.PUBLISH)
-            .and()
-            .withExternal()
-            .source(States.PUBLISH_DONE).target(States.DRAFT)
-            .event(Events.ROLLBACK);
+                .source(States.DRAFT).target(States.PUBLISH_TODO)
+                .event(Events.ONLINE)
+                .and()
+                .withExternal()
+                .source(States.PUBLISH_TODO).target(States.PUBLISH_DONE)
+                .event(Events.PUBLISH)
+                .and()
+                .withExternal()
+                .source(States.PUBLISH_DONE).target(States.DRAFT)
+                .event(Events.ROLLBACK);
     }
 }

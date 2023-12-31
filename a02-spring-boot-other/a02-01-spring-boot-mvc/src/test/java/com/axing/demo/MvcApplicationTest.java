@@ -24,8 +24,8 @@ class MvcApplicationTest {
 
     @Autowired
     UserService userService;
-
-
+    @Autowired
+    StateMachine<States, Events> stateMachine;
     // @Autowired
     // private UserService userService;
     //
@@ -90,9 +90,6 @@ class MvcApplicationTest {
 
 
     }
-
-    @Autowired
-    StateMachine<States, Events> stateMachine;
 
     @Test
     void test_statemachine() {

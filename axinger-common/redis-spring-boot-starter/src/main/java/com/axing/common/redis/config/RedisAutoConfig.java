@@ -36,7 +36,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @AutoConfigureAfter(ObjectMapperConfig.class)
 public class RedisAutoConfig {
 
-//    private final RedisConnectionFactory redisConnectionFactory;
+    //    private final RedisConnectionFactory redisConnectionFactory;
     private final RedisProperties redisProperties;
     private final JsonProperties jsonProperties;
 

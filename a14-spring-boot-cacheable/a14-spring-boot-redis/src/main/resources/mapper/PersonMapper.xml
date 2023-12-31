@@ -5,19 +5,19 @@
 <mapper namespace="com.axing.demo.redis.mapper.PersonMapper">
 
     <resultMap id="BaseResultMap" type="com.axing.demo.redis.domain.PersonEntity">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="age" column="age" jdbcType="INTEGER"/>
-            <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
-            <result property="gender" column="gender" jdbcType="INTEGER"/>
-            <result property="height" column="height" jdbcType="DOUBLE"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="weight" column="weight" jdbcType="DOUBLE"/>
-            <result property="tenantId" column="tenant_id" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="updateCount" column="update_count" jdbcType="BIGINT"/>
-            <result property="version" column="version" jdbcType="BIGINT"/>
-            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="DOUBLE"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="weight" column="weight" jdbcType="DOUBLE"/>
+        <result property="tenantId" column="tenant_id" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="updateCount" column="update_count" jdbcType="BIGINT"/>
+        <result property="version" column="version" jdbcType="BIGINT"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">

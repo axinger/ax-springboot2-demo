@@ -4,10 +4,7 @@ import com.axing.demo.domain.PersonEntity;
 import com.axing.demo.mapper.PersonMapper;
 import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.ibatis.annotations.Options;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 /**
  * @author cepai

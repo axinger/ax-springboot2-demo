@@ -43,6 +43,7 @@ public class JdbcDemo2Tests {
         jdbcTemplate.update("insert into tb_user(name,password) values(?,?)",
                 new Object[]{user.getUsername(), user.getPassword()});
     }
+
     @Test
     public void 新增2() {
         int update = jdbcTemplate.update("insert into tb_user(name,password) values('lili','22222')");

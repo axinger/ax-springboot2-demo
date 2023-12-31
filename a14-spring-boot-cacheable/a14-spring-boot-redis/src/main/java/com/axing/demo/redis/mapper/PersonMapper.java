@@ -3,7 +3,6 @@ package com.axing.demo.redis.mapper;
 import com.axing.demo.redis.domain.PersonEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.CacheNamespace;
-import org.springframework.cache.annotation.CacheConfig;
 
 /**
  * @author cepai
