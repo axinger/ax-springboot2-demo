@@ -1,8 +1,10 @@
-package com.axing.demo.service;
+package com.axing.demo;
 
 import com.alibaba.fastjson2.JSON;
 import com.axing.demo.domain.DepartmentEntity;
 import com.axing.demo.domain.EmployeeEntity;
+import com.axing.demo.service.DepartmentService;
+import com.axing.demo.service.EmployeeService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -11,9 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 @SpringBootTest
-class DepartmentEntityServiceTest {
+class DepartmentAndEmployeeTest {
 
     @Autowired
     DepartmentService departmentService;
@@ -136,5 +139,4 @@ class DepartmentEntityServiceTest {
         List<DepartmentEntity> list2 = departmentService.listWhere(wrapper);
         System.out.println("list = " + list2);
     }
-
 }

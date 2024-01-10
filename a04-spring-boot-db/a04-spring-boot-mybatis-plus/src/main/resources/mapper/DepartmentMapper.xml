@@ -56,7 +56,7 @@
             ${ew.customSqlSegment}
     </select>
 
-    <!--    全表子查询-->
+    <!--    全表子查询,不支持 lambda 方法引用-->
     <select id="listWhere" resultMap="BaseResultMapOfEmployee">
         SELECT d.*, e.id as e_id, e.name as e_name, e.gender as gender, e.dept_id as dept_id
         FROM department d,

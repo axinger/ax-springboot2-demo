@@ -32,7 +32,8 @@ public class PersonEntity implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY) //pgsql使用 自增,有nextval('book_id_seq'::regclass),连续
-    @GeneratedValue(strategy = GenerationType.AUTO) // mysql使用  自增但不连续
+//    @GeneratedValue(strategy = GenerationType.AUTO) // mysql使用  自增但不连续,mysql会维护一个主键表
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // mysql使用
     @Column()
     private Long id;
 

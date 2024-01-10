@@ -1,4 +1,4 @@
-package com.axing.demo.service;
+package com.axing.demo;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
@@ -7,6 +7,7 @@ import com.axing.demo.config.MyTableNameHandler;
 import com.axing.demo.config.MyTenantLineHandler;
 import com.axing.demo.domain.PersonEntity;
 import com.axing.demo.mapper.PersonMapper;
+import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;

@@ -1,6 +1,7 @@
-package com.axing.demo.service;
+package com.axing.demo;
 
 import com.axing.demo.domain.EmployeeEntity;
+import com.axing.demo.service.EmployeeService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
