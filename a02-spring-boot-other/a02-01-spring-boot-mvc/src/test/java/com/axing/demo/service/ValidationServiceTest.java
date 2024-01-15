@@ -25,6 +25,19 @@ public class ValidationServiceTest {
         validationService.strNo(null);
     }
 
+    @Test
+    void strNotBlank_1(){
+        validationService.strNotBlank(null); // 不通过
+    }
+
+    @Test
+    void strNotBlank_2(){
+        validationService.strNotBlank(""); // 不通过
+    }
+    @Test
+    void strNotBlank_3(){
+        validationService.strNotBlank(" "); //不通过
+    }
 
     @Test
     void strNotEmpty_1(){

@@ -1,4 +1,4 @@
-package com.axing.demo;
+package com.axing.demo.config;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class Start1 implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
-
+        System.out.println("ApplicationRunner启动监控="+args);
     }
 }

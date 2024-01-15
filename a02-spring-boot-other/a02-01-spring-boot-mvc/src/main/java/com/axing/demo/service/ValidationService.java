@@ -16,7 +16,7 @@ import java.util.List;
 public interface ValidationService {
     void strNo(String name);
 
-    void strNotBlank(@NotBlank(message = "不能空字符串") String name);
+    void strNotBlank(@NotBlank(message = "不能空字符串,也不能空格") String name);
 
     void strNotEmpty(@NotEmpty(message="字符串不能空,可以空格") String name);
 
