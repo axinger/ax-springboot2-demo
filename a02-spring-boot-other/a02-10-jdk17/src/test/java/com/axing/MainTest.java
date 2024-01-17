@@ -6,6 +6,10 @@ import com.axing.model.Person;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -184,5 +188,34 @@ class MainTest {
 //            default        ->o.toString();
 //        } ;
 //    }
+
+    @Test
+    void test10(){
+
+    }
+
+    public static void main(String[] args) {
+//        FiberScope.scope().schedule(() -> {
+            // 使用HttpClient抓取网站数据
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://example.com"))
+                    .build();
+
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenApply(HttpResponse::body)
+                    .thenAccept(body -> {
+                        // 在Fiber中处理抓取到的数据
+                        processAndDisplayData(body);
+                    })
+                    .join();
+//        });
+    }
+
+    private static void processAndDisplayData(String data) {
+        // 处理和展示数据
+        System.out.println("Fiber Thread: " + Thread.currentThread().getName());
+        System.out.println("Data: " + data);
+    }
 
 }
