@@ -13,7 +13,7 @@ import java.util.UUID;
  * @createTime 2022年07月28日 14:00:00
  */
 
-public class UuidTests {
+public class IdUtilTests {
 
 
     @Test
