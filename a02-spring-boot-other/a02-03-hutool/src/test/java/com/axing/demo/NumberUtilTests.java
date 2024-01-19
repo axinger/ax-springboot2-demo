@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * @createTime 2022年07月29日 01:12:00
  */
 
-public class NumTests {
+public class NumberUtilTests {
 
     @Test
     void test_1() {
@@ -41,7 +41,15 @@ public class NumTests {
 
     @Test
     void test_5() {
-        final String s = NumberUtil.decimalFormat("#%", 1);
+//        final String s = NumberUtil.decimalFormat("#%", 1.235, RoundingMode.CEILING);
+        // #.##% =》 以百分比方式计数，并取两位小数
+        final String s = NumberUtil.decimalFormat("#.##% ", 0.123456);
+        System.out.println("s = " + s);
+    }
+
+    @Test
+    void test6(){
+        String s = NumberUtil.decimalFormat(",###", 123456);
         System.out.println("s = " + s);
     }
 }
