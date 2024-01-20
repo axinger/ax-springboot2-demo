@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.github.axinger</groupId>
-        <artifactId>a14-spring-boot-cacheable</artifactId>
+        <artifactId>a04-spring-boot-cacheable</artifactId>
         <version>2.7.18.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>a14-spring-boot-caffeine</artifactId>
+    <artifactId>a04-spring-boot-caffeine</artifactId>
 
     <dependencies>
         <dependency>
