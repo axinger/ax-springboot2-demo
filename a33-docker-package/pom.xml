@@ -82,7 +82,7 @@
             <!--                        <image>axingrun/demo</image>-->
             <!--                        <tags>-->
             <!--                            &lt;!&ndash;版本号&ndash;&gt;-->
-            <!--                            <tag>${project.version}</tag>-->
+            <!--                            <tag>${axinger.version}</tag>-->
             <!--                        </tags>-->
             <!--                        <auth>-->
             <!--                            &lt;!&ndash;在docker-hub或者阿里云上的账号和密码&ndash;&gt;-->
