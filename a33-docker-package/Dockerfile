@@ -19,9 +19,6 @@ FROM eclipse-temurin:17-jdk-centos7
 #FROM eclipse-temurin:17-jre-centos7
 #FROM eclipse-temurin:17-jre-alpine
 
-
-
-
 #作者
 MAINTAINER 阿星
 
@@ -58,7 +55,7 @@ ENTRYPOINT java -jar  /target/server.jar
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
 # 暴露端口,需要和服务的端口一致
-EXPOSE 12033
+EXPOSE 45033
 
 # 命令运行
 # restart=always; privileged=true; network=demo-network

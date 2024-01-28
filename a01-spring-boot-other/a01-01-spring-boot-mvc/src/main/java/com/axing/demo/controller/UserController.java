@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 // @Tag(name = "UserController")
-@RequestMapping("/a")
+@RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/user")
+    @GetMapping("/one")
     public UserDTO getUser() {
         UserDTO user = new UserDTO("jim", "123");
 //        User user2 = new User();

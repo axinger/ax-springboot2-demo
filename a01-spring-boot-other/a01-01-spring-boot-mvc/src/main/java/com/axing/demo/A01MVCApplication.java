@@ -14,8 +14,8 @@ import org.springframework.context.annotation.FilterType;
                 })
 })
 @SpringBootApplication
-public class MvcApplication {
+public class A01MVCApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MvcApplication.class, args);
+        SpringApplication.run(A01MVCApplication.class, args);
     }
 }

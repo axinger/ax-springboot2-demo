@@ -20,7 +20,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @SpringBootTest
-class MvcApplicationTest {
+class A01MVCApplicationTest {
 
     @Autowired
     UserService userService;

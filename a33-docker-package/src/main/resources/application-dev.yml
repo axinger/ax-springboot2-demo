@@ -1,6 +1,10 @@
 config:
   name: 开发环境
 
+server:
+  port: 45032
+
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
