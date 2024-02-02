@@ -95,10 +95,10 @@ public class MQConsumerService {
         }
     }
 
-// 顺序消费
+    // 顺序消费
     @Service
     @RocketMQMessageListener(topic = Topic.sync_user_topic, consumerGroup = "user_consumer", selectorExpression = "*"
-           , consumeMode = ConsumeMode.ORDERLY
+            , consumeMode = ConsumeMode.ORDERLY
     )
     @Slf4j
     public static class syncUserConsumer implements RocketMQListener<MessageWrapper> {

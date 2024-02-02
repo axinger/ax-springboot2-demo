@@ -18,6 +18,8 @@ public class RocketMQController {
 
     @Autowired
     private MQProducerService mqProducerService;
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
     @GetMapping("/send")
     void send() {
@@ -66,10 +68,6 @@ public class RocketMQController {
         user.setAge(10);
         mqProducerService.sendTagMsg(user);
     }
-
-
-    @Autowired
-    private RocketMQTemplate rocketMQTemplate;
 
     @GetMapping("/noOrder")
     public Boolean updateUser() {

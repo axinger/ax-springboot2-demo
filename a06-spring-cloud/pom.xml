@@ -35,7 +35,7 @@
             <dependency>
                 <groupId>com.github.axinger</groupId>
                 <artifactId>mq-stream-api</artifactId>
-                <version>${project.version}</version>
+                <version>${axinger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

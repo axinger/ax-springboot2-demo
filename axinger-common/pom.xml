@@ -23,7 +23,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <axing-project.version>${project.version}</axing-project.version>
+        <axing-project.version>${axinger.version}</axing-project.version>
     </properties>
 
     <modules>
@@ -66,73 +66,73 @@
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-quartz-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-redis-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-doc-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-util-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-log-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-response-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-config-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-mybatis-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-mongodb-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-minio-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-advice-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
 
     <!--            <dependency>-->
     <!--                <groupId>com.github.axinger</groupId>-->
     <!--                <artifactId>axing-json-starter</artifactId>-->
-    <!--                <version>${project.version}</version>-->
+    <!--                <version>${axinger.version}</version>-->
     <!--            </dependency>-->
     <!--        </dependencies>-->
     <!--    </dependencyManagement>-->
