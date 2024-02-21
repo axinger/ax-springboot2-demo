@@ -19,8 +19,14 @@ public class Person {
     @Builder.Default // @Builder 才能使用,没有默认值会报错, new 会得到默认值
     private String name = "1";
 
-    @NonNull // lombok set不能为空,但不set,不能控制
-    private String address = "";
+    @NonNull() // lombok set不能为空,但不set,不能控制,需要默认值
+    @Builder.Default
+    private String address="";
+
+    @With
+    private Integer age;
+
+
 
     @Builder.Default
     private List<String> like = new ArrayList<>();
