@@ -9,9 +9,7 @@ import org.springframework.util.StopWatch;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 @SpringBootTest
 @Slf4j
@@ -229,5 +227,49 @@ class Demo6ApplicationTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    @Test
+    void test12(){
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+        for (int i = 0; i < 10; i++) {
+            final int index = i;
+            scheduler.schedule(() -> {
+                // 循环操作
+                System.out.println("Task " + index + " executed");
+            }, i * 1000, TimeUnit.MILLISECONDS);
+        }
+
+        scheduler.shutdown();
+    }
+
+    @Test
+    void test13() throws InterruptedException {
+
+        for (int i = 0; i < 10; i++) {
+//            int finalI = i;
+//            CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS).execute(() -> {
+//                // 执行指定的API方法
+//                System.out.println("i = " + finalI);
+//            });
+
+            TimeUnit.SECONDS.sleep(1);
+            System.out.println("i = " + i);
+
+        }
+        System.out.println("结束========");
+
+//        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+//            // 访问远程服务并返回结果
+//            return "1";
+//        });
+//
+//// 等待异步任务完成并获取结果
+//
+//
+//        System.out.println("结束========");
+
     }
 }
