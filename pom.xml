@@ -36,12 +36,12 @@
         <mybatis-starter.version>3.0.3</mybatis-starter.version>
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <guava.version>32.1.2-jre</guava.version>
-        <hutool.version>5.8.24</hutool.version>
-        <fastjson2.version>2.0.40</fastjson2.version>
+        <hutool.version>5.8.26</hutool.version>
+        <fastjson2.version>2.0.47</fastjson2.version>
         <lombok.version>1.18.28</lombok.version>
         <druid.version>1.2.15</druid.version>
-        <netty-all.version>4.1.95.Final</netty-all.version>
-        <redisson.version>3.19.0</redisson.version>
+        <netty-all.version>4.1.107.Final</netty-all.version>
+        <redisson.version>3.27.1</redisson.version>
         <minio.version>8.5.1</minio.version>
         <!--        <snakeyaml.version>2.0</snakeyaml.version>-->
         <poi-version>5.2.3</poi-version>
@@ -529,19 +529,6 @@
             <!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
             <!--                <version>3.0.4</version>-->
             <!--            </dependency>-->
-
-            <dependency>
-                <groupId>org.influxdb</groupId>
-                <artifactId>influxdb-java</artifactId>
-                <version>2.22</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.influxdb</groupId>
-                <artifactId>influxdb-client-java</artifactId>
-                <version>3.1.0</version>
-            </dependency>
-
 
             <dependency>
                 <groupId>org.mapstruct</groupId>
