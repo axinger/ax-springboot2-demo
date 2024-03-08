@@ -1,6 +1,7 @@
 package com.axing.demo.config;
 
 import cn.hutool.core.util.ObjUtil;
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.demo.model.MessageDTO;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -14,7 +15,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
-@ServerEndpoint(path = "/chat/{userId}", port = "1200")
+@ServerEndpoint(path = "/plc/{userId}", port = "1200")
 @Configuration
 @Slf4j
 public class MyWebSocket {
@@ -24,6 +25,15 @@ public class MyWebSocket {
     public static void sendAllMessage(String message) {
         for (Session session : sessionMap.values()) {
             session.sendText(message);
+        }
+    }
+
+    public static void sendMessage(String toUserId, String msg) {
+        Session session1 = sessionMap.get(toUserId);
+        if (ObjUtil.isNotNull(session1)) {
+            session1.sendText(msg);
+        } else {
+            throw new RuntimeException("未发现链接信息,无法发送消息");
         }
     }
 
