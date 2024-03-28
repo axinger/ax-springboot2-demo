@@ -24,7 +24,6 @@ public class EventController {
     @GetMapping("/test")
     public Object login(@NotEmpty(message = "name不能为空") String name) {
         CompletableFuture.runAsync(() -> {
-
             iMyService.test(name);
         });
         return List.of(name);
