@@ -2,6 +2,7 @@ package com.axing;
 
 import com.alibaba.fastjson2.JSON;
 import com.axing.common.util.json.JsonUtil;
+import com.axing.model.Dog;
 import com.axing.model.Person;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -10,9 +11,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <a href="https://blog.csdn.net/qq_43842093/article/details/124547345?share_token=C924842A-814A-470D-AB13-B89FD09A5A60&tt_from=weixin&utm_source=weixin&utm_medium=toutiao_ios&utm_campaign=client_share&wxshare_count=1">...</a>
@@ -190,25 +190,25 @@ class MainTest {
 //    }
 
     @Test
-    void test10(){
+    void test10() {
 
     }
 
     public static void main(String[] args) {
 //        FiberScope.scope().schedule(() -> {
-            // 使用HttpClient抓取网站数据
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://example.com"))
-                    .build();
+        // 使用HttpClient抓取网站数据
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://example.com"))
+                .build();
 
-            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                    .thenApply(HttpResponse::body)
-                    .thenAccept(body -> {
-                        // 在Fiber中处理抓取到的数据
-                        processAndDisplayData(body);
-                    })
-                    .join();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenAccept(body -> {
+                    // 在Fiber中处理抓取到的数据
+                    processAndDisplayData(body);
+                })
+                .join();
 //        });
     }
 
@@ -216,6 +216,11 @@ class MainTest {
         // 处理和展示数据
         System.out.println("Fiber Thread: " + Thread.currentThread().getName());
         System.out.println("Data: " + data);
+    }
+
+    @Test
+    public void test21() {
+
     }
 
 }

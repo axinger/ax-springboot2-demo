@@ -311,70 +311,89 @@ class Exceptionally {
 
     public static void main(String[] args) {
 
-        CompletableFuture future = CompletableFuture.supplyAsync(() -> {
-            System.out.println("执行第一个任务");
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // 执行任务
-            return 10;
-        }, executorService).exceptionally(throwable -> {
+        CompletableFuture<Object> objectCompletableFuture = new CompletableFuture<>();
+
+        objectCompletableFuture.thenApply(val->{
+            return 5;
+        }).exceptionally(throwable -> {
             // 返回默认值
-            return 10;
+            return -1;
         }).whenComplete((res, e) -> {
 
             // 在同一个线程执行
             System.out.println("A res = " + res);
+            res = res*10;
+
         });
 
-
-        // future.join 会阻塞后面的代码
-//        System.out.println("第一个任务.join = "+future.join());
-
-
-        CompletableFuture.supplyAsync(() -> {
-            System.out.println("执行第二个任务");
-            try {
-                TimeUnit.SECONDS.sleep(3);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            int age = 1 / 0;
-            // 执行任务
-            return "9";
-        }, executorService).exceptionally(throwable -> {
-            // 返回默认值
-            return "返回默认值";
-        }).whenCompleteAsync((res, e) -> {
-
-            // 在另一个线程执行
-            System.out.println("B res = " + res);
-        });
+        Object join = objectCompletableFuture.join();
+        System.out.println("join = " + join);
 
 
-        CompletableFuture.supplyAsync(() -> {
-            System.out.println("执行第三个任务");
-            try {
-                TimeUnit.SECONDS.sleep(3);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            int age = 1 / 0;
-            // 执行任务
-            return "9";
-        }, executorService).handle((res, e) -> {
-            // 返回默认值
-            if (res != null) {
-                return res;
-            }
-            return "返回handle";
-        }).whenCompleteAsync((res, e) -> {
+//        CompletableFuture future = CompletableFuture.supplyAsync(() -> {
+//            System.out.println("执行第一个任务");
+//            try {
+//                TimeUnit.SECONDS.sleep(2);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            // 执行任务
+//            return 10;
+//        }, executorService).exceptionally(throwable -> {
+//            // 返回默认值
+//            return 10;
+//        }).whenComplete((res, e) -> {
+//
+//            // 在同一个线程执行
+//            System.out.println("A res = " + res);
+//        });
 
-            // 在另一个线程执行
-            System.out.println("C res = " + res);
-        });
+
+//        // future.join 会阻塞后面的代码
+////        System.out.println("第一个任务.join = "+future.join());
+//
+//
+//        CompletableFuture.supplyAsync(() -> {
+//            System.out.println("执行第二个任务");
+//            try {
+//                TimeUnit.SECONDS.sleep(3);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            int age = 1 / 0;
+//            // 执行任务
+//            return "9";
+//        }, executorService).exceptionally(throwable -> {
+//            // 返回默认值
+//            return "返回默认值";
+//        }).whenCompleteAsync((res, e) -> {
+//
+//            // 在另一个线程执行
+//            System.out.println("B res = " + res);
+//        });
+//
+//
+//        CompletableFuture.supplyAsync(() -> {
+//            System.out.println("执行第三个任务");
+//            try {
+//                TimeUnit.SECONDS.sleep(3);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            int age = 1 / 0;
+//            // 执行任务
+//            return "9";
+//        }, executorService).handle((res, e) -> {
+//            // 返回默认值
+//            if (res != null) {
+//                return res;
+//            }
+//            return "返回handle";
+//        }).whenCompleteAsync((res, e) -> {
+//
+//            // 在另一个线程执行
+//            System.out.println("C res = " + res);
+//        });
 
 
     }
