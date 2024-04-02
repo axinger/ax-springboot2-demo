@@ -1,11 +1,14 @@
 package com.axing.demo;
 
 import com.axing.demo.model.Student;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -41,22 +44,43 @@ class RedissonDemoApplicationTest {
      * 2.3、对象操作
      * Redisson 支持将对象作为value存入redis，被存储的对象事先必须要实现序列化接口Serializable，否则会报错，简单样例如下！
      */
+    @SneakyThrows
     @Test
     void test3() {
-        // Student对象
-        Student student = new Student();
-        student.setId(1L);
-        student.setName("张三");
-        student.setAge(18);
+
+
+        List<Student> list = new ArrayList<>();
+        {
+            // Student对象
+            Student student = new Student();
+            student.setId(1L);
+            student.setName("张三");
+            student.setAge(18);
+            list.add(student);
+        }
+        {
+            // Student对象
+            Student student = new Student();
+            student.setId(1L);
+            student.setName("李四");
+            student.setAge(18);
+            list.add(student);
+        }
+
 
         // 对象操作
-        RBucket<Student> rBucket = redissonClient.getBucket("objKey");
+        RBucket<List<Student>> rBucket = redissonClient.getBucket("objKey");
+
+        rBucket.delete();
+
         // 设置value和key的有效期
-        rBucket.set(student, 60, TimeUnit.SECONDS);
+        rBucket.set(list, 60, TimeUnit.SECONDS);
         // 通过key获取value
-        System.out.println(redissonClient.getBucket("objKey").get());
 
+        List<Student> list1 = rBucket.get();
+        System.out.println("list1 = " + list1);
 
+        TimeUnit.SECONDS.sleep(5);
     }
 
     /**
