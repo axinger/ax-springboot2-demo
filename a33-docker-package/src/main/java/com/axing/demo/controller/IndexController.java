@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -17,12 +18,24 @@ public class IndexController {
     private String name;
 
     @GetMapping("/data")
-    public Result<?> index() {
+    public Result<?> data() {
         log.info("info");
         log.error("error");
         log.warn("warn");
         log.debug("debug");
         log.trace("trace");
-        return Result.ok(Map.of("name", name,"dateTime", LocalDateTime.now()));
+        return Result.ok(Map.of("name", name, "dateTime", LocalDateTime.now()));
+    }
+
+
+    @GetMapping("/")
+    public Result<?> index() {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("age", 14);
+        map.put("dateTime", LocalDateTime.now());
+
+        return Result.ok(map);
     }
 }

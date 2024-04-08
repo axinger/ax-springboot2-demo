@@ -7,7 +7,7 @@
 
 #FROM eclipse-temurin:17-jdk
 #FROM eclipse-temurin:17-jdk-jammy
-FROM eclipse-temurin:17-jdk-centos7
+#FROM eclipse-temurin:17-jdk-centos7
 #FROM eclipse-temurin:17-jdk-focal
 #FROM eclipse-temurin:17-jdk-alpine
 
@@ -15,7 +15,7 @@ FROM eclipse-temurin:17-jdk-centos7
 #FROM eclipse-temurin:17-jre
 #FROM  eclipse-temurin:8-jre
 # bin/bash 有 mkdir命令
-#FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:17-jre-jammy
 #FROM eclipse-temurin:17-jre-focal
 #FROM eclipse-temurin:17-jre-centos7
 #FROM eclipse-temurin:17-jre-alpine
