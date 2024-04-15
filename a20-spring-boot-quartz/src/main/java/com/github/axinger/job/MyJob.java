@@ -1,5 +1,6 @@
 package com.axing.demo.job;
 
+import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
@@ -21,7 +22,7 @@ public class MyJob implements Job {
         // 从定时任务中,取参数
         final JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         final String name = jobExecutionContext.getJobDetail().getKey().getName();
-        log.info("定时任务 key = {}", name + ",dataMap = " + dataMap);
+        log.info("定时任务 key = {}", name + ",dataMap = " + JSONObject.toJSONString(dataMap));
 
     }
 }

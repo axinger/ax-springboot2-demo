@@ -54,6 +54,19 @@ public class JobController {
     }
 
 
+    @Operation(summary = "是否存在一个任务", description = "添加描述")
+    @GetMapping("/notExists/{id}")
+    public Object notExists(@PathVariable String id) {
+
+        Boolean b = jobService.isExists(id, null);
+
+//        final Boolean join = future.join();
+//        System.out.println("join = " + join);
+
+        return Result.ok(b?"存在":"不存在");
+//        return Result.ok(join);
+    }
+
 //    @GetMapping("/{id}")
 //    public Result addJob2(@PathVariable String id) {
 //        log.info("id = {}", id);

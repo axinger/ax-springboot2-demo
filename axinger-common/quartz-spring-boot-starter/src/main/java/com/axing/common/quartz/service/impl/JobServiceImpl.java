@@ -1,16 +1,17 @@
 package com.axing.common.quartz.service.impl;
 
-import com.axing.common.quartz.job.MyJob;
 import com.axing.common.quartz.model.CronTaskPOJO;
 import com.axing.common.quartz.service.JobService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author xing
@@ -176,20 +177,8 @@ public class JobServiceImpl implements JobService {
 //        }
 //    }
 //
-//    /**
-//     * 获取任务是否存在
-//     * <p>
-//     * STATE_BLOCKED 4 阻塞 STATE_COMPLETE 2 完成 STATE_ERROR 3 错误 STATE_NONE -1 不存在 STATE_NORMAL 0 正常 STATE_PAUSED 1 暂停
-//     */
-//    @Override
-//    public Boolean notExists(String triggerName, String triggerGroupName) {
-//        try {
-//            return scheduler
-//                    .getTriggerState(TriggerKey.triggerKey(triggerName, triggerGroupName)) == Trigger.TriggerState.NONE;
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
+
 //
 //    @SneakyThrows
 //    private void startJob(Scheduler scheduler) {
@@ -208,6 +197,21 @@ public class JobServiceImpl implements JobService {
 //            scheduler.start();
 //        }
 //    }
+
+    /**
+     * 获取任务是否存在
+     * NONE, NORMAL, PAUSED, COMPLETE, ERROR, BLOCKED
+     */
+    @Override
+    public Boolean isExists(String name, String group) {
+        try {
+            TriggerKey key = TriggerKey.triggerKey(name, group);
+            Trigger.TriggerState triggerState = scheduler.getTriggerState(key);
+            return Trigger.TriggerState.NONE != triggerState;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * 添加一个定时任务
@@ -258,21 +262,13 @@ public class JobServiceImpl implements JobService {
     public List<CronTaskPOJO> getAllJob() {
         GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
         Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
-        List<CronTaskPOJO> jobList = new ArrayList<CronTaskPOJO>();
+        List<CronTaskPOJO> jobList = new ArrayList<>();
         for (JobKey jobKey : jobKeys) {
             List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
             for (Trigger trigger : triggers) {
-                CronTaskPOJO job = new CronTaskPOJO();
-                job.setJobName(jobKey.getName());
-                job.setGroupName(jobKey.getGroup());
-                job.setDescription("触发器:" + trigger.getKey());
                 Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-                job.setJobStatusName(triggerState.name());
-                if (trigger instanceof CronTrigger cronTrigger) {
-                    String cronExpression = cronTrigger.getCronExpression();
-                    job.setCronExpression(cronExpression);
-                }
-                jobList.add(job);
+                CronTaskPOJO pojo = CronTaskPOJO.from(jobKey,trigger,triggerState);
+                jobList.add(pojo);
             }
         }
         return jobList;
@@ -287,20 +283,14 @@ public class JobServiceImpl implements JobService {
         List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();
         List<CronTaskPOJO> jobList = new ArrayList<>(executingJobs.size());
         for (JobExecutionContext executingJob : executingJobs) {
-            CronTaskPOJO job = new CronTaskPOJO();
+
             JobDetail jobDetail = executingJob.getJobDetail();
             JobKey jobKey = jobDetail.getKey();
+
             Trigger trigger = executingJob.getTrigger();
-            job.setJobName(jobKey.getName());
-            job.setGroupName(jobKey.getGroup());
-            job.setDescription("触发器:" + trigger.getKey());
             Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-            job.setJobStatus(Long.parseLong(triggerState.name()));
-            if (trigger instanceof CronTrigger cronTrigger) {
-                String cronExpression = cronTrigger.getCronExpression();
-                job.setCronExpression(cronExpression);
-            }
-            jobList.add(job);
+            CronTaskPOJO pojo = CronTaskPOJO.from(jobKey,trigger,triggerState);
+            jobList.add(pojo);
         }
         return jobList;
     }

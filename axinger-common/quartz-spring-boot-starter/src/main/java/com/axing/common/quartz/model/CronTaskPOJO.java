@@ -1,7 +1,10 @@
 package com.axing.common.quartz.model;
 
 import lombok.Data;
+import org.quartz.CronTrigger;
 import org.quartz.Job;
+import org.quartz.JobKey;
+import org.quartz.Trigger;
 
 import java.util.Map;
 
@@ -49,7 +52,7 @@ public class CronTaskPOJO {
     /**
      * 任务状态
      */
-    private Long jobStatus;
+    private int jobStatus;
 
     private String jobStatusName;
 
@@ -62,4 +65,19 @@ public class CronTaskPOJO {
      * 参数的map
      */
     private transient Map<String, Object> parameterMap;
+
+    public static CronTaskPOJO from(JobKey jobKey, Trigger trigger,Trigger.TriggerState triggerState){
+
+        CronTaskPOJO pojo = new CronTaskPOJO();
+        pojo.setJobName(jobKey.getName());
+        pojo.setGroupName(jobKey.getGroup());
+        pojo.setDescription("触发器:" + trigger.getKey());
+        pojo.setJobStatus(triggerState.ordinal());
+        pojo.setJobStatusName(triggerState.name());
+        if (trigger instanceof CronTrigger cronTrigger) {
+            String cronExpression = cronTrigger.getCronExpression();
+            pojo.setCronExpression(cronExpression);
+        }
+        return pojo;
+    }
 }
