@@ -10,12 +10,12 @@ spring:
         master:
           url: jdbc:mysql://localhost:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: 12345678
+          password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
         slave_quartz:
-          url: jdbc:mysql://localhost:3306/ax_test_quartz?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+          url: jdbc:mysql://localhost:3306/quartz?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: 12345678
+          password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
 
   quartz:
@@ -29,7 +29,7 @@ spring:
             instanceName: etlCleanScheduler
             instanceId: AUTO
           jobStore:
-            dataSource: slave_quartz # 使用的数据源
+            dataSource: slave_quartz # 多数据源
             #            class: org.quartz.impl.jdbcjobstore.JobStoreTX
             #            class: spring.quartz.properties.org.quartz.jobStore.class
             #            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate

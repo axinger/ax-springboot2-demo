@@ -1,6 +1,6 @@
 package com.axing.demo;
 
-import com.axing.demo.controller.TestController;
+import com.github.axinger.controller.TestController;
 import com.axing.demo.service.UserService;
 import com.axing.demo.service2.PersonService;
 import org.junit.jupiter.api.Test;

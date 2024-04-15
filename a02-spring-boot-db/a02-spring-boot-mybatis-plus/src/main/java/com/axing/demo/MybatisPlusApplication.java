@@ -1,6 +1,6 @@
 package com.axing.demo;
 
-import com.axing.demo.config.TenantProperties;
+import cn.axing.demo.config.TenantProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

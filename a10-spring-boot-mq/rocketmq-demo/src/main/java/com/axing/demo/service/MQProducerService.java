@@ -2,7 +2,7 @@ package com.axing.demo.service;
 
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson2.JSON;
-import com.axing.demo.config.Topic;
+import cn.axing.demo.config.Topic;
 import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
