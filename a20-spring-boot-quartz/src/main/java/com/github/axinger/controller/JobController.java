@@ -4,6 +4,7 @@ import com.axing.common.quartz.model.CronTaskPOJO;
 import com.axing.common.quartz.service.JobService;
 import com.axing.common.response.result.Result;
 import com.axing.demo.job.MyJob;
+import com.github.axinger.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,8 @@ public class JobController {
     private final CompletableFuture<Boolean> future = new CompletableFuture<>();
     @Autowired
     private JobService jobService;
-//    @Autowired
-//    private StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
     @Operation(summary = "添加一个任务", description = "添加描述")
     @GetMapping("/{id}")
@@ -153,7 +154,7 @@ public class JobController {
     public Result<?> all() {
         List<Object> list = new ArrayList<>();
         list.add(jobService.getAllJob());
-//        list.add(studentService.list());
+        list.add(studentService.list());
         return Result.ok(list);
     }
 }
