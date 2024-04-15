@@ -1,43 +1,52 @@
 package com.ax.juc._11utils;
 
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
+
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+public class UtilDemo {
 
-/**
- * 辅助类
- * 1.减少计数
- * 6个同学,都离开,才关灯
- */
-class CountDownLatchDemo {
-    public static void main(String[] args) throws InterruptedException {
+
+    /**
+     * 辅助类
+     * 1.减少计数
+     * 6个同学,都离开,才关灯
+     */
+    @SneakyThrows
+    @Test
+    public void countDownLatchDemo() {
 
         CountDownLatch countDownLatch = new CountDownLatch(6);
 
         for (int i = 0; i < 6; i++) {
-            new Thread(() -> {
-                System.out.println(Thread.currentThread().getName());
-                countDownLatch.countDown();
-            }, String.valueOf(i)).start();
+//            new Thread(() -> {
+            System.out.println("getName = " + Thread.currentThread().getName());
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            countDownLatch.countDown();
+//            }, String.valueOf(i)).start();
         }
 
         countDownLatch.await();
         System.out.println("完成...");
     }
 
-}
 
-/**
- * 2.CyclicBarrier 循环栅栏
- * 集齐7个龙珠,才完成
- */
-class CyclicBarrierDemo {
-
-
-    public static void main(String[] args) {
+    /**
+     * 2.CyclicBarrier 循环栅栏
+     * 集齐7个龙珠,才完成
+     */
+    @SneakyThrows
+    @Test
+    public void CyclicBarrierDemo() {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(7, () -> {
             System.out.println("栅栏完成...");
         });
@@ -56,15 +65,14 @@ class CyclicBarrierDemo {
     }
 
 
-}
-
-/**
- * 3. Semaphore 许可 信号量
- * <p>
- * 6个汽车,抢占3个停车位
- */
-class SemaphoreDemo {
-    public static void main(String[] args) {
+    /**
+     * 3. Semaphore 许可 信号量
+     * <p>
+     * 6个汽车,抢占3个停车位
+     */
+    @SneakyThrows
+    @Test
+    public void SemaphoreDemo() {
 
         Semaphore semaphore = new Semaphore(3);
 

@@ -2,7 +2,7 @@ package com.axing.common.quartz.service.impl;
 
 import com.axing.common.quartz.job.MyJob;
 import com.axing.common.quartz.model.CronTask;
-import com.axing.common.quartz.service.QuartzService;
+import com.axing.common.quartz.service.JobService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
@@ -16,7 +16,7 @@ import java.util.*;
  * @date 2022/3/20 01:45
  */
 @Slf4j
-public class QuartzServiceImpl implements QuartzService {
+public class JobServiceImpl implements JobService {
 
     /**
      * 任务调度
