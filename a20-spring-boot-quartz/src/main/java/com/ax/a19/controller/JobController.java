@@ -2,7 +2,7 @@ package com.ax.a19.controller;
 
 import com.ax.a19.service.StudentService;
 import com.axing.common.quartz.model.CronTask;
-import com.axing.common.quartz.service.QuartzService;
+import com.axing.common.quartz.service.JobService;
 import com.axing.common.response.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
@@ -24,7 +24,7 @@ public class JobController implements Job {
 
     private final CompletableFuture<Boolean> future = new CompletableFuture<>();
     @Autowired
-    private QuartzService quartzService;
+    private JobService jobService;
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -43,7 +43,7 @@ public class JobController implements Job {
         map.put("age", 18);
         cronTask.setParameterMap(map);
 
-        quartzService.addJob(cronTask);
+        jobService.addJob(cronTask);
 
         final Boolean join = future.join();
         System.out.println("join = " + join);
@@ -100,7 +100,7 @@ public class JobController implements Job {
         log.info("id = {}", id);
         final CronTask cronTask = new CronTask();
         cronTask.setJobName(id);
-        return Result.ok(quartzService.deleteJob(cronTask));
+        return Result.ok(jobService.deleteJob(cronTask));
     }
 
     /**
@@ -114,7 +114,7 @@ public class JobController implements Job {
         log.info("id = {}", id);
         final CronTask cronTask = new CronTask();
         cronTask.setJobName(id);
-        quartzService.resumeJob(cronTask);
+        jobService.resumeJob(cronTask);
         return Result.ok();
     }
 
@@ -129,7 +129,7 @@ public class JobController implements Job {
         log.info("id = {}", id);
         final CronTask cronTask = new CronTask();
         cronTask.setJobName(id);
-        quartzService.resumeJob(cronTask);
+        jobService.resumeJob(cronTask);
         return Result.ok();
     }
 
@@ -138,7 +138,7 @@ public class JobController implements Job {
     public Result all() {
         List<Object> list = new ArrayList<>();
         list.add(studentService.getById(1L));
-        list.add(quartzService.getAllJob());
+        list.add(jobService.getAllJob());
         return Result.ok(list);
     }
 

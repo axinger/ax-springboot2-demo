@@ -5,10 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TestController {
@@ -28,6 +36,26 @@ public class TestController {
 
     @GetMapping("/count2")
     public Object count2() {
+//        RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+
+        RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+
+// 获取请求体 request
+        HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+
+// 获取响应体 response
+        HttpServletResponse response = ((ServletRequestAttributes) requestAttributes).getResponse();
+
+// 获取请求头 headers
+        Enumeration<String> headerNames = request.getHeaderNames();
+// 根据请求体参数从 request 中获取 header 请求头值
+        Map<String, String> headers = new HashMap<>();
+        if (headerNames.hasMoreElements()) {
+            String name = headerNames.nextElement();
+            headers.put(name, request.getHeader(name));
+        }
+
+
         return List.of(countService.count());
     }
 
