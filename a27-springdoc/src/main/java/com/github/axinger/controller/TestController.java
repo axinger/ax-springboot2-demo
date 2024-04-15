@@ -1,4 +1,4 @@
-package cn.axing.demo.controller;
+package com.github.axinger.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @RestController
-@Tag(name = "TestController")
+@Tag(name = "TestController", description = "管理员相关接口")
 public class TestController {
 
     @GetMapping("/test1")

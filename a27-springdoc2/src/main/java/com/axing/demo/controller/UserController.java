@@ -1,6 +1,5 @@
 package com.axing.demo.controller;
 
-import com.axing.common.response.result.Result;
 import com.axing.demo.vo.UserVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,9 +15,10 @@ public class UserController {
 
     @GetMapping
     @Operation(summary = "用户信息", description = "用户信息")
-    public Result<UserVo> data() {
+    public Object data() {
         UserVo userVo = new UserVo();
         userVo.setName("jim");
-        return Result.ok(userVo);
+        return userVo;
+//        return Result.ok(userVo);
     }
 }

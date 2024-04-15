@@ -1,7 +1,6 @@
 package com.axing.common.response.exception;
 
 import com.axing.common.response.result.ResultCodeEnum;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,11 +13,11 @@ import lombok.ToString;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Schema(description = "自定义全局异常类")
+//@Schema(description = "自定义全局异常类")
 @ToString
 public class ServiceException extends RuntimeException {
 
-    @Schema(title = "异常状态码", description = "200 正常,不会显示这里")
+    //    @Schema(title = "异常状态码", description = "200 正常,不会显示这里")
     private Integer code;
 
     /**

@@ -7,7 +7,6 @@ import com.axing.demo.job.MyJob;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +26,8 @@ public class JobController {
     private final CompletableFuture<Boolean> future = new CompletableFuture<>();
     @Autowired
     private JobService jobService;
-    @Autowired
-    private Scheduler scheduler;
+//    @Autowired
+//    private StudentService studentService;
 
     @Operation(summary = "添加一个任务", description = "添加描述")
     @GetMapping("/{id}")
@@ -63,7 +62,7 @@ public class JobController {
 //        final Boolean join = future.join();
 //        System.out.println("join = " + join);
 
-        return Result.ok(b?"存在":"不存在");
+        return Result.ok(b ? "存在" : "不存在");
 //        return Result.ok(join);
     }
 
@@ -154,6 +153,7 @@ public class JobController {
     public Result<?> all() {
         List<Object> list = new ArrayList<>();
         list.add(jobService.getAllJob());
+//        list.add(studentService.list());
         return Result.ok(list);
     }
 }

@@ -1,6 +1,5 @@
 package com.axing.demo.controller;
 
-import com.axing.common.response.result.Result;
 import com.axing.demo.vo.AdminVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,9 +17,10 @@ public class AdminController {
 
     @GetMapping
     @Operation(summary = "管理信息", description = "管理信息")
-    public Result<AdminVo> data() {
+    public Object data() {
         AdminVo adminVo = new AdminVo();
         adminVo.setPortList(Arrays.asList("add", "delete"));
-        return Result.ok(adminVo);
+        return adminVo;
+//        return Result.ok(adminVo);
     }
 }

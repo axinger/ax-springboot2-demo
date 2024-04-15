@@ -1,5 +1,6 @@
 package com.axing.common.advice.model;
 
+import cn.hutool.core.util.StrUtil;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.advice.util.AdviceUtil;
 import com.axing.common.response.result.Result;
@@ -47,9 +48,9 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
      */
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        // boolean isSpringdoc = StrUtil.contains(returnType.getDeclaringClass().getName(), "org.springdoc");
-        // log.info("isSpringdoc = {}", isSpringdoc);
-        // return !isSpringdoc;
+//         boolean isSpringdoc = StrUtil.contains(returnType.getDeclaringClass().getName(), "org.springdoc");
+//         log.info("isSpringdoc = {}", isSpringdoc);
+//         return !isSpringdoc;
         return AdviceUtil.filter(adviceProperties, returnType);
     }
 

@@ -30,6 +30,11 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
+            <artifactId>response-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
             <artifactId>config-spring-boot-starter</artifactId>
         </dependency>
 
@@ -38,6 +43,10 @@
             <artifactId>advice-spring-boot-starter</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.springdoc</groupId>-->
+<!--            <artifactId>springdoc-openapi-ui</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 

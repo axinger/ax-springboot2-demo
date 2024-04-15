@@ -1,4 +1,4 @@
-package cn.axing.demo.controller;
+package com.github.axinger.controller;
 
 import com.axing.common.response.result.Result;
 import io.swagger.v3.oas.annotations.Operation;
