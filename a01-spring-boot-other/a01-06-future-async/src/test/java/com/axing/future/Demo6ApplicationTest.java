@@ -231,7 +231,7 @@ class Demo6ApplicationTest {
 
 
     @Test
-    void test12(){
+    void test12() {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
         for (int i = 0; i < 10; i++) {

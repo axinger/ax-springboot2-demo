@@ -1,7 +1,6 @@
 package cn.axing.demo.config;
 
 import cn.hutool.core.util.ObjUtil;
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.axing.demo.model.MessageDTO;
 import io.netty.handler.timeout.IdleStateEvent;

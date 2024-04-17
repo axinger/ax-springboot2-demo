@@ -17,6 +17,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class DataController {
 
     private final CopyOnWriteArrayList<ServerSentEvent<String>> eventCache = new CopyOnWriteArrayList<>();
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
 
     @EventListener
     public void onDataChangeEvent(DataChangeEvent event) {
@@ -24,7 +26,7 @@ public class DataController {
         if (event.getSource() instanceof Map<?, ?> map) {
 
         }
-            eventCache.add(ServerSentEvent.builder(event.getSource().toString()).build());
+        eventCache.add(ServerSentEvent.builder(event.getSource().toString()).build());
 
     }
 
@@ -38,9 +40,6 @@ public class DataController {
             eventCache.forEach(emitter::next);
         });
     }
-
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
 
     @GetMapping("/send")
     public void send(String data) {

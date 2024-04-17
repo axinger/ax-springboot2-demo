@@ -2,7 +2,6 @@ package com.axing.common.log.aop;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
-import com.alibaba.fastjson2.JSON;
 import com.axing.common.log.model.WebLog;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -80,7 +79,7 @@ public class WebLogAspect {
         webLog.setUri(request.getRequestURI());
         webLog.setUrl(request.getRequestURL().toString());
 
-        log.info("请求参数和请求返回 = {}", JSON.toJSONString(webLog));
+        log.info("请求参数和请求返回 = {}", webLog);
         return result;
     }
 

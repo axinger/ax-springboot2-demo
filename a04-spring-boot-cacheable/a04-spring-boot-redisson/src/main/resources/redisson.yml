@@ -37,6 +37,6 @@ singleServerConfig:
 #nettyThreads: 0
 # 编码
 #codec: !<org.redisson.codec.JsonJacksonCodec> { }
-codec: !<org.redisson.codec.JsonJacksonCodec> {}
+codec: !<org.redisson.codec.JsonJacksonCodec> { }
 # 传输模式
 transportMode: "NIO"

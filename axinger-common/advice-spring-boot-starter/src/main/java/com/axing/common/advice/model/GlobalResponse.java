@@ -1,6 +1,5 @@
 package com.axing.common.advice.model;
 
-import cn.hutool.core.util.StrUtil;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.advice.util.AdviceUtil;
 import com.axing.common.response.result.Result;

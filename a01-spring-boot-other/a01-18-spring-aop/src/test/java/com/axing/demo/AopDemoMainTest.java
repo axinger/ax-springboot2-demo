@@ -1,8 +1,8 @@
 package com.axing.demo;
 
-import com.github.axinger.controller.TestController;
 import com.axing.demo.service.UserService;
 import com.axing.demo.service2.PersonService;
+import com.github.axinger.controller.TestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

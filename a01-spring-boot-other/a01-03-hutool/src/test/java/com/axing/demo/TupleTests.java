@@ -3,17 +3,16 @@ package com.axing.demo;
 import cn.hutool.core.lang.Tuple;
 import org.junit.jupiter.api.Test;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TupleTests {
 
     @Test
-    void test1(){
+    void test1() {
 
         // 内部就是数组,强转类型
-        Tuple tuple = new Tuple(1,1L,"1");
+        Tuple tuple = new Tuple(1, 1L, "1");
         System.out.println("tuple = " + tuple);
         Integer integer = tuple.<Integer>get(0);
         System.out.println("integer = " + integer);

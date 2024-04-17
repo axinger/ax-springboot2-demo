@@ -313,7 +313,7 @@ class Exceptionally {
 
         CompletableFuture<Object> objectCompletableFuture = new CompletableFuture<>();
 
-        objectCompletableFuture.thenApply(val->{
+        objectCompletableFuture.thenApply(val -> {
             return 5;
         }).exceptionally(throwable -> {
             // 返回默认值
@@ -322,7 +322,7 @@ class Exceptionally {
 
             // 在同一个线程执行
             System.out.println("A res = " + res);
-            res = res*10;
+            res = res * 10;
 
         });
 

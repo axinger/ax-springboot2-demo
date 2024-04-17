@@ -21,7 +21,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,age,birthday,
+        id
+        ,age,birthday,
         gender,height,name,
         weight,tenant_id,create_time,
         update_time,update_count,version,

@@ -21,11 +21,10 @@ public class Person {
 
     @NonNull() // lombok set不能为空,但不set,不能控制,需要默认值
     @Builder.Default
-    private String address="";
+    private String address = "";
 
     @With
     private Integer age;
-
 
 
     @Builder.Default

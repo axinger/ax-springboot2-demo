@@ -1,7 +1,7 @@
 package com.axing.demo.consumer;
 
-import com.alibaba.fastjson2.JSON;
 import cn.axing.demo.config.Topic;
+import com.alibaba.fastjson2.JSON;
 import com.axing.demo.model.MessageWrapper;
 import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;

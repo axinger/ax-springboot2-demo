@@ -1,8 +1,6 @@
 package com.axing.common.quartz.service;
 
 import com.axing.common.quartz.model.CronTaskPOJO;
-import lombok.SneakyThrows;
-import org.quartz.SchedulerException;
 
 import java.util.List;
 
@@ -96,6 +94,7 @@ public interface JobService {
 //     */
 //    void removeJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName);
 //
+
     /**
      * 获取任务是否存在
      * TATE_BLOCKED 4 阻塞 STATE_COMPLETE 2 完成 STATE_ERROR 3 错误 STATE_NONE -1 不存在 STATE_NORMAL 0 正常 STATE_PAUSED 1 暂停

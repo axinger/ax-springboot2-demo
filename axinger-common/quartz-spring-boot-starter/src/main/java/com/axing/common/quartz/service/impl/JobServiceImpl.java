@@ -267,7 +267,7 @@ public class JobServiceImpl implements JobService {
             List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
             for (Trigger trigger : triggers) {
                 Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-                CronTaskPOJO pojo = CronTaskPOJO.from(jobKey,trigger,triggerState);
+                CronTaskPOJO pojo = CronTaskPOJO.from(jobKey, trigger, triggerState);
                 jobList.add(pojo);
             }
         }
@@ -289,7 +289,7 @@ public class JobServiceImpl implements JobService {
 
             Trigger trigger = executingJob.getTrigger();
             Trigger.TriggerState triggerState = scheduler.getTriggerState(trigger.getKey());
-            CronTaskPOJO pojo = CronTaskPOJO.from(jobKey,trigger,triggerState);
+            CronTaskPOJO pojo = CronTaskPOJO.from(jobKey, trigger, triggerState);
             jobList.add(pojo);
         }
         return jobList;

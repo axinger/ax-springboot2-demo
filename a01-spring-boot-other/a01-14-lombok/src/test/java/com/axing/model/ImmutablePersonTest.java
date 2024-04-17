@@ -2,11 +2,11 @@ package com.axing.model;
 
 import org.junit.Test;
 
-public class ImmutablePersonTest  {
+public class ImmutablePersonTest {
 
     @Test
-    public void test1(){
-        ImmutablePerson person = new ImmutablePerson("jim",20);
+    public void test1() {
+        ImmutablePerson person = new ImmutablePerson("jim", 20);
 
         System.out.println("person = " + person);
 

@@ -68,20 +68,20 @@ public class FluxController {
         Mono<Map<String, Object>> mono = Mono.defer(() -> {
 
             try {
-                TimeUnit.SECONDS.sleep(3) ;
+                TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            Map<String, Object> result = new HashMap<>() ;
-            result.put("code", 1) ;
-            result.put("data", "你的业务数据") ;
+            Map<String, Object> result = new HashMap<>();
+            result.put("code", 1);
+            result.put("data", "你的业务数据");
             System.out.println("result = " + result);
 
-            return Mono.just(result) ;
-        }) ;
+            return Mono.just(result);
+        });
         stopWatch.stop();
         System.out.println("mono耗时 = " + stopWatch.getTotalTimeSeconds());
-        return mono ;
+        return mono;
     }
 }

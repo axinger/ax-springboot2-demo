@@ -56,15 +56,6 @@ public class IMyServiceImp implements IMyService {
         }
     }
 
-    // 内部类，用于处理自定义事件
-    private class CustomEventListener implements ApplicationListener<CustomEvent> {
-        @Override
-        public void onApplicationEvent(CustomEvent event) {
-            // 使用getAndIncrement保证线程安全的递增
-            count.set((Integer) event.getSource());
-        }
-    }
-
     @SneakyThrows
     public void test2(String name) {
 
@@ -90,6 +81,15 @@ public class IMyServiceImp implements IMyService {
         } finally {
             // 确保在方法结束时调用stopListening，避免资源泄露
             stopListening(listener);
+        }
+    }
+
+    // 内部类，用于处理自定义事件
+    private class CustomEventListener implements ApplicationListener<CustomEvent> {
+        @Override
+        public void onApplicationEvent(CustomEvent event) {
+            // 使用getAndIncrement保证线程安全的递增
+            count.set((Integer) event.getSource());
         }
     }
 }

@@ -66,7 +66,7 @@ public class CronTaskPOJO {
      */
     private transient Map<String, Object> parameterMap;
 
-    public static CronTaskPOJO from(JobKey jobKey, Trigger trigger,Trigger.TriggerState triggerState){
+    public static CronTaskPOJO from(JobKey jobKey, Trigger trigger, Trigger.TriggerState triggerState) {
 
         CronTaskPOJO pojo = new CronTaskPOJO();
         pojo.setJobName(jobKey.getName());
