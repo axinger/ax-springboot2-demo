@@ -121,7 +121,7 @@
 
             <!--            <dependency>-->
             <!--                <groupId>com.github.axinger</groupId>-->
-            <!--                <artifactId>axinger-common</artifactId>-->
+            <!--                <artifactId>axinger-common-parent</artifactId>-->
             <!--                <version>${axinger.version}</version>-->
             <!--                <type>pom</type>-->
             <!--                <scope>import</scope>-->
