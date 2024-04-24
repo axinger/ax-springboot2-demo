@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DemoConsumer {
+public class UserConsumer2 {
 
     // 注意：kafkaListenerContainerFactory 是一个支持手动确认和异步提交偏移量的自定义工厂。
     // 如果您使用的是默认工厂，则将自动确认和同步提交偏移量。
