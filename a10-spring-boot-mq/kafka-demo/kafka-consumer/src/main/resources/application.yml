@@ -10,15 +10,15 @@ spring:
     consumer:
       enable-auto-commit: false
       # 键的反序列化方式
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: my_group_id1
       # 表示接受反序列化任意的类，也可限定包路径
-#      properties:
-#        spring:
-#          json:
-#            trusted:
-#              packages: '*'
+    #      properties:
+    #        spring:
+    #          json:
+    #            trusted:
+    #              packages: '*'
 
     listener:
       # 在侦听器容器中运行的线程数。

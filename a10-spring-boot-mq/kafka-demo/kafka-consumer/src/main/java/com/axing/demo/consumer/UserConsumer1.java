@@ -1,11 +1,9 @@
 package com.axing.demo.consumer;
 
 import com.axing.demo.api.Topic;
-import com.axing.demo.api.model.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -19,12 +17,8 @@ import org.springframework.stereotype.Component;
 public class UserConsumer1 {
 
 
-
-
-
     @Autowired
     private ObjectMapper objectMapper;
-
 
 
     // 注意：kafkaListenerContainerFactory 是一个支持手动确认和异步提交偏移量的自定义工厂。
