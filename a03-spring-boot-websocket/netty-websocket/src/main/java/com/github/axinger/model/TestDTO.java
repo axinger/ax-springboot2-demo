@@ -1,4 +1,4 @@
-package com.axing.demo.model;
+package com.github.axinger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

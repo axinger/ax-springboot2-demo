@@ -1,8 +1,8 @@
 package com.github.axinger.controller;
 
-import cn.axing.demo.config.MyWebSocket;
+import com.github.axinger.cnfig.MyWebSocket;
 import com.alibaba.fastjson2.JSON;
-import com.axing.demo.model.TestDTO;
+import com.github.axinger.model.TestDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;

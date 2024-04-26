@@ -1,4 +1,4 @@
-package com.axing.demo.model;
+package com.github.axinger.model;
 
 import lombok.Data;
 

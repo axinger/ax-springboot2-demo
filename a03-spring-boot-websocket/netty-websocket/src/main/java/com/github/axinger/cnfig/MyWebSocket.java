@@ -1,8 +1,8 @@
-package cn.axing.demo.config;
+package com.github.axinger.cnfig;
 
 import cn.hutool.core.util.ObjUtil;
 import com.alibaba.fastjson2.JSONObject;
-import com.axing.demo.model.MessageDTO;
+import com.github.axinger.model.MessageDTO;
 import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
