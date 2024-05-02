@@ -27,9 +27,19 @@
         <!--            <artifactId>springdoc-openapi-starter-common</artifactId>-->
         <!--        </dependency>-->
 
+
+        <!--            springboot2-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-springdoc-ui -->
+        <!--        doc.html 地址-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-springdoc-ui</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

@@ -1,8 +1,8 @@
 package com.axing.common.advice.config;
 
 import com.axing.common.advice.bean.AdviceProperties;
-import com.axing.common.advice.model.GlobalException;
-import com.axing.common.advice.model.GlobalResponse;
+import com.axing.common.advice.exception.GlobalException;
+import com.axing.common.advice.response.GlobalResponse;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

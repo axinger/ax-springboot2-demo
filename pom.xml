@@ -556,11 +556,16 @@
                 <version>2.1.0</version>
             </dependency>
 
-            <!--            springboot2-->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>1.7.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-springdoc-ui</artifactId>
+                <version>3.0.3</version>
             </dependency>
 
         </dependencies>

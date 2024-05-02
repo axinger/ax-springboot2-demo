@@ -41,6 +41,7 @@
         <module>a01-22-main-b</module>
         <module>a01-23-json</module>
         <module>a01-24-event</module>
+        <module>a01-01-request</module>
     </modules>
 
 

@@ -1,4 +1,4 @@
-package com.axing.common.advice.model;
+package com.axing.common.advice.response;
 
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.advice.util.AdviceUtil;

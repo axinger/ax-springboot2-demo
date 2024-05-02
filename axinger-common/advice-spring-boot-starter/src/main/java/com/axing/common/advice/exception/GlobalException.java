@@ -1,11 +1,13 @@
-package com.axing.common.advice.model;
+package com.axing.common.advice.exception;
 
+import cn.hutool.core.util.StrUtil;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -37,9 +39,9 @@ public class GlobalException {
     @ExceptionHandler(value = Exception.class)
     public Result<Map<String, Object>> exception(HttpServletRequest request, Exception e) {
 
-        if (adviceProperties.isPrintStackTrace()) {
-            e.printStackTrace();
-        }
+//        if (adviceProperties.isPrintStackTrace()) {
+//            e.printStackTrace();
+//        }
 
         String method = request.getMethod();
         String uri = request.getRequestURI();
@@ -72,11 +74,22 @@ public class GlobalException {
     /**
      * 对方法参数校验异常处理方法
      */
+    @ExceptionHandler(value = {MissingServletRequestParameterException.class,})
+    public Result<Object> missingServletRequestParameterException(MissingServletRequestParameterException e) {
+        // 缺少参数异常
+        Result<Object> result = Result.fail(StrUtil.format("缺少类型为{}的参数{}", e.getParameterType(), e.getParameterName()));
+        log.error("缺少参数异常 result =  {}", result);
+        return result;
+    }
+
+    /**
+     * 对方法参数校验异常处理方法
+     */
     @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class, MissingServletRequestParameterException.class,})
     public Result<Object> handlerNotValidException(Exception e) {
-        if (adviceProperties.isPrintStackTrace()) {
-            e.printStackTrace();
-        }
+//        if (adviceProperties.isPrintStackTrace()) {
+//            e.printStackTrace();
+//        }
         List<ObjectError> list = new ArrayList<>();
 
         if (e instanceof MethodArgumentNotValidException validException) {
@@ -100,6 +113,7 @@ public class GlobalException {
                 return error.getObjectName();
             }
         }, error -> Optional.of(error).map(ObjectError::getDefaultMessage).orElse(""), (key1, key2) -> key2));
+
         // final Result<Map<String, Object>> result = Result.build(201, map, "参数校验异常");
         Result<Object> result = Result.fail(map.toString());
         log.error("方法参数校验异常 result =  {}", result);
