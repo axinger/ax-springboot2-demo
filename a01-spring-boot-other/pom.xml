@@ -42,6 +42,7 @@
         <module>a01-23-json</module>
         <module>a01-24-event</module>
         <module>a01-01-request</module>
+        <module>a01-25-thymeleaf</module>
     </modules>
 
 

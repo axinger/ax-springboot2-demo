@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <title>Netty-Websocket</title>
-    <script th:inline="javascript" type="text/javascript">
+    <script type="text/javascript">
+        //<![CDATA[
+
         // by zhengkai.blog.csdn.net
         var socket;
         if (!window.WebSocket) {
             window.WebSocket = window.MozWebSocket;
         }
         if (window.WebSocket) {
-
             var uid = [[${uid}]];
-
-            // socket = new WebSocket("ws://127.0.0.1:8081/ws/"+uid+"?name=jim&age=12&age=13");
-            socket = new WebSocket("ws://127.0.0.1:8081/ws" + "?id=" + uid + "&name=jim&age=12&age=13");
+            socket = new WebSocket(`ws://localhost:8081/websocket/${uid}`);
             socket.onmessage = function (event) {
+                console.log('收到消息='+event.data)
                 var ta = document.getElementById('responseText');
                 ta.value += event.data + "\r\n";
             };
@@ -24,7 +23,7 @@
                 var ta = document.getElementById('responseText');
                 ta.value = "Netty-WebSocket服务器。。。。。。连接  \r\n";
                 var uid = document.getElementById("uid").value;
-                login(uid);
+                // login(uid);
             };
             socket.onclose = function (event) {
                 var ta = document.getElementById('responseText');
@@ -63,6 +62,7 @@
             }
         }
 
+        //]]>
     </script>
 </head>
 <body>

@@ -1,13 +1,13 @@
-package com.axing.demo;
+package com.github.axinger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ThymeleafDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(ThymeleafDemoApplication.class, args);
     }
 
 }
