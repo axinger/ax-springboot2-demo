@@ -1,7 +1,6 @@
 server:
   servlet:
     context-path: /
-
   port: 11003
 
 spring:
@@ -16,19 +15,5 @@ spring:
     encoding: UTF-8
   mvc:
     static-path-pattern: /**
-  resources:
-    static-locations: classpath:/static/
 
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 100MB
-  devtools:
-    restart:
-      enabled: true
-
-
-logging:
-  level:
-    com.ax.shop.mapper: debug
 

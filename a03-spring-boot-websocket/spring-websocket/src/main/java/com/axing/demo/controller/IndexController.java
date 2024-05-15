@@ -1,14 +1,14 @@
 package com.axing.demo.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
-public class ChatController {
+@RestController
+public class IndexController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public ModelAndView index(@RequestParam(value = "id") String id) {
 
         System.out.println("index id = " + id);
