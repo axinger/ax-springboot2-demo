@@ -13,8 +13,9 @@
         }
         if (window.WebSocket) {
             var uid = [[${uid}]];
-            socket = new WebSocket("ws://127.0.0.1:8080/ws/1001" + "?id=2" + '&' + "name=jim");
+            socket = new WebSocket(`ws://192.168.31.152:11003/websocket/${uid}`);
             socket.onmessage = function (event) {
+                console.log('收到消息='+event.data)
                 var ta = document.getElementById('responseText');
                 ta.value += event.data + "\r\n";
             };
@@ -22,7 +23,7 @@
                 var ta = document.getElementById('responseText');
                 ta.value = "Netty-WebSocket服务器。。。。。。连接  \r\n";
                 var uid = document.getElementById("uid").value;
-                login(uid);
+                // login(uid);
             };
             socket.onclose = function (event) {
                 var ta = document.getElementById('responseText');
