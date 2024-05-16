@@ -1,6 +1,9 @@
 package com.ax.hands;
 
+import cn.hutool.http.HttpUtil;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -9,8 +12,12 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author xing
@@ -23,24 +30,29 @@ import java.util.Map;
 @Slf4j
 public class MyHandshakeInterceptor implements HandshakeInterceptor {
     @Override
-    public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
-        log.info("beforeHandshake attributes = {}", attributes);
+    public boolean beforeHandshake(@NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
 
-        HttpServletRequest servletRequest = ((ServletServerHttpRequest) request).getServletRequest();
+        if (request instanceof ServletServerHttpRequest serverHttpRequest) {
+            String url = request.getURI().toString();
+            HttpHeaders headers = request.getHeaders();
+            Map<String, String> param = HttpUtil.decodeParamMap(url, StandardCharsets.UTF_8);
+            String userId = param.get("userId");
+            System.out.println("当前session的ID=" + userId);
+            HttpSession session = serverHttpRequest.getServletRequest().getSession();
 
-        String id = servletRequest.getSession().getId();
-        System.out.println("id = " + id);
+
+            Enumeration<String> attributeNames = session.getAttributeNames();
+            while (attributeNames.hasMoreElements()) {
+                String element = attributeNames.nextElement();
+                System.out.println("element = " + element);
+            }
 
 
-        URI url = request.getURI();
-
-        System.out.println("url = " + url);
-
-        String type = servletRequest.getParameter("id");
-        System.out.println("type = " + type);
-
-        String name = servletRequest.getParameter("name");
-        System.out.println("name = " + name);
+            log.info("这里拦截判断权限 userId = {},session = {}", userId, session);
+            if (Optional.ofNullable(userId).isPresent()) {
+                attributes.put("WEBSOCKET_USERID", userId);
+            }
+        }
 
         return true;
     }

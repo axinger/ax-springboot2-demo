@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>websocket.html</title>
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html" charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+</head>
+<body>
+<div>
+    <p id="connect">未连接</p>
+    <p id="response">后台广播推送！</p>
+</div>
+
+<!-- 独立JS -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/sockjs.min.js}"></script>
+<script th:src="@{/js/stomp.js}"></script>
+<script th:src="@{/js/index1.js}"></script>
+</body>
+</html>
