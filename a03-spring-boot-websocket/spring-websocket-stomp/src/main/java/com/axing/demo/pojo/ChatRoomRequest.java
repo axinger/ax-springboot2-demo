@@ -1,4 +1,4 @@
-package com.ax.pojo;
+package com.axing.demo.pojo;
 
 import lombok.Data;
 

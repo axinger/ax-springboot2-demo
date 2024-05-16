@@ -1,4 +1,4 @@
-package com.ax;
+package com.axing.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

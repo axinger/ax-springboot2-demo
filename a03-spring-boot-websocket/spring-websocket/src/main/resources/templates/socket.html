@@ -68,9 +68,9 @@
 <body>
 <form onSubmit="return false;">
     <label>ID</label><input id="uid" name="uid" th:value="${uid}" type="text"/><br/>
-    <label>TEXT</label><input name="message" type="text" value="这里输入消息"/> <br/>
+    <label>TEXT</label><input name="messageDTO" type="text" value="这里输入消息"/> <br/>
     <label>对方ID</label><input name="toUser" type="text" value="这里输入对方id"/> <br/>
-    <br/> <input onClick="send(this.form.uid.value, this.form.message.value, this.form.toUser.value)" type="button"
+    <br/> <input onClick="send(this.form.uid.value, this.form.messageDTO.value, this.form.toUser.value)" type="button"
                  value="发送ws消息"/>
     <hr color="black"/>
     <h3>服务端返回的应答消息</h3>

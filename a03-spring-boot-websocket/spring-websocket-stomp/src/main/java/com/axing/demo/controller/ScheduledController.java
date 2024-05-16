@@ -1,4 +1,4 @@
-package com.ax.controller;
+package com.axing.demo.controller;
 
 import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.ax.hands;
+package com.axing.demo.hands;
 
 import cn.hutool.http.HttpUtil;
 import lombok.NonNull;
@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.Optional;
+
+import static org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor.HTTP_SESSION_ID_ATTR_NAME;
 
 /**
  * @author xing
@@ -40,7 +40,8 @@ public class MyHandshakeInterceptor implements HandshakeInterceptor {
             System.out.println("当前session的ID=" + userId);
             HttpSession session = serverHttpRequest.getServletRequest().getSession();
 
-
+            attributes.put("sessionId", session.getId());
+            attributes.put(HTTP_SESSION_ID_ATTR_NAME, session.getId());
             Enumeration<String> attributeNames = session.getAttributeNames();
             while (attributeNames.hasMoreElements()) {
                 String element = attributeNames.nextElement();

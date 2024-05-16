@@ -18,15 +18,24 @@
         }
 
         function connect() {
-            var socket = new SockJS("http://localhost:11030/privateServer");
+            let  userId = document.getElementById('user').value
+
+            var socket = new SockJS("http://localhost:11030/privateServer?userId="+userId);
+            // var socket = new SockJS("http://localhost:11030/greeting");
             stompClient = Stomp.over(socket);
-            stompClient.heartbeat.outgoing = 20000;
+            // stompClient.heartbeat.outgoing = 20000;
             // client will send heartbeats every 20000ms
-            stompClient.heartbeat.incoming = 0;
-            stompClient.connect({}, function (frame) {
+            // stompClient.heartbeat.incoming = 0;
+
+            // 准备认证信息，这里以用户名为例
+
+            let headers = {};
+            headers["userId"] =userId; // 替换为实际的用户名
+
+            stompClient.connect(headers, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/user/' + document.getElementById('user').value + '/message', function (response) {
+                stompClient.subscribe('/user/' +userId + '/message', function (response) {
                     var responseData = document.getElementById('responseData');
                     var p = document.createElement('p');
                     p.style.wordWrap = 'break-word';
@@ -34,14 +43,13 @@
                     responseData.appendChild(p);
                 });
 
-                stompClient.subscribe('/user/userTest/callBack', function (response) {
-                    var responseData = document.getElementById('responseData');
-                    var p = document.createElement('p');
-                    p.style.wordWrap = 'break-word';
-                    p.appendChild(document.createTextNode(response.body));
-                    responseData.appendChild(p);
-                });
+                stompClient.subscribe('/user/' + userId + '/hi', function(messageDTO) {
+                    // 处理接收到的消息
+                    console.log('发送消息成功返回: ' + messageDTO);
+                })
 
+            }, function(error) {
+                alert("STOMP error " + error);
             });
 
         }
@@ -64,7 +72,7 @@
             };
             var content = document.getElementById('content').value;
             var to = document.getElementById('to').value;
-            stompClient.send("/alone", {'accessToken': 'HWPO325J9814GBHJF933'}, JSON.stringify({
+            stompClient.send("/app/alone", {'accessToken': 'HWPO325J9814GBHJF933'}, JSON.stringify({
                 'content': content,
                 'to': to
             }));

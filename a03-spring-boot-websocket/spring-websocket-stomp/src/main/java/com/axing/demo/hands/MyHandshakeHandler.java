@@ -1,14 +1,14 @@
-package com.ax.hands;
+package com.axing.demo.hands;
 
+import cn.hutool.http.HttpUtil;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.ServerHttpRequest;
-import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
-import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.Map;
 
@@ -32,7 +32,12 @@ public class MyHandshakeHandler extends DefaultHandshakeHandler {
         // 中的最后一个用户 id 参数作为用户的标识,
         // 为实现发送信息给指定用户做准备
         String uri = request.getURI().toString();
-        String uid = uri.substring(uri.lastIndexOf("/") + 1);
-        return () -> uid;
+        Map<String, String> map = HttpUtil.decodeParamMap(uri, StandardCharsets.UTF_8);
+        String userId = map.get("userId");
+        return () -> userId;
     }
 }
+
+
+
+

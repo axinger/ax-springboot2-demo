@@ -1,8 +1,8 @@
-package com.ax.config;
+package com.axing.demo.config;
 
-import com.ax.hands.MyChannelInterceptor;
-import com.ax.hands.MyHandshakeHandler;
-import com.ax.hands.MyHandshakeInterceptor;
+import com.axing.demo.hands.MyChannelInterceptor;
+import com.axing.demo.hands.MyHandshakeHandler;
+import com.axing.demo.hands.MyHandshakeInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -57,7 +57,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          * 4. addInterceptors 添加自定义拦截器，这个拦截器是上一个demo自己定义的获取httpsession的拦截器
          */
         registry.addEndpoint("/publicServer")
-//                .setHandshakeHandler(myHandshakeHandler)
+                .setHandshakeHandler(myHandshakeHandler)
                 .addInterceptors(myHandshakeInterceptor)
                 .setAllowedOriginPatterns("*")
                 // postman ws://localhost:9908/publicServer/jim/a/websocket
@@ -85,7 +85,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          * 所以可以添加多个端点
          */
 
-//        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();
+
+//        registry.addEndpoint("/greeting").setAllowedOrigins("*").withSockJS();
     }
 
 
@@ -119,9 +121,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          */
 
         //点对点应配置一个/user消息代理，广播式应配置一个/topic消息代理,群发（mass），单独聊天（alone）
-        registry.enableSimpleBroker("/topic","/user","/alone")
-                .setHeartbeatValue(new long[]{10000, 10000})
-                .setTaskScheduler(taskScheduler);
+        registry.enableSimpleBroker("/topic", "/user", "/alone", "/queue")
+//                .setHeartbeatValue(new long[]{10000, 10000})
+//                .setTaskScheduler(taskScheduler)
+        ;
 
         /*
          *  1. 配置一对一消息前缀， 客户端接收一对一消息需要配置的前缀 如“'/user/'+userid + '/message'”，
@@ -136,7 +139,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 
         // 客户端,发送到服务端, 都要以 /app 开头
-//        registry.setApplicationDestinationPrefixes("/app","/sys");
+        registry.setApplicationDestinationPrefixes("/app");
 
 
         /*
@@ -170,7 +173,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          * springframework 4.3.12 之后版本此方法废弃，代替方法 interceptors(ChannelInterceptor... interceptors)
          * 消息拦截器，实现ChannelInterceptor接口
          */
-//        registration.interceptors(channelInterceptor());
+        registration.interceptors(channelInterceptor());
     }
 
     /**
@@ -187,10 +190,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 
-//    @Bean
-//    public ChannelInterceptor channelInterceptor() {
-//        return new MyChannelInterceptor();
-//    }
+    @Bean
+    public ChannelInterceptor channelInterceptor() {
+        return new MyChannelInterceptor();
+    }
 
 
 }

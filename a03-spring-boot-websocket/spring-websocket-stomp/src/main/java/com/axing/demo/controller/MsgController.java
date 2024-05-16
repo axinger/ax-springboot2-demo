@@ -1,11 +1,10 @@
-package com.ax.controller;
+package com.axing.demo.controller;
 
 import com.alibaba.fastjson2.JSONObject;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -13,7 +12,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @MessageMapping("/sys")
-@Tag(name = "MsgController",description = "发送消息")
+@Tag(name = "MsgController", description = "发送消息")
 public class MsgController {
 
 

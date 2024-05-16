@@ -1,4 +1,4 @@
-package com.ax.pojo;
+package com.axing.demo.pojo;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import lombok.Data;
  * @Date 2021/8/20 9:26
  */
 @Data
-public class Message {
+public class MessageDTO {
 
     /**
      * 消息编码

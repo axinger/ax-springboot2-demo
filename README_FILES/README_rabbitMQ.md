@@ -157,7 +157,7 @@ HEADERS 参数匹配
 ```text
 
 消息可靠性投递
-    持久化到本地文件中 exchange queue message 都要持久化
+    持久化到本地文件中 exchange queue messageDTO 都要持久化
     确认模式 confirmCallback: 只要broker(一般是交换机)收到就会执行,如果是集群模式,需要所有broker收到,并不能保证目标queue会收到
    未投递到queue回退模式 returnCallback:消费者未收到消息后回调
     

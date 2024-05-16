@@ -1,7 +1,7 @@
-package com.ax.controller;
+package com.axing.demo.controller;
 
-import com.ax.pojo.ChatRoomRequest;
-import com.ax.pojo.ChatRoomResponse;
+import com.axing.demo.pojo.ChatRoomRequest;
+import com.axing.demo.pojo.ChatRoomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -20,11 +20,11 @@ public class ChatroomController {
     @MessageMapping("/massRequest")
     //SendTo 发送至 Broker 下的指定订阅路径
     @SendTo("/mass/getResponse")
-    public ChatRoomResponse mass(ChatRoomRequest chatRoomRequest){
+    public ChatRoomResponse mass(ChatRoomRequest chatRoomRequest) {
         //方法用于群发测试
         System.out.println("name = " + chatRoomRequest.getName());
         System.out.println("chatValue = " + chatRoomRequest.getChatValue());
-        ChatRoomResponse response=new ChatRoomResponse();
+        ChatRoomResponse response = new ChatRoomResponse();
         response.setName(chatRoomRequest.getName());
         response.setChatValue(chatRoomRequest.getChatValue());
         return response;
@@ -32,15 +32,15 @@ public class ChatroomController {
 
     //单独聊天
     @MessageMapping("/aloneRequest")
-    public ChatRoomResponse alone(ChatRoomRequest chatRoomRequest){
+    public ChatRoomResponse alone(ChatRoomRequest chatRoomRequest) {
         //方法用于一对一测试
         System.out.println("userId = " + chatRoomRequest.getUserId());
         System.out.println("name = " + chatRoomRequest.getName());
         System.out.println("chatValue = " + chatRoomRequest.getChatValue());
-        ChatRoomResponse response=new ChatRoomResponse();
+        ChatRoomResponse response = new ChatRoomResponse();
         response.setName(chatRoomRequest.getName());
         response.setChatValue(chatRoomRequest.getChatValue());
-        this.template.convertAndSendToUser(chatRoomRequest.getUserId()+"","/alone/getResponse",response);
+        this.template.convertAndSendToUser(chatRoomRequest.getUserId() + "", "/alone/getResponse", response);
         return response;
     }
 }
