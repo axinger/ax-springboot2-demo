@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
+//    let id = [[${id}]]
+//    前端取值语法
 
     @RequestMapping("/")
     public String home() {
