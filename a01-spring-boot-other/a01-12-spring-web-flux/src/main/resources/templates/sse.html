@@ -8,7 +8,8 @@
 <h1>SSE连接</h1>
 <div id="sse-output"></div>
 <script>
-    const eventSource = new EventSource('/sse');
+    let id = [[${id}]];
+    const eventSource = new EventSource('/sse?id='+id);
 
     eventSource.onmessage = function(event) {
         const newElement = document.createElement("div");

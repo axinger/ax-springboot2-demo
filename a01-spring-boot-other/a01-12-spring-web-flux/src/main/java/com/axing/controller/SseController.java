@@ -1,14 +1,13 @@
 package com.axing.controller;
 
 import com.axing.service.EventService;
+import com.axing.sse.ClientManager;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Sinks;
@@ -19,31 +18,29 @@ public class SseController {
 
     @Operation(summary = "sse页面 ", description = "description注解")
     @RequestMapping(value = "/sse.page")
-    public Object ipLogPageInfo1() {
+    public Object ipLogPageInfo1(@RequestParam String id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sse");
+        modelAndView.addObject("id", id);
         return modelAndView;
     }
 
-    @Autowired
-    private Sinks.Many<String> sseSink;
 
-    @Operation(summary = "链接sse ")
+
+    @Autowired
+    private ClientManager clientManager;
+
+    @Operation(summary = "Connect to SSE")
     @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> streamEvents() {
-        return sseSink.asFlux();
+    public Flux<String> streamEvents(@RequestParam String id) {
+        return clientManager.getSink(id).asFlux().doFinally(signalType -> clientManager.removeSink(id));
     }
-
-
-    @Autowired
-    private EventService eventService;
 
     @Operation(summary = "发送sse ", description = "description注解")
     @PostMapping("/send")
-    public void sendEvent(String data) {
-        // 在这里处理数据
-        // 发布事件
-        eventService.publishEvent(data);
+    public void sendMessageToClient(@RequestParam String clientId, @RequestBody String message) {
+        Sinks.Many<String> sink = clientManager.getSink(clientId);
+        sink.tryEmitNext(message);
     }
 
 }
