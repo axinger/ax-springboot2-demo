@@ -18,13 +18,13 @@
         <userTask id="directorTak" name="经理审批">
             <extensionElements>
                 <flowable:taskListener event="create"
-                                       class="com.axing.demo.taskHandler.ManagerTaskHandler"></flowable:taskListener>
+                                       class="com.github.axinger.taskHandler.ManagerTaskHandler"></flowable:taskListener>
             </extensionElements>
         </userTask>
         <userTask id="bossTask" name="老板审批">
             <extensionElements>
                 <flowable:taskListener event="create"
-                                       class="com.axing.demo.taskHandler.BossTaskHandler"></flowable:taskListener>
+                                       class="com.github.axinger.taskHandler.BossTaskHandler"></flowable:taskListener>
             </extensionElements>
         </userTask>
         <endEvent id="end" name="结束"></endEvent>
