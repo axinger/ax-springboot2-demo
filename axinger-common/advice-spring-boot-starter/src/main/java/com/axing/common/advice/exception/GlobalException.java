@@ -75,7 +75,7 @@ public class GlobalException {
      * 对方法参数校验异常处理方法
      */
     @ExceptionHandler(value = {MissingServletRequestParameterException.class,})
-    public Result<Object> missingServletRequestParameterException(MissingServletRequestParameterException e) {
+    public Result<Object> handlerMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         // 缺少参数异常
         Result<Object> result = Result.fail(StrUtil.format("缺少类型为{}的参数{}", e.getParameterType(), e.getParameterName()));
         log.error("缺少参数异常 result =  {}", result);
@@ -85,8 +85,8 @@ public class GlobalException {
     /**
      * 对方法参数校验异常处理方法
      */
-    @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class, MissingServletRequestParameterException.class,})
-    public Result<Object> handlerNotValidException(Exception e) {
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class})
+    public Result<Object> handlerMethodArgumentNotValidException(Exception e) {
 //        if (adviceProperties.isPrintStackTrace()) {
 //            e.printStackTrace();
 //        }
@@ -127,7 +127,7 @@ public class GlobalException {
      * @return
      */
     @ExceptionHandler(ConstraintViolationException.class)
-    public Object constraintViolationException(ConstraintViolationException e) {
+    public Object handlerConstraintViolationException(ConstraintViolationException e) {
         Set<ConstraintViolation<?>> set = e.getConstraintViolations();
         Map<String, Object> map = set.stream()
                 .collect(Collectors.toMap(val -> {

@@ -1,7 +1,7 @@
 package com.axing.demo.redis;
 
-import com.axing.demo.redis.domain.PersonEntity;
-import com.axing.demo.redis.service.PersonService;
+import com.axing.demo.domain.PersonEntity;
+import com.axing.demo.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

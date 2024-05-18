@@ -2,7 +2,7 @@ package com.axing.demo.redis;
 
 import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.StrUtil;
-import com.axing.demo.redis.model.User;
+import com.axing.demo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
