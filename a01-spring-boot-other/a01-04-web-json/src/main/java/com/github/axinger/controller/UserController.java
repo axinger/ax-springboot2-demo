@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import com.axing.demo.dto.ILoginGroup;
-import com.axing.demo.dto.UserDTO;
+import com.github.axinger.dto.ILoginGroup;
+import com.github.axinger.dto.UserDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

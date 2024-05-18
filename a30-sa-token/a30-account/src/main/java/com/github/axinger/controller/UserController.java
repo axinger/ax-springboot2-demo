@@ -1,8 +1,8 @@
-package com.axing.demo.controller;
+package com.github.axinger.controller;
 
 import cn.dev33.satoken.util.SaResult;
-import com.axing.demo.model.dto.AccountUserLoginDTO;
-import com.axing.demo.service.UserManager;
+import com.github.axinger.model.dto.AccountUserLoginDTO;
+import com.github.axinger.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;

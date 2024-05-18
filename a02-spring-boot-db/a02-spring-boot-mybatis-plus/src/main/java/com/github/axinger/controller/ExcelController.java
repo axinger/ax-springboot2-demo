@@ -2,8 +2,8 @@ package com.github.axinger.controller;
 
 import com.axing.common.excel.StreamExportUtil;
 import com.axing.common.excel.handler.CommonResultHandler;
-import com.axing.demo.domain.PersonEntity;
-import com.axing.demo.mapper.PersonMapper;
+import com.github.axinger.domain.PersonEntity;
+import com.github.axinger.mapper.PersonMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

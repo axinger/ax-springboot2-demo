@@ -9,15 +9,15 @@
 <div id="sse-output"></div>
 <script>
     let id = [[${id}]];
-    const eventSource = new EventSource('/sse?id='+id);
+    const eventSource = new EventSource('/sse?id=' + id);
 
-    eventSource.onmessage = function(event) {
+    eventSource.onmessage = function (event) {
         const newElement = document.createElement("div");
         newElement.innerHTML = "Received: " + event.data;
         document.getElementById("sse-output").appendChild(newElement);
     };
 
-    eventSource.onerror = function(event) {
+    eventSource.onerror = function (event) {
         console.error("EventSource failed: ", event);
     };
 </script>

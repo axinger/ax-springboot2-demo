@@ -2,9 +2,9 @@
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>socket.html</title>
-    <meta name="keywords" content="keyword1,keyword2,keyword3">
-    <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html" charset="UTF-8">
+    <meta content="keyword1,keyword2,keyword3" name="keywords">
+    <meta content="this is my page" name="description">
+    <meta charset="UTF-8" content="text/html" name="content-type">
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 </head>
 
@@ -57,7 +57,7 @@ Welcome<br/>
 
         //接收信息
         websocket.onmessage = function (msg) {
-            console.log('接收信息========'+msg.data);
+            console.log('接收信息========' + msg.data);
         }
     }
 

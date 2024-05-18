@@ -35,7 +35,7 @@ import java.util.Map;
 @Slf4j
 public class WebLogAspect {
 
-//    @Pointcut("execution(public * com.axing.demo.controller.*.*(..))")
+//    @Pointcut("execution(public * com.github.axinger.controller.*.*(..))")
 //    public void webLog() {
 //    }
 

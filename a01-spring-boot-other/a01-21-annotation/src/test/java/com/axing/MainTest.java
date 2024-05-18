@@ -1,7 +1,7 @@
 package com.axing;
 
 
-import com.axing.controller.UserController;
+import com.github.axinger.controller.UserController;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.annotation.AnnotationUtils;

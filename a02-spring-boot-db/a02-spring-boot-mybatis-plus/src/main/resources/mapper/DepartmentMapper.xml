@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.axing.demo.mapper.DepartmentMapper">
+<mapper namespace="com.github.axinger.mapper.DepartmentMapper">
 
-    <resultMap id="BaseResultMap" type="com.axing.demo.domain.DepartmentEntity">
+    <resultMap id="BaseResultMap" type="com.github.axinger.domain.DepartmentEntity">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="BaseResultMapOfEmployee" type="com.axing.demo.domain.DepartmentEntity" extends="BaseResultMap">
-        <collection property="empList" ofType="com.axing.demo.domain.EmployeeEntity">
+    <resultMap id="BaseResultMapOfEmployee" type="com.github.axinger.domain.DepartmentEntity" extends="BaseResultMap">
+        <collection property="empList" ofType="com.github.axinger.domain.EmployeeEntity">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
             <result property="name" column="e_name" jdbcType="VARCHAR"/>

@@ -1,8 +1,8 @@
 package com.github.axinger.controller;
 
-import com.axing.db.service.DepartmentService;
-import com.axing.demo.annotation.DS_DB1;
-import com.axing.demo.annotation.DS_MASTER;
+import com.github.axinger.annotation.DS_DB1;
+import com.github.axinger.annotation.DS_MASTER;
+import com.github.axinger.db.service.DepartmentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

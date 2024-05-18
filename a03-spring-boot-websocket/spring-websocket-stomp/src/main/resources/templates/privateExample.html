@@ -18,9 +18,9 @@
         }
 
         function connect() {
-            let  userId = document.getElementById('user').value
+            let userId = document.getElementById('user').value
 
-            var socket = new SockJS("http://localhost:11030/privateServer?userId="+userId);
+            var socket = new SockJS("http://localhost:11030/privateServer?userId=" + userId);
             // var socket = new SockJS("http://localhost:11030/greeting");
             stompClient = Stomp.over(socket);
             // stompClient.heartbeat.outgoing = 20000;
@@ -30,12 +30,12 @@
             // 准备认证信息，这里以用户名为例
 
             let headers = {};
-            headers["userId"] =userId; // 替换为实际的用户名
+            headers["userId"] = userId; // 替换为实际的用户名
 
             stompClient.connect(headers, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/user/' +userId + '/message', function (response) {
+                stompClient.subscribe('/user/' + userId + '/message', function (response) {
                     var responseData = document.getElementById('responseData');
                     var p = document.createElement('p');
                     p.style.wordWrap = 'break-word';
@@ -43,12 +43,12 @@
                     responseData.appendChild(p);
                 });
 
-                stompClient.subscribe('/user/' + userId + '/hi', function(messageDTO) {
+                stompClient.subscribe('/user/' + userId + '/hi', function (messageDTO) {
                     // 处理接收到的消息
                     console.log('发送消息成功返回: ' + messageDTO);
                 })
 
-            }, function(error) {
+            }, function (error) {
                 alert("STOMP error " + error);
             });
 

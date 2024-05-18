@@ -1,4 +1,4 @@
-package com.axing.demo.job;
+package com.github.axinger.job;
 
 import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;

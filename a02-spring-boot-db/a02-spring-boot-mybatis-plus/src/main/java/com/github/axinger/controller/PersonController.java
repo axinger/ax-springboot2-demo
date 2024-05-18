@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import cn.axing.demo.config.MyTenantLineHandler;
-import com.axing.demo.service.PersonService;
+import com.github.axinger.config.MyTenantLineHandler;
+import com.github.axinger.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

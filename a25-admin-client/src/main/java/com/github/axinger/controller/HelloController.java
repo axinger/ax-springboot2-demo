@@ -1,4 +1,4 @@
-package com.axing.demo.controller;
+package com.github.axinger.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

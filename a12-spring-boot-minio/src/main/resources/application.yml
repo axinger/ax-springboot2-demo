@@ -11,7 +11,7 @@ spring:
 
 axing:
   response:
-    base-packages: com.axing.demo
+    base-packages: com.github.axinger
   minio:
     url: http://192.168.101.143:9000
     username: admin #访问的key

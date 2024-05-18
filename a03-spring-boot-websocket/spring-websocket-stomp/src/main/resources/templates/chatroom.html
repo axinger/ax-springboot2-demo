@@ -3,12 +3,12 @@
 <head>
     <title>chatroom.html</title>
 
-    <meta name="keywords" content="keyword1,keyword2,keyword3">
-    <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html" charset="UTF-8">
+    <meta content="keyword1,keyword2,keyword3" name="keywords">
+    <meta content="this is my page" name="description">
+    <meta charset="UTF-8" content="text/html" name="content-type">
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
     <!-- 独立css -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/chatroom.css}">
+    <link rel="stylesheet" th:href="@{/css/chatroom.css}" type="text/css">
 </head>
 
 <body>
@@ -25,12 +25,13 @@
         </select>
         <div class="chatWindow">
             <p style="color:darkgrey">群聊：</p>
-            <section id="chatRecord" class="chatRecord">
+            <section class="chatRecord" id="chatRecord">
                 <p id="titleval" style="color:#CD2626;"></p>
             </section>
             <section class="sendWindow">
-                <textarea name="sendChatValue" id="sendChatValue" class="sendChatValue"></textarea>
-                <input type="button" name="sendMessage" id="sendMessage" class="sendMessage" onclick="sendMassMessage()" value="发送">
+                <textarea class="sendChatValue" id="sendChatValue" name="sendChatValue"></textarea>
+                <input class="sendMessage" id="sendMessage" name="sendMessage" onclick="sendMassMessage()" type="button"
+                       value="发送">
             </section>
         </div>
     </div>
@@ -48,12 +49,13 @@
         </select>
         <div class="chatWindow">
             <p style="color:darkgrey">单独聊：</p>
-            <section id="chatRecord2" class="chatRecord">
+            <section class="chatRecord" id="chatRecord2">
                 <p id="titleval" style="color:#CD2626;"></p>
             </section>
             <section class="sendWindow">
-                <textarea name="sendChatValue2" id="sendChatValue2" class="sendChatValue"></textarea>
-                <input type="button" name="sendMessage" id="sendMessage" class="sendMessage" onclick="sendAloneMessage()" value="发送">
+                <textarea class="sendChatValue" id="sendChatValue2" name="sendChatValue2"></textarea>
+                <input class="sendMessage" id="sendMessage" name="sendMessage" onclick="sendAloneMessage()"
+                       type="button" value="发送">
             </section>
         </div>
     </div>

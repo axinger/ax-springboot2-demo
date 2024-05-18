@@ -8,4 +8,4 @@ spring:
     active: prd
 axing:
   response:
-    base-packages: com.axing.demo
+    base-packages: com.github.axinger

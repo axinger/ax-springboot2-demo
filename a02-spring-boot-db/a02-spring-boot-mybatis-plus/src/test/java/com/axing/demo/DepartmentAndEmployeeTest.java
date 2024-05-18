@@ -1,13 +1,13 @@
-package com.axing.demo;
+package com.github.axinger;
 
 import com.alibaba.fastjson2.JSON;
-import com.axing.demo.domain.DepartmentEntity;
-import com.axing.demo.domain.EmployeeEntity;
-import com.axing.demo.service.DepartmentService;
-import com.axing.demo.service.EmployeeService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.github.axinger.domain.DepartmentEntity;
+import com.github.axinger.domain.EmployeeEntity;
+import com.github.axinger.service.DepartmentService;
+import com.github.axinger.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

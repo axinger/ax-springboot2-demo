@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import com.axing.demo.domain.Student;
-import com.axing.demo.service.StudentService;
+import com.github.axinger.domain.Student;
+import com.github.axinger.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

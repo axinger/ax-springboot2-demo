@@ -3,7 +3,7 @@ package com.github.axinger.controller;
 import com.axing.common.quartz.model.CronTaskPOJO;
 import com.axing.common.quartz.service.JobService;
 import com.axing.common.response.result.Result;
-import com.axing.demo.job.MyJob;
+import com.github.axinger.job.MyJob;
 import com.github.axinger.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

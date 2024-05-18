@@ -15,7 +15,7 @@
             var uid = [[${uid}]];
             socket = new WebSocket(`ws://localhost:11003/websocket?userId=${uid}`);
             socket.onmessage = function (event) {
-                console.log('收到消息='+event.data)
+                console.log('收到消息=' + event.data)
                 var ta = document.getElementById('responseText');
                 ta.value += event.data + "\r\n";
             };

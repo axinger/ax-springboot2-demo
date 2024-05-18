@@ -1,7 +1,7 @@
 package com.axing.handler;
 
 import com.axing.entity.User;
-import com.axing.service.UserService;
+import com.github.axinger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;

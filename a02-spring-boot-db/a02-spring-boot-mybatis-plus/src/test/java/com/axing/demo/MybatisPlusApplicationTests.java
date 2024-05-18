@@ -1,7 +1,7 @@
-package com.axing.demo;
+package com.github.axinger;
 
-import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.core.toolkit.AES;
+import com.github.axinger.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

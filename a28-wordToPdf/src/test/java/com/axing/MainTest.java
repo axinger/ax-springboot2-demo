@@ -1,8 +1,8 @@
 package com.axing;
 
-import com.axing.demo.Word2PdfUtil;
-import com.axing.demo.WordToPdfConverter;
 import com.deepoove.poi.XWPFTemplate;
+import com.github.axinger.Word2PdfUtil;
+import com.github.axinger.WordToPdfConverter;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

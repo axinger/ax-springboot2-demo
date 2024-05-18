@@ -1,4 +1,4 @@
-package com.axing.demo.controller;
+package com.github.axinger.controller;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;

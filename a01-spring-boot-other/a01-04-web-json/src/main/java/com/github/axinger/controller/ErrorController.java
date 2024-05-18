@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.demo.entity.Person;
+import com.github.axinger.entity.Person;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

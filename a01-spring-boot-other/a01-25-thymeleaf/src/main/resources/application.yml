@@ -6,7 +6,7 @@ server:
 
 
 spring:
-  #thymeleaf模板配置
+#thymeleaf模板配置
 #  thymeleaf:
 #    cache: false                   # 这个开发配置为false，避免改了模板还要重启服务器
 #    prefix: classpath:/  #模板文件视图前缀，默认是classpath:/templates/，可不用配置

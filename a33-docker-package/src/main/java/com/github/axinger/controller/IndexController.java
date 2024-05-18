@@ -1,4 +1,4 @@
-package com.axing.demo.controller;
+package com.github.axinger.controller;
 
 import com.axing.common.response.result.Result;
 import lombok.extern.slf4j.Slf4j;

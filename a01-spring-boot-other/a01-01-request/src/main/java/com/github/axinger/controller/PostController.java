@@ -11,13 +11,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/postTest")
-@Tag(name = "post请求测试",description = "PostController")
+@Tag(name = "post请求测试", description = "PostController")
 public class PostController {
 
 
     // 表单格式的可以用 RequestParam,  JSON格式不可以用 RequestParam
     @PostMapping("/fromData")
-    @Operation(summary = "from格式",description = "from表单")
+    @Operation(summary = "from格式", description = "from表单")
     public Object fromData(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
         return List.of(username, password);

@@ -51,7 +51,7 @@ spring:
 logging:
   level:
     #FeignClient 日志级别
-    com.axing.demo.service.OrderPaymentService: debug
+    com.github.axinger.service.OrderPaymentService: debug
 
 feign:
   hystrix: # FeignClient 接口中使用降级服务

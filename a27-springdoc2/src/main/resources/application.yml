@@ -30,4 +30,4 @@ springdoc:
 axing:
   advice:
     filter-package:
-      - com.axing.demo.controller
+      - com.github.axinger.controller

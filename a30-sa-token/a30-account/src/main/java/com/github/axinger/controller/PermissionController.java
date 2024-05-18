@@ -1,4 +1,4 @@
-package com.axing.demo.controller;
+package com.github.axinger.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

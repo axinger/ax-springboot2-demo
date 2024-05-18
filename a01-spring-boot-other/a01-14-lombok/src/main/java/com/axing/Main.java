@@ -1,8 +1,8 @@
 package com.axing;
 
 import com.axing.common.util.json.JsonUtil;
-import com.axing.model.GetterSetterExample;
-import com.axing.model.Person;
+import com.github.axinger.model.GetterSetterExample;
+import com.github.axinger.model.Person;
 
 public class Main {
     public static void main(String[] args) {

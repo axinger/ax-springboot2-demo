@@ -68,7 +68,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.axing.demo.Demo12SentinelApplication</mainClass>
+                    <mainClass>com.github.axinger.Demo12SentinelApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

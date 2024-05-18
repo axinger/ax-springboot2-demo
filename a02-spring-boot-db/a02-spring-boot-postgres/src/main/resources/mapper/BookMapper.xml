@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.axing.demo.mapper.PersonMapper">
+<mapper namespace="com.github.axinger.mapper.PersonMapper">
 
-    <resultMap id="BaseResultMap" type="com.axing.demo.domain.BookEntity">
+    <resultMap id="BaseResultMap" type="com.github.axinger.domain.BookEntity">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="bookAuthor" column="book_author" jdbcType="VARCHAR"/>
         <result property="bookName" column="book_name" jdbcType="VARCHAR"/>

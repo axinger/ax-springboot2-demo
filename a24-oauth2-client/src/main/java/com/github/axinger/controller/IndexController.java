@@ -1,4 +1,4 @@
-package com.axing.demo.controller;
+package com.github.axinger.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

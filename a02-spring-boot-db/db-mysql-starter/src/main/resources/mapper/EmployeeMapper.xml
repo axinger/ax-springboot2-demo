@@ -2,16 +2,16 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.axing.db.mapper.EmployeeMapper">
+<mapper namespace="com.github.axinger.db.mapper.EmployeeMapper">
 
-    <resultMap id="BaseResultMap" type="com.axing.db.domain.Employee">
+    <resultMap id="BaseResultMap" type="com.github.axinger.db.domain.Employee">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="gender" column="gender" jdbcType="INTEGER"/>
         <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
 
-        <collection property="department" ofType="com.axing.db.domain.Department">
+        <collection property="department" ofType="com.github.axinger.db.domain.Department">
             <!--            含有相同的字段名-->
             <id property="id" column="d_id" jdbcType="BIGINT"/>
             <result property="name" column="d_name" jdbcType="VARCHAR"/>

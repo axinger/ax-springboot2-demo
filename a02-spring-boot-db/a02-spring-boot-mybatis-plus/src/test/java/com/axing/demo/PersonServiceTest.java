@@ -1,13 +1,8 @@
-package com.axing.demo;
+package com.github.axinger;
 
-import cn.axing.demo.config.MyTableNameHandler;
-import cn.axing.demo.config.MyTenantLineHandler;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.axing.demo.domain.PersonEntity;
-import com.axing.demo.mapper.PersonMapper;
-import com.axing.demo.service.PersonService;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
@@ -15,6 +10,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.axinger.config.MyTableNameHandler;
+import com.github.axinger.config.MyTenantLineHandler;
+import com.github.axinger.domain.PersonEntity;
+import com.github.axinger.mapper.PersonMapper;
+import com.github.axinger.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -153,7 +153,7 @@ class PersonServiceTest {
     void test_LambdaUtils() {
         LambdaMeta extract = LambdaUtils.extract(PersonEntity::getName);
         System.out.println("extract.getImplMethodName() = " + extract.getImplMethodName()); // getBookName
-        System.out.println("extract.getInstantiatedClass() = " + extract.getInstantiatedClass()); // class com.axing.demo.domain.BookEntity
+        System.out.println("extract.getInstantiatedClass() = " + extract.getInstantiatedClass()); // class com.github.axinger.domain.BookEntity
     }
 
     @Test

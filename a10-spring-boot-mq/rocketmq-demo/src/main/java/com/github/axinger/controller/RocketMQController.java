@@ -1,9 +1,9 @@
 package com.github.axinger.controller;
 
-import cn.axing.demo.config.Topic;
-import com.axing.demo.model.MessageWrapper;
-import com.axing.demo.model.User;
-import com.axing.demo.service.MQProducerService;
+import com.github.axinger.config.Topic;
+import com.github.axinger.model.MessageWrapper;
+import com.github.axinger.model.User;
+import com.github.axinger.service.MQProducerService;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.demo.desensitization.dto.User;
+import com.github.axinger.desensitization.dto.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
