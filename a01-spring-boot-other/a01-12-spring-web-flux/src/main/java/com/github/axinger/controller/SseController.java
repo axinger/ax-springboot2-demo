@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.sse.ClientManager;
+import com.github.axinger.sse.ClientManager;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

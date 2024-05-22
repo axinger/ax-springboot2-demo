@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.handler.UserHandler;
+import com.github.axinger.handler.UserHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

@@ -1,6 +1,6 @@
 package com.github.axinger.service;
 
-import com.axing.entity.User;
+import com.github.axinger.entity.User;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
 
-import com.axing.entity.User;
+import com.github.axinger.entity.User;
 import com.github.axinger.service.UserService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
