@@ -1,4 +1,4 @@
-package com.ax.shiro.controller;
+package com.github.axinger.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

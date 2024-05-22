@@ -1,4 +1,4 @@
-package com.ax.shiro.config;
+package com.github.axinger.config;
 
 
 import org.apache.shiro.realm.Realm;

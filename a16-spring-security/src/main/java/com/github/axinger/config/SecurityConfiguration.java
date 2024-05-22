@@ -1,4 +1,4 @@
-package com.axing.config;
+package com.github.axinger.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.ax.shiro.config;
+package com.github.axinger.config;
 
 
 import org.apache.shiro.authc.*;
@@ -50,9 +50,9 @@ public class CustomerRealm extends AuthorizingRealm {
 
 
         /// 查询数据库
-//        if (username.equals("tom")) {
-//            throw new UnknownAccountException("");
-//        }
+        if (username.equals("tom")) {
+            throw new UnknownAccountException("未查询到用户");
+        }
 
         // 模拟从数据库查询到密码, 这个是校验  subject.login 的密码是否一致
         String password2 = "111112";

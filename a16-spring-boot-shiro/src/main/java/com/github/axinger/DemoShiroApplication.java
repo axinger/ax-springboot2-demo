@@ -1,4 +1,4 @@
-package com.ax.shiro;
+package com.github.axinger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
