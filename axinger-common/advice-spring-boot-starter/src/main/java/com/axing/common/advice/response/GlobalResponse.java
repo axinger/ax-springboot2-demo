@@ -4,6 +4,7 @@ import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.advice.util.AdviceUtil;
 import com.axing.common.response.result.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
      * @return return
      */
     @Override
-    public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
+    public boolean supports(@NonNull MethodParameter returnType, @NonNull Class<? extends HttpMessageConverter<?>> converterType) {
 //         boolean isSpringdoc = StrUtil.contains(returnType.getDeclaringClass().getName(), "org.springdoc");
 //         log.info("isSpringdoc = {}", isSpringdoc);
 //         return !isSpringdoc;
@@ -60,12 +61,11 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
     @SneakyThrows
     @Override
     public Object beforeBodyWrite(Object body,
-                                  MethodParameter returnType,
-                                  MediaType selectedContentType,
-                                  Class<? extends HttpMessageConverter<?>> selectedConverterType,
-                                  ServerHttpRequest request,
-                                  ServerHttpResponse response) {
-
+                                  @NonNull MethodParameter returnType,
+                                  @NonNull MediaType selectedContentType,
+                                  @NonNull Class<? extends HttpMessageConverter<?>> selectedConverterType,
+                                  @NonNull ServerHttpRequest request,
+                                  @NonNull ServerHttpResponse response) {
 
         if (body instanceof String) {
             ObjectMapper mapper = new ObjectMapper();

@@ -120,7 +120,7 @@ public class GlobalException {
     }
 
     /**
-     * get 请求校验参数
+     * get 请求参数校验
      *
      * @param e
      * @return
@@ -137,7 +137,7 @@ public class GlobalException {
                         },
                         ConstraintViolation::getMessage, (key1, key2) -> key2));
         Result<Object> result = Result.fail(map.toString());
-        log.error("方法参数校验异常 result =  {}", result);
+        log.error("请求参数校验异常 result =  {}", result);
         return result;
     }
 }
