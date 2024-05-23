@@ -99,8 +99,6 @@ public class RedisAutoConfig {
                 .disableCachingNullValues() // 不存储null
                 .computePrefixWith(name -> name + ":"); // 创建默认缓存配置对象、 将@Cacheable缓存key值时默认会给value或cacheNames后加上双冒号 改为 单冒号
         return RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(config).build();
-
-
     }
 
 

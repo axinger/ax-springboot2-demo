@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-public class Tests3 {
+public class RedisTemplateTests {
     @Autowired
     private RedisTemplate<Object, List<Student>> redisTemplate;
 

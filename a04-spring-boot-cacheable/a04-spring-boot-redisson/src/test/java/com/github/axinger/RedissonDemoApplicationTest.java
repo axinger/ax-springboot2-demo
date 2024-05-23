@@ -67,14 +67,13 @@ class RedissonDemoApplicationTest {
             list.add(student);
         }
 
-
         // 对象操作
         RBucket<List<Student>> rBucket = redissonClient.getBucket("objKey");
 
         rBucket.delete();
 
         // 设置value和key的有效期
-        rBucket.set(list, 60, TimeUnit.SECONDS);
+        rBucket.set(list, 600, TimeUnit.SECONDS);
         // 通过key获取value
 
         List<Student> list1 = rBucket.get();
