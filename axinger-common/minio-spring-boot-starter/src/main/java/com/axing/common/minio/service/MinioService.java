@@ -55,14 +55,14 @@ public interface MinioService {
      */
     List<Item> getItemsByPrefix(String bucketName, String prefix, Boolean recursive);
 
-    /**
-     * 获取文件流
-     *
-     * @param bucketName 存储桶名称
-     * @param objectName 文件名称
-     * @return 二进制流
-     */
-    InputStream getObject(String bucketName, String objectName);
+//    /**
+//     * 获取文件流
+//     *
+//     * @param bucketName 存储桶名称
+//     * @param objectName 文件名称
+//     * @return 二进制流
+//     */
+//    InputStream getObject(String bucketName, String objectName);
 
     /**
      * 获取全部存储桶
@@ -140,7 +140,7 @@ public interface MinioService {
      */
     void deleteObjectNames(String bucketName, List<String> objectNames);
 
-    @SneakyThrows
+
     String createUploadUrl(String bucketName, String objectName, Integer expiry);
 
     /**
