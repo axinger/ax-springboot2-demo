@@ -1,13 +1,32 @@
 package com.github.axinger;
 
 
-import com.alibaba.fastjson.JSONPath;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONPath;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FastJsonTest {
+
+
+    @Test
+    void test1() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", "jim");
+
+        JSONPath.of("age").set(jsonObject, 12);
+
+        if (JSONPath.contains(jsonObject, "age2")) {
+            JSONPath.of("age2", String.class).set(jsonObject, 12);
+        }
+//        Object age = JSONPath.eval(jsonObject, "age");
+//        System.out.println("age = " + age);
+
+        JSONPath.set(jsonObject,"age3",12);
+        System.out.println(jsonObject);
+    }
 
     @Test
     void test53() {
