@@ -1,4 +1,10 @@
 package com.axing.common.dto;
 
-public record PageDTO<T>(int pageNo, int pageSize, T data) {
+import lombok.Data;
+
+@Data
+public class PageDTO<T> {
+    private int pageNo;
+    private int pageSize;
+    private T data;
 }

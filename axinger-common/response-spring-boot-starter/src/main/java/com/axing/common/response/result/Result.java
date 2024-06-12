@@ -1,5 +1,6 @@
 package com.axing.common.response.result;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,16 +17,16 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Schema(title = "Result", description = "请求返回结果")
+@Schema(title = "Result", description = "请求返回结果")
 public class Result<T> implements Serializable {
 
-    //    @Schema(description = "状态码")
+    @Schema(title = "状态码",description = "200：成功")
     private Integer code = 200;
 
-    //    @Schema(description = "提示信息")
+    @Schema(title = "提示信息",description ="错误提示信息")
     private String msg = "";
 
-    //    @Schema(description = "泛型数据,类型不固定")
+    @Schema(title = "返回数据",description ="泛型数据")
     private T data;
 
 
