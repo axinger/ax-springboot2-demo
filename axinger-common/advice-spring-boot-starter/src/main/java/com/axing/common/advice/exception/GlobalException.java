@@ -55,17 +55,18 @@ public class GlobalException {
         } else if (Optional.of(e).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
             msg = e.getCause().getMessage();
         }
-        final Result<Map<String, Object>> result = Result.build(201, map, msg);
+        final Result<Map<String, Object>> result = Result.fail(msg);
         log.error("全局异常 result = {}, e = {}", result, e.getMessage());
         return result;
     }
 
     @ExceptionHandler(value = ServiceException.class)
     public Result<Map<String, Object>> serviceException(ServiceException e) {
-        if (adviceProperties.isPrintStackTrace()) {
-            e.printStackTrace();
-        }
-        final Result<Map<String, Object>> result = Result.build(e.getCode(), e.getMessage());
+//        if (adviceProperties.isPrintStackTrace()) {
+//            e.printStackTrace();
+//        }
+
+        final Result<Map<String, Object>> result = Result.fail(e.getMessage());
         log.error("自定义业务异常 result =  {}", result);
         return result;
     }
