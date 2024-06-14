@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.axinger</groupId>
-        <artifactId>axinger-common-parent</artifactId>
+        <artifactId>axinger-common</artifactId>
         <version>2.7.18.1</version>
     </parent>
 

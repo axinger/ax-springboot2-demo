@@ -7,7 +7,7 @@
         <groupId>com.github.axinger</groupId>
         <version>2.7.18.1</version>
     </parent>
-    <artifactId>axinger-common-parent</artifactId>
+    <artifactId>axinger-common</artifactId>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
     <name>阿星common工具类</name>
