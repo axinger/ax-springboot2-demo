@@ -11,6 +11,10 @@
 
     <artifactId>a28-wordToPdf</artifactId>
 
+    <properties>
+        <jodconverter.version>4.4.7</jodconverter.version>
+
+    </properties>
 
     <repositories>
         <repository>
@@ -68,6 +72,22 @@
             <systemPath>${pom.basedir}/lib/aspose-words-15.8.0-jdk16.jar</systemPath>
         </dependency>
 
+        <!--转换工具-->
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-spring-boot-starter</artifactId>
+            <version>${jodconverter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-local</artifactId>
+            <version>${jodconverter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-core</artifactId>
+            <version>${jodconverter.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
