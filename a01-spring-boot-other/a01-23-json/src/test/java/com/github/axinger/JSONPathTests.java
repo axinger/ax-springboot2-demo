@@ -10,6 +10,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JSONPathTests {
 
+
+    @Test
+    public void test_set() throws Exception {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("age", 10);
+
+        // 存在key
+        JSONPath.set(map, "$.age", 11);
+        System.out.println("map = " + map);
+
+        //不存在key，也会强制赋值
+        JSONPath.set(map, "$.age2", 12);
+
+        System.out.println("map = " + map);
+
+        //不存在key，也会强制赋值，判断是否有key
+        if (JSONPath.contains(map, "$.age3")) {
+            JSONPath.set(map, "$.age3", 12);
+        }else {
+            System.err.println("没有age3");
+        }
+        System.out.println("map = " + map);
+    }
+
     @Test
     public void test_entity() throws Exception {
         Entity entity = new Entity(123, new Object());
