@@ -18,6 +18,7 @@ public class JSONPathTests {
 
         map.put("age", 10);
 
+
         // 存在key
         JSONPath.set(map, "$.age", 11);
         System.out.println("map = " + map);
@@ -33,6 +34,11 @@ public class JSONPathTests {
         }else {
             System.err.println("没有age3");
         }
+        System.out.println("map = " + map);
+
+        map.put("age4", new ArrayList<>());
+        JSONPath.arrayAdd(map,"$.age4",1,2); // 添加数组，这个可以
+        JSONPath.set(map, "$.age5", new ArrayList<>(){{add(1);add(2);}}); // 添加数组，这个可以， List.of不行，
         System.out.println("map = " + map);
     }
 
