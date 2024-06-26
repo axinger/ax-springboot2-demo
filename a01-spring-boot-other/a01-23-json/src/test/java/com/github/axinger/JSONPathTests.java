@@ -35,6 +35,9 @@ public class JSONPathTests {
             System.err.println("没有age3");
         }
         System.out.println("map = " + map);
+//        System.err.println()；
+//        System.in.read();
+        ;
 
         map.put("age4", new ArrayList<>());
         JSONPath.arrayAdd(map,"$.age4",1,2); // 添加数组，这个可以
