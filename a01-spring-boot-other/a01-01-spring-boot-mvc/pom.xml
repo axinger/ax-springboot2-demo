@@ -48,10 +48,10 @@
             <artifactId>doc-spring-boot-starter</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.github.axinger</groupId>-->
-<!--            <artifactId>same-class-starter</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.axinger</groupId>-->
+        <!--            <artifactId>same-class-starter</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>com.github.axinger</groupId>
             <artifactId>dto-spring-boot-starter</artifactId>
@@ -66,6 +66,13 @@
         <dependency>
             <groupId>com.github.axinger</groupId>
             <artifactId>advice-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- 它是 Spring 为促进 Spring Boot 升级而提供的支持。用于帮助迁移 application properties。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

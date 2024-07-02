@@ -11,6 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,11 @@ class MainTest {
 
     @Test
     void test() {
+
+        // var 关键字
+        var valMap = new HashMap<String, Integer>();
+
+
         Person person = new Person();
         person.setName("jim");
         System.out.println("person = " + person);
