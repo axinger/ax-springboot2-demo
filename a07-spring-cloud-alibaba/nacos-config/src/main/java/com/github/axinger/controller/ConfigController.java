@@ -1,4 +1,4 @@
-package com.ax.nacos.controller;
+package com.github.axinger.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -20,6 +20,9 @@ import java.util.Map;
 @RefreshScope // 支持nacos的动态刷新功能
 public class ConfigController {
 
+    @Value("${title:#{null}}")
+    private String title;
+
     @Value("${config.info:#{null}}")
     private String info;
 
@@ -35,6 +38,7 @@ public class ConfigController {
     public Object getInfo() {
         System.out.println("getInfo = " + info);
         Map<String, Object> map = new HashMap<>(16);
+        map.put("title", title);
         map.put("info", info);
         map.put("name", name);
         map.put("personName", personName);
