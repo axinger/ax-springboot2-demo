@@ -31,8 +31,9 @@ public class MQProducerService {
     /**
      * 普通发送（这里的参数对象User可以随意定义，可以发送个对象，也可以是字符串等）
      */
-    public void send(User user) {
-        rocketMQTemplate.convertAndSend(Topic.RLT_TEST_TOPIC + ":tag1", user);
+    public void send(User user,String tag) {
+        rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":"+tag, user);
+//        rocketMQTemplate.convertAndSend(Topic.RLT_TEST_TOPIC, user);
 //        rocketMQTemplate.send(topic + ":tag1", MessageBuilder.withPayload(user).build()); // 等价于上面一行
 
     }
@@ -42,7 +43,7 @@ public class MQProducerService {
      * （msgBody也可以是对象，sendResult为返回的发送结果）
      */
     public SendResult sendMsg(Object msgBody) {
-        SendResult sendResult = rocketMQTemplate.syncSend(Topic.RLT_TEST_TOPIC, MessageBuilder.withPayload(msgBody).build());
+        SendResult sendResult = rocketMQTemplate.syncSend(Topic.TOPIC_1, MessageBuilder.withPayload(msgBody).build());
         log.info("【sendMsg】sendResult={}", JSON.toJSONString(sendResult));
         return sendResult;
     }
@@ -52,7 +53,7 @@ public class MQProducerService {
      * （适合对响应时间敏感的业务场景）
      */
     public void sendAsyncMsg(Object msgBody) {
-        rocketMQTemplate.asyncSend(Topic.RLT_TEST_TOPIC, MessageBuilder.withPayload(msgBody).build(), new SendCallback() {
+        rocketMQTemplate.asyncSend(Topic.TOPIC_1, MessageBuilder.withPayload(msgBody).build(), new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
                 // 处理消息发送成功逻辑
@@ -71,21 +72,21 @@ public class MQProducerService {
      * delayLevel 值是  1 ~18参数
      */
     public void sendDelayMsg(Object msgBody, int delayLevel) {
-        rocketMQTemplate.syncSend(Topic.RLT_TEST_TOPIC, MessageBuilder.withPayload(msgBody).build(), messageTimeOut, delayLevel);
+        rocketMQTemplate.syncSend(Topic.TOPIC_1, MessageBuilder.withPayload(msgBody).build(), messageTimeOut, delayLevel);
     }
 
     /**
      * 发送单向消息（只负责发送消息，不等待应答，不关心发送结果，如日志）
      */
     public void sendOneWayMsg(Object msgBody) {
-        rocketMQTemplate.sendOneWay(Topic.RLT_TEST_TOPIC, MessageBuilder.withPayload(msgBody).build());
+        rocketMQTemplate.sendOneWay(Topic.TOPIC_1, MessageBuilder.withPayload(msgBody).build());
     }
 
     /**
      * 发送带tag的消息，直接在topic后面加上":tag"
      */
     public SendResult sendTagMsg(Object msgBody) {
-        return rocketMQTemplate.syncSend(Topic.RLT_TEST_TOPIC + ":tag2", MessageBuilder.withPayload(msgBody).build());
+        return rocketMQTemplate.syncSend(Topic.TOPIC_1 + ":tag2", MessageBuilder.withPayload(msgBody).build());
     }
 
     /**

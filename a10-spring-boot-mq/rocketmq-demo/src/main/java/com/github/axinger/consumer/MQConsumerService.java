@@ -17,14 +17,27 @@ import org.springframework.stereotype.Service;
 @Component
 public class MQConsumerService {
 
+    @Service
+    @RocketMQMessageListener(
+            consumerGroup = Topic.GROUP_1,
+            topic = Topic.TOPIC_1
+    )
+    public static class ConsumerSendTagAll implements RocketMQListener<User> {
+        // 监听到消息就会执行此方法
+        @Override
+        public void onMessage(User user) {
+            log.info("Con_Group_One * 监听到消息：user={}", user);
+        }
+    }
+
 
     // topic需要和生产者的topic一致，consumerGroup属性是必须指定的，内容可以随意
     // selectorExpression的意思指的就是tag，默认为“*”，不设置的话会监听所有消息
     @Service
     @RocketMQMessageListener(
-            consumerGroup = "Con_Group_One",
-            topic = Topic.RLT_TEST_TOPIC,
-            selectorExpression = "tag1")
+            consumerGroup = Topic.GROUP_1,
+            topic = Topic.TOPIC_1,
+            selectorExpression = Topic.Tag_1)
     public static class ConsumerSendTag1 implements RocketMQListener<User> {
         // 监听到消息就会执行此方法
         @Override
@@ -35,9 +48,9 @@ public class MQConsumerService {
 
     @Service
     @RocketMQMessageListener(
-            consumerGroup = "Con_Group_One",
-            topic = Topic.RLT_TEST_TOPIC,
-            selectorExpression = "tag2")
+            consumerGroup = Topic.GROUP_1,
+            topic = Topic.TOPIC_1,
+            selectorExpression = Topic.Tag_2)
     public static class ConsumerSendTag2 implements RocketMQListener<User> {
         @Override
         public void onMessage(User user) {
@@ -74,7 +87,7 @@ public class MQConsumerService {
 
     // MessageExt：是一个消息接收通配符，不管发送的是String还是对象，都可接收，当然也可以像上面明确指定类型（我建议还是指定类型较方便）
     @Service
-    @RocketMQMessageListener(topic = Topic.RLT_TEST_TOPIC, selectorExpression = "tag2", consumerGroup = "Con_Group_Three")
+    @RocketMQMessageListener(topic = Topic.TOPIC_1, selectorExpression = "tag2", consumerGroup = "Con_Group_Three")
     public static class Consumer implements RocketMQListener<MessageExt> {
         @Override
         public void onMessage(MessageExt messageExt) {

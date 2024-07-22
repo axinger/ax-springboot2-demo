@@ -1,5 +1,6 @@
 package com.github.axinger.service;
 
+import com.github.axinger.config.Topic;
 import com.github.axinger.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ class MQProducerServiceTest {
         User user = new User();
         user.setName("jim");
         user.setAge(10);
-        mqProducerService.send(user);
+        mqProducerService.send(user, Topic.Tag_1);
     }
 
     @Test

@@ -26,7 +26,15 @@ public class RocketMQController {
         User user = new User();
         user.setName("jim");
         user.setAge(10);
-        mqProducerService.send(user);
+        mqProducerService.send(user, Topic.Tag_1);
+    }
+
+    @GetMapping("/send2")
+    void send2() {
+        User user = new User();
+        user.setName("jim");
+        user.setAge(10);
+        mqProducerService.send(user, Topic.Tag_2);
     }
 
     @GetMapping("/sendMsg")
