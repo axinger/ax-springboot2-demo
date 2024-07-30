@@ -1,15 +1,7 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.annotation.DS_DB1;
-import com.github.axinger.annotation.DS_MASTER;
-import com.github.axinger.db.service.DepartmentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author xing
@@ -22,30 +14,5 @@ import java.util.List;
 @Tag(name = "TestController", description = "测试控制器")
 public class TestController {
 
-
-    @Autowired
-    private DepartmentService departmentService;
-
-    @GetMapping("/student")
-    @DS_MASTER
-    @ResponseBody
-    public List studentService() {
-        return null;
-    }
-
-    @GetMapping("/error")
-    public List error() throws Exception {
-        throw new Exception("1231");
-    }
-
-    /**
-     * 动态数据源: 方法中使用ds注解 ,
-     */
-    @GetMapping("/userRole")
-//    @DS("db_ax_demo")
-    @DS_DB1
-    public List userRoleService() {
-        return null;
-    }
 
 }

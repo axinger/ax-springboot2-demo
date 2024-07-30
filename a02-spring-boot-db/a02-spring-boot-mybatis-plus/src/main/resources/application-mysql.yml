@@ -2,11 +2,17 @@ spring:
   application:
     name: a04-spring-boot-mybatis-plus
   datasource:
-    url: jdbc:mysql://192.168.101.132:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  #SpringBoot中会集成flyway的版本
+  flyway:
+    #开启自动创建flyway元数据表标识 默认: false
+    baseline-on-migrate: true
+    #如果数据库中已经存在数据，从基线版本之前的脚本不再执行
+    enabled: true
   jpa:
     database: mysql
     show-sql: true
