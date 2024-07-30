@@ -3,6 +3,7 @@ package com.github.axinger.stream;
 
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.github.axinger.DeviceModel;
 import com.github.axinger.FlowBean;
@@ -35,21 +36,21 @@ public class StreamTest {
                     .address("安徽")
                     .build());
             add(Person.builder()
-                    .id(1)
+                    .id(2)
                     .name("lili")
                     .sex("女")
                     .age(10)
                     .address("安徽")
                     .build());
             add(Person.builder()
-                    .id(1)
+                    .id(3)
                     .name("Lucy")
                     .sex("女")
                     .age(18)
                     .address("安徽")
                     .build());
             add(Person.builder()
-                    .id(1)
+                    .id(4)
                     .name("小红")
                     .sex("女")
                     .age(20)
@@ -366,36 +367,6 @@ public class StreamTest {
         System.out.println("i = " + (4 % 2));
     }
 
-    // map排序
-    @Test
-    void test_map() {
-//        Map<String, Object> map = new HashMap();
-        Map<String, Object> map = new LinkedHashMap();
-        map.put("3", "c");
-        map.put("1", "a");
-        map.put("2", "b");
-
-
-        System.out.println("map = " + map);
-
-        // 按值排序 升序
-        Map<String, Object> sorted = map.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldVal, newVal) -> oldVal, LinkedHashMap::new));
-        System.out.println("升序按值排序后的map: " + sorted);
-
-
-        // 按值排序 升序
-        Map<String, Object> collect = map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, value -> value.getValue() + "aaa"));
-        System.out.println("map改变value值 = " + collect);
-
-
-        Map<String, Object> collect2 = map.entrySet().stream().map(val -> {
-            val.setValue(val.getValue() + "ccc");
-            return val;
-        }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        System.out.println("map改变value值 = " + collect2);
-
-
-    }
 
     @Test
     void Optional_null() {
@@ -783,6 +754,67 @@ public class StreamTest {
         Stream<String> stream = Stream.of("apple", "apple", "pear", "banana");
         Map<String, Long> map = stream.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println(map);
+    }
+
+    // map排序
+    @Test
+    void test_map() {
+//        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new LinkedHashMap();
+        map.put("3", "c");
+        map.put("1", "a");
+        map.put("2", "b");
+
+
+        System.out.println("map = " + map);
+
+        // 按值排序 升序
+        Map<String, Object> sorted = map.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldVal, newVal) -> oldVal, LinkedHashMap::new));
+        System.out.println("升序按值排序后的map: " + sorted);
+
+
+        // 按值排序 升序
+        Map<String, Object> collect = map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, value -> value.getValue() + "aaa"));
+        System.out.println("map改变value值 = " + collect);
+
+
+        Map<String, Object> collect2 = map.entrySet().stream().map(val -> {
+            val.setValue(val.getValue() + "ccc");
+            return val;
+        }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        System.out.println("map改变value值 = " + collect2);
+
+
+    }
+
+    @Test
+    void test_toMap() {
+
+        Map<Integer, Person> map = personList.stream()
+                .collect(Collectors.toMap(Person::getId,
+                        Function.identity(),
+                        (k1, k2) -> k1));
+        System.out.println("toMap = " + map);
+    }
+
+    @Test
+    void test_teeing() {
+
+        Map<String, Person> map = personList.stream()
+                .collect(Collectors.teeing(
+                        Collectors.minBy(Comparator.comparing(Person::getAge)),
+                        Collectors.maxBy(Comparator.comparing(Person::getAge)),
+                        (min, max) -> {
+                            // 返回格式，
+//                            return StrUtil.format("最大的={}，最小的={}", max.map(Person::getId).orElse(-1), min.map(Person::getId).orElse(-1));
+                            return Map.of(
+                                    "max", max.get(),
+                                    "min", min.get()
+                            );
+                        }
+
+                ));
+        System.out.println("teeing map = " + map);
     }
 }
 
