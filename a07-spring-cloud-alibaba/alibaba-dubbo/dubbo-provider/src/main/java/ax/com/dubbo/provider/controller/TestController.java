@@ -1,5 +1,7 @@
 package ax.com.dubbo.provider.controller;
 
+import com.ax.api.service.TestDubboService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,10 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+
+    @DubboReference(version = "1.0.0"
+//            check = false,
+            , interfaceClass = TestDubboService.class)
+    TestDubboService testDubboService;
+
+
     @GetMapping("/test")
-    public Object test() {
+    public Object account() {
         System.out.println("进入了ConsumerController.............");
-        return "TestController+test";
+        final Object o = testDubboService.test1("jim");
+        System.out.println("Dubbo调用返回值 = " + o);
+        return o;
     }
 
 }

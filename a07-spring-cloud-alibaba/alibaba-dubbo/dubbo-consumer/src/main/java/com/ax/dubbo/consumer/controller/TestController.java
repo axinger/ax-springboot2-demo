@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @DubboReference(version = "1.0.0", check = false)
+    @DubboReference(version = "1.0.0"
+//            check = false,
+            , interfaceClass = TestDubboService.class)
     TestDubboService testDubboService;
 
 
@@ -25,7 +27,6 @@ public class TestController {
         System.out.println("进入了ConsumerController.............");
         final Object o = testDubboService.test1("jim");
         System.out.println("Dubbo调用返回值 = " + o);
-
         return o;
     }
 }

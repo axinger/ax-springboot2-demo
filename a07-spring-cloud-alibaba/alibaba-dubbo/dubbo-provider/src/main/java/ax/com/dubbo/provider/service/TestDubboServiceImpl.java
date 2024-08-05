@@ -15,13 +15,18 @@ import java.util.Map;
  * @createTime 2021年12月18日 21:37:00
  */
 
-@DubboService(version = "1.0.0", interfaceClass = TestDubboService.class)
+//@DubboService(version = "1.0.0", interfaceClass = TestDubboService.class)
 @Component
+@DubboService(
+        version = "1.0.0",
+        interfaceClass = TestDubboService.class
+//        , loadbalance = "roundrobin"
+)
 public class TestDubboServiceImpl implements TestDubboService {
 
     @Override
     public Object test1(String name) {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put("msg", "Dubbo调用" + name);
         return map;
     }

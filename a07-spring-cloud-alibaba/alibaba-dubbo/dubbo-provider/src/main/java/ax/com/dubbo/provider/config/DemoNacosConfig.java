@@ -14,21 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.axinger.config;
+package ax.com.dubbo.provider.config;
 
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Bean;
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
 
-@EnableDiscoveryClient //默认开启
 @Configuration
+/***
+ * 1.在服务启动类上加上注解 @EnableDubbo 。作用范围：当前同级的包及其子类会被扫描识别。
+ * 2.在服务启动类上加上注解 @DubboComponentScan( basePackages = “com.esint.service”) 这个指定的包下的带有@DubboService的注解类会被扫描识别。
+ * 3.在yml配置文件中设置
+ */
+@EnableDubbo
+//@EnableDiscoveryClient //默认开启
+//@DubboComponentScan( basePackages = "ax.com.dubbo.provider.service")
 public class DemoNacosConfig {
 
-    @Bean
-    @LoadBalanced
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+//    @Bean
+//    @LoadBalanced
+//    public RestTemplate restTemplate() {
+//        return new RestTemplate();
+//    }
 }
