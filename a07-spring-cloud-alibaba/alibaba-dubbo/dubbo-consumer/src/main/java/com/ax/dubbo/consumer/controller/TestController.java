@@ -25,7 +25,7 @@ public class TestController {
     @GetMapping("/test")
     public Object account() {
         System.out.println("进入了ConsumerController.............");
-        final Object o = testDubboService.test1("jim");
+        final Object o = testDubboService.test1("消费者调用生产者");
         System.out.println("Dubbo调用返回值 = " + o);
         return o;
     }

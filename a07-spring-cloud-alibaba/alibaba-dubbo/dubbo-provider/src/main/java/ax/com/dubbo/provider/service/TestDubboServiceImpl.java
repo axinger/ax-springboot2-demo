@@ -27,7 +27,7 @@ public class TestDubboServiceImpl implements TestDubboService {
     @Override
     public Object test1(String name) {
         Map<String, Object> map = new HashMap<>();
-        map.put("msg", "Dubbo调用" + name);
+        map.put("msg", "Dubbo调用，" + name);
         return map;
     }
 }

@@ -1,7 +1,7 @@
 
 dubbo:
-#  scan:
-#    base-packages: ax.com.dubbo.provider.service
+  scan:
+    base-packages: ax.com.dubbo.provider.service
   application:
     name: dubbo-test-provider
   protocol:
