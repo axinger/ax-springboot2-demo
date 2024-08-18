@@ -30,6 +30,13 @@
             <version>2.2.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-stream-rocketmq -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>com.github.axinger</groupId>
             <artifactId>doc-spring-boot-starter</artifactId>
