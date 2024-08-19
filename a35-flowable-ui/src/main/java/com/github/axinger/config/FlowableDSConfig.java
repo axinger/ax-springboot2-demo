@@ -1,7 +1,6 @@
 package com.github.axinger.config;
 
 import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
-import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.common.engine.impl.AbstractEngineConfiguration;
 import org.flowable.common.engine.impl.EngineConfigurator;
@@ -11,9 +10,13 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import javax.sql.DataSource;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/***
+ * 多数据源，指定flowable数据源
+ * 同时重写，org.flowable.common.engine.impl.EngineConfigurator 文件
+文件 文件*/
 @Slf4j
 @Configuration
-public class DatasourceConfigurator implements EngineConfigurator {
+public class FlowableDSConfig implements EngineConfigurator {
 
 
     private static final AtomicBoolean initialized = new AtomicBoolean();

@@ -1,5 +1,5 @@
 server:
-  port: 12035
+  port: 12235
 spring:
   application:
     name: a35-flowable
@@ -30,11 +30,15 @@ flowable:
   # 库与数据库表今儿个不一致时,自动升级新版本
   database-schema-update: false
 #  idm:
-#    enabled: false
+#    enabled: true
+#    app:
+#      admin:
+#        user-id: admin
+#        password: 123456
 #  datasource:
 #    type: com.zaxxer.hikari.HikariDataSource
 #    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:3306/flowable_demo?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
+#    url: jdbc:mysql://127.0    .0.1:3306/flowable_demo?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
 #    username: root
 #    password: 123456
 

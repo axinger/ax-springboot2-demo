@@ -1,6 +1,8 @@
 package com.github.axinger.controller;
 
 import cn.hutool.core.io.IoUtil;
+import com.github.axinger.vo.TaskVO;
+import lombok.extern.slf4j.Slf4j;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricActivityInstance;
@@ -15,14 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequestMapping("/history")
 @RestController
+@Slf4j
 public class HistoryTaskController {
 
 
@@ -35,22 +35,28 @@ public class HistoryTaskController {
     @Autowired
     private ProcessEngine processEngine;
 
-    @RequestMapping(value = "/list")
-    public Object createHistoricTaskInstanceQuery() {
+    @RequestMapping(value = "/finished")
+    public Object finishedList() {
 
         List<HistoricTaskInstance> historicTasks = historyService.createHistoricTaskInstanceQuery()
-                .finished()
+                .finished() // 流程状态
                 .list();
-        return historicTasks.stream().map(task -> {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", task.getId());
-            map.put("processInstanceId", task.getProcessInstanceId());
-            map.put("name", task.getName());
-            map.put("assignee", task.getAssignee());
-            map.put("description", task.getDescription());
-            return map;
-        }).collect(Collectors.toSet());
+        List<Map<String, Object>> list = TaskVO.fromHistoricTaskInstance(historicTasks);
+        log.info("已经完成的流程列表={}", list);
+        return list;
     }
+
+    @RequestMapping(value = "/unfinished")
+    public Object unfinished() {
+
+        List<HistoricTaskInstance> historicTasks = historyService.createHistoricTaskInstanceQuery()
+                .unfinished() // 流程状态
+                .list();
+        List<Map<String, Object>> list = TaskVO.fromHistoricTaskInstance(historicTasks);
+        log.info("未完成的流程列表={}", list);
+        return list;
+    }
+
 
     /**
      * 流程申请 流转图片输入流
