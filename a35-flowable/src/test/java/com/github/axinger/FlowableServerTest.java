@@ -14,6 +14,7 @@ import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.engine.runtime.ProcessInstanceBuilder;
 import org.flowable.task.api.Task;
+import org.flowable.task.api.history.HistoricTaskInstance;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -122,31 +123,28 @@ public class FlowableServerTest {
     }
 
     /**
-     * 查询用户，历史流程
+     * 查询用户，查询我申请的列表
      */
     @Test
     void test_02_01() {
 
         String userId = "001";
 
-
         List<HistoricProcessInstance> list = historyService.createHistoricProcessInstanceQuery()
-//                .startedBy(userId)
+                .startedBy(userId)
 //                .processInstanceBusinessKey(userId) // 如果使用业务键存储发起人信息
-                // 如果你想同时查询已完成和未完成的流程实例，
-//                .includeProcessVariables() //可选，如果需要流程变量信息
+                .includeProcessVariables() //可选，如果需要流程变量信息
 //                .finished()
 //                .unfinished()
 //                .deleted()
 //                .desc()
                 .orderByProcessInstanceStartTime()
                 .desc()
-                .listPage(0, 10);
-        ;
+//                .listPage(0, 10);
+                .list();
 
 
         log.info("size={}", list.size());
-//        启动流程 id = ed58d12a-5e20-11ef-bc29-c88a9ada8d91，001,{date=2024-08-19T19:48:18.541185, data2=002, data1=001}
         for (HistoricProcessInstance instance : list) {
             JSONObject jsonObject = new JSONObject();
 
@@ -166,19 +164,51 @@ public class FlowableServerTest {
 //            jsonObject.put("描述", Optional.ofNullable(instance.getDescription()).orElse(""));
             jsonObject.put("描述", instance.getDescription());
 
+
             log.info("{}", jsonObject.toString(JSONWriter.Feature.WriteMapNullValue));
 
             // 删除流程
 //            try {
-//                historyService.deleteHistoricProcessInstance(instance.getId());
+//                historyService.deleteHistoricProcessInstance(instance.getId()); //删除历史流程
 //            } catch (Exception e) {
-//                runtimeService.deleteProcessInstance(instance.getId(), "");
+//                runtimeService.deleteProcessInstance(instance.getId(), ""); //作废流程
 //            }
         }
+    }
+    /**
+     * 查询我的已办
+     */
 
+    @Test
+    void test_02_01_02(){
+        String userId = "001";
+        List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery()
+                .taskAssignee(userId)
+//                .finished()
+                .orderByHistoricTaskInstanceEndTime()
+                .desc()
+                .list();
+        log.info("查询我的已办 size={}",list.size());
+        for (HistoricTaskInstance instance : list) {
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("id", instance.getId());
+            jsonObject.put("ProcessInstanceId", instance.getProcessInstanceId());
+            jsonObject.put("ProcessDefinitionId", instance.getProcessDefinitionId());
+            jsonObject.put("开始时间", LocalDateTimeUtil.of(instance.getCreateTime()));
+            jsonObject.put("结束时间", LocalDateTimeUtil.of(instance.getEndTime()));
+            jsonObject.put("activity", instance.getPropagatedStageInstanceId());
+            jsonObject.put("name", instance.getName());
+            jsonObject.put("参数", instance.getProcessVariables());
+            jsonObject.put("processDefinitionId", instance.getProcessDefinitionId());
+            jsonObject.put("描述", instance.getDescription());
+            jsonObject.put("申请人",instance.getAssignee());
+            jsonObject.put("审批人",instance.getOwner());
+
+            log.info("{}", jsonObject.toString(JSONWriter.Feature.WriteMapNullValue));
+        }
 
     }
-
     /**
      * 删除用户，历史流程
      */
@@ -207,6 +237,27 @@ public class FlowableServerTest {
     @Test
     void test_04() {
         taskService.complete("", Map.of());
+    }
+
+    @Test
+    void test_查询分配我的任务() {
+
+        List<Task> list = taskService.createTaskQuery()
+//                .taskAssignee("001")
+                .taskAssignee("101")
+
+                .list();
+        System.out.println("查询分配我的任务 size = " + list.size());
+
+        for (Task task : list) {
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("id", task.getId());
+            jsonObject.put("name", task.getName());
+            jsonObject.put("处理人",task.getAssignee());
+            jsonObject.put("申请人",task.getOwner());
+            log.info("查询分配我的任务={}", jsonObject.toString(JSONWriter.Feature.WriteMapNullValue));
+        }
     }
 
 }
