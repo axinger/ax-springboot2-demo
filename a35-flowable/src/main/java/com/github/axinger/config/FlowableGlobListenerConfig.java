@@ -16,11 +16,11 @@ public class FlowableGlobListenerConfig implements ApplicationListener<ContextRe
 
 
     @Autowired
-    private CustomCandidateListener customCandidateListener;
+    private TaskCreatedListener taskCreatedListener;
 
     @Override
     public void onApplicationEvent(@NonNull ContextRefreshedEvent contextRefreshedEvent) {
         FlowableEventDispatcher dispatcher = configuration.getEventDispatcher();
-        dispatcher.addEventListener(customCandidateListener, FlowableEngineEventType.TASK_CREATED);
+        dispatcher.addEventListener(taskCreatedListener, FlowableEngineEventType.TASK_CREATED);
     }
 }
