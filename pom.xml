@@ -86,6 +86,7 @@
         <module>a33-docker-jar</module>
         <module>a37-data-rest</module>
         <module>a38-xxl-job</module>
+        <module>a13-springboot-sso</module>
     </modules>
 
     <dependencies>
