@@ -87,6 +87,7 @@
         <module>a37-data-rest</module>
         <module>a38-xxl-job</module>
         <module>a13-springboot-sso</module>
+        <module>a32-tika</module>
     </modules>
 
     <dependencies>
