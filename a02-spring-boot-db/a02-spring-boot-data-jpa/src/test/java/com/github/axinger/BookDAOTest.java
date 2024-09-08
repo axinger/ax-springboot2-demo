@@ -1,5 +1,6 @@
-package com.github.axinger.dao;
+package com.github.axinger;
 
+import com.github.axinger.dao.BookDAO;
 import com.github.axinger.model.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

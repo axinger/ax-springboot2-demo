@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity(name = "t_student")
+@Entity(name = "sys_student")
 public class Student {
 
     @Id

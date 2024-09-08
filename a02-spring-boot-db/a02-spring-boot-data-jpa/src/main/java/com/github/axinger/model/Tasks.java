@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "tasks")
+@Entity(name = "sys_tasks")
 public class Tasks {
 
     @Id

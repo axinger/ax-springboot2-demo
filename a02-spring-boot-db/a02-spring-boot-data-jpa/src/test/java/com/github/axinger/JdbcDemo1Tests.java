@@ -1,9 +1,9 @@
 package com.github.axinger;
 
 import com.github.axinger.dao.BookDAO;
-import com.github.axinger.dao.UsersJpaRepository;
+import com.github.axinger.dao.PersonJpaRepository;
 import com.github.axinger.model.Book;
-import com.github.axinger.model.Users;
+import com.github.axinger.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ public class JdbcDemo1Tests {
 
     // JpaRepository
     @Autowired
-    private UsersJpaRepository usersJpaRepository;
+    private PersonJpaRepository personJpaRepository;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -62,16 +62,16 @@ public class JdbcDemo1Tests {
 
     @Test
     void addUser() {
-        Users user = new Users();
+        Person user = new Person();
         user.setId(1);
         user.setUserName("jim");
-        usersJpaRepository.save(user);
+        personJpaRepository.save(user);
     }
 
 
     @Test
     public void findAll() {
-        List<Users> all = usersJpaRepository.findAll();
+        List<Person> all = personJpaRepository.findAll();
         System.out.println("all = " + all);
     }
 

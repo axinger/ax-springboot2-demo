@@ -1,6 +1,6 @@
 package com.github.axinger.dao;
 
-import com.github.axinger.model.Users;
+import com.github.axinger.model.Person;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.List;
  * 提供了方法名称命名查询方式
  * 提供了基于@Query注解查询与更新
  */
-public interface UsersRepository extends Repository<Users, Integer> {
+public interface UsersRepository extends Repository<Person, Integer> {
 
-    List<Users> findAll();
+    List<Person> findAll();
 
 }

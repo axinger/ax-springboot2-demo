@@ -6,9 +6,9 @@ import javax.persistence.*;
 import java.util.List;
 
 // @Proxy(lazy = false)
-@Entity(name = "users")
+@Entity(name = "sys_person")
 @Data
-public class Users {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,9 +48,9 @@ public class Users {
      */
     //@JoinColumn注解中的name元素为当前实体类中对应的属性id，即users表中的card_id
     // 而referencedColumnName则为关联对象的id,即cards表中的主键id
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
-    @OneToOne(cascade = {CascadeType.ALL})
-    private Cards card;
+//    @JoinColumn(name = "card_id", referencedColumnName = "id")
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    private Cards card;
 
     /**
      * 注意:这里新增了一个注解
@@ -72,12 +72,12 @@ public class Users {
     // @JsonBackReference // 防止json序列化出现死循环
     // private List<Address> addressList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Address> addressList;
-
-    @ManyToMany
-    @JoinTable(name = "user_task", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id"))
-    private List<Tasks> tasksList;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<Address> addressList;
+//
+//    @ManyToMany
+//    @JoinTable(name = "user_task", joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "task_id"))
+//    private List<Tasks> tasksList;
 
 }

@@ -6,7 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Entity(name = "address")
+@Entity(name = "sys_address")
 // @Proxy(lazy = false)
 @Data
 
@@ -39,6 +39,6 @@ public class Address {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinTable(name = "user_to_address")
-    private Users user;
+    private Person user;
 
 }

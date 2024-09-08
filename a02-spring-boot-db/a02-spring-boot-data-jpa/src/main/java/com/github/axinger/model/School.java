@@ -12,7 +12,7 @@ import java.util.List;
  * @since 2022-07-13 10:56:27
  */
 @Data
-@Entity(name = "t_school")
+@Entity(name = "sys_school")
 public class School {
     /**
      * 学校id

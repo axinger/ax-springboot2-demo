@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Entity(name = "t_subject")
+@Entity(name = "sys_subject")
 // @ToString(exclude = "studentList")
 // @EqualsAndHashCode(exclude = "studentList")
 public class Subject {
