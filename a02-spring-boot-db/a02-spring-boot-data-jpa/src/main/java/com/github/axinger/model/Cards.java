@@ -1,14 +1,16 @@
 package com.github.axinger.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
 @Entity(name = "cards")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Proxy(lazy = false)

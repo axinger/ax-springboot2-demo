@@ -1,13 +1,15 @@
 package com.github.axinger.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "sys_book")
-@Data
+@Getter
+@Setter
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //pgsql使用 自增,有nextval('book_id_seq'::regclass),连续

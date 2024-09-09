@@ -1,6 +1,7 @@
 package com.github.axinger.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
  * @author Makavelli
  * @since 2022-07-13 10:56:27
  */
-@Data
+@Getter
+@Setter
 @Entity(name = "sys_school")
 public class School {
     /**

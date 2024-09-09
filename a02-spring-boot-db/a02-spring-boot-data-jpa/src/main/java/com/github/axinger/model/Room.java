@@ -1,7 +1,8 @@
 package com.github.axinger.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -13,7 +14,8 @@ import javax.persistence.*;
  * @since 2022-07-13 10:56:27
  */
 @Entity(name = "t_room")
-@Data
+@Getter
+@Setter
 @ToString(exclude = "school")
 @EqualsAndHashCode(exclude = "school")
 public class Room {

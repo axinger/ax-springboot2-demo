@@ -1,14 +1,16 @@
 package com.github.axinger.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity(name = "sys_address")
 // @Proxy(lazy = false)
-@Data
+@Getter
+@Setter
 
 // @Getter
 // @Setter

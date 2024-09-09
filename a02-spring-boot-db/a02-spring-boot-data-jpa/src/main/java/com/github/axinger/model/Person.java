@@ -1,13 +1,14 @@
 package com.github.axinger.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 // @Proxy(lazy = false)
 @Entity(name = "sys_person")
-@Data
+@Getter
+@Setter
 public class Person {
 
     @Id
