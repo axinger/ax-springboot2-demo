@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 // @Proxy(lazy = false)
 @Entity(name = "sys_person")
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "uc_person_user_name_age", columnNames = {"user_name", "age"})
+})
 @Getter
 @Setter
 public class Person {
@@ -19,6 +22,7 @@ public class Person {
     private String userName;
 
     private int age;
+
 
     /**
      * 1. 一对一
