@@ -20,13 +20,13 @@ import java.io.Serializable;
 @Schema(title = "Result", description = "请求返回结果")
 public class Result<T> implements Serializable {
 
-    @Schema(title = "状态码", description = "200：成功")
+    @Schema(title = "状态码", description = "成功：200；失败：201")
     private Integer code = 200;
 
-    @Schema(title = "提示信息", description = "错误提示信息")
+    @Schema(title = "提示信息", description = "错误信息")
     private String msg = "";
 
-    @Schema(title = "返回数据", description = "泛型数据")
+    @Schema(title = "返回数据", description = "数据")
     private T data;
 
 

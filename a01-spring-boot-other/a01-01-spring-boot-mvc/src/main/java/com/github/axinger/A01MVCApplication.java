@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.retry.annotation.EnableRetry;
 
 @ComponentScan(excludeFilters = {
         // 去除装配
@@ -14,6 +15,10 @@ import org.springframework.context.annotation.FilterType;
                 })
 })
 @SpringBootApplication
+
+
+@EnableRetry(proxyTargetClass = true)
+
 public class A01MVCApplication {
     public static void main(String[] args) {
         SpringApplication.run(A01MVCApplication.class, args);

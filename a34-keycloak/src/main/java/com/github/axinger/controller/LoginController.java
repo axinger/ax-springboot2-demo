@@ -24,7 +24,7 @@ public class LoginController {
     public HashMap<Object, Object> search(Principal principal) {
         System.out.println("principal = " + principal);
         if (principal instanceof KeycloakPrincipal) {
-            AccessToken accessToken = ((KeycloakPrincipal) principal).getKeycloakSecurityContext().getToken();
+            AccessToken accessToken = ((KeycloakPrincipal<?>) principal).getKeycloakSecurityContext().getToken();
             String preferredUsername = accessToken.getPreferredUsername();
             AccessToken.Access realmAccess = accessToken.getRealmAccess();
             Set<String> roles = realmAccess.getRoles();
