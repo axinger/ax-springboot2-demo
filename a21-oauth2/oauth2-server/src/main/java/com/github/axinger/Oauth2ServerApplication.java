@@ -1,13 +1,11 @@
-package com.ax;
+package com.github.axinger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class A18Application {
-
+public class Oauth2ServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(A18Application.class, args);
+        SpringApplication.run(Oauth2ServerApplication.class, args);
     }
-
 }

@@ -4,8 +4,8 @@ import axing.cloud.gateway.bean.FetchGatewayProperties;
 import cn.hutool.core.util.ObjectUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class FetchGatewayInterceptor implements HandlerInterceptor {
 

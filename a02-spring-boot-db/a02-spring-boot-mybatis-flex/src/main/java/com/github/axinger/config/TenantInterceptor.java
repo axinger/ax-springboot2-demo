@@ -3,8 +3,8 @@ package com.github.axinger.config;
 import com.mybatisflex.core.tenant.TenantManager;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class TenantInterceptor implements HandlerInterceptor {
 

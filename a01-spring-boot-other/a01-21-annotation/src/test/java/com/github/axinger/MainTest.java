@@ -8,7 +8,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 

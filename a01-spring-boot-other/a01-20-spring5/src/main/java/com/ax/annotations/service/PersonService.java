@@ -2,10 +2,10 @@ package com.ax.annotations.service;
 
 import com.ax.annotations.dao.PersonDao;
 import com.ax.annotations.model.Person;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 
 //@Component(value = "personService")
 @Service

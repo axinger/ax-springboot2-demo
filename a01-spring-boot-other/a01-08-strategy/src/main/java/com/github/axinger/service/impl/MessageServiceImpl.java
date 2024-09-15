@@ -5,10 +5,10 @@ import com.github.axinger.entity.MessageInfo;
 import com.github.axinger.entity.MsgTypeEnum;
 import com.github.axinger.service.MessageService;
 import com.github.axinger.strategy.MessageStrategy;
+import jakarta.annotation.Resource;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;

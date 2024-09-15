@@ -338,13 +338,13 @@ import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.image.ProcessDiagramGenerator;
 import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -495,25 +495,26 @@ public class ExpenseController {
 * 方式2：新增依赖
 
 ```xml
+
 <dependency>
-  <groupId>javax.xml.bind</groupId>
-  <artifactId>jaxb-api</artifactId>
-  <version>2.3.0</version>
+    <groupId>jakarta.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.3.0</version>
 </dependency>
 <dependency>
-  <groupId>com.sun.xml.bind</groupId>
-  <artifactId>jaxb-core</artifactId>
-  <version>2.3.0</version>
+<groupId>com.sun.xml.bind</groupId>
+<artifactId>jaxb-core</artifactId>
+<version>2.3.0</version>
 </dependency>
 <dependency>
-  <groupId>com.sun.xml.bind</groupId>
-  <artifactId>jaxb-impl</artifactId>
-  <version>2.3.0</version>
+<groupId>com.sun.xml.bind</groupId>
+<artifactId>jaxb-impl</artifactId>
+<version>2.3.0</version>
 </dependency>
 <dependency>
-  <groupId>javax.activation</groupId>
-  <artifactId>activation</artifactId>
-  <version>1.1.1</version>
+<groupId>jakarta.activation</groupId>
+<artifactId>activation</artifactId>
+<version>1.1.1</version>
 </dependency>
 
 ```

@@ -34,19 +34,19 @@ public class HomeController {
         ProducerUser ProducerUser = new ProducerUser();
         ProducerUser.setLastName("jim");
         ProducerUser.setBirthday(LocalDateTime.now());
-        ListenableFuture<SendResult<String, ProducerUser>> send = kafkaTemplate.send(Topic.USER, ProducerUser);
-        send.addCallback(new ListenableFutureCallback<>() {
-
-            @Override
-            public void onFailure(@NonNull Throwable throwable) {
-                log.info("发送消息失败,{}", throwable.getMessage());
-            }
-
-            @Override
-            public void onSuccess(SendResult<String, ProducerUser> sendResult) {
-                log.info("发送消息成功,{}", sendResult.toString());
-            }
-        });
+//        ListenableFuture<SendResult<String, ProducerUser>> send = kafkaTemplate.send(Topic.USER, ProducerUser);
+//        send.addCallback(new ListenableFutureCallback<>() {
+//
+//            @Override
+//            public void onFailure(@NonNull Throwable throwable) {
+//                log.info("发送消息失败,{}", throwable.getMessage());
+//            }
+//
+//            @Override
+//            public void onSuccess(SendResult<String, ProducerUser> sendResult) {
+//                log.info("发送消息成功,{}", sendResult.toString());
+//            }
+//        });
         return "success";
     }
 
@@ -62,7 +62,7 @@ public class HomeController {
             ProducerUser ProducerUser = new ProducerUser();
             ProducerUser.setLastName("jim");
             ProducerUser.setBirthday(LocalDateTime.now());
-            ListenableFuture future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", ProducerUser);
+//            ListenableFuture future = kafkaTemplate.send(Topic.GROUP, i % 4, "key", ProducerUser);
             // future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             //     @Override
             //     public void onFailure(Throwable throwable) {

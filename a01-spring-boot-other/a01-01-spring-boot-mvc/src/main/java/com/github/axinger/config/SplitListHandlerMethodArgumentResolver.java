@@ -1,5 +1,6 @@
 package com.github.axinger.config;
 
+import jakarta.annotation.Nonnull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.WebDataBinder;
@@ -8,7 +9,6 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Objects;
 

@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>a01-spring-boot-other</artifactId>
-        <version>2.7.18.1</version>
+        <version>3.3.3.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>a01-12-spring-web-flux</artifactId>

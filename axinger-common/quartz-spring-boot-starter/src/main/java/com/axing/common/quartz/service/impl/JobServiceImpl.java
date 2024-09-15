@@ -2,12 +2,12 @@ package com.axing.common.quartz.service.impl;
 
 import com.axing.common.quartz.model.CronTaskPOJO;
 import com.axing.common.quartz.service.JobService;
+import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

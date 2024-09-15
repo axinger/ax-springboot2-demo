@@ -32,25 +32,25 @@ class KafkaProducerApplicationTests {
         user.setLastName("jim");
         user.setAge(11);
         user.setBirthday(LocalDateTime.now());
-        ListenableFuture<SendResult<String, ProducerUser>> send = kafkaTemplate.send(Topic.USER_JSON, user);
-
-        send.addCallback(sendResult -> {
-            log.info("发送消息成功===================");
-            RecordMetadata recordMetadata = null;
-            if (sendResult != null) {
-                recordMetadata = sendResult.getRecordMetadata();
-            }
-            System.out.println("recordMetadata = " + recordMetadata);
-            ProducerUser value = null;
-            if (sendResult != null) {
-                value = sendResult.getProducerRecord().value();
-            }
-            System.out.println("value = " + value);
-            countDownLatch.countDown();
-        }, e -> {
-            log.error("发送消息失败,{}", e.getMessage());
-            countDownLatch.countDown();
-        });
+//        ListenableFuture<SendResult<String, ProducerUser>> send = kafkaTemplate.send(Topic.USER_JSON, user);
+//
+//        send.addCallback(sendResult -> {
+//            log.info("发送消息成功===================");
+//            RecordMetadata recordMetadata = null;
+//            if (sendResult != null) {
+//                recordMetadata = sendResult.getRecordMetadata();
+//            }
+//            System.out.println("recordMetadata = " + recordMetadata);
+//            ProducerUser value = null;
+//            if (sendResult != null) {
+//                value = sendResult.getProducerRecord().value();
+//            }
+//            System.out.println("value = " + value);
+//            countDownLatch.countDown();
+//        }, e -> {
+//            log.error("发送消息失败,{}", e.getMessage());
+//            countDownLatch.countDown();
+//        });
 
 
         countDownLatch.await();

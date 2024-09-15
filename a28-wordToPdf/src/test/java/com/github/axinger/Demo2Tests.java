@@ -1,5 +1,6 @@
 package com.github.axinger;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.jodconverter.core.DocumentConverter;
 import org.jodconverter.core.document.DefaultDocumentFormatRegistry;
@@ -7,7 +8,6 @@ import org.jodconverter.core.office.OfficeException;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
 import java.io.File;
 
 @Slf4j

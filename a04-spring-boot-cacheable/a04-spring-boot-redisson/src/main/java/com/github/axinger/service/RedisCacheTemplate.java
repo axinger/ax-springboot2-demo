@@ -1,10 +1,10 @@
 package com.github.axinger.service;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -21,16 +21,16 @@ public class RedisCacheTemplate {
      * @Title: incr
      * @Description: 获取redis自增序号
      */
-    public long incr(String key, long delta, long time) {
+    public Long incr(String key, long delta, long time) {
         try {
-            long l = redisTemplate.opsForValue().increment(key, delta);
+            Long l = redisTemplate.opsForValue().increment(key, delta);
             if (time > 0) {
                 expire(key, time);
             }
             return l;
         } catch (Exception e) {
-            log.error("redis获取" + key + "失败", e);
-            return -1;
+            log.error("redis获取{}失败：{}", key, e.getMessage());
+            return (long) -1;
         }
     }
 
@@ -48,7 +48,7 @@ public class RedisCacheTemplate {
             }
             return true;
         } catch (Exception e) {
-            log.error("redis设置" + key + "过期时间失败", e);
+            log.error("redis设置 {}过期时间失败：{}", key, e.getMessage());
             return false;
         }
     }
