@@ -5,7 +5,7 @@
     <parent>
         <artifactId>a01-spring-boot-other</artifactId>
         <groupId>com.github.axinger</groupId>
-        <version>3.3.3.1</version>
+        <version>2024.09.02-3.3</version>
     </parent>
 
     <artifactId>a01-20-spring5</artifactId>
