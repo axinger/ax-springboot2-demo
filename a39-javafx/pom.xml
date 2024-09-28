@@ -61,7 +61,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
-            <version>17.0.6</version>
+            <version>17.0.10</version>
         </dependency>
 
         <!-- 为JavaFXUI工具包中包含的JavaFX/Swing互操作支持定义API，包括SwingNode（用于在JavaFX应用程序中嵌入Swing）和JFXPanel（用于在Swing应用程序中插入JavaFX）。 -->
