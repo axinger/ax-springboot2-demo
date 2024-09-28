@@ -33,6 +33,7 @@
         <module>excel-spring-boot-starter</module>
         <module>dto-spring-boot-starter</module>
         <module>http-spring-boot-starter</module>
+        <module>log-spring-boot-starter</module>
     </modules>
 
     <dependencies>

@@ -95,6 +95,8 @@
         <module>a13-springboot-sso</module>
         <module>a32-tika</module>
         <module>a21-oauth2</module>
+        <module>a39-javafx</module>
+        <module>javafx-demo</module>
     </modules>
 
     <dependencies>
@@ -232,6 +234,12 @@
             <dependency>
                 <groupId>com.github.axinger</groupId>
                 <artifactId>json-spring-boot-starter</artifactId>
+                <version>${axinger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>log-spring-boot-starter</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
 

@@ -7,6 +7,7 @@ import com.github.axinger.model.Person;
 import com.github.axinger.same.UserService;
 import com.github.axinger.statemachine.Events;
 import com.github.axinger.statemachine.States;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,9 @@ import org.springframework.statemachine.StateMachine;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
+@Slf4j
 @SpringBootTest
 class A01MVCApplicationTest {
 
@@ -107,6 +111,11 @@ class A01MVCApplicationTest {
                 })
                 .subscribe();
 
+    }
+
+    @Test
+    void test_log(){
+        log.info("测试info={}", LocalDateTime.now());
     }
 
 }
