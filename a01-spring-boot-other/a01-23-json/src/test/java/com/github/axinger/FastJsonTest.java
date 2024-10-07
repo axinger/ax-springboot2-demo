@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 
+import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONPath;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,11 @@ public class FastJsonTest {
 
         JSONPath.set(jsonObject,"age3",12);
         System.out.println(jsonObject);
+
+        Person person = JSON.to(Person.class, jsonObject);
+        System.out.println(person);
+        Person person1 = jsonObject.toJavaObject(Person.class);
+        System.out.println(person1);
     }
 
     @Test

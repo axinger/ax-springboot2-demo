@@ -5,7 +5,7 @@ server:
 spring:
   application:
     version: 1.0.1
-    description: 开发环境
+    description: @my-env@
 axing:
   config:
     username: jim

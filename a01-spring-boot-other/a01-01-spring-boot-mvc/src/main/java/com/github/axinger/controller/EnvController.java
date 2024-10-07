@@ -10,7 +10,7 @@ public class EnvController {
     @Autowired
     private ApplicationInfo applicationInfo;
 
-    @GetMapping("/")
+    @GetMapping("/env")
     public Object test2() {
         return applicationInfo;
     }

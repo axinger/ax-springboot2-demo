@@ -1,11 +1,11 @@
 version: 1.0.0
 server:
-  port: 12121
+  port: 12022
 
 spring:
   application:
     version: 2.0.1
-    description: 生产环境
+    description: @my-env@
 
 axing:
   config:

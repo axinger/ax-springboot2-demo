@@ -18,12 +18,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.statemachine</groupId>
-            <artifactId>spring-statemachine-starter</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
@@ -57,11 +51,11 @@
             <artifactId>dto-spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.penggle</groupId>
-            <artifactId>kaptcha</artifactId>
-            <version>2.3.2</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.penggle</groupId>-->
+        <!--            <artifactId>kaptcha</artifactId>-->
+        <!--            <version>2.3.2</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.github.axinger</groupId>
@@ -84,57 +78,59 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.axinger</groupId>
-            <artifactId>same-class-starter</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.axinger</groupId>-->
+        <!--            <artifactId>same-class-starter</artifactId>-->
+        <!--&lt;!&ndash;            <scope>test</scope>&ndash;&gt;-->
+        <!--        </dependency>-->
 
 
     </dependencies>
 
+
     <!--指定运行环境,每次切换需要更新一下maven,有缓存-->
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-        </profile>
-        <profile>
-            <id>prd</id>
-            <properties>
-                <env>prd</env>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <env>test</env>
-            </properties>
-        </profile>
-    </profiles>
+        <profiles>
+            <profile>
+                <id>my-dev</id>
+                <properties>
+                    <my-env>dev</my-env>
+                </properties>
+            </profile>
+            <profile>
+                <id>my-prd</id>
+                <properties>
+                    <my-env>prd</my-env>
+                </properties>
+                <!--默认变量-->
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
+            </profile>
+            <profile>
+                <id>my-test</id>
+                <properties>
+                    <my-env>test</my-env>
+                </properties>
+            </profile>
+        </profiles>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>application-*.yml</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>application.yml</include>
-                    <include>application-${env}*.yml</include>
-                </includes>
-            </resource>
-        </resources>
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <excludes>-->
+<!--                    <exclude>application-*.yml</exclude>-->
+<!--                </excludes>-->
+<!--            </resource>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--                <includes>-->
+<!--                    <include>application.yml</include>-->
+<!--                    <include>application-${env}*.yml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
