@@ -10,4 +10,5 @@ public class Topic {
     public static final String USER_JSON = "user-json";
 
     public static final String USER_DTO_JSON = "USER_DTO_JSON";
+    public static final String TEST_01 = "test01";
 }

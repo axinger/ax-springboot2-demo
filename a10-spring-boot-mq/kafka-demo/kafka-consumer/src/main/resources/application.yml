@@ -6,7 +6,7 @@ server:
 spring:
   kafka:
     # 以逗号分隔的地址列表，用于建立与Kafka集群的初始连接(kafka 默认的端口号为9092)
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: hadoop102:9092
     consumer:
       enable-auto-commit: false
       # 键的反序列化方式

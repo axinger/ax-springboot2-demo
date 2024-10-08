@@ -2,14 +2,20 @@ package com.github.axinger.consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.axinger.api.Topic;
+import com.github.axinger.api.model.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.common.TopicPartition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 
 @Component
@@ -24,7 +30,7 @@ public class UserConsumer1 {
     // 注意：kafkaListenerContainerFactory 是一个支持手动确认和异步提交偏移量的自定义工厂。
     // 如果您使用的是默认工厂，则将自动确认和同步提交偏移量。
     @KafkaListener(id = "ax_kafka_demo1",
-            topics = Topic.USER_DTO_JSON,
+            topics = Topic.TEST_01,
             groupId = "my_group_id1"
 //            containerFactory = "kafkaListenerContainerFactory"
     )
@@ -34,7 +40,7 @@ public class UserConsumer1 {
             @Payload String data,
 //            @Payload UserDTO userDTO,
             Acknowledgment ack,
-//            ConsumerRecord<?, UserDTO> record,
+            ConsumerRecord<?, UserDTO> record,
             Consumer<?, ?> consumer) {
         log.info("ax_kafka_demo1==================================================");
         try {
@@ -48,7 +54,7 @@ public class UserConsumer1 {
             // int partition = record.partition();
             //
             // // 获取偏移量
-            // long offset = record.offset();
+             long offset = record.offset();
             //
             // // 获取键和值
             // String key = record.key();
@@ -58,8 +64,10 @@ public class UserConsumer1 {
 
 //            ConsumerUser user = objectMapper.readValue(data, ConsumerUser.class);
 //            log.info("解析data objectMapper user = {}", user);
-            System.out.println("message.getPayload() = " + message.getPayload());
-            System.out.println("data = " + data);
+//            System.out.println("message.getPayload() = " + message.getPayload());
+//            System.out.println("data = " + data);
+//
+            log.info("偏移量={}，payload={}，data={}",offset,message.getPayload(),data);
 //            System.out.println("userDTO = " + userDTO);
 
 //            UserDTO value = record.value();
@@ -68,11 +76,13 @@ public class UserConsumer1 {
 //            System.out.println("message = " + message);
             // 手动确认消息状态，并异步提交最新的消息偏移量。
             ack.acknowledge();
+
             consumer.commitAsync((offsets, exception) -> {
                 if (exception != null) {
                     log.error("提交偏移量失败 {}", exception.getMessage(), exception);
                 } else {
-                    log.info("提交偏移量成功 {}", offsets.keySet());
+                    log.info("提交偏移量成功，主题-节点 {}，内容={}", offsets.keySet(), offsets.values());
+
                 }
             });
         } catch (Exception e) {
