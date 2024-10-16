@@ -2,7 +2,6 @@ package com.axing.common.advice.config;
 
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.advice.exception.GlobalException;
-import com.axing.common.advice.response.GlobalResponse;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +16,9 @@ public class AdviceAutoConfig {
         return new GlobalException(adviceProperties);
     }
 
-    @Bean
-    public GlobalResponse globalResponse(AdviceProperties adviceProperties) {
-        return new GlobalResponse(adviceProperties);
-    }
+//    @Bean
+//    public GlobalResponse globalResponse(AdviceProperties adviceProperties) {
+//        return new GlobalResponse(adviceProperties);
+//    }
 
 }

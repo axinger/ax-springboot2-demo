@@ -10,15 +10,20 @@ import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URLEncoder;
@@ -224,11 +229,10 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public UploadFileBO uploadFile(MultipartFile file, String bucketName) {
         Assert.isTrue(file.getSize() > 0, "上传文件失败,文件大小不能为：0");
-        try {
+        try (InputStream inputStream = file.getInputStream()) {
             String originalFilename = file.getOriginalFilename();
             Assert.notNull(originalFilename, "上传文件失败,文件名为空");
             String contentType = file.getContentType();
-            @Cleanup InputStream inputStream = file.getInputStream();
             Assert.notNull(inputStream, "上传文件失败,getInputStream为空");
             String objectName = FilePathUtil.getFileName(originalFilename);
             UploadFileBO bo = uploadStream(inputStream, bucketName, objectName, contentType);
@@ -250,10 +254,9 @@ public class MinioServiceImpl implements MinioService {
     @SneakyThrows
     @Override
     public void download(HttpServletResponse response, String bucketName, String objectName) {
-        try {
+        try(InputStream inputStream = this.getObject(bucketName, objectName)) {
             StatObjectArgs args = StatObjectArgs.builder().bucket(bucketName).object(objectName).build();
             StatObjectResponse stat = minioClient.statObject(args);
-            @Cleanup InputStream inputStream = this.getObject(bucketName, objectName);
             response.setContentType(stat.contentType());
             response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(objectName, String.valueOf(StandardCharsets.UTF_8)));
             IOUtils.copy(inputStream, response.getOutputStream());
@@ -262,6 +265,43 @@ public class MinioServiceImpl implements MinioService {
         }
     }
 
+    /**
+     * 流式下载
+     * @param bucket bucketName
+     * @param fileName objectName
+     */
+    @Override
+  public   ResponseEntity<StreamingResponseBody> downloadStreaming(String bucket, String fileName){
+
+        try {
+            // 从 MinIO 获取文件流
+            InputStream inputStream = minioClient.getObject(
+                    GetObjectArgs.builder()
+                            .bucket(bucket)
+                            .object(fileName)
+                            .build());
+
+            // 使用 StreamingResponseBody 返回流
+            StreamingResponseBody responseBody = outputStream -> {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                inputStream.close(); // 关闭输入流
+            };
+
+            // 设置文件下载响应头
+            HttpHeaders headers = new HttpHeaders();
+            headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"");
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+//            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+            return ResponseEntity.ok().headers(headers).body(responseBody);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     /**
      * 写入文件到本地路径
      *
@@ -272,8 +312,7 @@ public class MinioServiceImpl implements MinioService {
     @SneakyThrows
     @Override
     public File writeToPath(String bucketName, String objectName, String fullFilePath) {
-        try {
-            @Cleanup InputStream inputStream = this.getObject(bucketName, objectName);
+        try (InputStream inputStream = this.getObject(bucketName, objectName)){
             return FileUtil.writeFromStream(inputStream, fullFilePath);
         } catch (MinioException e) {
             throw new MinioException(StrUtil.format("写入文件失败 = {}", e.getMessage()));

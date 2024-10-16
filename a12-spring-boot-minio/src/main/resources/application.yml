@@ -13,7 +13,7 @@ axing:
   response:
     base-packages: com.github.axinger
   minio:
-    url: http://192.168.101.143:9000
+    url: http://hadoop102:19000
     username: admin #访问的key
-    password: 12345678 #访问的秘钥
+    password: admin123 #访问的秘钥
 

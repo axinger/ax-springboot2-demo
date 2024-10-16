@@ -3,15 +3,18 @@ package com.github.axinger.controller;
 import com.axing.common.minio.service.MinioService;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.result.Result;
+import io.minio.GetObjectArgs;
+import io.minio.MinioClient;
+import io.minio.errors.MinioException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+
 import java.io.InputStream;
 
 /**
@@ -25,16 +28,18 @@ import java.io.InputStream;
 @Slf4j
 @RestController
 public class MinioController {
+    @Autowired
+    private MinioClient minioClient;
 
     @Autowired
     private MinioService minioService;
 
     /**
-     * 上传文件,用 InputStream 方式
+     * 上传文件,minio用 InputStream 方式
      */
     @PostMapping(value = "/minio/uploadStream", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Result uploadByMinio(@RequestParam(value = "file") MultipartFile file,
-                                @RequestParam("bucketName") String bucketName) throws Exception {
+    public Result<?> uploadByMinio(@RequestParam(value = "file") MultipartFile file,
+                                   @RequestParam("bucketName") String bucketName) throws Exception {
         if (file.getSize() < 1) {
             log.warn("文件大小为：0");
             return Result.fail("文件大小为：0");
@@ -52,8 +57,8 @@ public class MinioController {
      * 上传文件,用 MultipartFile 方式,内部也是走InputStream方式
      */
     @PostMapping(value = "/minio/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Result uploadFile(@RequestParam(value = "file") MultipartFile file,
-                             @RequestParam("bucketName") String bucketName) {
+    public Result<?> uploadFile(@RequestParam(value = "file") MultipartFile file,
+                                @RequestParam("bucketName") String bucketName) {
         Object upload = minioService.uploadFile(file, bucketName);
         return Result.ok(upload);
     }
@@ -61,11 +66,23 @@ public class MinioController {
     /**
      * 下载文件
      */
-    @PostMapping("/minio/download")
-    public void downloadByMinio(HttpServletResponse response, String bucketName, String fileName) {
-        minioService.download(response, bucketName, fileName);
+    @GetMapping("/download/{bucket}/{fileName}")
+    public void downloadByMinio(HttpServletResponse response, @PathVariable String bucket,
+                                @PathVariable String fileName) {
+        minioService.download(response, bucket, fileName);
     }
 
+    @GetMapping("/bigDownload/{bucket}/{fileName}")
+    public ResponseEntity<StreamingResponseBody> downloadFile(@PathVariable String bucket,
+                                                              @PathVariable String fileName) {
+        return minioService.downloadStreaming(bucket, fileName);
+    }
+
+    /**
+     * 获取文件url
+     *
+     * @return url
+     */
     @PostMapping("/minio/fileUrl")
     public Result downloadByMinio(String bucketName, String fileName) {
         String url = minioService.fileUrl(bucketName, fileName);

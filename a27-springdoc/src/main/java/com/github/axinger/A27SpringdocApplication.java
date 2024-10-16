@@ -18,6 +18,7 @@ public class A27SpringdocApplication {
         log.error("测试error = {}", LocalDateTime.now());
         log.error("测试error2 = {}", LocalDateTime.now());
         log.trace("测试trace = {}", LocalDateTime.now());
+        log.info("swagger地址 = {}", "http://localhost:11027/swagger-ui/index.html");
     }
 
 }

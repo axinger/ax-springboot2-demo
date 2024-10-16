@@ -35,11 +35,11 @@ axing:
 
 logging:
   level:
-    #    root: debug
-    com.github.axinger: debug
-  config: classpath:logback-spring.xml
-  file:
-    path: logs
+#    root: error
+    com.github.axinger: info
+  config: classpath:logback-spring.xml # 这个在log- 模块里面
+#  file:
+#    path: logs
 #    DEBUG
 #    ERROR
 #    FATAL
