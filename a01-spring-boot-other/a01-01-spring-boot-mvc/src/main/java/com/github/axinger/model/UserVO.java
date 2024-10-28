@@ -15,7 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "axing.config")
 /// @EnableConfigurationProperties(UserDTO.class) 配合使用
-public record UserDTO(String username, String password) {
+public record UserVO(String username, String password) {
 
     public String all() {
         return username + password;
