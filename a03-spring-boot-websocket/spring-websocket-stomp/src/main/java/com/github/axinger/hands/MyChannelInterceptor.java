@@ -1,5 +1,6 @@
 package com.github.axinger.hands;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -23,7 +24,7 @@ public class MyChannelInterceptor implements ChannelInterceptor {
 
     // 在消息发送之前调用，方法中可以对消息进行修改，如果此方法返回值为空，则不会发生实际的消息发送调用
     @Override
-    public Message<?> preSend(Message<?> message, MessageChannel messageChannel) {
+    public Message<?> preSend(@NonNull Message<?> message, @NonNull MessageChannel messageChannel) {
 
         StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
         /**
