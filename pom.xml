@@ -123,6 +123,7 @@
         <module>a32-tika</module>
         <module>a21-oauth2</module>
         <module>a39-javafx</module>
+        <module>a40-ai</module>
     </modules>
 
     <dependencies>
