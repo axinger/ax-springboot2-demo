@@ -1,9 +1,13 @@
 package com.github.axinger.server;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
+import com.xxl.job.core.util.XxlJobRemotingUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedInputStream;
@@ -12,6 +16,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /**
@@ -26,23 +31,30 @@ import java.util.Arrays;
  * @author xuxueli 2019-12-11 21:52:51
  */
 @Component
+@Slf4j
 public class SampleXxlJob {
-    private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
 
+
+// （ “GLUE模式(Java)”的执行代码托管到调度中心在线维护，相比“Bean模式任务”需要在执行器项目开发部署上线，更加简便轻量）
 
     /**
      * 1、简单任务示例（Bean模式）
      */
     @XxlJob("demoJobHandler")
-    public void demoJobHandler() throws Exception {
-//        XxlJobHelper.log("XXL-JOB, Hello World.");
-        System.out.println("demoJobHandler==============================");
+    public boolean demoJobHandler() throws Exception {
 
-//        for (int i = 0; i < 5; i++) {
-////            XxlJobHelper.log("beat at:" + i);
-//            TimeUnit.SECONDS.sleep(2);
-//        }
-        // default success
+        String param = XxlJobHelper.getJobParam();
+
+        XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
+        log.info("简单任务示例={},参数={}", LocalDateTime.now(), param);
+
+
+        // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
+        // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
+
+
+//        return XxlJobHelper.handleFail();
+        return true; // 执行成功
     }
 
 
@@ -51,6 +63,7 @@ public class SampleXxlJob {
      */
     @XxlJob("shardingJobHandler")
     public void shardingJobHandler() throws Exception {
+
 
         // 分片参数
         int shardIndex = XxlJobHelper.getShardIndex();
@@ -238,18 +251,10 @@ public class SampleXxlJob {
     /**
      * 5、生命周期任务示例：任务初始化与销毁时，支持自定义相关逻辑；
      */
-    @XxlJob(value = "demoJobHandler2", init = "init", destroy = "destroy")
-    public void demoJobHandler2() throws Exception {
-        XxlJobHelper.log("XXL-JOB, Hello World.");
-    }
-
-    public void init() {
-        logger.info("init");
-    }
-
-    public void destroy() {
-        logger.info("destroy");
-    }
+//    @XxlJob(value = "demoJobHandler2", init = "init", destroy = "destroy")
+//    public void demoJobHandler2() throws Exception {
+//        XxlJobHelper.log("XXL-JOB, Hello World.");
+//    }
 
 
 }
