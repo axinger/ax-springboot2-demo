@@ -10,7 +10,7 @@ import java.util.Map;
 @RestController
 public class TestController {
 
-    @GetMapping("/")
+    @GetMapping("/a")
     public Object index() {
         Map<String, Object> map = new HashMap<>();
         map.put("code",BUtil.code());

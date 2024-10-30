@@ -1,4 +1,5 @@
+#spring:
+#  profiles:
+#    active: a
 server:
-  servlet:
-    context-path: /
-  port: 8081
+  port: 19091

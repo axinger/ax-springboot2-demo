@@ -1,4 +1,4 @@
-#server:
-#  servlet:
-#    context-path: /
-#  port: 8082
+# application.yml (项目B)
+server:
+#  port: ${PORT:19092} # 默认端口为8082，可以通过环境变量覆盖
+  port: 19092 # 默认端口为8082，可以通过环境变量覆盖
