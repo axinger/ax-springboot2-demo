@@ -1,22 +1,14 @@
 package com.github.axinger;
 
-import org.flowable.engine.*;
-import org.flowable.engine.repository.Deployment;
-import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.form.engine.test.FormDeploymentAnnotation;
+import org.flowable.engine.IdentityService;
 import org.flowable.idm.api.Group;
 import org.flowable.idm.api.User;
 import org.flowable.idm.engine.impl.persistence.entity.GroupEntityImpl;
-import org.flowable.idm.engine.impl.persistence.entity.UserEntityImpl;
-import org.flowable.task.api.Task;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @SpringBootTest
 public class FlowableUserTest {
@@ -97,7 +89,6 @@ public class FlowableUserTest {
     }
 
     @Test
-    @FormDeploymentAnnotation
     public void identityServiceTest() {
         // 查询方法最终调用了 CustomUserQueryImpl,里面的测试数据有3个用户，对应ID:["1","2","3"]
         List<User> userList = identityService.createUserQuery().list();

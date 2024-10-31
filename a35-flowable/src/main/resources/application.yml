@@ -14,13 +14,13 @@ spring:
       datasource:
         db_ax_test:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/ax_test3?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://hadoop102:3306/ax_test?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
           username: root
           password: 123456
 
         db_flowable:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/flowable_demo?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://hadoop102:3306/flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
           username: root
           password: 123456
 
@@ -28,9 +28,9 @@ flowable:
   #关闭定时任务JOB
   async-executor-activate: false
   # 库与数据库表今儿个不一致时,自动升级新版本
-  database-schema-update: false
+  database-schema-update: true
 #  idm:
-#    enabled: false
+#    enabled: true
 #    app:
 #      admin:
 #        user-id: admin

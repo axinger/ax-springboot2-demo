@@ -45,9 +45,23 @@ public class FlowableServerTest {
     private RepositoryService repositoryService;
 
 
+    // 发布流程，将流程定义部署到流程引擎中：
+    // 需要把ui的流程加载到项目中，但是使用ui，直接发布也可以
+    @Test
+    void test01_发布流程() {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        Deployment deployment = repositoryService.createDeployment()
+                .addClasspathResource("processes/学生请假流程.bpmn20.xml")
+                .deploy();
+        String id = deployment.getId();
+        System.out.println("id = " + id); //9b6b59fa-9756-11ef-a902-c88a9ada8d91
+    }
+
+
 
     @Test
-    void test_00(){
+    void test02_已经发布的流程(){
         List<Deployment> list = repositoryService.createDeploymentQuery().list();
         log.info("Deployment size={}",list.size());
 
@@ -61,27 +75,11 @@ public class FlowableServerTest {
             jsonObject.put("category", deployment.getCategory());
             jsonObject.put("发布时间",deployment.getDeploymentTime());
             System.out.println("jsonObject = " + jsonObject);
-
-//            repositoryService.deleteDeployment(deployment.getId(), true);
-
-
         }
 
 //        repositoryService.deleteDeployment(deployment.getId(), true);
     }
 
-    // 发布流程，将流程定义部署到流程引擎中：
-    // 需要把ui的流程加载到项目中，但是使用ui，直接发布也可以
-    @Test
-    void test_01() {
-        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-        RepositoryService repositoryService = processEngine.getRepositoryService();
-        Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("processes/caiwu_01.bpmn20.xml")
-                .deploy();
-        String id = deployment.getId();
-        System.out.println("id = " + id);
-    }
 
 
     // 启动流程
@@ -89,7 +87,7 @@ public class FlowableServerTest {
     void test_02() {
 
         // 根据流程id，获取流程实例;
-        String userId = "001";
+        String userId = "张三";
 //        Authentication.setAuthenticatedUserId("001");//设置流程发起人，方式一
         String now = LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss");
 //        String processKey = "caiwu_01"; //我们创建流程图自定义的key
@@ -233,19 +231,15 @@ public class FlowableServerTest {
         System.out.println("list = " + list);
     }
 
-    //审批
-    @Test
-    void test_04() {
-        taskService.complete("", Map.of());
-    }
 
     @Test
     void test_查询分配我的任务() {
 
+//        List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("a").list();
         List<Task> list = taskService.createTaskQuery()
 //                .taskAssignee("001")
-                .taskAssignee("101")
-
+//                .taskAssignee("张三")
+                .taskCandidateGroup("a")
                 .list();
         System.out.println("查询分配我的任务 size = " + list.size());
 
@@ -259,5 +253,12 @@ public class FlowableServerTest {
             log.info("查询分配我的任务={}", jsonObject.toString(JSONWriter.Feature.WriteMapNullValue));
         }
     }
+
+    //审批
+    @Test
+    void test_04() {
+        taskService.complete("9b3a577f-9759-11ef-a3c1-c88a9ada8d91", Map.of());
+    }
+
 
 }

@@ -1,5 +1,9 @@
 package com.github.axinger.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.task.api.history.HistoricTaskInstance;
 
@@ -8,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 public class TaskVO {
 
     static public List<Map<String, Object>> fromHistoricTaskInstance(List<HistoricTaskInstance> historicTasks) {
@@ -24,4 +32,8 @@ public class TaskVO {
         log.info("流程列表={}", list);
         return list;
     }
+
+    private String id;
+    private String day;
+    private String studentName;
 }
