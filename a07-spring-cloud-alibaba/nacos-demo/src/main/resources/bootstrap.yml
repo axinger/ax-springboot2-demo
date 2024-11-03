@@ -1,10 +1,5 @@
 spring:
   application:
-    name: demo-nacos
+    name: demoNacos
   profiles:
     active: dev
-
-
-config:
-  info: 没有前缀
-  name: luck

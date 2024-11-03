@@ -1,5 +1,9 @@
 package com.github.axinger.controller;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
+import com.github.axinger.bean.DocInfoProperties;
+import com.github.axinger.bean.PersonProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,29 +23,23 @@ import java.util.Map;
 @RestController
 @RefreshScope // 支持nacos的动态刷新功能
 public class ConfigController {
-//
-//    @Value("${title:#{null}}")
-//    private String title;
-//
-//    @Value("${config.info:#{null}}")
-//    private String info;
-//
-//    @Value("${config.name:#{null}}")
-//    private String name;
-//
-//
-//    @Value("${person.name:#{null}}")
-//    private String personName;
-//
-//
-//    @GetMapping("/")
-//    public Object getInfo() {
-//        System.out.println("getInfo = " + info);
-//        Map<String, Object> map = new HashMap<>(16);
-//        map.put("title", title);
-//        map.put("info", info);
-//        map.put("name", name);
-//        map.put("personName", personName);
-//        return map;
-//    }
+
+    @Value("${axing.doc.title:#{null}}")
+//    @NacosValue("${axing.doc.title:#{null}}")
+    private String title;
+
+//    @Autowired
+//    private DocInfoProperties docInfoProperties;
+
+    @Autowired
+    private PersonProperties personProperties;
+
+    @GetMapping("/")
+    public Object getInfo() {
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("title", title);
+//        map.put("info", docInfoProperties);
+        map.put("person", personProperties);
+        return map;
+    }
 }

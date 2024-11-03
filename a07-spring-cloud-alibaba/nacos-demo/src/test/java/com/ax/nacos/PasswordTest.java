@@ -1,16 +1,13 @@
 package com.ax.nacos;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootTest
-class Demo12NacosApplicationTests {
+public class PasswordTest {
 
     @Test
     void contextLoads() {
-
-
+        String nacos = new BCryptPasswordEncoder().encode("nacos");
+        System.out.println("nacos = " + nacos);
     }
-
 }

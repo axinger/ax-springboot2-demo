@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.comparator.VersionComparator;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,15 @@ public class StrTests {
         String format = StrUtil.format("[{}]", CollUtil.join(list, ","));
         System.out.println("format = " + format);
 
+    }
+
+    @Test
+    void test_4() {
+
+        // 版本号比较
+        System.out.println(VersionComparator.INSTANCE.compare("1.1","1.12"));
+        System.out.println(VersionComparator.INSTANCE.compare("1.10","1.12"));
+        System.out.println(VersionComparator.INSTANCE.compare("1.1","1.1.2"));
     }
 
 }
