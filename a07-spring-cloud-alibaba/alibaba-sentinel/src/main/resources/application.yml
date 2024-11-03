@@ -1,24 +1,26 @@
 server:
-  port: 8090
+  port: 12077
 
 spring:
   application:
-    name: demo12spring-cloud-alibaba-sentinel
+    name: demo-sentinel
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: http://hadoop102:8848
+        username: nacos
+        password: nacos
+        namespace: demo_dev
+        group: DEFAULT_GROUP
+
     sentinel:
       transport:
+#        client-ip: hadoop102
         port: 8719
-        dashboard: localhost:8080
+        dashboard: localhost:12080
       datasource:
-        nacos:
-          serverAddr: localhost:8848
-          dataId: ${spring.application.name}
-          groupId: DEFAULT_GROUP
-          data-type: json
-          rule-type: flow
-          username: nacos
-          password: nacos
+        ds1:
+          nacos:
+            server-addr:
+#        dashboard: hadoop102:12080
 

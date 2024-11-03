@@ -2,9 +2,6 @@
 spring:
   application:
     name: demoNacos
-
-  config:
-    import: optional:nacos:DocInfo.yml
   cloud:
     nacos:
 #      server-addr: http://localhost:8848

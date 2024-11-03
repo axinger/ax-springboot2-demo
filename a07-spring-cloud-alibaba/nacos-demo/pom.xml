@@ -47,39 +47,6 @@
 
 
 
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.nacos</groupId>-->
-<!--                <artifactId>nacos-client</artifactId>-->
-<!--                <version>${nacos.version}</version>-->
-<!--                &lt;!&ndash; 指定纯净版SDK &ndash;&gt;-->
-<!--                <classifier>pure</classifier>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; 使用纯净版时必须要引入同版本nacos-api和nacos-common，否则可能出现运行时找不到类的问题 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.nacos</groupId>-->
-<!--                <artifactId>nacos-common</artifactId>-->
-<!--                <version>${nacos.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba.nacos</groupId>-->
-<!--                <artifactId>nacos-api</artifactId>-->
-<!--                <version>${nacos.version}</version>-->
-<!--            </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
-<!--&lt;!&ndash;            <version>2023.0.1.2</version>&ndash;&gt;-->
-<!--            <version>2021.0.6.1</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--&lt;!&ndash;            <version>2023.0.1.2</version>&ndash;&gt;-->
-<!--            <version>2021.0.6.1</version>-->
-<!--        </dependency>-->
-
 
 
 
@@ -94,17 +61,6 @@
             <artifactId>spring-cloud-loadbalancer</artifactId>
         </dependency>
 
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-test</artifactId>-->
-<!--&lt;!&ndash;            <scope>test</scope>&ndash;&gt;-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-bootstrap</artifactId>-->
-<!--        </dependency>-->
 
     </dependencies>
 
