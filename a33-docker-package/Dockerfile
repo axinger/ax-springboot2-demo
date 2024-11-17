@@ -5,7 +5,7 @@
 #通常而言，如果您需要最新的 Java 技术和性能优化，请选择 eclipse-temurin:17-jre-jammy 这样的 JDK 镜像。但在某些情况下，如需求有限、资源受限或考虑 Docker 映像的大小等因素，则可以选择 eclipse-temurin:17-jre-alpine。
 
 
-#FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:17-jdk
 #FROM eclipse-temurin:17-jdk-jammy
 #FROM eclipse-temurin:17-jdk-centos7
 #FROM eclipse-temurin:17-jdk-focal
@@ -13,9 +13,9 @@
 
 
 #FROM eclipse-temurin:17-jre
-#FROM  eclipse-temurin:8-jre
+#FROM eclipse-temurin:8-jre
 # bin/bash 有 mkdir命令
-FROM eclipse-temurin:17-jre-jammy
+#FROM eclipse-temurin:17-jre-jammy
 #FROM eclipse-temurin:17-jre-focal
 #FROM eclipse-temurin:17-jre-centos7
 #FROM eclipse-temurin:17-jre-alpine
@@ -30,6 +30,10 @@ VOLUME /data
 
 #设置工作目录，设置了工作目录，它将会作用于该指令后面的 RUN, CMD, ENTRYPOINT, COPY , ADD 指令
 #WORKDIR /app
+
+# 安装lsof
+RUN apt-get update && apt-get install -y lsof
+
 
 RUN bash -c 'mkdir -p {config,target}'
 #RUN sh -c 'mkdir config target'
