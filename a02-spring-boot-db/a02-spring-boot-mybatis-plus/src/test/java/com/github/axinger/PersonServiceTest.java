@@ -3,11 +3,13 @@ package com.github.axinger;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.axinger.config.MyTableNameHandler;
@@ -224,11 +226,13 @@ class PersonServiceTest {
         PersonEntity entity = new PersonEntity();
         entity.setAge(10);
         entity.setId(1L);
-
-        personService.saveOrUpdate(entity, personService.lambdaUpdate()
+        AbstractWrapper<PersonEntity, SFunction<PersonEntity, ?>, LambdaUpdateWrapper<PersonEntity>> wrapper = personService.lambdaUpdate()
                 .eq(PersonEntity::getId, 1)
                 .setSql("book_price = book_price+10")
-                .getWrapper());
+                .getWrapper();
+
+//        personService.saveOrUpdate(entity, wrapper);
+        personService.update(entity, wrapper);
     }
 
     @Test
@@ -255,7 +259,7 @@ class PersonServiceTest {
         // bookService.saveOrUpdate(book, Wrappers.<BookEntity>lambdaQuery()
         //         .eq(BookEntity::getBookAuthor, "tom"));
 
-        personService.saveOrUpdate(book, personService.lambdaQuery()
+        personService.update(book, personService.lambdaQuery()
                 .eq(PersonEntity::getName, "tom")
                 .getWrapper());
 

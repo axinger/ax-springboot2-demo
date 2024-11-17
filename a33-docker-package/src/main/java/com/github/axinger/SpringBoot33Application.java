@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Slf4j
 @SpringBootApplication
+@MapperScan(value = {"com.github.axinger.mapper"})
 public class SpringBoot33Application {
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(SpringBoot33Application.class, args);

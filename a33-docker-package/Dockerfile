@@ -32,7 +32,7 @@ VOLUME /data
 #WORKDIR /app
 
 # 安装lsof
-RUN apt-get update && apt-get install -y lsof
+#RUN apt-get update && apt-get install -y lsof
 
 
 RUN bash -c 'mkdir -p {config,target}'
@@ -63,6 +63,6 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 EXPOSE 45033
 
 # 命令运行
-# restart=always; privileged=true; network=demo-network
+# restart=always; privileged=true; network=mynetwork
 # idea配置项
-# --restart=always --privileged=true --network=demo-network
+# --restart=always --privileged=true --network=mynetwork

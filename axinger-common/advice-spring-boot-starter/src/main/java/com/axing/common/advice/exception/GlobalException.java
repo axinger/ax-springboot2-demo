@@ -45,9 +45,9 @@ public class GlobalException {
         String method = request.getMethod();
         String uri = request.getRequestURI();
 
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("method", method);
-        map.put("path", uri);
+//        Map<String, Object> map = new HashMap<>(16);
+//        map.put("method", method);
+//        map.put("path", uri);
 
         String msg = "";
         if (Optional.of(e).map(Throwable::getMessage).isPresent()) {

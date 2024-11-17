@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="a33-docker-package@143" type="docker-deploy" factoryName="dockerfile" server-name="hadoop102">
+  <configuration default="false" name="a33-docker-package@143" type="docker-deploy" factoryName="dockerfile" server-name="hadoop104">
     <deployment type="dockerfile">
       <settings>
         <option name="imageTag" value="axinger/demo" />

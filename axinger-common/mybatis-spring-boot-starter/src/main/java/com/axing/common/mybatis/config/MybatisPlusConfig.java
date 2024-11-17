@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -55,6 +54,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
         // this.strictUpdateFill(metaObject, field, () -> LocalDateTime.now(), LocalDateTime.class);
     }
 
+
     @Bean
     public MybatisPlusInterceptor optimisticLockerInnerInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
@@ -64,6 +64,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
         interceptor.addInnerInterceptor(lockerInnerInterceptor);
 
         // 分页
+//        PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
         interceptor.addInnerInterceptor(paginationInnerInterceptor);
 
