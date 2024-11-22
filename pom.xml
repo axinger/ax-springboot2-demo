@@ -126,7 +126,6 @@
         <module>a21-oauth2</module>
         <module>a39-javafx</module>
         <module>a40-ai</module>
-        <module>a03-spring-boot-websocket/WebFlux-ws</module>
     </modules>
 
     <dependencies>
