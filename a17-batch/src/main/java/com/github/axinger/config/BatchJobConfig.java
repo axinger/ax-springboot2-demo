@@ -9,11 +9,13 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
+
 
 @Configuration
 @EnableBatchProcessing
@@ -57,6 +59,19 @@ public class BatchJobConfig {
                 .start(step1())
                 .build();
     }
+
+//    @Bean
+//    public JobBuilder builder() {
+//        return new JobBuilder("addUserJob");
+//    }
+//
+//    @Bean(name = "userJob")
+//    public Job userJob(JobBuilder jobBuilder) { // 使用 JobBuilder 代替 JobBuilderFactory
+//        return jobBuilder
+//                .start(step1())
+//                .build();
+//    }
+
 
     @Bean
     public Step step1() {

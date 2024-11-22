@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -23,7 +25,7 @@ public class TestController {
 
 
     @GetMapping("/job")
-    public void runImportUserJob() throws Exception {
+    public Object runImportUserJob() throws Exception {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("time", System.currentTimeMillis())
                 .toJobParameters();
@@ -69,5 +71,9 @@ public class TestController {
                 break;
         }
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("time", System.currentTimeMillis());
+        map.put("status", exitStatus.getExitCode());
+        return map;
     }
 }
