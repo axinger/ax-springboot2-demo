@@ -11,7 +11,7 @@ public class Demo {
 //        System.out.println(encodePassword);
 //    }
 
-        //自定义publicKey
+    //自定义publicKey
     public static void main(String[] args) throws Exception {
         String[] arr = CryptoUtils.genKeyPair(512);
         System.out.println("privateKey:  " + arr[0]);

@@ -94,48 +94,48 @@
 
 
     <!--指定运行环境,每次切换需要更新一下maven,有缓存-->
-        <profiles>
-            <profile>
-                <id>my-dev</id>
-                <properties>
-                    <my-env>dev</my-env>
-                </properties>
-            </profile>
-            <profile>
-                <id>my-prd</id>
-                <properties>
-                    <my-env>prd</my-env>
-                </properties>
-                <!--默认变量-->
-                <activation>
-                    <activeByDefault>true</activeByDefault>
-                </activation>
-            </profile>
-            <profile>
-                <id>my-test</id>
-                <properties>
-                    <my-env>test</my-env>
-                </properties>
-            </profile>
-        </profiles>
+    <profiles>
+        <profile>
+            <id>my-dev</id>
+            <properties>
+                <my-env>dev</my-env>
+            </properties>
+        </profile>
+        <profile>
+            <id>my-prd</id>
+            <properties>
+                <my-env>prd</my-env>
+            </properties>
+            <!--默认变量-->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>my-test</id>
+            <properties>
+                <my-env>test</my-env>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <excludes>-->
-<!--                    <exclude>application-*.yml</exclude>-->
-<!--                </excludes>-->
-<!--            </resource>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <filtering>true</filtering>-->
-<!--                <includes>-->
-<!--                    <include>application.yml</include>-->
-<!--                    <include>application-${env}*.yml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
+        <!--        <resources>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <excludes>-->
+        <!--                    <exclude>application-*.yml</exclude>-->
+        <!--                </excludes>-->
+        <!--            </resource>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <filtering>true</filtering>-->
+        <!--                <includes>-->
+        <!--                    <include>application.yml</include>-->
+        <!--                    <include>application-${env}*.yml</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

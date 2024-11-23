@@ -1,7 +1,5 @@
 package com.github.axinger.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.github.axinger.bean.DocInfoProperties;
 import com.github.axinger.bean.PersonProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

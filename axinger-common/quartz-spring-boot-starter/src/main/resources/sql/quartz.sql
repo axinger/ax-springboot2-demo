@@ -1,10 +1,10 @@
 CREATE
 DATABASE
     IF
-    NOT EXISTS `ax_test_quartz` CHARACTER
+    NOT EXISTS `ax_quartz` CHARACTER
     SET utf8;
 USE
-`ax_test_quartz`;
+`ax_quartz`;
 CREATE TABLE QRTZ_JOB_DETAILS
 (
     SCHED_NAME        VARCHAR(120) NOT NULL,

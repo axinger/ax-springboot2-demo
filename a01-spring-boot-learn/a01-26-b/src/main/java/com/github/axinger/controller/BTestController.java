@@ -13,7 +13,7 @@ public class BTestController {
     @GetMapping("/b")
     public Object index() {
         Map<String, Object> map = new HashMap<>();
-        map.put("code",BUtil.code());
+        map.put("code", BUtil.code());
         return map;
     }
 }

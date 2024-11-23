@@ -1,10 +1,10 @@
 package com.github.axinger.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "sys_book")

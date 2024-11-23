@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class SseController {
 
+    private static final Map<String, SseEmitter> EMITTER_MAP = new ConcurrentHashMap<>();
     @Autowired
     private ClientManager clientManager;
 
@@ -55,7 +55,6 @@ public class SseController {
         sink.tryEmitNext(message);
     }
 
-
     @GetMapping("/sse1")
     public ResponseBodyEmitter handle() {
         // 创建一个ResponseBodyEmitter，-1代表不超时
@@ -79,8 +78,6 @@ public class SseController {
         });
         return emitter;
     }
-
-    private static final Map<String, SseEmitter> EMITTER_MAP = new ConcurrentHashMap<>();
 
     @GetMapping("/subSseEmitter/{userId}")
     public SseEmitter sseEmitter(@PathVariable String userId) {
@@ -131,7 +128,6 @@ public class SseController {
         }
         return emitter;
     }
-
 
 
     @GetMapping("/sse3")

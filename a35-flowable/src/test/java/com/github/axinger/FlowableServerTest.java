@@ -5,14 +5,10 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONWriter;
 import lombok.extern.slf4j.Slf4j;
-import org.flowable.common.engine.api.query.QueryProperty;
-import org.flowable.common.engine.impl.identity.Authentication;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricProcessInstance;
-import org.flowable.engine.history.HistoricProcessInstanceQuery;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.engine.runtime.ProcessInstanceBuilder;
 import org.flowable.task.api.Task;
 import org.flowable.task.api.history.HistoricTaskInstance;
 import org.junit.jupiter.api.Test;
@@ -20,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @SpringBootTest
@@ -28,10 +26,9 @@ public class FlowableServerTest {
 
 
     @Autowired
-    private ProcessEngine processEngine;
-
-    @Autowired
     IdentityService identityService;
+    @Autowired
+    private ProcessEngine processEngine;
     @Autowired
     private RuntimeService runtimeService;
 
@@ -59,27 +56,25 @@ public class FlowableServerTest {
     }
 
 
-
     @Test
-    void test02_已经发布的流程(){
+    void test02_已经发布的流程() {
         List<Deployment> list = repositoryService.createDeploymentQuery().list();
-        log.info("Deployment size={}",list.size());
+        log.info("Deployment size={}", list.size());
 
         for (Deployment deployment : list) {
 
-            JSONObject jsonObject =  new JSONObject();
+            JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("id", deployment.getId());
             jsonObject.put("name", deployment.getName());
             jsonObject.put("key", deployment.getKey());
             jsonObject.put("category", deployment.getCategory());
-            jsonObject.put("发布时间",deployment.getDeploymentTime());
+            jsonObject.put("发布时间", deployment.getDeploymentTime());
             System.out.println("jsonObject = " + jsonObject);
         }
 
 //        repositoryService.deleteDeployment(deployment.getId(), true);
     }
-
 
 
     // 启动流程
@@ -107,7 +102,7 @@ public class FlowableServerTest {
         ProcessInstance instance = runtimeService.createProcessInstanceBuilder()
                 .owner(userId) // 发起人
                 .processDefinitionKey(processKey)
-                .name(StrUtil.format("采购流程-{}",now))
+                .name(StrUtil.format("采购流程-{}", now))
                 .variables(variables)
                 .start();
 
@@ -173,12 +168,13 @@ public class FlowableServerTest {
 //            }
         }
     }
+
     /**
      * 查询我的已办
      */
 
     @Test
-    void test_02_01_02(){
+    void test_02_01_02() {
         String userId = "001";
         List<HistoricTaskInstance> list = historyService.createHistoricTaskInstanceQuery()
                 .taskAssignee(userId)
@@ -186,7 +182,7 @@ public class FlowableServerTest {
                 .orderByHistoricTaskInstanceEndTime()
                 .desc()
                 .list();
-        log.info("查询我的已办 size={}",list.size());
+        log.info("查询我的已办 size={}", list.size());
         for (HistoricTaskInstance instance : list) {
             JSONObject jsonObject = new JSONObject();
 
@@ -200,13 +196,14 @@ public class FlowableServerTest {
             jsonObject.put("参数", instance.getProcessVariables());
             jsonObject.put("processDefinitionId", instance.getProcessDefinitionId());
             jsonObject.put("描述", instance.getDescription());
-            jsonObject.put("申请人",instance.getAssignee());
-            jsonObject.put("审批人",instance.getOwner());
+            jsonObject.put("申请人", instance.getAssignee());
+            jsonObject.put("审批人", instance.getOwner());
 
             log.info("{}", jsonObject.toString(JSONWriter.Feature.WriteMapNullValue));
         }
 
     }
+
     /**
      * 删除用户，历史流程
      */
@@ -248,8 +245,8 @@ public class FlowableServerTest {
 
             jsonObject.put("id", task.getId());
             jsonObject.put("name", task.getName());
-            jsonObject.put("处理人",task.getAssignee());
-            jsonObject.put("申请人",task.getOwner());
+            jsonObject.put("处理人", task.getAssignee());
+            jsonObject.put("申请人", task.getOwner());
             log.info("查询分配我的任务={}", jsonObject.toString(JSONWriter.Feature.WriteMapNullValue));
         }
     }

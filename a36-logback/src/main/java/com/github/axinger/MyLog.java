@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory;
 
 public class MyLog {
     private final org.slf4j.Logger log;
-//
+    //
     public Logger logA = org.slf4j.LoggerFactory.getLogger("A_SERVICE_LOG");
-    public  Logger logB = org.slf4j.LoggerFactory.getLogger("B_SERVICE_LOG");
+    public Logger logB = org.slf4j.LoggerFactory.getLogger("B_SERVICE_LOG");
 //    public Logger logA ;
 //    public  Logger logB;
 

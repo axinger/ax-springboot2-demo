@@ -6,7 +6,7 @@ spring:
     active: dev
   web:
     resources:
-#      static-locations: "classpath:/dist"
+      #      static-locations: "classpath:/dist"
       add-mappings: false
 axing:
   axing:

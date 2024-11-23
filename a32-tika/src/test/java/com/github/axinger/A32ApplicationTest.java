@@ -15,14 +15,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class A32ApplicationTest {
 
     @Autowired
     private Tika tika;
-
 
 
     /**

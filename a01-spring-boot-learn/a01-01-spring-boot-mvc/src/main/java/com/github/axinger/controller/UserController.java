@@ -22,6 +22,9 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/one")
     public UserVO getUser() {
         UserVO user = new UserVO("jim", "123");
@@ -60,9 +63,6 @@ public class UserController {
         result.setTotal(100);
         return result;
     }
-
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/getUserById/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {

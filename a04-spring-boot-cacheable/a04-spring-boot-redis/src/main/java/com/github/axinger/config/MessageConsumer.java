@@ -27,7 +27,7 @@ public class MessageConsumer implements StreamListener<String, ObjectRecord<Stri
 
 
         // 通过RedisTemplate手动确认消息，确认之后消息会从队列中消失，如果不确认，可能存在重复消费
-        Long acknowledge =redisTemplate.opsForStream().acknowledge("group-1", message);
+        Long acknowledge = redisTemplate.opsForStream().acknowledge("group-1", message);
         if (acknowledge > 0) {
             System.out.println("acknowledge的值是：" + acknowledge);
         }

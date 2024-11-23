@@ -54,7 +54,7 @@ public class UserConsumer1 {
             // int partition = record.partition();
             //
             // // 获取偏移量
-             long offset = record.offset();
+            long offset = record.offset();
             //
             // // 获取键和值
             // String key = record.key();
@@ -67,7 +67,7 @@ public class UserConsumer1 {
 //            System.out.println("message.getPayload() = " + message.getPayload());
 //            System.out.println("data = " + data);
 //
-            log.info("偏移量={}，payload={}，data={}",offset,message.getPayload(),data);
+            log.info("偏移量={}，payload={}，data={}", offset, message.getPayload(), data);
 //            System.out.println("userDTO = " + userDTO);
 
 //            UserDTO value = record.value();

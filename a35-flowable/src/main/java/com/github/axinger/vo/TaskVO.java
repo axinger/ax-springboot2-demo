@@ -18,6 +18,10 @@ import java.util.Map;
 @Data
 public class TaskVO {
 
+    private String id;
+    private String day;
+    private String studentName;
+
     static public List<Map<String, Object>> fromHistoricTaskInstance(List<HistoricTaskInstance> historicTasks) {
 
         List<Map<String, Object>> list = historicTasks.stream().map(task -> {
@@ -32,8 +36,4 @@ public class TaskVO {
         log.info("流程列表={}", list);
         return list;
     }
-
-    private String id;
-    private String day;
-    private String studentName;
 }

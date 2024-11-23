@@ -11,7 +11,6 @@ import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -254,7 +253,7 @@ public class MinioServiceImpl implements MinioService {
     @SneakyThrows
     @Override
     public void download(HttpServletResponse response, String bucketName, String objectName) {
-        try(InputStream inputStream = this.getObject(bucketName, objectName)) {
+        try (InputStream inputStream = this.getObject(bucketName, objectName)) {
             StatObjectArgs args = StatObjectArgs.builder().bucket(bucketName).object(objectName).build();
             StatObjectResponse stat = minioClient.statObject(args);
             response.setContentType(stat.contentType());
@@ -267,11 +266,12 @@ public class MinioServiceImpl implements MinioService {
 
     /**
      * 流式下载
-     * @param bucket bucketName
+     *
+     * @param bucket   bucketName
      * @param fileName objectName
      */
     @Override
-  public   ResponseEntity<StreamingResponseBody> downloadStreaming(String bucket, String fileName){
+    public ResponseEntity<StreamingResponseBody> downloadStreaming(String bucket, String fileName) {
 
         try {
             // 从 MinIO 获取文件流
@@ -302,6 +302,7 @@ public class MinioServiceImpl implements MinioService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     /**
      * 写入文件到本地路径
      *
@@ -312,7 +313,7 @@ public class MinioServiceImpl implements MinioService {
     @SneakyThrows
     @Override
     public File writeToPath(String bucketName, String objectName, String fullFilePath) {
-        try (InputStream inputStream = this.getObject(bucketName, objectName)){
+        try (InputStream inputStream = this.getObject(bucketName, objectName)) {
             return FileUtil.writeFromStream(inputStream, fullFilePath);
         } catch (MinioException e) {
             throw new MinioException(StrUtil.format("写入文件失败 = {}", e.getMessage()));

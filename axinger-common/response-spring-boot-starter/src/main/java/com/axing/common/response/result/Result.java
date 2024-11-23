@@ -40,6 +40,7 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> ok() {
         return Result.ok(null);
     }
+
     public static <T> Result<T> ok(String msg) {
         Result<T> result = new Result<>();
         result.setCode(ResultCodeEnum.SUCCESS.getCode());

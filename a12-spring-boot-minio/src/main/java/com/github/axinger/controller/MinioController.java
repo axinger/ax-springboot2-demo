@@ -3,16 +3,14 @@ package com.github.axinger.controller;
 import com.axing.common.minio.service.MinioService;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.result.Result;
-import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
-import io.minio.errors.MinioException;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.io.InputStream;

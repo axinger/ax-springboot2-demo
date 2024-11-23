@@ -2,6 +2,7 @@ package com.github.axinger.bean;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+
 import java.lang.annotation.*;
 
 /**

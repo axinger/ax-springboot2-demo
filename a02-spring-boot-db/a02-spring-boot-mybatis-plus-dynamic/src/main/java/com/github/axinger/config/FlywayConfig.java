@@ -1,7 +1,6 @@
 package com.github.axinger.config;
 
 
-import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import jakarta.annotation.Resource;
@@ -20,10 +19,9 @@ import java.util.Map;
 @EnableTransactionManagement
 public class FlywayConfig {
 
+    private static final String ENCODING = "UTF-8";
     @Autowired
     private DataSource dataSource;
-
-    private static final String ENCODING = "UTF-8";
     @Resource
     private DynamicDataSourceProperties dynamicDataSourceProperties;
 

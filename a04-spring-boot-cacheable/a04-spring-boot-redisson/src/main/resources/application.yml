@@ -18,10 +18,10 @@ spring:
         max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
     redisson:
       file: classpath:redisson.yml
-#      config: classpath:redisson.yml
-#      config:
-#        class: "org.redisson.codec.JsonJacksonCodec"
-#        codec: !<org.redisson.codec.JsonJacksonCodec> { }
+    #      config: classpath:redisson.yml
+    #      config:
+    #        class: "org.redisson.codec.JsonJacksonCodec"
+    #        codec: !<org.redisson.codec.JsonJacksonCodec> { }
     # 传输模式
 #    transportMode: "NIO"
 #    config: classpath:/redisson.yml

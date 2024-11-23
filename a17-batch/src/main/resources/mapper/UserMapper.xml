@@ -5,12 +5,13 @@
 <mapper namespace="com.github.axinger.mapper.UserMapper">
 
     <resultMap id="BaseResultMap" type="com.github.axinger.domain.User">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="email" column="email" jdbcType="VARCHAR"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,email
+        id
+        ,name,email
     </sql>
 </mapper>

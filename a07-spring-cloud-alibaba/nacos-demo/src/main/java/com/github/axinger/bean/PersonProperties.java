@@ -1,11 +1,8 @@
 package com.github.axinger.bean;
 
 import lombok.Data;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.stereotype.Component;
 
 @Data
 @ConfigurationProperties(prefix = "axing.person")

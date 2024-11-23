@@ -1,9 +1,8 @@
 package com.github.axinger.controller;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
-import jakarta.validation.constraints.NotBlank;
 
 @Service
 @Validated

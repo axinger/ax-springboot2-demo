@@ -1,8 +1,6 @@
 package com.github.axinger;
 
 import lombok.CustomLog;
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service

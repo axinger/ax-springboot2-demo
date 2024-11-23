@@ -1,7 +1,6 @@
 package com.github.axinger.config;
 
 import cn.hutool.core.util.ObjUtil;
-import com.github.axinger.model.Book;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -31,14 +30,13 @@ public class AsyncConsumeStreamListener implements StreamListener<String, Object
      * 消费组中的某个消费者
      */
     private String consumerName;
+    private RedisTemplate<String, Object> redisTemplate;
 
     public AsyncConsumeStreamListener(String consumerType, String group, String consumerName) {
         this.consumerType = consumerType;
         this.group = group;
         this.consumerName = consumerName;
     }
-
-    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public void onMessage(ObjectRecord<String, String> message) {

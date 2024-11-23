@@ -25,7 +25,7 @@ public class FastJsonTest {
 //        Object age = JSONPath.eval(jsonObject, "age");
 //        System.out.println("age = " + age);
 
-        JSONPath.set(jsonObject,"age3",12);
+        JSONPath.set(jsonObject, "age3", 12);
         System.out.println(jsonObject);
 
         Person person = JSON.to(Person.class, jsonObject);

@@ -1,42 +1,36 @@
 package com.github.axinger.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
-import lombok.Data;
-
 /**
- *
  * @TableName t_dog
  */
-@TableName(value ="t_dog")
+@TableName(value = "t_dog")
 @Data
 public class Dog implements Serializable {
+    @Serial
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
     /**
      *
      */
     @TableField(value = "name")
     private String name;
-
     /**
      *
      */
     @TableField(value = "age")
     private Integer age;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-
     /**
      * 创建时间
      */

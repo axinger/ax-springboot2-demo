@@ -4,17 +4,13 @@ package com.github.axinger.config;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.Consumer;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
-
-import java.time.Duration;
 
 /**
  * @author xiaobo
@@ -25,7 +21,7 @@ import java.time.Duration;
 public class StreamConfig {
 
     @Autowired
-    private StreamMessageListenerContainer<String, ObjectRecord<String, String>>  streamMessageListenerContainer;
+    private StreamMessageListenerContainer<String, ObjectRecord<String, String>> streamMessageListenerContainer;
 
 
     @PostConstruct
@@ -54,7 +50,6 @@ public class StreamConfig {
 //                .build();
 //        //指定消费者对象
 //        streamMessageListenerContainer.register(streamReadRequest, messageConsumer);
-
 
 
         // 独立消费

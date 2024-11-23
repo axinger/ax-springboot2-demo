@@ -13,24 +13,21 @@ import java.io.Serializable;
 @TableName(value = "user")
 @Data
 public class User implements Serializable {
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(value = "id")
     private Integer id;
-
     /**
      *
      */
     @TableField(value = "name")
     private String name;
-
     /**
      *
      */
     @TableField(value = "email")
     private String email;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

@@ -2,11 +2,6 @@ package com.github.axinger.job;
 
 import com.github.axinger.domain.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.annotation.AfterJob;
-import org.springframework.batch.core.annotation.AfterStep;
-import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +19,6 @@ public class UserWriter implements ItemWriter<User> {
 //            log.info("写入数据={}",user);
 //        }
 
-        log.info("写入数据={}",items);
+        log.info("写入数据={}", items);
     }
 }

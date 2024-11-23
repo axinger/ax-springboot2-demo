@@ -1,5 +1,5 @@
 spring:
   profiles:
     #      active: sqlserver
-#    active: pgsql
+    #    active: pgsql
     active: mysql

@@ -3,10 +3,9 @@ package com.axing.common.minio.service;
 import com.axing.common.minio.model.UploadFileBO;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.io.File;
@@ -104,12 +103,11 @@ public interface MinioService {
 
     /**
      * 流式下载
-     * @param bucket bucketName
+     *
+     * @param bucket   bucketName
      * @param fileName objectName
      */
     ResponseEntity<StreamingResponseBody> downloadStreaming(String bucket, String fileName);
-
-
 
 
     /**

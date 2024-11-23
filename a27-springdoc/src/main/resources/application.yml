@@ -35,7 +35,7 @@ axing:
 
 logging:
   level:
-#    root: error
+    #    root: error
     com.github.axinger: info
   config: classpath:logback-spring.xml # 这个在log- 模块里面
 #  file:

@@ -13,7 +13,10 @@ import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.image.ProcessDiagramGenerator;
 import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -51,7 +54,7 @@ public class LeaveController {
         ProcessInstance processInstance = runtimeService.createProcessInstanceBuilder()
                 .owner(studentUser) // 发起人
                 .processDefinitionKey("stuLeave")
-                .name(StrUtil.format("{}的请假单-{}",studentUser,now))
+                .name(StrUtil.format("{}的请假单-{}", studentUser, now))
                 .variables(map)
                 .start();
 
@@ -74,9 +77,9 @@ public class LeaveController {
         }).collect(Collectors.toList());
         log.info("任务列表：{}", tasks);
         if (tasks.isEmpty()) {
-            return  Result.fail( "没有任务");
+            return Result.fail("没有任务");
         }
-        return  Result.<List<TaskVO>>ok(taskVOList);
+        return Result.<List<TaskVO>>ok(taskVOList);
     }
 
     /**
@@ -89,7 +92,7 @@ public class LeaveController {
         List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("a").list();
         Task task = taskService.createTaskQuery().taskCandidateGroup("a").taskId(taskId).singleResult();
         if (task == null) {
-            return  Result.fail( "没有任务");
+            return Result.fail("没有任务");
         }
         //通过审核
         HashMap<String, Object> map = new HashMap<>();
@@ -98,7 +101,7 @@ public class LeaveController {
 //            taskService.complete(task.getId(), map);
 //        }
         taskService.complete(task.getId(), map);
-        return  Result.ok( "审批通过");
+        return Result.ok("审批通过");
     }
 
     /**
@@ -111,13 +114,13 @@ public class LeaveController {
         Task task1 = taskService.createTaskQuery().taskCandidateGroup("a").taskId(taskId).singleResult();
         //Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
         if (task1 == null) {
-            return  Result.fail( "没有任务");
+            return Result.fail("没有任务");
         }
         //通过审核
         HashMap<String, Object> map = new HashMap<>();
         map.put("outcome", "驳回");
         taskService.complete(task1.getId(), map);
-        return  Result.ok( "审批驳回");
+        return Result.ok("审批驳回");
     }
 
     /**
@@ -132,9 +135,9 @@ public class LeaveController {
             return new TaskVO(task.getId(), variables.get("day").toString(), variables.get("studentName").toString());
         }).collect(Collectors.toList());
         if (tasks.isEmpty()) {
-            return  Result.fail("没有任务");
+            return Result.fail("没有任务");
         }
-        return  Result.ok( taskVOList);
+        return Result.ok(taskVOList);
     }
 
     /**
@@ -148,7 +151,7 @@ public class LeaveController {
         List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("b").list();
         //Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
         if (tasks == null) {
-            return  Result.fail( "没有任务");
+            return Result.fail("没有任务");
         }
         //通过审核
         HashMap<String, Object> map = new HashMap<>();
@@ -156,7 +159,7 @@ public class LeaveController {
         for (Task task : tasks) {
             taskService.complete(task.getId(), map);
         }
-        return  Result.ok( "审批通过");
+        return Result.ok("审批通过");
     }
 
     /**
@@ -170,7 +173,7 @@ public class LeaveController {
 //        List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("b").list();
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
         if (task == null) {
-            return  Result.fail( "没有任务");
+            return Result.fail("没有任务");
         }
         //通过审核
         HashMap<String, Object> map = new HashMap<>();
@@ -179,7 +182,7 @@ public class LeaveController {
 //            taskService.complete(task.getId(), map);
 //        }
         taskService.complete(task.getId(), map);
-        return  Result.ok( "审批驳回");
+        return Result.ok("审批驳回");
     }
 
     /**
@@ -193,12 +196,12 @@ public class LeaveController {
     public Result subAgain(@PathVariable("piId") String piId, @PathVariable("day") Integer day) {
         Task task = taskService.createTaskQuery().processInstanceId(piId).singleResult();
         if (Objects.isNull(task)) {
-            return  Result.fail( "没有任务");
+            return Result.fail("没有任务");
         }
         Map<String, Object> map = new HashMap<>();
         map.put("day", day);
         taskService.complete(task.getId(), map);
-        return  Result.ok( "提交申请");
+        return Result.ok("提交申请");
     }
 
     /**

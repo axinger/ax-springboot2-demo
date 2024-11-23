@@ -1,9 +1,8 @@
 package com.github.axinger.job;
 
 import com.github.axinger.domain.User;
-import com.github.axinger.mapper.UserMapper;
+import com.github.axinger.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
@@ -22,31 +21,36 @@ import java.util.List;
 @Slf4j
 public class UserReader implements ItemReader<User> {
 
-    private final SqlSessionFactory sqlSessionFactory;
+    //    private final SqlSessionFactory sqlSessionFactory;
     private final Iterator<User> iterator;
-
+    private final UserService userService;
     JobParameters jobParameters;
+
+    @Autowired
+    public UserReader(SqlSessionFactory sqlSessionFactory, UserService userService) {
+//        this.sqlSessionFactory = sqlSessionFactory;
+        this.userService = userService;
+        this.iterator = readDataFromDatabase().iterator();
+    }
 
     @BeforeStep
     public void beforeStep(StepExecution stepExecution) {
         // 获取 JobParameters
         this.jobParameters = stepExecution.getJobExecution().getJobParameters();
     }
-
-    @Autowired
-    public UserReader(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
-        this.iterator = readDataFromDatabase().iterator();
-    }
+//        @Resource
+//    private DynamicRoutingDataSource dynamicRoutingDataSource;
 
     private List<User> readDataFromDatabase() {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            UserMapper mapper = session.getMapper(UserMapper.class);
-            List<User> users = new ArrayList<>();
-            mapper.selectAll(context -> users.add(context.getResultObject()));
-
-            return users;
-        }
+//        try (SqlSession session = sqlSessionFactory.openSession()) {
+//            UserMapper mapper = session.getMapper(UserMapper.class);
+//        DynamicDataSourceContextHolder.push("db_ax_sub");
+        List<User> users = new ArrayList<>();
+        userService.selectAll(context -> users.add(context.getResultObject()));
+//            mapper.selectAll(context -> users.add(context.getResultObject()));
+//        DynamicDataSourceContextHolder.clear();
+        return users;
+//        }
     }
 
     @Override

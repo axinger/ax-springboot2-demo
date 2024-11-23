@@ -9,21 +9,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class NettyConfig {
     /**
-     * 定义全局单利channel组 管理所有channel
-     */
-    private static volatile ChannelGroup channelGroup = null;
-
-    /**
-     * 存放请求ID与channel的对应关系
-     */
-    private static volatile ConcurrentHashMap<String, Channel> channelMap = null;
-
-    /**
      * 定义两把锁
      */
     private static final Object lock1 = new Object();
     private static final Object lock2 = new Object();
-
+    /**
+     * 定义全局单利channel组 管理所有channel
+     */
+    private static volatile ChannelGroup channelGroup = null;
+    /**
+     * 存放请求ID与channel的对应关系
+     */
+    private static volatile ConcurrentHashMap<String, Channel> channelMap = null;
 
     public static ChannelGroup getChannelGroup() {
         if (null == channelGroup) {

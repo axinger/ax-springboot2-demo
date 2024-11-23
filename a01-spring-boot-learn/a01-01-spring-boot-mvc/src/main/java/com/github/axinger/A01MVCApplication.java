@@ -26,13 +26,13 @@ public class A01MVCApplication {
 
     static String My_Env;
 
+    public static void main(String[] args) {
+        SpringApplication.run(A01MVCApplication.class, args);
+        log.info("环境变量={}", My_Env);
+    }
+
     @Value("${spring.profiles.active}")
     public void setMyEnv(String myEnv) {
         My_Env = myEnv;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(A01MVCApplication.class, args);
-        log.info("环境变量={}",My_Env);
     }
 }

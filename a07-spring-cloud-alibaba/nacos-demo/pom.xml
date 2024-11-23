@@ -46,10 +46,6 @@
         </dependency>
 
 
-
-
-
-
         <!--        原来spring-cloud-dependencies 2020.0.0 版本不在默认加载bootstrap 文件，如果需要加载bootstrap 文件需要手动添加依赖。-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -2,7 +2,6 @@ package com.github.axinger.config;
 
 /**
  * 常量
- *
  */
 public class Cosntants {
 

@@ -1,8 +1,7 @@
 package com.github.axinger.dto;
 
-import lombok.Data;
-
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
 @Data
 public class LoginDTO {

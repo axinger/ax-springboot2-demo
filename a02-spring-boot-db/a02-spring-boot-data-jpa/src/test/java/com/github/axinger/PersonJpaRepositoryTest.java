@@ -15,7 +15,7 @@ public class PersonJpaRepositoryTest {
     private PersonJpaRepository personJpaRepository;
 
     @Test
-   public void test_01() {
+    public void test_01() {
 
         Page<Person> people = personJpaRepository.findByAgeGreaterThan(9, PageRequest.of(0, 10));
         System.out.println("people = " + people.getContent());

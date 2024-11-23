@@ -1,25 +1,28 @@
 package com.github.axinger.config;
 
-import com.github.axinger.job.UserReader;
-import com.github.axinger.job.UserProcessor;
-import com.github.axinger.job.UserWriter;
 import com.github.axinger.domain.User;
+import com.github.axinger.job.UserProcessor;
+import com.github.axinger.job.UserReader;
+import com.github.axinger.job.UserWriter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.annotation.Resource;
 
-
+@Order(2)
 @Configuration
 @EnableBatchProcessing
 public class BatchJobConfig {
+
 
     @Resource
     private JobBuilderFactory jobBuilderFactory;
@@ -36,8 +39,7 @@ public class BatchJobConfig {
     @Autowired
     private UserWriter userWriter;
 //
-//    @Autowired
-//    private DynamicRoutingDataSource dynamicRoutingDataSource;
+
 
 //    @Bean
 //    public JobRepository getJobRepository()  {
@@ -52,6 +54,33 @@ public class BatchJobConfig {
 //    public BatchConfigurer batchConfigurer() {
 //        return new CustomBatchConfigurer(dynamicRoutingDataSource);
 //    }
+
+//    @Bean
+//    @BatchDataSource
+//    @Lazy
+//    public DataSource batchDataSource(DataSource dataSource) {
+////        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//
+//        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+//        DataSource quartz = ds.getDataSource("spring_batch");
+//
+//        return quartz;
+//    }
+
+    //    @Bean
+//    @BatchDataSource
+//    public DataSource batchDataSource() {
+////        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//
+//        DataSource quartz = dynamicRoutingDataSource.getDataSource("spring_batch");
+//
+//        return quartz;
+//    }
+    @Bean
+    public PlatformTransactionManager getTransactionManager() {
+        return new ResourcelessTransactionManager();
+    }
+
 
     @Bean(name = "userJob")
     public Job job1() {

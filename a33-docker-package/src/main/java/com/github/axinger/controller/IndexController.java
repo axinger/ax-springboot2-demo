@@ -22,6 +22,8 @@ public class IndexController {
 
     @Value("${config.name}")
     private String name;
+    @Autowired
+    private SysUserService sysUserService;
 
     @GetMapping("/data")
     public Result<?> data() {
@@ -37,8 +39,7 @@ public class IndexController {
     public ResponseEntity<Void> favicon() {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @Autowired
-    private SysUserService sysUserService;
+
     @GetMapping("/")
     public Result<?> index() {
 

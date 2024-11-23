@@ -31,7 +31,7 @@ public class JSONPathTests {
         //不存在key，也会强制赋值，判断是否有key
         if (JSONPath.contains(map, "$.age3")) {
             JSONPath.set(map, "$.age3", 12);
-        }else {
+        } else {
             System.err.println("没有age3");
         }
         System.out.println("map = " + map);
@@ -40,8 +40,11 @@ public class JSONPathTests {
         ;
 
         map.put("age4", new ArrayList<>());
-        JSONPath.arrayAdd(map,"$.age4",1,2); // 添加数组，这个可以
-        JSONPath.set(map, "$.age5", new ArrayList<>(){{add(1);add(2);}}); // 添加数组，这个可以， List.of不行，
+        JSONPath.arrayAdd(map, "$.age4", 1, 2); // 添加数组，这个可以
+        JSONPath.set(map, "$.age5", new ArrayList<>() {{
+            add(1);
+            add(2);
+        }}); // 添加数组，这个可以， List.of不行，
         System.out.println("map = " + map);
     }
 

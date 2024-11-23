@@ -12,11 +12,12 @@ springboot及spring cloud的demo
 
 [springboot](./README_FILES/README_springboot)
 
-
 # 高并发
+
 ```
 高并发系统保护的三把利器 : 缓存、降级和限流
 ```
+
 ```angular2html
 限流方式
     限制总并发数(比如数据库连接池、线程池)

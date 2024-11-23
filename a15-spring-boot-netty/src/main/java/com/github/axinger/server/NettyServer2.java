@@ -7,9 +7,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.*;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +17,12 @@ import java.time.LocalDateTime;
 @Component
 public class NettyServer2 {
 
-    @Value("${netty.port:8081}")
-    private int port;
     private final EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private final EventLoopGroup workerGroup = new NioEventLoopGroup();
+    @Value("${netty.port:8081}")
+    private int port;
 
-//    @PostConstruct
+    //    @PostConstruct
     public void start() throws InterruptedException {
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(bossGroup, workerGroup)
@@ -68,7 +66,6 @@ public class NettyServer2 {
 //                                System.out.println("message = " + message);
 //                            }
 //                        });
-
 
 
                     }
