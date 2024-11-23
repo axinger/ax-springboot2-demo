@@ -5,6 +5,8 @@ import com.baomidou.dynamic.datasource.creator.DataSourceCreator;
 import com.baomidou.dynamic.datasource.creator.DataSourceProperty;
 import com.baomidou.dynamic.datasource.creator.hikaricp.HikariDataSourceCreator;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
+import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
+import org.springframework.batch.core.jsr.launch.support.BatchPropertyBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.batch.BatchDataSource;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +45,6 @@ public class DataSourceConfig {
         dataSource.setUsername(dataSourceProperty.getUsername());
         dataSource.setPassword(dataSourceProperty.getPassword());
 
-
         return dataSource;
     }
 
@@ -51,24 +52,27 @@ public class DataSourceConfig {
     @BatchDataSource
     @Order(1)
     public DataSource batchDataSource() {
+
         DataSourceProperty dataSourceProperty = dynamicDataSourceProperties.getDatasource().get("spring_batch");
-//
-//        DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource(dynamicDataSourceProperties.getDatasource());
 
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName(dataSourceProperty.getDriverClassName());
-//        dataSource.setUrl(dataSourceProperty.getUrl());
-//        dataSource.setUsername(dataSourceProperty.getUsername());
-//        dataSource.setPassword(dataSourceProperty.getPassword());
-
-
-        HikariDataSourceCreator dataSourceCreator = new HikariDataSourceCreator();
-        DataSource dataSource = dataSourceCreator.createDataSource(dataSourceProperty);
-
-
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(dataSourceProperty.getDriverClassName());
+        dataSource.setUrl(dataSourceProperty.getUrl());
+        dataSource.setUsername(dataSourceProperty.getUsername());
+        dataSource.setPassword(dataSourceProperty.getPassword());
         return dataSource;
+
+
+
+//        HikariDataSourceCreator dataSourceCreator = new HikariDataSourceCreator();
+//        DataSource dataSource = dataSourceCreator.createDataSource(dataSourceProperty);
+//
+//
+//        return dataSource;
 
 
 //        return dataSourceProperties.initializeDataSourceBuilder().build();
     }
+
+
 }
