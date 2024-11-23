@@ -42,7 +42,7 @@ class BookDAOTest {
                         "bookPrice": 12.0
                     }
                 ]
-                  """;
+                """;
 
         List<BookEntity> bookEntityList = JSON.parseArray(json, BookEntity.class);
         System.out.println("bookEntityList = " + JSON.toJSONString(bookEntityList));
@@ -69,7 +69,7 @@ class BookDAOTest {
                         "bookPrice": 10.1
                     }
                 ]
-                  """;
+                """;
 
         List<BookEntity> bookEntityList = JSON.parseArray(json, BookEntity.class);
         System.out.println("bookEntityList = " + JSON.toJSONString(bookEntityList));

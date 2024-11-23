@@ -2,7 +2,7 @@ package com.github.axinger.pojo;//package com.ax.pojo;
 //
 //import java.security.Principal;
 //
-///**
+/// **
 // * <websocket登录连接对象>
 // * <用于保存websocket连接过程中需要存储的业务参数>
 // * @author 郑智聪

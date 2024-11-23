@@ -4,11 +4,11 @@ import com.axing.common.excel.StreamExportUtil;
 import com.axing.common.excel.handler.CommonResultHandler;
 import com.github.axinger.domain.PersonEntity;
 import com.github.axinger.mapper.PersonMapper;
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController

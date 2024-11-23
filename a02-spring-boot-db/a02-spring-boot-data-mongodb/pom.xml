@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>a02-spring-boot-db</artifactId>
-        <version>2024.09.02-3.3</version>
+        <version>2024.11.10-2.7</version>
     </parent>
 
     <artifactId>a02-spring-boot-data-mongodb</artifactId>

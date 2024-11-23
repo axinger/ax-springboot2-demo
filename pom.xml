@@ -9,16 +9,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <!--                        <version>2.7.18</version>-->
+        <version>2.7.18</version>
         <!--        <version>3.3.3</version>-->
-        <version>3.2.4</version>
+        <!--        <version>3.2.4</version>-->
     </parent>
 
     <groupId>com.github.axinger</groupId>
     <artifactId>ax-springboot2-demo</artifactId>
     <!--年-月-第几个版本-springboot版本-->
-    <version>2024.09.02-3.3</version>
-    <name>springboot3案例-${project.version}</name>
+    <version>2024.11.10-2.7</version>
+    <name>springboot案例-${project.version}</name>
     <description>个人代码总结</description>
     <packaging>pom</packaging>
 
@@ -31,12 +31,9 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot-admin.version>3.0.0</spring-boot-admin.version>
-        <!--        <spring-cloud.version>2021.0.6</spring-cloud.version>-->
-        <!--        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>-->
 
-        <spring-cloud.version>2023.0.3</spring-cloud.version>
-        <!--        <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>-->
-        <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <spring-cloud-alibaba.version>${spring-cloud.version}.0</spring-cloud-alibaba.version>
 
 
         <!--        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>-->
@@ -102,9 +99,9 @@
         <module>a15-spring-boot-netty</module>
         <module>a16-spring-boot-shiro</module>
         <module>a16-spring-security</module>
+        <module>a17-batch</module>
         <module>a18-custom-spring-boot-start</module>
         <module>a20-spring-boot-quartz</module>
-        <module>a24-oauth2-client</module>
         <module>a25-admin-server</module>
         <module>a25-admin-client</module>
         <module>a26-prometheus</module>
@@ -117,13 +114,13 @@
         <module>a33-docker-package</module>
         <module>a34-keycloak</module>
         <module>a35-flowable</module>
+        <module>a35-flowable-ui</module>
         <module>a36-logback</module>
         <module>a33-docker-jar</module>
         <module>a37-data-rest</module>
         <module>a38-xxl-job</module>
         <module>a13-springboot-sso</module>
         <module>a32-tika</module>
-        <module>a21-oauth2</module>
         <module>a39-javafx</module>
         <module>a40-ai</module>
     </modules>
@@ -158,12 +155,6 @@
 
         </dependency>
 
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>5.0.0</version>
-            <scope>provided</scope>
-        </dependency>
 
     </dependencies>
 
@@ -534,7 +525,7 @@
 
             <!--            <dependency>-->
             <!--                <groupId>com.baomidou</groupId>-->
-            <!--                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>-->
+            <!--                <artifactId>mybatis-plus-boot-starter</artifactId>-->
             <!--                <version>${mybatis-plus.version}</version>-->
             <!--            </dependency>-->
 
@@ -553,9 +544,10 @@
 
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus3.version}</version>
             </dependency>
+
 
             <!--                        <dependency>-->
             <!--                            <groupId>com.baomidou</groupId>-->

@@ -85,8 +85,8 @@
 //                .block();
 //
 //        if (response.getStatusCode().is2xxSuccessful()) {
-////            logger.info("Created " + response.getStatusCode());
-////            logger.info("New URL " + response.getHeaders().getLocation());
+/// /            logger.info("Created " + response.getStatusCode());
+/// /            logger.info("New URL " + response.getHeaders().getLocation());
 //        }
 //
 //
@@ -94,10 +94,10 @@
 //
 //    @Test
 //    void test_statemachine() {
-////        stateMachine.start();
-////        stateMachine.sendEvent(Events.ONLINE);
-////        stateMachine.sendEvent(Events.PUBLISH);
-////        stateMachine.sendEvent(Events.ROLLBACK);
+/// /        stateMachine.start();
+/// /        stateMachine.sendEvent(Events.ONLINE);
+/// /        stateMachine.sendEvent(Events.PUBLISH);
+/// /        stateMachine.sendEvent(Events.ROLLBACK);
 //
 //
 //        Message<Events> event = MessageBuilder.withPayload(Events.ONLINE).build();

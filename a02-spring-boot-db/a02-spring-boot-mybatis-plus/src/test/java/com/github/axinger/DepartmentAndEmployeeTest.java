@@ -29,7 +29,7 @@ class DepartmentAndEmployeeTest {
 
         String emStr = """
                 [
-                                
+                
                     {
                         "deptId": 1,
                         "email": "",

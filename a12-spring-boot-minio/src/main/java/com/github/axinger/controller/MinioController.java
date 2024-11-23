@@ -4,7 +4,6 @@ import com.axing.common.minio.service.MinioService;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.result.Result;
 import io.minio.MinioClient;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 
 /**

@@ -16,14 +16,12 @@ import java.util.Arrays;
 @Component
 public class PersonServiceAop {
 
-    ////@Around("@within(自定义注解)")//自定义注解标注在的类上；该类的所有方法（不包含子类方法）执行aop方法
+    /// /@Around("@within(自定义注解)")//自定义注解标注在的类上；该类的所有方法（不包含子类方法）执行aop方法
     // 定义切点表达式
     // @Pointcut("@annotation(com.github.axinger.annotation.ApiVersion)")
     // @Pointcut("@within(com.github.axinger.annotation.ApiVersion)")
     // public void service() {
     // }
-
-
     @Pointcut("@within(com.github.axinger.annotation.ApiVersion)")
     public void classPointCut() {
     }

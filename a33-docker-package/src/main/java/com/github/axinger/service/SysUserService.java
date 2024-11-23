@@ -1,7 +1,7 @@
 package com.github.axinger.service;
 
-import com.github.axinger.domain.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.axinger.domain.SysUser;
 
 /**
  * @author xing

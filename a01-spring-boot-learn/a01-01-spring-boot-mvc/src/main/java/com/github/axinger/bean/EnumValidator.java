@@ -1,8 +1,7 @@
 package com.github.axinger.bean;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
+import javax.validation.Constraint;
+import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**

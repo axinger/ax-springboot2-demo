@@ -1,8 +1,9 @@
 package com.github.axinger.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 // @Proxy(lazy = false)
 @Entity(name = "sys_person")

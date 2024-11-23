@@ -1,10 +1,10 @@
 package com.github.axinger.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
 //https://juejin.cn/post/7322275119592996927
 //@NotNull：  校验元素值不能为 null。如果元素为null，则验证失败。通常用于字段级别的验证。

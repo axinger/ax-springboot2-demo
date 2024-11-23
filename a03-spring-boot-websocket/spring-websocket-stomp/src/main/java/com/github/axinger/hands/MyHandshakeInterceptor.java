@@ -1,7 +1,6 @@
 package com.github.axinger.hands;
 
 import cn.hutool.http.HttpUtil;
-import jakarta.servlet.http.HttpSession;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
+import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.Map;

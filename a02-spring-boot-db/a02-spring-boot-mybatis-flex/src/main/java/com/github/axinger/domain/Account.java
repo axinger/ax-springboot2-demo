@@ -5,15 +5,15 @@ import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
 import com.mybatisflex.core.activerecord.Model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.Comment;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -34,24 +34,24 @@ import java.time.LocalDateTime;
 public class Account extends Model<Account> implements Serializable {
 
     @Id(keyType = KeyType.Auto)
-    @jakarta.persistence.Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @jakarta.persistence.Column(name = "id")
+    @javax.persistence.Column(name = "id")
     @Comment("id")
     private Integer id;
 
     @Column(value = "user_name")
-    @jakarta.persistence.Column(name = "user_name")
+    @javax.persistence.Column(name = "user_name")
     @Comment("用户名")
     private String userName;
 
     @Column(value = "age")
-    @jakarta.persistence.Column(name = "age")
+    @javax.persistence.Column(name = "age")
     @Comment("年龄")
     private Integer age;
 
     @Column(value = "birthday")
-    @jakarta.persistence.Column(name = "birthday")
+    @javax.persistence.Column(name = "birthday")
     @Comment("生日")
     private LocalDateTime birthday;
 

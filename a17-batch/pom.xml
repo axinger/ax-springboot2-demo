@@ -3,21 +3,11 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--    <parent>-->
-    <!--        <groupId>com.github.axinger</groupId>-->
-    <!--        <artifactId>ax-springboot2-demo</artifactId>-->
-    <!--        <version>2024.09.02-3.3</version>-->
-    <!--    </parent>-->
-
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
-        <relativePath/> <!-- lookup parent from repository -->
-        <!--                <version>3.3.3</version>-->
-
+        <groupId>com.github.axinger</groupId>
+        <artifactId>ax-springboot2-demo</artifactId>
+        <version>2024.11.10-2.7</version>
     </parent>
-
     <artifactId>a17-batch</artifactId>
 
     <dependencies>

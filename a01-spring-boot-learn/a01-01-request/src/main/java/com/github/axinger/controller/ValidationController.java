@@ -3,7 +3,7 @@ package com.github.axinger.controller;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 @Service
 @Validated

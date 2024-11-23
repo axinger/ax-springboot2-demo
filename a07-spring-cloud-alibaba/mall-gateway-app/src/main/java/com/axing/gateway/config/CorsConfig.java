@@ -7,7 +7,7 @@ package com.axing.gateway.config;// package com.ax.service.gateway.config;
 // import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 // import org.springframework.web.util.pattern.PathPatternParser;
 //
-///**
+/// **
 // * @author xing
 // * @version 1.0.0
 // * @ClassName CrosConfig.java

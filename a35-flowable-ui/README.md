@@ -213,27 +213,28 @@ do，所有的条件判断都是同级别的。
 
 ```xml
         <!-- https://mvnrepository.com/artifact/org.flowable/flowable-spring-boot-starter -->
-        <dependency>
-            <groupId>org.flowable</groupId>
-            <artifactId>flowable-spring-boot-starter</artifactId>
-            <version>6.7.2</version>
-        </dependency>
+<dependency>
+    <groupId>org.flowable</groupId>
+    <artifactId>flowable-spring-boot-starter</artifactId>
+    <version>6.7.2</version>
+</dependency>
 ```
 
 由于我们的流程需要数据库的支持，所以还需添加数据库连接依赖
 
 ```xml
-       <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+</dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
+<dependency>
+<groupId>org.projectlombok</groupId>
+<artifactId>lombok</artifactId>
+</dependency>
 ```
 
 PS：
@@ -343,7 +344,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.InputStream;
 import java.io.OutputStream;

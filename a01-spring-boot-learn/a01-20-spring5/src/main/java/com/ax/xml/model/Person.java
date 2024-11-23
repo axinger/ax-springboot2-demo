@@ -57,7 +57,7 @@ public class Person {
         this.idCard = idCard;
     }
 
-    ///创建执行的初始化方法
+    /// 创建执行的初始化方法
     public void initMethod() {
         System.out.println("4.调用bean的初始化方法(需要进行配置初始化的方法)");
     }

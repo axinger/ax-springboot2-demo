@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>alibaba-seata</artifactId>
-        <version>2024.09.02-3.3</version>
+        <version>2024.11.10-2.7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>seata-storage</artifactId>
@@ -67,7 +67,7 @@
 
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
 

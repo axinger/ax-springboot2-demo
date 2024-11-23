@@ -3,12 +3,12 @@ package com.axing.common.excel.handler;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.apache.ibatis.session.ResultContext;
 import org.apache.ibatis.session.ResultHandler;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

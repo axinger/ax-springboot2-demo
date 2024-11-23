@@ -1,11 +1,12 @@
 package com.github.axinger.config;
 
 import com.github.axinger.model.RedisKeys;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 
 @Component

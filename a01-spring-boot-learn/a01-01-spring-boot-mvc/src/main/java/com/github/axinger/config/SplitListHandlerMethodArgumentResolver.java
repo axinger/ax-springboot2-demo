@@ -1,6 +1,5 @@
 package com.github.axinger.config;
 
-import jakarta.annotation.Nonnull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.WebDataBinder;
@@ -37,7 +36,7 @@ public class SplitListHandlerMethodArgumentResolver implements HandlerMethodArgu
     }
 
     @Override
-    public Object resolveArgument(@Nonnull MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
         String[] parameterValues = webRequest.getParameterValues(Objects.requireNonNull(parameter.getParameterName()));
 
