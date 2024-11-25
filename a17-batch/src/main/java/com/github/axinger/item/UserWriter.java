@@ -1,4 +1,4 @@
-package com.github.axinger.job;
+package com.github.axinger.item;
 
 import com.github.axinger.domain.User;
 import lombok.extern.slf4j.Slf4j;

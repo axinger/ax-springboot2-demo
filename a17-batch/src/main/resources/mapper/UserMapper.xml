@@ -14,4 +14,49 @@
         id
         ,name,email
     </sql>
+
+
+<!--    <select id="selectPageList" resultMap="BaseResultMap">-->
+<!--        select *-->
+<!--        from user  WHERE id BETWEEN #{from} AND #{to} limit #{_pagesize}-->
+<!--        OFFSET #{_skiprows}-->
+<!--    </select>-->
+
+
+<!--    <select id="selectPageList" resultMap="BaseResultMap">-->
+<!--        SELECT *-->
+<!--        FROM user-->
+<!--                 LIMIT #{_pagesize} OFFSET #{_skiprows}-->
+<!--    </select>-->
+
+    <select id="selectPageList" resultMap="BaseResultMap">
+        SELECT *
+        FROM user
+        WHERE id > #{lastId}
+        ORDER BY id ASC
+            LIMIT #{pageSize}
+    </select>
+
+
+    <!--    <select id="selectPageList" resultMap="BaseResultMap">-->
+<!--        SELECT * FROM user  ORDER BY id ASC LIMIT #{pageSize} OFFSET #{offset}-->
+
+<!--    </select>-->
+
+
+<!--    <select id="selectPageList" resultMap="BaseResultMap">-->
+
+<!--        SELECT *-->
+<!--        FROM (-->
+<!--                 SELECT *, ROW_NUMBER() OVER (ORDER BY id) AS row_num-->
+<!--                 FROM user-->
+<!--             ) AS numbered_users-->
+<!--        WHERE row_num BETWEEN #{pageNumber} * #{pageSize} + 1 AND (#{pageNumber} + 1) * #{pageSize}-->
+
+<!--    </select>-->
+
+    <insert id="saveOne">
+        insert into user_2(id, name, email)
+        values (#{id}, #{name}, #{email})
+    </insert>
 </mapper>
