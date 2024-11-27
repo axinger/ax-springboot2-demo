@@ -2,9 +2,7 @@ package com.github.axinger.config;
 
 import com.github.axinger.domain.User;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.batch.core.*;
-import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -12,7 +10,6 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.partition.PartitionHandler;
 import org.springframework.batch.core.partition.support.Partitioner;
 import org.springframework.batch.core.partition.support.TaskExecutorPartitionHandler;
-import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
@@ -21,11 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -38,23 +34,20 @@ import java.util.Optional;
 @EnableBatchProcessing
 public class BatchJobConfig3 {
 
-    @Resource
-    private JobBuilderFactory jobBuilderFactory;
-
-    @Resource
-    private StepBuilderFactory stepBuilderFactory;
-
-    @Autowired
-    private DataSource businessDataSource;
-
     @Autowired
     JdbcTemplate jdbcTemplate;
+    @Resource
+    private JobBuilderFactory jobBuilderFactory;
+    @Resource
+    private StepBuilderFactory stepBuilderFactory;
+    @Autowired
+    private DataSource businessDataSource;
 
     @Bean
     public StepExecutionListener stepExecutionListener() {
         return new StepExecutionListener() {
             @Override
-            public void beforeStep(StepExecution stepExecution) {
+            public void beforeStep(@Nonnull StepExecution stepExecution) {
                 // 获取作业参数
                 String selectDate = stepExecution.getJobExecution().getJobParameters().getString("selectDate");
                 log.info("监听步骤获取参数: {}", selectDate);
@@ -64,7 +57,7 @@ public class BatchJobConfig3 {
             }
 
             @Override
-            public ExitStatus afterStep(StepExecution stepExecution) {
+            public ExitStatus afterStep(@Nonnull StepExecution stepExecution) {
                 return null; // 可根据需求返回 exitStatus
             }
         };
@@ -87,7 +80,6 @@ public class BatchJobConfig3 {
                 .beanRowMapper(User.class)
                 .build();
     }
-
 
 
     // 写
@@ -138,7 +130,7 @@ public class BatchJobConfig3 {
 
     // 子步骤
     @Bean
-    public Step subStep() {
+    public Step userSubStep() {
         return stepBuilderFactory.get("subStep")
                 .<User, User>chunk(100)
                 .reader(itemReader(null, null, null, null))
@@ -152,7 +144,7 @@ public class BatchJobConfig3 {
         TaskExecutorPartitionHandler handler = new TaskExecutorPartitionHandler();
         handler.setGridSize(3);
         handler.setTaskExecutor(new SimpleAsyncTaskExecutor("多线程-"));
-        handler.setStep(subStep());
+        handler.setStep(userSubStep());
         try {
             handler.afterPropertiesSet();
         } catch (Exception e) {
@@ -164,19 +156,18 @@ public class BatchJobConfig3 {
 
     // 主步骤
     @Bean
-    public Step masterStep() {
+    public Step userMasterStep() {
         return stepBuilderFactory.get("masterStep")
                 .partitioner("masterP", partitioner(null))
                 .partitionHandler(partitionHandler())
-
                 .build();
     }
 
 
     @Bean("userJob")
-    public Job job1() {
+    public Job userJob() {
         return jobBuilderFactory.get("addUserJob2")
-                .start(masterStep())
+                .start(userMasterStep())
                 .build();
     }
 }

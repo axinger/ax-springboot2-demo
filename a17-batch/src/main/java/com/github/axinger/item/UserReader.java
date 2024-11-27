@@ -3,14 +3,12 @@ package com.github.axinger.item;
 import com.github.axinger.domain.User;
 import com.github.axinger.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,9 +19,9 @@ import java.util.List;
 @Component
 public class UserReader implements ItemReader<User> {
 
-    private Iterator<User> iterator;
     private final UserService userService;
     JobParameters jobParameters;
+    private Iterator<User> iterator;
 
     public UserReader(UserService userService) {
         this.userService = userService;
@@ -42,8 +40,6 @@ public class UserReader implements ItemReader<User> {
         }
         return iterator.hasNext() ? iterator.next() : null;
     }
-
-
 
 
     private List<User> readDataFromDatabase() {

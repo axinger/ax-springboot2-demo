@@ -45,8 +45,8 @@
 //    @Resource
 //    private StepBuilderFactory stepBuilderFactory;
 //
-////    @Autowired
-////    private UserReader userReader;
+/// /    @Autowired
+/// /    private UserReader userReader;
 //
 //    @Autowired
 //    private UserProcessor userProcessor;

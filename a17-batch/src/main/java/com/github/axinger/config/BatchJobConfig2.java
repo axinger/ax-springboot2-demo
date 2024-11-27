@@ -53,24 +53,24 @@
 //
 //    @Resource
 //    private StepBuilderFactory stepBuilderFactory;
-////
-////    @Bean
-////    @StepScope
-////    public MyBatisPagingItemReader<User> itemReader(
-////            @Value("#{stepExecutionContext['lastId']}") Long lastId,
-////            @Value("#{stepExecutionContext['pageSize']}") Integer pageSize) {
-////
-////        MyBatisPagingItemReader<User> itemReader = new MyBatisPagingItemReader<>();
-////        itemReader.setSqlSessionFactory(sqlSessionFactory);
-////        itemReader.setQueryId("com.github.axinger.mapper.UserMapper.selectPageList");
-////
-////        Map<String, Object> params = new HashMap<>();
-////        params.put("lastId", lastId); // 上次分页的最后一条 ID
-////        params.put("pageSize", pageSize);
-////        itemReader.setParameterValues(params);
-////
-////        return itemReader;
-////    }
+/// /
+/// /    @Bean
+/// /    @StepScope
+/// /    public MyBatisPagingItemReader<User> itemReader(
+/// /            @Value("#{stepExecutionContext['lastId']}") Long lastId,
+/// /            @Value("#{stepExecutionContext['pageSize']}") Integer pageSize) {
+/// /
+/// /        MyBatisPagingItemReader<User> itemReader = new MyBatisPagingItemReader<>();
+/// /        itemReader.setSqlSessionFactory(sqlSessionFactory);
+/// /        itemReader.setQueryId("com.github.axinger.mapper.UserMapper.selectPageList");
+/// /
+/// /        Map<String, Object> params = new HashMap<>();
+/// /        params.put("lastId", lastId); // 上次分页的最后一条 ID
+/// /        params.put("pageSize", pageSize);
+/// /        itemReader.setParameterValues(params);
+/// /
+/// /        return itemReader;
+/// /    }
 //
 ////    public MyBatisCursorItemReader<User> cursorItemReader(){
 ////

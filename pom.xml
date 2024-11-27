@@ -86,8 +86,9 @@
         <module>axinger-cloud</module>
         <module>axinger-common</module>
         <module>a01-spring-boot-learn</module>
-        <module>a03-spring-boot-websocket</module>
         <module>a02-spring-boot-db</module>
+        <module>a03-spring-boot-websocket</module>
+        <module>a04-spring-boot-cacheable</module>
         <module>a05-spring-boot-excel</module>
         <module>a06-spring-cloud</module>
         <module>a07-spring-cloud-alibaba</module>
@@ -95,7 +96,7 @@
         <module>a10-spring-boot-mq</module>
         <module>a11-spring-boot-swagger3</module>
         <module>a12-spring-boot-minio</module>
-        <module>a04-spring-boot-cacheable</module>
+        <module>a13-springboot-sso</module>
         <module>a15-spring-boot-netty</module>
         <module>a16-spring-boot-shiro</module>
         <module>a16-spring-security</module>
@@ -111,17 +112,16 @@
         <module>a29-elk</module>
         <module>a30-sa-token</module>
         <module>a31-poi</module>
+        <module>a32-tika</module>
+        <module>a33-docker-jar</module>
         <module>a33-docker-package</module>
         <module>a34-keycloak</module>
         <module>a35-flowable</module>
         <module>a35-flowable-ui</module>
         <module>a36-logback</module>
-        <module>a33-docker-jar</module>
         <module>a37-data-rest</module>
         <module>a38-xxl-job</module>
-        <module>a13-springboot-sso</module>
-        <module>a32-tika</module>
-        <module>a39-javafx</module>
+
         <module>a40-ai</module>
     </modules>
 

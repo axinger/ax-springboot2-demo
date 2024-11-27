@@ -74,8 +74,8 @@
 //
 //
 //            // 修改候选用户和候选组
-////            task.getCandidateUsers().clear();
-////            task.getCandidateGroups().clear();
+/// /            task.getCandidateUsers().clear();
+/// /            task.getCandidateGroups().clear();
 //
 //            // 添加自定义的候选用户
 ////            task.addCandidateUser("john");

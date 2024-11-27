@@ -5,7 +5,6 @@ import com.github.axinger.domain.User;
 import com.github.axinger.mapper.UserMapper;
 import com.github.axinger.service.UserService;
 import org.apache.ibatis.session.ResultHandler;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
