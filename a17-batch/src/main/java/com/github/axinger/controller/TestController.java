@@ -1,5 +1,6 @@
 package com.github.axinger.controller;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import com.github.axinger.item.UserReader;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -28,30 +30,18 @@ public class TestController {
     private Job job1;
 
 
-    @Autowired
-    private UserReader userReader;
-
-    @Resource
-    private JobExplorer jobExplorer;
-
-    @Resource
-    private JobRepository jobRepository;
-
-
     @GetMapping("/job")
     public Object runImportUserJob() throws Exception {
 
         StopWatch stopWatch = new StopWatch();
-//        JobParameters jobParameters = new JobParametersBuilder(new JobParameters(),jobExplorer)
-////                .addDate("date",name)
-//                .addLong("time",new Date().getTime())
-//                .getNextJobParameters(job1)
-//                .toJobParameters();
-        stopWatch.start();;
+        stopWatch.start();
+        long time = new Date().getTime();
         JobParameters jobParameters = new JobParametersBuilder()
-//                .addDate("date",name)
-                .addLong("time",new Date().getTime())
+                .addLong("time", time)
+                .addString("selectDate", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd"))
                 .toJobParameters();
+
+        log.info("添加启动参数={}", time);
 
         JobExecution run = jobLauncher.run(job1, jobParameters);
         ExitStatus exitStatus = run.getExitStatus();

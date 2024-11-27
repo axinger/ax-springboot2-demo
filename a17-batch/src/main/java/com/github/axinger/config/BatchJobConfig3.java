@@ -3,9 +3,8 @@ package com.github.axinger.config;
 import com.github.axinger.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.batch.core.ItemReadListener;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
+import org.springframework.batch.core.*;
+import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -31,6 +30,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 //@Order(2)
@@ -43,49 +43,59 @@ public class BatchJobConfig3 {
 
     @Resource
     private StepBuilderFactory stepBuilderFactory;
-//    @Autowired
-//    DataSource dataSource;
 
     @Autowired
     private DataSource businessDataSource;
-//    @Bean
-//    @StepScope
-//    public JdbcCursorItemReader<User> itemReader(@Value("#{stepExecutionContext['start']}") Integer start,
-//                                                 @Value("#{stepExecutionContext['end']}") Integer end) {
-//        return new JdbcCursorItemReaderBuilder<User>()
-//                .name("personItemReader")
-//                .dataSource(dataSource)
-//                .sql("SELECT * FROM user WHERE id BETWEEN ? AND ?")
-//                .beanRowMapper(User.class)
-//                .queryArguments(start, end)
-//                .build();
-//
-//
-//    }
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @Bean
+    public StepExecutionListener stepExecutionListener() {
+        return new StepExecutionListener() {
+            @Override
+            public void beforeStep(StepExecution stepExecution) {
+                // 获取作业参数
+                String selectDate = stepExecution.getJobExecution().getJobParameters().getString("selectDate");
+                log.info("监听步骤获取参数: {}", selectDate);
+
+                // 将参数存储到 ExecutionContext 中，供后续步骤使用
+//                stepExecution.getExecutionContext().putLong("time", timeParam);
+            }
+
+            @Override
+            public ExitStatus afterStep(StepExecution stepExecution) {
+                return null; // 可根据需求返回 exitStatus
+            }
+        };
+    }
+
 
     @Bean
     @StepScope
-    public JdbcCursorItemReader<User> itemReader(@Value("#{stepExecutionContext['startIndex']}") Integer startIndex,
-                                                 @Value("#{stepExecutionContext['endIndex']}") Integer endIndex) {
-        // Fetch records by row number or offset range (ensure SQL supports it)
+    public JdbcCursorItemReader<User> itemReader(@Value("#{jobParameters['selectDate']}") String selectDate,
+                                                 @Value("#{stepExecutionContext['limit']}") Integer limit,
+                                                 @Value("#{stepExecutionContext['offset']}") Integer offset,
+                                                 @Value("#{stepExecutionContext['time']}") Long time) {
         String sql = "SELECT * FROM user LIMIT ? OFFSET ?";
+        log.info("读数据启动参数={},分页参数={}，{}", selectDate, limit, offset);
         return new JdbcCursorItemReaderBuilder<User>()
                 .name("personItemReader")
                 .dataSource(businessDataSource)
                 .sql(sql)
-                .queryArguments(endIndex - startIndex + 1, startIndex)  // The LIMIT and OFFSET will ensure a unique range
+                .queryArguments(limit, offset)
                 .beanRowMapper(User.class)
                 .build();
     }
 
 
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
+    // 写
     @Bean
-    public ItemWriter<User> itemWriter() {
+    @StepScope
+    public ItemWriter<User> itemWriter(@Value("#{jobParameters['selectDate']}") String selectDate) {
         return items -> {
+            log.info("读数据获取启动参数={}", selectDate);
             for (User item : items) {
                 String sql = "INSERT INTO `user_2` (`id`, `name`, `email`) VALUES (?, ?, ?);";
                 jdbcTemplate.update(sql, preparedStatement -> {
@@ -93,45 +103,23 @@ public class BatchJobConfig3 {
                     preparedStatement.setString(2, item.getName());
                     preparedStatement.setString(3, item.getEmail());
                 });
-
             }
-
         };
     }
 
 
+    // 分区
     @Bean
-    public Step subStep() {
-        return stepBuilderFactory.get("subStep")
-                .<User, User>chunk(100)
-                .listener(readListener())
-                .reader(itemReader(null,null))
-                .writer(itemWriter())
-                .build();
-    }
-
-
-    @Bean
-    public Partitioner partitioner() {
+    @StepScope
+    public Partitioner partitioner(@Value("#{jobParameters['selectDate']}") String selectDate) {
         return gridSize -> {
-//            Map<String, ExecutionContext> partitionMap = new HashMap<>();
-//            int rangeSize = 1000;
-//            for (int i = 0; i < gridSize; i++) {
-//                ExecutionContext context = new ExecutionContext();
-//                context.putInt("start", i * rangeSize);
-//                context.putInt("end", (i + 1) * rangeSize - 1);
-//                partitionMap.put("partition" + i, context);
-//            }
-
+            log.info("分区中获取启动参数={}", selectDate);
             Map<String, ExecutionContext> partitionMap = new HashMap<>();
-
-            // Get the total count of records in the user table
-            int totalRecords = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM user", Integer.class);
-//            int totalRecords = 1000;
-
-            int rangeSize = totalRecords / gridSize;  // Each partition should handle this number of records
-
-            // For each partition, calculate the start and end index based on record count
+            Integer totalRecords = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM user", Integer.class);
+            if (Optional.ofNullable(totalRecords).isEmpty()) {
+                return partitionMap;
+            }
+            int rangeSize = (int) Math.ceil(totalRecords * 1.0 / gridSize);
             for (int i = 0; i < gridSize; i++) {
                 ExecutionContext context = new ExecutionContext();
                 int startIndex = i * rangeSize;
@@ -139,15 +127,25 @@ public class BatchJobConfig3 {
                 if (i == gridSize - 1) {
                     endIndex = totalRecords - 1;  // Ensure the last partition handles any remaining records
                 }
-                context.putInt("startIndex", startIndex);
-                context.putInt("endIndex", endIndex);
-                partitionMap.put("partition" + i, context);
+                int limit = endIndex - startIndex + 1;
+                context.putInt("limit", limit);
+                context.putInt("offset", startIndex);
+                partitionMap.put("partition_" + i, context);
             }
-
             return partitionMap;
         };
     }
 
+    // 子步骤
+    @Bean
+    public Step subStep() {
+        return stepBuilderFactory.get("subStep")
+                .<User, User>chunk(100)
+                .reader(itemReader(null, null, null, null))
+                .writer(itemWriter(null))
+                .listener(stepExecutionListener())
+                .build();
+    }
 
     @Bean
     public PartitionHandler partitionHandler() {
@@ -168,8 +166,9 @@ public class BatchJobConfig3 {
     @Bean
     public Step masterStep() {
         return stepBuilderFactory.get("masterStep")
-                .partitioner("masterP", partitioner())
+                .partitioner("masterP", partitioner(null))
                 .partitionHandler(partitionHandler())
+
                 .build();
     }
 
@@ -179,29 +178,5 @@ public class BatchJobConfig3 {
         return jobBuilderFactory.get("addUserJob2")
                 .start(masterStep())
                 .build();
-    }
-
-    @Bean
-    public ItemReadListener<User> readListener() {
-
-        return new ItemReadListener<>() {
-
-            @Override
-            public void beforeRead() {
-
-            }
-
-            @Override
-            public void afterRead(User item) {
-                if (item.getId() == 1) {
-                    log.info("读取数据={}", item);
-                }
-            }
-
-            @Override
-            public void onReadError(Exception ex) {
-
-            }
-        };
     }
 }
