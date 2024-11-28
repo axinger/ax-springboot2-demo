@@ -29,16 +29,6 @@ public class MQProducerService {
     private RocketMQTemplate rocketMQTemplate;
 
     /**
-     * 普通发送（这里的参数对象User可以随意定义，可以发送个对象，也可以是字符串等）
-     */
-    public void send(User user, String tag) {
-        rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + tag, user);
-//        rocketMQTemplate.convertAndSend(Topic.RLT_TEST_TOPIC, user);
-//        rocketMQTemplate.send(topic + ":tag1", MessageBuilder.withPayload(user).build()); // 等价于上面一行
-
-    }
-
-    /**
      * 发送同步消息（阻塞当前线程，等待broker响应发送结果，这样不太容易丢失消息）
      * （msgBody也可以是对象，sendResult为返回的发送结果）
      */

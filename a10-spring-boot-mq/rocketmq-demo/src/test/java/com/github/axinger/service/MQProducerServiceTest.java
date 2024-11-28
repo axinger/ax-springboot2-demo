@@ -2,6 +2,7 @@ package com.github.axinger.service;
 
 import com.github.axinger.config.Topic;
 import com.github.axinger.model.User;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,13 +12,15 @@ class MQProducerServiceTest {
 
     @Autowired
     private MQProducerService mqProducerService;
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
     @Test
     void send() {
         User user = new User();
         user.setName("jim");
         user.setAge(10);
-        mqProducerService.send(user, Topic.Tag_1);
+        rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
     }
 
     @Test

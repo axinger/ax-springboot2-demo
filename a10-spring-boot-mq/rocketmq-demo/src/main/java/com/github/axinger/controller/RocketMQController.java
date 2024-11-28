@@ -6,6 +6,8 @@ import com.github.axinger.model.User;
 import com.github.axinger.service.MQProducerService;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +25,12 @@ public class RocketMQController {
 
     @GetMapping("/send")
     void send() {
-        User user = new User();
-        user.setName("jim");
-        user.setAge(10);
-        mqProducerService.send(user, Topic.Tag_1);
+        for (int i = 0; i < 100; i++) {
+            User user = new User();
+            user.setName("jim_"+i);
+            user.setAge(i);
+            rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
+        }
     }
 
     @GetMapping("/send2")
@@ -34,7 +38,7 @@ public class RocketMQController {
         User user = new User();
         user.setName("jim");
         user.setAge(10);
-        mqProducerService.send(user, Topic.Tag_2);
+        rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_2, user);
     }
 
     @GetMapping("/sendMsg")
@@ -98,6 +102,6 @@ public class RocketMQController {
         });
 
 
-        return Boolean.TRUE;
+        return true;
     }
 }
