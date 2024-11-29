@@ -1,10 +1,14 @@
 package com.github.axinger.controller;
 
+import com.github.axinger.service.MyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotEmpty;
 
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -15,5 +19,14 @@ public class UserController {
     @GetMapping("/list")
     public void list() {
 
+    }
+
+
+    @Autowired
+    private  MyService myService;
+
+    @GetMapping("/test")
+    public String test() {
+        return myService.testMethod("1111");
     }
 }
