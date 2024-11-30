@@ -32,6 +32,6 @@ public class CustomAnnotationAspect {
         // 解析占位符
         String numStr = placeholderResolver.resolvePlaceholder(myCustomAnnotation.num());
         int num = Integer.parseInt(numStr);
-       log.info("获取注解参数={},{}",value,num);
+        log.info("获取注解参数={},{}", value, num);
     }
 }

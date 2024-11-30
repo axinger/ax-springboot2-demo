@@ -1,4 +1,4 @@
-package com.github.axinger.config;
+package com.github.axinger.aop;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.github.axinger.annotation.ApiVersion;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 @Aspect
 @Component
-public class PersonServiceAop {
+public class ApiVersionAop {
 
     /// /@Around("@within(自定义注解)")//自定义注解标注在的类上；该类的所有方法（不包含子类方法）执行aop方法
     // 定义切点表达式
@@ -29,6 +29,8 @@ public class PersonServiceAop {
     @Before("classPointCut()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         System.out.println("Before==========================");
+        Object[] args = joinPoint.getArgs();
+        System.out.println("args = " + args);
     }
 
     // @Before("@annotation(com.github.axinger.annotation.ApiVersion)")
@@ -62,14 +64,6 @@ public class PersonServiceAop {
         // Object returnValue = point.proceed();
         // return returnValue;
     }
-
-    // @Around(value = "classPointCut() && @within(apiVersion)")
-    // public Object process2(ProceedingJoinPoint point, ApiVersion apiVersion) throws Throwable {
-    //     System.out.println("Around==process2: " + apiVersion.value());
-    //     // 用改变后的参数执行目标方法
-    //     Object returnValue = point.proceed();
-    //     return returnValue;
-    // }
 
 
 }

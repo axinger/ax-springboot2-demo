@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AopDemoMain {
+public class A01By18AopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AopDemoMain.class, args);
+        SpringApplication.run(A01By18AopApplication.class, args);
     }
 }

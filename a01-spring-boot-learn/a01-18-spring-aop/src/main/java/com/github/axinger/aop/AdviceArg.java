@@ -1,4 +1,4 @@
-package com.github.axinger.config;
+package com.github.axinger.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
