@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * @TableName person
  */
-@TableName(value = "person")
+@TableName(value = "order_person")
 @Data
 public class PersonEntity implements Serializable {
     @Serial

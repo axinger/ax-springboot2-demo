@@ -16,10 +16,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.serializer.*;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 
 import java.time.Duration;
@@ -112,7 +109,7 @@ public class RedisConfig {
 
 //        return new FastJsonRedisSerializer<>(Object.class);
 
-//        return new GenericFastJsonRedisSerializer();
+//        return new GenericToStringSerializer<>(Object.class);
 
     }
 

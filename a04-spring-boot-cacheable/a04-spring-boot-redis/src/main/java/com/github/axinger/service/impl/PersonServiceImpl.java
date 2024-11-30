@@ -39,7 +39,7 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, PersonEntity>
     //将方法的返回值放到缓存中
     @CachePut(key = "#person.id")
     public PersonEntity savePersonEntity(PersonEntity person) {
-        return null;
+        return person;
     }
 
     @Override
