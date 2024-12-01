@@ -17,7 +17,6 @@
         <module>pulsar-consumer-a</module>
         <module>pulsar-consumer-b</module>
         <module>pulsar-producer-a</module>
-        <module>pulsar-test</module>
     </modules>
 
     <dependencyManagement>
