@@ -12,6 +12,6 @@ public class LogService2 {
     public String log(String msg) {
 
 
-        return msg+ LocalDateTime.now();
+        return msg + LocalDateTime.now();
     }
 }

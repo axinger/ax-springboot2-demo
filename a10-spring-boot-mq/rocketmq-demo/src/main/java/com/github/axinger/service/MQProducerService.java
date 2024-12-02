@@ -3,7 +3,6 @@ package com.github.axinger.service;
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson2.JSON;
 import com.github.axinger.config.Topic;
-import com.github.axinger.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;

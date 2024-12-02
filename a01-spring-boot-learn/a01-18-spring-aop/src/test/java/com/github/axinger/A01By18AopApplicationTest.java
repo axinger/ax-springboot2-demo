@@ -2,8 +2,8 @@ package com.github.axinger;
 
 import com.github.axinger.controller.TestController;
 import com.github.axinger.service.LogService1;
-import com.github.axinger.service2.LogService2;
 import com.github.axinger.service.UserService;
+import com.github.axinger.service2.LogService2;
 import com.github.axinger.service2.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,10 @@ class A01By18AopApplicationTest {
     PersonService personService;
     @Autowired
     TestController testController;
+    @Autowired
+    private LogService1 logService1;
+    @Autowired
+    private LogService2 logService2;
 
     @Test
     void test1() {
@@ -43,19 +47,11 @@ class A01By18AopApplicationTest {
         testController.index();
     }
 
-
-    @Autowired
-    private LogService1 logService1;
-
     @Test
     void test_TestController1() {
 
         logService1.log("tom");
     }
-
-    @Autowired
-    private LogService2 logService2;
-
 
     @Test
     void test3() {

@@ -15,15 +15,13 @@ public class UserController {
     @NotEmpty(message = "name不能为空")
 //    private String name;
     public String name;
+    @Autowired
+    private MyService myService;
 
     @GetMapping("/list")
     public void list() {
 
     }
-
-
-    @Autowired
-    private  MyService myService;
 
     @GetMapping("/test")
     public String test() {

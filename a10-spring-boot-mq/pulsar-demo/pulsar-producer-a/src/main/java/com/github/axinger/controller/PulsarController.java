@@ -50,11 +50,11 @@ public class PulsarController {
 
     @GetMapping("/more")
     public void more() throws PulsarClientException {
-      for (int i = 0; i < 30; i++) {
-          Map<String, Object> map = new HashMap<>();
-          map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
-          map.put("data", "发送普通消息");
-          template.send(Topic.SHARED_TOPIC, map);
-      }
+        for (int i = 0; i < 30; i++) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
+            map.put("data", "发送普通消息");
+            template.send(Topic.SHARED_TOPIC, map);
+        }
     }
 }

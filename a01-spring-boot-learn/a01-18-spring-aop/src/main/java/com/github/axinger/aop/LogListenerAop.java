@@ -1,9 +1,7 @@
 package com.github.axinger.aop;
 
-import com.github.axinger.annotation.ApiVersion;
 import com.github.axinger.annotation.LogListener;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -23,7 +21,6 @@ public class LogListenerAop {
     public void logBefore(LogListener logListener) {
         log.info("value={}", logListener.value());
     }
-
 
 
     @Around("@annotation(logListener)")

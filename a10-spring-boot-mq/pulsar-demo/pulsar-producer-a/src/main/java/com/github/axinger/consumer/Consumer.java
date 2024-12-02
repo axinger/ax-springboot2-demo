@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.SubscriptionType;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -26,13 +25,13 @@ public class Consumer {
             subscriptionType = SubscriptionType.Shared,
 //            subscriptionName = "test01",
             clazz = Map.class)
-    public void Shared1(Map<String,Object> message) {
+    public void Shared1(Map<String, Object> message) {
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        log.info("线程池= {},  message = {}",Thread.currentThread().getName(), message);
+        log.info("线程池= {},  message = {}", Thread.currentThread().getName(), message);
     }
 
 }
