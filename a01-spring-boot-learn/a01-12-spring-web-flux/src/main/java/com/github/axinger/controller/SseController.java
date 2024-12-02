@@ -2,8 +2,6 @@ package com.github.axinger.controller;
 
 import com.github.axinger.entity.User;
 import com.github.axinger.sse.ClientManager;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,7 +22,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
-@Tag(name = "SseController", description = "连接sse")
+//@Tag(name = "SseController", description = "连接sse")
 @RestController
 @Slf4j
 public class SseController {
@@ -33,7 +31,7 @@ public class SseController {
     @Autowired
     private ClientManager clientManager;
 
-    @Operation(summary = "sse页面 ", description = "description注解")
+    //    @Operation(summary = "sse页面 ", description = "description注解")
     @RequestMapping(value = "/sse.page")
     public Object ipLogPageInfo1(@RequestParam String id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -42,13 +40,13 @@ public class SseController {
         return modelAndView;
     }
 
-    @Operation(summary = "Connect to SSE")
+    //    @Operation(summary = "Connect to SSE")
     @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> streamEvents(@RequestParam String id) {
         return clientManager.getSink(id).asFlux().doFinally(signalType -> clientManager.removeSink(id));
     }
 
-    @Operation(summary = "发送sse ", description = "description注解")
+    //    @Operation(summary = "发送sse ", description = "description注解")
     @PostMapping("/send")
     public void sendMessageToClient(@RequestParam String clientId, @RequestBody String message) {
         Sinks.Many<String> sink = clientManager.getSink(clientId);
