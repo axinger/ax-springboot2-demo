@@ -1,5 +1,6 @@
 package com.github.axinger.server;
 
+import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
@@ -35,23 +36,40 @@ public class SampleXxlJob {
     /**
      * 1、简单任务示例（Bean模式）
      */
-    @XxlJob("demoJobHandler")
-    public boolean demoJobHandler() throws Exception {
-
+    @XxlJob("job1")
+    public boolean job1() throws Exception {
         String param = XxlJobHelper.getJobParam();
-
         XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
-        log.info("简单任务示例={},参数={}", LocalDateTime.now(), param);
-
-
+        log.info("线程={}，简单任务示例={},参数={}",Thread.currentThread().getName(), LocalDateTime.now(), param);
         // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
         // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
-
-
 //        return XxlJobHelper.handleFail();
-        return true; // 执行成功
+        return XxlJobHelper.handleSuccess(); // 执行成功
     }
 
+
+    @XxlJob("job2")
+    public boolean job2(String msg) throws Exception {
+        String param = XxlJobHelper.getJobParam();
+        XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
+        log.info("简单任务示例={},参数={},msg={}", LocalDateTime.now(), param,msg);
+        // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
+        // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
+//        return XxlJobHelper.handleFail();
+        return XxlJobHelper.handleFail();
+    }
+
+    // ReturnT.FAIL 不行
+    @XxlJob("job3")
+    public ReturnT<String> job3() throws Exception {
+        String param = XxlJobHelper.getJobParam();
+        XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
+        log.info("线程={}，简单任务示例={},参数={}",Thread.currentThread().getName(), LocalDateTime.now(), param);
+        // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
+        // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
+//        return XxlJobHelper.handleFail();
+        return ReturnT.FAIL; // 执行成功
+    }
 
     /**
      * 2、分片广播任务
