@@ -123,6 +123,7 @@
         <module>a38-xxl-job</module>
 
         <module>a40-ai</module>
+        <module>a19-scheduled</module>
     </modules>
 
     <dependencyManagement>
