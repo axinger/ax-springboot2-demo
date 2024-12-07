@@ -56,9 +56,10 @@ class PersonServiceTest {
                     }
                 ]
                 """;
-
         List<PersonEntity> entityList = JSON.parseArray(jsonList, PersonEntity.class);
-        personService.saveBatch(entityList);
+//        personService.saveBatch(entityList);
+
+        personMapper.insertBatchSomeColumn(entityList);
     }
 
     @Test

@@ -81,9 +81,9 @@ public class PersonEntity implements Serializable {
     private String tenantId;
 
 
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
     @Column
     @Comment("创建时间")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
 
@@ -96,21 +96,21 @@ public class PersonEntity implements Serializable {
      * NEVER	从不更新，不管字段是否有值，都不进行更新
      * DEFAULT	追随全局配置
      */
+    @Comment("更新时间")
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE, updateStrategy = FieldStrategy.IGNORED)
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE,update="now()")
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
     // @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
-    @Comment("更新时间")
     private Date updateTime; // 这个用date
 
     @Version
-    @TableField(fill = FieldFill.INSERT)
     @Comment("版本号")
+    @TableField(fill = FieldFill.INSERT)
     private Long version;
 
-    @TableField(value = "deleted")
-    @TableLogic
     @Column
+    @TableLogic
     @Comment("逻辑删除")
+    @TableField(value = "deleted")
     private Integer deleted = 0;
 }
