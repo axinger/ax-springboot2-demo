@@ -1,5 +1,6 @@
 package com.github.axinger.db.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.Master;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.axinger.db.domain.Employee;
@@ -15,11 +16,12 @@ import java.util.List;
  * @createDate 2022-12-17 20:22:09
  */
 @Service
+@Master
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         implements EmployeeService {
 
     @Override
-    public List<Employee> listLeftSon(Wrapper wrapper) {
+    public List<Employee> listLeftSon(Wrapper<Employee> wrapper) {
         return this.baseMapper.listLeftSon(wrapper);
     }
 }

@@ -19,6 +19,7 @@ public class Department implements Serializable {
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
     /**
      *
      */
@@ -28,6 +29,7 @@ public class Department implements Serializable {
      *
      */
     private String name;
+
     @TableField(exist = false)
     private List<Employee> empList;
 }

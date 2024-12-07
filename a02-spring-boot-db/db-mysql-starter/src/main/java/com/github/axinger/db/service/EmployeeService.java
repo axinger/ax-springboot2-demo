@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface EmployeeService extends IService<Employee> {
 
-    List<Employee> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);
+    List<Employee> listLeftSon(@Param(Constants.WRAPPER) Wrapper<Employee> wrapper);
 }

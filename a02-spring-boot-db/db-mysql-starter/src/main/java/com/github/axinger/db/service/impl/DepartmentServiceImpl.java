@@ -1,5 +1,6 @@
 package com.github.axinger.db.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.Master;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.axinger.db.domain.Department;
@@ -15,6 +16,7 @@ import java.util.List;
  * @createDate 2022-12-17 19:55:51
  */
 @Service
+@Master
 public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department>
         implements DepartmentService {
 

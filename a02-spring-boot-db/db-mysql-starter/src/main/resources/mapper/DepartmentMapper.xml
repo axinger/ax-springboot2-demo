@@ -7,7 +7,12 @@
     <resultMap id="BaseResultMap" type="com.github.axinger.db.domain.Department">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
 
+    <resultMap id="LeftBaseResultMap" type="com.github.axinger.db.domain.Department">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <!--        部门有多个员工-->
         <collection property="empList" ofType="com.github.axinger.db.domain.Employee">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
@@ -15,7 +20,6 @@
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
-
         </collection>
 
     </resultMap>
@@ -25,7 +29,7 @@
         ,name
     </sql>
 
-    <select id="listLeft" resultMap="BaseResultMap">
+    <select id="listLeft" resultMap="LeftBaseResultMap">
         SELECT d.*,
                e.id      as e_id,
                e.name    as e_name,

@@ -1,6 +1,7 @@
 package com.github.axinger.db.mapper;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.baomidou.dynamic.datasource.annotation.Master;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
@@ -15,7 +16,7 @@ import java.util.List;
  * @createDate 2022-12-17 20:22:09
  * @Entity com.github.axinger.domain.Employee
  */
-@DS("db_ax_test")
+@Master
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
     List<Employee> listLeftSon(@Param(Constants.WRAPPER) Wrapper wrapper);

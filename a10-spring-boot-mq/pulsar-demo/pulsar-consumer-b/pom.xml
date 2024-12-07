@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>pulsar-demo</artifactId>
-        <version>2024.11.10-2.7</version>
+        <version>2024.12.01-2.7</version>
     </parent>
 
     <artifactId>pulsar-consumer-b</artifactId>
