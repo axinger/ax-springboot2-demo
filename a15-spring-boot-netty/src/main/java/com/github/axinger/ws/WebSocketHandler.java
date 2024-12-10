@@ -1,7 +1,6 @@
 package com.github.axinger.ws;
 
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson2.JSONObject;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -34,8 +33,8 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
         log.info("服务器收到消息：{}", msg.text());
 
         // 获取用户ID,关联channel
-        JSONObject jsonObject = JSONUtil.parseObj(msg.text());
-        String uid = jsonObject.getStr("uid");
+        JSONObject jsonObject = JSONObject.parseObject(msg.text());
+        String uid = jsonObject.getString("uid");
         NettyConfig.getChannelMap().put(uid, ctx.channel());
 
         // 将用户ID作为自定义属性加入到channel中，方便随时channel中获取用户ID
