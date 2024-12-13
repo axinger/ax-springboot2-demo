@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 @Slf4j
@@ -22,6 +23,9 @@ public class JUCController {
     FutureTaskService taskService;
     @Autowired
     FutureTaskService futureTaskService;
+
+    @Autowired
+    private Executor executor;
 
     @GetMapping("/test")
     public Object test(boolean success) {
@@ -148,4 +152,26 @@ public class JUCController {
     }
 
 
+    @RequestMapping("/test12")
+    public Object test12() {
+        List<Integer> list = List.of(1, 2, 3, 4, 0);
+        List<CompletableFuture<Void>> futureList = new ArrayList<>();
+        AtomicInteger successCount = new AtomicInteger(list.size());
+        for (Integer integer : list) {
+            futureList.add(CompletableFuture.runAsync(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(integer);
+                    int a = 1 / integer;
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }, executor).exceptionally(e -> {
+                successCount.getAndDecrement();
+                return null;
+            }));
+        }
+        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[0])).join();
+        String msg = successCount.get() == list.size() ? "全部成功" : "有失败";
+        return Map.of("data", msg, "count", successCount.get());
+    }
 }
