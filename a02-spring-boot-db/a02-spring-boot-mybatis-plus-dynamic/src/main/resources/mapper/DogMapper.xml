@@ -8,14 +8,10 @@
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
-        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id
-        ,name,age,
-        create_time,deleted,
-        update_time
+        ,name,age
     </sql>
 </mapper>

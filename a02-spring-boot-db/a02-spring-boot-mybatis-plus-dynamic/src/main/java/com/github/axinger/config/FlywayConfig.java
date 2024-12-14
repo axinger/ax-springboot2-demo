@@ -1,6 +1,7 @@
 package com.github.axinger.config;
 
 
+import cn.hutool.core.util.ObjUtil;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +32,21 @@ public class FlywayConfig {
         final Map<String, DataSourceProperty> datasource = dynamicDataSourceProperties.getDatasource();
         datasource.forEach((k, v) -> {
             log.info("多数据源={}，{}，{}", v.getUrl(), v.getUsername(), v.getPassword());
+
+            String path = "";
+            if (ObjUtil.equal(k, "db_1")) {
+                path = "classpath:db/migration";
+            } else if (ObjUtil.equal(k, "db_2")) {
+                path = "classpath:db2/migration";
+            }
+
             Flyway flyway = Flyway.configure()
                     .dataSource(v.getUrl(), v.getUsername(), v.getPassword())
                     .encoding(ENCODING)
                     .baselineOnMigrate(true)
                     .baselineVersion("0.1")  // 基线版本
                     .baselineDescription(k + "初始化")
-                    .locations("classpath:db/migration")  // sql脚本存放地址
+                    .locations(path)  // sql脚本存放地址
                     .load();
             flyway.migrate();
             log.info("{} 数据库迁移完成", k);

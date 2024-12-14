@@ -1,7 +1,7 @@
 package com.github.axinger.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.github.axinger.annotation.DS_SUB;
+import com.github.axinger.annotation.DS_2;
 import com.github.axinger.domain.Dog;
 
 /**
@@ -10,7 +10,7 @@ import com.github.axinger.domain.Dog;
  * @createDate 2024-07-30 18:14:48
  * @Entity com.github.axinger.domain.Dog
  */
-@DS_SUB
+@DS_2
 public interface DogMapper extends BaseMapper<Dog> {
 
 }

@@ -7,6 +7,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@DS("db_ax_main")
-public @interface DS_MASTER {
+@DS("db_1")
+public @interface DS_1 {
 }

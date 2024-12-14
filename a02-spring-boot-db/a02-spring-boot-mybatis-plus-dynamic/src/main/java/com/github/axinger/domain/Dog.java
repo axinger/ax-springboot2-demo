@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * @TableName t_dog
  */
-@TableName(value = "t_dog")
+@TableName(value = "sys_dog")
 @Data
 public class Dog implements Serializable {
     @Serial
@@ -22,24 +22,13 @@ public class Dog implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     /**
-     *
-     */
-    @TableField(value = "name")
-    private String name;
-    /**
-     *
+     * 年龄
      */
     @TableField(value = "age")
     private Integer age;
     /**
-     * 创建时间
+     * 姓名
      */
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    @TableField(value = "name")
+    private String name;
 }

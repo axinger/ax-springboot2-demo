@@ -1,7 +1,7 @@
 package com.github.axinger.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.axinger.annotation.DS_SUB;
+import com.github.axinger.annotation.DS_2;
 import com.github.axinger.domain.Dog;
 import com.github.axinger.mapper.DogMapper;
 import com.github.axinger.service.DogService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @createDate 2024-07-30 18:14:48
  */
 @Service
-@DS_SUB
+@DS_2
 public class DogServiceImpl extends ServiceImpl<DogMapper, Dog>
         implements DogService {
 
