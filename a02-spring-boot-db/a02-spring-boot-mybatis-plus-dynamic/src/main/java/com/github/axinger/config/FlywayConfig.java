@@ -29,8 +29,8 @@ public class FlywayConfig {
     @Bean
     public void migrate() {
         log.info("开始执行数据库迁移");
-        final Map<String, DataSourceProperty> datasource = dynamicDataSourceProperties.getDatasource();
-        datasource.forEach((k, v) -> {
+        final Map<String, DataSourceProperty> map = dynamicDataSourceProperties.getDatasource();
+        map.forEach((k, v) -> {
             log.info("多数据源={}，{}，{}", v.getUrl(), v.getUsername(), v.getPassword());
 
             String path = "";
