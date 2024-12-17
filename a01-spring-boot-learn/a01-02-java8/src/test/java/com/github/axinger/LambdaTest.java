@@ -61,7 +61,7 @@ public class LambdaTest {
 
         myAction.run();
 
-        Comparator<Integer> comparator = (o1, o2) -> Integer.compare(o1, o2);
+        Comparator<Integer> comparator = Integer::compare;
         System.out.println(comparator.compare(10, 1));
 
         /// 方法引用
