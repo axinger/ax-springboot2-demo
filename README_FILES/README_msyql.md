@@ -1,14 +1,38 @@
-# 基础
+# 一.基础
+
+## 1.架构
 
 ```text
 逻辑架构4层
 ```
 
-## 建表
+## 2.mysql 四种隔离级别
+
+```
+事务的 四个特征（ACID）
+
+事务具有四个特征：原子性（ Atomicity ）、一致性（ Consistency ）、隔离性（ Isolation ）和持续性（ Durability ）。这四个特性简称为 ACID 特性。
+
+1 、原子性。事务是数据库的逻辑工作单位，事务中包含的各操作要么都做，要么都不做
+
+2 、一致性。事 务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。
+因此当数据库只包含成功事务提交的结果时，就说数据库处于一致性状态。
+如果数据库系统 运行中发生故障，有些事务尚未完成就被迫中断，这些未完成事务对数据库所做的修改有一部分已写入物理数据库，
+这时数据库就处于一种不正确的状态，或者说是 不一致的状态。
+
+3 、隔离性。一个事务的执行不能其它事务干扰。即一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务之间不能互相干扰。
+
+4 、持续性。也称永久性，指一个事务一旦提交，它对数据库中的数据的改变就应该是永久性的。接下来的其它操作或故障不应该对其执行结果有任何影响。
+```
+
+
+
+# 二.语法
+
+## 1.建表
 
 ```text
 VARCHAR(22) 必须指定长度,22个字符
-
 ```
 
 ```shell
@@ -79,41 +103,153 @@ END;
 CALL test_22();#调用存储函数
 ```
 
-## 7种jon: 内, 左外, 左,右外, 右, 全, 全外
+## 2.GROUP BY
+
+8.0语法
 
 ```mysql
-##中间集合 与外连接效果一样
-SELECT*FROM t_person,t_person_location WHERE t_person.CODE=t_person_location.person_code; #
-##全连接, mysql不支 UNION ,
-SELECT*FROM t_person FULL JOIN t_person_location ON t_person.CODE=t_person_location.CODE; #
-## 联合, 合并查询结果,UNION ALL不去重,性能高,必须有个字段相同,且查询字段sql中位置相同,不常用
-SELECT id,title,CODE FROM t_person UNION ALL 
-SELECT id,NAME,CODE FROM t_person_location; #
-/**7种jon 内, 左外, 左,右外, 右, 全, 全外 ***/
-##1 内连接
-SELECT*FROM t_person p JOIN t_person_location l ON p.`code`=l.`code`; #
-## in 查询 效果差不多
-SELECT*FROM t_person  WHERE `code` IN (SELECT `code` FROM t_person_location) #
-# IN 等价 EXISTS
-SELECT*FROM t_person  WHERE  EXISTS (SELECT 1 FROM t_person_location WHERE  t_person_location.`code` =t_person.`code`) #
-
-##2 左外连接 OUTER 可以省略
-SELECT*FROM t_person p LEFT JOIN t_person_location l ON p.`code`=l.`code`; #
-##3 左连接
-SELECT*FROM t_person p LEFT JOIN t_person_location l ON p.`code`=l.`code` WHERE p.`code` IS NULL; #
-##4 右外连接 OUTER 可以省略
-SELECT*FROM t_person RIGHT JOIN t_person_location ON t_person.CODE=t_person_location.CODE; #
-##5 右连接
-SELECT*FROM t_person p RIGHT JOIN t_person_location l ON p.`code`=l.`code` WHERE l.`code` IS NULL; #
-##6 全连接 = 左外连接 UNION ALL 右连接 或者 连接 = 左连接 UNION ALL 右外连接
-SELECT*FROM t_person p LEFT JOIN t_person_location l ON p.`code`=l.`code` UNION ALL 
-SELECT*FROM t_person p RIGHT JOIN t_person_location l ON p.`code`=l.`code` WHERE l.`code` IS NULL; #
-##7 全外连接 =  左连接 UNION ALL 右连接
-SELECT*FROM t_person p LEFT JOIN t_person_location l ON p.`code`=l.`code` WHERE p.`code` IS NULL UNION ALL 
-SELECT*FROM t_person p RIGHT JOIN t_person_location l ON p.`code`=l.`code` WHERE l.`code` IS NULL; #
+SELECT
+	age,
+	GROUP_CONCAT( id ),
+	GROUP_CONCAT( `name` ) 
+FROM
+	t_student 
+GROUP BY
+	age
 ```
 
-## 函数
+返回表中没有的字段,
+
+```mysql
+select  id,name , '10岁' as age from user;
+```
+
+逆序分页查询
+需要传上次最后的一个值,每次查询,num始终为0
+
+```mysql
+select * from tb_order  WHERE id<4 order by order_id desc limit 0,2;
+```
+
+顺序查询,一般的格式
+
+```mysql
+select * from tb_order limit 2,2;
+```
+
+分组获得所有字段,默认逗号分割 GROUP_CONCAT
+
+```mysql
+SELECT
+	GROUP_CONCAT( id ),
+	age 
+FROM
+	`tb_account` 
+WHERE
+	`id` >= 1 
+GROUP BY
+	age
+```
+
+# 三.7种jon
+
+## 1.  inner join
+
+join其实就是inner join，是inner join缩写
+
+```
+SELECT <select_list>
+FROM Table_A A
+INNER JOIN Table_B B
+ON A.Key = B.Key
+```
+
+![inner_join](./inner_join.png)
+
+## 2.Left Join 左连接
+
+左连接返回左表中的所有行，以及右表中与左表匹配的行。如果右表中没有匹配的行，则返回NULL值。
+
+```
+SELECT <select_list>
+FROM Table_A A
+LEFT JOIN Table_B B
+ON A.Key = B.Key
+```
+
+![](./Left join.png)
+
+## 3.Right Join 右连接
+
+右连接返回右表中的所有行，以及左表中与右表匹配的行。如果左表中没有匹配的行，则返回NULL值。
+
+```
+SELECT <select_list>
+FROM Table_A A
+RIGHT JOIN Table_B B
+ON A.Key = B.Key
+```
+
+![](./Right join.png)
+
+## 4.Outer Join 全连接
+
+全连接返回左表和右表中的所有行，如果左表或右表中没有匹配的行，则返回NULL值。
+
+```
+SELECT <select_list>
+FROM Table_A A
+FULL OUTER JOIN Table_B B
+ON A.Key = B.Key
+```
+
+![](./Outer Join.png)
+
+## 5-Left Excluding Join 左排除连接
+
+左排除连接返回左表中没有在右表中找到匹配的行。它只返回左表中没有与右表匹配的行，而右表中匹配的行将被排除在结果集之外。
+
+```
+SELECT <select_list>
+FROM Table_A A
+LEFT JOIN Table_B B
+ON A.Key = B.Key
+WHERE B.Key IS NULL
+```
+
+
+
+![](./Left Excluding Join.png)
+
+## 6-Right Excluding Join 右排除连接
+
+右排除连接返回右表中没有在左表中找到匹配的行。它只返回右表中没有与左表匹配的行，而左表中匹配的行将被排除在结果集之外。
+
+```
+SELECT <select_list>
+FROM Table_A A
+RIGHT JOIN Table_B B
+ON A.Key = B.Key
+WHERE A.Key IS NULL
+```
+
+![](./Right Excluding Join.png)
+
+## 7-Outer Excluding Join 外部排除连接
+
+外部排除连接是左排除连接和右排除连接的结合，返回左表和右表中没有匹配的行。它返回左表和右表中没有与对方表匹配的行，而匹配的行将被排除在结果集之外。
+
+```
+SELECT <select_list>
+FROM Table_A A
+FULL OUTER JOIN Table_B B
+ON A.Key = B.Key
+WHERE A.Key IS NULL OR B.Key IS NULL
+```
+
+![](./Outer Excluding Join.png)
+
+# 四.函数
 
 ```text
 1.单行函数: 返回参数一个,各种三角函数,取值等;
@@ -148,7 +284,7 @@ SELECT id,MAX(code) FROM t_person   GROUP BY id HAVING MAX(code)> 101 AND id IN(
 #没有聚合函数时,WHERE HAVING 都可以使用,推荐使用WHERE
 ```
 
-## 子查询
+## 1.子查询
 
 ```text
 查询语句嵌套在另一个查询语句内部的查询
@@ -208,30 +344,7 @@ WHERE
 	
 ```
 
-## mysql 四种隔离级别
-
-```text
-事务的 四个特征（ACID）
-
-事务具有四个特征：原子性（ Atomicity ）、一致性（ Consistency ）、隔离性（ Isolation ）和持续性（ Durability ）。这四个特性简称为 ACID 特性。
-
-1 、原子性。事务是数据库的逻辑工作单位，事务中包含的各操作要么都做，要么都不做
-
-2 、一致性。事 务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。
-因此当数据库只包含成功事务提交的结果时，就说数据库处于一致性状态。
-如果数据库系统 运行中发生故障，有些事务尚未完成就被迫中断，这些未完成事务对数据库所做的修改有一部分已写入物理数据库，
-这时数据库就处于一种不正确的状态，或者说是 不一致的状态。
-
-3 、隔离性。一个事务的执行不能其它事务干扰。即一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务之间不能互相干扰。
-
-4 、持续性。也称永久性，指一个事务一旦提交，它对数据库中的数据的改变就应该是永久性的。接下来的其它操作或故障不应该对其执行结果有任何影响。
-
-
-```
-
-****
-
-# MySQL优化
+# 五.MySQL优化
 
 ## 索引
 
@@ -462,56 +575,8 @@ b表必须小于a的数据,,用in优先exists
 a表小于b的数据,exists优于in
 ```
 
-# 主从复制 binlog 日志
+# 六.主从复制 binlog 日志
 
 ```text
 https://zhuanlan.zhihu.com/p/307288925
-```
-
-## GROUP BY
-
-8.0语法
-
-```mysql
-SELECT
-	age,
-	GROUP_CONCAT( id ),
-	GROUP_CONCAT( `name` ) 
-FROM
-	t_student 
-GROUP BY
-	age
-```
-
-返回表中没有的字段,
-
-```mysql
-select  id,name , '10岁' as age from user;
-```
-
-逆序分页查询
-需要传上次最后的一个值,每次查询,num始终为0
-
-```mysql
-select * from tb_order  WHERE id<4 order by order_id desc limit 0,2;
-```
-
-顺序查询,一般的格式
-
-```mysql
-select * from tb_order limit 2,2;
-```
-
-分组获得所有字段,默认逗号分割 GROUP_CONCAT
-
-```mysql
-SELECT
-	GROUP_CONCAT( id ),
-	age 
-FROM
-	`tb_account` 
-WHERE
-	`id` >= 1 
-GROUP BY
-	age
 ```
