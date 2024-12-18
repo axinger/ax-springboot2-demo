@@ -5,10 +5,8 @@ import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.ObjectUtil;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xing
@@ -105,14 +103,52 @@ public class CollectionUtilTests {
         Collection<String> disjunction = CollectionUtil.disjunction(listA, listB);
         System.out.println("交集的补集  disjunction ：" + disjunction);
 
-
-        Map map = new HashMap<>() {{
+        Map<String, Object> map = new HashMap<>() {{
             put("1", "1");
             put("3", "3");
         }};
 
-
         Collection<String> disjunction2 = CollectionUtil.disjunction(listA, map.keySet());
         System.out.println("disjunction2 = " + disjunction2);
+    }
+
+    @Test
+    public void test3() {
+        List<User> listA = ListUtil.toList(
+                User.builder().id(1).name("tom").build(),
+                User.builder().id(2).name("tom").build(),
+                User.builder().id(3).name("jim").build()
+        );
+
+        List<User> listB = ListUtil.toList(
+                User.builder().id(1).name("tom").build(),
+                User.builder().id(4).name("tom").build(),
+                User.builder().id(5).name("jim").build()
+        );
+
+
+        // 并集
+        List<User> union = CollectionUtil.union(listA, listB).stream().sorted(Comparator.comparing(User::getId)).toList();
+        System.out.println("并集 union ：" + union);
+
+
+        // 交集
+        List<User> intersection = CollectionUtil.intersection(listA, listB).stream().sorted(Comparator.comparing(User::getId)).toList();
+        System.out.println("交集 intersection :" + intersection);
+
+        // 交集的补集,不同部分
+        List<User> disjunction = CollectionUtil.disjunction(listA, listB).stream().sorted(Comparator.comparing(User::getId)).toList();
+        System.out.println("交集的补集  disjunction ：" + disjunction);
+
+        // 差集(集合相减)
+        List<User> subtract = CollectionUtil.subtract(listA, listB).stream().sorted(Comparator.comparing(User::getId)).toList();
+        System.out.println("差集(集合相减) subtract  ：" + subtract);
+    }
+
+
+    @Test
+    public void test4() {
+
+
     }
 }
