@@ -91,7 +91,7 @@ SQLSERVER: 默认为READ_COMMITTED
 
 # spring事务失效的12种场景
 
-![img_14.png](img_14.png)
+![img_14.png](README_IMG2/img_14.png)
 
 ```text
 https://mp.weixin.qq.com/s/Vxp2YgWvaUBnmNs2YFE6tA
@@ -114,7 +114,7 @@ A，B都使用事务注解：@Transactional(rollbackFor = Exception.class)，
 结论：A,B只要有一个发生异常,A和B都会回滚
 ```
 
-![img_16.png](img_16.png)
+![img_16.png](README_IMG2/img_16.png)
 
 ```text
 场景二
@@ -123,7 +123,7 @@ A使用事务注解：@Transactional(rollbackFor = Exception.class)，B不使用
 结论：只要A发生异常，A,B都回滚；B发生异常，若A catch了异常，但没有将异常抛出，则A,B都不回滚；除此之外，A,B都回滚
 ```
 
-![img_17.png](img_17.png)
+![img_17.png](README_IMG2/img_17.png)
 
 ```text
 场景三（一般不用）
@@ -132,7 +132,7 @@ A不使用事务，B使用事务注解：@Transactional(rollbackFor = Exception.
 结论：无论AB是否发生异常，A都不回滚；只有B发生异常，B才会回滚
 ```
 
-![img_18.png](img_18.png)
+![img_18.png](README_IMG2/img_18.png)
 
 ```text
 A使用默认事务注解：@Transactional(rollbackFor = Exception.class)
@@ -141,4 +141,4 @@ B使用新事务注解：@Transactional(propagation = Propagation.REQUIRES_NEW,r
 即：AB属于两个独立的事务，互不影响。
 ```
 
-![img_19.png](img_19.png)
+![img_19.png](README_IMG2/img_19.png)

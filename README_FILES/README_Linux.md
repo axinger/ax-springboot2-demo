@@ -47,4 +47,4 @@ ifconfig | grep "inet " | grep -v 127.0.0.1
 
 ```
 
-![img_2.png](img_2.png)
+![img_2.png](README_IMG2/img_2.png)

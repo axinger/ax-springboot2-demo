@@ -50,7 +50,7 @@ RabbitMQ要实现延时任务，需要使用RabbitMQ的死信交换机(Exchange)
 
 ```
 
-![img_15.png](img_15.png)
+![img_15.png](README_IMG2/img_15.png)
 
 ```text
 
@@ -205,7 +205,7 @@ TTL
 
 ```
 
-![img_20.png](img_20.png)
+![img_20.png](README_IMG2/img_20.png)
 
 ## 延迟插件
 

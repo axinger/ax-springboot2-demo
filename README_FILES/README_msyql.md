@@ -164,7 +164,7 @@ INNER JOIN Table_B B
 ON A.Key = B.Key
 ```
 
-![inner_join](./inner_join.png)
+![inner_join](README_IMG1/inner_join.png)
 
 ## 2.Left Join 左连接
 
@@ -203,7 +203,7 @@ FULL OUTER JOIN Table_B B
 ON A.Key = B.Key
 ```
 
-![](./Outer Join.png)
+![](README_IMG1/Outer%20Join.png)
 
 ## 5-Left Excluding Join 左排除连接
 
@@ -219,7 +219,7 @@ WHERE B.Key IS NULL
 
 
 
-![](./Left Excluding Join.png)
+![](README_IMG1/Left%20Excluding%20Join.png)
 
 ## 6-Right Excluding Join 右排除连接
 
@@ -233,7 +233,7 @@ ON A.Key = B.Key
 WHERE A.Key IS NULL
 ```
 
-![](./Right Excluding Join.png)
+![](README_IMG1/Right%20Excluding%20Join.png)
 
 ## 7-Outer Excluding Join 外部排除连接
 
@@ -247,7 +247,7 @@ ON A.Key = B.Key
 WHERE A.Key IS NULL OR B.Key IS NULL
 ```
 
-![](./Outer Excluding Join.png)
+![](README_IMG1/Outer%20Excluding%20Join.png)
 
 # 四.函数
 
@@ -400,7 +400,7 @@ EXPLAIN + sql
 每张表有多少行被优化器查询;
 ```
 
-![expand效果图](README_IMGS/img.png)
+![expand效果图](README_IMG1/img.png)
 
 ```mysql
 EXPLAIN SELECT
@@ -413,7 +413,7 @@ WHERE
 	`code` > ( SELECT CODE FROM t_person WHERE `name` = 'tom' );#
 ```
 
-![expand子查询效果图](README_IMGS/img_1.png)
+![expand子查询效果图](README_IMG1/img_1.png)
 
 #### id
 
@@ -453,7 +453,7 @@ possible_keys=null, keys=xx;
 EXPLAIN  SELECT*FROM t_person WHERE id=1; 
 ```
 
-![expand 使用到了key](README_IMGS/img_2.png)
+![expand 使用到了key](README_IMG1/img_2.png)
 
 #### key_len
 
@@ -491,7 +491,7 @@ Using temporary 新建内部临时表,常见order by, group by
 EXPLAIN SELECT id,author_id FROM article WHERE category_id=1 AND comments > 1 ORDER BY views DESC LIMIT 1;
 ```
 
-![expand 练习1](README_IMGS/img_3.png)
+![expand 练习1](README_IMG1/img_3.png)
 
 ```text
 type: all 最坏情况
@@ -511,14 +511,14 @@ DROP INDEX idx_article_cv ON article;
 show INDEX FROM article;
 ```
 
-![建立索引,并查看](README_IMGS/img_4.png)
+![建立索引,并查看](README_IMG1/img_4.png)
 
 ```text
 type: ref
 extra  Using filesort 消失
 ```
 
-![建立索引,优化了一下](README_IMGS/img_5.png)
+![建立索引,优化了一下](README_IMG1/img_5.png)
 
 ### 双表优化
 

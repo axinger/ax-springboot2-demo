@@ -48,7 +48,7 @@ mybatis.configuration.call-setters-on-nulls=true
 ```
 
 mybatis 的 <![CDATA[ ]]> 标签作用
-![xml中出现 > < 大于小于符号,解析异常](README_IMGS/img_6.png)
+![xml中出现 > < 大于小于符号,解析异常](README_IMG1/img_6.png)
 
 ```text
 因为这个是xml格式的，所以不允许出现类似“>”这样的字符，但是都可以使用<![CDATA[ ]]>符号进行说明，将此类符号不进行解析；

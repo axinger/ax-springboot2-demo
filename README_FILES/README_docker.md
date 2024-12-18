@@ -73,7 +73,7 @@ docker image inspect (docker image名称):latest|grep -i version
 docker stats 
 ```
 
-![img_23.png](img_23.png)
+![img_23.png](README_IMG2/img_23.png)
 
 ## 启动守护式容器
 
