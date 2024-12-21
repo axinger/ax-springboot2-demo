@@ -9,6 +9,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class HttpConfig {
+
+    @Bean
+    public ClientHttpRequestFactory httpRequestFactory() {
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        // ms
+        factory.setReadTimeout(30 * 1000);
+        // ms
+        factory.setConnectTimeout(30 * 1000);
+        return factory;
+    }
+
+
     @Bean
     public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
         return new RestTemplate(factory);
@@ -19,13 +31,4 @@ public class HttpConfig {
         return WebClient.create();
     }
 
-    @Bean
-    public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
-        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
-        // ms
-        factory.setReadTimeout(30 * 1000);
-        // ms
-        factory.setConnectTimeout(30 * 1000);
-        return factory;
-    }
 }

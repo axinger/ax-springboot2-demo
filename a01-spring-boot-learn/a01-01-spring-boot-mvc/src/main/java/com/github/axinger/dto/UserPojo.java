@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import java.util.List;
 
@@ -12,9 +11,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserDTO {
+public class UserPojo<T> {
     private Long id;
     private String name;
     private Long age;
     private int sex = 0;
+
+    private List<T> data;
+
+
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Data
+    public static class BookPojo {
+        private Long id;
+        private String name;
+    }
 }

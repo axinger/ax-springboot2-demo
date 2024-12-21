@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.retry.annotation.EnableRetry;
+import org.springframework.web.client.RestTemplate;
 
 @ComponentScan(excludeFilters = {
         // 去除装配
@@ -17,22 +18,21 @@ import org.springframework.retry.annotation.EnableRetry;
                 })
 })
 @SpringBootApplication
-
-
 @EnableRetry(proxyTargetClass = true)
 @Slf4j
 public class A01MVCApplication {
 
-
     static String My_Env;
+
+    @Value("${spring.profiles.active}")
+    public void setMyEnv(String myEnv) {
+        My_Env = myEnv;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(A01MVCApplication.class, args);
         log.info("环境变量={}", My_Env);
     }
 
-    @Value("${spring.profiles.active}")
-    public void setMyEnv(String myEnv) {
-        My_Env = myEnv;
-    }
+
 }
