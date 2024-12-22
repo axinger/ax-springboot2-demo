@@ -124,6 +124,7 @@
 
         <module>a40-ai</module>
         <module>a19-scheduled</module>
+        <module>a21-grpc</module>
     </modules>
 
     <dependencyManagement>

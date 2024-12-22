@@ -77,6 +77,7 @@ public class CsvTests {
 
     }
 
+    ///  writeBeans
     @Test
     public void test2() throws InterruptedException {
         File distFile = new File("C:\\Users\\xing\\Desktop\\2.csv");
