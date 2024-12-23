@@ -9,7 +9,7 @@
         <version>2024.12.01-2.7</version>
     </parent>
 
-    <artifactId>a01-12-rxjava</artifactId>
+    <artifactId>a01-11-rxjava</artifactId>
 
     <dependencies>
         <dependency>
