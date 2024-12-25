@@ -10,7 +10,6 @@ public class TupleTests {
 
     @Test
     void test1() {
-
         // 内部就是数组,强转类型
         Tuple tuple = new Tuple(1, 1L, "1");
         System.out.println("tuple = " + tuple);

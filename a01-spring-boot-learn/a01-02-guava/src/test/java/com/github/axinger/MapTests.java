@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 import com.google.common.collect.*;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

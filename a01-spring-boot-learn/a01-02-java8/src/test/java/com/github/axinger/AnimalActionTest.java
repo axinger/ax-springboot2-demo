@@ -10,7 +10,7 @@ class AnimalActionTest {
     void test1() {
         Dog dog = new Dog();
 
-        AnimalAction<Dog> animalAction = new AnimalActionImpl();
+        AnimalAction<Dog> animalAction = new AnimalActionImpl<>();
         final Dog dog1 = animalAction.show(dog);
         System.out.println("dog1 = " + dog1);
 

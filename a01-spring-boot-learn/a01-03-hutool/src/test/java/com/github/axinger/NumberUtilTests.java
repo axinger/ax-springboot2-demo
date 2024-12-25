@@ -52,4 +52,28 @@ public class NumberUtilTests {
         String s = NumberUtil.decimalFormat(",###", 123456);
         System.out.println("s = " + s);
     }
+
+    @Test
+    void test7() {
+        boolean a = NumberUtil.isNumber("a");
+        System.out.println("a = " + a);
+    }
+
+    @Test
+    void test8() {
+        //判断两个数字是否相邻，例如1和2相邻，1和3不相邻
+        boolean a = NumberUtil.isBeside(1,3);
+        System.out.println("a = " + a);
+    }
+
+    @Test
+    void test9() {
+        //判断两个数字是否相邻，例如1和2相邻，1和3不相邻
+        int i = NumberUtil.partValue(5, 3);
+        System.out.println("i = " + i);
+
+        int i2 = NumberUtil.partValue(5, 3,false);
+        System.out.println("i2 = " + i2);
+    }
+
 }

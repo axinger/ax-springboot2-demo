@@ -25,6 +25,8 @@ public class IdUtilTests {
 
         System.out.println("IdUtil.fastUUID() = " + IdUtil.fastUUID());
 
+        // getSnowflake 单利
+        // return Singleton.get(Snowflake.class);
         System.out.println("IdUtil.getSnowflakeNextId() = " + IdUtil.getSnowflakeNextId());
 
         System.out.println("IdUtil.objectId() = " + IdUtil.objectId());

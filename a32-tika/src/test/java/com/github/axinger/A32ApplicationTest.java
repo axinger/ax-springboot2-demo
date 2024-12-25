@@ -71,6 +71,20 @@ class A32ApplicationTest {
         String content = tika.parseToString(file);
         System.out.println("解析后的文章内容如下：\n" + content);
 
+    }
+
+
+    @Test
+    void test3() throws TikaException, IOException {
+        Path path = Paths.get("C:\\Users\\xing\\Desktop\\test.xlsx");
+        File file = path.toFile();
+
+        String detect = tika.detect(file);
+        System.out.println("文件类型:" + detect);
+
+
+        String content = tika.parseToString(file);
+        System.out.println("解析后的文章内容如下：\n" + content);
 
     }
 

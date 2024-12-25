@@ -25,4 +25,10 @@ public class Person implements Serializable {
     private Boolean big;
 
     private Integer age;
+
+    private boolean sex;
+
+    public String log1(){
+       return "";
+    }
 }

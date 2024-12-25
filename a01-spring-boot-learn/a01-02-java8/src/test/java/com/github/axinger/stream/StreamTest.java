@@ -23,45 +23,8 @@ import java.util.stream.Stream;
 
 public class StreamTest {
 
-    static List<Person> personList;
+    static List<Person> personList = Person.personList;
 
-    static {
-        personList = new ArrayList<>() {{
-            add(Person.builder()
-                    .id(1)
-                    .name("jim")
-                    .sex("男")
-                    .age(10)
-                    .address("安徽")
-                    .build());
-            add(Person.builder()
-                    .id(2)
-                    .name("lili")
-                    .sex("女")
-                    .age(10)
-                    .address("安徽")
-                    .build());
-            add(Person.builder()
-                    .id(3)
-                    .name("Lucy")
-                    .sex("女")
-                    .age(18)
-                    .address("安徽")
-                    .build());
-            add(Person.builder()
-                    .id(4)
-                    .name("小红")
-                    .sex("女")
-                    .age(20)
-                    .address("江苏")
-                    .build());
-        }};
-    }
-
-    @BeforeAll
-    static void beforeAll() {
-        System.out.println("beforeAll====");
-    }
 
     public static Stream<Character> fromStringToStream(String str) {
         List<Character> list = new ArrayList<>();

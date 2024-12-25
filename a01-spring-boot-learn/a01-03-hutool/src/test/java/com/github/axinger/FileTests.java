@@ -1,7 +1,11 @@
 package com.github.axinger;
 
 import cn.hutool.core.comparator.CompareUtil;
+import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IORuntimeException;
+import cn.hutool.core.io.file.FileNameUtil;
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;
 
@@ -94,5 +98,67 @@ public class FileTests {
 
         System.out.println("min2 = " + min2);
 
+    }
+
+    @Test
+    void test3() {
+        File file = FileUtil.file("/opt/test.txt");
+
+        //test.txt
+        String name1 = FileUtil.getName(file);
+        System.out.println("name1 = " + name1);
+
+
+        // test
+        String name = FileNameUtil.mainName(file);
+        System.out.println("name = " + name);
+
+
+        // txt
+        String extName = FileNameUtil.extName(file);
+        String extName1 = FileUtil.extName(file);
+        System.out.println("extName = " + extName);
+        System.out.println("extName1 = " + extName1);
+
+        // test
+        String prefix = FileNameUtil.getPrefix(file);
+        String prefix1 = FileUtil.getPrefix(file);
+        System.out.println("prefix = " + prefix);
+        System.out.println("prefix1 = " + prefix1);
+
+        // txt
+        String suffix = FileNameUtil.getSuffix(file);
+        String suffix2 = FileUtil.getSuffix(file);
+        System.out.println("suffix = " + suffix);
+        System.out.println("suffix2 = " + suffix2);
+
+    }
+
+
+    /**
+     * 根据文件流的头部信息获得文件类型
+     *
+     * <pre>
+     *     1、无法识别类型默认按照扩展名识别
+     *     2、xls、doc、msi头信息无法区分，按照扩展名区分
+     *     3、zip可能为jar、war头信息无法区分，按照扩展名区分
+     * </pre>
+     */
+    // 文件类型
+    @Test
+    void test4() {
+        File file = FileUtil.file("C:\\Users\\xing\\Desktop\\test.png");
+        String type = FileTypeUtil.getType(file);
+        //输出 jpg则说明确实为jpg文件
+        Console.log(type);
+        System.out.println("type = " + type);
+    }
+
+    // 文件类型
+    @Test
+    void test5() {
+        File file = FileUtil.file("C:\\Users\\xing\\Desktop\\test.xlsx");
+        String type = FileTypeUtil.getType(file);
+        System.out.println("type = " + type);
     }
 }
