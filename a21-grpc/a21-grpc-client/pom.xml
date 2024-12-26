@@ -31,6 +31,12 @@
             <artifactId>grpc-client-spring-boot-starter</artifactId>
             <version>2.14.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>4.26.1</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 

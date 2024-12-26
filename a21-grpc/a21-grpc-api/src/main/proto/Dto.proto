@@ -1,0 +1,44 @@
+//syntax = "proto3";
+//import "google/protobuf/empty.proto";
+//package com.github.axinger.api;
+//
+//
+//enum StatusCode {
+//  UNKNOWN = 0;
+//  SUCCESS = 1;
+//  FAILURE = 2;
+//}
+//
+//
+//message ResponsePayload {
+//  oneof payload {
+//    google.protobuf.Empty empty = 1;
+//    User user = 2;
+//    Product product = 3;
+//    UserList userList = 4;
+//  }
+//}
+//
+//message UnifiedResponse {
+//  StatusCode code = 1;
+//  string message = 2;
+//  ResponsePayload payload = 4;
+//}
+//
+//message User {
+//  int32 id = 1;
+//  string name = 2;
+//}
+//
+//message Product {
+//  int32 id = 1;
+//  string title = 2;
+//  float price = 3;
+//}
+//
+//
+//message UserList {
+//  repeated User data = 1;
+//}
+//
+//

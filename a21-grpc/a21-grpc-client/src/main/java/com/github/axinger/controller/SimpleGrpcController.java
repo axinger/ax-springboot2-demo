@@ -7,17 +7,15 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("grpc")
 public class SimpleGrpcController {
     @Autowired
     private GrpcClientService service;
 
-    @GetMapping("getOneToOne")
+    @GetMapping("test1")
     public Object getOneToOne() {
         return service.oneToOne("客户端kele连接");
     }
@@ -34,4 +32,9 @@ public class SimpleGrpcController {
         return stub.oneToOne(request);
     }
 
+
+    @GetMapping("test2")
+    public Object test2() {
+        return service.test2();
+    }
 }
