@@ -14,7 +14,7 @@ grpc:
     a21-grpc-server:
       #       gRPC服务端地址
       #      address: 'dns://127.0.0.1:19898'
-      address: 'static://127.0.0.1:19898'
+      address: 'static://127.0.0.1:19898' # 去除,使用nacos
       # 是否开启保持连接（长连接）
       enableKeepAlive: true
       # 保持连接时长（默认20s）
@@ -27,3 +27,4 @@ grpc:
       # plaintext | plaintext_upgrade | tls
       # 明文通信且http/2 | 明文通信且升级http/1.1为http/2 | 使用TLS（ALPN/NPN）通信
       negotiationType: plaintext
+#      negotiation-type: plaintext
