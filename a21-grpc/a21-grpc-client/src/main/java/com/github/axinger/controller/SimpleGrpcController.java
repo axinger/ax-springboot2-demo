@@ -34,7 +34,7 @@ public class SimpleGrpcController {
 
 
     @GetMapping("test2")
-    public Object test2() {
-        return service.test2();
+    public Object test3() {
+        return service.test3();
     }
 }

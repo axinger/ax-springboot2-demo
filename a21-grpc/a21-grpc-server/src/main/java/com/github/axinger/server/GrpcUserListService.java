@@ -1,4 +1,4 @@
-package com.github.axinger.service;
+package com.github.axinger.server;
 
 import com.github.axinger.api.ResponseOuterClass.Response;
 import com.github.axinger.api.ResponsePayloadOuterClass.ResponsePayload;

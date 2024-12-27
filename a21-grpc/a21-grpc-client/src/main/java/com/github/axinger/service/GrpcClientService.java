@@ -1,15 +1,19 @@
 package com.github.axinger.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.axinger.api.MyRequest;
-import com.github.axinger.api.MyResponse;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
+import com.github.axinger.api.*;
 import com.github.axinger.api.ResponseOuterClass.Response;
 import com.github.axinger.api.ResponsePayloadOuterClass.ResponsePayload;
-import com.github.axinger.api.SimpleGrpc;
 import com.github.axinger.api.StatusCodeOuterClass.StatusCode;
 import com.github.axinger.api.UserOuterClass.User;
 import com.github.axinger.api.UserOuterClass.UserList;
-import com.github.axinger.api.UserServiceGrpc;
+import com.google.common.base.Throwables;
+import com.google.protobuf.Descriptors;
+import com.google.protobuf.StringValue;
+import com.google.protobuf.Struct;
+import com.google.protobuf.Value;
 import com.google.protobuf.util.JsonFormat;
 import io.grpc.StatusRuntimeException;
 import lombok.Setter;
@@ -61,7 +65,7 @@ public class GrpcClientService {
     }
 
     @SneakyThrows
-    public Map<String, Object> test2() {
+    public Map<String, Object> test3() {
         // 构建请求
         List<User> list = new ArrayList<>() {{
             add(User.newBuilder().setName("张三").build());
@@ -85,33 +89,17 @@ public class GrpcClientService {
             ///  这个不能直接返回前端,无法序列化
             List<User> usersList = userList1.getDataList();
 
-
-            // 使用 JsonFormat 打印 UserList 消息为 JSON 字符串
-//            String jsonString = JsonFormat.printer().print(userList1);
-//
-//            for (User user : usersList) {
-//                String js = JsonFormat.printer().print(user);
-//            }
-//
-//            List<String> list1 = usersList.stream().map(val -> {
-//                try {
-//                    return JsonFormat.printer().print(val);
-//                } catch (InvalidProtocolBufferException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            }).toList();
-
             String jsonString = JsonFormat.printer().print(userList);
 
             // 如果需要进一步处理 JSON 字符串，可以使用 Jackson ObjectMapper
-            ObjectMapper objectMapper = new ObjectMapper();
-            Map<String, Object> jsonMap = objectMapper.readValue(jsonString, Map.class);
+
+            Map<String, Object> jsonMap = JSON.parseObject(jsonString, new TypeReference<>() {
+            });
+            System.out.println("jsonMap = " + jsonMap);
 
 
             map.put("code", code);
             map.put("message", message);
-//            map.put("data", jsonMap);
-
             map.putAll(jsonMap);
         } else {
             // 如果 payload 不是预期的类型，则处理错误情况
@@ -119,7 +107,49 @@ public class GrpcClientService {
             map.put("message", message);
             map.put("error", "Unexpected payload type or empty payload");
         }
-
         return map;
+    }
+
+    @SneakyThrows
+    public void test4() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name","jim");
+        String jsonString = JSON.toJSONString(map);
+        StringValue hello = StringValue.newBuilder().setValue(jsonString).build();
+        StringValue stub1 = simpleStub.get1(hello);
+        String value = stub1.getValue();
+        System.out.println(value);
+    }
+
+
+    @SneakyThrows
+    public void test5() {
+        StringValue hello = StringValue.newBuilder().setValue("hello").build();
+        MyStructDto stub2 = simpleStub.get2(hello);
+
+        Struct details = stub2.getDetails();
+
+        {
+            Value name = details.getFieldsOrThrow("name");
+            String stringValue = name.getStringValue();
+            System.out.println("stringValue = " + stringValue);
+        }
+
+        try {
+            Value name = details.getFieldsOrThrow("name2");
+            String stringValue = name.getStringValue();
+            System.out.println("stringValue = " + stringValue);
+        } catch (Exception e) {
+            log.info("错误={}", Throwables.getRootCause(e).getMessage());
+        }
+
+        {
+
+            Value name2 = details.getFieldsOrDefault("name1", Value.newBuilder().setStringValue("没有取到默认值").build());
+            String stringValue1 = name2.getStringValue();
+            System.out.println("stringValue1 = " + stringValue1);
+        }
+
+
     }
 }

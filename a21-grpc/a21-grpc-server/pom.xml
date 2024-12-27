@@ -26,16 +26,30 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.axinger</groupId>
             <artifactId>a21-grpc-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
+        <!--gRPC服务端-->
         <dependency>
             <groupId>net.devh</groupId>
             <artifactId>grpc-server-spring-boot-starter</artifactId>
             <version>2.14.0.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>4.26.1</version>
+            <scope>compile</scope>
+        </dependency>
+
 
     </dependencies>
 
