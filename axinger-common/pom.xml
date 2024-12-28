@@ -21,18 +21,18 @@
         <module>util-spring-boot-starter</module>
         <module>response-spring-boot-starter</module>
         <module>quartz-spring-boot-starter</module>
-        <module>doc-spring-boot-starter</module>
+        <module>doc-config-spring-boot-starter</module>
         <module>redis-spring-boot-starter</module>
-        <module>config-spring-boot-starter</module>
-        <module>mybatis-spring-boot-starter</module>
+        <module>base-config-spring-boot-starter</module>
+        <module>mybatis-plus-config-spring-boot-starter</module>
         <module>mongodb-spring-boot-starter</module>
         <module>minio-spring-boot-starter</module>
         <module>advice-spring-boot-starter</module>
-        <module>json-spring-boot-starter</module>
+        <module>jackson-config-spring-boot-starter</module>
         <module>weblog-spring-boot-starter</module>
         <module>excel-spring-boot-starter</module>
         <module>dto-spring-boot-starter</module>
-        <module>http-spring-boot-starter</module>
+        <module>http-config-spring-boot-starter</module>
         <module>log-spring-boot-starter</module>
     </modules>
 

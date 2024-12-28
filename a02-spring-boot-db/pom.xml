@@ -23,6 +23,8 @@
         <module>a02-spring-boot-mybatis-flex</module>
         <module>a02-spring-boot-data-es</module>
         <module>a02-spring-boot-data-es2</module>
+        <module>a02-dynamic2</module>
+        <module>a02-dynamic3</module>
     </modules>
 
 </project>

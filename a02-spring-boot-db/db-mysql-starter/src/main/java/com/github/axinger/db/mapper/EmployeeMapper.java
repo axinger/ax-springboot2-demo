@@ -1,6 +1,5 @@
 package com.github.axinger.db.mapper;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.dynamic.datasource.annotation.Master;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

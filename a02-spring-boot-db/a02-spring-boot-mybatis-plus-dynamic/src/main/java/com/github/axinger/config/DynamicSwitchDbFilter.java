@@ -33,7 +33,7 @@ public class DynamicSwitchDbFilter implements Filter {
 //        log.info("switch db name:{}", orgCode);
 //        //切换数据源，就是datasource下面的key
 //        DynamicDataSourceContextHolder.push(orgCode);
-//        filterChain.doFilter(request, response);
+        filterChain.doFilter(request, response);
 //
 //        //通过ThreadLocal传递库信息，所以需要清楚ThreadLocal
 //        log.info("clean db name:{}", orgCode);

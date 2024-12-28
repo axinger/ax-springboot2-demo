@@ -1,6 +1,5 @@
 package com.github.axinger;
 
-import com.baomidou.dynamic.datasource.toolkit.CryptoUtils;
 import com.github.axinger.domain.Dog;
 import com.github.axinger.domain.Person;
 import com.github.axinger.service.DogService;
