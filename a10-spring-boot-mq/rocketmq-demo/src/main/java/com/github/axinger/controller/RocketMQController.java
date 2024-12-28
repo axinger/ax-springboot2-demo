@@ -1,9 +1,11 @@
 package com.github.axinger.controller;
 
+import com.github.axinger.config.OrderTransactionListener;
 import com.github.axinger.config.Topic;
 import com.github.axinger.model.MessageWrapper;
 import com.github.axinger.model.User;
 import com.github.axinger.service.MQProducerService;
+import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +23,21 @@ public class RocketMQController {
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
 
+    @Autowired
+    private OrderTransactionListener orderTransactionListener;
+
     @GetMapping("/send")
     void send() {
+        // 设置监听器，此处如果使用MQ其他版本，可能导致强转异常
+        ((TransactionMQProducer) rocketMQTemplate.getProducer()).setTransactionListener(orderTransactionListener);
+
+
         for (int i = 0; i < 100; i++) {
             User user = new User();
             user.setName("jim_" + i);
             user.setAge(i);
             rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
+
         }
     }
 
