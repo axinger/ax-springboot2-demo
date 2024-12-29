@@ -40,7 +40,7 @@ public class SampleXxlJob {
     public boolean job1() throws Exception {
         String param = XxlJobHelper.getJobParam();
         XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
-        log.info("线程={}，简单任务示例={},参数={}",Thread.currentThread().getName(), LocalDateTime.now(), param);
+        log.info("线程={}，简单任务示例={},参数={}", Thread.currentThread().getName(), LocalDateTime.now(), param);
         // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
         // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
 //        return XxlJobHelper.handleFail();
@@ -52,7 +52,7 @@ public class SampleXxlJob {
     public boolean job2(String msg) throws Exception {
         String param = XxlJobHelper.getJobParam();
         XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
-        log.info("简单任务示例={},参数={},msg={}", LocalDateTime.now(), param,msg);
+        log.info("简单任务示例={},参数={},msg={}", LocalDateTime.now(), param, msg);
         // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
         // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
 //        return XxlJobHelper.handleFail();
@@ -64,7 +64,7 @@ public class SampleXxlJob {
     public ReturnT<String> job3() throws Exception {
         String param = XxlJobHelper.getJobParam();
         XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
-        log.info("线程={}，简单任务示例={},参数={}",Thread.currentThread().getName(), LocalDateTime.now(), param);
+        log.info("线程={}，简单任务示例={},参数={}", Thread.currentThread().getName(), LocalDateTime.now(), param);
         // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
         // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
 //        return XxlJobHelper.handleFail();

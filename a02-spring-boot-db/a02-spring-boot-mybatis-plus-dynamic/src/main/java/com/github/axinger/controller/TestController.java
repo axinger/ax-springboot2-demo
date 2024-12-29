@@ -1,9 +1,5 @@
 package com.github.axinger.controller;
 
-import com.baomidou.dynamic.datasource.annotation.DSTransactional;
-import com.github.axinger.domain.Dog;
-import com.github.axinger.domain.Person;
-import com.github.axinger.domain.SysAnimalEntity;
 import com.github.axinger.service.DogService;
 import com.github.axinger.service.PersonService;
 import com.github.axinger.service.SysAnimalService;
@@ -34,22 +30,18 @@ public class TestController {
 
     @Autowired
     private SysAnimalService animalService;
-
+    @Autowired
+    private TestService testService;
 
     @GetMapping("/1")
     public Object test1() {
         return personService.list();
     }
 
-
     @GetMapping("/2")
     public Object test2() {
         return dogService.list();
     }
-
-
-    @Autowired
-    private TestService testService;
 
     @GetMapping("/3")
     public void test3(@RequestParam(required = true) Boolean error) {

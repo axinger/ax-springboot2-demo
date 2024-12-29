@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class RocketMqApplicationTest {
     @Autowired

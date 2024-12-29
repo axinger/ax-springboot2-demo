@@ -11,7 +11,7 @@ public class TransactionListener implements RocketMQLocalTransactionListener {
     public RocketMQLocalTransactionState executeLocalTransaction(Message message, Object o) {
         System.out.println("运行executeLocalTransaction");
         return RocketMQLocalTransactionState.COMMIT;
-      //  return RocketMQLocalTransactionState.ROLLBACK;
+        //  return RocketMQLocalTransactionState.ROLLBACK;
     }
 
     @Override

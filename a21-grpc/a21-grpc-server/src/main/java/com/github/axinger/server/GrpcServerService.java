@@ -5,7 +5,6 @@ import com.github.axinger.api.MyRequest;
 import com.github.axinger.api.MyResponse;
 import com.github.axinger.api.MyStructDto;
 import com.github.axinger.api.SimpleGrpc;
-import com.google.common.collect.Maps;
 import com.google.protobuf.ListValue;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
@@ -55,8 +54,8 @@ public class GrpcServerService extends SimpleGrpc.SimpleImplBase {
         System.out.println("get1参数 = " + value);
 
         Map<String, Object> map = new HashMap<>();
-        map.put("name","jim");
-        map.put("age",10);
+        map.put("name", "jim");
+        map.put("age", 10);
 
         String jsonString = JSON.toJSONString(map);
         StringValue stringValue = StringValue.of(jsonString);

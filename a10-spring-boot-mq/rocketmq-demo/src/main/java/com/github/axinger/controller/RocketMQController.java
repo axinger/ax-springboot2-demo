@@ -5,8 +5,6 @@ import com.github.axinger.config.Topic;
 import com.github.axinger.model.MessageWrapper;
 import com.github.axinger.model.User;
 import com.github.axinger.service.MQProducerService;
-import org.apache.rocketmq.client.producer.LocalTransactionState;
-import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;

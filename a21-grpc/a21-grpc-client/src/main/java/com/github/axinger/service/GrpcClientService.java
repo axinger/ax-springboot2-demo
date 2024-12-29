@@ -1,7 +1,6 @@
 package com.github.axinger.service;
 
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 import com.github.axinger.api.*;
 import com.github.axinger.api.ResponseOuterClass.Response;
@@ -10,7 +9,6 @@ import com.github.axinger.api.StatusCodeOuterClass.StatusCode;
 import com.github.axinger.api.UserOuterClass.User;
 import com.github.axinger.api.UserOuterClass.UserList;
 import com.google.common.base.Throwables;
-import com.google.protobuf.Descriptors;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
@@ -113,7 +111,7 @@ public class GrpcClientService {
     @SneakyThrows
     public void test4() {
         Map<String, Object> map = new HashMap<>();
-        map.put("name","jim");
+        map.put("name", "jim");
         String jsonString = JSON.toJSONString(map);
         StringValue hello = StringValue.newBuilder().setValue(jsonString).build();
         StringValue stub1 = simpleStub.get1(hello);

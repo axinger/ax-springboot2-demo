@@ -54,14 +54,14 @@
 //    @Autowired
 //    private UserWriter userWriter;
 //
-////    @Bean("userJob")
-////    public Job job1() {
-////        return jobBuilderFactory.get("addUserJob")
-////                .start(step1())
-////                .incrementer(new RunIdIncrementer())
-////
-////                .build();
-////    }
+/// /    @Bean("userJob")
+/// /    public Job job1() {
+/// /        return jobBuilderFactory.get("addUserJob")
+/// /                .start(step1())
+/// /                .incrementer(new RunIdIncrementer())
+/// /
+/// /                .build();
+/// /    }
 //
 //    @Autowired
 //    private UserService userService;

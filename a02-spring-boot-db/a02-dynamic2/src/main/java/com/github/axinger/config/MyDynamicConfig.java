@@ -49,11 +49,11 @@ public class MyDynamicConfig {
 //        @ConfigurationProperties(prefix = "spring.datasource.master")
 //        public DataSource masterDataSource() {
 //            return this.createDataSource("master");
-////            return DataSourceBuilder.create()
-////                    .type(HikariDataSource.class)
-////                    .build();
-//        }
 
+        /// /            return DataSourceBuilder.create()
+        /// /                    .type(HikariDataSource.class)
+        /// /                    .build();
+//        }
         @Bean(name = "masterDataSource")
         @ConfigurationProperties(prefix = "spring.datasource.master")
         @Primary
@@ -96,11 +96,11 @@ public class MyDynamicConfig {
 //        @ConfigurationProperties(prefix = "spring.datasource.slave")
 //        public DataSource slaveDataSource() {
 //            return this.createDataSource("slave");
-////            return DataSourceBuilder.create()
-////                    .type(HikariDataSource.class)
-////                    .build();
-//        }
 
+        /// /            return DataSourceBuilder.create()
+        /// /                    .type(HikariDataSource.class)
+        /// /                    .build();
+//        }
         @Bean(name = "slaveDataSource")
         @ConfigurationProperties(prefix = "spring.datasource.slave")
         public DataSource slaveDataSource() {

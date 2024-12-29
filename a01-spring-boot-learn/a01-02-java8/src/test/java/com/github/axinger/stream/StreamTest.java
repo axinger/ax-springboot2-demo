@@ -9,7 +9,6 @@ import com.github.axinger.FlowBean;
 import com.github.axinger.Person;
 import com.github.axinger.model.Staff;
 import com.google.common.collect.Lists;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

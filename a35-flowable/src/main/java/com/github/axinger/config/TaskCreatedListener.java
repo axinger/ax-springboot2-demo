@@ -78,12 +78,12 @@
 /// /            task.getCandidateGroups().clear();
 //
 //            // 添加自定义的候选用户
-////            task.addCandidateUser("john");
-////            task.addCandidateUser("jane");
-////
-////            // 添加自定义的候选组
-////            task.addCandidateGroup("sales");
-////            task.addCandidateGroup("management");
+/// /            task.addCandidateUser("john");
+/// /            task.addCandidateUser("jane");
+/// /
+/// /            // 添加自定义的候选组
+/// /            task.addCandidateGroup("sales");
+/// /            task.addCandidateGroup("management");
 //            String owner = task.getOwner();
 //            log.info("监听-任务开始创建，owner={}", owner);
 //            log.info("监听-任务开始创建，id={}", task.getId());

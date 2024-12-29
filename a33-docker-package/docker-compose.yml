@@ -57,15 +57,15 @@ services:
   app-1:
     container_name: ax-demo1
     build:
-#      context: ./dir  # 指定包含 Dockerfile 的目录
+      #      context: ./dir  # 指定包含 Dockerfile 的目录
       dockerfile: Dockerfile  # 如果 Dockerfile 名字不是默认的 "Dockerfile"，则需要指定文件名
       tags: # 可以指定多个标签
         - axinger/a33-docker-package:latest
         - axinger/a33-docker-package:1.0
     ports:
       - "45033:45033"
-#    volumes:
-#      - .:/code
+    #    volumes:
+    #      - .:/code
     environment:
       - DEBUG=1
     networks:

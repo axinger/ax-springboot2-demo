@@ -2,34 +2,31 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.axinger.db.mapper.DepartmentMapper">
+<mapper namespace="com.github.axinger.mapper.DepartmentMapper">
 
-    <resultMap id="BaseResultMap" type="com.github.axinger.db.domain.Department">
+    <resultMap id="BaseResultMap" type="com.github.axinger.domain.DepartmentEntity">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="LeftBaseResultMap" type="com.github.axinger.db.domain.Department">
-        <id property="id" column="id" jdbcType="BIGINT"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
-        <!--        部门有多个员工-->
-        <collection property="empList" ofType="com.github.axinger.db.domain.Employee">
+    <resultMap id="BaseResultMapOfEmployee" type="com.github.axinger.domain.DepartmentEntity" extends="BaseResultMap">
+        <collection property="empList" ofType="com.github.axinger.domain.EmployeeEntity">
             <!--            含有相同的字段名-->
             <id property="id" column="e_id" jdbcType="BIGINT"/>
-            <result property="name" column="e_id" jdbcType="VARCHAR"/>
+            <result property="name" column="e_name" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="gender" column="gender" jdbcType="INTEGER"/>
             <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
         </collection>
-
     </resultMap>
+
 
     <sql id="Base_Column_List">
         id
         ,name
     </sql>
 
-    <select id="listLeft" resultMap="LeftBaseResultMap">
+    <select id="listLeft" resultMap="BaseResultMapOfEmployee">
         SELECT d.*,
                e.id      as e_id,
                e.name    as e_name,
@@ -46,7 +43,7 @@
       d.* 这样格式，只能用
       Wrappers.query().eq("d.id", 1)
       -->
-    <select id="listLeftEmployee" resultMap="BaseResultMap">
+    <select id="listLeftSon" resultMap="BaseResultMapOfEmployee">
 
         SELECT *
         FROM (SELECT d.*,
@@ -55,12 +52,12 @@
                      e.gender  as gender,
                      e.dept_id as dept_id
               FROM department d
-                       JOIN employee e ON e.dept_id = d.id) AS t
+                       LEFT JOIN employee e ON e.dept_id = d.id) AS t
             ${ew.customSqlSegment}
     </select>
 
-    <!--    全表子查询-->
-    <select id="listAllSon" resultMap="BaseResultMap">
+    <!--    全表子查询,不支持 lambda 方法引用-->
+    <select id="listWhere" resultMap="BaseResultMapOfEmployee">
         SELECT d.*, e.id as e_id, e.name as e_name, e.gender as gender, e.dept_id as dept_id
         FROM department d,
         employee e

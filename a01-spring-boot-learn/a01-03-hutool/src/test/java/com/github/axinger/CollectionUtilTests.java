@@ -6,7 +6,6 @@ import cn.hutool.core.util.ObjectUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author xing

@@ -28,7 +28,7 @@ public class Person implements Serializable {
 
     private boolean sex;
 
-    public String log1(){
-       return "";
+    public String log1() {
+        return "";
     }
 }

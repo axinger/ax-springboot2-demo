@@ -2,9 +2,7 @@ package com.github.axinger.stream;
 
 import com.github.axinger.Person;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 
 public class StreamTest_max_str {

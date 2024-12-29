@@ -50,7 +50,8 @@ class A21GrpcClientApplicationTest {
     public void test4() {
         service.test4();
     }
-  @Test
+
+    @Test
     public void test5() {
         service.test5();
     }

@@ -15,23 +15,6 @@ import java.util.List;
 //public class Person implements Comparable {
 public class Person {
 
-    private Integer id;
-    private String name;
-    private String sex;
-    private Integer age;
-    private String address;
-
-
-//    @Override
-//    public int compareTo(Object o) {
-//        if (o instanceof Person p) {
-//            int sort;
-//            sort = name.compareTo(p.name);
-////            if (sort == 0) {
-////                sort = Integer.compare(age, p.age);
-//////                sort = age.compareTo(p.age);
-////            }
-//            return sort;
     /// /            return  Comparator.comparing(Person::getName).thenComparing(Person::getAge);
 //
 //        }
@@ -44,6 +27,23 @@ public class Person {
         add(Person.builder().id(3).name("王五").sex("男").age(20).address("江苏").build());
         add(Person.builder().id(4).name("赵六").sex("女").age(24).address("上海").build());
     }};
+    private Integer id;
+    private String name;
+    private String sex;
+    private Integer age;
+
+
+//    @Override
+//    public int compareTo(Object o) {
+//        if (o instanceof Person p) {
+//            int sort;
+//            sort = name.compareTo(p.name);
+////            if (sort == 0) {
+////                sort = Integer.compare(age, p.age);
+//////                sort = age.compareTo(p.age);
+////            }
+//            return sort;
+    private String address;
 
 
 }

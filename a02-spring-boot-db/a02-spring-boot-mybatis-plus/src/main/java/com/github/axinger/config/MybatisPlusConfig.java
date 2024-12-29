@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.DynamicTableNameInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,11 +124,11 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     }
 
 
-    @Bean
-    public TenantLineInnerInterceptor tenantLineInnerInterceptor() {
-        TenantLineInnerInterceptor interceptor = new TenantLineInnerInterceptor();
-        interceptor.setTenantLineHandler(new MyTenantLineHandler(this.tenantProperties));
-        return interceptor;
-    }
+//    @Bean
+//    public TenantLineInnerInterceptor tenantLineInnerInterceptor() {
+//        TenantLineInnerInterceptor interceptor = new TenantLineInnerInterceptor();
+//        interceptor.setTenantLineHandler(new MyTenantLineHandler(this.tenantProperties));
+//        return interceptor;
+//    }
 
 }

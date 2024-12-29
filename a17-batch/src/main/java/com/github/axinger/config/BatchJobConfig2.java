@@ -72,10 +72,10 @@
 /// /        return itemReader;
 /// /    }
 //
-////    public MyBatisCursorItemReader<User> cursorItemReader(){
-////
-////         new MyBatisCursorItemReader<>().var;
-////    }
+/// /    public MyBatisCursorItemReader<User> cursorItemReader(){
+/// /
+/// /         new MyBatisCursorItemReader<>().var;
+/// /    }
 //
 //
 //    @Autowired

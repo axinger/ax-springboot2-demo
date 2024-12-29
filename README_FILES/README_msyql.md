@@ -25,8 +25,6 @@
 4 、持续性。也称永久性，指一个事务一旦提交，它对数据库中的数据的改变就应该是永久性的。接下来的其它操作或故障不应该对其执行结果有任何影响。
 ```
 
-
-
 # 二.语法
 
 ## 1.建表
@@ -153,7 +151,7 @@ GROUP BY
 
 # 三.7种jon
 
-## 1.  inner join
+## 1. inner join
 
 join其实就是inner join，是inner join缩写
 
@@ -216,8 +214,6 @@ LEFT JOIN Table_B B
 ON A.Key = B.Key
 WHERE B.Key IS NULL
 ```
-
-
 
 ![](README_IMG1/Left%20Excluding%20Join.png)
 

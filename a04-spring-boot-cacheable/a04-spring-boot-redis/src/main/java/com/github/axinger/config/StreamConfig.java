@@ -37,20 +37,20 @@
 //
 //
 //        //指定消费最新的消息
-////        StreamOffset<String> offset = StreamOffset.create("your-stream-name", ReadOffset.lastConsumed());
-////
-////        //创建消费者 指定消费者组和消费者名字（注意，这里使用到用户组时，发送消息时必须有用户组，不然会报错，消息消费不成功）
-////        Consumer consumer = Consumer.from("your-consumer-group", "your-consumer-name");
-////
-////        StreamMessageListenerContainer.StreamReadRequest<String> streamReadRequest = StreamMessageListenerContainer.StreamReadRequest.builder(offset)
-////                .errorHandler((error) -> log.error(error.getMessage()))
-////                .cancelOnError(e -> false)
-////                .consumer(consumer)
-////                //关闭自动ack确认
-////                .autoAcknowledge(false)
-////                .build();
-////        //指定消费者对象
-////        streamMessageListenerContainer.register(streamReadRequest, messageConsumer);
+/// /        StreamOffset<String> offset = StreamOffset.create("your-stream-name", ReadOffset.lastConsumed());
+/// /
+/// /        //创建消费者 指定消费者组和消费者名字（注意，这里使用到用户组时，发送消息时必须有用户组，不然会报错，消息消费不成功）
+/// /        Consumer consumer = Consumer.from("your-consumer-group", "your-consumer-name");
+/// /
+/// /        StreamMessageListenerContainer.StreamReadRequest<String> streamReadRequest = StreamMessageListenerContainer.StreamReadRequest.builder(offset)
+/// /                .errorHandler((error) -> log.error(error.getMessage()))
+/// /                .cancelOnError(e -> false)
+/// /                .consumer(consumer)
+/// /                //关闭自动ack确认
+/// /                .autoAcknowledge(false)
+/// /                .build();
+/// /        //指定消费者对象
+/// /        streamMessageListenerContainer.register(streamReadRequest, messageConsumer);
 //
 //
 //        // 独立消费

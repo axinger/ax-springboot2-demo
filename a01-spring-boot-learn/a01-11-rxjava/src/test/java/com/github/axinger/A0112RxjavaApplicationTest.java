@@ -1,10 +1,9 @@
 package com.github.axinger;
 
 
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import org.junit.jupiter.api.Test;
-
-import io.reactivex.rxjava3.core.Observable;
 
 import java.util.concurrent.TimeUnit;
 

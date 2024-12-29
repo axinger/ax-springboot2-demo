@@ -3,7 +3,9 @@ package com.github.axinger.stream;
 import com.github.axinger.Person;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class StreamFilterMapTest {
 

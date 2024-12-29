@@ -13,20 +13,19 @@ public class RocketMQConfig {
 
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
-
+    @Value("${rocketmq.name-server}")
+    private String nameServer;
+    @Value("${rocketmq.producer.group-name}")
+    private String producerGroupName;
 
     @Bean
     public RocketMQLocalTransactionListener transactionListener() {
         return new MyTransactionListener(rocketMQTemplate);
     }
 
-    @Value("${rocketmq.name-server}")
-    private String nameServer;
-    @Value("${rocketmq.producer.group-name}")
-    private String producerGroupName;
-
     /**
      * 事务消息生产者
+     *
      * @return
      */
     @Bean
@@ -38,6 +37,7 @@ public class RocketMQConfig {
 
     /**
      * RocketMQ连接组件
+     *
      * @param transactionMQProducer
      * @return
      */

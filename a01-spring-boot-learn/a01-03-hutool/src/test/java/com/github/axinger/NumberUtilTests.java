@@ -62,7 +62,7 @@ public class NumberUtilTests {
     @Test
     void test8() {
         //判断两个数字是否相邻，例如1和2相邻，1和3不相邻
-        boolean a = NumberUtil.isBeside(1,3);
+        boolean a = NumberUtil.isBeside(1, 3);
         System.out.println("a = " + a);
     }
 
@@ -72,7 +72,7 @@ public class NumberUtilTests {
         int i = NumberUtil.partValue(5, 3);
         System.out.println("i = " + i);
 
-        int i2 = NumberUtil.partValue(5, 3,false);
+        int i2 = NumberUtil.partValue(5, 3, false);
         System.out.println("i2 = " + i2);
     }
 

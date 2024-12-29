@@ -3,7 +3,6 @@ package com.github.axinger.stream;
 import com.github.axinger.Person;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
