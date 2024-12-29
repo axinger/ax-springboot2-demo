@@ -10,19 +10,18 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-@ConfigurationProperties(prefix = "spring.datasource.dynamic")
 @Data
+@Configuration
 @AllArgsConstructor
 @NoArgsConstructor
-@Configuration
-@Component
+@ConfigurationProperties(prefix = "spring.datasource.dynamic")
 public class DataSourceProperties {
     private Map<String, DataSourceBean> datasource = new HashMap<>();
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    @Component
+    @Configuration
     public static class DataSourceBean {
         private String url;
         private String username;

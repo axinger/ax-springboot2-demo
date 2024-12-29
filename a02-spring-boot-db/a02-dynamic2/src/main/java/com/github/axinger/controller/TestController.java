@@ -4,6 +4,7 @@ import com.github.axinger.db.master.service.PersonService;
 import com.github.axinger.db.slave.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,18 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private PersonService personService;
+    TestService testService;
 
-    @Autowired
-    private DogService dogService;
 
-    @GetMapping("/1")
-    public Object test1() {
-        return personService.list();
+    @GetMapping("/3")
+    public void test3(@RequestParam(required = true) Boolean error) {
+        testService.testAB(error);
     }
 
-    @GetMapping("/2")
-    public Object test2() {
-        return dogService.list();
+
+    @GetMapping("/4")
+    public void testAC(@RequestParam(required = true) Boolean error) {
+        testService.testAC(error);
     }
 }

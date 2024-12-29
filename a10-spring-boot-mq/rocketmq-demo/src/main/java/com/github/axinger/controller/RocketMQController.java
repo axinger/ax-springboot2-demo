@@ -5,9 +5,14 @@ import com.github.axinger.config.Topic;
 import com.github.axinger.model.MessageWrapper;
 import com.github.axinger.model.User;
 import com.github.axinger.service.MQProducerService;
+import org.apache.rocketmq.client.producer.LocalTransactionState;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
+import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,16 +33,11 @@ public class RocketMQController {
 
     @GetMapping("/send")
     void send() {
-        // 设置监听器，此处如果使用MQ其他版本，可能导致强转异常
-        ((TransactionMQProducer) rocketMQTemplate.getProducer()).setTransactionListener(orderTransactionListener);
-
-
         for (int i = 0; i < 100; i++) {
             User user = new User();
             user.setName("jim_" + i);
             user.setAge(i);
             rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
-
         }
     }
 
@@ -112,4 +112,17 @@ public class RocketMQController {
 
         return true;
     }
+
+
+    @RequestMapping("/transaction")
+    public String transaction() {
+        Message<String> message = MessageBuilder.withPayload("事务消息")
+                .setHeader(RocketMQHeaders.KEYS, 1)
+                .setHeader("money", 10)
+                .setHeader(RocketMQHeaders.TRANSACTION_ID, 100)
+                .build();
+        TransactionSendResult transactionSendResult = rocketMQTemplate.sendMessageInTransaction("transaction", message, null);
+        return "事务消息";
+    }
+
 }
