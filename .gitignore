@@ -67,4 +67,5 @@ Temporary Items
 
 
 !/transaction-logs/tmlog.lck
-!/data/databases/
+*.db
+*.h2.db
