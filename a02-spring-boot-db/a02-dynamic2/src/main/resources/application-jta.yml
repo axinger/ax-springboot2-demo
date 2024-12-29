@@ -1,6 +1,3 @@
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 spring:
   datasource:
     master:
@@ -23,3 +20,11 @@ spring:
         user: root
   jta:
     enabled: true
+    log-dir: ./jta.log
+#    atomikos:
+#      connectionfactory:
+#        xa-properties:
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
