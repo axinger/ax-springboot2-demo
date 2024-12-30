@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
-class MainTest {
+class A28WordToPdfApplicationTest {
 
     String wordPath = "D:\\Users\\cepai\\Desktop\\123.docx";
 

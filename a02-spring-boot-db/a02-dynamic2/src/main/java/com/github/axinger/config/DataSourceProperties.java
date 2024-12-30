@@ -15,16 +15,21 @@ import java.util.Map;
 @NoArgsConstructor
 @ConfigurationProperties(prefix = "spring.datasource.dynamic")
 public class DataSourceProperties {
-    private Map<String, DataSourceBean> datasource = new HashMap<>();
+    private Map<String, DataSourceItem> datasource = new HashMap<>();
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Configuration
-    public static class DataSourceBean {
+    public static class DataSourceItem {
         private String url;
         private String username;
         private String password;
         private String driverClassName;
+
+        private String xaDriverClassName;
+
+        int xaMinPoolSize=1;
+        int xaMaxPoolSize=1;
     }
 }

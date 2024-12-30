@@ -28,7 +28,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--Atomikos是一个开源的事务管理器，用于管理和控制分布式事务的执行流程，提供了可靠的，高性能的事务管理解决方案，可以与多种应用和数据库集成-->
+        <!--Atomikos是一个开源的事务管理器，用于管理和控制分布式事务的执行流程，提供了可靠的，高性能的事务管理解决方案，可以与多种应用和数据库集成,它提供了对XA协议的支持，可以用于配置分布式事务-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jta-atomikos</artifactId>

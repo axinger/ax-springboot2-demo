@@ -26,7 +26,7 @@ public class TestController {
 
 
     @GetMapping("/4")
-    public void testAC(@RequestParam(required = true) Boolean error) {
+    public void testAC(@RequestParam(required = false,defaultValue = "false") Boolean error) {
         testService.testAC(error);
     }
 }

@@ -22,8 +22,8 @@ import java.util.Map;
 public class MesController {
 
     @GetMapping("/test1")
-    public Map add() {
-        Map map = new HashMap();
+    public Map<String, Object> add() {
+        Map<String, Object> map = new HashMap<>();
         map.put("name", "jim");
         map.put("date", LocalDateTime.now());
         return map;
