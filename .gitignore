@@ -63,9 +63,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-
-
-!/transaction-logs/tmlog.lck
 *.db
 *.h2.db
+*.lck

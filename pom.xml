@@ -178,7 +178,7 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>weblog-spring-boot-starter</artifactId>
+                <artifactId>request-log-spring-boot-starter</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
 
@@ -238,7 +238,13 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>log-spring-boot-starter</artifactId>
+                <artifactId>logback-config-spring-boot-starter</artifactId>
+                <version>${axinger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>executor-config-spring-boot-starter</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
 

@@ -1,5 +1,6 @@
 package com.axing.common.json.model;
 
+import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -7,7 +8,6 @@ import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -92,7 +92,7 @@ public class MyBeanSerializerModifier extends BeanSerializerModifier {
 
         @Override
         public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            jsonGenerator.writeString(StringUtils.EMPTY);
+            jsonGenerator.writeString(StrUtil.EMPTY);
         }
     }
 

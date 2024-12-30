@@ -29,11 +29,12 @@
         <module>minio-spring-boot-starter</module>
         <module>advice-spring-boot-starter</module>
         <module>jackson-config-spring-boot-starter</module>
-        <module>weblog-spring-boot-starter</module>
+        <module>request-log-spring-boot-starter</module>
         <module>excel-spring-boot-starter</module>
         <module>dto-spring-boot-starter</module>
         <module>http-config-spring-boot-starter</module>
-        <module>log-spring-boot-starter</module>
+        <module>logback-config-spring-boot-starter</module>
+        <module>executor-config-spring-boot-starter</module>
     </modules>
 
     <dependencies>
@@ -47,7 +48,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
 
     </dependencies>
 
