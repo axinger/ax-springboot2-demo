@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Slf4j
 @SpringBootTest
@@ -25,18 +26,19 @@ class A39LiteFlowApplicationTest {
 
         User user2 = new User();
         user2.setId(2);
-        user2.setName("c");
+        user2.setName("b");
 
         try {
 
 
-            LiteflowResponse response = flowExecutor.execute2Resp("chain1", user2, user1);
+//            LiteflowResponse response = flowExecutor.execute2Resp("chain1", user2, user1);
+            LiteflowResponse response = flowExecutor.execute2Resp("chain2", user2, user1);
 
 
             boolean success = response.isSuccess();
             System.out.println("success = " + success);
 
-            String message = response.getCause().getMessage();
+            String message =  Optional.of(response).map(LiteflowResponse::getCause).map(Throwable::getMessage).orElse("");
             System.out.println("message = " + message);
 
             User contextBean = response.getContextBean(User.class);

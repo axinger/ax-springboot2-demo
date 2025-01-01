@@ -55,7 +55,7 @@ public class BCmp {
             bindCmp.setIsEnd(true);
         }
 
-        throw new RuntimeException("异常===============");
+//        throw new RuntimeException("异常===============");
     }
 }
 
