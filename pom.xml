@@ -126,6 +126,7 @@
         <module>a40-ai</module>
         <module>a19-scheduled</module>
         <module>a21-grpc</module>
+        <module>a39-liteflow</module>
     </modules>
 
     <dependencyManagement>
