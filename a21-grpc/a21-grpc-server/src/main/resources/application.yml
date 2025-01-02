@@ -4,12 +4,6 @@ server:
 spring:
   application:
     name: a21-grpc-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848  # Nacos 服务器地址
-        username: nacos
-        password: nacos
 
 # gRPC有关的配置，这里只需要配置服务端口号默认9090
 grpc:

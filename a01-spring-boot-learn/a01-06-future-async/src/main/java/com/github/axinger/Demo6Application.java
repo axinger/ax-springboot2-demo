@@ -16,11 +16,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class Demo6Application {
     public static void main(String[] args) {
-        final ConfigurableApplicationContext context = SpringApplication.run(Demo6Application.class, args);
-//        final OrderService service = context.getBean(OrderService.class);
-//        service.test1();
-//        final FutureTaskService futureTaskService = context.getBean(FutureTaskService.class);
-//
-//        futureTaskService.asyncTest();
+        SpringApplication.run(Demo6Application.class, args);
     }
 }

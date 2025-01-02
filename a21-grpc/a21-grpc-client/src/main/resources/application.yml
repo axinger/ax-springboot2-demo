@@ -4,17 +4,11 @@ server:
 spring:
   application:
     name: a21-grpc-server
-
-# grpc配置
 grpc:
-  # grpc clienT相关配置
   client:
-    # 服务名（不同服务名可对应不同配置）
-    # nacos-grpc是服务端配置的名字，GrpcClient注解会用到
     a21-grpc-server:
-      #       gRPC服务端地址
-      #      address: 'dns://127.0.0.1:19898'
-      address: 'static://127.0.0.1:19898' # 去除,使用nacos
+#      address: dns:///localhost:19898
+#      address: 'static://127.0.0.1:19898' # 去除,使用nacos
       # 是否开启保持连接（长连接）
       enableKeepAlive: true
       # 保持连接时长（默认20s）

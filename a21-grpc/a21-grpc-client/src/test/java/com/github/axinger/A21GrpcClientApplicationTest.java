@@ -22,7 +22,7 @@ class A21GrpcClientApplicationTest {
 
     @Test
     public void test1() {
-        Map<String, Object> map = service.oneToOne("客户端kele连接");
+        Map<String, Object> map = service.test1("客户端kele连接");
         System.out.println("map = " + map);
     }
 

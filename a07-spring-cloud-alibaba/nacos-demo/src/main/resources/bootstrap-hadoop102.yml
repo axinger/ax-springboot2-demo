@@ -17,7 +17,7 @@ spring:
             group: DEFAULT_GROUP   # 默认为DEFAULT_GROUP
             refresh: true   # 是否动态刷新，默认为false
       discovery:
-        server-addr: http://192.168.101.1:8848
+        server-addr: http://hadoop102:8848
         namespace: axing-demo-prd
 
 

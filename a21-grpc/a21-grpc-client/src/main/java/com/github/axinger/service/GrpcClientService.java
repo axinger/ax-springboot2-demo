@@ -44,10 +44,11 @@ public class GrpcClientService {
     // 方法名称Grpc.方法名称BlockingStub
     @GrpcClient("a21-grpc-server")
     private SimpleGrpc.SimpleBlockingStub simpleStub;
+
     @GrpcClient("a21-grpc-server")
     private UserServiceGrpc.UserServiceBlockingStub userServiceBlockingStub;
 
-    public Map<String, Object> oneToOne(final String name) {
+    public Map<String, Object> test1(final String name) {
         try {
             final MyResponse response = simpleStub.oneToOne(MyRequest.newBuilder().setName(name).build());
 

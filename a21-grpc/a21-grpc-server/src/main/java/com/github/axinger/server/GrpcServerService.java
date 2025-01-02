@@ -37,7 +37,7 @@ public class GrpcServerService extends SimpleGrpc.SimpleImplBase {
 
     @Override
     public void oneToOne(MyRequest request, StreamObserver<MyResponse> responseObserver) {
-        log.info("接收客户端数据{}", request);
+        log.info("接收客户端数据{}", request.getName());
         MyResponse response = MyResponse.newBuilder()
                 .setMessage("接收到参数,返回" + request.getName())
                 .setResult(1)

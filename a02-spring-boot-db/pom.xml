@@ -26,6 +26,7 @@
         <module>a02-03-dynamic-atomikos</module>
         <module>a02-01-dynamic-custom</module>
         <module>a02-02-sync-transaction</module>
+        <module>a02-04-narayana-jta</module>
     </modules>
 
 </project>

@@ -1,10 +1,12 @@
 package com.github.axinger;
 
 import com.github.axinger.model.PersonEntity;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.util.StopWatch;
 
 import java.util.ArrayList;
@@ -271,5 +273,28 @@ class Demo6ApplicationTest {
 //
 //        System.out.println("结束========");
 
+    }
+
+    @SneakyThrows
+    @Test
+    void contextLoads() {
+
+//        CompletableFuture.runAsync(() -> {
+//
+//         log.info("Thread.currentThread().getId() = {}" , Thread.currentThread().getName());
+//        },executor);
+        contextLoads2();
+        TimeUnit.SECONDS.sleep(2);
+    }
+
+
+    @Async("smsExecutor")
+    void contextLoads2() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("Thread.currentThread().getId() = {}" , Thread.currentThread().getName());
     }
 }
