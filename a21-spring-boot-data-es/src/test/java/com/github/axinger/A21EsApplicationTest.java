@@ -48,12 +48,11 @@ class A21EsApplicationTest {
         // 构建查询请求
         SearchRequest request = new SearchRequest.Builder()
                 .index("books")
-                .query(q -> q.match(m -> m.field("name").query("海底两万里")))
+                .query(q -> q.match(m -> m.field("name").query("海底"))) // 模糊搜索
                 .build();
 
         // 执行查询并获取响应
         SearchResponse<BookEntity> response = client.search(request, BookEntity.class);
-
         // 解析响应结果
         List<Hit<BookEntity>> hits = response.hits().hits();
         List<BookEntity> books = hits.stream()
