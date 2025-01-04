@@ -21,8 +21,6 @@
         <module>a02-spring-boot-iotdb</module>
         <module>a02-spring-boot-postgres</module>
         <module>a02-spring-boot-mybatis-flex</module>
-        <module>a02-spring-boot-data-es</module>
-        <module>a02-spring-boot-data-es2</module>
         <module>a02-03-dynamic-atomikos</module>
         <module>a02-01-dynamic-custom</module>
         <module>a02-02-sync-transaction</module>

@@ -15,11 +15,9 @@ class DemoLogbackApplicationTest {
 
     @Test
     void test1() {
-//        final String date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS").format(LocalDateTime.now());
-//        log.error("error = {}", date);
-//        log.info("info = {}", date);
-//        log.debug("debug = {}", date);
-//        log.warn("info = {}", date);
-        loginService.login();
+        log.error("error = {}", "error 日志");
+        log.info("info = {}", "info 日志");
+        log.debug("debug = {}", "debug 日志");
+        log.warn("info = {}", "warn 日志");
     }
 }

@@ -104,6 +104,7 @@
         <module>a17-batch</module>
         <module>a18-custom-spring-boot-start</module>
         <module>a20-spring-boot-quartz</module>
+        <module>a21-spring-boot-data-es</module>
         <module>a25-admin-server</module>
         <module>a25-admin-client</module>
         <module>a26-prometheus</module>
