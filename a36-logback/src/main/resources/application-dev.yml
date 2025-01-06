@@ -9,4 +9,5 @@ spring:
 logging:
   config: classpath:logback-spring.xml
   file:
-    path: logs
+    path: ./logs
+    name: app123
