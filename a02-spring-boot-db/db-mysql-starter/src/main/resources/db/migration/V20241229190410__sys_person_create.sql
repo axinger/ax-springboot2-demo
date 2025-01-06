@@ -1,4 +1,4 @@
-CREATE TABLE `person`
+CREATE TABLE `sys_person`
 (
     `id`          bigint NOT NULL AUTO_INCREMENT,
     `age`         int          DEFAULT NULL COMMENT '年龄',

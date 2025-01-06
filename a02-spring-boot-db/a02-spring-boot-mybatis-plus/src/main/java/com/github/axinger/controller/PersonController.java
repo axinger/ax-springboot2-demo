@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.domain.PersonEntity;
-import com.github.axinger.service.PersonService;
+import com.github.axinger.domain.SysPersonEntity;
+import com.github.axinger.service.SysPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +15,16 @@ import java.util.List;
 public class PersonController {
 
     @Autowired
-    private PersonService personService;
+    private SysPersonService sysPersonService;
 
     @GetMapping("/add")
     public Object add() {
-        return personService.save(PersonEntity.builder().name("jim").build());
+        return sysPersonService.save(SysPersonEntity.builder().name("jim").build());
     }
 
     @GetMapping("/list")
     public Object data() {
-        List<PersonEntity> list = personService.list();
+        List<SysPersonEntity> list = sysPersonService.list();
         System.out.println("list = " + list);
         return list;
     }

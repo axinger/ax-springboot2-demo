@@ -9,10 +9,11 @@ import org.apache.ibatis.mapping.SqlSource;
 /**
  * 自定义方法
  */
-public class FindAllMethod extends AbstractMethod {
+public class MyFindAll extends AbstractMethod {
 
-    public FindAllMethod() {
-        super("findAll");
+    public MyFindAll() {
+        ///  自定义方法名
+        super("myFindAll");
     }
 
     @Override

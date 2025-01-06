@@ -14,8 +14,8 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.axinger.config.MyTableNameHandler;
 import com.github.axinger.config.MyTenantLineHandler;
-import com.github.axinger.domain.PersonEntity;
-import com.github.axinger.mapper.PersonMapper;
+import com.github.axinger.domain.SysPersonEntity;
+import com.github.axinger.mapper.SysPersonMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,13 +25,13 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
-class PersonServiceTest {
+class SysPersonServiceTest {
 
     @Autowired
-    private PersonService personService;
+    private SysPersonService sysPersonService;
 
     @Autowired
-    private PersonMapper personMapper;
+    private SysPersonMapper sysPersonMapper;
 
 
     @Test
@@ -55,10 +55,11 @@ class PersonServiceTest {
                     }
                 ]
                 """;
-        List<PersonEntity> entityList = JSON.parseArray(jsonList, PersonEntity.class);
+        List<SysPersonEntity> entityList = JSON.parseArray(jsonList, SysPersonEntity.class);
 //        personService.saveBatch(entityList);
 
-        personMapper.insertBatchSomeColumn(entityList);
+        int i = sysPersonMapper.insertBatchSomeColumn(entityList);
+        System.out.println("i = " + i);
     }
 
     @Test
@@ -72,35 +73,35 @@ class PersonServiceTest {
                 """;
 
 
-        PersonEntity person = JSONObject.parseObject(jsonList, PersonEntity.class);
-        personService.save(person);
+        SysPersonEntity person = JSONObject.parseObject(jsonList, SysPersonEntity.class);
+        sysPersonService.save(person);
     }
 
     @Test
     void test_saveOrUpdateBatch() {
-        PersonEntity book = personService.getById(1);
+        SysPersonEntity book = sysPersonService.getById(1);
         book.setName(book.getName() + "_v1");
-        List<PersonEntity> list = List.of(book);
-        personService.saveOrUpdateBatch(list);
+        List<SysPersonEntity> list = List.of(book);
+        sysPersonService.saveOrUpdateBatch(list);
     }
 
     @Test
     void test_saveOrUpdateBatch2() {
-        PersonEntity book = personService.getById(1);
+        SysPersonEntity book = sysPersonService.getById(1);
         book.setName(book.getName() + "_v1");
 
-        PersonEntity book1 = new PersonEntity();
+        SysPersonEntity book1 = new SysPersonEntity();
         book1.setName("一千零一夜");
 
-        List<PersonEntity> list = List.of(book, book1);
-        personService.saveOrUpdateBatch(list);
+        List<SysPersonEntity> list = List.of(book, book1);
+        sysPersonService.saveOrUpdateBatch(list);
     }
 
     @Test
     void test_stream() throws InterruptedException {
 
-        personMapper.streamSelect(val -> {
-            PersonEntity entity = val.getResultObject();
+        sysPersonMapper.streamSelect(val -> {
+            SysPersonEntity entity = val.getResultObject();
             System.out.println("entity = " + entity);
         });
 
@@ -110,13 +111,13 @@ class PersonServiceTest {
     @Test
     void test_findAll() {
 
-        List<PersonEntity> list = personMapper.findAll();
+        List<SysPersonEntity> list = sysPersonMapper.myFindAll();
         System.out.println("list = " + list);
     }
 
     @Test
     void test() {
-        List<PersonEntity> list = personService.list();
+        List<SysPersonEntity> list = sysPersonService.list();
         System.out.println("list = " + JSON.toJSON(list));
     }
 
@@ -124,10 +125,10 @@ class PersonServiceTest {
     @Test
     void test_lambdaQuery() {
         // lambdaQuery ( 对象 ) 就相当于 ==
-        PersonEntity book = new PersonEntity();
+        SysPersonEntity book = new SysPersonEntity();
         book.setName("jim");
-        List<PersonEntity> list1 = personService.lambdaQuery(book)
-                .eq(PersonEntity::getId, 1)
+        List<SysPersonEntity> list1 = sysPersonService.lambdaQuery(book)
+                .eq(SysPersonEntity::getId, 1)
                 .list();
         System.out.println("list1 = " + list1);
     }
@@ -135,69 +136,69 @@ class PersonServiceTest {
     @Test
     void test_lambdaQuery2() {
 
-        LambdaQueryChainWrapper<PersonEntity> wrapper = personService.lambdaQuery();
+        LambdaQueryChainWrapper<SysPersonEntity> wrapper = sysPersonService.lambdaQuery();
 
         wrapper.or(w -> {
-            w.eq(PersonEntity::getName, "jim")
-                    .eq(PersonEntity::getAge, 10);
+            w.eq(SysPersonEntity::getName, "jim")
+                    .eq(SysPersonEntity::getAge, 10);
         });
 
         wrapper.or(w -> {
-            w.eq(PersonEntity::getName, "tom")
-                    .eq(PersonEntity::getAge, 20);
+            w.eq(SysPersonEntity::getName, "tom")
+                    .eq(SysPersonEntity::getAge, 20);
         });
 
-        List<PersonEntity> list = wrapper.list();
+        List<SysPersonEntity> list = wrapper.list();
         System.out.println("list = " + list);
     }
 
     @Test
     void test_LambdaUtils() {
-        LambdaMeta extract = LambdaUtils.extract(PersonEntity::getName);
+        LambdaMeta extract = LambdaUtils.extract(SysPersonEntity::getName);
         System.out.println("extract.getImplMethodName() = " + extract.getImplMethodName()); // getBookName
         System.out.println("extract.getInstantiatedClass() = " + extract.getInstantiatedClass()); // class com.github.axinger.domain.BookEntity
     }
 
     @Test
     void test_save() {
-        personService.removeById(1L);
-        PersonEntity book1 = new PersonEntity();
+        sysPersonService.removeById(1L);
+        SysPersonEntity book1 = new SysPersonEntity();
         book1.setId(1L);
         book1.setName("tom");
-        personService.save(book1);
+        sysPersonService.save(book1);
     }
 
     @Test
     void test_分页() {
-        Page<PersonEntity> page = personService.lambdaQuery()
+        Page<SysPersonEntity> page = sysPersonService.lambdaQuery()
                 .page(Page.of(1, 100));
         System.out.println("page = " + page.getRecords());
     }
 
     @Test
     void test_更新全表() {
-        personService.lambdaUpdate()
+        sysPersonService.lambdaUpdate()
                 .setSql("age = age+1")
-                .update(new PersonEntity());
+                .update(new SysPersonEntity());
     }
 
 
     @Test
     void test_updateById() {
-        PersonEntity book = personService.getById(1);
+        SysPersonEntity book = sysPersonService.getById(1);
         // book.setVersion(book.getVersion()+1);
         // book.setBookName(book.getBookName()+"_v1");
         // book.setBookName("_v1");
         book.setAge(10); // 自动+1,再set值,就无效,@Version原理如此
-        personService.updateById(book);
+        sysPersonService.updateById(book);
     }
 
     @Test
     void test_updateById_bookPrice() {
-        personService.lambdaUpdate()
-                .eq(PersonEntity::getId, 1)
+        sysPersonService.lambdaUpdate()
+                .eq(SysPersonEntity::getId, 1)
                 .setSql("age = age+1")
-                .update(new PersonEntity());
+                .update(new SysPersonEntity());
     }
 
     @Test
@@ -206,8 +207,8 @@ class PersonServiceTest {
 
 //        LambdaUpdateWrapper<BookEntity> updateWrapper = Wrappers.lambdaUpdate();
 
-        LambdaUpdateWrapper<PersonEntity> updateWrapper = new LambdaUpdateWrapper<>();
-        updateWrapper.eq(PersonEntity::getId, 1);
+        LambdaUpdateWrapper<SysPersonEntity> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(SysPersonEntity::getId, 1);
 
 
         // 对 age 字段进行自增操作
@@ -223,25 +224,25 @@ class PersonServiceTest {
     @Test
     void test_updateById_bookPrice_2() {
         // 有bug
-        PersonEntity entity = new PersonEntity();
+        SysPersonEntity entity = new SysPersonEntity();
         entity.setAge(10);
         entity.setId(1L);
-        AbstractWrapper<PersonEntity, SFunction<PersonEntity, ?>, LambdaUpdateWrapper<PersonEntity>> wrapper = personService.lambdaUpdate()
-                .eq(PersonEntity::getId, 1)
+        AbstractWrapper<SysPersonEntity, SFunction<SysPersonEntity, ?>, LambdaUpdateWrapper<SysPersonEntity>> wrapper = sysPersonService.lambdaUpdate()
+                .eq(SysPersonEntity::getId, 1)
                 .setSql("book_price = book_price+10")
                 .getWrapper();
 
 //        personService.saveOrUpdate(entity, wrapper);
-        personService.update(entity, wrapper);
+        sysPersonService.update(entity, wrapper);
     }
 
     @Test
     void test_lambdaUpdate() {
         //  1.不会会自动填充
-        PersonEntity book = personService.getById(1);
-        personService.lambdaUpdate()
-                .ge(PersonEntity::getId, 1)
-                .set(PersonEntity::getName, book.getName() + "_v1")
+        SysPersonEntity book = sysPersonService.getById(1);
+        sysPersonService.lambdaUpdate()
+                .ge(SysPersonEntity::getId, 1)
+                .set(SysPersonEntity::getName, book.getName() + "_v1")
                 .update();
     }
 
@@ -252,15 +253,15 @@ class PersonServiceTest {
         //         .set(BookEntity::getBookName, "一千零一夜")
         //         .update(new BookEntity());
 
-        PersonEntity book = new PersonEntity();
+        SysPersonEntity book = new SysPersonEntity();
         book.setName("tom");
         book.setAge(20);
 
         // bookService.saveOrUpdate(book, Wrappers.<BookEntity>lambdaQuery()
         //         .eq(BookEntity::getBookAuthor, "tom"));
 
-        personService.update(book, personService.lambdaQuery()
-                .eq(PersonEntity::getName, "tom")
+        sysPersonService.update(book, sysPersonService.lambdaQuery()
+                .eq(SysPersonEntity::getName, "tom")
                 .getWrapper());
 
     }
@@ -269,23 +270,23 @@ class PersonServiceTest {
     void test_lambdaUpdate2() {
         //  1.update(new 对象)才会自动填充
         //  2. 乐观锁失效,不支持,需要手动添加锁
-        PersonEntity book = personService.getById(1);
-        personService.lambdaUpdate()
-                .eq(PersonEntity::getId, 1)
-                .set(PersonEntity::getName, "jim")
-                .update(new PersonEntity());
+        SysPersonEntity book = sysPersonService.getById(1);
+        sysPersonService.lambdaUpdate()
+                .eq(SysPersonEntity::getId, 1)
+                .set(SysPersonEntity::getName, "jim")
+                .update(new SysPersonEntity());
     }
 
     @Test
     void test_lambdaUpdate3() {
         //  乐观锁失效,不支持,需要手动添加锁
-        PersonEntity book = personService.getById(1);
-        personService.lambdaUpdate()
-                .eq(PersonEntity::getId, 1)
-                .eq(PersonEntity::getVersion, book.getVersion())
-                .set(PersonEntity::getName, "jim")
-                .set(PersonEntity::getVersion, book.getVersion() + 1)
-                .update(new PersonEntity());
+        SysPersonEntity book = sysPersonService.getById(1);
+        sysPersonService.lambdaUpdate()
+                .eq(SysPersonEntity::getId, 1)
+                .eq(SysPersonEntity::getVersion, book.getVersion())
+                .set(SysPersonEntity::getName, "jim")
+                .set(SysPersonEntity::getVersion, book.getVersion() + 1)
+                .update(new SysPersonEntity());
     }
 
 
@@ -295,15 +296,15 @@ class PersonServiceTest {
 
         LocalDateTime startTime = LocalDateTimeUtil.beginOfDay(dateTime);
         LocalDateTime endTime = LocalDateTimeUtil.endOfDay(dateTime);
-        List<PersonEntity> list = personService.lambdaQuery()
-                .ge(PersonEntity::getBirthday, startTime)
+        List<SysPersonEntity> list = sysPersonService.lambdaQuery()
+                .ge(SysPersonEntity::getBirthday, startTime)
                 .list();
         System.out.println("list = " + list);
     }
 
     @Test
     void test_remove() {
-        boolean remove = personService.lambdaUpdate()
+        boolean remove = sysPersonService.lambdaUpdate()
                 .remove();
         System.out.println("remove = " + remove);
     }
@@ -312,10 +313,10 @@ class PersonServiceTest {
     @Test
     void test3() {
 
-        PersonMapper baseMapper = (PersonMapper) personService.getBaseMapper();
-        IPage<PersonEntity> page = baseMapper.customSqlSegment(Wrappers.<PersonEntity>lambdaQuery()
-                        .select(PersonEntity::getId)
-                        .gt(PersonEntity::getAge, 10),
+        SysPersonMapper baseMapper = (SysPersonMapper) sysPersonService.getBaseMapper();
+        IPage<SysPersonEntity> page = baseMapper.customSqlSegment(Wrappers.<SysPersonEntity>lambdaQuery()
+                        .select(SysPersonEntity::getId)
+                        .gt(SysPersonEntity::getAge, 10),
                 Page.of(1, 3));
         System.out.println("page.getSize() = " + page.getSize());
         System.out.println("page.getPages() = " + page.getPages());
@@ -327,10 +328,10 @@ class PersonServiceTest {
     @Test
     void test_tableListHasDelete() {
 
-        PersonMapper baseMapper = (PersonMapper) personService.getBaseMapper();
-        IPage<PersonEntity> page = baseMapper.sqlSegment(Wrappers.<PersonEntity>lambdaQuery()
+        SysPersonMapper baseMapper = (SysPersonMapper) sysPersonService.getBaseMapper();
+        IPage<SysPersonEntity> page = baseMapper.sqlSegment(Wrappers.<SysPersonEntity>lambdaQuery()
                         // .select(BookEntity::getId)
-                        .gt(PersonEntity::getAge, 10),
+                        .gt(SysPersonEntity::getAge, 10),
                 Page.of(1, 3));
         System.out.println("page.getSize() = " + page.getSize());
         System.out.println("page.getPages() = " + page.getPages());
@@ -345,7 +346,7 @@ class PersonServiceTest {
     @SuppressWarnings(value = "all")
     void test_动态表() {
         MyTableNameHandler.setData("_01");//此处调用方法
-        List<PersonEntity> list = personService.list();
+        List<SysPersonEntity> list = sysPersonService.list();
         System.out.println("list = " + list);
     }
 
@@ -353,7 +354,7 @@ class PersonServiceTest {
     @SuppressWarnings(value = "all")
     void test_多租户() {
         MyTenantLineHandler.setTenantId("100");
-        List<PersonEntity> list = personService.list();
+        List<SysPersonEntity> list = sysPersonService.list();
         System.out.println("list = " + list);
     }
 }

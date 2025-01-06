@@ -16,8 +16,8 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "person")
-public class PersonEntity implements Serializable {
+@TableName(value = "sys_person")
+public class SysPersonEntity implements Serializable {
 
     @Serial
     @TableField(exist = false)

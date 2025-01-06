@@ -10,7 +10,7 @@ public interface MyBaseMapper<T> extends BaseMapper<T> {
      *
      * @return
      */
-    List<T> findAll();
+    List<T> myFindAll();
 
 
     /**

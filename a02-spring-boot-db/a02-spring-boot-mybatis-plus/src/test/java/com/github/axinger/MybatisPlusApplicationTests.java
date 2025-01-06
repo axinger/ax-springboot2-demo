@@ -1,7 +1,7 @@
 package com.github.axinger;
 
 import com.baomidou.mybatisplus.core.toolkit.AES;
-import com.github.axinger.service.PersonService;
+import com.github.axinger.service.SysPersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ class MybatisPlusApplicationTests {
 
     String randomKey = "abcdef1234567890";
     @Autowired
-    private PersonService personService;
+    private SysPersonService sysPersonService;
 
     //    // Jar 启动参数（ idea 设置 Program arguments , 服务器可以设置为启动环境变量 ）
 //--mpw.key=d1104d7c3b616f0b

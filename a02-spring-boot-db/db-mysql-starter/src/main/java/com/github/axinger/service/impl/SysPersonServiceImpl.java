@@ -1,9 +1,9 @@
 package com.github.axinger.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.axinger.domain.PersonEntity;
-import com.github.axinger.mapper.PersonMapper;
-import com.github.axinger.service.PersonService;
+import com.github.axinger.domain.SysPersonEntity;
+import com.github.axinger.mapper.SysPersonMapper;
+import com.github.axinger.service.SysPersonService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
  * @createDate 2023-10-31 11:20:21
  */
 @Service
-public class PersonServiceImpl extends ServiceImpl<PersonMapper, PersonEntity>
-        implements PersonService {
+public class SysPersonServiceImpl extends ServiceImpl<SysPersonMapper, SysPersonEntity>
+        implements SysPersonService {
 
 }
 
