@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -29,5 +30,7 @@ public class DataSourceProperties {
         private String password;
         private String driverClassName;
         private String xaDriverClassName;
+
+        private List<String> mapperLocations;
     }
 }

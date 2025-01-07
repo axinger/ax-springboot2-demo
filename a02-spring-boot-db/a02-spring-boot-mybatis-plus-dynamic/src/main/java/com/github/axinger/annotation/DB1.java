@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @DS("db_1")
-public @interface DS_1 {
+public @interface DB1 {
 }
