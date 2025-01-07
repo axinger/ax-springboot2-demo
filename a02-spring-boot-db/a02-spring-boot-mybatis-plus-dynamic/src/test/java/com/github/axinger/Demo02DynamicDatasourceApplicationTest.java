@@ -20,9 +20,17 @@ class Demo02DynamicDatasourceApplicationTest {
     private SysDogService sysDogService;
 
     @Test
-    void test12() {
+    void test11() {
         List<SysPersonEntity> list = sysPersonService.list();
         System.out.println("list = " + list);
+    }
+
+    @Test
+    void test12() {
+        SysPersonEntity entity = new SysPersonEntity();
+        entity.setName("tom");
+        boolean save =  sysPersonService.save(entity);
+        System.out.println("save = " + save);
     }
 
     @Test
@@ -31,5 +39,11 @@ class Demo02DynamicDatasourceApplicationTest {
         System.out.println("list = " + list);
     }
 
-
+    @Test
+    void test21() {
+        SysDogEntity entity = new SysDogEntity();
+        entity.setName("小飞狗");
+        boolean save = sysDogService.save(entity);
+        System.out.println("save = " + save);
+    }
 }
