@@ -25,6 +25,9 @@
         <module>a02-01-dynamic-custom</module>
         <module>a02-02-sync-transaction</module>
         <module>a02-04-narayana-jta</module>
+        <module>db-test1</module>
+        <module>db-test2</module>
+        <module>db-test21</module>
     </modules>
 
 </project>

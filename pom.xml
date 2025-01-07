@@ -39,8 +39,8 @@
         <!--        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>-->
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <!--        <okhttp.version>4.10.0</okhttp.version>-->
-        <mybatis-starter.version>2.3.2</mybatis-starter.version>
-        <mybatis-plus.version>3.5.6</mybatis-plus.version>
+<!--        <mybatis-starter.version>2.3.2</mybatis-starter.version>-->
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <mybatis-plus3.version>3.5.9</mybatis-plus3.version>
         <guava.version>33.3.0-jre</guava.version>
         <!--        <guava.version>33.4.0-jre</guava.version>-->

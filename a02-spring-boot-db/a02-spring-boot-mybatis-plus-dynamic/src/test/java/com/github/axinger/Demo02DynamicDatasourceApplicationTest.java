@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class Demo02DynamicDatasourceApplicationTest {
 
@@ -22,6 +24,12 @@ class Demo02DynamicDatasourceApplicationTest {
         Person person = new Person();
         person.setName("tom");
         personService.save(person);
+    }
+
+    @Test
+    void test12() {
+        List<Person> list = personService.list();
+        System.out.println("list = " + list);
     }
 
     @Test

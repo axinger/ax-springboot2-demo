@@ -18,7 +18,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -36,20 +37,13 @@ public class MyDataSourceConfig {
             throw new IllegalArgumentException("No configuration found for data source: " + key);
         }
 
-
-        return DataSourceBuilder.create()
-                .type(HikariDataSource.class)
-                .url(item.getUrl())
-                .username(item.getUsername())
-                .password(item.getPassword())
-                .driverClassName(item.getDriverClassName())
-                .build();
+        return DataSourceBuilder.create().type(HikariDataSource.class).url(item.getUrl()).username(item.getUsername()).password(item.getPassword()).driverClassName(item.getDriverClassName()).build();
     }
 
 
     @Configuration
     @EnableConfigurationProperties
-    @MapperScan(basePackages = "com.github.axinger.db.master.mapper", sqlSessionFactoryRef = "masterSqlSessionFactory")
+    @MapperScan(basePackages = {"com.github.db1.mapper"}, sqlSessionTemplateRef = "masterSqlSessionTemplate")
     public static class MasterDataSourceConfig extends MyDataSourceConfig {
         @Primary
         @Bean(name = "masterDataSource")
@@ -58,32 +52,32 @@ public class MyDataSourceConfig {
         }
 
         @Bean(name = "masterSqlSessionFactory")
-        public SqlSessionFactory masterSqlSessionFactory(@Qualifier("masterDataSource") DataSource masterDataSource) throws Exception {
-            MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
-            sessionFactory.setDataSource(masterDataSource);
-
-            List<Resource> mapperLocations = Collections.singletonList(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/master/*.xml")[0]);
-
-            sessionFactory.setMapperLocations(mapperLocations.toArray(new Resource[0]));
-            return sessionFactory.getObject();
-        }
-
-        @Bean(name = "masterSqlSessionTemplate")
-        public SqlSessionTemplate masterSqlSessionTemplate(@Qualifier("masterSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
-            return new SqlSessionTemplate(sqlSessionFactory);
+        @Primary
+        public SqlSessionFactory dbSqlSessionFactory(@Qualifier("masterDataSource") DataSource dataSource) throws Exception {
+            MybatisSqlSessionFactoryBean factoryBean = new MybatisSqlSessionFactoryBean();
+            factoryBean.setDataSource(dataSource);
+            factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                    .getResources("classpath*:/mapper/db1/*.xml"));
+            return factoryBean.getObject();
         }
 
         @Bean(name = "masterTransactionManager")
         @Primary
-        public PlatformTransactionManager masterTransactionManager(@Qualifier("masterDataSource") DataSource masterDataSource) {
-            return new DataSourceTransactionManager(masterDataSource);
+        public DataSourceTransactionManager dbTransactionManager(@Qualifier("masterDataSource") DataSource dataSource) {
+            return new DataSourceTransactionManager(dataSource);
+        }
+
+        @Bean(name = "masterSqlSessionTemplate")
+        @Primary
+        public SqlSessionTemplate dbSqlSessionTemplate(@Qualifier("masterSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+            return new SqlSessionTemplate(sqlSessionFactory);
         }
 
     }
 
     @Configuration
     @EnableConfigurationProperties
-    @MapperScan(basePackages = "com.github.axinger.db.slave.mapper", sqlSessionFactoryRef = "slaveSqlSessionFactory")
+    @MapperScan(basePackages = {"com.github.db2.mapper", "com.github.db21.mapper"}, sqlSessionFactoryRef = "slaveSqlSessionFactory")
     public static class SlaveDataSourceConfig extends MyDataSourceConfig {
 
         @Bean(name = "slaveDataSource")
@@ -95,7 +89,17 @@ public class MyDataSourceConfig {
         public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDataSource") DataSource slaveDataSource) throws Exception {
             MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
             sessionFactory.setDataSource(slaveDataSource);
-            sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/slave/*.xml"));
+            PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+            List<String> list = List.of(
+                    "classpath*:mapper/db2/*.xml",
+                    "classpath*:mapper/db21/*.xml"
+            );
+            List<Resource> resources = new ArrayList<>();
+            for (String path : list) {
+                Resource[] mappers = resolver.getResources(path);
+                resources.addAll(Arrays.asList(mappers));
+            }
+            sessionFactory.setMapperLocations(resources.toArray(new Resource[0]));
             return sessionFactory.getObject();
         }
 

@@ -18,7 +18,7 @@ public class TestController {
     @SneakyThrows
     @GetMapping("/1")
     public void test() {
-        accountService.test();
+//        accountService.test();
     }
 
     @GetMapping("/3")

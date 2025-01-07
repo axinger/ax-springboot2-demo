@@ -41,6 +41,23 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>db-test1</artifactId>
+            <version>${axinger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>db-test2</artifactId>
+            <version>${axinger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>db-test21</artifactId>
+            <version>${axinger.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

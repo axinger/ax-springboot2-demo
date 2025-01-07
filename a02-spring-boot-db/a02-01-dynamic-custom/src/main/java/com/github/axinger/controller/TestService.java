@@ -1,11 +1,11 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.db.master.domain.Person;
-import com.github.axinger.db.master.domain.SysAnimalEntity;
-import com.github.axinger.db.master.service.PersonService;
-import com.github.axinger.db.master.service.SysAnimalService;
-import com.github.axinger.db.slave.domain.Dog;
-import com.github.axinger.db.slave.service.DogService;
+import com.github.db1.domain.SysPersonEntity;
+import com.github.db1.service.SysPersonService;
+import com.github.db2.domain.SysAnimalEntity;
+import com.github.db2.service.SysAnimalService;
+import com.github.db21.domain.SysDogEntity;
+import com.github.db21.service.SysDogService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ public class TestService {
 
 
     @Autowired
-    private PersonService personService;
+    private SysPersonService personService;
 
     @Autowired
-    private DogService dogService;
+    private SysDogService dogService;
 
     @Autowired
     private SysAnimalService animalService;
@@ -40,7 +40,7 @@ public class TestService {
 
     public void testA() {
         System.out.println("Person==========");
-        Person dog = new Person();
+        SysPersonEntity dog = new SysPersonEntity();
         dog.setName("小明");
         personService.save(dog);
     }
@@ -55,7 +55,7 @@ public class TestService {
     }
 
     public void testC() {
-        Dog dog = new Dog();
+        SysDogEntity dog = new SysDogEntity();
         dog.setName("加菲狗");
         dogService.save(dog);
     }
