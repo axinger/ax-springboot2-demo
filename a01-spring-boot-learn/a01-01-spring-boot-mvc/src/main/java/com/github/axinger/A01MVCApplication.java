@@ -17,7 +17,8 @@ import org.springframework.retry.annotation.EnableRetry;
                 })
 })
 @SpringBootApplication
-@EnableRetry(proxyTargetClass = true)
+//@EnableRetry(proxyTargetClass = true)
+@EnableRetry
 @Slf4j
 public class A01MVCApplication {
 

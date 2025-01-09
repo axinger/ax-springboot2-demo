@@ -5,3 +5,7 @@ spring:
     active: '@my-env@'
 
 
+
+
+axing:
+  delayExpression: 2000L
