@@ -31,6 +31,7 @@ public class TestController {
     @GetMapping("/count")
     public Object count1() {
         count++;
+        System.out.println("count = " + count);
         return List.of(count);
     }
 

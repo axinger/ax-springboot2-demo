@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.axing.common.dto.PageDTO;
 import com.axing.common.response.result.Result;
 import com.axing.common.vo.PageResult;
+import com.github.axinger.config.MyTrackId;
 import com.github.axinger.dto.UserDTO;
 import com.github.axinger.dto.UserPojo;
 import com.github.axinger.model.Dog;
@@ -90,6 +91,9 @@ public class UserController {
 
     @GetMapping("/getUserById/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+
+        System.out.println("MyTrackId.getId() = " + MyTrackId.getId());
+
         UserDTO user = userService.findById(id);
         return ResponseEntity.ok(user);
     }

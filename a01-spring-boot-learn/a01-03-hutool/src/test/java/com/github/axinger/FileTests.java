@@ -4,8 +4,10 @@ import cn.hutool.core.comparator.CompareUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileNameUtil;
+import cn.hutool.core.io.file.PathUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.URLUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -159,5 +161,19 @@ public class FileTests {
         File file = FileUtil.file("C:\\Users\\xing\\Desktop\\test.xlsx");
         String type = FileTypeUtil.getType(file);
         System.out.println("type = " + type);
+    }
+
+    @Test
+    void test6() {
+
+        String decode = URLUtil.decode("/Users/xing//Desktop/test.txt");
+        System.out.println("decode = " + decode);
+
+        String replace = StrUtil.replace(decode, "//", "/");
+        System.out.println("replace = " + replace);
+
+        String s = StrUtil.removePrefix(replace, "/");
+        System.out.println("s = " + s);
+
     }
 }
