@@ -1,9 +1,11 @@
 package com.axing.common.advice.exception;
 
+import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.exception.ServiceException;
 import com.axing.common.response.result.Result;
+import com.google.common.base.Throwables;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -57,6 +59,8 @@ public class GlobalException {
         }
         final Result<Map<String, Object>> result = Result.fail(msg);
         log.error("全局异常 result = {}, e = {}", result, e.getMessage());
+        log.error("全局异常 result = {}", Throwables.getStackTraceAsString(e));
+        log.error("全局异常 result = {}", ExceptionUtil.stacktraceToString(e));
         return result;
     }
 

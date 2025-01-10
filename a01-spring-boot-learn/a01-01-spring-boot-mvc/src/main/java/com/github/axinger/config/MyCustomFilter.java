@@ -23,12 +23,7 @@ public class MyCustomFilter extends OncePerRequestFilter {
         System.out.println("userId = " + userId);
 
 
-        try {
-            // 继续过滤器链
-            filterChain.doFilter(request, response);
-        } finally {
-            // 清理工作
-        }
+        filterChain.doFilter(request, response);
     }
 
     @Override

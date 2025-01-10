@@ -32,6 +32,9 @@ public class RestTemplateTests {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/json");
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        headers.add("token", "jim");
 
 
         ///  这种方式,不能用泛型

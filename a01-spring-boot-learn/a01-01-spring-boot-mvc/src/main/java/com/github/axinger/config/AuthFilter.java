@@ -32,10 +32,10 @@ public class AuthFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         // 获取请求中的token
-        String token = httpRequest.getHeader("Authorization");
-
-
-        System.out.println("token = " + token);
+//        String token = httpRequest.getHeader("Authorization");
+//
+//
+//        System.out.println("token = " + token);
 
 
         // 如果token有效，继续请求
