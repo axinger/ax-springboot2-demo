@@ -45,6 +45,8 @@ public class AuthFilter implements Filter {
     @Override
     public void destroy() {
         // 资源释放
+        MyHolder.removeUserId();
+        MyTrackId.removeId();
     }
 
     // 模拟token验证方法
