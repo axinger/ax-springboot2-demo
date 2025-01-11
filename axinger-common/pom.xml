@@ -5,36 +5,23 @@
     <parent>
         <artifactId>ax-springboot2-demo</artifactId>
         <groupId>com.github.axinger</groupId>
-        <version>2024.12.01-2.7</version>
+        <version>2025.01.01-2.7</version>
     </parent>
     <artifactId>axinger-common</artifactId>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
     <name>阿星common工具类</name>
 
-    <properties>
-        <java.version>17</java.version>
-        <axing-project.version>${axinger.version}</axing-project.version>
-    </properties>
-
     <modules>
         <module>util-spring-boot-starter</module>
-        <module>response-spring-boot-starter</module>
-        <module>quartz-spring-boot-starter</module>
-        <module>doc-config-spring-boot-starter</module>
         <module>redis-spring-boot-starter</module>
-        <module>base-config-spring-boot-starter</module>
-        <module>mybatis-plus-config-spring-boot-starter</module>
+        <module>quartz-spring-boot-starter</module>
+
         <module>mongodb-spring-boot-starter</module>
         <module>minio-spring-boot-starter</module>
-        <module>advice-spring-boot-starter</module>
-        <module>jackson-config-spring-boot-starter</module>
+
         <module>request-log-spring-boot-starter</module>
         <module>excel-spring-boot-starter</module>
-        <module>dto-spring-boot-starter</module>
-        <module>http-config-spring-boot-starter</module>
-        <module>logback-config-spring-boot-starter</module>
-        <module>executor-config-spring-boot-starter</module>
         <module>oos-spring-boot-starter</module>
     </modules>
 

@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

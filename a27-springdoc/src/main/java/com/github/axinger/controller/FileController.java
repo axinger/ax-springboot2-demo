@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

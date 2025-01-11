@@ -1,9 +1,9 @@
 package com.github.axinger.controller;
 
 import com.alibaba.fastjson2.JSON;
-import com.axing.common.dto.PageDTO;
-import com.axing.common.response.result.Result;
-import com.axing.common.vo.PageResult;
+import com.axing.common.response.dto.PageDTO;
+import com.axing.common.response.dto.PageResult;
+import com.axing.common.response.dto.Result;
 import com.github.axinger.config.MyTrackId;
 import com.github.axinger.dto.UserDTO;
 import com.github.axinger.dto.UserPojo;

@@ -2,7 +2,7 @@ package com.github.axinger.controller;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import com.github.axinger.server.UserServiceHttp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

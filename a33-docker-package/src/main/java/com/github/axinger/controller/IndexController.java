@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import com.github.axinger.domain.SysUser;
 import com.github.axinger.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;

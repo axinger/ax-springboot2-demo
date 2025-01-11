@@ -2,8 +2,7 @@ package com.github.axinger.controller;
 
 import com.axing.common.minio.service.MinioTemplate;
 import com.axing.common.minio.util.FilePathUtil;
-import com.axing.common.response.result.Result;
-import io.minio.MinioClient;
+import com.axing.common.response.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

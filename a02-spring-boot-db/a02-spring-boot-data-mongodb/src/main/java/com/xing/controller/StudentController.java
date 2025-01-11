@@ -1,6 +1,6 @@
 package com.xing.controller;
 
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import com.xing.entity.StudentInfo;
 import com.xing.service.IStudentInfoService;
 import org.bson.types.ObjectId;

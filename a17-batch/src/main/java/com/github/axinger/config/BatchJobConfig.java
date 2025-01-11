@@ -92,7 +92,7 @@
 //    @Bean
 //    public MyBatisBatchItemWriter<User> itemWriter() {
 //        MyBatisBatchItemWriter<User> itemWriter = new MyBatisBatchItemWriter<>();
-////        itemWriter.setSqlSessionFactory();
+/// /        itemWriter.setSqlSessionFactory();
 //        itemWriter.setSqlSessionFactory(sqlSessionFactory);
 //        itemWriter.setStatementId("com.github.axinger.mapper.UserMapper.saveOne");
 //

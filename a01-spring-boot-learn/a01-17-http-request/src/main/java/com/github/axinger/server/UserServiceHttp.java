@@ -1,6 +1,6 @@
 package com.github.axinger.server;
 
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;

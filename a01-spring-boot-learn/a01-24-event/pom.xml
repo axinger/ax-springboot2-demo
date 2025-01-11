@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.axinger</groupId>
         <artifactId>a01-spring-boot-learn</artifactId>
-        <version>2024.12.01-2.7</version>
+        <version>2025.01.01-2.7</version>
     </parent>
 
     <artifactId>a01-24-event</artifactId>
@@ -52,10 +52,6 @@
             <groupId>com.github.axinger</groupId>
             <artifactId>same-class-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.axinger</groupId>
-            <artifactId>dto-spring-boot-starter</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.github.penggle</groupId>
@@ -65,7 +61,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>advice-spring-boot-starter</artifactId>
+            <artifactId>advice-config-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

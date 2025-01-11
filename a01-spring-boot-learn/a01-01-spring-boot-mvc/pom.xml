@@ -5,7 +5,7 @@
     <parent>
         <artifactId>a01-spring-boot-learn</artifactId>
         <groupId>com.github.axinger</groupId>
-        <version>2024.12.01-2.7</version>
+        <version>2025.01.01-2.7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>a01-01-spring-boot-mvc</artifactId>
@@ -46,10 +46,6 @@
         <!--            <groupId>com.github.axinger</groupId>-->
         <!--            <artifactId>same-class-starter</artifactId>-->
         <!--        </dependency>-->
-        <dependency>
-            <groupId>com.github.axinger</groupId>
-            <artifactId>dto-spring-boot-starter</artifactId>
-        </dependency>
 
 
         <!--        <dependency>-->
@@ -60,7 +56,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>advice-spring-boot-starter</artifactId>
+            <artifactId>advice-config-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- 它是 Spring 为促进 Spring Boot 升级而提供的支持。用于帮助迁移 application properties。-->

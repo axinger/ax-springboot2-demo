@@ -1,6 +1,6 @@
 package com.github.axinger;
 
-import com.axing.common.response.result.Result;
+import com.axing.common.response.dto.Result;
 import com.github.axinger.server.UserServiceHttp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
