@@ -21,7 +21,7 @@ public class ExceptionTests {
         try {
             this.showCaseThrowable1();
         } catch (InvalidInputException e) {
-            System.out.println("getStackTraceAsString=="+Throwables.getStackTraceAsString(e));
+            System.out.println("getStackTraceAsString==" + Throwables.getStackTraceAsString(e));
             System.out.println("InvalidInputException====" + Throwables.getRootCause(e));
         } catch (Exception e) {
             System.out.println("Exception=====" + Throwables.getStackTraceAsString(e));

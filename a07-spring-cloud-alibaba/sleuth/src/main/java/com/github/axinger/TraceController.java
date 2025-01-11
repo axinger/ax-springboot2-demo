@@ -1,13 +1,11 @@
 package com.github.axinger;
 
-import cn.hutool.core.util.ObjUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -19,8 +17,6 @@ public class TraceController {
     private final TestService testService;
 
 
-
-
     @GetMapping("/1")
     public String getTraceId() {
         // 获取当前 trace 的 traceId
@@ -29,12 +25,12 @@ public class TraceController {
         System.out.println("start traceId1 = " + traceId1);
 
 
-        Optional.ofNullable(tracer).map(Tracer::currentSpan).map(Span::context).ifPresent(val->{
+        Optional.ofNullable(tracer).map(Tracer::currentSpan).map(Span::context).ifPresent(val -> {
 
             String traceId = val.traceId();
             String spanId = val.spanId();
             String parented = val.parentId();
-            Boolean sampled =val.sampled();
+            Boolean sampled = val.sampled();
             System.out.println("sampled = " + sampled);
             System.out.println("parented = " + parented);
             System.out.println("spanId = " + spanId);

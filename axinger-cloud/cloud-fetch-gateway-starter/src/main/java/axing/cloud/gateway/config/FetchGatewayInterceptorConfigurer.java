@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 public class FetchGatewayInterceptorConfigurer implements WebMvcConfigurer {
 
-    private FetchGatewayProperties properties;
+    private final FetchGatewayProperties properties;
 
     public FetchGatewayInterceptorConfigurer(FetchGatewayProperties properties) {
         this.properties = properties;

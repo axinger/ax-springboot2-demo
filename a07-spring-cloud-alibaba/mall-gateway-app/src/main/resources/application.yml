@@ -1,5 +1,5 @@
 server:
-  port: 6700
+  port: 11000
 spring:
   application:
     name: mall-gateway-app

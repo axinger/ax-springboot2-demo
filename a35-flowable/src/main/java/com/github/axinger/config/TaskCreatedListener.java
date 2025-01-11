@@ -87,9 +87,9 @@
 //            String owner = task.getOwner();
 //            log.info("监听-任务开始创建，owner={}", owner);
 //            log.info("监听-任务开始创建，id={}", task.getId());
-////            task.setVariable("currentLeader", "101");
-////            // 设置任务审批人
-////            task.setAssignee("101");
+/// /            task.setVariable("currentLeader", "101");
+/// /            // 设置任务审批人
+/// /            task.setAssignee("101");
 //        }
 //    }
 //

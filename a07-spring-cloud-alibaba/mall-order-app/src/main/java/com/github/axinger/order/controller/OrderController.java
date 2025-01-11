@@ -1,11 +1,20 @@
 package com.github.axinger.order.controller;
 
+import brave.Tracer;
+import brave.propagation.TraceContext;
 import com.github.axinger.order.service.OrderFeignService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,40 +45,38 @@ public class OrderController {
     @Autowired
     private OrderFeignService orderFeignService;
 
+    @Autowired
+    private Tracer tracer;
+
     /**
      * 直接请求测试一下
      *
      * @return
      */
     @GetMapping(value = "/test")
-    public Object order1() {
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("order_name", "订单");
-        map.put("order_port", port);
-        return map;
-
+    public Object order1(@RequestHeader HttpHeaders headers) {
+        log.info("查看网关请求头,headers={}", headers);
+        return getRes(1);
     }
 
     /**
-     * 请求nacos
+     * 请求nacos,<a href="http://mall-payment-app">...</a>
      *
      * @param id
      * @return
      */
+    @Operation(summary = "restTemplate方式,请求支付系统", description = "gatewayFeign")
     @GetMapping(value = "/nacos/{id}")
     public Object order(@PathVariable("id") Integer id) {
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("order_id", id);
-        map.put("order_name", "订单");
-        map.put("order_port", port);
-
         String url = paymentURL + "/payment/count/" + id;
         System.out.println("url = " + url);
 
-        Map<String, Object> map1 = restTemplate.getForObject(url, Map.class);
-        map.putAll(map1);
-        return map;
-
+        ///  泛型擦除
+        Map map2 = restTemplate.getForObject(url, Map.class);
+        Map<String, Object> res = new HashMap<>(16);
+        res.put("order", getRes(id));
+        res.put("payment", map2);
+        return res;
     }
 
     /**
@@ -80,32 +87,59 @@ public class OrderController {
      */
     @GetMapping(value = "/gateway/{id}")
     public Object order2(@PathVariable("id") Integer id) {
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("order_id", id);
-        map.put("order_name", "订单");
-        map.put("order_port", port);
 
         String url = gatewayService + "/payment/count/" + id;
         System.out.println("url = " + url);
+        // 处理嵌套泛型
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        headers.add("token", "jim");
 
-        Map<String, Object> map1 = restTemplate.getForObject(url, Map.class);
-        map.putAll(map1);
-        return map;
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+        ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                httpEntity,
+                new ParameterizedTypeReference<>() {
+                }
+        );
+        Map<String, Object> map2 = response.getBody();
+        Map<String, Object> res = new HashMap<>(16);
+        res.put("order", getRes(id));
+        res.put("payment", map2);
+        return res;
 
     }
 
+
+    @Operation(summary = "open方式请求,请求支付系统", description = "gatewayFeign")
     @GetMapping(value = "/gateway/feign/{id}")
     public Object gatewayFeign(@PathVariable("id") Integer id) {
+        Map<String, Object> map2 = orderFeignService.count(id);
+        Map<String, Object> res = new HashMap<>(16);
+        res.put("order", getRes(id));
+        res.put("payment", map2);
+        return res;
+    }
+
+    public Map<String, Object> getRes(Integer id) {
         Map<String, Object> map = new HashMap<>(16);
         map.put("order_id", id);
         map.put("order_name", "订单");
         map.put("order_port", port);
 
-        Map<String, Object> map1 = orderFeignService.count(id);
-        map.putAll(map1);
+        TraceContext context = tracer.currentSpan().start().context();
+
+        map.put("parentId", context.parentId());
+        map.put("traceId", context.traceId());
+        map.put("spanId", context.spanId());
+
+        map.put("traceIdHigh", context.traceIdHigh());
+        map.put("traceIdString", context.traceIdString());
+        map.put("isLocalRoot", context.isLocalRoot());
 
         return map;
-
     }
 
 }

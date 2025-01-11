@@ -5,9 +5,9 @@
 <mapper namespace="com.github.axinger.db2.mapper.SysDogMapper">
 
     <resultMap id="BaseResultMap" type="com.github.axinger.db2.domain.SysDogEntity">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="age" column="age" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">

@@ -5,8 +5,8 @@ spring:
     nacos:
       discovery:
         server-addr: http://localhost:8848
-#        username: nacos
-#        password: nacos
+        #        username: nacos
+        #        password: nacos
         namespace: dev
         group: DEFAULT_GROUP
 

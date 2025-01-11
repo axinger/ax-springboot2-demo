@@ -16,11 +16,11 @@ public class FetchGatewayProperties {
     /**
      * 经过网关秘钥key
      */
-    private String fetchGatewayKey = "fetchGateway";
+    private String fetchGatewayKey = "x-fetch-gateway-token";
 
     /**
      * 经过网关秘钥value
      */
-    private String fetchGatewayValue = "fetchGateway";
+    private String fetchGatewayValue = "ABC123";
 }
 

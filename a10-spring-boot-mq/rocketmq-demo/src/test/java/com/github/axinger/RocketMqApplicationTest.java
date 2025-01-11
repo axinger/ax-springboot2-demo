@@ -1,7 +1,5 @@
 package com.github.axinger;
 
-import org.apache.rocketmq.client.producer.LocalTransactionState;
-import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

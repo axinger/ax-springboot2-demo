@@ -65,7 +65,9 @@ public class ValidationServiceTest {
 
 //        validationService.listNotEmpty(null);// 不通过
 //        validationService.listNotEmpty(new ArrayList<>());// 不通过
-        validationService.listNotEmpty(new ArrayList<>(){{add("1");}});// 通过
+        validationService.listNotEmpty(new ArrayList<>() {{
+            add("1");
+        }});// 通过
 
         validationService.strNotNull3("");
 

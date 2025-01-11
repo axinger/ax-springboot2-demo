@@ -1,7 +1,6 @@
 package com.github.axinger.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -22,8 +21,6 @@ public class LoginCheckFilter implements Filter {
         //1.获取请求url
         String url = request.getRequestURL().toString();
         log.info("请求路径：{}", url); //请求路径：http://localhost:8080/login
-
-
 
 
         //6.放行

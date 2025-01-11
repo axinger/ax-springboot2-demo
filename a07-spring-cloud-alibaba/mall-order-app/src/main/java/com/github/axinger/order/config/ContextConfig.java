@@ -18,7 +18,6 @@ public class ContextConfig {
     @Bean
     @LoadBalanced // ribbon 负载均衡必须要
     public RestTemplate getRestTemplate() {
-
         return new RestTemplate();
     }
 }

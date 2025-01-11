@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.annotation.Async;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +33,6 @@ class A0204ApplicationTest {
 
     @Async("abc")
     void contextLoads2() {
-        log.info("Thread.currentThread().getId() = {}" , Thread.currentThread().getName());
+        log.info("Thread.currentThread().getId() = {}", Thread.currentThread().getName());
     }
 }

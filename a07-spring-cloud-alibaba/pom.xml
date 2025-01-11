@@ -13,17 +13,14 @@
 
 
     <modules>
+        <module>A0701-nacos-demo</module>
         <module>alibaba-dubbo</module>
         <module>alibaba-sentinel</module>
         <module>alibaba-seata</module>
-        <module>nacos-demo</module>
-        <module>alibaba-nacos-gateway</module>
-        <module>openfeign-nacos-consume</module>
-        <module>openfeign-nacos-provider</module>
-        <module>sleuth</module>
         <module>mall-gateway-app</module>
         <module>mall-order-app</module>
         <module>mall-payment-app</module>
+        <module>sleuth</module>
     </modules>
 
 </project>

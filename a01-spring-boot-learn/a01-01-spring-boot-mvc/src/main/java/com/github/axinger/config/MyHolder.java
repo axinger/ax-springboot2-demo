@@ -8,12 +8,12 @@ public class MyHolder {
 
     private static final FastThreadLocal<String> CURRENT_ID = new FastThreadLocal<>();
 
-    public static void setUserId(String context) {
-        CURRENT_ID.set(context);
-    }
-
     public static String getUserId() {
         return CURRENT_ID.get();
+    }
+
+    public static void setUserId(String context) {
+        CURRENT_ID.set(context);
     }
 
     public static void removeUserId() {

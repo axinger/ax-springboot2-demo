@@ -2,12 +2,12 @@ package com.github.axinger.config;
 
 public interface IMyHolder {
 
-    static <T> void setId(T context) {
-
-    }
-
     static <T> T getId() {
         return null;
+    }
+
+    static <T> void setId(T context) {
+
     }
 
     static void removeId() {

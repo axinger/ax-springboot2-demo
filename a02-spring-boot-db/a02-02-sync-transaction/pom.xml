@@ -47,14 +47,12 @@
         </dependency>
 
 
-
-<!--            &lt;!&ndash; Narayana 依赖 &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.jboss.narayana.jta</groupId>-->
-<!--                <artifactId>narayana-jta</artifactId>-->
-<!--                <version>5.12.0.Final</version> &lt;!&ndash; 请根据需要选择版本 &ndash;&gt;-->
-<!--            </dependency>-->
-
+        <!--            &lt;!&ndash; Narayana 依赖 &ndash;&gt;-->
+        <!--            <dependency>-->
+        <!--                <groupId>org.jboss.narayana.jta</groupId>-->
+        <!--                <artifactId>narayana-jta</artifactId>-->
+        <!--                <version>5.12.0.Final</version> &lt;!&ndash; 请根据需要选择版本 &ndash;&gt;-->
+        <!--            </dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta -->
@@ -63,7 +61,6 @@
             <artifactId>narayana-jta</artifactId>
             <version>7.1.0.Final</version>
         </dependency>
-
 
 
     </dependencies>

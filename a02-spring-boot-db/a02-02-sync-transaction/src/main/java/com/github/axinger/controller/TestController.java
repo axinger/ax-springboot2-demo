@@ -16,6 +16,8 @@ public class TestController {
     private PersonService personService;
     @Autowired
     private TestService1 testService1;
+    @Autowired
+    private TestService2 testService2;
 
     @GetMapping
     public void test() {
@@ -48,9 +50,6 @@ public class TestController {
         testService1.test4();
 
     }
-
-    @Autowired
-    private TestService2 testService2;
 
     @GetMapping("/21")
     public void test21() {

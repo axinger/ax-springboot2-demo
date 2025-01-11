@@ -51,16 +51,26 @@ public class GlobalException {
 //        map.put("method", method);
 //        map.put("path", uri);
 
-        String msg = "";
-        if (Optional.of(e).map(Throwable::getMessage).isPresent()) {
-            msg = e.getMessage();
-        } else if (Optional.of(e).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
-            msg = e.getCause().getMessage();
-        }
+//        String msg = "";
+//        if (Optional.of(e).map(Throwable::getMessage).isPresent()) {
+//            msg = e.getMessage();
+//        } else if (Optional.of(e).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
+//            msg = e.getCause().getMessage();
+//        }
+
+        ///  错误message,没有类型
+        String msg = ExceptionUtil.getSimpleMessage(e);
+        String msg2 = Throwables.getRootCause(e).getMessage();
+
         final Result<Map<String, Object>> result = Result.fail(msg);
-        log.error("全局异常 result = {}, e = {}", result, e.getMessage());
-        log.error("全局异常 result = {}", Throwables.getStackTraceAsString(e));
-        log.error("全局异常 result = {}", ExceptionUtil.stacktraceToString(e));
+        ///  getRootCauseMessage: 错误类型
+        log.error("全局异常,result = {}, message = {}", result, ExceptionUtil.getRootCauseMessage(e));
+
+        if (adviceProperties.isPrintStackTrace()) {
+//            log.error("全局异常 result = {}", Throwables.getStackTraceAsString(e));
+            log.error("全局异常,stacktrace = {}", ExceptionUtil.stacktraceToString(e));
+        }
+
         return result;
     }
 

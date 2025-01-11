@@ -29,7 +29,7 @@ class Demo02DynamicDatasourceApplicationTest {
     void test12() {
         SysPersonEntity entity = new SysPersonEntity();
         entity.setName("tom");
-        boolean save =  sysPersonService.save(entity);
+        boolean save = sysPersonService.save(entity);
         System.out.println("save = " + save);
     }
 

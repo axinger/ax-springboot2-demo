@@ -31,7 +31,8 @@ public class TestController {
 
     @Autowired
     private SysAnimalService animalService;
-
+    @Autowired
+    private TestService testService;
 
     @GetMapping("/1")
     public void test1() {
@@ -45,17 +46,11 @@ public class TestController {
         System.out.println("list = " + list);
     }
 
-
     @GetMapping("/3")
     public void test3() {
         List<SysAnimalEntity> list = animalService.list();
         System.out.println("list = " + list);
     }
-
-
-    @Autowired
-    private TestService testService;
-
 
     @GetMapping("/11")
     public void testAB() {

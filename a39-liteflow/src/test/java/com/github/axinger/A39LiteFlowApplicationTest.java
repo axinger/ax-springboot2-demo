@@ -1,12 +1,9 @@
 package com.github.axinger;
 
 import com.yomahub.liteflow.core.FlowExecutor;
-import com.yomahub.liteflow.core.FlowExecutorHolder;
 import com.yomahub.liteflow.flow.LiteflowResponse;
-import com.yomahub.liteflow.property.LiteflowConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
@@ -38,7 +35,7 @@ class A39LiteFlowApplicationTest {
             boolean success = response.isSuccess();
             System.out.println("success = " + success);
 
-            String message =  Optional.of(response).map(LiteflowResponse::getCause).map(Throwable::getMessage).orElse("");
+            String message = Optional.of(response).map(LiteflowResponse::getCause).map(Throwable::getMessage).orElse("");
             System.out.println("message = " + message);
 
             User contextBean = response.getContextBean(User.class);

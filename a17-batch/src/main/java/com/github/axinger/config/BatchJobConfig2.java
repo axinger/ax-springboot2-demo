@@ -103,7 +103,7 @@
 //    public ItemWriter<User> itemWriter() {
 //        return items -> {
 //            for (User item : items) {
-////                System.out.println("item = " + item);
+/// /                System.out.println("item = " + item);
 //
 //                String sql = "INSERT INTO `user_2` (`id`, `name`, `email`) VALUES (?, ?, ?);";
 //                jdbcTemplate.update(sql, preparedStatement -> {

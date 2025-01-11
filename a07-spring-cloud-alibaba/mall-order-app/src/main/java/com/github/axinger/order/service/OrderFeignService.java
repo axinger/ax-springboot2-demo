@@ -9,7 +9,6 @@ import java.util.Map;
 
 @Component
 @FeignClient(value = "${server-name.payment-service}", path = "/payment")
-//@FeignClient(value = "demo07-nacos-payment", path = "/payment")
 public interface OrderFeignService {
 
     @GetMapping(value = "/count/{id}")

@@ -295,6 +295,6 @@ class Demo6ApplicationTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        log.info("Thread.currentThread().getId() = {}" , Thread.currentThread().getName());
+        log.info("Thread.currentThread().getId() = {}", Thread.currentThread().getName());
     }
 }

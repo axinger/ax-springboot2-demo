@@ -38,10 +38,10 @@ public class Person {
 //        if (o instanceof Person p) {
 //            int sort;
 //            sort = name.compareTo(p.name);
-////            if (sort == 0) {
-////                sort = Integer.compare(age, p.age);
-//////                sort = age.compareTo(p.age);
-////            }
+    /// /            if (sort == 0) {
+    /// /                sort = Integer.compare(age, p.age);
+    /// ///                sort = age.compareTo(p.age);
+    /// /            }
 //            return sort;
     private String address;
 

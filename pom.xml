@@ -39,7 +39,7 @@
         <!--        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>-->
         <!-- 覆盖SpringBoot中okhttp3的旧版本声明，解决MinIO 8.3.x的依赖冲突 -->
         <!--        <okhttp.version>4.10.0</okhttp.version>-->
-<!--        <mybatis-starter.version>2.3.2</mybatis-starter.version>-->
+        <!--        <mybatis-starter.version>2.3.2</mybatis-starter.version>-->
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <mybatis-plus3.version>3.5.9</mybatis-plus3.version>
         <guava.version>33.3.0-jre</guava.version>
@@ -47,7 +47,7 @@
         <hutool.version>5.8.32</hutool.version>
         <fastjson2.version>2.0.49</fastjson2.version>
         <lombok.version>1.18.34</lombok.version>
-        <druid.version>1.2.22</druid.version>
+<!--        <druid.version>1.2.22</druid.version>-->
         <netty-all.version>4.1.115.Final</netty-all.version>
         <redisson.version>3.36.0</redisson.version>
         <minio.version>8.5.9</minio.version>
@@ -311,12 +311,6 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
-
-            <!--            <dependency>-->
-            <!--                <groupId>com.alibaba</groupId>-->
-            <!--                <artifactId>druid-spring-boot-starter</artifactId>-->
-            <!--                <version>${druid.version}</version>-->
-            <!--            </dependency>-->
 
             <dependency>
                 <groupId>io.netty</groupId>

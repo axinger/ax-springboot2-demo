@@ -7,10 +7,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
- *
  * @TableName sys_animal
  */
-@TableName(value ="sys_animal")
+@TableName(value = "sys_animal")
 @Data
 public class SysAnimalEntity {
     /**

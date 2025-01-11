@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>a02-04-narayana-jta</artifactId>
-
 
 
     <dependencies>
@@ -38,16 +37,15 @@
         </dependency>
 
 
-<!--        <dependency>-->
-<!--            <groupId>com.github.axinger</groupId>-->
-<!--            <artifactId>executor-config-spring-boot-starter</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.axinger</groupId>-->
+        <!--            <artifactId>executor-config-spring-boot-starter</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
-
 
 
         <!--            &lt;!&ndash; Narayana 依赖 &ndash;&gt;-->
@@ -58,34 +56,28 @@
         <!--            </dependency>-->
 
 
-
+        <!-- https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta -->
+        <!-- https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.jboss.narayana.jta</groupId>-->
+        <!--            <artifactId>narayana-jta</artifactId>-->
+        <!--            <version>5.13.1.Final</version>-->
+        <!--        </dependency>-->
 
 
         <!-- https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta -->
-        <!-- https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta -->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.narayana.jta</groupId>-->
-<!--            <artifactId>narayana-jta</artifactId>-->
-<!--            <version>5.13.1.Final</version>-->
-<!--        </dependency>-->
-
-
-
-        <!-- https://mvnrepository.com/artifact/org.jboss.narayana.jta/narayana-jta -->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.narayana.jta</groupId>-->
-<!--            <artifactId>narayana-jta</artifactId>-->
-<!--            <version>6.0.3.Final</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-
-
+        <!--        <dependency>-->
+        <!--            <groupId>org.jboss.narayana.jta</groupId>-->
+        <!--            <artifactId>narayana-jta</artifactId>-->
+        <!--            <version>6.0.3.Final</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
 
 
         <!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-jta-atomikos</artifactId>-->
-<!--        </dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-jta-atomikos</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

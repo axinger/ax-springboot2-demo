@@ -2,6 +2,7 @@ package com.axing.common.response.result;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,13 +16,14 @@ import java.io.Serializable;
  * 避免bug
  */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(title = "Result", description = "请求返回结果")
 public class Result<T> implements Serializable {
 
-    @Schema(title = "状态码", description = "成功：200；失败：201")
-    private Integer code = 200;
+    @Schema(title = "是否成功", description = "成功：true；失败：false")
+    private Boolean success = false;
 
     @Schema(title = "提示信息", description = "错误信息")
     private String msg = "";
@@ -31,32 +33,33 @@ public class Result<T> implements Serializable {
 
 
     public static <T> Result<T> ok(T data) {
-        Result<T> result = new Result<>();
-        result.setCode(ResultCodeEnum.SUCCESS.getCode());
-        result.setData(data);
-        return result;
+        return Result.<T>builder()
+                .success(true)
+                .data(data)
+                .build();
     }
 
     public static <T> Result<T> ok() {
-        return Result.ok(null);
+        return Result.ok("");
     }
 
     public static <T> Result<T> ok(String msg) {
-        Result<T> result = new Result<>();
-        result.setCode(ResultCodeEnum.SUCCESS.getCode());
-        result.setMsg(msg);
-        return result;
+        return Result.<T>builder()
+                .success(true)
+                .msg(msg)
+                .build();
+
     }
 
     public static <T> Result<T> fail(String msg) {
-        Result<T> result = new Result<>();
-        result.setCode(ResultCodeEnum.FAIL.getCode());
-        result.setMsg(msg);
-        return result;
+        return Result.<T>builder()
+                .success(false)
+                .msg(msg)
+                .build();
     }
 
     public static <T> Result<T> fail() {
-        return Result.fail(null);
+        return Result.fail("");
     }
 
 }

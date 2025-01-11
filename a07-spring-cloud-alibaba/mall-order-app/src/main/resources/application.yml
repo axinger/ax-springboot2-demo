@@ -6,12 +6,6 @@ server:
 spring:
   application:
     name: mall-order-app #订单作为消费者
-  cloud:
-    nacos:
-      discovery:
-        server-addr: http://192.168.101.135:8848
-        namespace: axing-mall-dev
-
   zipkin:
     base-url: http://192.168.101.135:9411/
     sender:
@@ -31,4 +25,4 @@ server-name:
   payment-service: mall-payment-app
 axing:
   cloud:
-    must-fetch-gateway: false
+    must-fetch-gateway: true

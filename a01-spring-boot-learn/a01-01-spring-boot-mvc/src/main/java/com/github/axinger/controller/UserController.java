@@ -53,7 +53,7 @@ public class UserController {
 
     @GetMapping("/list")
     public Result<List<UserPojo<UserPojo.BookPojo>>> list(@RequestHeader HttpHeaders headers,
-                                                          @RequestHeader(value = "token",required = false) String token) throws InterruptedException {
+                                                          @RequestHeader(value = "token", required = false) String token) throws InterruptedException {
         System.out.println("headers = " + headers);
         System.out.println("token = " + token);
 
@@ -81,7 +81,7 @@ public class UserController {
 
 
         PageResult<List<Dog>> result = new PageResult<>();
-        result.setCode(200);
+        result.setSuccess(true);
         result.setData(List.of(dto.getData()));
         result.setPageSize(dto.getPageSize());
         result.setPageNo(dto.getPageNo());
