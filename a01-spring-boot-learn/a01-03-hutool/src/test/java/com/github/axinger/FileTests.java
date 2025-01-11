@@ -4,6 +4,7 @@ import cn.hutool.core.comparator.CompareUtil;
 import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileNameUtil;
+import cn.hutool.core.io.file.PathUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
@@ -174,5 +176,23 @@ public class FileTests {
         String s = StrUtil.removePrefix(replace, "/");
         System.out.println("s = " + s);
 
+
+
+
+
+    }
+
+    @Test
+    void test7() {
+        Path path = Path.of("a", "\\/c////d/f/");
+        String string = path.toString();
+        System.out.println("string = " + string);
+
+        Path absNormal = PathUtil.toAbsNormal(path);
+        System.out.println("absNormal = " + absNormal.toString());
+
+
+//        Path tempFile = PathUtil.createTempFile("A", "B.zip", path);
+//        System.out.println("tempFile = " + tempFile.toString());
     }
 }

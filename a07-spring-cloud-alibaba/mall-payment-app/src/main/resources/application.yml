@@ -6,11 +6,6 @@ server:
 spring:
   application:
     name: mall-payment-app
-  cloud:
-    nacos:
-      discovery:
-        server-addr: http://hadoop102:8848
-        namespace: dev
   zipkin:
     base-url: http://192.168.101.135:9411/
     sender:

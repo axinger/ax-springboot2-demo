@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "spring.application")
-public class ApplicationInfo {
-    private String version;
-    private String description;
+@ConfigurationProperties(prefix = "axinger.person")
+public class Person {
+    private String name;
+    private Integer age;
 }

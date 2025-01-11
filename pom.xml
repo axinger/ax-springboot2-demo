@@ -6,13 +6,13 @@
     <!--再进入里面的    <artifactId>spring-boot-dependencies</artifactId>
     比如:查看mysql版本号, 重写版本号就可以了-->
 
-    <!--    <parent>-->
-    <!--        <groupId>org.springframework.boot</groupId>-->
-    <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--        <version>2.7.18</version>-->
-    <!--        &lt;!&ndash;        <version>3.3.3</version>&ndash;&gt;-->
-    <!--        &lt;!&ndash;        <version>3.2.4</version>&ndash;&gt;-->
-    <!--    </parent>-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+        <!--        <version>3.3.3</version>-->
+        <!--        <version>3.2.4</version>-->
+    </parent>
 
     <groupId>com.github.axinger</groupId>
     <artifactId>ax-springboot2-demo</artifactId>
@@ -271,13 +271,14 @@
             </dependency>
 
             <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+<!--            不要这样引用,打包会no main manifest attribute-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-dependencies</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

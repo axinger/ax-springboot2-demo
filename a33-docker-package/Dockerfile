@@ -5,9 +5,9 @@
 #通常而言，如果您需要最新的 Java 技术和性能优化，请选择 eclipse-temurin:17-jre-jammy 这样的 JDK 镜像。但在某些情况下，如需求有限、资源受限或考虑 Docker 映像的大小等因素，则可以选择 eclipse-temurin:17-jre-alpine。
 
 
-FROM eclipse-temurin:17-jdk
+#FROM eclipse-temurin:17-jdk
 #FROM eclipse-temurin:17-jdk-jammy
-#FROM eclipse-temurin:17-jdk-centos7
+FROM eclipse-temurin:17-jdk-centos7
 #FROM eclipse-temurin:17-jdk-focal
 #FROM eclipse-temurin:17-jdk-alpine
 
@@ -24,8 +24,8 @@ FROM eclipse-temurin:17-jdk
 MAINTAINER 阿星
 
 # volume 指定临时文件目录为/tmp, 在主机/var/lib/docker 目录下创建一个临时文件夹并链接到容器的/tmp
-VOLUME /logs
-VOLUME /data
+#VOLUME /logs
+#VOLUME /data
 #ENV APP_NAME=server.jar
 
 #设置工作目录，设置了工作目录，它将会作用于该指令后面的 RUN, CMD, ENTRYPOINT, COPY , ADD 指令
@@ -35,11 +35,14 @@ VOLUME /data
 #RUN apt-get update && apt-get install -y lsof
 
 
-RUN bash -c 'mkdir -p {config,target}'
+RUN #bash -c 'mkdir -p {config,target}'
+RUN bash -c 'mkdir -p target'
 #RUN sh -c 'mkdir config target'
 
 #将配置文件添加到容器中
-COPY /docker/application.yml /config/application.yml
+#COPY /docker/application.yml /config/application.yml
+#COPY /docker/application.yml /target/application.yml
+COPY /docker/application.yml /target/config/application.yml
 
 #将本地文件添加到容器中
 COPY /target/*.jar /target/server.jar
@@ -60,6 +63,7 @@ ENTRYPOINT java -jar  /target/server.jar
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
 # 暴露端口,需要和服务的端口一致
+#EXPOSE 45032
 EXPOSE 45033
 
 # 命令运行

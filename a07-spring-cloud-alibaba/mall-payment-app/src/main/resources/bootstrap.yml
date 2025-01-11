@@ -15,4 +15,3 @@ spring:
         password: nacos
         refresh-enabled: true
         file-extension: yaml
-

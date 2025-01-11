@@ -21,3 +21,28 @@ Spring Boot Starter的工作原理如下：
 a.b.c 和 a.b.d 包格式,相同类名会冲突
 a.b.c 和 a.d.c 包格式,相同类名不会冲突
 ```
+
+
+```text
+/project-root/
+├── config/                         # 外部 config 目录（优先级最高）
+│   ├── application.yml             # 高优先级配置文件
+│   ├── application-prod.yml        # 针对 prod 环境的配置文件
+│   └── custom.properties           # 自定义扩展配置文件
+├── application.properties          # 外部根目录配置文件（优先级次高）
+├── target/                         # 编译与打包输出目录
+│   ├── server.jar                  # 打包的 Spring Boot 可执行文件
+│   └── classes/                    # 编译的 class 文件目录
+│       ├── application.yml         # JAR 内部 config/application.yml
+│       ├── application-prod.yml    # JAR 内部生产环境配置
+│       └── logback-spring.xml      # 日志配置文件
+├── logs/                           # 可选，日志文件存放目录
+│   ├── app.log
+├── README.md                       # 可选，项目说明文档
+└── start.sh                        # 可选，启动脚本
+```
+
+```text
+bootstrap.yml 的配置会被 application.yml 中的相同配置项覆盖。
+但是，如果某些配置被绑定到 bootstrap 配置上下文（如 Spring Cloud Config 中的远程配置），则 application.yml 无法覆盖。
+```
