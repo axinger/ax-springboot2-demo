@@ -6,7 +6,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /*
 
-axing:
+axinger:
   doc:
     title: nacos案例
     description: 123
@@ -16,8 +16,8 @@ axing:
  */
 @Data
 //@Component
-@ConfigurationProperties(value = "axing.doc")
-//@NacosConfigurationProperties(prefix = "axing.doc", dataId = "docInfo.yaml")
+@ConfigurationProperties(prefix = "axinger.doc")
+//@NacosConfigurationProperties(prefix = "axinger.doc", dataId = "docInfo.yaml")
 @RefreshScope // 支持nacos的动态刷新功能
 public class DocInfoProperties {
 

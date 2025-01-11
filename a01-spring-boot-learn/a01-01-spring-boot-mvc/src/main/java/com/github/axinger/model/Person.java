@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@ConfigurationProperties(prefix = "axing.person")
+@ConfigurationProperties(prefix = "axinger.person")
 @Configuration
 //@Component // 也可以使用 @EnableConfigurationProperties
 public class Person {

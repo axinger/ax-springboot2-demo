@@ -7,5 +7,5 @@ spring:
 
 
 
-axing:
+axinger:
   delayExpression: 2000L

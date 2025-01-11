@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param username
  * @param password
  */
-@ConfigurationProperties(prefix = "axing.config")
+@ConfigurationProperties(prefix = "axinger.config")
 /// @EnableConfigurationProperties(UserDTO.class) 配合使用
 public record UserVO(String username, String password) {
 

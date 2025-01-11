@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 @Data
-@ConfigurationProperties(prefix = "axing.person")
+@ConfigurationProperties(prefix = "axinger.person")
 @RefreshScope
 public class PersonProperties {
     private String name;

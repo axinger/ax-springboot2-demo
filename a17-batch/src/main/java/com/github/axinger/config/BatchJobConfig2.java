@@ -120,13 +120,13 @@
 //    @Autowired
 //    SqlSessionFactory sqlSessionFactory;
 //
-////    @Bean
-////    public MyBatisBatchItemWriter<User> itemWriter() {
-////        MyBatisBatchItemWriter<User> itemWriter = new MyBatisBatchItemWriter<>();
-////        itemWriter.setSqlSessionFactory(sqlSessionFactory);
-////        itemWriter.setStatementId("com.github.axinger.mapper.UserMapper.saveOne");
-////        return itemWriter;
-////    }
+/// /    @Bean
+/// /    public MyBatisBatchItemWriter<User> itemWriter() {
+/// /        MyBatisBatchItemWriter<User> itemWriter = new MyBatisBatchItemWriter<>();
+/// /        itemWriter.setSqlSessionFactory(sqlSessionFactory);
+/// /        itemWriter.setStatementId("com.github.axinger.mapper.UserMapper.saveOne");
+/// /        return itemWriter;
+/// /    }
 //
 //
 //    @Bean

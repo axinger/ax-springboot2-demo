@@ -27,7 +27,7 @@ springdoc:
 #    - group: user
 #      #按包路径匹配
 #      packages-to-scan: com.axing.controller.user
-axing:
+axinger:
   advice:
     filter-package:
       - com.github.axinger.controller

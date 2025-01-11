@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-@ConfigurationProperties(prefix = "axing.advice")
+@ConfigurationProperties(prefix = "axinger.advice")
 public class AdviceProperties {
     /**
      * 错误是否,打印

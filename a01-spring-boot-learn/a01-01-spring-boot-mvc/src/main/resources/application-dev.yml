@@ -6,7 +6,7 @@ spring:
   application:
     version: 1.0.1
     description: @my-env@
-axing:
+axinger:
   config:
     username: jim
     password: 1234

@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.axing.common.minio.service.MinioService;
+import com.axing.common.minio.service.MinioTemplate;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.result.Result;
 import io.minio.MinioClient;
@@ -30,7 +30,7 @@ public class MinioController {
     private MinioClient minioClient;
 
     @Autowired
-    private MinioService minioService;
+    private MinioTemplate minioTemplate;
 
     /**
      * 上传文件,minio用 InputStream 方式
@@ -46,7 +46,7 @@ public class MinioController {
         InputStream inputStream = file.getInputStream();
         String contentType = file.getContentType();
         String patchName = FilePathUtil.getFileName(fileName);
-        Object upload = minioService.uploadStream(inputStream, bucketName, patchName, contentType);
+        Object upload = minioTemplate.uploadStream(inputStream, bucketName, patchName, contentType);
         return Result.ok(upload);
 
     }
@@ -57,7 +57,7 @@ public class MinioController {
     @PostMapping(value = "/minio/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Result<?> uploadFile(@RequestParam(value = "file") MultipartFile file,
                                 @RequestParam("bucketName") String bucketName) {
-        Object upload = minioService.uploadFile(file, bucketName);
+        Object upload = minioTemplate.uploadFile(file, bucketName);
         return Result.ok(upload);
     }
 
@@ -67,13 +67,13 @@ public class MinioController {
     @GetMapping("/download/{bucket}/{fileName}")
     public void downloadByMinio(HttpServletResponse response, @PathVariable String bucket,
                                 @PathVariable String fileName) {
-        minioService.download(response, bucket, fileName);
+        minioTemplate.download(response, bucket, fileName);
     }
 
     @GetMapping("/bigDownload/{bucket}/{fileName}")
     public ResponseEntity<StreamingResponseBody> downloadFile(@PathVariable String bucket,
                                                               @PathVariable String fileName) {
-        return minioService.downloadStreaming(bucket, fileName);
+        return minioTemplate.downloadStreaming(bucket, fileName);
     }
 
     /**
@@ -83,7 +83,7 @@ public class MinioController {
      */
     @PostMapping("/minio/fileUrl")
     public Result downloadByMinio(String bucketName, String fileName) {
-        String url = minioService.fileUrl(bucketName, fileName);
+        String url = minioTemplate.fileUrl(bucketName, fileName);
         return Result.ok(url);
     }
 
@@ -96,7 +96,7 @@ public class MinioController {
      */
     @PostMapping("/minio/writeToPath/path")
     public Result downloadByMinio(String bucketName, String fileName, String path) {
-        return Result.ok(minioService.writeToPath(bucketName, fileName, path));
+        return Result.ok(minioTemplate.writeToPath(bucketName, fileName, path));
     }
 
 }

@@ -4,12 +4,13 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.axing.common.minio.error.MinioException;
 import com.axing.common.minio.model.UploadFileBO;
-import com.axing.common.minio.service.MinioService;
+import com.axing.common.minio.service.MinioTemplate;
 import com.axing.common.minio.util.FilePathUtil;
 import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -36,13 +37,11 @@ import java.util.stream.Collectors;
 
 
 @Slf4j
-public class MinioServiceImpl implements MinioService {
+@RequiredArgsConstructor
+public class MinioTemplateImpl implements MinioTemplate {
 
     private final MinioClient minioClient;
 
-    public MinioServiceImpl(MinioClient minioClient) {
-        this.minioClient = minioClient;
-    }
 
     /**
      * 检查存储桶是否存在

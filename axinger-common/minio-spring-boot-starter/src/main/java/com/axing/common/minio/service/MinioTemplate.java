@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-public interface MinioService {
+public interface MinioTemplate {
     /**
      * 检查存储桶是否存在
      *

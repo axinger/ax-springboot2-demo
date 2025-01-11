@@ -5,7 +5,7 @@
 server:
   port: 11027
 
-axing:
+axinger:
   doc:
     title: 测试项目A
 

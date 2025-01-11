@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
-@ConfigurationProperties(prefix = "axing.doc")
+@ConfigurationProperties(prefix = "axinger.doc")
 public class DocInfoProperties {
 
     /**

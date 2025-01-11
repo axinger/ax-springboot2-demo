@@ -9,7 +9,7 @@ spring:
   application:
     name: minio-demo
 
-axing:
+axinger:
   response:
     base-packages: com.github.axinger
   minio:

@@ -1,11 +1,10 @@
 package com.axing.common.minio.config;
 
 import com.axing.common.minio.bean.MinioProperties;
-import com.axing.common.minio.service.MinioService;
-import com.axing.common.minio.service.impl.MinioServiceImpl;
+import com.axing.common.minio.service.MinioTemplate;
+import com.axing.common.minio.service.impl.MinioTemplateImpl;
 import io.minio.MinioClient;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -19,16 +18,13 @@ import javax.annotation.PostConstruct;
  *
  * @author luoyu
  */
-@Slf4j
 @Configuration
-@EnableConfigurationProperties({
-        MinioProperties.class
-})
+@RequiredArgsConstructor
+@EnableConfigurationProperties({MinioProperties.class})
 public class MinioAutoConfig {
 
     public static String MINIO_HOST;
-    @Autowired
-    private MinioProperties minioProperties;
+    private final MinioProperties minioProperties;
 
     @Bean
     public MinioClient minioClient() {
@@ -39,9 +35,9 @@ public class MinioAutoConfig {
     }
 
     @Bean
-    @ConditionalOnMissingBean(MinioService.class)
-    public MinioService minioService() {
-        return new MinioServiceImpl(minioClient());
+    @ConditionalOnMissingBean(MinioTemplate.class)
+    public MinioTemplate minioTemplate() {
+        return new MinioTemplateImpl(minioClient());
     }
 
 

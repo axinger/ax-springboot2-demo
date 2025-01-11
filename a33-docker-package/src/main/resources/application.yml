@@ -8,12 +8,11 @@ spring:
     resources:
       #      static-locations: "classpath:/dist"
       add-mappings: false
-axing:
-  axing:
-    doc:
-      title: docker打包项目
-      description: docker打包项目
-      version: @version@
+axinger:
+  doc:
+    title: docker打包项目
+    description: docker打包项目
+    version: @version@
 
 
 

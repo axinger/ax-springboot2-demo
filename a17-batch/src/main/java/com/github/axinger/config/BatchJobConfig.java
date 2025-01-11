@@ -77,7 +77,7 @@
 //        itemReader.setSqlSessionFactory(sqlSessionFactory);
 /// /        itemReader.setPageSize(pageSize); //不要，会循环
 //        Map<String, Object> map = new HashMap<>();
-////        map.put("pageNumber", pageNumber);
+/// /        map.put("pageNumber", pageNumber);
 //        map.put("pageSize", pageSize);
 //        map.put("offset", pageSize*pageNumber);
 //        itemReader.setParameterValues(map);

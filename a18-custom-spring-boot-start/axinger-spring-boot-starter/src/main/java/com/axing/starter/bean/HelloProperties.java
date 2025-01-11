@@ -2,7 +2,7 @@ package com.axing.starter.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "axing.hello")
+@ConfigurationProperties(prefix = "axinger.hello")
 public class HelloProperties {
 
     /**

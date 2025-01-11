@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author luoyu
  */
 @Data
-@ConfigurationProperties(prefix = "axing.minio")
+@ConfigurationProperties(prefix = "axinger.minio")
 public class MinioProperties {
 
     /**

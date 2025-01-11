@@ -38,7 +38,7 @@ spring:
 #    # JsonGenerator在jackson中负责编写json内容,具体特性请看JsonGenerator.Feature
 #
 #
-axing:
+axinger:
   #  advice:
   #    print-stack-trace: true
   #    filter-package:

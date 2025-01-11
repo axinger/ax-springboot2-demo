@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
-@ConfigurationProperties(prefix = "com.github.axinger.thread-pool")
+@ConfigurationProperties(prefix = "axinger.thread-pool")
 public class ExecutorProperties {
 
     /**
