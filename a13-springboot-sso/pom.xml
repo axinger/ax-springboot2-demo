@@ -24,20 +24,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>oos-spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-jose</artifactId>
-        </dependency>
-        <!-- Spring Authorization Server认证服务器 -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.security</groupId>-->
-        <!--            <artifactId>spring-security-oauth2-authorization-server</artifactId>-->
-        <!--&lt;!&ndash;            <version>${spring.authorization.server.version}</version>&ndash;&gt;-->
-        <!--        </dependency>-->
     </dependencies>
 
 </project>

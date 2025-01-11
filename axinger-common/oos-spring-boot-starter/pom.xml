@@ -20,14 +20,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.amazonaws</groupId>-->
-        <!--            <artifactId>aws-java-sdk-s3</artifactId>-->
-        <!--            <version>${aws.version}</version>-->
-        <!--        </dependency>-->
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk</artifactId>
@@ -36,24 +35,61 @@
 
 
         <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
-        <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>s3</artifactId>
-            <version>2.29.49</version>
-            <scope>test</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>software.amazon.awssdk</groupId>-->
+        <!--            <artifactId>s3</artifactId>-->
+        <!--            <version>2.29.49</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
 
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
     </dependencies>
+
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--            &lt;!&ndash; 在打好的jar包中保留javadoc注释,实际会另外生成一个xxxxx-sources.jar &ndash;&gt;-->
+    <!--            <plugin>-->
+    <!--                <groupId>org.apache.maven.plugins</groupId>-->
+    <!--                <artifactId>maven-source-plugin</artifactId>-->
+    <!--                <version>3.3.1</version>-->
+    <!--                <executions>-->
+    <!--                    <execution>-->
+    <!--                        <id>attach-sources</id>-->
+    <!--                        <goals>-->
+    <!--                            <goal>jar</goal>-->
+    <!--                        </goals>-->
+    <!--                    </execution>-->
+    <!--                </executions>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <!--源码包随着项目打成的jar包安装到本地仓库或者私服、公服-->
+                            <attach>true</attach>
+                        </configuration>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
