@@ -8,7 +8,7 @@ import java.util.List;
  * @author xing
  * @date 2022/3/18 11:25
  */
-public interface JobService {
+public interface QuartzTemplate {
 //
 //    /**
 //     * 开始执行所有任务

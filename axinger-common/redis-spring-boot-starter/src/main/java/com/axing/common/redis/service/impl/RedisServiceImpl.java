@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisServiceImpl implements RedisService {
 
-
     private final RedisTemplate redisTemplate;
 
     public RedisServiceImpl(RedisTemplate redisTemplate) {

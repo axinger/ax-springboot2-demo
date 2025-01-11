@@ -26,8 +26,6 @@ import java.io.InputStream;
 @Slf4j
 @RestController
 public class MinioController {
-    @Autowired
-    private MinioClient minioClient;
 
     @Autowired
     private MinioTemplate minioTemplate;

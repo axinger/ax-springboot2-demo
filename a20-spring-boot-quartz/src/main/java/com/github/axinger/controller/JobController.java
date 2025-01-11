@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
 import com.axing.common.quartz.model.CronTaskPOJO;
-import com.axing.common.quartz.service.JobService;
+import com.axing.common.quartz.service.QuartzTemplate;
 import com.axing.common.response.result.Result;
 import com.github.axinger.job.MyJob;
 import com.github.axinger.service.StudentService;
@@ -26,7 +26,7 @@ public class JobController {
 
     private final CompletableFuture<Boolean> future = new CompletableFuture<>();
     @Autowired
-    private JobService jobService;
+    private QuartzTemplate quartzTemplate;
     @Autowired
     private StudentService studentService;
 
@@ -44,7 +44,7 @@ public class JobController {
         map.put("age", 18);
         cronTaskPOJO.setParameterMap(map);
 
-        jobService.addJob(cronTaskPOJO);
+        quartzTemplate.addJob(cronTaskPOJO);
 
 //        final Boolean join = future.join();
 //        System.out.println("join = " + join);
@@ -58,7 +58,7 @@ public class JobController {
     @GetMapping("/notExists/{id}")
     public Object notExists(@PathVariable String id) {
 
-        Boolean b = jobService.isExists(id, null);
+        Boolean b = quartzTemplate.isExists(id, null);
 
 //        final Boolean join = future.join();
 //        System.out.println("join = " + join);
@@ -115,7 +115,7 @@ public class JobController {
         log.info("id = {}", id);
         final CronTaskPOJO cronTaskPOJO = new CronTaskPOJO();
         cronTaskPOJO.setJobName(id);
-        jobService.deleteJob(cronTaskPOJO);
+        quartzTemplate.deleteJob(cronTaskPOJO);
         return Result.ok();
     }
 
@@ -130,7 +130,7 @@ public class JobController {
         log.info("id = {}", id);
         final CronTaskPOJO cronTaskPOJO = new CronTaskPOJO();
         cronTaskPOJO.setJobName(id);
-        jobService.resumeJob(cronTaskPOJO);
+        quartzTemplate.resumeJob(cronTaskPOJO);
         return Result.ok();
     }
 
@@ -145,7 +145,7 @@ public class JobController {
         log.info("id = {}", id);
         final CronTaskPOJO cronTaskPOJO = new CronTaskPOJO();
         cronTaskPOJO.setJobName(id);
-        jobService.resumeJob(cronTaskPOJO);
+        quartzTemplate.resumeJob(cronTaskPOJO);
         return Result.ok();
     }
 
@@ -153,7 +153,7 @@ public class JobController {
     @GetMapping("/list")
     public Result<?> all() {
         List<Object> list = new ArrayList<>();
-        list.add(jobService.getAllJob());
+        list.add(quartzTemplate.getAllJob());
         list.add(studentService.list());
         return Result.ok(list);
     }
