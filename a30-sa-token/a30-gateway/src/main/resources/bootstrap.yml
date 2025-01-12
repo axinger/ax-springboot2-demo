@@ -9,4 +9,4 @@ spring:
       discovery:
         username: nacos
         password: nacos
-        server-addr: http://hadoop102:8848
+        server-addr: http://hadoop202:8848

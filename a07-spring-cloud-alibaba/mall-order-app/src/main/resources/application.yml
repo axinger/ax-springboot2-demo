@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 10707
   servlet:
     context-path: /order
 
@@ -14,15 +14,16 @@ spring:
     sampler:
       #抽样百分比，默认10%的数据发到zipkin，1为100%
       probability: 1
-
-
-
 server-url:
   nacos-payment-service: http://mall-payment-app
   gateway-service: http://mall-gateway-app
-
 server-name:
   payment-service: mall-payment-app
-axing:
-  cloud:
-    must-fetch-gateway: true
+
+
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

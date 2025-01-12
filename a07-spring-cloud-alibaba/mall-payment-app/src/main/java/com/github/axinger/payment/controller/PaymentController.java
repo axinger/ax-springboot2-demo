@@ -3,6 +3,7 @@ package com.github.axinger.payment.controller;
 
 import brave.Tracer;
 import brave.propagation.TraceContext;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class PaymentController {
     private Tracer tracer;
 
 
+    @Operation(summary = "支付系统,订单")
     @GetMapping(value = "/count/{id}")
     public Map<String, Object> payment(@PathVariable("id") String id) {
         System.out.println("payment_id = " + id);

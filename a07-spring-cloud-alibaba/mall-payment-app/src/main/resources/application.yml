@@ -1,5 +1,5 @@
 server:
-  port: 9003
+  port: 10708
   servlet:
     context-path: /payment
 
@@ -14,3 +14,9 @@ spring:
     sampler:
       #抽样百分比，默认10%的数据发到zipkin，1为100%
       probability: 1
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
