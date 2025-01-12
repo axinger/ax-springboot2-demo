@@ -1,4 +1,4 @@
-package com.github.axinger.order.config;
+package com.github.axinger.payment.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -27,4 +27,5 @@ public class ContextConfig {
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
+
 }

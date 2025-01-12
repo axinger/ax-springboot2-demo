@@ -10,12 +10,7 @@ spring:
         corsConfigurations:
           '[/**]':
             allowedOriginPatterns: "*" # 替代 allowedOrigins
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
+            allowedMethods: "*"
             allowedHeaders: "*"
             allowCredentials: true
             maxAge: 360000

@@ -45,6 +45,12 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>cors-config-spring-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
 

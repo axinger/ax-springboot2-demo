@@ -1,19 +1,14 @@
 package com.github.axinger.gateway.config;
 
 
+import com.alibaba.fastjson2.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.Info;
 import lombok.extern.slf4j.Slf4j;
-import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
-import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -25,17 +20,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.StopWatch;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.util.pattern.PathPatternParser;
 import reactor.core.publisher.Mono;
 
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @Slf4j
@@ -44,16 +35,16 @@ public class GatewayConfig {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Bean
-    public CorsWebFilter corsFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedMethod("*");//支持所有方法
-        config.addAllowedOrigin("*");//跨域处理 允许所有的域
-        config.addAllowedHeader("*");//支持所有请求头
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
-        source.registerCorsConfiguration("/**", config);//匹配所有请求
-        return new CorsWebFilter(source);
-    }
+//    @Bean
+//    public CorsWebFilter corsFilter() {
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.addAllowedMethod("*");//支持所有方法
+//        config.addAllowedOrigin("*");//跨域处理 允许所有的域
+//        config.addAllowedHeader("*");//支持所有请求头
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+//        source.registerCorsConfiguration("/**", config);//匹配所有请求
+//        return new CorsWebFilter(source);
+//    }
 
 
     @Bean
@@ -62,14 +53,10 @@ public class GatewayConfig {
     public GlobalFilter globalFilter() {
         return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
             // 提取request请求内容
-            ServerHttpRequest request = exchange.getRequest();
-            String path = request.getPath().pathWithinApplication().value();
-            String scheme = request.getURI().getScheme();
-            HttpMethod method = request.getMethod();
-            HttpHeaders httpHeaders = request.getHeaders();
-            InetSocketAddress remoteAddress = request.getRemoteAddress();
-            // 不建议提取body数据，因为请求体数据只能被消费一次。
-            log.info("\npath:{}\nscheme:{}\nmethod:{}\nheaders:{}\nremoteAddress:{}", path, scheme, method, httpHeaders, remoteAddress);
+
+            Map<String, Object> attributes = getStringObjectMap(exchange);
+            log.info("请求数据,attributes:{}", JSONObject.toJSONString(attributes));
+
             // header增加token
             ServerHttpRequest newRequest = exchange.getRequest().mutate().headers(headers -> {
                 headers.add("x-fetch-gateway-token", "ABC123");
@@ -84,6 +71,24 @@ public class GatewayConfig {
             }));
         };
 
+    }
+
+    private static Map<String, Object> getStringObjectMap(ServerWebExchange exchange) {
+        ServerHttpRequest request = exchange.getRequest();
+        String path = request.getPath().pathWithinApplication().value();
+        String scheme = request.getURI().getScheme();
+        HttpMethod method = request.getMethod();
+        HttpHeaders httpHeaders = request.getHeaders();
+        InetSocketAddress remoteAddress = request.getRemoteAddress();
+
+        // 不建议提取body数据，因为请求体数据只能被消费一次。
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("scheme", scheme);
+        attributes.put("method", method);
+        attributes.put("remoteAddress", remoteAddress);
+        attributes.put("path", path);
+        attributes.put("headers", httpHeaders);
+        return attributes;
     }
 
     @Bean

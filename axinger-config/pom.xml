@@ -24,6 +24,7 @@
         <module>http-config-spring-boot-starter</module>
         <module>logback-config-spring-boot-starter</module>
         <module>executor-config-spring-boot-starter</module>
+        <module>cors-config-spring-boot-starter</module>
     </modules>
 
     <dependencies>
