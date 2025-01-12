@@ -2,25 +2,16 @@ package com.github.axinger.gateway.config;
 
 
 import com.alibaba.fastjson2.JSONObject;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.io.buffer.DataBufferFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.StopWatch;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -32,8 +23,8 @@ import java.util.Map;
 @Slf4j
 public class GatewayConfig {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+//    @Autowired
+//    private ObjectMapper objectMapper;
 
 //    @Bean
 //    public CorsWebFilter corsFilter() {
@@ -46,7 +37,7 @@ public class GatewayConfig {
 //        return new CorsWebFilter(source);
 //    }
 
-    private static Map<String, Object> getStringObjectMap(ServerWebExchange exchange) {
+    private static Map<String, Object> getRequesttMap(ServerWebExchange exchange) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().pathWithinApplication().value();
         String scheme = request.getURI().getScheme();
@@ -71,7 +62,7 @@ public class GatewayConfig {
         return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
             // 提取request请求内容
 
-            Map<String, Object> attributes = getStringObjectMap(exchange);
+            Map<String, Object> attributes = getRequesttMap(exchange);
             log.info("请求数据,attributes:{}", JSONObject.toJSONString(attributes));
 
             // header增加token
@@ -90,34 +81,34 @@ public class GatewayConfig {
 
     }
 
-    @Bean
-    public ErrorWebExceptionHandler errorWebExceptionHandler() {
-
-        return (ServerWebExchange exchange, Throwable ex) -> {
-            ServerHttpResponse response = exchange.getResponse();
-            if (response.isCommitted()) {
-                return Mono.error(ex);
-            }
-            // header set
-            response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-            if (ex instanceof ResponseStatusException exception) {
-//            response.setStatusCode(exception.getStatus());
-//            response.setStatusCode(HttpStatusCode.valueOf(201));
-                log.error("错误======================");
-                response.setStatusCode(HttpStatus.CREATED);
-            }
-            return response
-                    .writeWith(Mono.fromSupplier(() -> {
-                        DataBufferFactory bufferFactory = response.bufferFactory();
-                        try {
-                            return bufferFactory.wrap(objectMapper.writeValueAsBytes(ex.getMessage()));
-                        } catch (JsonProcessingException e) {
-                            log.warn("Error writing response", ex);
-                            return bufferFactory.wrap(new byte[0]);
-                        }
-                    }));
-        };
-    }
+//    @Bean
+//    public ErrorWebExceptionHandler errorWebExceptionHandler() {
+//
+//        return (ServerWebExchange exchange, Throwable ex) -> {
+//            ServerHttpResponse response = exchange.getResponse();
+//            if (response.isCommitted()) {
+//                return Mono.error(ex);
+//            }
+//            // header set
+//            response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+//            if (ex instanceof ResponseStatusException exception) {
+////            response.setStatusCode(exception.getStatus());
+////            response.setStatusCode(HttpStatusCode.valueOf(201));
+//                log.error("错误======================");
+//                response.setStatusCode(HttpStatus.CREATED);
+//            }
+//            return response
+//                    .writeWith(Mono.fromSupplier(() -> {
+//                        DataBufferFactory bufferFactory = response.bufferFactory();
+//                        try {
+//                            return bufferFactory.wrap(objectMapper.writeValueAsBytes(ex.getMessage()));
+//                        } catch (JsonProcessingException e) {
+//                            log.warn("Error writing response", ex);
+//                            return bufferFactory.wrap(new byte[0]);
+//                        }
+//                    }));
+//        };
+//    }
 
 
 //    @Bean
