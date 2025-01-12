@@ -39,7 +39,7 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     urls:
-      - name: mall-order-app
+      - name: 订单系统
         url: /order/v3/api-docs
-      - name: mall-payment-app
+      - name: 支付系统
         url: /payment/v3/api-docs

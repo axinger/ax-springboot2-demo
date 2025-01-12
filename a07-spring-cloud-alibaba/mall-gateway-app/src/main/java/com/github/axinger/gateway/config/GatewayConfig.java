@@ -25,8 +25,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.util.StopWatch;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.util.pattern.PathPatternParser;
 import reactor.core.publisher.Mono;
 
 import java.net.InetSocketAddress;
@@ -40,16 +44,16 @@ public class GatewayConfig {
     @Autowired
     private ObjectMapper objectMapper;
 
-//    @Bean
-//    public CorsWebFilter corsFilter() {
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.addAllowedMethod("*");//支持所有方法
-//        config.addAllowedOrigin("*");//跨域处理 允许所有的域
-//        config.addAllowedHeader("*");//支持所有请求头
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
-//        source.registerCorsConfiguration("/**", config);//匹配所有请求
-//        return new CorsWebFilter(source);
-//    }
+    @Bean
+    public CorsWebFilter corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedMethod("*");//支持所有方法
+        config.addAllowedOrigin("*");//跨域处理 允许所有的域
+        config.addAllowedHeader("*");//支持所有请求头
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        source.registerCorsConfiguration("/**", config);//匹配所有请求
+        return new CorsWebFilter(source);
+    }
 
 
     @Bean
