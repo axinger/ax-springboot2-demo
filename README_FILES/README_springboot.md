@@ -22,7 +22,6 @@ a.b.c 和 a.b.d 包格式,相同类名会冲突
 a.b.c 和 a.d.c 包格式,相同类名不会冲突
 ```
 
-
 ```text
 /project-root/
 ├── config/                         # 外部 config 目录（优先级最高）

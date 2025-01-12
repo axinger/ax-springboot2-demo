@@ -65,17 +65,16 @@
             <artifactId>cors-config-spring-boot-starter</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.github.axinger</groupId>-->
-<!--            <artifactId>cloud-fetch-gateway-starter</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.axinger</groupId>-->
+        <!--            <artifactId>cloud-fetch-gateway-starter</artifactId>-->
+        <!--        </dependency>-->
 
-<!--        这个目前只能用1.7.0-->
+        <!--        这个目前只能用1.7.0-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
-
 
 
     </dependencies>

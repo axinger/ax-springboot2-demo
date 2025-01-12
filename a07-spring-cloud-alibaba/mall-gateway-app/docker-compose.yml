@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       tags: # 可以指定多个标签
-#        - axinger/mall-gateway-app:latest
+        #        - axinger/mall-gateway-app:latest
         - axinger/mall-gateway-app:1.0
     container_name: mall-gateway-app
     ports:

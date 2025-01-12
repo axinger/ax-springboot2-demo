@@ -2,9 +2,9 @@ spring:
   application:
     name: mall-payment-app
   cloud:
-#    inetutils:
-#      preferred-networks:
-#        - 192.168
+    #    inetutils:
+    #      preferred-networks:
+    #        - 192.168
     nacos:
       discovery: #服务中心
         ip: 192.168.10.203 # 指定注册到nacos的ip,为宿主机ip,不是docker容器内部ip,而无法调用bug

@@ -46,6 +46,23 @@ public class GatewayConfig {
 //        return new CorsWebFilter(source);
 //    }
 
+    private static Map<String, Object> getStringObjectMap(ServerWebExchange exchange) {
+        ServerHttpRequest request = exchange.getRequest();
+        String path = request.getPath().pathWithinApplication().value();
+        String scheme = request.getURI().getScheme();
+        HttpMethod method = request.getMethod();
+        HttpHeaders httpHeaders = request.getHeaders();
+        InetSocketAddress remoteAddress = request.getRemoteAddress();
+
+        // 不建议提取body数据，因为请求体数据只能被消费一次。
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("scheme", scheme);
+        attributes.put("method", method);
+        attributes.put("remoteAddress", remoteAddress);
+        attributes.put("path", path);
+        attributes.put("headers", httpHeaders);
+        return attributes;
+    }
 
     @Bean
     @Order()
@@ -71,24 +88,6 @@ public class GatewayConfig {
             }));
         };
 
-    }
-
-    private static Map<String, Object> getStringObjectMap(ServerWebExchange exchange) {
-        ServerHttpRequest request = exchange.getRequest();
-        String path = request.getPath().pathWithinApplication().value();
-        String scheme = request.getURI().getScheme();
-        HttpMethod method = request.getMethod();
-        HttpHeaders httpHeaders = request.getHeaders();
-        InetSocketAddress remoteAddress = request.getRemoteAddress();
-
-        // 不建议提取body数据，因为请求体数据只能被消费一次。
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put("scheme", scheme);
-        attributes.put("method", method);
-        attributes.put("remoteAddress", remoteAddress);
-        attributes.put("path", path);
-        attributes.put("headers", httpHeaders);
-        return attributes;
     }
 
     @Bean
