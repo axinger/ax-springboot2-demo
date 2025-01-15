@@ -3,6 +3,7 @@ package com.github.axinger;
 import cn.hutool.core.collection.ListUtil;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 
 import java.util.ArrayList;
 import java.util.List;
