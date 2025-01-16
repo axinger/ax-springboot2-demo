@@ -1,52 +1,66 @@
 package com.axing.common.util.jwt;
 
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
+import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author xing
  */
+@Slf4j
 public class JwtHelper {
 
 
-    public static String tokenSignKey = "user";
-    public static long tokenExpires = 24 * 60 * 60;//一天
-
-    static String prefix = "Bearer ";
+    private static final String tokenSignKey = "abc123";
+    private static final long tokenExpires = 24 * 60 * 60;//一天
+    private static final String AuthorizationPrefix = "Bearer ";
+    private static final String userId = "userId";
+    private static final String username = "userName ";
+    private static final String expireTime = "expireTime ";
 
     /**
      * 签发JWT
      */
     public static String createToken(String id, String userName) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("userId", id);
-        map.put("userName", userName);
+
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + tokenExpires); // 1 天有效期
 
-        map.put("expire_time", expiryDate);
+        Map<String, Object> map = new HashMap<>();
+        map.put(userId, id);
+        map.put(username, userName);
+//        map.put(expireTime, expiryDate);
 
-        final String token = cn.hutool.jwt.JWTUtil.createToken(map, tokenSignKey.getBytes());
+        map.put(JWTPayload.ISSUER, "axing");
+        map.put(JWTPayload.SUBJECT, "all");
+        map.put(JWTPayload.AUDIENCE, "to");
+//        payload.put(JWTPayload.JWT_ID, "to");
+        // jwt的签发时间
+        map.put(JWTPayload.ISSUED_AT, now);
+        // jwt的过期时间，这个过期时间必须要大于签发时间
+        map.put(JWTPayload.EXPIRES_AT, expiryDate);
+        // 生效时间
+        map.put(JWTPayload.NOT_BEFORE, now);
 
-        return prefix + token;
+        final String token = JWTUtil.createToken(map, tokenSignKey.getBytes());
+        String authorization = AuthorizationPrefix + token;
+        log.info("生成 Authorization: {}", authorization);
+        return authorization;
     }
 
-    /**
-     * 验证JWT
-     *
-     * @param token
-     * @return
-     */
+    ///  验证是否过期
     public static boolean validateToken(String bearer) {
-        String token = StrUtil.removePrefix(bearer, prefix);
+        String token = StrUtil.removePrefix(bearer, AuthorizationPrefix);
         try {
-            return JWTUtil.verify(token, tokenSignKey.getBytes());
+            ///  验证是否过期
+            boolean validate = JWT.of(token).setKey(tokenSignKey.getBytes()).validate(0);
+            log.info("token 验证失效: {}", validate);
+            return validate;
+//            return JWTUtil.verify(token, tokenSignKey.getBytes());
         } catch (Exception e) {
             return false;
         }
@@ -54,22 +68,20 @@ public class JwtHelper {
 
     // 根据token字符串得到用户id
     public static String getUserId(String token) {
-        if (ObjectUtil.isEmpty(token)) {
+        if (Objects.isNull(token)) {
             return null;
         }
-        final JWT jwt = cn.hutool.jwt.JWTUtil.parseToken(token);
-        String userId = (String) jwt.getPayload("userId");
-        return userId;
+        final JWT jwt = JWTUtil.parseToken(token);
+        return Optional.ofNullable(jwt.getPayload(userId)).map(String::valueOf).orElse(null);
     }
 
     public static String getUserName(String bearer) {
-        String token = StrUtil.removePrefix(bearer, prefix);
-        if (ObjectUtil.isEmpty(token)) {
+        String token = StrUtil.removePrefix(bearer, AuthorizationPrefix);
+        if (Objects.isNull(token)) {
             return null;
         }
-        final JWT jwt = cn.hutool.jwt.JWTUtil.parseToken(token);
-        String userName = (String) jwt.getPayload("userName");
-        return userName;
+        final JWT jwt = JWTUtil.parseToken(token);
+        return Optional.ofNullable(jwt.getPayload(username)).map(String::valueOf).orElse(null);
     }
 
 }
