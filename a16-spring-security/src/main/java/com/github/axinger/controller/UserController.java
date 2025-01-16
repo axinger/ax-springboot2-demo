@@ -17,24 +17,30 @@ public class UserController {
 //    hasAuthority('ROLE_user')	检查用户是否有指定的权限字符串（这里是 ROLE_user）	不会自动添加任何前缀	灵活支持角色和细粒度权限校验
 
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/1")
     public Object adminOnly() {
         Map<String, Object> result = new HashMap<>();
-        result.put("1","2");
+        result.put("1", "2");
         return result;
     }
 
 
-    @PreAuthorize("hasAuthority('add')")
+    //    @PreAuthorize("hasAuthority('add')")
     @GetMapping("/2")
     public String readPermission() {
         return "This is for users with read permission";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasAuthority('select')")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN') or hasAuthority('select')")
     @GetMapping("/3")
     public String userOrReadPermission() {
+        return "Accessible by user role or read permission";
+    }
+
+    //    @PreAuthorize("hasAuthority('select')")
+    @GetMapping("/4")
+    public String userOrReadPermission4() {
         return "Accessible by user role or read permission";
     }
 

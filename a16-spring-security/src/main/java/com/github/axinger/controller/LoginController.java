@@ -1,8 +1,8 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.dto.LoginRequest;
 import com.github.axinger.dto.LoginResponse;
 import com.github.axinger.service.JwtTokenProvider;
+import com.github.axinger.service.MyAuthenticationProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +12,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -29,12 +29,17 @@ public class LoginController {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    @Autowired
+    private MyAuthenticationProvider authenticationProvider;
+
+    @GetMapping("/login")
+    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
-            );
+//            Authentication authentication = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+//            );
+            Authentication authentication = authenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             List<String> list = authorities.stream().map(GrantedAuthority::getAuthority).toList();
             log.info("登录成功={}", authentication);

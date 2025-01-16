@@ -45,8 +45,11 @@ public class JwtHelper {
      */
     public static boolean validateToken(String bearer) {
         String token = StrUtil.removePrefix(bearer, prefix);
-
-        return cn.hutool.jwt.JWTUtil.verify(token, tokenSignKey.getBytes());
+        try {
+            return JWTUtil.verify(token, tokenSignKey.getBytes());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     // 根据token字符串得到用户id
