@@ -44,36 +44,26 @@ public class JwtTokenProvider {
 //    }
 
     public Authentication getAuthentication(String token) {
-        String username = null;
+        String username;
         try {
-
-         username = JwtHelper.getUserName(token); // 获取用户名
+            username = JwtHelper.getUserName(token); // 获取用户名
+            log.info("username={}", username);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new BadCredentialsException("用户名不存在");
         }
-
-
+        if (username == null) {
+            throw new BadCredentialsException("用户名不存在");
+        }
         SysUser userInfo = userMapper.findByUsername(username);
         if (userInfo == null) {
             throw new BadCredentialsException("用户名不存在");
         }
 
-
         // 这里还可以加一些其他信息的判断，比如用户账号已停用等判断。
-
         Collection<? extends GrantedAuthority> authorities = userInfo.getAuthorities();
         // 构建返回的用户登录成功的token
         return new UsernamePasswordAuthenticationToken(userInfo, null, authorities);
 
-
-        // 使用从 token 中提取的用户名构造 Authentication，而不是再调用 userDetailsService
-//        UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, null, new ArrayList<>());
-//
-//
-//        return new UsernamePasswordAuthenticationToken(userDetails, token, userDetails.getAuthorities());
-
-
-//        return new UsernamePasswordAuthenticationToken(username, null, null);
     }
 
 }

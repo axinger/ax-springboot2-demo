@@ -5,11 +5,9 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  security:
-    en
-#mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志, info级别的,也可以直接让 对应的mapper debug级别
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志, info级别的,也可以直接让 对应的mapper debug级别
 #logging:
 #  level:
 #    com.github.axinger.mapper: debug

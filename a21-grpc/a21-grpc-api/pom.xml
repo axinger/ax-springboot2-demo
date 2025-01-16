@@ -58,11 +58,21 @@
                     <pluginId>grpc-java</pluginId>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}
                     </pluginArtifact>
+                    <!-- proto文件目录 -->
+                    <protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
+                    <!-- 生成的Java文件目录 -->
+                    <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                    <clearOutputDirectory>false</clearOutputDirectory>
+                    <outputDirectory>${project.build.directory}/generated-sources/protobuf</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
+                        <!--在执行mvn compile的时候会执行以下操作-->
+                        <phase>compile</phase>
                         <goals>
+                            <!--生成OuterClass类-->
                             <goal>compile</goal>
+                            <!--生成Grpc类-->
                             <goal>compile-custom</goal>
                         </goals>
                     </execution>
