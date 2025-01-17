@@ -17,11 +17,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>cn.hutool</groupId>-->
+<!--            <artifactId>hutool-jwt</artifactId>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-jwt</artifactId>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+            <!--            <version>0.12.3</version>-->
         </dependency>
 
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>result-config-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

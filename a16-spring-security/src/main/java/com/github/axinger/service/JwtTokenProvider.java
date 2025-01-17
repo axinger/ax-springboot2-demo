@@ -30,7 +30,7 @@ public class JwtTokenProvider {
         return token;
     }
 
-    public boolean validateToken(String token) {
+    public String validateToken(String token) {
         return JwtHelper.validateToken(token);
     }
 
@@ -46,7 +46,7 @@ public class JwtTokenProvider {
     public Authentication getAuthentication(String token) {
         String username;
         try {
-            username = JwtHelper.getUserName(token); // 获取用户名
+            username = JwtHelper.validateToken(token); // 获取用户名
             log.info("username={}", username);
         } catch (Exception e) {
             throw new BadCredentialsException("用户名不存在");

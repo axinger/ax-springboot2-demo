@@ -2,7 +2,6 @@ package com.axing.common.util.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.SneakyThrows;
@@ -34,7 +33,7 @@ public class JsonUtil {
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 
         // 忽略 transient 修饰的属性
-        mapper.configure(MapperFeature.PROPAGATE_TRANSIENT_MARKER, true);
+//        mapper.configure(MapperFeature.PROPAGATE_TRANSIENT_MARKER, true);
 
         // 修改序列化后日期格式
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);

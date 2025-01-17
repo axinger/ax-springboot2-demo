@@ -19,9 +19,7 @@ public class Utils {
             date = date.plusMinutes(minute);
         }
 
-        String sb = date.getSecond() + " " + date.getMinute() + " " + date.getHour() + " " +
+        return date.getSecond() + " " + date.getMinute() + " " + date.getHour() + " " +
                 date.getDayOfMonth() + " " + date.getMonthValue() + " " + "?";
-
-        return sb;
     }
 }
