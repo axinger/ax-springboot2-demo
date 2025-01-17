@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.concurrent.CompletableFuture;
+
 @SpringBootTest
 class MybatisPlusApplicationTests {
 
@@ -46,6 +48,7 @@ class MybatisPlusApplicationTests {
 
         System.out.println("解密后：" + AES.decrypt(result, randomKey));
     }
+
 
 
 }

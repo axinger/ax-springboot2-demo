@@ -1,3 +1,5 @@
+server:
+  port: 10202
 spring:
   application:
     name: a04-spring-boot-mybatis-plus
