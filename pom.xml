@@ -99,8 +99,8 @@
         <module>a11-spring-boot-swagger3</module>
         <module>a12-spring-boot-minio</module>
         <module>a13-springboot-sso</module>
-        <module>a15-spring-boot-netty</module>
-        <module>a16-spring-boot-shiro</module>
+        <module>a14-spring-boot-netty</module>
+        <module>a15-spring-boot-shiro</module>
         <module>a16-spring-security</module>
         <module>a17-batch</module>
         <module>a18-custom-spring-boot-start</module>
@@ -255,6 +255,12 @@
             <dependency>
                 <groupId>com.github.axinger</groupId>
                 <artifactId>executor-config-spring-boot-starter</artifactId>
+                <version>${axinger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>util-core</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
 
@@ -670,6 +676,11 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
+            <artifactId>util-core</artifactId>
         </dependency>
     </dependencies>
 
