@@ -260,12 +260,6 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>util-core</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
                 <artifactId>axinger-spring-boot-starter</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
@@ -676,11 +670,6 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.axinger</groupId>
-            <artifactId>util-core</artifactId>
         </dependency>
     </dependencies>
 

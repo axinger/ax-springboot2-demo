@@ -1,4 +1,4 @@
-package com.github.axinger.util;
+package com.axing.common.util.utils;
 
 import java.util.List;
 

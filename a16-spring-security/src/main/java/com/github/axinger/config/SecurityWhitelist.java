@@ -1,6 +1,6 @@
 package com.github.axinger.config;
 
-import com.github.axinger.util.CollectionUtils;
+import com.axing.common.util.utils.CollectionUtils;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class SecurityWhitelist {
 //        System.out.println(isWhitelisted("/test1/123")); // false
 //        System.out.println(isWhitelisted("/some/other/path")); // false
 //
-////        boolean b = com.github.axinger.util.CollectionUtils.matchesPath(WHITELIST, "/admin/test1");
+////        boolean b = com.axing.common.util.utils.CollectionUtils.matchesPath(WHITELIST, "/admin/test1");
 ////        System.out.println("b = " + b);
 //    }
 }

@@ -12,9 +12,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-public class ReadImgDoc {
+public class ReadDocHasImgTests {
     public static void main(String[] args) throws Exception {
-        new ReadImgDoc().readPicture("E:\\上海项目测试\\文档\\模板.doc");
+        new ReadDocHasImgTests().readPicture("E:\\上海项目测试\\文档\\模板.doc");
     }
 
     private void readPicture(String path) throws Exception {

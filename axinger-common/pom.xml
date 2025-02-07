@@ -16,14 +16,11 @@
         <module>util-spring-boot-starter</module>
         <module>redis-spring-boot-starter</module>
         <module>quartz-spring-boot-starter</module>
-
         <module>mongodb-spring-boot-starter</module>
         <module>minio-spring-boot-starter</module>
-
         <module>request-log-spring-boot-starter</module>
         <module>excel-spring-boot-starter</module>
         <module>oos-spring-boot-starter</module>
-        <module>util-core</module>
     </modules>
 
     <dependencies>
