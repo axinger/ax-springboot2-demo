@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileOutputStream;
 
-public class PdfToWord {
+public class PdfToWordTests {
     @SneakyThrows
     @Test
     void test1() {
+        /// itextpdf 库, 读取pdf
         // load PDF document
         PdfReader pdfReader = new PdfReader("D:\\Users\\cepai\\Desktop\\123.pdf");
         // extract text from PDF document

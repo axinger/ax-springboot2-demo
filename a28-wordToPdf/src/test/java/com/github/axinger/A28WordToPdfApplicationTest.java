@@ -13,13 +13,14 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 class A28WordToPdfApplicationTest {
 
-    String wordPath = "D:\\Users\\cepai\\Desktop\\123.docx";
+    String wordPath = "D:\\test01.docx";
 
-    String pdfPath = "D:\\Users\\cepai\\Desktop\\123.pdf";
+    String pdfPath = "D:\\123.pdf";
 
     @SneakyThrows
     @Test
     void test1() {
+        /// 负责的效果不好
         WordToPdfConverter.convert(wordPath,
                 pdfPath);
         TimeUnit.SECONDS.sleep(5);
@@ -29,6 +30,7 @@ class A28WordToPdfApplicationTest {
     @SneakyThrows
     @Test
     void test2() {
+        /// 负责的效果好
         Word2PdfUtil.doc2Pdf(wordPath,
                 pdfPath);
         TimeUnit.SECONDS.sleep(5);
