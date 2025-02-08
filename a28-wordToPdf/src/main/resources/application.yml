@@ -24,7 +24,7 @@ jodconverter:
     enabled: true
     # 设置LibreOffice主目录
     #    office-home: /opt/libreoffice6.4
-#    office-home: C:/Program Files/LibreOffice
+    office-home: C:/Program Files/LibreOffice
 #    # 开启多个LibreOffice进程，每个端口对应一个进程
 #    portNumbers: 9080,9081,9089
 #    # LibreOffice进程重启前的最大进程数
