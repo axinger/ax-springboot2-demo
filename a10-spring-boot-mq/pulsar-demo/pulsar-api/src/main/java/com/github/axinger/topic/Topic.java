@@ -19,4 +19,8 @@ public interface Topic {
      */
     String DELIVER_AT_TOPIC = "deliverAtTopic";
 
+
+
+    String testTop2 = "user_behavior";
+
 }

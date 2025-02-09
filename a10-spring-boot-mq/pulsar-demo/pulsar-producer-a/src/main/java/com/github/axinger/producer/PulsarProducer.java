@@ -1,6 +1,8 @@
 package com.github.axinger.producer;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
+import com.alibaba.fastjson2.JSON;
+import com.github.axinger.topic.Topic;
 import io.github.majusko.pulsar.producer.PulsarTemplate;
 import org.apache.pulsar.client.api.PulsarClientException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,14 @@ import java.util.concurrent.TimeUnit;
 public class PulsarProducer {
 
     @Autowired
-    private PulsarTemplate template;
+    private PulsarTemplate<Map<String,Object>> template;
 
 
-    public void send(Map message) {
+    public void send(Map<String,Object> message) {
         try {
-            template.send("bootTopic", message);
+//            String jsonString = JSON.toJSONString(message);
+
+            template.send(Topic.EXCLUSIVE_TOPIC, message);
         } catch (PulsarClientException e) {
             e.printStackTrace();
         }
@@ -40,9 +44,11 @@ public class PulsarProducer {
     public void deliverAfter() {
 
         try {
-            Map map = new HashMap<>();
+            Map<String,Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "发送延迟消息");
+
+            String jsonString = JSON.toJSONString(map);
 
             template.createMessage("deliverAfterTopic", map)
                     .deliverAfter(10, TimeUnit.SECONDS)

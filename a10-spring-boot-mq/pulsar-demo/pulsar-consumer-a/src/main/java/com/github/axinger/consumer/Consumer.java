@@ -29,7 +29,7 @@ public class Consumer {
             subscriptionType = SubscriptionType.Exclusive,
             clazz = Map.class)
     public void Exclusive1(Map message) {
-        log.info("Exclusive1 time = {},  mes = {}", LocalDateTime.now(), message);
+        log.info("接收到消息 Exclusive1 time = {},  mes = {}", LocalDateTime.now(), message);
     }
 
     //@PulsarConsumer(topic = Topic.EXCLUSIVE_TOPIC,
@@ -44,7 +44,7 @@ public class Consumer {
             subscriptionType = SubscriptionType.Exclusive,
             clazz = Map.class)
     public void Exclusive2(Map message) {
-        log.info("Exclusive2 time = {}, mes = {}", LocalDateTime.now(), message);
+        log.info("接收到消息  Exclusive2 time = {}, mes = {}", LocalDateTime.now(), message);
     }
 
 

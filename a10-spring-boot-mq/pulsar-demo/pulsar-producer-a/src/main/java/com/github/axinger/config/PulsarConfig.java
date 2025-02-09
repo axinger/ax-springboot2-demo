@@ -27,6 +27,7 @@ public class PulsarConfig {
                 .addProducer(Topic.KEY_SHARED_TOPIC, Map.class)
                 .addProducer(Topic.DELIVER_AFTER_TOPIC, Map.class)
                 .addProducer(Topic.DELIVER_AT_TOPIC, Map.class)
+                .addProducer(Topic.testTop2, String.class)
 
                 ;
     }

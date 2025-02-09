@@ -30,13 +30,37 @@
         <dependency>
             <groupId>io.github.majusko</groupId>
             <artifactId>pulsar-java-spring-boot-starter</artifactId>
-            <version>1.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pulsar</groupId>
             <artifactId>pulsar-client-original</artifactId>
-            <version>2.10.2</version>
         </dependency>
+
+        <!-- spring-boot3 要求pulsar  3.x.x -->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-pulsar</artifactId>-->
+        <!--            <version>3.2.0</version>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; Pulsar 客户端（Pulsar Admin 依赖） &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.pulsar</groupId>-->
+        <!--            <artifactId>pulsar-client</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        &lt;!&ndash; 其他可能需要的依赖 &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.pulsar</groupId>-->
+        <!--            <artifactId>pulsar-common</artifactId>-->
+        <!--        </dependency>-->
+
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.pulsar</groupId>-->
+        <!--            <artifactId>pulsar-client-admin</artifactId>-->
+        <!--        </dependency>-->
+
     </dependencies>
 
     <build>
