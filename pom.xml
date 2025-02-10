@@ -130,6 +130,7 @@
         <module>a21-grpc</module>
         <module>a39-liteflow</module>
         <module>axinger-config</module>
+        <module>a06-spring-cloud/feign-order</module>
     </modules>
 
     <dependencyManagement>
