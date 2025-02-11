@@ -1,11 +1,14 @@
 package com.github.axinger;
 
 import com.baomidou.mybatisplus.core.toolkit.AES;
+import com.github.axinger.domain.SysUserTotalEntity;
 import com.github.axinger.service.SysPersonService;
+import com.github.axinger.service.SysUserTotalService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @SpringBootTest
@@ -50,5 +53,24 @@ class MybatisPlusApplicationTests {
     }
 
 
+
+    @Autowired
+    private SysUserTotalService sysUserTotalService;
+
+
+    @Test
+    void test2_username() {
+
+        SysUserTotalEntity one = sysUserTotalService.getById(1);
+
+        System.out.println("one = " + one);
+    }
+
+    @Test
+    void test2_pwd() {
+
+        List<SysUserTotalEntity> list = sysUserTotalService.lambdaQuery().list();
+        System.out.println("list = " + list);
+    }
 
 }
