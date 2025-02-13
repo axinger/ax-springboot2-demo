@@ -16,10 +16,14 @@ import com.github.axinger.config.MyTableNameHandler;
 import com.github.axinger.config.MyTenantLineHandler;
 import com.github.axinger.domain.SysPersonEntity;
 import com.github.axinger.mapper.SysPersonMapper;
+import org.apache.ibatis.cursor.Cursor;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -97,6 +101,7 @@ class SysPersonServiceTest {
         sysPersonService.saveOrUpdateBatch(list);
     }
 
+    ///  ResultHandler 比 Cursor 简单
     @Test
     void test_stream() throws InterruptedException {
 
@@ -107,6 +112,23 @@ class SysPersonServiceTest {
 
         TimeUnit.SECONDS.sleep(10);
     }
+
+
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
+
+    @Test
+    void test_cursorSelect() throws IOException {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            SysPersonMapper mapper = session.getMapper(SysPersonMapper.class);
+            try (Cursor<SysPersonEntity> entities = mapper.cursorSelect()) {
+                for (SysPersonEntity entity : entities) {
+                    System.out.println("entity = " + entity);
+                }
+            }
+        }
+    }
+
 
     @Test
     void test_findAll() {

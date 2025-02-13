@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.mapping.ResultSetType;
 import org.apache.ibatis.session.ResultHandler;
 
@@ -40,10 +41,19 @@ public interface SysPersonMapper extends MyBaseMapper<SysPersonEntity> {
 
     IPage<SysPersonEntity> sqlSegment(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> wrapper, Page<Object> page);
 
+    /**
+     * ibatis 语法
+     * @param handler
+     */
     @Select("select * from sys_person")
     @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 500)
     @ResultType(SysPersonEntity.class)
     void streamSelect(ResultHandler<SysPersonEntity> handler);
+
+    @Select("select * from sys_person")
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 500)
+    @ResultType(SysPersonEntity.class)
+    Cursor<SysPersonEntity> cursorSelect();
 
 
     ///  ${ew.customSqlSegment} 会直接在前面添加 where
