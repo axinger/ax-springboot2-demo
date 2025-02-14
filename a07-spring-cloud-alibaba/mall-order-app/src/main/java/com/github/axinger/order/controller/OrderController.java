@@ -2,7 +2,8 @@ package com.github.axinger.order.controller;
 
 import brave.Tracer;
 import brave.propagation.TraceContext;
-import com.github.axinger.order.service.OrderFeignService;
+import com.github.axinger.order.api.PaymentOrderApi;
+import com.github.axinger.order.api.PaymentRefundApi;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,10 @@ public class OrderController {
     @Value("${server-url.gateway-service}")
     private String gatewayService;
     @Autowired
-    private OrderFeignService orderFeignService;
+    private PaymentOrderApi paymentOrderApi;
+
+    @Autowired
+    private PaymentRefundApi paymentRefundApi;
 
     @Autowired
     private Tracer tracer;
@@ -117,7 +121,17 @@ public class OrderController {
     @Operation(summary = "open方式请求,请求支付系统", description = "gatewayFeign")
     @GetMapping(value = "/gateway/feign/{id}")
     public Object gatewayFeign(@PathVariable("id") Integer id) {
-        Map<String, Object> map2 = orderFeignService.count(id);
+        Map<String, Object> map2 = paymentOrderApi.count(id);
+        Map<String, Object> res = new HashMap<>(16);
+        res.put("order", getRes(id));
+        res.put("payment", map2);
+        return res;
+    }
+
+    @Operation(summary = "open方式请求,请求退款", description = "gatewayFeign")
+    @GetMapping(value = "/gateway/refund/{id}")
+    public Object refund(@PathVariable("id") Integer id) {
+        Map<String, Object> map2 = paymentRefundApi.count(id);
         Map<String, Object> res = new HashMap<>(16);
         res.put("order", getRes(id));
         res.put("payment", map2);

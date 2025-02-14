@@ -2,10 +2,10 @@ package com.axing.common.advice.exception;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSONObject;
 import com.axing.common.advice.bean.AdviceProperties;
 import com.axing.common.response.dto.Result;
 import com.axing.common.response.exception.ServiceException;
-import com.google.common.base.Throwables;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -40,34 +40,19 @@ public class GlobalException {
     @ExceptionHandler(value = Exception.class)
     public Result<Map<String, Object>> exception(HttpServletRequest request, Exception e) {
 
-//        if (adviceProperties.isPrintStackTrace()) {
-//            e.printStackTrace();
-//        }
-
         String method = request.getMethod();
         String uri = request.getRequestURI();
 
-//        Map<String, Object> map = new HashMap<>(16);
-//        map.put("method", method);
-//        map.put("path", uri);
-
-//        String msg = "";
-//        if (Optional.of(e).map(Throwable::getMessage).isPresent()) {
-//            msg = e.getMessage();
-//        } else if (Optional.of(e).map(Throwable::getCause).map(Throwable::getMessage).isPresent()) {
-//            msg = e.getCause().getMessage();
-//        }
-
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("method", method);
+        map.put("path", uri);
         ///  错误message,没有类型
         String msg = ExceptionUtil.getSimpleMessage(e);
-        String msg2 = Throwables.getRootCause(e).getMessage();
-
-        final Result<Map<String, Object>> result = Result.fail(msg);
+        final Result<Map<String, Object>> result = Result.fail(msg, map);
         ///  getRootCauseMessage: 错误类型
-        log.error("全局异常,result = {}, message = {}", result, ExceptionUtil.getRootCauseMessage(e));
+        log.error("全局异常,result = {}", JSONObject.toJSONString(result));
 
         if (adviceProperties.isPrintStackTrace()) {
-//            log.error("全局异常 result = {}", Throwables.getStackTraceAsString(e));
             log.error("全局异常,stacktrace = {}", ExceptionUtil.stacktraceToString(e));
         }
 

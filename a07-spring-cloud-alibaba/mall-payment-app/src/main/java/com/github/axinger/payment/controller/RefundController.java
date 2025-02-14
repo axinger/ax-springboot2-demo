@@ -1,40 +1,31 @@
 package com.github.axinger.payment.controller;
 
-
 import brave.Tracer;
 import brave.propagation.TraceContext;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author xing
- */
+@Slf4j
+@RequestMapping("/refund")
 @RestController
-public class PaymentController {
-
-    @Value("${server.port}")
-    private String port;
-
+public class RefundController {
 
     @Autowired
     private Tracer tracer;
 
 
-    @Operation(summary = "支付系统,订单")
+    @Operation(summary = "支付系统,退款")
     @GetMapping(value = "/count/{id}")
     public Map<String, Object> payment(@PathVariable("id") String id) {
-        System.out.println("payment_id = " + id);
         Map<String, Object> map = new HashMap<>(16);
         map.put("payment_id", id);
-        map.put("payment_name", "支付系统");
-        map.put("payment_port", port);
+        map.put("payment_name", "支付系统,退款");
+//        map.put("token", token);
 
         TraceContext context = tracer.currentSpan().start().context();
 
@@ -47,5 +38,4 @@ public class PaymentController {
         map.put("isLocalRoot", context.isLocalRoot());
         return map;
     }
-
 }

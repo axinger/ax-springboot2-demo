@@ -28,6 +28,9 @@ public class Result<T> implements Serializable {
     @Schema(title = "提示信息", description = "错误信息")
     private String msg = "";
 
+    @Schema(title = "详情", description = "详情信息")
+    private Object details = "";
+
     @Schema(title = "返回数据", description = "数据")
     private T data;
 
@@ -49,6 +52,14 @@ public class Result<T> implements Serializable {
                 .msg(msg)
                 .build();
 
+    }
+
+    public static <T> Result<T> fail(String msg, Object details) {
+        return Result.<T>builder()
+                .success(false)
+                .msg(msg)
+                .details(details)
+                .build();
     }
 
     public static <T> Result<T> fail(String msg) {
