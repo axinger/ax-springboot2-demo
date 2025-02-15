@@ -2,9 +2,7 @@ package com.github.axinger.collection;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -61,5 +59,41 @@ public class CollectionTests {
         boolean isSubset = set1.containsAll(set2);
         System.out.println("set1 是否包含 set2 的所有元素 = " + isSubset);
 
+    }
+
+    @Test
+    void test3() {
+        // 方式1: 直接对比两个集合差异
+        List<String> list0 = getList(0); // ["a","b"]
+        List<String> list1 = getList(1); // ["a","c"]
+
+        // 找出互相不存在的元素（差集）
+        List<String> difference = Stream.concat(
+                list0.stream().filter(e -> !list1.contains(e)),
+                list1.stream().filter(e -> !list0.contains(e))
+        ).collect(Collectors.toList());
+
+        System.out.println("差异元素: " + difference); // 输出 [b, c]
+
+        // 方式2: 分组统计差异（更直观）
+        Map<Boolean, List<String>> partitioned = Stream.concat(list0.stream(), list1.stream())
+                .distinct()
+                .collect(Collectors.partitioningBy(e -> list0.contains(e) && list1.contains(e)));
+
+        List<String> commonElements = partitioned.get(true);  // 交集 ["a"]
+        List<String> uniqueElements = partitioned.get(false); // 差集 ["b","c"]
+
+        System.out.println("commonElements = " + commonElements);
+        System.out.println("uniqueElements = " + uniqueElements);
+    }
+
+
+    List<String> getList(int i) {
+        if (i == 0) {
+            return List.of("a", "b");
+        } else if (i == 1) {
+            return List.of("a", "c");
+        }
+        return null;
     }
 }
