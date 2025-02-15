@@ -66,7 +66,7 @@ class A0101RequestApplicationTest {
 
     List<Product> getSonStoreProducts(String sonStoreCode) {
 
-        if ("001".equals(sonStoreCode)) {
+        if ("b01".equals(sonStoreCode)) {
             /// 子店产品
             return new java.util.ArrayList<>(List.of(
                     new Product("001", "apple", 1.2),
@@ -77,7 +77,7 @@ class A0101RequestApplicationTest {
                     new Product("007", "peach", 7.8)
             ));
 
-        } else if ("002".equals(sonStoreCode)) {
+        } else if ("b02".equals(sonStoreCode)) {
 
             return new java.util.ArrayList<>(List.of(
                     new Product("001", "apple", 1.2),
@@ -93,12 +93,28 @@ class A0101RequestApplicationTest {
     }
 
     Set<String> getSonStoreOutCodes(String sonStoreCode) {
-        if ("001".equals(sonStoreCode)) {
+        if ("b01".equals(sonStoreCode)) {
             return new HashSet<>(List.of("002", "004"));
-        } else if ("002".equals(sonStoreCode)) {
+        } else if ("b02".equals(sonStoreCode)) {
             return new HashSet<>(List.of("003", "004"));
         }
 
         return new HashSet<>();
+    }
+
+
+    @Test
+    void test2() {
+        Set<String> motherStoreOutCodes = new HashSet<>(List.of("001", "004"));
+
+        List<String> sonStoreCodes = List.of("b01", "b02");
+
+        for (String sonStoreCode : sonStoreCodes) {
+
+            /// 子店卖完的产品
+            Set<String> sonStoreOutCodes = getSonStoreOutCodes(sonStoreCode);
+        }
+
+
     }
 }
