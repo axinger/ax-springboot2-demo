@@ -18,28 +18,22 @@ import java.util.Objects;
  * @date:2018/12/18
  */
 public class EnumValidatorClass implements ConstraintValidator<EnumValidator, Object>, Annotation {
-    private Logger log = LoggerFactory.getLogger(this.getClass());
-    private List<Object> values = new ArrayList<>();
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final List<Object> values = new ArrayList<>();
 
     @Override
     public void initialize(EnumValidator enumValidator) {
         Class<?> clz = enumValidator.value();
-        Object[] ojects = clz.getEnumConstants();
+        Object[] objects = clz.getEnumConstants();
         try {
             Method method = clz.getMethod("getId");
-            if (Objects.isNull(method)) {
-
-                throw new Exception(String.format("枚举对象{}缺少字段名为value的字段",
-                        clz.getName()));
-            }
             Object value = null;
-            for (Object obj : ojects) {
+            for (Object obj : objects) {
                 value = method.invoke(obj);
                 values.add(value);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            log.error("[处理枚举校验异常]", e);
+            log.error("[处理枚举校验异常]={}", e.getMessage());
         }
     }
 
