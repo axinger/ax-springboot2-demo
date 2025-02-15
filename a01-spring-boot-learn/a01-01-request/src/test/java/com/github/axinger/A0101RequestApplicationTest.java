@@ -108,13 +108,21 @@ class A0101RequestApplicationTest {
         Set<String> motherStoreOutCodes = new HashSet<>(List.of("001", "004"));
 
         List<String> sonStoreCodes = List.of("b01", "b02");
-
+        Set<String> commonOutCodes =null;
         for (String sonStoreCode : sonStoreCodes) {
 
             /// 子店卖完的产品
             Set<String> sonStoreOutCodes = getSonStoreOutCodes(sonStoreCode);
+
+            // 找出同时存在的元素
+           commonOutCodes = new HashSet<>(motherStoreOutCodes);
+            commonOutCodes.retainAll(sonStoreOutCodes);
+
+            System.out.println("Common out codes for " + sonStoreCode + ": " + commonOutCodes);
         }
 
 
+        System.out.println("Common out codes for " +commonOutCodes);
     }
+
 }
