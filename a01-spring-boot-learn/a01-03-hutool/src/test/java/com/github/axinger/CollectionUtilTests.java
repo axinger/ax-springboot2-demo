@@ -44,8 +44,8 @@ public class CollectionUtilTests {
 //
 //        List<String> listB = new ArrayList<>(Arrays.asList("1", "2", "3", "7"));
 
-        List<String> listA = ListUtil.toList("1", "2", "3", "4", "5");
-        List<String> listB = ListUtil.of("1", "2", "3", "7");
+        List<String> listA = ListUtil.toList("1", "2");
+        List<String> listB = ListUtil.of("1", "3");
 
 
         System.out.println("集合A:" + listA);
@@ -60,12 +60,15 @@ public class CollectionUtilTests {
         // 交集
         Collection<String> intersection = CollectionUtil.intersection(listA, listB);
         System.out.println("交集 intersection :" + intersection);
-        // 交集的补集
+
+        // 交集的补集,两个集合的对称差集 (A-B)∪(B-A)
+        //  disjunction([a, b, c], [b, c, d])          -》 [a, d]
         Collection<String> disjunction = CollectionUtil.disjunction(listA, listB);
         System.out.println("交集的补集  disjunction ：" + disjunction);
-        // 差集(集合相减)
+
+        // 单差集，即只返回【集合1】中有，但是【集合2】中没有的元素
         Collection<String> subtract = CollectionUtil.subtract(listA, listB);
-        System.out.println("差集(集合相减) subtract  ：" + subtract);
+        System.out.println("集合1】中有，但是【集合2】 subtract  ：" + subtract);
 
     }
 
