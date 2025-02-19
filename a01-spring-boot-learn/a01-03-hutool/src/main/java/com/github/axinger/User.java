@@ -1,9 +1,14 @@
 package com.github.axinger;
 
 import cn.hutool.core.annotation.Alias;
-import lombok.*;
+import cn.hutool.core.date.DateUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户
@@ -14,8 +19,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
-@Setter
 public class User implements Serializable {
 
     /**
@@ -35,4 +38,12 @@ public class User implements Serializable {
      */
     @Alias("性别")
     private String gender;
+
+    @Alias("生日")
+    private Date birthday;
+
+    @SuppressWarnings("unused")
+    public String getBirthday() {
+        return DateUtil.format(birthday, "yyyy-MM-dd HH");
+    }
 }

@@ -1,9 +1,11 @@
 package com.github.axinger;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.csv.CsvUtil;
 import cn.hutool.core.text.csv.CsvWriteConfig;
 import cn.hutool.core.text.csv.CsvWriter;
 import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.json.JSONUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -21,12 +23,28 @@ public class CsvTests {
      */
     public static List<User> generateUserList() {
         List<User> dataList = new ArrayList<>();
-        dataList.add(new User(1, "张三", "男"));
-        dataList.add(new User(2, "李四", "女"));
-        dataList.add(new User(3, "王五", "男"));
-        dataList.add(new User(4, "", "男"));
-        dataList.add(new User(5, "王五", null));
-        dataList.add(new User(3, null, "男"));
+
+
+        dataList.add(User.builder()
+                .id(1)
+                .name("张三")
+                .gender("男")
+                .birthday(DateUtil.parse("2022-01-01"))
+                .build());
+
+
+        dataList.add(User.builder()
+                .id(2)
+                .name("李四")
+                .gender("女")
+                .birthday(DateUtil.parse("2022-01-01"))
+                .build());
+        dataList.add(User.builder()
+                .id(4)
+                .name(null)
+                .gender("男")
+                .birthday(DateUtil.parse("2022-01-01"))
+                .build());
         return dataList;
     }
 
@@ -83,7 +101,9 @@ public class CsvTests {
         File distFile = new File("C:\\Users\\xing\\Desktop\\2.csv");
         // 创建CSV写入器，使用GBK编码格式，防止出现各个CSV工具打开乱码
 //        CsvWriter csvWriter = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_GBK, true, config());
-        CsvWriter csvWriter = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_GBK, true, config());
+        // CharsetUtil.CHARSET_UTF_8
+        ///  isAppend 是否追加文件
+        CsvWriter csvWriter = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_UTF_8, false, config());
         csvWriter.writeBeans(generateUserList());
         csvWriter.close();
     }
