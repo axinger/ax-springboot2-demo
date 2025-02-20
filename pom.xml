@@ -131,6 +131,7 @@
         <module>a39-liteflow</module>
         <module>axinger-config</module>
         <module>a06-spring-cloud/feign-order</module>
+        <module>a09-spring-boot-statemachine</module>
     </modules>
 
     <dependencyManagement>
