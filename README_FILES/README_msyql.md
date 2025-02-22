@@ -104,11 +104,13 @@ CALL test_22();#调用存储函数
 ## 2.GROUP BY
 
 8.0语法
-
+```
+GROUP_CONCAT 将某个字段的多个值合并成一个字符串输出的聚合函数,获取所有分组的内容
+```
 ```mysql
 SELECT
 	age,
-	GROUP_CONCAT( id ),
+	GROUP_CONCAT( `id` ),
 	GROUP_CONCAT( `name` ) 
 FROM
 	t_student 
@@ -147,6 +149,37 @@ WHERE
 	`id` >= 1 
 GROUP BY
 	age
+```
+
+复合主键更新
+```sql
+-- 创建表时定义
+CREATE TABLE `order_details` (
+                                 `id` bigint NOT NULL AUTO_INCREMENT,
+                                 `order_id` int DEFAULT NULL,
+                                 `product_id` int DEFAULT NULL,
+                                 `product_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                 `quantity` int DEFAULT NULL,
+                                 `update_count` int DEFAULT '0',
+                                 PRIMARY KEY (`id`),
+                                 UNIQUE KEY `idx_order_product` (`order_id`,`product_id`),
+                                 UNIQUE KEY `idx_order_product_name` (`order_id`,`product_name`)
+)
+```
+
+插入数据时，若复合索引冲突（即数据已存在），则执行更新操作：
+```sql
+INSERT INTO order_details (order_id, product_id, product_name, quantity)
+VALUES
+    (100, 200, '苹果', 1),
+    (101, 201, '香蕉', 1)
+ON DUPLICATE KEY UPDATE
+                     quantity = VALUES(quantity),
+                     update_count = IF(update_count IS NULL, 1, update_count + 1);
+```
+```sql
+REPLACE INTO order_details (order_id, product_id, product_name, quantity)
+VALUES (100, 200, 'Apple', 30);
 ```
 
 # 三.7种jon

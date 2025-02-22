@@ -14,7 +14,7 @@ public class PulsarTenantCreator {
 
     public static void main(String[] args) {
         // Pulsar Admin 服务的 URL
-        String serviceHttpUrl = "http://hadoop203:18080"; // 替换为你的 Pulsar Admin URL
+        String serviceHttpUrl = "http://hadoop103:18080"; // 替换为你的 Pulsar Admin URL
 
         // 创建 PulsarAdmin 客户端
         try (PulsarAdmin admin = PulsarAdmin.builder().serviceHttpUrl(serviceHttpUrl).build()) {
