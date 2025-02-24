@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.UnanimousBased;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,6 +33,8 @@ public class MyConfig {
 
     @Autowired
     private CustomPermissionEvaluator customAuthenticationEntryPoint;
+    @Autowired
+    private CustomAccessDecisionVoter customAccessDecisionVoter;
 
     @Bean
     public DefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
@@ -42,16 +43,12 @@ public class MyConfig {
         return handler;
     }
 
-    @Autowired
-    private CustomAccessDecisionVoter customAccessDecisionVoter;
-
     @Bean
     public AccessDecisionManager customAccessDecisionManager() {
         List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
         decisionVoters.add(customAccessDecisionVoter);
         return new UnanimousBased(decisionVoters);  // 使用投票机制
     }
-
 
 
     @Bean

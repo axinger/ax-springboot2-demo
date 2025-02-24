@@ -16,6 +16,7 @@ public class PaymentRefundConfig {
 
     @Autowired
     private TestServer testServer;
+
     @Bean
     public RequestInterceptor paymentRefundInterceptor() {
         return template -> {

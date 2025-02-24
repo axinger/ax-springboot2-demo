@@ -13,26 +13,23 @@ import java.io.Serializable;
 @TableName(value = "sys_user_total")
 @Data
 public class SysUserTotalEntity implements Serializable {
+    @Serial
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
 //    @TableId(value = "name",type = IdType.NONE)
     private String name;
-
     /**
      *
      */
 //    @TableId(value = "type",type = IdType.NONE)
 
     private String type;
-
     /**
      *
      */
     @TableField(value = "num")
     private Integer num;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

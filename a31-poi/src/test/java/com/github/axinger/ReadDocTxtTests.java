@@ -38,7 +38,7 @@ public class ReadDocTxtTests {
                 // 段落
                 if (element instanceof XWPFParagraph) {
                     String text = WordRead.getParagraphText((XWPFParagraph) element);
-                     System.out.println("段落text = " + text);
+                    System.out.println("段落text = " + text);
                 }
                 // 表格
                 else if (element instanceof XWPFTable xwpfTable) {

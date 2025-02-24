@@ -3,7 +3,6 @@ package com.github.axinger;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.lang.func.LambdaUtil;
 import cn.hutool.core.util.EnumUtil;
-import lombok.Getter;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
@@ -59,14 +58,14 @@ public class EnumUtilTests {
 
     @Test
     void test4() {
-        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(Gender.class,  LambdaUtil.getFieldName(Gender::getCode));
+        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(Gender.class, LambdaUtil.getFieldName(Gender::getCode));
         Object test1 = enumMap.get("MALE");// 结果为：type1
         System.out.println("test1 = " + test1);
     }
 
     @Test
     void test5() {
-        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(Gender.class,  LambdaUtil.getFieldName(Gender::getAlias));
+        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(Gender.class, LambdaUtil.getFieldName(Gender::getAlias));
         System.out.println("enumMap = " + enumMap);
 
 

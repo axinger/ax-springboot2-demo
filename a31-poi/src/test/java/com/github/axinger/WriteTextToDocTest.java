@@ -78,7 +78,6 @@ class WriteTextToDocTest {
             System.out.println("content = " + content);
 
 
-
             // 将内容渲染为图片
             BufferedImage image = renderTextToImage(content.toString(), 800, 600); // 图片尺寸
 
@@ -104,7 +103,7 @@ class WriteTextToDocTest {
      * @param height 图片高度
      * @return 生成的图片
      */
-    private  BufferedImage renderTextToImage(String text, int width, int height) {
+    private BufferedImage renderTextToImage(String text, int width, int height) {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();
 

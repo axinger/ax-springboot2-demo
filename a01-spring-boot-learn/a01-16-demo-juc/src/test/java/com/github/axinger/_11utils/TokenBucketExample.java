@@ -51,7 +51,7 @@ public class TokenBucketExample {
             try {
                 // 获取令牌
                 semaphore.acquire();
-                System.out.println("Task " + taskId + " is running="+Thread.currentThread().getName());
+                System.out.println("Task " + taskId + " is running=" + Thread.currentThread().getName());
 
                 // 模拟任务执行时间
                 Thread.sleep(1000);

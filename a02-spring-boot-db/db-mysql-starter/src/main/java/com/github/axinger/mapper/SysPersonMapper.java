@@ -43,6 +43,7 @@ public interface SysPersonMapper extends MyBaseMapper<SysPersonEntity> {
 
     /**
      * ibatis 语法
+     *
      * @param handler
      */
     @Select("select * from sys_person")

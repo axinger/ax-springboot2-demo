@@ -25,7 +25,7 @@ public class LibreOfficeConverter {
     /**
      * 调用 LibreOffice 将 PDF 转换为 JPG
      *
-     * @param inputFilePath   输入文件路径
+     * @param inputFilePath    输入文件路径
      * @param outputFolderPath 输出文件夹路径
      */
     public static void convertToJpg(String inputFilePath, String outputFolderPath)
@@ -41,13 +41,13 @@ public class LibreOfficeConverter {
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
             // Windows系统下的命令，使用完整路径
             // 构建命令（Windows）
-             command = String.format(
+            command = String.format(
                     "\"C:\\Program Files\\LibreOffice\\program\\soffice.exe\" --headless --convert-to jpg --outdir %s %s",
                     outputFolderPath, inputFilePath
             );
         } else {
             // Linux/Mac系统下的命令  libreoffice --headless --convert-to jpg
-             command = String.format(
+            command = String.format(
                     "/usr/bin/libreoffice --headless --convert-to jpg --outdir %s %s",
                     outputFolderPath, inputFilePath
             );

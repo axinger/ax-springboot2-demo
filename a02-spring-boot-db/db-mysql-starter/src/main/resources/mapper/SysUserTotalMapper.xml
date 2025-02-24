@@ -5,9 +5,9 @@
 <mapper namespace="com.github.axinger.mapper.SysUserTotalMapper">
 
     <resultMap id="BaseResultMap" type="com.github.axinger.domain.SysUserTotalEntity">
-            <id property="name" column="name" />
-            <id property="type" column="type" />
-            <result property="num" column="num" />
+        <id property="name" column="name"/>
+        <id property="type" column="type"/>
+        <result property="num" column="num"/>
     </resultMap>
 
     <sql id="Base_Column_List">

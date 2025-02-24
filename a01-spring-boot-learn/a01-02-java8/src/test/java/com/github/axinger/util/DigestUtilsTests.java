@@ -1,6 +1,5 @@
 package com.github.axinger.util;
 
-import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.DigestUtils;
 

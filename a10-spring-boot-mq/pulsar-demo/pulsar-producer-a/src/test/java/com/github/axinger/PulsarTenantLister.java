@@ -2,7 +2,6 @@ package com.github.axinger;
 
 import org.apache.pulsar.client.admin.PulsarAdmin;
 import org.apache.pulsar.client.admin.PulsarAdminException;
-import org.apache.pulsar.client.api.PulsarClientException;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class PulsarTenantLister {
             List<String> tenants = listTenants(admin);
 
             // 打印租户列表
-            System.out.println("已有的租户列表="+tenants);
+            System.out.println("已有的租户列表=" + tenants);
         } catch (Exception e) {
             System.err.println("查询租户失败: " + e.getMessage());
             e.printStackTrace();

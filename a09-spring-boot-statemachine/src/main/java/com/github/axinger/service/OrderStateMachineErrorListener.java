@@ -4,7 +4,7 @@
 //import org.springframework.statemachine.listener.StateMachineErrorListener;
 //import org.springframework.stereotype.Component;
 //
-//// 定义一个状态机错误监听器组件
+/// / 定义一个状态机错误监听器组件
 //@Component
 //public class OrderStateMachineErrorListener implements StateMachineErrorListener {
 //

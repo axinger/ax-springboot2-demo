@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @SpringBootTest
 class MybatisPlusApplicationTests {
@@ -17,6 +16,8 @@ class MybatisPlusApplicationTests {
     String randomKey = "abcdef1234567890";
     @Autowired
     private SysPersonService sysPersonService;
+    @Autowired
+    private SysUserTotalService sysUserTotalService;
 
     //    // Jar 启动参数（ idea 设置 Program arguments , 服务器可以设置为启动环境变量 ）
 //--mpw.key=d1104d7c3b616f0b
@@ -51,12 +52,6 @@ class MybatisPlusApplicationTests {
 
         System.out.println("解密后：" + AES.decrypt(result, randomKey));
     }
-
-
-
-    @Autowired
-    private SysUserTotalService sysUserTotalService;
-
 
     @Test
     void test2_username() {

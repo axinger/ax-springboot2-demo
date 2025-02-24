@@ -36,7 +36,8 @@ class SysPersonServiceTest {
 
     @Autowired
     private SysPersonMapper sysPersonMapper;
-
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
 
     @Test
     void test_新增list() {
@@ -112,10 +113,6 @@ class SysPersonServiceTest {
 
         TimeUnit.SECONDS.sleep(10);
     }
-
-
-    @Autowired
-    private SqlSessionFactory sqlSessionFactory;
 
     @Test
     void test_cursorSelect() throws IOException {

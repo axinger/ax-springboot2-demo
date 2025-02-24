@@ -2,8 +2,6 @@ package com.github.axinger;
 
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
@@ -13,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.Serial;
 import java.nio.charset.StandardCharsets;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +18,12 @@ import java.util.concurrent.TimeUnit;
 
 public class JWTTest {
 
+
+    private static final Long NOW = System.currentTimeMillis();
+    private static final Date NOW_TIME = new Date(NOW);
+    private static final Long EXPIRED = 3 * 1000L;
+    private static final Date EXPIRED_TIME = new Date(NOW + EXPIRED);
+    String KEY = "123";
 
     @Test
     public void test1() throws InterruptedException {
@@ -72,7 +75,7 @@ public class JWTTest {
         String token = JWT.create()
                 .setIssuedAt(signTime)
                 .setExpiresAt(expiresAt)
-                .setPayload("username","jim")
+                .setPayload("username", "jim")
                 .setPayload("password", "123456")
                 .setKey(key)
 //                .setSigner(HS256, key)
@@ -108,7 +111,6 @@ public class JWTTest {
 //        boolean verifyTime = jwt.setKey(KEY.getBytes()).validate(0);
 
 
-
         boolean validate = JWT.of(token)
                 .setKey(key)
                 .validate(0);
@@ -118,14 +120,12 @@ public class JWTTest {
         JWTValidator jwtValidator = JWTValidator.of(token).validateDate();
     }
 
-
     @Test
     public void test11() throws InterruptedException {
         String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJzdWIiOiJhbGwiLCJhdWQiOiJ0byIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaXNzIjoiYXhpbmciLCJleHAiOjU1LCJpYXQiOjUzLCJ1c2VybmFtZSI6ImppbSJ9.";
         boolean verify = JWTUtil.verify(token, NoneJWTSigner.NONE);
         System.out.println("verify = " + verify);
     }
-
 
     @Test
     public void test2() {
@@ -198,7 +198,6 @@ public class JWTTest {
 
     }
 
-
     @Test
     void test6() {
         String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiIxMjM0NSIsImV4cCI6MTczNjc4MzE1NH0.hVz1ph768iox_NounZ6cEKTCE38bDpnhz7rVZPzMvNo";
@@ -211,14 +210,6 @@ public class JWTTest {
 //        JWTValidator.of(token).validateDate().validateDate()
 
     }
-
-
-    private static final Long NOW = System.currentTimeMillis();
-    private static final Date NOW_TIME = new Date(NOW);
-    private static final Long EXPIRED = 3 * 1000L;
-    private static final Date EXPIRED_TIME = new Date(NOW + EXPIRED);
-
-    String KEY = "123";
 
     @Test
     void test7() throws InterruptedException {

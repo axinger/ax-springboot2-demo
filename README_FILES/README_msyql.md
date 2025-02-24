@@ -104,9 +104,11 @@ CALL test_22();#调用存储函数
 ## 2.GROUP BY
 
 8.0语法
+
 ```
 GROUP_CONCAT 将某个字段的多个值合并成一个字符串输出的聚合函数,获取所有分组的内容
 ```
+
 ```mysql
 SELECT
 	age,
@@ -152,6 +154,7 @@ GROUP BY
 ```
 
 复合主键更新
+
 ```sql
 -- 创建表时定义
 CREATE TABLE `order_details` (
@@ -168,6 +171,7 @@ CREATE TABLE `order_details` (
 ```
 
 插入数据时，若复合索引冲突（即数据已存在），则执行更新操作：
+
 ```sql
 INSERT INTO order_details (order_id, product_id, product_name, quantity)
 VALUES
@@ -177,6 +181,7 @@ ON DUPLICATE KEY UPDATE
                      quantity = VALUES(quantity),
                      update_count = IF(update_count IS NULL, 1, update_count + 1);
 ```
+
 ```sql
 REPLACE INTO order_details (order_id, product_id, product_name, quantity)
 VALUES (100, 200, 'Apple', 30);

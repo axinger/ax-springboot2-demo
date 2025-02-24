@@ -1,6 +1,5 @@
 package com.github.axinger;
 
-import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.github.axinger.topic.Topic;
 import io.github.majusko.pulsar.producer.PulsarTemplate;
@@ -11,31 +10,16 @@ import org.apache.pulsar.common.policies.data.TenantInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @SpringBootTest
 class PulsarProducerApplicationTest {
 
-    @Autowired
-    private PulsarTemplate<String> template;
-
-    @Test
-    public void test1() throws PulsarClientException {
-        Map<String, Object> map = new HashMap<>();
-        map.put("user_id", 123);
-        map.put("item_id", 4444);
-        map.put("behavior", "aaa");
-
-        String jsonString = JSON.toJSONString(map);
-        MessageId send = template.send(Topic.testTop2, jsonString);
-        System.out.println("send = " + send);
-    }
-
     static String SERVICE_URL = "";
     static String serviceHttpUrl = "";
+    @Autowired
+    private PulsarTemplate<String> template;
 
     public static void send() throws PulsarClientException {
         PulsarClient client = PulsarClient.builder().serviceUrl(SERVICE_URL).build();
@@ -63,7 +47,6 @@ class PulsarProducerApplicationTest {
         });
     }
 
-
     public static void customer() throws PulsarClientException {
         PulsarClient client = PulsarClient.builder().serviceUrl(SERVICE_URL).build();
         Consumer consumer = client.newConsumer().topic("my-tenant/my-namespace/my-topic").subscriptionName("my-subscription").subscribe();
@@ -82,8 +65,6 @@ class PulsarProducerApplicationTest {
             }
         }
     }
-
-
 
     // API的方式操作新增/删除租户
     public static void addTant() throws PulsarAdminException, PulsarClientException {
@@ -113,7 +94,6 @@ class PulsarProducerApplicationTest {
         pulsarAdmin.close();
     }
 
-
     //API方式操作新增/输出Namespace
     public static void addNameSpace() throws PulsarAdminException, PulsarClientException {
 
@@ -137,8 +117,6 @@ class PulsarProducerApplicationTest {
         // 3.关闭管理对象
         pulsarAdmin.close();
     }
-
-    //API方式操作TOPIC
 
     public static void topicTest() throws PulsarAdminException, PulsarClientException {
 
@@ -185,5 +163,19 @@ class PulsarProducerApplicationTest {
 
         // 3.关闭管理对象
         pulsarAdmin.close();
+    }
+
+    //API方式操作TOPIC
+
+    @Test
+    public void test1() throws PulsarClientException {
+        Map<String, Object> map = new HashMap<>();
+        map.put("user_id", 123);
+        map.put("item_id", 4444);
+        map.put("behavior", "aaa");
+
+        String jsonString = JSON.toJSONString(map);
+        MessageId send = template.send(Topic.testTop2, jsonString);
+        System.out.println("send = " + send);
     }
 }

@@ -5,7 +5,6 @@ import cn.hutool.core.text.csv.CsvUtil;
 import cn.hutool.core.text.csv.CsvWriteConfig;
 import cn.hutool.core.text.csv.CsvWriter;
 import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.json.JSONUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

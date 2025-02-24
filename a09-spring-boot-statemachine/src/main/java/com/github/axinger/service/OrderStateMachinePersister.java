@@ -18,7 +18,8 @@ public class OrderStateMachinePersister implements StateMachinePersist<OrderStat
 
     /**
      * 将状态机的上下文信息写入持久化存储
-     * @param context 状态机的上下文信息
+     *
+     * @param context    状态机的上下文信息
      * @param contextObj 上下文对象标识
      * @throws Exception 写入过程中可能出现的异常
      */
@@ -29,6 +30,7 @@ public class OrderStateMachinePersister implements StateMachinePersist<OrderStat
 
     /**
      * 从持久化存储中读取状态机的上下文信息
+     *
      * @param contextObj 上下文对象标识
      * @return 状态机的上下文信息
      * @throws Exception 读取过程中可能出现的异常

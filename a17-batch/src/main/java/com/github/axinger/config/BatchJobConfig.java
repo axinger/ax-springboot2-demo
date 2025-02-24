@@ -106,8 +106,8 @@
 //                .<User, User>chunk(2)
 /// /                .reader(new UserReader(userService))
 //                .reader(itemReader(null, null))
-////                .processor(userProcessor)
-////                .writer(userWriter)
+/// /                .processor(userProcessor)
+/// /                .writer(userWriter)
 //                .writer(itemWriter())
 //                .build();
 //    }

@@ -33,8 +33,11 @@ import java.util.Map;
 @RestController
 public class MinioController {
 
+    String DOWNLOAD_URL = "https://minio.com/";
     @Autowired
     private MinioTemplate minioTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * 上传文件,minio用 InputStream 方式
@@ -104,11 +107,6 @@ public class MinioController {
     public Result<?> downloadByMinio(String bucketName, String fileName, String path) {
         return Result.ok(minioTemplate.writeToPath(bucketName, fileName, path));
     }
-
-    @Autowired
-    private RestTemplate restTemplate;
-
-    String DOWNLOAD_URL = "https://minio.com/";
 
     @GetMapping("/v1/file/download3/{fileId}")
     public void download3(@PathVariable("fileId") String fileId, HttpServletResponse response) {

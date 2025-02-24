@@ -18,10 +18,10 @@ import java.util.concurrent.TimeUnit;
 public class PulsarProducer {
 
     @Autowired
-    private PulsarTemplate<Map<String,Object>> template;
+    private PulsarTemplate<Map<String, Object>> template;
 
 
-    public void send(Map<String,Object> message) {
+    public void send(Map<String, Object> message) {
         try {
 //            String jsonString = JSON.toJSONString(message);
 
@@ -44,7 +44,7 @@ public class PulsarProducer {
     public void deliverAfter() {
 
         try {
-            Map<String,Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("date", LocalDateTimeUtil.format(LocalDateTime.now(), "yyyy-MM-dd HH:mm:ss"));
             map.put("data", "发送延迟消息");
 

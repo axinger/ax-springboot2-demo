@@ -2,12 +2,8 @@ package com.github.axinger.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Arrays;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Objects;
 
 @SuppressWarnings("all")
@@ -37,7 +33,7 @@ public class UtilTest {
 
     @Test
     void test2() {
-        String  str = null;
+        String str = null;
 
         /// 默认值
         boolean b = Objects.nonNull(str);
@@ -48,7 +44,7 @@ public class UtilTest {
 
     @Test
     void test3() {
-        String  str = null;
+        String str = null;
         boolean empty = StringUtils.isEmpty(str);
         boolean noneEmpty = StringUtils.isNoneEmpty(str);
         boolean notBlank = StringUtils.isNotBlank(str);
@@ -75,7 +71,6 @@ public class UtilTest {
         System.out.println("nullOrEmpty = " + nullOrEmpty);
 
 
-
         // 定义一些要检查的对象
         String obj1 = "Hello";
         String obj2 = null;
@@ -88,7 +83,7 @@ public class UtilTest {
         boolean anyNull = Arrays.asList(objects).stream().anyMatch(Objects::isNull);
 
         ///
-        boolean isNullOrEmpty = Arrays.isNullOrEmpty(new String[]{"1", "2",null});
+        boolean isNullOrEmpty = Arrays.isNullOrEmpty(new String[]{"1", "2", null});
         System.out.println("isNullOrEmpty = " + isNullOrEmpty);
 
 //        StringUtils.isEmpty(null) = true
@@ -112,8 +107,9 @@ public class UtilTest {
 //        StringUtils.isAnyEmpty("foo", "bar") = false
 
     }
+
     @Test
     void test4() {
-        String  str = "";
+        String str = "";
     }
 }

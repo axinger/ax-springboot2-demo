@@ -2,7 +2,6 @@ package com.github.axinger.util;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.verification.Only;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -155,6 +154,7 @@ public class ArrayUtilsTests {
 //        输出：3
 
     }
+
     @Test
     void test13() {
         List<String> list = Arrays.asList("1", "2", "3", "1", "1", "2");

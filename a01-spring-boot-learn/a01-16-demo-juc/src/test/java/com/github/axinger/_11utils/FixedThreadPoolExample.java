@@ -1,6 +1,8 @@
 package com.github.axinger._11utils;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+
 //使用 Executors.newFixedThreadPool(10) 可以限制线程的总数为 10。
 //
 //提交 100 个任务时，线程池会依次执行这些任务，最多同时执行 10 个任务。

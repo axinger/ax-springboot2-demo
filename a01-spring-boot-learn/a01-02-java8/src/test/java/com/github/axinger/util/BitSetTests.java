@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.BitSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 // java.util.BitSet，字面意思是位集合，含义是位图，
 public class BitSetTests {

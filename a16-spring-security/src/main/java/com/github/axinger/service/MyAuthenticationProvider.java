@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +16,7 @@ import java.util.Collection;
 
 /**
  * 实现自己的AuthenticationProvider类，用来自定义用户校验机制
+ *
  * @author zhoukebo
  * @date 2018/9/5
  */
@@ -24,7 +24,7 @@ import java.util.Collection;
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private  UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -52,7 +52,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
 //    @Override
 //    public boolean supports(Class<?> authentication) {
-////      这里直接改成retrun true;表示是支持这个执行
+
+    /// /      这里直接改成retrun true;表示是支持这个执行
 //        return true;
 //    }
 
@@ -60,7 +61,6 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 //    public boolean supports(Class<?> authentication) {
 //        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 //    }
-
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);

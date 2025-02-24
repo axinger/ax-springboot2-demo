@@ -142,9 +142,9 @@
 /// /                .processor(userProcessor)
 /// /                .writer(userWriter)
 //                .writer(itemWriter())
-////                .listener(itemWriteListener()) // 注册监听器
-////                .transactionManager(transactionManager())  // 事务管理器
-////                .transactionManager(platformTransactionManager)
+/// /                .listener(itemWriteListener()) // 注册监听器
+/// /                .transactionManager(transactionManager())  // 事务管理器
+/// /                .transactionManager(platformTransactionManager)
 //                .build();
 //    }
 //

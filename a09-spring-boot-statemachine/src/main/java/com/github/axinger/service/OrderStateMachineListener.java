@@ -2,7 +2,6 @@ package com.github.axinger.service;
 
 import com.github.axinger.model.OrderEvent;
 import com.github.axinger.model.OrderState;
-import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.listener.StateMachineListenerAdapter;
 import org.springframework.statemachine.state.State;
 import org.springframework.stereotype.Component;
@@ -13,8 +12,9 @@ public class OrderStateMachineListener extends StateMachineListenerAdapter<Order
 
     /**
      * 当状态机的状态发生变化时，此方法会被调用
+     *
      * @param from 变化前的状态
-     * @param to 变化后的状态
+     * @param to   变化后的状态
      */
     @Override
     public void stateChanged(State<OrderState, OrderEvent> from, State<OrderState, OrderEvent> to) {

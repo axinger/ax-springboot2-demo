@@ -13,7 +13,7 @@ public class HomeController {
     @GetMapping("/")
     public Object index() {
         Map<String, Object> result = new HashMap<>();
-        result.put("1","首页");
+        result.put("1", "首页");
         return result;
     }
 
