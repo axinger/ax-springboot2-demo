@@ -1,13 +1,16 @@
 package com.github.axinger;
 
+import cn.hutool.core.date.Week;
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.func.LambdaUtil;
+import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 
 
 public class EnumTest {
@@ -38,6 +41,11 @@ public class EnumTest {
         System.out.println("e = " + e);
     }
 
+    @Test
+    void test3() {
+        EnumSet<Week> weeks = EnumSet.allOf(Week.class);
+        System.out.println("weeks = " + weeks);
+    }
     @Getter
     enum Week {
         NONE("", -1),

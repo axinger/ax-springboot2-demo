@@ -5,14 +5,21 @@ import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResponseExtractor;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -45,7 +52,6 @@ public class MinioController {
         String patchName = FilePathUtil.getFileName(fileName);
         Object upload = minioTemplate.uploadStream(inputStream, bucketName, patchName, contentType);
         return Result.ok(upload);
-
     }
 
     /**
@@ -67,9 +73,12 @@ public class MinioController {
         minioTemplate.download(response, bucket, fileName);
     }
 
-    @GetMapping("/bigDownload/{bucket}/{fileName}")
-    public ResponseEntity<StreamingResponseBody> downloadFile(@PathVariable String bucket,
-                                                              @PathVariable String fileName) {
+    /**
+     * 流失下载文件
+     */
+    @GetMapping("/downloadStreaming/{bucket}/{fileName}")
+    public ResponseEntity<StreamingResponseBody> downloadStreaming(@PathVariable String bucket,
+                                                                   @PathVariable String fileName) {
         return minioTemplate.downloadStreaming(bucket, fileName);
     }
 
@@ -79,7 +88,7 @@ public class MinioController {
      * @return url
      */
     @PostMapping("/minio/fileUrl")
-    public Result downloadByMinio(String bucketName, String fileName) {
+    public Result<?> downloadByMinio(String bucketName, String fileName) {
         String url = minioTemplate.fileUrl(bucketName, fileName);
         return Result.ok(url);
     }
@@ -92,8 +101,29 @@ public class MinioController {
      * @return
      */
     @PostMapping("/minio/writeToPath/path")
-    public Result downloadByMinio(String bucketName, String fileName, String path) {
+    public Result<?> downloadByMinio(String bucketName, String fileName, String path) {
         return Result.ok(minioTemplate.writeToPath(bucketName, fileName, path));
     }
 
+    @Autowired
+    private RestTemplate restTemplate;
+
+    String DOWNLOAD_URL = "https://minio.com/";
+
+    @GetMapping("/v1/file/download3/{fileId}")
+    public void download3(@PathVariable("fileId") String fileId, HttpServletResponse response) {
+        log.info("download file:{}", fileId);
+        Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("fileId", fileId);
+        ResponseExtractor<Boolean> responseExtractor = clientHttpResponse -> {
+            // 设置响应头，直接用第三方文件服务的响应头
+            HttpHeaders headers = clientHttpResponse.getHeaders();
+            headers.forEach((key, value) -> response.setHeader(key, value.get(0)));
+            // 收到响应输入流即时拷贝写出到响应输出流中: inputStream -> outputStream
+            StreamUtils.copy(clientHttpResponse.getBody(), response.getOutputStream());
+            return true;
+        };
+        Boolean execute = restTemplate.execute(DOWNLOAD_URL, HttpMethod.GET, null, responseExtractor, uriVariables);
+        log.info("download file success?{}", execute);
+    }
 }

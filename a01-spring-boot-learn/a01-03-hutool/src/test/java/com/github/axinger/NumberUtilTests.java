@@ -1,5 +1,7 @@
 package com.github.axinger;
 
+import cn.hutool.core.math.MathUtil;
+import cn.hutool.core.math.Money;
 import cn.hutool.core.util.NumberUtil;
 import org.junit.jupiter.api.Test;
 
@@ -76,4 +78,14 @@ public class NumberUtilTests {
         System.out.println("i2 = " + i2);
     }
 
+    @Test
+    void test10() {
+
+
+        Money money = new Money();
+        money.setAmount(new BigDecimal(1));
+
+        long cent = money.getCent();
+        System.out.println("cent = " + cent);
+    }
 }

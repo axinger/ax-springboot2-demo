@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 import cn.hutool.core.lang.Console;
+import cn.hutool.core.lang.func.LambdaUtil;
 import cn.hutool.core.util.EnumUtil;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import java.util.Map;
 public class EnumUtilTests {
     @Test
     void test1() {
-        List<String> names = EnumUtil.getNames(TestEnum.class);
+        List<String> names = EnumUtil.getNames(Gender.class);
 //结果：[TEST1, TEST2, TEST3]
 
         Console.log(names);
@@ -20,10 +21,10 @@ public class EnumUtilTests {
     }
 
     //定义枚举
-//    public enum TestEnum{
+//    public enum Gender{
 //        TEST1("type1"), TEST2("type2"), TEST3("type3");
 //
-//        private TestEnum(String type) {
+//        private Gender(String type) {
 //            this.type = type;
 //        }
 //
@@ -36,64 +37,55 @@ public class EnumUtilTests {
 
     @Test
     void test2() {
-//        List<Object> types = EnumUtil.getFieldValues(TestEnum.class, "type");
-        List<Object> types = EnumUtil.getFieldValues(TestEnum.class, "type1");
-//结果：[type1, type2, type3]
 
+        // 指定属性的值
+        List<Object> types = EnumUtil.getFieldValues(Gender.class, LambdaUtil.getFieldName(Gender::getCode));
+//结果：types = [1, 2, 3]
         System.out.println("types = " + types);
+
+        List<Object> fieldValues = EnumUtil.getFieldValues(Gender.class, LambdaUtil.getFieldName(Gender::getAlias));
+        System.out.println("fieldValues = " + fieldValues);
     }
 
     @Test
     void test3() {
-        Map<String, TestEnum> enumMap = EnumUtil.getEnumMap(TestEnum.class);
+        Map<String, Gender> enumMap = EnumUtil.getEnumMap(Gender.class);
         System.out.println("enumMap = " + enumMap);
 
-        TestEnum test1 = enumMap.get("TEST1");// 结果为：TestEnum.TEST1
+        Gender test1 = enumMap.get("FEMALE");// 结果为：Gender.FEMALE
         System.out.println("test1 = " + test1);
 
     }
 
     @Test
     void test4() {
-        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(TestEnum.class, "type");
-        Object test1 = enumMap.get("TEST1");// 结果为：type1
+        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(Gender.class,  LambdaUtil.getFieldName(Gender::getCode));
+        Object test1 = enumMap.get("MALE");// 结果为：type1
         System.out.println("test1 = " + test1);
     }
 
     @Test
     void test5() {
-        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(TestEnum.class, "age");
+        Map<String, Object> enumMap = EnumUtil.getNameFieldMap(Gender.class,  LambdaUtil.getFieldName(Gender::getAlias));
         System.out.println("enumMap = " + enumMap);
 
 
-        Object test1 = enumMap.get("TEST1");// 结果为：type1
+        Object test1 = enumMap.get("MALE");// 结果为：type1
         System.out.println("test1 = " + test1);
-        System.out.println("TestEnum.TEST1.name = " + TestEnum.TEST1.name());
-        Object o = enumMap.get(TestEnum.TEST1.name());
+        System.out.println("Gender.TEST1.name = " + Gender.MALE.name());
+        Object o = enumMap.get(Gender.MALE.name());
         System.out.println("o = " + o);
     }
 
     @Test
     void test6() {
-//        EnumUtil.get(TestEnum.class,"name")
-        List<String> fieldNames = EnumUtil.getFieldNames(TestEnum.class);
+//        EnumUtil.get(Gender.class,"name")
+        List<String> fieldNames = EnumUtil.getFieldNames(Gender.class);
         System.out.println("fieldNames = " + fieldNames);
 
-        LinkedHashMap<String, TestEnum> enumMap = EnumUtil.getEnumMap(TestEnum.class);
+        LinkedHashMap<String, Gender> enumMap = EnumUtil.getEnumMap(Gender.class);
         System.out.println("enumMap = " + enumMap);
     }
 
-    //定义枚举
-    @Getter
-    public enum TestEnum {
-        TEST1("1", "A"), TEST2("2", "B"), TEST3("3", "C");
 
-        private final String type;
-        private final String age;
-
-        private TestEnum(String type, String age) {
-            this.type = type;
-            this.age = age;
-        }
-    }
 }
