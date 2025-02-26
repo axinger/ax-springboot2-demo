@@ -1,12 +1,12 @@
 package com.github.axinger.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.axinger.domain.SysPersonEntity;
 import com.github.axinger.injector.MyBaseMapper;
+import com.github.axinger.vo.SysPersonVO;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
@@ -42,41 +42,43 @@ public interface SysPersonMapper extends MyBaseMapper<SysPersonEntity> {
     IPage<SysPersonEntity> sqlSegment(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> wrapper, Page<Object> page);
 
     /**
-     * ibatis 语法
-     *
-     * @param handler
+     * @param handler handler
+     * @Select ibatis 语法
      */
     @Select("select * from sys_person")
-    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 500)
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 20)
     @ResultType(SysPersonEntity.class)
-    void streamSelect(ResultHandler<SysPersonEntity> handler);
+    void selectStream(ResultHandler<SysPersonEntity> handler);
+
+    ///  ${ew.customSqlSegment} 会直接在前面添加 where
+    @Select("select * from sys_person ${ew.customSqlSegment}")
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 20)
+    @ResultType(SysPersonEntity.class)
+    void selectStreamWrapper(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> wrapper, ResultHandler<SysPersonEntity> handler);
 
     @Select("select * from sys_person")
-    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 500)
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 20)
     @ResultType(SysPersonEntity.class)
     Cursor<SysPersonEntity> cursorSelect();
 
 
-    ///  ${ew.customSqlSegment} 会直接在前面添加 where
-    @Select("select * from sys_person ${ew.customSqlSegment}")
-    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 2)
-    @ResultType(SysPersonEntity.class)
-    void getBigData(@Param(Constants.WRAPPER) QueryWrapper<SysPersonEntity> wrapper, ResultHandler<SysPersonEntity> handler);
+    @Select("select * from sys_person")
+    List<SysPersonVO> selectListWihVO();
 
 
     ///  1、${ew.customSqlSegment} 会直接在前面添加 where
     @Select("select * from sys_person ${ew.customSqlSegment}")
-    List<SysPersonEntity> getCustomSqlSegment(@Param(Constants.WRAPPER) QueryWrapper<SysPersonEntity> queryWrapper);
+    List<SysPersonEntity> getCustomSqlSegment(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> queryWrapper);
 
 
     ///  2、${ew.sqlSegment} 就只有条件语句
     @Select("select * from sys_person where ${ew.sqlSegment}")
-    List<SysPersonEntity> getSqlSegment(@Param(Constants.WRAPPER) QueryWrapper<SysPersonEntity> queryWrapper);
+    List<SysPersonEntity> getSqlSegment(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> queryWrapper);
 
 
     ///  3、${ew.sqlSelect} 就是 queryWrapper.select(****) 你所定义需要查询的字段
     @Select("select ${ew.sqlSelect} from sys_person ")
-    List<SysPersonEntity> getSqlSelect(@Param(Constants.WRAPPER) QueryWrapper<SysPersonEntity> queryWrapper);
+    List<SysPersonEntity> getSqlSelect(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> queryWrapper);
 }
 
 

@@ -4,6 +4,7 @@ import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
@@ -16,6 +17,7 @@ import com.github.axinger.config.MyTableNameHandler;
 import com.github.axinger.config.MyTenantLineHandler;
 import com.github.axinger.domain.SysPersonEntity;
 import com.github.axinger.mapper.SysPersonMapper;
+import com.github.axinger.vo.SysPersonVO;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -106,12 +108,25 @@ class SysPersonServiceTest {
     @Test
     void test_stream() throws InterruptedException {
 
-        sysPersonMapper.streamSelect(val -> {
+        sysPersonMapper.selectStream(val -> {
             SysPersonEntity entity = val.getResultObject();
             System.out.println("entity = " + entity);
         });
 
         TimeUnit.SECONDS.sleep(10);
+    }
+
+    @Test
+    void test_findAll_stream2() {
+        LambdaQueryWrapper<SysPersonEntity> wrapper = Wrappers.<SysPersonEntity>lambdaQuery()
+                .ge(SysPersonEntity::getAge, 10);
+
+        sysPersonMapper.selectStreamWrapper(wrapper, val -> {
+            SysPersonEntity resultObject = val.getResultObject();
+            int resultCount = val.getResultCount();
+            System.out.println("resultCount = " + resultCount);
+            System.out.println("resultObject = " + resultObject);
+        });
     }
 
     @Test
@@ -133,6 +148,21 @@ class SysPersonServiceTest {
         List<SysPersonEntity> list = sysPersonMapper.myFindAll();
         System.out.println("list = " + list);
     }
+
+    /// 自定义返回对象
+    @Test
+    void test_findAll_vo() {
+
+        List<SysPersonVO> list = sysPersonMapper.selectListWihVO();
+        System.out.println("list = " + list);
+    }
+
+    @Test
+    void test_findAll_vo2() {
+        SysPersonVO build = SysPersonVO.builder().build();
+        System.out.println("build = " + build);
+    }
+
 
     @Test
     void test() {

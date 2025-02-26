@@ -30,7 +30,7 @@ public class ExcelController {
             }
         };
 
-        sysPersonMapper.streamSelect(resultHandler);
+        sysPersonMapper.selectStream(resultHandler);
         StreamExportUtil.download("hello", resultHandler);
         // ExcelUtils.writeExcel(response,BookEntity.class,"123","456");
 
