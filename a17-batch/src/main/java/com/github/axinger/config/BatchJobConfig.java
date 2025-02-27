@@ -118,15 +118,15 @@
 //        return new Par2();
 //    }
 //
-////    @Bean
-////    public TaskExecutor taskExecutor() {
-////        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-////        executor.setCorePoolSize(4); // 配置线程池大小
-////        executor.setMaxPoolSize(4);
-////        executor.setQueueCapacity(10);
-////        executor.afterPropertiesSet();
-////        return executor;
-////    }
+/// /    @Bean
+/// /    public TaskExecutor taskExecutor() {
+/// /        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+/// /        executor.setCorePoolSize(4); // 配置线程池大小
+/// /        executor.setMaxPoolSize(4);
+/// /        executor.setQueueCapacity(10);
+/// /        executor.afterPropertiesSet();
+/// /        return executor;
+/// /    }
 //
 //
 //    @Bean

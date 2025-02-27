@@ -10,8 +10,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -25,12 +25,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * https://blog.csdn.net/weixin_40461281/article/details/82011670
  */
-@SpringBootTest
 @Slf4j
-@CacheConfig(cacheNames = "demo13:user")
+@SpringBootTest
 public class RedisTemplateTests {
 
     private static final String SERIAL_NUM = "order:serialNo:";
+
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -38,10 +38,15 @@ public class RedisTemplateTests {
     private RedisTemplate<String, User> redisTemplateList;
     @Autowired
     private RedisTemplate<String, User> redisTemplateUser;
+
     @Autowired
     private RedisTemplate<String, Map<String, Object>> redisTemplateMap;
+
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Qualifier("bytesRedisTemplate")
+    private RedisTemplate<String, byte[]> bytesRedisTemplate;
 
     private User getUser(Integer id) {
         final User.Book book = User.Book.builder()

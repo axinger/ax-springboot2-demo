@@ -7,7 +7,12 @@ spring:
   application:
     name: redis-demo
   jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy年MM月dd日 HH:mm:ss
+  datasource:
+    url: jdbc:mysql://hadoop102:3306/ax_test1?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
   cache:
     type: redis
     redis:

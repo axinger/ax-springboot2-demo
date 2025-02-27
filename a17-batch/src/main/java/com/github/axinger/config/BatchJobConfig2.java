@@ -158,8 +158,8 @@
 //    public PartitionHandler partitionHandler() {
 //        TaskExecutorPartitionHandler handler = new TaskExecutorPartitionHandler();
 //        handler.setGridSize(3);
-////        handler.setTaskExecutor(new SimpleAsyncTaskExecutor("多线程-"));
-////        handler.setTaskExecutor(taskExecutor());
+/// /        handler.setTaskExecutor(new SimpleAsyncTaskExecutor("多线程-"));
+/// /        handler.setTaskExecutor(taskExecutor());
 //        handler.setStep(subStep());
 //        try {
 //            handler.afterPropertiesSet();

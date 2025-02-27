@@ -35,7 +35,7 @@ mybatis-plus:
   #  object-wrapper-factory: com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志, info级别的,也可以直接让 对应的mapper debug级别
-#    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  #    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
   global-config:
     db-config:
       logic-delete-field: deleted # 全局逻辑删除的实体字段名

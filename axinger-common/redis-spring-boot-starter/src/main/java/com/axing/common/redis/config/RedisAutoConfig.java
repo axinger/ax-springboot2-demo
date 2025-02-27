@@ -143,4 +143,20 @@ public class RedisAutoConfig {
     }
 
 
+    @Bean(name = "bytesRedisTemplate")
+    public RedisTemplate<String, byte[]> bytesRedisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, byte[]> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(connectionFactory);
+        // 设置key和value的序列化规则
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(RedisSerializer.byteArray());
+
+        // hash
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(RedisSerializer.byteArray());
+
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+
 }

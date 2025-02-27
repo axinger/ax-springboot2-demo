@@ -10,9 +10,7 @@ import lombok.SneakyThrows;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -43,8 +41,7 @@ public class OssTemplateImpl implements OssTemplate {
     @Override
     @SneakyThrows
     public List<Bucket> getAllBuckets() {
-        List<Bucket> buckets = amazonS3.listBuckets();
-        return buckets;
+        return amazonS3.listBuckets();
     }
 
     /**
@@ -70,8 +67,8 @@ public class OssTemplateImpl implements OssTemplate {
      */
     @Override
     @SneakyThrows
-    public void putObject(String bucketName, String objectName, InputStream stream, String contextType) {
-        putObject(bucketName, objectName, stream, stream.available(), contextType);
+    public PutObjectResult putObject(String bucketName, String objectName, InputStream stream, String contextType) {
+        return putObject(bucketName, objectName, stream, stream.available(), contextType);
     }
 
     /**
@@ -84,8 +81,8 @@ public class OssTemplateImpl implements OssTemplate {
      */
     @Override
     @SneakyThrows
-    public void putObject(String bucketName, String objectName, InputStream stream) {
-        putObject(bucketName, objectName, stream, stream.available(), "application/octet-stream");
+    public PutObjectResult putObject(String bucketName, String objectName, InputStream stream) {
+        return putObject(bucketName, objectName, stream, stream.available(), "application/octet-stream");
     }
 
     /**
@@ -98,8 +95,7 @@ public class OssTemplateImpl implements OssTemplate {
     @Override
     @SneakyThrows
     public S3Object getObject(String bucketName, String objectName) {
-        S3Object object = amazonS3.getObject(bucketName, objectName);
-        return object;
+        return amazonS3.getObject(bucketName, objectName);
     }
 
     /**
@@ -113,11 +109,8 @@ public class OssTemplateImpl implements OssTemplate {
     @Override
     @SneakyThrows
     public String getObjectURL(String bucketName, String objectName, Integer expires) {
-        Date date = new Date();
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_MONTH, expires);
-        URL url = amazonS3.generatePresignedUrl(bucketName, objectName, calendar.getTime());
+        Date expiration = new Date(System.currentTimeMillis() + expires); // 1小时后过期
+        URL url = amazonS3.generatePresignedUrl(bucketName, objectName, expiration);
         return url.toString();
     }
 
@@ -166,8 +159,16 @@ public class OssTemplateImpl implements OssTemplate {
         objectMetadata.setContentLength(size);
         objectMetadata.setContentType(contextType);
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+
+
         // 上传
-        return amazonS3.putObject(bucketName, objectName, byteArrayInputStream, objectMetadata);
+        PutObjectResult putObjectResult = amazonS3.putObject(bucketName, objectName, byteArrayInputStream, objectMetadata);
+
+        // 或使用 S3 客户端内置方法生成路径（需确保权限）
+        String s3Url = amazonS3.getUrl(bucketName, objectName).toString();
+        System.out.println("S3 生成的路径: " + s3Url);
+
+        return putObjectResult;
 
     }
 }

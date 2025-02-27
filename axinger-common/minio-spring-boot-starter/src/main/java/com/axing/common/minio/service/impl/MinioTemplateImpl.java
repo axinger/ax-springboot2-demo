@@ -208,6 +208,7 @@ public class MinioTemplateImpl implements MinioTemplate {
             UploadFileBO bo = new UploadFileBO();
             bo.setBucket(response.bucket());
             bo.setObject(response.object());
+            bo.setObject(response.region());
             log.info("上传文件成功 = {}", bo);
             return bo;
         } catch (MinioException e) {

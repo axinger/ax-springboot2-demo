@@ -1,6 +1,7 @@
 package com.github.axinger.oos.service;
 
 import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
@@ -39,7 +40,7 @@ public interface OssTemplate {
      * @param contextType 文件类型
      * @throws Exception
      */
-    void putObject(String bucketName, String objectName, InputStream stream, String contextType) throws Exception;
+    PutObjectResult putObject(String bucketName, String objectName, InputStream stream, String contextType) throws Exception;
 
     /**
      * 上传文件
@@ -49,7 +50,7 @@ public interface OssTemplate {
      * @param stream     文件流
      * @throws Exception
      */
-    void putObject(String bucketName, String objectName, InputStream stream) throws Exception;
+    PutObjectResult putObject(String bucketName, String objectName, InputStream stream) throws Exception;
 
     /**
      * 获取文件

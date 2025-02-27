@@ -1,5 +1,10 @@
 package com.github.axinger.config;
 
+import com.axing.common.json.bean.JsonProperties;
+import com.axing.common.json.model.ObjectMapperFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -12,6 +17,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -24,6 +30,8 @@ import java.time.Duration;
 @EnableCaching
 public class RedisConfig {
 
+    @Autowired
+    private JsonProperties jsonProperties;
 
     /**
      * 自定义key规则
@@ -56,19 +64,19 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(factory);
 
         // 序列号key value
-        redisTemplate.setKeySerializer(RedisSerializer.string());
-        redisTemplate.setValueSerializer(RedisSerializer.json());
-
-        redisTemplate.setHashKeySerializer(RedisSerializer.string());
-        redisTemplate.setHashValueSerializer(RedisSerializer.json());
-
-
 //        redisTemplate.setKeySerializer(new StringRedisSerializer());
-//        redisTemplate.setValueSerializer(RedisSerializer.byteArray());
+//        redisTemplate.setValueSerializer(this.valueSerializer());
 //
-//        // hash
 //        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-//        redisTemplate.setHashValueSerializer(RedisSerializer.byteArray());
+//        redisTemplate.setHashValueSerializer(this.valueSerializer());
+
+
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(RedisSerializer.byteArray());
+
+        // hash
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(RedisSerializer.byteArray());
 
         redisTemplate.afterPropertiesSet();
 
@@ -84,8 +92,8 @@ public class RedisConfig {
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         // 配置序列化（解决乱码的问题）,
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.string()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.json()))
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(this.keySerializer()))
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(this.valueSerializer()))
                 .disableCachingNullValues()
                 // 创建默认缓存配置对象、 将@Cacheable缓存key值时默认会给value或cacheNames后加上双冒号 改为 单冒号
                 .computePrefixWith(name -> name + ":");
@@ -98,6 +106,25 @@ public class RedisConfig {
         return new StringRedisSerializer();
     }
 
+
+    @Bean
+    public RedisSerializer<Object> valueSerializer() {
+
+//        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
+
+        ObjectMapper objectMapper = ObjectMapperFactory.factory(jsonProperties);
+
+
+//        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
+        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+
+        return new GenericJackson2JsonRedisSerializer(objectMapper);
+
+//        return new FastJsonRedisSerializer<>(Object.class);
+
+//        return new GenericToStringSerializer<>(Object.class);
+
+    }
 
     @Bean
     public RedisMessageListenerContainer redisMessageListenerContainer(RedisConnectionFactory factory) {

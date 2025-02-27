@@ -3,6 +3,7 @@ package com.github.axinger.model;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,14 @@ public class User implements Serializable {
     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
-
-    private List<Book> books;
+    //@JsonSerialize(using = LocalDateTimeSerializer.class)
+    //@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    // @Transient
+    @Builder.Default
+    private LocalDateTime localDateTime = LocalDateTime.now();
+    private List<User.Book> books;
 
     @Data
     @Builder

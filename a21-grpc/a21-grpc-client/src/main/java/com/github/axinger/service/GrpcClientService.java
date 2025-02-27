@@ -2,7 +2,6 @@ package com.github.axinger.service;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
-import com.github.axinger.api.*;
 import com.github.axinger.api.ResponseOuterClass.Response;
 import com.github.axinger.api.ResponsePayloadOuterClass.ResponsePayload;
 import com.github.axinger.api.StatusCodeOuterClass.StatusCode;

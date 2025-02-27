@@ -341,12 +341,12 @@
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>okhttp</artifactId>
-                        <groupId>com.squareup.okhttp3</groupId>
-                    </exclusion>
-                </exclusions>
+                <!--                <exclusions>-->
+                <!--                    <exclusion>-->
+                <!--                        <artifactId>okhttp</artifactId>-->
+                <!--                        <groupId>com.squareup.okhttp3</groupId>-->
+                <!--                    </exclusion>-->
+                <!--                </exclusions>-->
             </dependency>
 
             <dependency>
