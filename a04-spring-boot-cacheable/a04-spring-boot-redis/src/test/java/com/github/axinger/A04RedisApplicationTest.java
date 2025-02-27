@@ -3,6 +3,7 @@ package com.github.axinger;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.github.axinger.model.Order;
 import com.github.axinger.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -24,11 +25,13 @@ public class A04RedisApplicationTest {
     private static final String SERIAL_NUM = "order:serialNo:";
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private RedisTemplate<String, User> redisTemplateUser;
 
+    @Autowired
+    private RedisTemplate<String, Order> redisTemplateOrder;
 
     @Test
     void test() {
@@ -138,6 +141,48 @@ public class A04RedisApplicationTest {
         // 然后把 时间戳和优化后的 ID 拼接
         String code = StrUtil.format("{}-{}", currentDate, value);
         System.out.println("code = " + code);
+    }
+
+    @Test
+    public void testOrder() {
+        final String key = "test-order:1";
+        Order order = Order.builder()
+                .id("1")
+                .name("jim")
+                .dateTime(LocalDateTime.now())
+                .build();
+        redisTemplate.opsForValue().set(key, order);
+    }
+
+    @Test
+    public void testOrder2() {
+        final String key = "test-order:1";
+
+        Object o = redisTemplate.opsForValue().get(key);
+        System.out.println("o = " + o);
+        Class<?> aClass = o.getClass();
+        System.out.println("aClass = " + aClass);
+
+        if (o instanceof Order order) {
+            System.out.println("order = " + order);
+        }
+    }
+
+    @Test
+    public void testOrder21() {
+        final String key = "test-order:2";
+        Order order = Order.builder()
+                .id("1")
+                .name("jim")
+                .dateTime(LocalDateTime.now())
+                .build();
+        redisTemplateOrder.opsForValue().set(key, order);
+
+        Object order1 = redisTemplateOrder.opsForValue().get(key);
+        System.out.println("order1 = " + order1);
+        if (order1 instanceof Order order2) {
+            System.out.println("order2 = " + order2);
+        }
     }
 
 

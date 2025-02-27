@@ -1,9 +1,9 @@
 package com.github.axinger.config;
 
 import com.axing.common.json.bean.JsonProperties;
-import com.axing.common.json.model.ObjectMapperFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,7 +17,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -64,19 +64,12 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(factory);
 
         // 序列号key value
-//        redisTemplate.setKeySerializer(new StringRedisSerializer());
-//        redisTemplate.setValueSerializer(this.valueSerializer());
-//
-//        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-//        redisTemplate.setHashValueSerializer(this.valueSerializer());
-
-
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(RedisSerializer.byteArray());
+        redisTemplate.setValueSerializer(this.valueSerializer());
 
-        // hash
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(RedisSerializer.byteArray());
+        redisTemplate.setHashValueSerializer(this.valueSerializer());
+
 
         redisTemplate.afterPropertiesSet();
 
@@ -111,18 +104,28 @@ public class RedisConfig {
     public RedisSerializer<Object> valueSerializer() {
 
 //        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
-
-        ObjectMapper objectMapper = ObjectMapperFactory.factory(jsonProperties);
-
-
-//        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
-        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
-
-        return new GenericJackson2JsonRedisSerializer(objectMapper);
+//
+//        ObjectMapper objectMapper = ObjectMapperFactory.factory(jsonProperties);
+//
+//
+////        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
+//        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+//
+//        return new GenericJackson2JsonRedisSerializer(objectMapper);
 
 //        return new FastJsonRedisSerializer<>(Object.class);
 
 //        return new GenericToStringSerializer<>(Object.class);
+
+        // 使用 Jackson2JsonRedisSerializer 序列化值
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+
+        // 解决 LocalDateTime 序列化问题
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule()); // 注册 Java 8 时间模块
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // 禁用时间戳格式
+        serializer.setObjectMapper(om);
+        return serializer;
 
     }
 

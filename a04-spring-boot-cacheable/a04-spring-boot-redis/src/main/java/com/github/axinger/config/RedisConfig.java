@@ -1,5 +1,8 @@
 package com.github.axinger.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -12,6 +15,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -57,10 +61,10 @@ public class RedisConfig {
 
         // 序列号key value
         redisTemplate.setKeySerializer(RedisSerializer.string());
-        redisTemplate.setValueSerializer(RedisSerializer.json());
+        redisTemplate.setValueSerializer(valueSerializer());
 
         redisTemplate.setHashKeySerializer(RedisSerializer.string());
-        redisTemplate.setHashValueSerializer(RedisSerializer.json());
+        redisTemplate.setHashValueSerializer(valueSerializer());
 
 
 //        redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -96,6 +100,34 @@ public class RedisConfig {
     @Bean
     public RedisSerializer<String> keySerializer() {
         return new StringRedisSerializer();
+    }
+
+    @Bean
+    public RedisSerializer<Object> valueSerializer() {
+
+//        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
+//
+//        ObjectMapper objectMapper = ObjectMapperFactory.factory(jsonProperties);
+//
+//
+////        // 将当前对象的数据类型也存入序列化的结果字符串中，以便反序列化
+//        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+//
+//        return new GenericJackson2JsonRedisSerializer(objectMapper);
+
+//        return new FastJsonRedisSerializer<>(Object.class);
+
+//        return new GenericToStringSerializer<>(Object.class);
+
+        // 使用 Jackson2JsonRedisSerializer 序列化值
+        Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        // 解决 LocalDateTime 序列化问题
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule()); // 注册 Java 8 时间模块
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // 禁用时间戳格式
+        serializer.setObjectMapper(om);
+        return serializer;
+
     }
 
 

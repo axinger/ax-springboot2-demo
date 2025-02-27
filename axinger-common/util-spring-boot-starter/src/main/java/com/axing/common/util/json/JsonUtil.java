@@ -41,7 +41,7 @@ public class JsonUtil {
 
         // 处理不同的时区偏移格式
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        // mapper.registerModule(new JavaTimeModule());
+//         mapper.registerModule(new JavaTimeModule());
     }
 
     /**
