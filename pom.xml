@@ -95,6 +95,7 @@
         <module>a06-spring-cloud</module>
         <module>a07-spring-cloud-alibaba</module>
         <module>a08-spring-boot-mapstruct</module>
+        <module>a09-spring-boot-statemachine</module>
         <module>a10-spring-boot-mq</module>
         <module>a11-spring-boot-swagger3</module>
         <module>a12-spring-boot-minio</module>
@@ -130,8 +131,6 @@
         <module>a21-grpc</module>
         <module>a39-liteflow</module>
         <module>axinger-config</module>
-        <module>a06-spring-cloud/feign-order</module>
-        <module>a09-spring-boot-statemachine</module>
     </modules>
 
     <dependencyManagement>

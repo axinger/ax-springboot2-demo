@@ -14,6 +14,7 @@
     <modules>
         <module>consul-order</module>
         <module>consul-payment</module>
+        <module>feign-order</module>
         <module>gateway-9527</module>
         <module>getaway-payment</module>
         <module>mq-stream-api</module>

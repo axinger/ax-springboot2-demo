@@ -17,6 +17,7 @@ public class AdminController {
 
     @GetMapping
     @Operation(summary = "管理信息", description = "管理信息")
+
     public Object data() {
         AdminVo adminVo = new AdminVo();
         adminVo.setPortList(Arrays.asList("add", "delete"));

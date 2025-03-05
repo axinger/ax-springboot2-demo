@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.axinger</groupId>
-        <artifactId>ax-springboot2-demo</artifactId>
+        <artifactId>a06-spring-cloud</artifactId>
         <version>2025.01.01-2.7</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>feign-order</artifactId>

@@ -1,5 +1,7 @@
 package com.github.axinger.bean;
 
+import cn.hutool.core.util.EnumUtil;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,16 +17,32 @@ public enum Gender {
     female(12, "女性");
 
 
-    private int id;
-    private String code;
+    private int code;
 
+    private String alias;
+
+    //使用@JsonCreator和@JsonValue注解来自定义序列化和反序列化的方式。
+    // 这样可以在枚举类中指定一个方法，用来将传入的字符串转换为对应的枚举值
     @JsonValue
-    public int getId() {
-        return id;
+    public int getCode() {
+        return code;
     }
+
+
+    @JsonCreator
+    public static Gender fromCode(int code) {
+
+//        return Arrays.stream(Gender.values())
+//                .filter(s -> s.code == code)
+//                .findFirst()
+//                .orElse(none);
+
+        return EnumUtil.getBy(Gender::getCode, code, Gender.none);
+    }
+
 
     @Override
     public String toString() {
-        return code;
+        return alias;
     }
 }

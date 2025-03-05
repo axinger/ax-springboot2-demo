@@ -32,7 +32,6 @@ public class FlowableDSConfig implements EngineConfigurator {
             if (dataSource instanceof DynamicRoutingDataSource dynamicRoutingDataSource) {
                 abstractEngineConfiguration.setDataSource(dynamicRoutingDataSource.getDataSource("db_flowable"));
             }
-
         }
     }
 

@@ -14,7 +14,7 @@ spring:
       datasource:
         db_ax_test:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://hadoop102:3306/ax_test?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://hadoop102:3306/ax_test1?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=CONVERT_TO_NULL&&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
           username: root
           password: 123456
 
