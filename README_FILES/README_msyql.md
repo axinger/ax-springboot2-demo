@@ -614,3 +614,35 @@ a表小于b的数据,exists优于in
 ```text
 https://zhuanlan.zhihu.com/p/307288925
 ```
+
+## 虚拟字段
+```sql
+CREATE TABLE `person` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `full_name` varchar(511) GENERATED ALWAYS AS (CONCAT(first_name, ' ', last_name)) VIRTUAL,
+  PRIMARY KEY (`id`)
+);
+```
+
+```text
+在 MySQL 中,5.1 版本 开始支持，分区表（Partitioned Table）是将一个大表按照某种规则拆分为多个物理子表的技术，
+逻辑上仍然是一个表。分区表可以显著提升查询性能和数据维护效率，尤其是在处理大数据量时
+```
+## 分区表
+```sql
+CREATE TABLE sales (
+    id INT NOT NULL AUTO_INCREMENT,
+    sale_date DATE NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    PRIMARY KEY (id, sale_date)
+)
+PARTITION BY RANGE (YEAR(sale_date)) (
+    PARTITION p0 VALUES LESS THAN (2020),
+    PARTITION p1 VALUES LESS THAN (2021),
+    PARTITION p2 VALUES LESS THAN (2022),
+    PARTITION p3 VALUES LESS THAN (2023),
+    PARTITION p4 VALUES LESS THAN MAXVALUE
+);
+```
