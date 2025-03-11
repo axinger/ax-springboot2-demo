@@ -94,16 +94,19 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
-            <version>1.24</version>
+            <version>1.27.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.graalvm.js/js -->
         <dependency>
             <groupId>org.graalvm.js</groupId>
             <artifactId>js</artifactId>
-            <version>23.1.0</version> <!-- 使用最新版本 -->
+            <version>24.1.2</version>
+            <type>pom</type>
         </dependency>
 
         <dependency>
