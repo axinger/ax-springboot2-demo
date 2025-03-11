@@ -175,8 +175,8 @@
 //    public Step masterStep() {
 //        return stepBuilderFactory.get("masterStep")
 //                .partitioner("masterP", partitioner())
-////                .gridSize(4) // 设置并发分区数量
-////                .taskExecutor(new SimpleAsyncTaskExecutor())
+/// /                .gridSize(4) // 设置并发分区数量
+/// /                .taskExecutor(new SimpleAsyncTaskExecutor())
 //                .partitionHandler(partitionHandler())
 //                .build();
 //    }

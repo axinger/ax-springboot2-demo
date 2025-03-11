@@ -9,7 +9,7 @@
     autowire="byType" 类别 只能有一个
     -->
 
-    <bean id="helloWord" class="com.ax.helloword.HelloWord" autowire="byType">
+    <bean id="helloWord" class="com.github.axinger.helloword.HelloWord" autowire="byType">
 
         <!--这个是手动装配-->
         <!--        <property name="idCard" ref="idCard"></property>-->
@@ -17,7 +17,7 @@
     </bean>
 
 
-    <bean id="helloService" class="com.ax.helloword.HelloService"></bean>
+    <bean id="helloService" class="com.github.axinger.helloword.HelloService"></bean>
 
 
 </beans>

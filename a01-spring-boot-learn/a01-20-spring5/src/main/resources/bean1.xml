@@ -4,18 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="dog" class="com.ax.xml.model.Dog">
+    <bean id="dog" class="com.github.axinger.xml.model.Dog">
         <property name="title" value="title"></property>
         <property name="name" value="dafei"></property>
     </bean>
 
-    <bean id="dog2" class="com.ax.xml.model.Dog">
+    <bean id="dog2" class="com.github.axinger.xml.model.Dog">
         <property name="title" value="dog2_title"></property>
         <property name="name" value="dog2_name"></property>
     </bean>
 
     <!--这个注册一下就行了-->
-    <bean id="personPostProcessor" class="com.ax.xml.model.PersonPostProcessor">
+    <bean id="personPostProcessor" class="com.github.axinger.xml.model.PersonPostProcessor">
     </bean>
 
 
@@ -45,7 +45,7 @@
 
     <!--自动装配 ,属性名或者类名 2种方式-->
 
-    <bean id="idCard" class="com.ax.xml.model.IdCard">
+    <bean id="idCard" class="com.github.axinger.xml.model.IdCard">
 
 
     </bean>
@@ -57,7 +57,7 @@
     </bean>
 
 
-    <bean id="user" class="com.ax.xml.model.User">
+    <bean id="user" class="com.github.axinger.xml.model.User">
 
         <!--有参构造,无关顺序-->
         <constructor-arg name="title" value="标题"></constructor-arg>

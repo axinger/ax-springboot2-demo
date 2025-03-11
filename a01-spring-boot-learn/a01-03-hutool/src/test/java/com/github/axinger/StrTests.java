@@ -58,4 +58,10 @@ public class StrTests {
         System.out.println(VersionComparator.INSTANCE.compare("1.1", "1.1.2"));
     }
 
+    @Test
+    void test5() {
+
+
+    }
+
 }

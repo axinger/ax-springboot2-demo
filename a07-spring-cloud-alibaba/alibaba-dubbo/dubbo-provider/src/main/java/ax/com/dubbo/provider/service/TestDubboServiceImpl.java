@@ -1,6 +1,6 @@
 package ax.com.dubbo.provider.service;
 
-import com.ax.api.service.TestDubboService;
+import com.github.axinger.api.service.TestDubboService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
 

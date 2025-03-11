@@ -1,6 +1,6 @@
 package ax.com.dubbo.provider.controller;
 
-import com.ax.api.service.TestDubboService;
+import com.github.axinger.api.service.TestDubboService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

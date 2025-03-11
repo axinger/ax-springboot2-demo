@@ -21,14 +21,6 @@ public enum Gender {
 
     private String alias;
 
-    //使用@JsonCreator和@JsonValue注解来自定义序列化和反序列化的方式。
-    // 这样可以在枚举类中指定一个方法，用来将传入的字符串转换为对应的枚举值
-    @JsonValue
-    public int getCode() {
-        return code;
-    }
-
-
     @JsonCreator
     public static Gender fromCode(int code) {
 
@@ -40,6 +32,12 @@ public enum Gender {
         return EnumUtil.getBy(Gender::getCode, code, Gender.none);
     }
 
+    //使用@JsonCreator和@JsonValue注解来自定义序列化和反序列化的方式。
+    // 这样可以在枚举类中指定一个方法，用来将传入的字符串转换为对应的枚举值
+    @JsonValue
+    public int getCode() {
+        return code;
+    }
 
     @Override
     public String toString() {

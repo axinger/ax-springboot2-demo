@@ -88,10 +88,10 @@ execution(权限修饰符,返回值类型,类全路径,方法名称,参数列表
 *修饰符统配
 返回值类型可以省略,有个空格,有个空格,有个空格
 (..)所有参数
-execution(* com.ax.aop.dao.UserDaoImpl.add(..))
+execution(* dao.aop.com.github.axinger.UserDaoImpl.add(..))
 
 // 所有方法
-execution(* com.ax.aop.dao.UserDaoImpl.*(..))
+execution(* dao.aop.com.github.axinger.UserDaoImpl.*(..))
 
 // 所有类,所有方法
 execution(* com.ax.aop.dao.*.*(..))

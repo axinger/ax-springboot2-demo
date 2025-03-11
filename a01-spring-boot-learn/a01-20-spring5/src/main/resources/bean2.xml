@@ -7,7 +7,7 @@
 
     <!--引入名称空间,完成list集合的提取-->
 
-    <bean id="dog" class="com.ax.xml.model.Dog">
+    <bean id="dog" class="com.github.axinger.xml.model.Dog">
         <property name="title" value="title"></property>
         <property name="name" value="dafei"></property>
     </bean>

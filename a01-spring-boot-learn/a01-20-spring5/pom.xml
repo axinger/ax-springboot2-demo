@@ -59,7 +59,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.ax.DemoSpring5Application</mainClass>
+                    <mainClass>com.github.axinger.DemoSpring5Application</mainClass>
                 </configuration>
                 <executions>
                     <execution>

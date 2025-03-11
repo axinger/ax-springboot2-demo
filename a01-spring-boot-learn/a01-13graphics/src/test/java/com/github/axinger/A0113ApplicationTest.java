@@ -11,9 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class A0113ApplicationTest {
 
     @Autowired
-    private DrawImgService  drawerService;
+    private DrawImgService drawerService;
+
     @Test
-    public void test(){
+    public void test() {
         TimePaperPojo pojo = new TimePaperPojo();
         String s = drawerService.drawTimePaperImg(pojo);
         System.out.println("s = " + s);

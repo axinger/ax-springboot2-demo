@@ -134,7 +134,7 @@
 //        TaskExecutorPartitionHandler handler = new TaskExecutorPartitionHandler();
 //        handler.setGridSize(10);
 //        handler.setTaskExecutor(new SimpleAsyncTaskExecutor("多线程-"));
-////        handler.setTaskExecutor(taskExecutor());
+/// /        handler.setTaskExecutor(taskExecutor());
 //        handler.setStep(subStep());
 //        try {
 //            handler.afterPropertiesSet();

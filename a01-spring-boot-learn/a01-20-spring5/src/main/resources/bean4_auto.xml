@@ -16,11 +16,11 @@
 
     </bean>
 
-    <bean id="idCard" class="com.ax.xml.model.IdCard">
+    <bean id="idCard" class="com.github.axinger.xml.model.IdCard">
 
 
     </bean>
-    <!--    <bean id="idCard2" class="com.ax.xml.model.IdCard">-->
+    <!--    <bean id="idCard2" class="model.xml.com.github.axinger.IdCard">-->
 
 
     <!--    </bean>-->

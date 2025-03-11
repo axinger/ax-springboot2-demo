@@ -131,6 +131,7 @@
         <module>a21-grpc</module>
         <module>a39-liteflow</module>
         <module>axinger-config</module>
+        <module>a22-cors</module>
     </modules>
 
     <dependencyManagement>
