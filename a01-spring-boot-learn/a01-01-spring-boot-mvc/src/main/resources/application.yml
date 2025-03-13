@@ -1,8 +1,8 @@
 spring:
   profiles:
-    #    active: dev
-    # 这个用来打包
     active: '@my-env@'
+#    active: dev
+    # 这个用来打包
 
 
 

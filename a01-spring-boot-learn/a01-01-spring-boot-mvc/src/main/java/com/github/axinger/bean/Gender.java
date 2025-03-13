@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public enum Gender {
 
-    none(10, "未知"),
-    male(11, "男性"),
-    female(12, "女性");
+    none(0, "保密"),
+    male(1, "男性"),
+    female(2, "女性");
 
 
     private int code;
