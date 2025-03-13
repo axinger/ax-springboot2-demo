@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 import cn.hutool.core.lang.Tuple;
+import cn.hutool.core.util.PageUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,7 +28,5 @@ public class TupleTests {
         list2.add(1);
         list2.add(1L);
         System.out.println("list2 = " + list2);
-
-
     }
 }

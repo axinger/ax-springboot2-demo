@@ -42,7 +42,6 @@
         <!--        <okhttp.version>4.10.0</okhttp.version>-->
         <!--        <mybatis-starter.version>2.3.2</mybatis-starter.version>-->
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
-        <mybatis-plus3.version>3.5.9</mybatis-plus3.version>
         <guava.version>33.3.0-jre</guava.version>
         <!--        <guava.version>33.4.0-jre</guava.version>-->
         <hutool.version>5.8.35</hutool.version>
@@ -534,7 +533,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus3.version}</version>
+                <version>${mybatis-plus.version}</version>
             </dependency>
 
 
@@ -550,7 +549,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-jsqlparser</artifactId>
-                <version>${mybatis-plus3.version}</version> <!-- 确保版本和 MyBatis Plus 主包一致 -->
+                <version>${mybatis-plus.version}</version> <!-- 确保版本和 MyBatis Plus 主包一致 -->
             </dependency>
 
 

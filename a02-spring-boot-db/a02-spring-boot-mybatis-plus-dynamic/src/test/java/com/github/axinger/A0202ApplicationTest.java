@@ -1,5 +1,6 @@
 package com.github.axinger;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.axinger.db1.domain.SysPersonEntity;
 import com.github.axinger.db1.service.SysPersonService;
 import com.github.axinger.db2.domain.SysDogEntity;
@@ -11,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class Demo02DynamicDatasourceApplicationTest {
+class A0202ApplicationTest {
 
     @Autowired
     private SysPersonService sysPersonService;

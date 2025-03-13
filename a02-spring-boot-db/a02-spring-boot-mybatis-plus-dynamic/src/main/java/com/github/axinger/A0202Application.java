@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(value = {"com.github.axinger.db1.mapper", "com.github.axinger.db2.mapper"})
-public class Demo02DynamicDatasourceApplication {
+public class A0202Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Demo02DynamicDatasourceApplication.class, args);
+        SpringApplication.run(A0202Application.class, args);
     }
 
 }
