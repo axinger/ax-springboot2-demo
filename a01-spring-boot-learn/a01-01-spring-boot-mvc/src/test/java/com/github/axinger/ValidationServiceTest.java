@@ -1,9 +1,9 @@
 package com.github.axinger;
 
 import cn.hutool.core.date.DateUtil;
-import com.github.axinger.dto.DateDTO;
-import com.github.axinger.dto.LoginDTO;
-import com.github.axinger.dto.ParamDTO;
+import com.github.axinger.model.dto.DateDTO;
+import com.github.axinger.model.dto.LoginDTO;
+import com.github.axinger.model.dto.ParamDTO;
 import com.github.axinger.service.ValidationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

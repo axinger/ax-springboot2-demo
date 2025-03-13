@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.dto.UserDTO;
+import com.github.axinger.model.dto.UserDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

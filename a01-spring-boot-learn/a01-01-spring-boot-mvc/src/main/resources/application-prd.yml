@@ -1,4 +1,3 @@
-version: 1.0.0
 server:
   port: 12022
 
@@ -8,7 +7,7 @@ spring:
     description: prd环境
 
 axinger:
-  config:
+  user:
     username: jim
     password: 1234
   person:

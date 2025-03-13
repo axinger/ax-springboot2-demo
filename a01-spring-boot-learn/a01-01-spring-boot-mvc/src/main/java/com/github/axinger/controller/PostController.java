@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.dto.LoginDTO;
+import com.github.axinger.model.dto.LoginDTO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

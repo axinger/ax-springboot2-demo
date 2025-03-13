@@ -1,4 +1,4 @@
-package com.github.axinger.dto;
+package com.github.axinger.model.dto;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeanWrapper;

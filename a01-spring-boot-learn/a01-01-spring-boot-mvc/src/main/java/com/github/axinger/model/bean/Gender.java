@@ -1,4 +1,4 @@
-package com.github.axinger.bean;
+package com.github.axinger.model.bean;
 
 import cn.hutool.core.util.EnumUtil;
 import com.fasterxml.jackson.annotation.JsonCreator;

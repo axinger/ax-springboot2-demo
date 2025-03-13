@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.model.Person;
-import com.github.axinger.model.UserVO;
+import com.github.axinger.model.bean.PersonProperties;
+import com.github.axinger.model.bean.UserProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +13,10 @@ public class RequestMappingController {
 
 
     @Autowired
-    private UserVO userVO;
+    private UserProperties userProperties;
 
     @Autowired
-    private Person person;
+    private PersonProperties personProperties;
 
     @RequestMapping("/request")
     public Object RequestMapping(String id) {
@@ -31,8 +31,8 @@ public class RequestMappingController {
     @PostMapping("/post")
     public Object PostMapping(@RequestBody Map map) {
         System.out.println("map = " + map);
-        System.out.println("userDTO.all() = " + userVO.all());
-        System.out.println("person = " + person);
+        System.out.println("userDTO.all() = " + userProperties.all());
+        System.out.println("person = " + personProperties);
         return map;
     }
 

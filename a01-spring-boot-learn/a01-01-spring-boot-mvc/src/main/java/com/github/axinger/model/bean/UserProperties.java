@@ -1,4 +1,4 @@
-package com.github.axinger.model;
+package com.github.axinger.model.bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -13,16 +13,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param username
  * @param password
  */
-@ConfigurationProperties(prefix = "axinger.config")
-/// @EnableConfigurationProperties(UserDTO.class) 配合使用
-public record UserVO(String username, String password) {
+
+//@EnableConfigurationProperties(UserProperties.class) //配合使用,不能在record 使用,必须在class中引入
+
+@ConfigurationProperties(prefix = "axinger.user")
+public record UserProperties(String username, String password, Dog dog) {
 
     public String all() {
         return username + password;
     }
 
-    public record range(int start, int end) {
+    public record range(int min, int max) {
+    }
 
+    public record Dog(int min, int max) {
     }
 
 }

@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.bean.Person;
+import com.github.axinger.model.dto.Person;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

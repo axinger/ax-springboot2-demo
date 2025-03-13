@@ -1,7 +1,7 @@
 package com.github.axinger;
 
 import com.axing.common.response.dto.Result;
-import com.github.axinger.dto.UserPojo;
+import com.github.axinger.model.dto.UserPojo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

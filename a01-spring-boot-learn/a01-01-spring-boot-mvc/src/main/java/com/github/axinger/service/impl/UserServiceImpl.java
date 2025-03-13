@@ -1,7 +1,7 @@
 package com.github.axinger.service.impl;
 
 import com.github.axinger.config.MyTrackId;
-import com.github.axinger.dto.UserDTO;
+import com.github.axinger.model.dto.UserDTO;
 import com.github.axinger.service.UserService;
 import org.springframework.stereotype.Service;
 

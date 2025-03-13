@@ -1,9 +1,11 @@
 spring:
   profiles:
-    active: '@my-env@'
-#    active: dev
     # 这个用来打包
-
+#    active: '@my-env@'
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 
 

@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.bean.ApplicationInfo;
+import com.github.axinger.model.bean.ApplicationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

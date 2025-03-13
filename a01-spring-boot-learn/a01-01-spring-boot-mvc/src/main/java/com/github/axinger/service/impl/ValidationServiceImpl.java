@@ -1,8 +1,8 @@
 package com.github.axinger.service.impl;
 
-import com.github.axinger.dto.DateDTO;
-import com.github.axinger.dto.LoginDTO;
-import com.github.axinger.dto.ParamDTO;
+import com.github.axinger.model.dto.DateDTO;
+import com.github.axinger.model.dto.LoginDTO;
+import com.github.axinger.model.dto.ParamDTO;
 import com.github.axinger.service.ValidationService;
 import org.springframework.stereotype.Service;
 

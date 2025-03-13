@@ -1,7 +1,7 @@
 package com.github.axinger.service;
 
 
-import com.github.axinger.dto.UserDTO;
+import com.github.axinger.model.dto.UserDTO;
 
 public interface UserService {
 

@@ -1,9 +1,9 @@
 package com.github.axinger.service;
 
-import com.github.axinger.dto.DateDTO;
-import com.github.axinger.dto.LoginDTO;
-import com.github.axinger.dto.MyGroups;
-import com.github.axinger.dto.ParamDTO;
+import com.github.axinger.model.dto.DateDTO;
+import com.github.axinger.model.dto.LoginDTO;
+import com.github.axinger.model.dto.MyGroups;
+import com.github.axinger.model.dto.ParamDTO;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;

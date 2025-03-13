@@ -1,4 +1,4 @@
-package com.github.axinger.JsonMixin;
+package com.github.axinger.model.JsonMixin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.axinger.model.PersonDTO;

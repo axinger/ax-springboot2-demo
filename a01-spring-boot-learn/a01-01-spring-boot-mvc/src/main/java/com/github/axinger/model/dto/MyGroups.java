@@ -1,4 +1,4 @@
-package com.github.axinger.dto;
+package com.github.axinger.model.dto;
 
 public interface MyGroups {
     interface Add {

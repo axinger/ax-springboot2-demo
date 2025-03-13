@@ -1,4 +1,4 @@
-package com.github.axinger.bean;
+package com.github.axinger.model.bean;
 
 import com.axing.common.util.factory.YamlPropertySourceFactory;
 import lombok.Data;
