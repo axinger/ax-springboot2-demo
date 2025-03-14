@@ -1,9 +1,10 @@
 package com.github.axinger.config;
 
-import com.baomidou.dynamic.datasource.creator.DataSourceProperty;
+import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.batch.BatchDataSource;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -16,7 +17,7 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
     @Autowired
-    private org.springframework.boot.autoconfigure.jdbc.DataSourceProperties dataSourceProperties;
+    private DataSourceProperties dataSourceProperties;
 
 
     @Autowired

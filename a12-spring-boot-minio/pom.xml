@@ -56,11 +56,6 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>doc-config-spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.axinger</groupId>
             <artifactId>minio-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
