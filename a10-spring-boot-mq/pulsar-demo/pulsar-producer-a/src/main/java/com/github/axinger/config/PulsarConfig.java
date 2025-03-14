@@ -1,5 +1,6 @@
 package com.github.axinger.config;
 
+import com.github.axinger.model.Person;
 import com.github.axinger.topic.Topic;
 import io.github.majusko.pulsar.producer.ProducerFactory;
 import org.apache.pulsar.client.api.ConsumerBuilder;
@@ -7,8 +8,6 @@ import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.SubscriptionType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Map;
 
 @Configuration
 public class PulsarConfig {
@@ -21,12 +20,12 @@ public class PulsarConfig {
     public ProducerFactory producerFactory() {
         return new ProducerFactory()
 
-                .addProducer(Topic.EXCLUSIVE_TOPIC, Map.class)
-                .addProducer(Topic.FAILOVER_TOPIC, Map.class)
-                .addProducer(Topic.SHARED_TOPIC, Map.class)
-                .addProducer(Topic.KEY_SHARED_TOPIC, Map.class)
-                .addProducer(Topic.DELIVER_AFTER_TOPIC, Map.class)
-                .addProducer(Topic.DELIVER_AT_TOPIC, Map.class)
+                .addProducer(Topic.EXCLUSIVE_TOPIC, Person.class)
+                .addProducer(Topic.FAILOVER_TOPIC, Person.class)
+                .addProducer(Topic.SHARED_TOPIC, Person.class)
+                .addProducer(Topic.KEY_SHARED_TOPIC, Person.class)
+                .addProducer(Topic.DELIVER_AFTER_TOPIC, Person.class)
+                .addProducer(Topic.DELIVER_AT_TOPIC, Person.class)
                 .addProducer(Topic.testTop2, String.class)
 
                 ;

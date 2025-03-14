@@ -16,6 +16,7 @@
         <module>kafka-demo</module>
         <module>rabbitmq-demo</module>
         <module>rocketmq-demo</module>
+        <module>rocketmq-demo2</module>
         <module>pulsar-demo</module>
     </modules>
 

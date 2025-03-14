@@ -1,6 +1,5 @@
 package com.github.axinger;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.axinger.db1.domain.SysPersonEntity;
 import com.github.axinger.db1.service.SysPersonService;
 import com.github.axinger.db2.domain.SysDogEntity;

@@ -102,7 +102,7 @@
         <module>a14-spring-boot-netty</module>
         <module>a15-spring-boot-shiro</module>
         <module>a16-spring-security</module>
-        <module>a17-batch</module>
+        <module>a17-spring-batch</module>
         <module>a18-custom-spring-boot-start</module>
         <module>a20-spring-boot-quartz</module>
         <module>a21-spring-boot-data-es</module>

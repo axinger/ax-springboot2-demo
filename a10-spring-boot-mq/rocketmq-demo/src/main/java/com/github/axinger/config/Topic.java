@@ -2,6 +2,7 @@ package com.github.axinger.config;
 
 public interface Topic {
     String TOPIC_1 = "topic_1";
+    String TOPIC_2 = "topic_2";
     String sync_user_topic = "user-topic";
 
 

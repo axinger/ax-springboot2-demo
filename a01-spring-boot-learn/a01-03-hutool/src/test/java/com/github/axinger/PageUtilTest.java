@@ -26,10 +26,10 @@ public class PageUtilTest {
 
         // 输出每页的起始和结束索引
         for (int i = 0; i < totalPages; i++) {
-            System.out.println("limit "+i+","+pageSize);
+            System.out.println("limit " + i + "," + pageSize);
 
-            System.out.println("getStart = "+PageUtil.getStart(i, pageSize));
-            System.out.println("getEnd = "+PageUtil.getEnd(i, pageSize));
+            System.out.println("getStart = " + PageUtil.getStart(i, pageSize));
+            System.out.println("getEnd = " + PageUtil.getEnd(i, pageSize));
         }
 
 
@@ -46,7 +46,7 @@ public class PageUtilTest {
         // 输出每页的起始和结束索引
         for (int i = 0; i < totalPages; i++) {
 
-            int[] startEnd = PageUtil.transToStartEnd(i , pageSize);
+            int[] startEnd = PageUtil.transToStartEnd(i, pageSize);
             System.out.println("Page " + i + ": [" + startEnd[0] + ", " + startEnd[1] + "]");
         }
 

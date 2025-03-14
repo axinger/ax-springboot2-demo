@@ -12,14 +12,13 @@ public class A01MVCApplicationTest {
 
     @Autowired
     private PersonProperties personProperties;
+    @Autowired
+    private UserProperties userProperties;
 
     @Test
     public void test() {
         System.out.println("personProperties = " + personProperties);
     }
-
-    @Autowired
-    private UserProperties userProperties;
 
     @Test
     public void test2() {

@@ -5,11 +5,11 @@ import com.axing.common.response.dto.PageDTO;
 import com.axing.common.response.dto.PageResult;
 import com.axing.common.response.dto.Result;
 import com.github.axinger.config.MyTrackId;
-import com.github.axinger.model.dto.UserDTO;
-import com.github.axinger.model.dto.UserPojo;
 import com.github.axinger.model.Dog;
 import com.github.axinger.model.PersonDTO;
 import com.github.axinger.model.bean.UserProperties;
+import com.github.axinger.model.dto.UserDTO;
+import com.github.axinger.model.dto.UserPojo;
 import com.github.axinger.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/one")
     public UserProperties getUser() {
-        UserProperties user = new UserProperties("jim", "123", new UserProperties.Dog(1,2));
+        UserProperties user = new UserProperties("jim", "123", new UserProperties.Dog(1, 2));
 //        User user2 = new User();
         String name = user.username();
         System.out.println("name = " + name);

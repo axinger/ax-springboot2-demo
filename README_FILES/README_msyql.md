@@ -616,6 +616,7 @@ https://zhuanlan.zhihu.com/p/307288925
 ```
 
 ## 虚拟字段
+
 ```sql
 CREATE TABLE `person` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -630,7 +631,9 @@ CREATE TABLE `person` (
 在 MySQL 中,5.1 版本 开始支持，分区表（Partitioned Table）是将一个大表按照某种规则拆分为多个物理子表的技术，
 逻辑上仍然是一个表。分区表可以显著提升查询性能和数据维护效率，尤其是在处理大数据量时
 ```
+
 ## 分区表
+
 ```sql
 CREATE TABLE sales (
     id INT NOT NULL AUTO_INCREMENT,

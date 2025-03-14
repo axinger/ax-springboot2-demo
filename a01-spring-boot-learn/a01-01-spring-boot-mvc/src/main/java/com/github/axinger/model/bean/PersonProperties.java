@@ -25,7 +25,7 @@ public class PersonProperties {
     private String name;
     private Integer age;
 
-    ///===================Date===================================
+    /// ===================Date===================================
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdDate;
 
@@ -34,7 +34,7 @@ public class PersonProperties {
     private Date createdTime;
 
 
-    ///===================LocalDateTime===================================
+    /// ===================LocalDateTime===================================
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedDateTime;
@@ -47,8 +47,9 @@ public class PersonProperties {
     @JsonFormat(pattern = "HH:mm:ss")
     private LocalTime updatedTime;
 
-    ///===================String===================================
-    private String time; ///12:00:00 会解析成时间戳, 改变格式 "12:00:00"
+    /// ===================String===================================
+    private String time;
+    /// 12:00:00 会解析成时间戳, 改变格式 "12:00:00"
     private String time2;
 
 }

@@ -1,13 +1,14 @@
 package com.github.axinger.consumer;
 
 
+import cn.hutool.core.util.RandomUtil;
+import com.github.axinger.model.Person;
 import com.github.axinger.topic.Topic;
 import io.github.majusko.pulsar.annotation.PulsarConsumer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.SubscriptionType;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -24,14 +25,12 @@ public class Consumer {
     @PulsarConsumer(topic = Topic.SHARED_TOPIC,
             subscriptionType = SubscriptionType.Shared,
 //            subscriptionName = "test01",
-            clazz = Map.class)
-    public void Shared1(Map<String, Object> message) {
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        log.info("线程池= {},  message = {}", Thread.currentThread().getName(), message);
+            clazz = Person.class)
+    public void shared1(Person person) throws InterruptedException {
+
+        int randomInt = RandomUtil.randomInt(100, 5000);
+        log.info("GROUP_2:当前线程池={},监听到消息：user={},randomInt={}", Thread.currentThread().getName(), person.getId(), randomInt);
+        TimeUnit.MILLISECONDS.sleep(randomInt);
     }
 
 }

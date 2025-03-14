@@ -4,7 +4,7 @@
 //import javax.validation.Payload;
 //import java.lang.annotation.*;
 //
-///**
+/// **
 // * 枚举值校验注解
 // *
 // * @author: zetting
