@@ -10,7 +10,8 @@ import java.util.Map;
 /**
  * 递归
  */
-public class RecursionTests {
+@SuppressWarnings({"all"})
+public class 递归Tests {
 
 
     @Test
@@ -36,7 +37,7 @@ public class RecursionTests {
 
     }
 
-    Map getMap(String key, Object value) {
+    Map<String, Object> getMap(String key, Object value) {
         Map<String, Object> map = new HashMap<>();
         map.put(key, value);
         map.put(key + "a", value);
@@ -49,22 +50,19 @@ public class RecursionTests {
             return obj + "c";
         }
 
-        if (obj instanceof List list) {
-            List list2 = new ArrayList<>();
-            list.forEach((k) -> {
-                list2.add(getObject(k));
-            });
+        if (obj instanceof List<?> list) {
+            // 同理修复 List 的原始类型警告
+            List<Object> list2 = new ArrayList<>();
+            list.forEach(k -> list2.add(getObject(k)));
             return list2;
         }
 
 
-        if (obj instanceof Map map) {
+        if (obj instanceof Map<?, ?> map) {
 
-            Map map1 = new HashMap<>();
-
-            map.forEach((k, v) -> {
-                map1.put(k, getObject(v));
-            });
+            // 修复 Map 的原始类型警告
+            Map<Object, Object> map1 = new HashMap<>();
+            map.forEach((k, v) -> map1.put(k, getObject(v)));
             return map1;
         }
 

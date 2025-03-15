@@ -24,7 +24,6 @@ public class SysUserServiceTest {
     void getSysUserById() {
         List<SysUserEntity> list = sysUserService.list();
         System.out.println("list = " + list);
-
     }
 
     @Test

@@ -45,7 +45,7 @@ class ConsumerTests2 {
     }
 
     // 【1】学费类: Student -》 提供简单的根据成绩计算费用的类。
-    private static class Student {
+    public static class Student {
         String name;
         Double grade;
         Double feeDiscount = 0.0;

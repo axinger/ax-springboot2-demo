@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Properties;
-import java.util.TreeMap;
+import java.util.*;
 
 public class MapTest {
 
@@ -49,5 +46,70 @@ public class MapTest {
         System.out.println("properties = " + properties);
 
 
+    }
+
+    @Test
+    public void tes2() {
+        ///  可以
+        Map<Object, Object> map = new HashMap<>();
+        map.put("d", null);
+        System.out.println("map = " + map);
+    }
+
+    @Test
+    public void tes3() {
+        //不可用,ImmutableCollections 不能添加null
+        Map<Object, Object> map = Map.of("a", null);
+        System.out.println("map = " + map);
+    }
+
+    @Test
+    public void tes4() {
+        ///  可以
+        Map<Object, Object> map = new HashMap<>();
+        map.put("a", "1");
+        map.put("b", "2");
+        map.put("c", "3");
+
+
+        /// 不能删除
+        map.forEach((key, val) -> {
+
+            if (key.equals("a")) {
+                map.remove(key);
+            }
+        });
+        System.out.println("map = " + map);
+    }
+
+    @Test
+    @SuppressWarnings("all")
+    public void tes5() {
+        ///  可以
+        Map<Object, Object> map = new HashMap<>();
+        map.put("a", "1");
+        map.put("b", "2");
+        map.put("c", "3");
+
+        Iterator<Map.Entry<Object, Object>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Object, Object> entry = iterator.next();
+            if (entry.getKey().equals("a")) {
+                iterator.remove(); // ✅ 通过迭代器安全删除
+            }
+        }
+        System.out.println("map = " + map); // 输出 {b=2, c=3}
+    }
+
+    @Test
+    public void tes6() {
+        ///  可以
+        Map<Object, Object> map = new HashMap<>();
+        map.put("a", "1");
+        map.put("b", "2");
+        map.put("c", "3");
+
+        map.entrySet().removeIf(entry -> entry.getKey().equals("a"));
+        System.out.println("map = " + map); // 输出 {b=2, c=3}
     }
 }

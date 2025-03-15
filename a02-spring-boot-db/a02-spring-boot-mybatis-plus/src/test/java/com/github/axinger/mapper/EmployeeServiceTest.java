@@ -1,7 +1,8 @@
-package com.github.axinger.service;
+package com.github.axinger.mapper;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.axinger.domain.EmployeeEntity;
+import com.github.axinger.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,8 @@ class EmployeeServiceTest {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     @Test
     public void add() {
@@ -27,13 +30,14 @@ class EmployeeServiceTest {
 
     @Test
     void test_list2() {
-        List<EmployeeEntity> list = employeeService.leftDepartmentList(Wrappers.<EmployeeEntity>lambdaQuery());
+        List<EmployeeEntity> list = employeeMapper.leftDepartment(Wrappers.<EmployeeEntity>lambdaQuery()
+                .eq(EmployeeEntity::getDeptId, 1));
         System.out.println("list = " + list);
     }
 
     @Test
     void test6_2() {
-        List<EmployeeEntity> list = employeeService.leftDepartmentList(Wrappers.<EmployeeEntity>lambdaQuery()
+        List<EmployeeEntity> list = employeeMapper.leftDepartment(Wrappers.<EmployeeEntity>lambdaQuery()
                 .eq(EmployeeEntity::getDeptId, 1)
                 .last("limit 1")
         );

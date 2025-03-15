@@ -67,4 +67,12 @@ public class ArraysTest {
 
 
     }
+
+    @Test
+    public void test5() {
+        /// Arrays.asList 不可变
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        list.add(4);
+        System.out.println("list = " + list);
+    }
 }

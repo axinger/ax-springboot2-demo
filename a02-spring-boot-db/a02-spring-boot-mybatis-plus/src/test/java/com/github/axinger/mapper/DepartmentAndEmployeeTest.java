@@ -1,4 +1,4 @@
-package com.github.axinger.service;
+package com.github.axinger.mapper;
 
 import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -13,14 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class DepartmentAndEmployeeTest {
+public class DepartmentAndEmployeeTest {
 
     @Autowired
-    DepartmentService departmentService;
+    DepartmentMapper departmentMapper;
 
 
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeMapper employeeMapper;
 
     @Test
     void test_save_Employee() {
@@ -69,8 +69,8 @@ class DepartmentAndEmployeeTest {
                 ]
                 """;
 
-        employeeService.saveBatch(JSON.parseArray(emStr, EmployeeEntity.class));
-        departmentService.saveBatch(JSON.parseArray(depStr, DepartmentEntity.class));
+        employeeMapper.insert(JSON.parseArray(emStr, EmployeeEntity.class));
+        departmentMapper.insert(JSON.parseArray(depStr, DepartmentEntity.class));
     }
 
     @Test
@@ -78,7 +78,7 @@ class DepartmentAndEmployeeTest {
         // List<Department> list = departmentService.getDepartmentByEmployee(Wrappers.<Department>lambdaQuery()
         //         .eq(Department::getId, 1));
 
-        List<DepartmentEntity> list = departmentService.departByEmployeeList(Wrappers.<DepartmentEntity>query()
+        List<DepartmentEntity> list = departmentMapper.departByEmployeeList(Wrappers.<DepartmentEntity>query()
                 .eq("d.id", 1));
         System.out.println("list = " + list);
 
@@ -86,7 +86,7 @@ class DepartmentAndEmployeeTest {
 
     @Test
     void test_Department_listLeft_可以() {
-        List<DepartmentEntity> list1 = departmentService.listLeft(Wrappers.<DepartmentEntity>query()
+        List<DepartmentEntity> list1 = departmentMapper.listLeft(Wrappers.<DepartmentEntity>query()
                 .eq("d.id", 1));
         System.out.println("list1 = " + list1);
     }
@@ -95,7 +95,7 @@ class DepartmentAndEmployeeTest {
     void test_Department_listLeft_不可以() {
 
         // 不可以
-        List<DepartmentEntity> list2 = departmentService.listLeft(Wrappers.<DepartmentEntity>lambdaQuery()
+        List<DepartmentEntity> list2 = departmentMapper.listLeft(Wrappers.<DepartmentEntity>lambdaQuery()
                 .eq(DepartmentEntity::getId, 1));
         System.out.println("list = " + list2);
     }
@@ -107,11 +107,11 @@ class DepartmentAndEmployeeTest {
     @Test
     void test_Department_listLeftSon_可以() {
 
-        List<DepartmentEntity> list = departmentService.listLeftSon(Wrappers.lambdaQuery());
+        List<DepartmentEntity> list = departmentMapper.listLeftSon(Wrappers.lambdaQuery());
         System.out.println("list = " + list);
 
         // 可以
-        List<DepartmentEntity> list2 = departmentService.listLeftSon(Wrappers.<DepartmentEntity>lambdaQuery()
+        List<DepartmentEntity> list2 = departmentMapper.listLeftSon(Wrappers.<DepartmentEntity>lambdaQuery()
                 .eq(DepartmentEntity::getId, 1)
 
         );
@@ -124,7 +124,7 @@ class DepartmentAndEmployeeTest {
         // 不可以
         LambdaQueryWrapper<DepartmentEntity> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(DepartmentEntity::getId, 1);
-        List<DepartmentEntity> list2 = departmentService.listWhere(wrapper);
+        List<DepartmentEntity> list2 = departmentMapper.listWhere(wrapper);
         System.out.println("list = " + list2);
     }
 
@@ -133,7 +133,7 @@ class DepartmentAndEmployeeTest {
         // 可以
         QueryWrapper<DepartmentEntity> wrapper = Wrappers.<DepartmentEntity>query()
                 .eq("d.id", 1);
-        List<DepartmentEntity> list2 = departmentService.listWhere(wrapper);
+        List<DepartmentEntity> list2 = departmentMapper.listWhere(wrapper);
         System.out.println("list = " + list2);
     }
 }

@@ -15,7 +15,7 @@ public class CloseTests {
             System.out.println("myClose2 = " + myClose2);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("e = " + e);
         }
     }
 
@@ -30,7 +30,7 @@ public class CloseTests {
             System.out.println("myClose2 = " + myClose2);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("e = " + e);
         } finally {
             System.out.println("finally===============");
         }

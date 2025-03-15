@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @TableName sys_user
@@ -20,23 +19,33 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName(value = "sys_user")
 public class SysUserEntity implements Serializable {
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
     /**
-     *
+     * 创建时间
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
     /**
-     *
+     * 用户名
      */
     @TableField(value = "username")
     private String username;
 
+    /**
+     * 密码
+     */
+    @TableField(value = "password")
+    private String password;
+
+    /**
+     * 邮箱
+     */
     @TableField(value = "email")
     private String email;
 
+    /**
+     * 电话
+     */
     @TableField(value = "phone")
     private String phone;
 
@@ -46,16 +55,29 @@ public class SysUserEntity implements Serializable {
     @TableField(value = "age")
     private Integer age;
 
-
+    /**
+     * 创建时间
+     */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-
+    /**
+     * 更新时间
+     */
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
-    @TableLogic
+    /**
+     * 逻辑删除0正常,1删除
+     */
     @TableField(value = "deleted")
+    @TableLogic
     @Builder.Default()
-    private int deleted = 0;
+    private Integer deleted = 0;
+
+    @Serial
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
+
 }

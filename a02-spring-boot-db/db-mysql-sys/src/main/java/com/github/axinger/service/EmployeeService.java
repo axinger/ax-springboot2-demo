@@ -1,10 +1,7 @@
 package com.github.axinger.service;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.axinger.domain.EmployeeEntity;
-
-import java.util.List;
 
 /**
  * @author xing
@@ -13,5 +10,4 @@ import java.util.List;
  */
 public interface EmployeeService extends IService<EmployeeEntity> {
 
-    List<EmployeeEntity> leftDepartmentList(Wrapper wrapper);
 }

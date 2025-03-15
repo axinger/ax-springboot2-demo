@@ -1,4 +1,4 @@
-package com.github.axinger.util;
+package com.github.axinger;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Test;
@@ -12,11 +12,9 @@ public class ArrayUtilsTests {
     //获取元素索引
     @Test
     void test1() {
-
-
-        int[] arr = {1, 2, 3};
-        int i = ArrayUtils.indexOf(arr, 2);
-        System.out.println("2的索引是：" + i);
+        char[] arr = {'a', 'b', 'c'};
+        int i = ArrayUtils.indexOf(arr, 'b');
+        System.out.println("b的索引是：" + i);
 //        输出：2的索引是：1
     }
 
@@ -95,16 +93,14 @@ public class ArrayUtilsTests {
     @Test
     void test9() {
 
-        //二分查找
         List<Integer> sortedNumbers = Arrays.asList(1, 2, 3, 5, 8);
-// 二分查找
+        // 二分查找
         int index = Collections.binarySearch(sortedNumbers, 3);
         System.out.println("数字3的索引: " + index);
-//        输出：数字3的索引: 2
-// 查找不存在的元素
+        //        输出：数字3的索引: 2
+        // 查找不存在的元素
         int notFoundIndex = Collections.binarySearch(sortedNumbers, 4);
-        System.out.println("数字4的索引（负数表示未找到）: " + notFoundIndex);
-//        输出：数字4的索引（负数表示未找到）: -5
+        System.out.println("数字4的索引（负数表示未找到）: " + notFoundIndex);//输出：数字4的索引（负数表示未找到）: -5
     }
 
 
@@ -113,7 +109,7 @@ public class ArrayUtilsTests {
         //线程安全处理,将非同步集合包装成同步集合，确保线程安全
 
         List<String> list = new ArrayList<>();
-// 创建同步列表
+        // 创建同步列表
         List<String> synchronizedList = Collections.synchronizedList(list);
         // 同步块内操作集合
         synchronized (synchronizedList) {

@@ -1,4 +1,4 @@
-package com.github.axinger.util;
+package com.github.axinger;
 
 import org.junit.jupiter.api.Test;
 
