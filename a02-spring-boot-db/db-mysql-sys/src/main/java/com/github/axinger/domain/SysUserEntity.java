@@ -1,15 +1,14 @@
 package com.github.axinger.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -21,6 +20,7 @@ import java.util.Date;
 @NoArgsConstructor
 @TableName(value = "sys_user")
 public class SysUserEntity implements Serializable {
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
@@ -31,16 +31,31 @@ public class SysUserEntity implements Serializable {
     /**
      *
      */
-    @TableField(value = "name")
-    private String name;
+    @TableField(value = "username")
+    private String username;
+
+    @TableField(value = "email")
+    private String email;
+
+    @TableField(value = "phone")
+    private String phone;
+
     /**
      *
      */
     @TableField(value = "age")
     private Integer age;
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_time")
-    private Date create_time;
+
+
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+
+
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
+
+    @TableLogic
+    @TableField(value = "deleted")
+    @Builder.Default()
+    private int deleted = 0;
 }

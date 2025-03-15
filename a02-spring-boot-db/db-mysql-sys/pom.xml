@@ -9,7 +9,7 @@
         <version>2025.01.01-2.7</version>
     </parent>
 
-    <artifactId>db-mysql-starter</artifactId>
+    <artifactId>db-mysql-sys</artifactId>
 
     <dependencies>
         <dependency>

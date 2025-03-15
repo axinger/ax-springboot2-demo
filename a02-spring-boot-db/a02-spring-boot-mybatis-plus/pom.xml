@@ -82,7 +82,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>db-mysql-starter</artifactId>
+            <artifactId>db-mysql-sys</artifactId>
         </dependency>
 
     </dependencies>

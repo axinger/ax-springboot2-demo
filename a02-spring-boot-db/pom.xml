@@ -16,7 +16,7 @@
         <module>a02-spring-boot-mybatis-plus</module>
         <module>a02-spring-boot-mybatis-plus-dynamic</module>
         <module>a02-spring-boot-data-jpa</module>
-        <module>db-mysql-starter</module>
+        <module>db-mysql-sys</module>
         <module>a02-spring-boot-data-mongodb</module>
         <module>a02-spring-boot-iotdb</module>
         <module>a02-spring-boot-postgres</module>
