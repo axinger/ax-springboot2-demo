@@ -65,41 +65,32 @@ public class AuthFilter implements GlobalFilter {
         String path = request.getPath().toString();
 
         if (isWhitelist(path)) {
-            try {
-                /// header增加token
-                ServerHttpRequest newRequest = exchange.getRequest().mutate().headers(headers -> {
-                    headers.add("x-fetch-gateway-token", "ABC123");
-                }).build();
-                return chain.filter(exchange.mutate().request(newRequest).build()).then(Mono.fromRunnable(() -> {
-                    stopWatch.stop();
-                    log.info("请求={}m耗时={}", exchange.getRequest().getURI().getRawPath(), stopWatch.getTotalTimeSeconds());
-                }));
-            } catch (Exception e) {
-                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token验证失败");
-            }
+            return getComplete(exchange, chain, stopWatch);
         }
 
         String token = request.getHeaders().getFirst("Authorization");
         if (token == null || !token.startsWith("Bearer ")) {
             // 抛出异常，由全局处理器捕获
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "登录失效");
+            // 等效性：以下两种方式效果相同，均会被全局处理器捕获：
+//            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "登录失效");
+            return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "登录失效123"));
         }
 
-        try {
-            validateHToken(token);
-            /// header增加token
-            ServerHttpRequest newRequest = exchange.getRequest().mutate().headers(headers -> {
-                headers.add("x-fetch-gateway-token", "ABC123");
-            }).build();
-            return chain.filter(exchange.mutate().request(newRequest).build()).then(Mono.fromRunnable(() -> {
-                stopWatch.stop();
-                log.info("请求={}m耗时={}", exchange.getRequest().getURI().getRawPath(), stopWatch.getTotalTimeSeconds());
-            }));
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token验证失败");
-        }
+        validateHToken(token);
+        return getComplete(exchange, chain, stopWatch);
     }
 
+    public Mono<Void> getComplete(ServerWebExchange exchange, GatewayFilterChain chain, StopWatch stopWatch) {
+
+        /// header增加token
+        ServerHttpRequest newRequest = exchange.getRequest().mutate().headers(headers -> {
+            headers.add("x-fetch-gateway-token", "ABC123");
+        }).build();
+        return chain.filter(exchange.mutate().request(newRequest).build()).then(Mono.fromRunnable(() -> {
+            stopWatch.stop();
+            log.info("请求={}m耗时={}", exchange.getRequest().getURI().getRawPath(), stopWatch.getTotalTimeSeconds());
+        }));
+    }
 
     // 判断是否为白名单路径
     private boolean isWhitelist(String path) {
@@ -112,6 +103,6 @@ public class AuthFilter implements GlobalFilter {
 
     // 自行验证token
     private void validateHToken(String token) throws ResponseStatusException {
-
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token验证失败");
     }
 }

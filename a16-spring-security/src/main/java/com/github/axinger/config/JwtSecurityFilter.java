@@ -11,6 +11,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -18,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -27,10 +30,14 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1");
+
+
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws IOException, ServletException {
-        boolean whitelisted = SecurityWhitelist.isWhitelisted(request.getRequestURI());
+        boolean whitelisted = isWhitelisted(request.getRequestURI());
         if (whitelisted) {
             filterChain.doFilter(request, response);
             return;
@@ -56,5 +63,13 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
 
         // 放行
         filterChain.doFilter(request, response);
+    }
+
+    public boolean isWhitelisted(String path) {
+        if (CollectionUtils.isEmpty(WHITELIST)) {
+            return false;
+        }
+        return WHITELIST.stream()
+                .anyMatch(pattern -> pathMatcher.match(pattern, path));
     }
 }
