@@ -10,16 +10,21 @@
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
 //import org.springframework.data.domain.Sort;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.repository.PagingAndSortingRepository;
 //
 //import java.util.ArrayList;
 //import java.util.List;
 //import java.util.Optional;
 //
-/// **
+///**
 // * （1）CrudRepository和PagingAndSortingRepository由Spring Data提供；
-// * （2）JpaRepository 由Spring Data JPA提供，而Spring Data JPA又是Spring Data的一个子项目，这就是两者的关系
+// * （2）
+//JpaRepository 由Spring Data JPA提供，而Spring Data JPA又是Spring Data的一个子项目，这就是两者的关系
 // * （3）存在继承关系：
-// * 　　PagingAndSortingRepository 继承 CrudRepository
+// * 　　
+//PagingAndSortingRepository 继承 CrudRepository
 // * 　　JpaRepository 继承 PagingAndSortingRepository
 // * 也就是说， CrudRepository 提供基本的增删改查；PagingAndSortingRepository 提供分页和排序方法；JpaRepository 提供JPA需要的方法
 // */

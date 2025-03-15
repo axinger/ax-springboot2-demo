@@ -41,7 +41,7 @@ public class JdbcDemo2Tests {
 
         Assert.notNull(user, "user is not null");
         jdbcTemplate.update("insert into tb_user(name,password) values(?,?)",
-                new Object[]{user.getUsername(), user.getPassword()});
+                user.getUsername(), user.getPassword());
     }
 
     @Test
@@ -94,16 +94,12 @@ public class JdbcDemo2Tests {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        jdbcTemplate.update(new PreparedStatementCreator() {
-
-                                @Override
-                                public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                                    PreparedStatement ps = connection.prepareStatement("insert into tb_user(name,password) values(?,?)", new String[]{"id"});
-                                    ps.setString(1, user.getUsername());
-                                    ps.setString(2, user.getPassword());
-                                    return ps;
-                                }
-                            },
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement("insert into tb_user(name,password) values(?,?)", new String[]{"id"});
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            return ps;
+        },
                 keyHolder);
 
         return keyHolder.getKeyList();
@@ -112,14 +108,11 @@ public class JdbcDemo2Tests {
 
     public void update(final User user) {
         jdbcTemplate.update(
-                "update tb_user set name=？,password=？ where id = ?",
-                new PreparedStatementSetter() {
-                    @Override
-                    public void setValues(PreparedStatement ps) throws SQLException {
-                        ps.setString(1, user.getUsername());
-                        ps.setString(2, user.getPassword());
-                        ps.setInt(3, user.getId());
-                    }
+                "update tb_user set name=?,password=? where id = ?",
+                ps -> {
+                    ps.setString(1, user.getUsername());
+                    ps.setString(2, user.getPassword());
+                    ps.setInt(3, user.getId());
                 }
         );
     }

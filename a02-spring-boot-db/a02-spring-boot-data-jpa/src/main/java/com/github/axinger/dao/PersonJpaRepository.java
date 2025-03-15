@@ -21,23 +21,23 @@ public interface PersonJpaRepository extends JpaRepository<Person, Integer> {
 
     @Query(value = "select * from sys_person where age>:age", nativeQuery = true)
     Page<Person> findByAgeGreaterThan(@Param("age") Integer age, Pageable pageable);
-//    /**
-//     * 4.@Query 注解
-//     * 有的时候，Spring Data规范里提供的查询关键字并不能满足我们的查询需求，这个时候就可以使用 @Query 关键字，来自定义查询 SQL。
-//     * nativeQuery：代表本地查询，就是使用原生的sql语句。
-//     *
-//     * @return
-//     */
-//    @Query(value = "select * from sys_person  where id=(select max(id) from users)", nativeQuery = true)
-//    Person getMaxIdUser();
-//
-//    /**
-//     * 5.@Param注解
-//     * 用来注入参数
-//     *
-//     * @param userName
-//     * @return
-//     */
-//    @Query(value = "select * from sys_person where user_name like %:userName%", nativeQuery = true)
-//    List<Person> findByNameMatch(@Param("userName") String userName);
+    /**
+     * 4.@Query 注解
+     * 有的时候，Spring Data规范里提供的查询关键字并不能满足我们的查询需求，这个时候就可以使用 @Query 关键字，来自定义查询 SQL。
+     * nativeQuery：代表本地查询，就是使用原生的sql语句。
+     *
+     * @return
+     */
+    @Query(value = "select * from sys_person  where id=(select max(id) from users)", nativeQuery = true)
+    Person getMaxIdUser();
+
+    /**
+     * 5.@Param注解
+     * 用来注入参数
+     *
+     * @param userName
+     * @return
+     */
+    @Query(value = "select * from sys_person where user_name like %:userName%", nativeQuery = true)
+    List<Person> findByNameMatch(@Param("userName") String userName);
 }
