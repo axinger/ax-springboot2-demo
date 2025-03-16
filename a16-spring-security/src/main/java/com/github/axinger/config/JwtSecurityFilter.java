@@ -27,13 +27,10 @@ import java.util.Objects;
 @Slf4j
 public class JwtSecurityFilter extends OncePerRequestFilter {
 
+    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1");
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
-
-    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1");
-
-
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws IOException, ServletException {

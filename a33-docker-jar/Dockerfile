@@ -33,7 +33,7 @@ COPY /target/*.jar /target/server.jar
 #ENTRYPOINT java -jar -Dspring.profiles.active=prd /target/server.jar
 
 # 不指定,用application.yml 控制
-ENTRYPOINT java -jar  /target/server.jar
+ENTRYPOINT java -Xms512m -Xmx512m -Xmn256m -jar /target/server.jar --spring.profiles.active=prd
 
 #配置时区，不然会发现打包到docker中启动的容器日志里的时间是差8个小时的
 #这条命令会先通过 cp 命令将主机上的 /usr/share/zoneinfo/Asia/Shanghai 文件复制到容器中的 /etc/localtime 路径上，

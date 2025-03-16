@@ -29,11 +29,9 @@ import java.util.Map;
 @Order(-1)
 public class AuthFilter implements GlobalFilter {
 
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Value("${whitelist.paths}")
     List<String> whitelistPaths;
-
-
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     private static Map<String, Object> getRequesttMap(ServerWebExchange exchange) {
         ServerHttpRequest request = exchange.getRequest();

@@ -31,7 +31,7 @@
 //        UserList userList = UserList.newBuilder().addAllData(list).build();
 //
 //        ///  这个也可以直接传值
-////        UserList.Builder builder = UserList.newBuilder().addAllUsers(usersList);
+/// /        UserList.Builder builder = UserList.newBuilder().addAllUsers(usersList);
 //
 //        ResponsePayload payload = ResponsePayload.newBuilder()
 //                .setUserList(userList)

@@ -14,10 +14,10 @@ public class CommonResult<T> {
     private long timestamp = System.currentTimeMillis();
 
     public static <T> CommonResult<T> success(T data) {
-        return new CommonResult<>(200, "成功", data,System.currentTimeMillis());
+        return new CommonResult<>(200, "成功", data, System.currentTimeMillis());
     }
 
     public static CommonResult<?> error(int code, String message) {
-        return new CommonResult<>(code, message, null,System.currentTimeMillis());
+        return new CommonResult<>(code, message, null, System.currentTimeMillis());
     }
 }

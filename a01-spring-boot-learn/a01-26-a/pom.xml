@@ -32,7 +32,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.github.axinger.MoreAApplication</mainClass>
+                    <mainClass>com.github.axinger.A0126MoreAApplication</mainClass>
                     <!--                    <arguments>-->
                     <!--                        <argument>&#45;&#45;spring.config.location=classpath:/application-a.yml</argument>-->
                     <!--                    </arguments>-->

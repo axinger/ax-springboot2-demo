@@ -21,6 +21,7 @@ public interface PersonJpaRepository extends JpaRepository<Person, Integer> {
 
     @Query(value = "select * from sys_person where age>:age", nativeQuery = true)
     Page<Person> findByAgeGreaterThan(@Param("age") Integer age, Pageable pageable);
+
     /**
      * 4.@Query 注解
      * 有的时候，Spring Data规范里提供的查询关键字并不能满足我们的查询需求，这个时候就可以使用 @Query 关键字，来自定义查询 SQL。

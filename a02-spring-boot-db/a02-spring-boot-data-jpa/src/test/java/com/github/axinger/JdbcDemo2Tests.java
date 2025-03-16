@@ -4,12 +4,14 @@ import com.github.axinger.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.util.Assert;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,11 +97,11 @@ public class JdbcDemo2Tests {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement("insert into tb_user(name,password) values(?,?)", new String[]{"id"});
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
-            return ps;
-        },
+                    PreparedStatement ps = connection.prepareStatement("insert into tb_user(name,password) values(?,?)", new String[]{"id"});
+                    ps.setString(1, user.getUsername());
+                    ps.setString(2, user.getPassword());
+                    return ps;
+                },
                 keyHolder);
 
         return keyHolder.getKeyList();

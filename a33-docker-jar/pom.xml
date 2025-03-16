@@ -60,25 +60,48 @@
     </dependencies>
 
     <build>
+<!--        <resources>-->
+<!--            &lt;!&ndash; 处理公共配置：application.yml，并排除所有环境配置 &ndash;&gt;-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <filtering>true</filtering> &lt;!&ndash; 启用占位符替换 &ndash;&gt;-->
+<!--                <excludes>-->
+<!--                    <exclude>application-*.yml</exclude>-->
+<!--                </excludes>-->
+<!--                <includes>-->
+<!--                    <include>application.yml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--            &lt;!&ndash; 动态包含当前环境的配置文件 &ndash;&gt;-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--                <includes>-->
+<!--                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+<!--                    <include>application-${my-env}.yml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <skip>true</skip>
                     <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
                         <exclude>
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
                         </exclude>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
                     </excludes>
                 </configuration>
             </plugin>
-
-            <!-- maven 打包时跳过测试 -->
+            <!--跳过测试-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

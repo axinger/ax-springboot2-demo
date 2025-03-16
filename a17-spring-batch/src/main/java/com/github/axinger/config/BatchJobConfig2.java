@@ -216,34 +216,34 @@
 //        };
 //    }
 //
-////    @Bean
-////    public ItemWriteListener<User> itemWriteListener() {
-////        return new ItemWriteListener<User>() {
-////            @Override
-////            public void beforeWrite(List<? extends User> items) {
-////                // 可选：在写入前执行某些逻辑
-////                if (!items.isEmpty()) {
-////                    // 获取最后一个写入记录的主键 ID
-////                    Integer lastProcessedId = items.get(items.size() - 1).getId();
-////
-////                    // 将最后处理的 ID 写入 StepExecutionContext
-////                    StepExecution stepExecution = StepSynchronizationManager.getContext().getStepExecution();
-////                    stepExecution.getExecutionContext().putInt("lastId", lastProcessedId);
-////
-////                    log.info("Updated lastId in StepExecutionContext: {}", lastProcessedId);
-////                }
-////            }
-////
-////            @Override
-////            public void afterWrite(List<? extends User> items) {
-////
-////            }
-////
-////            @Override
-////            public void onWriteError(Exception exception, List<? extends User> items) {
-////                log.error("Error occurred while writing items: {}", exception.getMessage(), exception);
-////            }
-////        };
-////    }
+/// /    @Bean
+/// /    public ItemWriteListener<User> itemWriteListener() {
+/// /        return new ItemWriteListener<User>() {
+/// /            @Override
+/// /            public void beforeWrite(List<? extends User> items) {
+/// /                // 可选：在写入前执行某些逻辑
+/// /                if (!items.isEmpty()) {
+/// /                    // 获取最后一个写入记录的主键 ID
+/// /                    Integer lastProcessedId = items.get(items.size() - 1).getId();
+/// /
+/// /                    // 将最后处理的 ID 写入 StepExecutionContext
+/// /                    StepExecution stepExecution = StepSynchronizationManager.getContext().getStepExecution();
+/// /                    stepExecution.getExecutionContext().putInt("lastId", lastProcessedId);
+/// /
+/// /                    log.info("Updated lastId in StepExecutionContext: {}", lastProcessedId);
+/// /                }
+/// /            }
+/// /
+/// /            @Override
+/// /            public void afterWrite(List<? extends User> items) {
+/// /
+/// /            }
+/// /
+/// /            @Override
+/// /            public void onWriteError(Exception exception, List<? extends User> items) {
+/// /                log.error("Error occurred while writing items: {}", exception.getMessage(), exception);
+/// /            }
+/// /        };
+/// /    }
 //
 //}

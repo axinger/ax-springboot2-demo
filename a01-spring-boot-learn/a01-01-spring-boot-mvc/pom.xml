@@ -94,30 +94,30 @@
 
 
     <!--指定运行环境,每次切换需要更新一下maven,有缓存-->
-    <profiles>
-        <profile>
-            <id>my-dev</id>
-            <properties>
-                <my-env>dev</my-env>
-            </properties>
-        </profile>
-        <profile>
-            <id>my-prd</id>
-            <properties>
-                <my-env>prd</my-env>
-            </properties>
-            <!--默认变量-->
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>my-test</id>
-            <properties>
-                <my-env>test</my-env>
-            </properties>
-        </profile>
-    </profiles>
+    <!--    <profiles>-->
+    <!--        <profile>-->
+    <!--            <id>my-dev</id>-->
+    <!--            <properties>-->
+    <!--                <my-env>dev</my-env>-->
+    <!--            </properties>-->
+    <!--        </profile>-->
+    <!--        <profile>-->
+    <!--            <id>my-prd</id>-->
+    <!--            <properties>-->
+    <!--                <my-env>prd</my-env>-->
+    <!--            </properties>-->
+    <!--            &lt;!&ndash;默认变量&ndash;&gt;-->
+    <!--            <activation>-->
+    <!--                <activeByDefault>true</activeByDefault>-->
+    <!--            </activation>-->
+    <!--        </profile>-->
+    <!--        <profile>-->
+    <!--            <id>my-test</id>-->
+    <!--            <properties>-->
+    <!--                <my-env>test</my-env>-->
+    <!--            </properties>-->
+    <!--        </profile>-->
+    <!--    </profiles>-->
 
     <build>
         <!--        <resources>-->

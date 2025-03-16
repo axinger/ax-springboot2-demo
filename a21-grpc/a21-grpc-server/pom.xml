@@ -54,12 +54,12 @@
             <version>2.15.0.RELEASE</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.google.protobuf</groupId>-->
-<!--            <artifactId>protobuf-java-util</artifactId>-->
-<!--            <version>4.26.1</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.protobuf</groupId>-->
+        <!--            <artifactId>protobuf-java-util</artifactId>-->
+        <!--            <version>4.26.1</version>-->
+        <!--            <scope>compile</scope>-->
+        <!--        </dependency>-->
 
         <!-- Protobuf 编译器依赖 -->
         <dependency>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
-<!--            <version>1.54.0</version>-->
+            <!--            <version>1.54.0</version>-->
             <version>1.71.0</version>
         </dependency>
 
