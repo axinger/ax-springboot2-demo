@@ -1,0 +1,7 @@
+server:
+  port: 14022
+
+spring:
+  application:
+    version: 1.0.1
+    description: 生产环境
