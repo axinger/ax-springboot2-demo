@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.core.toolkit.LambdaUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.core.toolkit.support.LambdaMeta;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.axinger.config.MyTableNameHandler;
 import com.github.axinger.config.MyTenantLineHandler;
@@ -184,20 +183,19 @@ class SysPersonServiceTest {
 
     @Test
     void test_lambdaQuery2() {
+//SELECT id,name,age,gender,birthday,create_time,update_time,version,deleted FROM sys_person
+// WHERE deleted=0 AND ((name = 'jim' AND age = 10) OR (name = 'tom' AND age = 20))
+        List<SysPersonEntity> list = sysPersonService.lambdaQuery()
 
-        LambdaQueryChainWrapper<SysPersonEntity> wrapper = sysPersonService.lambdaQuery();
+                .or(w -> {
+                    w.eq(SysPersonEntity::getName, "jim")
+                            .eq(SysPersonEntity::getAge, 10);
+                })
 
-        wrapper.or(w -> {
-            w.eq(SysPersonEntity::getName, "jim")
-                    .eq(SysPersonEntity::getAge, 10);
-        });
-
-        wrapper.or(w -> {
-            w.eq(SysPersonEntity::getName, "tom")
-                    .eq(SysPersonEntity::getAge, 20);
-        });
-
-        List<SysPersonEntity> list = wrapper.list();
+                .or(w -> {
+                    w.eq(SysPersonEntity::getName, "tom")
+                            .eq(SysPersonEntity::getAge, 20);
+                }).list();
         System.out.println("list = " + list);
     }
 
@@ -243,11 +241,23 @@ class SysPersonServiceTest {
     }
 
     @Test
-    void test_updateById_bookPrice() {
+    void test_update1() {
+        /// 有乐观锁情况下,需要指定,才能执行
+        SysPersonEntity person = new SysPersonEntity();
+        person.setVersion(4L);
         sysPersonService.lambdaUpdate()
                 .eq(SysPersonEntity::getId, 1)
                 .setSql("age = age+1")
-                .update(new SysPersonEntity());
+                .update(person);
+    }
+
+    @Test
+    void test_update2() {
+        /// update 不传值,不走乐观锁,直接更新
+        sysPersonService.lambdaUpdate()
+                .eq(SysPersonEntity::getId, 1)
+                .setSql("age = age+1")
+                .update();
     }
 
     @Test
@@ -272,16 +282,15 @@ class SysPersonServiceTest {
 
     @Test
     void test_updateById_bookPrice_2() {
-        // 有bug
         SysPersonEntity entity = new SysPersonEntity();
-        entity.setAge(10);
+////        entity.setAge(12);
         entity.setId(1L);
-        AbstractWrapper<SysPersonEntity, SFunction<SysPersonEntity, ?>, LambdaUpdateWrapper<SysPersonEntity>> wrapper = sysPersonService.lambdaUpdate()
-                .eq(SysPersonEntity::getId, 1)
-                .setSql("book_price = book_price+10")
-                .getWrapper();
+        entity.setVersion(3L); ///乐观锁
 
-//        personService.saveOrUpdate(entity, wrapper);
+//        SysPersonEntity entity = sysPersonService.getById(1);
+        LambdaUpdateWrapper<SysPersonEntity> wrapper = Wrappers.<SysPersonEntity>lambdaUpdate()
+                .eq(SysPersonEntity::getId, 1)
+                .setSql("age = age+1");
         sysPersonService.update(entity, wrapper);
     }
 

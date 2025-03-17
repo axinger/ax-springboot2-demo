@@ -27,6 +27,23 @@ public class SysUserServiceTest {
     }
 
     @Test
+    void test_update1() {
+        SysUserEntity person = new SysUserEntity();
+        sysUserService.lambdaUpdate()
+                .eq(SysUserEntity::getId, 1)
+                .setSql("age = age+1")
+                .update(person);
+    }
+
+    @Test
+    void test_update2() {
+        sysUserService.lambdaUpdate()
+                .eq(SysUserEntity::getId, 1)
+                .setSql("age = age+1")
+                .update();
+    }
+
+    @Test
     void test2() {
         long count = sysUserService.count();
 
