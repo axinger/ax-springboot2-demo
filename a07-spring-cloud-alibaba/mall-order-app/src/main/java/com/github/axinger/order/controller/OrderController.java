@@ -57,10 +57,9 @@ public class OrderController {
      *
      * @return
      */
-    @Operation(summary = "直接调用请求支付系统")
-    @GetMapping(value = "/test")
-    public Object order1(@RequestHeader HttpHeaders headers) {
-        log.info("查看网关请求头,headers={}", headers);
+    @Operation(summary = "订单系统")
+    @GetMapping(value = "/list")
+    public Object order1() {
         return getRes(1);
     }
 
