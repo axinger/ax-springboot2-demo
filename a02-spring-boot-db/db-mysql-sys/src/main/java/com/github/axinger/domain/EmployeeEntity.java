@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "employee")
+@TableName(value = "sys_employee")
 public class EmployeeEntity implements Serializable {
     @Serial
     @TableField(exist = false)

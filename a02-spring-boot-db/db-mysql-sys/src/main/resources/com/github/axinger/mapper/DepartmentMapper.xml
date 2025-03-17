@@ -32,8 +32,8 @@
                e.name    as e_name,
                e.gender  as gender,
                e.dept_id as dept_id
-        FROM department d
-                 LEFT JOIN employee e
+        FROM sys_department d
+                 LEFT JOIN sys_employee e
                            ON e.dept_id = d.id
             ${ew.customSqlSegment}
     </select>
@@ -51,16 +51,16 @@
                      e.name    as e_name,
                      e.gender  as gender,
                      e.dept_id as dept_id
-              FROM department d
-                       LEFT JOIN employee e ON e.dept_id = d.id) AS t
+              FROM sys_department d
+                       LEFT JOIN sys_employee e ON e.dept_id = d.id) AS t
             ${ew.customSqlSegment}
     </select>
 
     <!--    全表子查询,不支持 lambda 方法引用-->
     <select id="listWhere" resultMap="BaseResultMapOfEmployee">
         SELECT d.*, e.id as e_id, e.name as e_name, e.gender as gender, e.dept_id as dept_id
-        FROM department d,
-        employee e
+        FROM sys_department d,
+        sys_employee e
         where e.dept_id = d.id
         <if test="ew != null">
             <if test="ew.nonEmptyOfWhere">

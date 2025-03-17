@@ -1,4 +1,4 @@
-CREATE TABLE `employee`
+CREATE TABLE `sys_employee`
 (
     `id`      bigint NOT NULL AUTO_INCREMENT,
     `dept_id` int          DEFAULT NULL,

@@ -31,8 +31,8 @@
         FROM (SELECT d.id   as d_id,
                      d.name as d_name,
                      e.*
-              FROM department d
-                       left JOIN employee e ON e.dept_id = d.id) AS t
+              FROM sys_department d
+                       left JOIN sys_employee e ON e.dept_id = d.id) AS t
             ${ew.customSqlSegment}
     </select>
 </mapper>

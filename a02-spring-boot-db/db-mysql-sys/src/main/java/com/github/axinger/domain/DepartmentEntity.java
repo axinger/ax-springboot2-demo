@@ -20,7 +20,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "department")
+@TableName(value = "sys_department")
 public class DepartmentEntity implements Serializable {
     @Serial
     @TableField(exist = false)
