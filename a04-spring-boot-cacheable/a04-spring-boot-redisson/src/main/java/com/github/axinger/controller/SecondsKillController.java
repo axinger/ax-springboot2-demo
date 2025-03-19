@@ -57,9 +57,8 @@ public class SecondsKillController {
         }
         Integer count = secondsKillService.productCount(prodId);
 
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put("count", count);
-
         return map;
     }
 
@@ -77,8 +76,7 @@ public class SecondsKillController {
     @GetMapping(value = "/addSk")
     public Integer addSk() {
         Integer prodId = 101;
-        Integer sk = secondsKillService.addSk(prodId);
-        return sk;
+        return secondsKillService.addSk(prodId);
     }
 
     @Operation(summary = "多线程秒杀产品库存")

@@ -50,7 +50,8 @@ public class SecondsKillServiceImpl implements SecondsKillService {
     @Override
     public Integer productCount(Integer prodId) {
         String prodKey = prodKey(prodId);
-        return (Integer) redisTemplate.opsForValue().get(prodKey);
+        Object o = redisTemplate.opsForValue().get(prodKey);
+        return Integer.getInteger(String.valueOf(o));
     }
 
     /**

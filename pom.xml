@@ -462,8 +462,8 @@
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
-                <!--                <version>3.17.7</version>-->
-                <version>3.18.0</version>
+                <version>3.17.7</version>
+                <!--                <version>3.18.0</version>-->
             </dependency>
 
             <!--            <dependency>-->
@@ -693,25 +693,25 @@
 
 
             <!--不能放总pom中-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    &lt;!&ndash;跳过测试&ndash;&gt;-->
-<!--                    <skip>true</skip>-->
-<!--                    &lt;!&ndash;打包去除jar&ndash;&gt;-->
-<!--                    <excludes>-->
-<!--                        <exclude>-->
-<!--                            <groupId>org.springframework.boot</groupId>-->
-<!--                            <artifactId>spring-boot-configuration-processor</artifactId>-->
-<!--                        </exclude>-->
-<!--                        <exclude>-->
-<!--                            <groupId>org.projectlombok</groupId>-->
-<!--                            <artifactId>lombok</artifactId>-->
-<!--                        </exclude>-->
-<!--                    </excludes>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    &lt;!&ndash;跳过测试&ndash;&gt;-->
+            <!--                    <skip>true</skip>-->
+            <!--                    &lt;!&ndash;打包去除jar&ndash;&gt;-->
+            <!--                    <excludes>-->
+            <!--                        <exclude>-->
+            <!--                            <groupId>org.springframework.boot</groupId>-->
+            <!--                            <artifactId>spring-boot-configuration-processor</artifactId>-->
+            <!--                        </exclude>-->
+            <!--                        <exclude>-->
+            <!--                            <groupId>org.projectlombok</groupId>-->
+            <!--                            <artifactId>lombok</artifactId>-->
+            <!--                        </exclude>-->
+            <!--                    </excludes>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
         </plugins>
 
         <resources>
