@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * @TableName sys_dog
  */
-@TableName(value = "sys_dog")
+@TableName(value = "order_dog")
 @Data
 public class SysDogEntity {
     /**

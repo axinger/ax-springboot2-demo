@@ -21,8 +21,8 @@ import java.util.Map;
 public class FlywayConfig {
 
     private static final String ENCODING = "UTF-8";
-    @Autowired
-    private DataSource dataSource;
+//    @Autowired
+//    private DataSource dataSource;
     @Resource
     private DynamicDataSourceProperties dynamicDataSourceProperties;
 

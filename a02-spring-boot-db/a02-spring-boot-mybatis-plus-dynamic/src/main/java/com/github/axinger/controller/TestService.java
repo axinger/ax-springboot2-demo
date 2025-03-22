@@ -1,11 +1,9 @@
 //package com.github.axinger.controller;
 //
 //import com.baomidou.dynamic.datasource.annotation.DSTransactional;
-//import com.github.axinger.annotation.DS_1;
+//import com.github.axinger.annotation.DB1;
+//import com.github.axinger.db2.domain.SysAnimalEntity;
 //import com.github.axinger.db2.service.SysAnimalService;
-//import com.github.axinger.domain.Dog;
-//import com.github.axinger.domain.Person;
-//import com.github.axinger.domain.SysAnimalEntity;
 //import lombok.AllArgsConstructor;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +25,14 @@
 //    private SysAnimalService animalService;
 //
 //
-//    @DS_1
+//    @DB1
 //    @DSTransactional
 //    public void testAB(boolean error) {
 //        testPerson();
 //        testSysAnimalEntity(error);
 //    }
 //
-//    @DS_1
+//    @DB1
 //    @DSTransactional
 //    public void testAC(boolean error) {
 //        testPerson();

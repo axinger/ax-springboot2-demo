@@ -1,17 +1,21 @@
-package com.github.axinger.db1.domain;
+package com.github.axinger.order.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Data;
 
 /**
- * @TableName sys_person
+ *
+ * @TableName order_person
  */
-@TableName(value = "order_person")
+@TableName(value ="order_person")
 @Data
-public class SysPersonEntity {
+public class OrderPersonEntity implements Serializable {
     /**
      *
      */
@@ -29,4 +33,8 @@ public class SysPersonEntity {
      */
     @TableField(value = "age")
     private Integer age;
+
+    @Serial
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 }

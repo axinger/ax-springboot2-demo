@@ -5,7 +5,7 @@ spring:
   application:
     name: a17-spring-boot-mybatis-plus
   profiles:
-    active: prd
+    active: dev
 axinger:
   response:
     base-packages: com.github.axinger
