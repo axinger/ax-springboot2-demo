@@ -18,6 +18,7 @@
         <module>rocketmq-demo</module>
         <module>rocketmq-demo2</module>
         <module>pulsar-demo</module>
+        <module>rocketmq-stream</module>
     </modules>
 
 </project>

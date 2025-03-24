@@ -1,11 +1,11 @@
 package com.github.axinger.controller;
 
 import com.github.axinger.config.Topic;
-import com.github.axinger.model.MessageWrapper;
 import com.github.axinger.model.User;
 import com.github.axinger.service.MQProducerService;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.stream.IntStream;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/rocketmq")
@@ -36,27 +36,93 @@ public class TestController {
             user.setAge(i);
             /// // 同步发送
 //            rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
-            rocketMQTemplate.asyncSend(Topic.TOPIC_2 + ":" + Topic.Tag_1, user, new SendCallback() {
+
+
+            rocketMQTemplate.asyncSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user, new SendCallback() {
                 @Override
                 public void onSuccess(SendResult sendResult) {
                     // 成功 ACK
+                    System.out.println("成功 = " + sendResult);
+
+                    SendStatus sendStatus = sendResult.getSendStatus();
+                    System.out.println("sendStatus = " + sendStatus);
                 }
 
                 @Override
                 public void onException(Throwable throwable) {
                     // 失败处理（相当于 NACK）
+                    System.out.println("throwable = " + throwable);
                 }
             });
         }
     }
 
+
+    @GetMapping("/send1")
+    void send1() {
+        User user = new User();
+        user.setId(1);
+        user.setName("jim");
+        user.setAge(10);
+
+
+        rocketMQTemplate.asyncSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user, new SendCallback() {
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                // 成功 ACK
+                System.out.println("成功 = " + sendResult);
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                // 失败处理（相当于 NACK）
+                System.out.println("throwable = " + throwable);
+            }
+        });
+    }
+
     @GetMapping("/send2")
     void send2() {
         User user = new User();
+        user.setId(1);
         user.setName("jim");
         user.setAge(10);
-        rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_2, user);
+//        rocketMQTemplate.convertAndSend(Topic.TOPIC_2 + ":" + Topic.Tag_2, user);
+
+        // 确保使用正确的 Tag 发送方式
+        rocketMQTemplate.convertAndSend(Topic.TOPIC_2 + ":" + Topic.Tag_2, user);
     }
+
+    @GetMapping("/send3")
+    void send3() {
+        User user = new User();
+        user.setId(2);
+        user.setName("tom");
+        user.setAge(10);
+
+        rocketMQTemplate.convertAndSend(Topic.TOPIC_2 + ":" + Topic.Tag_3, user);
+
+
+        // 或者使用 MessageBuilder 设置属性
+//        Message<User> msg = MessageBuilder.withPayload(user)
+//                .setHeader(MessageConst.PROPERTY_TAGS, Topic.Tag_3)
+//
+//                .build();
+//
+//        rocketMQTemplate.send(Topic.TOPIC_2, msg);
+//        rocketMQTemplate.convertAndSend(Topic.TOPIC_2, msg);
+    }
+
+    @GetMapping("/send4")
+    void send4() {
+        User user = new User();
+        user.setId(4);
+        user.setName("tom");
+        user.setAge(10);
+        String o = rocketMQTemplate.sendAndReceive(Topic.TOPIC_3, user, String.class, 6000);
+        System.out.println("o = " + o);
+    }
+
 
     @GetMapping("/sendMsg")
     void sendMsg() {
@@ -96,30 +162,6 @@ public class TestController {
         user.setName("带有tag的字符消息");
         user.setAge(10);
         mqProducerService.sendTagMsg(user);
-    }
-
-    @GetMapping("/noOrder")
-    public Boolean updateUser() {
-
-        String userTopic = Topic.sync_user_topic;
-
-        IntStream.range(0, 10).forEach(i -> {
-
-            MessageWrapper messageSend = MessageWrapper.builder()
-                    .keys(userTopic).message("用户向钱包中转入100元，短信通知用户目前剩余金额100元：" + i)
-                    .timestamp(System.currentTimeMillis()).build();
-
-            MessageWrapper messageSend1 = MessageWrapper.builder()
-                    .keys(userTopic).message("用户下单商品消费50元，短信通知用户目前剩余金额50元：" + i)
-                    .timestamp(System.currentTimeMillis()).build();
-
-            rocketMQTemplate.syncSend(userTopic, messageSend);
-
-            rocketMQTemplate.syncSend(userTopic, messageSend1);
-        });
-
-
-        return true;
     }
 
 

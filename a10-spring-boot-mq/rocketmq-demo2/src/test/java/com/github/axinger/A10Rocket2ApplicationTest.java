@@ -8,7 +8,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
 @SpringBootTest
-class A10RocketMqApplicationTest {
+class A10Rocket2ApplicationTest {
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
 

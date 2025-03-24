@@ -10,3 +10,7 @@ RocketMQ主要有三种发送模式：同步发送、异步发送和单向发送
 ```
 
 ![img.png](img.png)
+
+```text
+如果多个消费者使用相同的 consumerGroup，但订阅了不同的 tag，可能会出现无法正常接收消息的情况。这是因为 RocketMQ 的消费组（Consumer Group）和订阅关系的设计机制导致的。
+```
