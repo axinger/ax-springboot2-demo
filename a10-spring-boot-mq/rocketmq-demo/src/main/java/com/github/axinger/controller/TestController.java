@@ -35,25 +35,25 @@ public class TestController {
             user.setName("jim_" + i);
             user.setAge(i);
             /// // 同步发送
-//            rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
+            rocketMQTemplate.convertAndSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user);
 
 
-            rocketMQTemplate.asyncSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user, new SendCallback() {
-                @Override
-                public void onSuccess(SendResult sendResult) {
-                    // 成功 ACK
-                    System.out.println("成功 = " + sendResult);
-
-                    SendStatus sendStatus = sendResult.getSendStatus();
-                    System.out.println("sendStatus = " + sendStatus);
-                }
-
-                @Override
-                public void onException(Throwable throwable) {
-                    // 失败处理（相当于 NACK）
-                    System.out.println("throwable = " + throwable);
-                }
-            });
+//            rocketMQTemplate.asyncSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user, new SendCallback() {
+//                @Override
+//                public void onSuccess(SendResult sendResult) {
+//                    // 成功 ACK
+//                    System.out.println("成功 = " + sendResult);
+//
+//                    SendStatus sendStatus = sendResult.getSendStatus();
+//                    System.out.println("sendStatus = " + sendStatus);
+//                }
+//
+//                @Override
+//                public void onException(Throwable throwable) {
+//                    // 失败处理（相当于 NACK）
+//                    System.out.println("throwable = " + throwable);
+//                }
+//            });
         }
     }
 
@@ -64,7 +64,6 @@ public class TestController {
         user.setId(1);
         user.setName("jim");
         user.setAge(10);
-
 
         rocketMQTemplate.asyncSend(Topic.TOPIC_1 + ":" + Topic.Tag_1, user, new SendCallback() {
             @Override

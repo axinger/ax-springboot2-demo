@@ -6,6 +6,8 @@ import com.github.axinger.config.Topic;
 import com.github.axinger.model.User;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.annotation.ConsumeMode;
+import org.apache.rocketmq.spring.annotation.MessageModel;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.annotation.SelectorType;
 import org.apache.rocketmq.spring.core.RocketMQListener;
@@ -21,10 +23,15 @@ public class Group1Consumer {
     @RocketMQMessageListener(
             consumerGroup = Topic.GROUP_1,
             topic = Topic.TOPIC_1,
-            selectorType = SelectorType.TAG,
             selectorExpression = Topic.Tag_1,
 //            consumeThreadNumber = 4,
-            maxReconsumeTimes=3
+            replyTimeout = 1000,
+            consumeTimeout = 1L,                       // 超时默认失败
+            selectorType = SelectorType.TAG,          // 过滤类型为标签
+            consumeMode = ConsumeMode.CONCURRENTLY,   // 并发消费模式
+            messageModel = MessageModel.CLUSTERING,   // 集群模式（默认）
+            consumeThreadMax = 4,                    // 最大消费线程数
+            maxReconsumeTimes = 5                     // 最大重试次数
     )
     public static class Consumer2 implements RocketMQListener<User> {
         // 监听到消息就会执行此方法
@@ -43,8 +50,6 @@ public class Group1Consumer {
             TimeUnit.SECONDS.sleep(randomInt);
         }
     }
-
-
 
 
 //
