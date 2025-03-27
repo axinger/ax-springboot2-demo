@@ -5,7 +5,7 @@ spring:
   application:
     name: mall-order-app #订单作为消费者
   zipkin:
-    base-url: http://192.168.101.135:9411/
+    base-url: http://hadoop135:9411/
     sender:
       type: web
   sleuth:

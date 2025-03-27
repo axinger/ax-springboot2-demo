@@ -2,7 +2,7 @@ spring:
   iotdb-session:
     username: root
     password: root
-    ip: 192.168.101.132
+    ip: hadoop132
     port: 6667
     maxSize: 100
 

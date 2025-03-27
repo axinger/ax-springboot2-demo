@@ -3,13 +3,13 @@ spring:
     nacos:
       discovery: #服务中心
 #        server-addr: http://hadoop102:8848
-        server-addr: http://192.168.101.143:8848
+        server-addr: http://hadoop143:8848
         group: DEFAULT_GROUP
         namespace: dev
 
       config: #配置中心
 #        server-addr: http://hadoop102:8848
-        server-addr: http://192.168.101.143:8848
+        server-addr: http://hadoop143:8848
         namespace: dev
         username: nacos
         password: nacos

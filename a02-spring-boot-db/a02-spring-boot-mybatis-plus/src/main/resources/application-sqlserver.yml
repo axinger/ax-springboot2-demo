@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test;encrypt=false;trustServerCertificate=false
+    url: jdbc:sqlserver://hadoop142:1433;DatabaseName=ax_test;encrypt=false;trustServerCertificate=false
     username: sa
     password: Cepai@wit2022
 

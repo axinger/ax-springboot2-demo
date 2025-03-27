@@ -4,8 +4,8 @@ server:
 rocketmq:
   #  name-server: 127.0.0.1:9876 # 访问地址
   #  name-server: hadoop102:9876 # 访问地址
-  name-server: 192.168.100.11:9876 # 访问地址
-  #  name-server: 192.168.101.143:9876 # 访问地址
+  name-server: hadoop10011:9876 # 访问地址
+  #  name-server: hadoop143:9876 # 访问地址
 
   producer:
 

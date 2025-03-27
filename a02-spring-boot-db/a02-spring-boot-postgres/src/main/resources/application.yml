@@ -2,7 +2,7 @@ spring:
   application:
     name: a04-spring-boot-postgres
   datasource:
-    url: jdbc:postgresql://192.168.101.132:5432/ax_test
+    url: jdbc:postgresql://hadoop132:5432/ax_test
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver

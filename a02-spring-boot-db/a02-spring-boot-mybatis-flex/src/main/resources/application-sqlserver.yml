@@ -4,7 +4,7 @@ spring:
 
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2;encrypt=false;trustServerCertificate=false
+    url: jdbc:sqlserver://hadoop142:1433;DatabaseName=ax_test2;encrypt=false;trustServerCertificate=false
     username: sa
     password: Cepai@wit2022
   jpa:
@@ -44,12 +44,12 @@ mybatis-flex:
   datasource:
     ds1:
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-      url: jdbc:sqlserver://192.168.101.142:1433;DatabaseName=ax_test2;encrypt=false;trustServerCertificate=false
+      url: jdbc:sqlserver://hadoop142:1433;DatabaseName=ax_test2;encrypt=false;trustServerCertificate=false
       username: sa
       password: Cepai@wit2022
 
     ds2:
-      url: jdbc:mysql://192.168.101.132:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://hadoop132:3308/ax_test?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
