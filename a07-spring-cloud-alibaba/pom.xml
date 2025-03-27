@@ -17,10 +17,10 @@
         <module>alibaba-dubbo</module>
         <module>alibaba-sentinel</module>
         <module>alibaba-seata</module>
-        <module>mall-gateway-app</module>
-        <module>mall-order-app</module>
-        <module>mall-payment-app</module>
-        <module>sleuth</module>
+        <module>A07mall-gateway-app</module>
+        <module>A07mall-order-app</module>
+        <module>A07mall-payment-app</module>
+        <module>A07mall-sleuth</module>
     </modules>
 
 </project>

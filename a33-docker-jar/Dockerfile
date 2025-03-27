@@ -43,3 +43,11 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 
 # 暴露端口,需要和服务的端口一致
 EXPOSE 12021
+
+#在 Docker 中，无需（也不应）使用 nohup，因为：
+#
+#容器需要前台进程保持运行。
+#
+#日志应输出到标准输出。
+#
+#信号需正确传递给应用进程。
