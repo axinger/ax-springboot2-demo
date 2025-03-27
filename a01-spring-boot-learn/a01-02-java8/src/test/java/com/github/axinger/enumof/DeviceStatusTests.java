@@ -6,15 +6,16 @@ import org.junit.jupiter.api.Test;
 
 public class DeviceStatusTests {
 
+    /// 嵌套枚举
     @Test
-    void test1() {
+    public void test1() {
 
         System.out.println("DeviceStatus.CLOSE.type() = " + DeviceStatus.CLOSE.code());
         System.out.println("DeviceStatus.CLOSE = " + DeviceStatus.CLOSE);
-        System.out.println("DeviceStatus.CLOSE.getType().type() = " + DeviceStatus.CLOSE.aSwitch().code());
+        System.out.println("DeviceStatus.CLOSE.getType().type() = " + DeviceStatus.CLOSE.deviceSwitch().code());
 
         System.out.println("DeviceStatus.RUNNING.type() = " + DeviceStatus.RUNNING.code());
-        System.out.println("DeviceStatus.RUNNING.getCode() = " + DeviceStatus.RUNNING.aSwitch().code());
+        System.out.println("DeviceStatus.RUNNING.getCode() = " + DeviceStatus.RUNNING.deviceSwitch().code());
         System.out.println("DeviceStatus.RUNNING.name() = " + DeviceStatus.RUNNING.name());
 
 
@@ -23,7 +24,7 @@ public class DeviceStatusTests {
         System.out.println("status = " + status);
         switch (status) {
             case CLOSE -> {
-                switch (status.aSwitch()) {
+                switch (status.deviceSwitch()) {
                     case ON -> {
                         System.out.println("CLOSE-ON=============");
                     }
@@ -33,7 +34,7 @@ public class DeviceStatusTests {
                 }
             }
             case RUNNING -> {
-                switch (status.aSwitch()) {
+                switch (status.deviceSwitch()) {
                     case ON -> {
                         System.out.println("RUNNING-ON=============2");
                     }
@@ -46,5 +47,12 @@ public class DeviceStatusTests {
                 System.out.println("!CLOSE=============");
             }
         }
+    }
+
+
+    @Test
+    void test2() {
+
+
     }
 }

@@ -1,5 +1,10 @@
 package com.github.axinger.enumof;
 
+interface DeviceType {
+    int code();
+}
+
+
 enum DeviceSwitch implements DeviceType {
     OFF(0),
     ON(1),
@@ -38,8 +43,7 @@ public enum DeviceStatus implements DeviceType {
         this.type = type;
     }
 
-
-    public DeviceSwitch aSwitch() {
+     DeviceSwitch deviceSwitch() {
         return type;
     }
 
@@ -52,14 +56,6 @@ public enum DeviceStatus implements DeviceType {
     // public String toString(){
     //     return code;
     // }
-}
-
-interface DeviceType {
-    // default int code() {
-    //     return 0;
-    // }
-
-    int code();
 }
 
 
