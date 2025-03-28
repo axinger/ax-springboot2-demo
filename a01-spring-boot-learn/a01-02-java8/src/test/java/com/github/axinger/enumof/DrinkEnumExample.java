@@ -1,4 +1,4 @@
-package com.github.axinger;
+package com.github.axinger.enumof;
 
 public final class DrinkEnumExample {
 

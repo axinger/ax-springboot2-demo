@@ -1,4 +1,4 @@
-package com.github.axinger;
+package com.github.axinger.enumof;
 
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.func.LambdaUtil;

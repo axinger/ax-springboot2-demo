@@ -43,7 +43,6 @@ public class RequestMappingController {
         Map<String, Object> map = Map.of("name", name, "age", age);
         System.out.println("map = " + map);
         return map;
-
     }
 
     @PutMapping("/put")

@@ -1,11 +1,13 @@
 package com.github.axinger;
 
+import cn.hutool.core.util.NumberUtil;
 import org.junit.jupiter.api.Test;
-import org.springframework.format.annotation.NumberFormat;
 
+import java.io.Console;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 
 /**
@@ -19,25 +21,8 @@ import java.text.DecimalFormat;
 
 public class NumberTest {
 
-    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#,###")
-    private final Number total = 10000;
-
-    @NumberFormat(style = NumberFormat.Style.PERCENT)
-    private final double discount = 10000;
-
-    @NumberFormat(style = NumberFormat.Style.CURRENCY)
-    private final double money = 10000;
-    @NumberFormat(pattern = "#,###")
-    private final Integer salary = 1000;
-
     @Test
     void test1() {
-
-        System.out.println("total = " + total);
-        System.out.println("discount = " + discount);
-        System.out.println("money = " + money);
-        System.out.println("salary = " + salary);
-
         FormatDemo formatDemo = new FormatDemo();// 格式化对象的类
         formatDemo.format1("###,###.###", 123468.4986);
         formatDemo.format1("000,000.000", 18956.6615);
@@ -113,4 +98,99 @@ public class NumberTest {
         System.out.println(Integer.valueOf("0a", 16));
     }
 
+    @Test
+    void test5() {
+        /*
+易混淆场景：该方法不用于普通字符串转换（如 "123"），而是查找系统属性。误用可能导致意外结果。
+
+正确转换方式：若需将字符串转为整数，应使用 Integer.parseInt() 或 Integer.valueOf()。
+         */
+
+        // 获取系统属性 "thread.count"，不存在则返回 null
+        Integer threads = Integer.getInteger("thread.count");
+        System.out.println("threads = " + threads);
+
+// 获取系统属性 "timeout"，不存在或无效则返回默认值 30
+        Integer timeout = Integer.getInteger("timeout", 30);
+        System.out.println("timeout = " + timeout);
+
+
+    }
+
+    /*
+    1. Integer.valueOf(String str)
+    功能：将字符串转换为 Integer 对象。
+    返回值类型：返回的是一个 Integer 对象（包装类）。
+    内部实现：实际上调用了 Integer.valueOf(Integer.parseInt(str))，即先通过 parseInt 将字符串转为基本类型 int，然后再将其包装为 Integer 对象。
+    缓存机制：对于 -128 到 127 范围内的值，Integer.valueOf 会使用缓存的 Integer 对象，而不是每次都创建新的对象。
+    异常：如果字符串不是有效的整数格式（如 null 或非数字字符），会抛出 NumberFormatException。
+
+    2. Integer.parseInt(String str)
+    功能：将字符串转换为基本类型 int。
+    返回值类型：返回的是一个基本类型 int。
+    内部实现：直接解析字符串并返回 int 值，没有包装类的额外操作。
+    缓存机制：无缓存机制，因为返回的是基本类型 int。
+    异常：如果字符串不是有效的整数格式（如 null 或非数字字符），会抛出 NumberFormatException。
+
+    使用建议
+    如果只需要基本类型 int，推荐使用 Integer.parseInt，因为它更高效。
+    如果需要将整数存储到集合（如 List<Integer>）中，或者需要利用对象特性（如引用传递、方法调用等），则使用 Integer.valueOf。
+
+     */
+    @Test
+    void test6() {
+        String str1 = null;
+// 定义一个字符串变量 str1，值为 "2"。
+
+        try {
+            Integer integer = Integer.valueOf(str1);
+            System.out.println("integer = " + integer);
+        } catch (NumberFormatException e) {
+            System.err.println("NumberFormatException");
+        }
+        try {
+
+            int i = Integer.parseInt(str1);
+            System.out.println("i = " + i);
+        } catch (NumberFormatException e) {
+            System.err.println("NumberFormatException");
+        }
+
+        int i = NumberUtil.parseInt(str1, -1);
+        System.out.println("i = " + i);
+
+    }
+}
+
+class ConsoleExample {
+    public static void main(String[] args) {
+        // 获取 Console 对象
+        Console console = System.console();
+        if (console == null) {
+            System.out.println("无法获取控制台对象，可能在 IDE 中运行。");
+            return;
+        }
+
+        // 输出提示信息并读取用户输入
+        String name = console.readLine("请输入您的姓名: ");
+        console.printf("您好，%s！\n", name);
+
+        // 隐藏输入（如密码）
+        char[] password = console.readPassword("请输入密码: ");
+        console.printf("您输入的密码长度是：%d\n", password.length);
+    }
+}
+
+class SystemInExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // 将 System.in 包装为 Scanner
+
+        System.out.print("请输入您的姓名: ");
+        String name = scanner.nextLine(); // 读取一行字符串
+        System.out.println("您好，" + name);
+
+        System.out.print("请输入您的年龄: ");
+        int age = scanner.nextInt(); // 读取整数
+        System.out.println("您的年龄是: " + age);
+    }
 }
