@@ -1,16 +1,28 @@
 package com.github.axinger;
 
+import com.axing.common.response.dto.Result;
 import com.baomidou.mybatisplus.core.toolkit.AES;
+import com.github.axinger.domain.SysPersonEntity;
 import com.github.axinger.domain.SysUserTotalEntity;
 import com.github.axinger.service.SysPersonService;
 import com.github.axinger.service.SysUserTotalService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Map;
 
-@SpringBootTest
+//@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MybatisPlusApplicationTests {
 
     String randomKey = "abcdef1234567890";
@@ -68,4 +80,31 @@ class MybatisPlusApplicationTests {
         System.out.println("list = " + list);
     }
 
+
+    @Autowired
+    private TestRestTemplate testRestTemplate;
+
+    @Test
+    void test3() {
+        String url = "/person/add";
+        String result = testRestTemplate.getForObject(url, String.class);
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    void test4() {
+        ParameterizedTypeReference<List<SysPersonEntity>> type = new ParameterizedTypeReference<>() {
+        };
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        headers.add("token", "jim");
+
+        HttpEntity<?> httpEntity = new HttpEntity<>(headers);
+
+        String url = "/person/list";
+        ResponseEntity<List<SysPersonEntity>> exchange = testRestTemplate.exchange(url, HttpMethod.GET, httpEntity, type);
+        System.out.println("exchange = " + exchange.getBody());
+    }
 }
