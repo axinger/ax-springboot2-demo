@@ -6,8 +6,8 @@
 
 
 #FROM eclipse-temurin:17-jdk
-#FROM eclipse-temurin:17-jdk-jammy
-FROM eclipse-temurin:17-jdk-centos7
+FROM eclipse-temurin:17-jdk-jammy
+#FROM eclipse-temurin:17-jdk-centos7
 #FROM eclipse-temurin:17-jdk-focal
 #FROM eclipse-temurin:17-jdk-alpine
 

@@ -16,6 +16,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.PathMatcher;
 import org.springframework.util.StopWatch;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
@@ -33,7 +34,7 @@ import java.util.Map;
 @Order(-1)
 public class AuthFilter implements GlobalFilter {
 
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+    private final PathMatcher pathMatcher = new AntPathMatcher();
     @Value("${whitelist.paths}")
     List<String> whitelistPaths;
 

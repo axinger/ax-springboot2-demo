@@ -2,12 +2,13 @@ package com.github.axinger;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 
 public class AntPathMatcherTests {
 
     @Test
     void tet1() {
-        AntPathMatcher matcher = new AntPathMatcher();
+        PathMatcher matcher = new AntPathMatcher();
         // ?
         System.out.println(matcher.match("/test/a?c", "/test/abc"));// true
         // *

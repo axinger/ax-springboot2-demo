@@ -1,5 +1,5 @@
 
-FROM eclipse-temurin:17-jdk-centos7
+FROM eclipse-temurin:17-jdk-jammy
 
 #作者
 MAINTAINER 阿星

@@ -9,7 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>a01-01-spring-boot-mvc</artifactId>
-
+    <properties>
+        <!-- 定义时间戳格式 -->
+        <maven.build.timestamp.format>yyyyMMdd.HHmmss+0800</maven.build.timestamp.format>
+        <!-- 生成带时间戳的文件名 -->
+        <build.final.name>${project.artifactId}-${project.version}-${maven.build.timestamp}</build.final.name>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -120,6 +125,7 @@
     <!--    </profiles>-->
 
     <build>
+        <finalName>${build.final.name}</finalName>
         <!--        <resources>-->
         <!--            <resource>-->
         <!--                <directory>src/main/resources</directory>-->
@@ -154,7 +160,16 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <!-- 关键：禁用默认的分类器，避免生成 -original.jar -->
+                    <classifier/>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--跳过测试-->

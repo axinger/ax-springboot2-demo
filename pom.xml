@@ -268,6 +268,12 @@
                 <version>${axinger.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>A07mall-api</artifactId>
+                <version>${axinger.version}</version>
+            </dependency>
+
             <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->
             <!--            不要这样引用,打包会no main manifest attribute-->
             <!--            <dependency>-->

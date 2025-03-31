@@ -6,16 +6,16 @@ server:
 spring:
   application:
     name: mall-order-app
-#  datasource:
-#    dynamic:
-#      primary: master
-#      strict: false
-#      datasource:
-#        master:
-#          url: jdbc:mysql://hadoop102:3306/ax_test01?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
-#          username: root
-#          password: 123456
-#          driver-class-name: com.mysql.cj.jdbc.Driver
+  #  datasource:
+  #    dynamic:
+  #      primary: master
+  #      strict: false
+  #      datasource:
+  #        master:
+  #          url: jdbc:mysql://hadoop102:3306/ax_test01?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+  #          username: root
+  #          password: 123456
+  #          driver-class-name: com.mysql.cj.jdbc.Driver
 
   zipkin:
     base-url: http://hadoop135:9411/
