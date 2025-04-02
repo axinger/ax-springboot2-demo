@@ -68,4 +68,24 @@ public class ValidationServiceImpl implements ValidationService {
         System.out.println("dto = " + dto);
     }
 
+    @Override
+    public void loginDTO2(LoginDTO dto) {
+        System.out.println("dto = " + dto);
+    }
+
+    @Override
+    public void loginDTO3(LoginDTO dto) {
+        System.out.println("dto = " + dto);
+    }
+
+    @Override
+    public void loginDTO4(LoginDTO dto) {
+        System.out.println("dto = " + dto);
+    }
+
+    @Override
+    public void loginDTO5(LoginDTO dto) {
+        System.out.println("dto = " + dto);
+    }
+
 }

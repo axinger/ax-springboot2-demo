@@ -28,27 +28,39 @@ public class ValidationServiceTest {
 
     @Test
     void strNotBlank_1() {
-        validationService.strNotBlank(null); // 不通过
+        validationService.strNotBlank(null); // 能被校验
+    }
+
+    @Test
+    void strNotBlank_12() {
+        validationService.strNotBlank("123");
+    }
+
+    @Test
+    void strNotBlank_13() {
+
+
+        validationService.strNotNull3("");
     }
 
     @Test
     void strNotBlank_2() {
-        validationService.strNotBlank(""); // 不通过
+        validationService.strNotBlank(""); // 能被校验,不通过
     }
 
     @Test
     void strNotBlank_3() {
-        validationService.strNotBlank(" "); //不通过
+        validationService.strNotBlank(" "); //能被校验,不通过
     }
 
     @Test
     void strNotEmpty_1() {
-        validationService.strNotEmpty(null); // 不通过
+        validationService.strNotEmpty(null); // 能被校验,不通过
     }
 
     @Test
     void strNotEmpty_2() {
-        validationService.strNotEmpty(""); // 不通过
+        validationService.strNotEmpty(""); // 能被校验,不通过
     }
 
     @Test
@@ -61,15 +73,13 @@ public class ValidationServiceTest {
     void strNotEmpty_4() {
 
 //        validationService.strNotNull(""); // 通过
-//        validationService.strNotNull(null); // 不通过
+//        validationService.strNotNull(null); // 能被校验,不通过
 
-//        validationService.listNotEmpty(null);// 不通过
-//        validationService.listNotEmpty(new ArrayList<>());// 不通过
+//        validationService.listNotEmpty(null);// 能被校验,不通过
+//        validationService.listNotEmpty(new ArrayList<>());// 能被校验,不通过
         validationService.listNotEmpty(new ArrayList<>() {{
             add("1");
         }});// 通过
-
-        validationService.strNotNull3("");
 
     }
 
@@ -100,6 +110,43 @@ public class ValidationServiceTest {
         dto.setDate(new Date());
         validationService.funOne(dto);
     }
+
+
+    @Test
+    void test2() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setUsername("admin");
+        validationService.loginDTO(loginDTO); //能被校验
+    }
+
+    @Test
+    void test22() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setUsername("admin");
+        validationService.loginDTO2(loginDTO);
+    }
+
+    @Test
+    void test23() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setUsername("admin");
+        validationService.loginDTO3(loginDTO);
+    }
+
+    @Test
+    void test24() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setUsername("admin");
+        validationService.loginDTO4(loginDTO);
+    }
+
+    @Test
+    void test25() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setUsername("admin");
+        validationService.loginDTO5(loginDTO);
+    }
+
 
 //    @Test
 //    void testDate_1(){
@@ -132,10 +179,5 @@ public class ValidationServiceTest {
         validationService.testDate(dto);
     }
 
-    @Test
-    void test2() {
-        LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setUsername("admin");
-        validationService.loginDTO(loginDTO);
-    }
+
 }
