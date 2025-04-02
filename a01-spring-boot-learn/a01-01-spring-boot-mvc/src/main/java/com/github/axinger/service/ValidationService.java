@@ -72,7 +72,4 @@ public interface ValidationService {
     @Validated
     void testDate(@Valid DateDTO dto);
 
-
-    /// //
-
 }
