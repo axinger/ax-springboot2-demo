@@ -38,19 +38,20 @@ public class UserConsumer1 {
             Acknowledgment ack,
             ConsumerRecord<?, UserDTO> record,
             Consumer<?, ?> consumer) {
-        log.info("ax_kafka_demo1==================================================");
+        log.info("接收到消息==================================================");
         try {
             // 模拟业务处理
             // handleBusiness(record);
 
             // 获取主题名称
-            // String topic = record.topic();
+             String topic = record.topic();
             //
             // // 获取主题分区 ID
             // int partition = record.partition();
             //
             // // 获取偏移量
             long offset = record.offset();
+            String payload = message.getPayload();
             //
             // // 获取键和值
             // String key = record.key();
@@ -63,7 +64,7 @@ public class UserConsumer1 {
 //            System.out.println("message.getPayload() = " + message.getPayload());
 //            System.out.println("data = " + data);
 //
-            log.info("偏移量={}，payload={}，data={}", offset, message.getPayload(), data);
+            log.info("主题={},偏移量={}，payload={}，data={}",topic, offset,payload, data);
 //            System.out.println("userDTO = " + userDTO);
 
 //            UserDTO value = record.value();

@@ -24,7 +24,7 @@ public class UserConsumer2 {
                        Acknowledgment ack,
                        Consumer<?, ?> consumer) {
         try {
-            log.info("ax_kafka_demo2==================================================");
+            log.info("接收到消息==================================================");
             // 模拟业务处理
             // handleBusiness(record);
 
