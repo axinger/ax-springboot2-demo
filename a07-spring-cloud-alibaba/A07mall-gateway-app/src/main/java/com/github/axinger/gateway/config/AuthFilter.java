@@ -72,28 +72,28 @@ public class AuthFilter implements GlobalFilter {
         }
 
         // 获取Token
-        String token = getJwtToken(request);
-        if (token == null) {
-            return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "登录过期"));
-        }
+//        String token = getJwtToken(request);
+//        if (token == null) {
+//            return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "登录过期"));
+//        }
 
         // 验证Token并解析权限
         try {
-            Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor("abc123".getBytes()))
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
+//            Claims claims = Jwts.parserBuilder()
+//                    .setSigningKey(Keys.hmacShaKeyFor("abc123".getBytes()))
+//                    .build()
+//                    .parseClaimsJws(token)
+//                    .getBody();
+//
+//            String roles = claims.get("roles", String.class);
+//            List<String> authorities = Arrays.asList(roles.split(","));
+//
+//            // 检查权限是否足够访问当前路径
+//            if (!hasPermission(authorities, path)) {
+//                return Mono.error(new ResponseStatusException(HttpStatus.FORBIDDEN, "权限不足"));
+//            }
 
-            String roles = claims.get("roles", String.class);
-            List<String> authorities = Arrays.asList(roles.split(","));
-
-            // 检查权限是否足够访问当前路径
-            if (!hasPermission(authorities, path)) {
-                return Mono.error(new ResponseStatusException(HttpStatus.FORBIDDEN, "权限不足"));
-            }
-
-            return getComplete(exchange, chain, stopWatch, claims.getSubject());
+            return getComplete(exchange, chain, stopWatch, "1");
         } catch (Exception e) {
             return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token验证失败"));
         }

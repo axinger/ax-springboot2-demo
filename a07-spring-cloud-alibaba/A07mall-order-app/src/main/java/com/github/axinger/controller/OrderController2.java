@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.api.order.api.PaymentOrderApi2;
+import com.github.axinger.api.payment.PaymentOrderApi2;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -575,18 +575,19 @@
                 <version>3.3.2</version>
             </dependency>
 
-            <!--            springboot3-->
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                <version>2.1.0</version>
-            </dependency>
+<!--            &lt;!&ndash;            springboot3&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springdoc</groupId>-->
+<!--                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+<!--                <version>2.1.0</version>-->
+<!--            </dependency>-->
 
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-                <version>2.1.0</version>
-            </dependency>
+<!--            &lt;!&ndash;            springboot3&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springdoc</groupId>-->
+<!--                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>-->
+<!--                <version>2.1.0</version>-->
+<!--            </dependency>-->
 
 
             <dependency>
@@ -594,37 +595,33 @@
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>1.7.0</version>
             </dependency>
-            <!--            包含
-
-                <dependency>
-                            <groupId>org.springdoc</groupId>
-                            <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                            <version>1.8.0</version>
-                        </dependency>
-            -->
-
 
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-webflux-ui</artifactId>
-                <version>1.7.0</version>
+                <version>1.8.0</version>
             </dependency>
 
-            <!--      包括
-                <dependency>
-                            <groupId>org.springdoc</groupId>
-                            <artifactId>springdoc-openapi-webflux-core</artifactId>
-                            <version>1.8.0</version>
-                        </dependency>
-            -->
 
+<!--            <dependency>-->
+<!--                <groupId>com.github.xiaoymin</groupId>-->
+<!--                <artifactId>knife4j-springdoc-ui</artifactId>-->
+<!--                <version>3.0.3</version>-->
+<!--            </dependency>-->
 
+            <!--对应springdoc-->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-springdoc-ui</artifactId>
-                <version>3.0.3</version>
+                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+                <version>4.5.0</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-gateway-spring-boot-starter -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
+                <version>4.5.0</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
             <dependency>
                 <groupId>org.flywaydb</groupId>
@@ -720,22 +717,22 @@
             <!--            </plugin>-->
         </plugins>
 
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <excludes>-->
-<!--                    <exclude>application-*.yml</exclude>-->
-<!--                </excludes>-->
-<!--            </resource>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <filtering>true</filtering>-->
-<!--                <includes>-->
-<!--                    <include>application.yml</include>-->
-<!--                    <include>application-${my-env}.yml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
+        <!--        <resources>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <excludes>-->
+        <!--                    <exclude>application-*.yml</exclude>-->
+        <!--                </excludes>-->
+        <!--            </resource>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <filtering>true</filtering>-->
+        <!--                <includes>-->
+        <!--                    <include>application.yml</include>-->
+        <!--                    <include>application-${my-env}.yml</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
     </build>
 
 </project>
