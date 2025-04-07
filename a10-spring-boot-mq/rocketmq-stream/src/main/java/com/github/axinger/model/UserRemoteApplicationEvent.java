@@ -1,8 +1,7 @@
 package com.github.axinger.model;
 
-import lombok.*;
+import lombok.Getter;
 import org.springframework.cloud.bus.event.RemoteApplicationEvent;
-import org.springframework.context.ApplicationEvent;
 
 
 @Getter
