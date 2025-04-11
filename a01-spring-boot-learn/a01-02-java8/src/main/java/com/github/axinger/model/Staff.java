@@ -1,5 +1,7 @@
 package com.github.axinger.model;
 
+import com.github.axinger.annotation.DateType;
+import com.github.axinger.annotation.TableOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +18,11 @@ public class Staff {
     // 生产日期
     Date date;
     // 产量
+
+    @TableOrder(index = 1, dateType = DateType.VARCHAR)
     BigDecimal yield;
+
+    public static void main(String[] args) {
+        DateType len = DateType.VARCHAR.len(1);
+    }
 }

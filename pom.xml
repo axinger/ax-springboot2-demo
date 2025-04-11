@@ -122,6 +122,7 @@
         <module>a39-liteflow</module>
         <module>axinger-config</module>
         <module>a22-cors</module>
+        <module>a41-ocr</module>
     </modules>
 
     <dependencyManagement>

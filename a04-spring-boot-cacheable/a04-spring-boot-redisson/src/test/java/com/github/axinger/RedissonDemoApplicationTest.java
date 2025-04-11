@@ -258,4 +258,36 @@ class RedissonDemoApplicationTest {
             rLock.unlock();
         }
     }
+
+    /// 队列
+    /*
+    Redisson 提供了多种队列实现，可以根据需求选择合适的类型：
+
+    RQueue: 普通队列，支持非阻塞操作。
+    RBlockingQueue: 阻塞队列，支持阻塞式获取元素。
+    RDelayedQueue: 延迟队列，可以设置延迟时间，任务会在指定时间后进入队列。
+    RTopic: 发布/订阅模式的消息队列
+     */
+    @Test
+    void test10() throws InterruptedException {
+
+        RBlockingQueue<String> blockingQueue = redissonClient.getBlockingQueue("delayedQueue");
+        blockingQueue.add("1");
+        boolean offer = blockingQueue.offer("2");
+
+        // 消费任务
+        String task = blockingQueue.take();
+        System.out.println("Processing delayed task: " + task);
+        String poll = blockingQueue.poll();
+        System.out.println("poll = " + poll);
+
+
+//        RDelayedQueue<String> delayedQueue = redissonClient.getDelayedQueue(blockingQueue);
+//
+//        // 添加延迟任务
+//        delayedQueue.offer("Delayed Task", 10, TimeUnit.SECONDS);
+//
+//
+//        delayedQueue.destroy();
+    }
 }
