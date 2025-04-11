@@ -180,8 +180,148 @@ class FastJson2Test {
         System.out.println("path修改值后books[1].name = " + JSONPath.of("$.books[1].name").eval(person));
         System.out.println("path修改值后books[3].name = " + JSONPath.of("$.books[3].name").eval(person));
 
-        Object eval = JSONPath.eval(person, "[age = 10]");
+//        Object eval = JSONPath.eval(person, "[age = 10]");
+//        System.out.println("eval = " + eval);
+        Object eval2 = JSONPath.eval(person, "@[?age=10]");
+        System.out.println("eval2 = " + eval2);
+
+    }
+
+    @Test
+    void test50() {
+        /*
+    @ 表示当前对象。
+    [?age=10] 是一个过滤条件，表示选择 age 属性等于 10 的对象。
+    因此，@[?age=10] 的含义是：在当前对象的集合中，选择所有 age 属性等于 10 的对象。
+
+
+    $.age:
+$ 表示根对象。
+$.age 表示根对象中的 age 属性。
+这种语法通常用于 JSON 对象或 JSON 数组的根级别。
+@.age:
+@ 表示当前对象。
+@.age 表示当前对象中的 age 属性。
+这种语法在某些情况下更明确地指定了当前对象。
+         */
+        Map<String, Object> map = new HashMap<>();
+        map.put("age", 10);
+
+
+
+        // 存在key
+        JSONPath.set(map, "$.age", 11);
+        System.out.println("map = " + map);
+
+        Object eval = JSONPath.eval(map, "$.age");
         System.out.println("eval = " + eval);
+
+        JSONPath.set(map, "@.age", 12);
+        System.out.println("map = " + map);
+
+        Object eval12 = JSONPath.eval(map, "@.age");
+        System.out.println("eval12 = " + eval12);
+
+
+        JSONPath.set(map, "$.name", "jim");
+        System.out.println("map = " + map);
+
+        JSONPath.set(map, "$.age", 10);
+        System.out.println("map = " + map);
+
+        // 修正 JSONPath 表达式
+        Object eval2 = JSONPath.eval(map, "@[?age=10]");
+        System.out.println("eval2 = " + eval2);
+
+        Object eval3 = JSONPath.eval(map, "@[?(@.age=10)]");
+        System.out.println("eval3 = " + eval3);
+    }
+
+    @Test
+    void test501() {
+        Map<String, Object> root = new HashMap<>();
+        root.put("age", 10);
+
+        Map<String, Object> nestedMap = new HashMap<>();
+        nestedMap.put("age", 20);
+        nestedMap.put("name", "nested");
+
+        root.put("nested", nestedMap);
+
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> listMap1 = new HashMap<>();
+        listMap1.put("age", 30);
+        listMap1.put("name", "list1");
+        list.add(listMap1);
+
+        Map<String, Object> listMap2 = new HashMap<>();
+        listMap2.put("age", 40);
+        listMap2.put("name", "list2");
+        list.add(listMap2);
+
+        root.put("list", list);
+
+        System.out.println("root = " + root);
+
+        // 使用 $.age 和 @.age 进行设置和评估
+        JSONPath.set(root, "$.age", 100);
+        System.out.println("After setting $.age: " + root);
+
+        JSONPath.set(root, "@.age", 200);
+        System.out.println("After setting @.age: " + root);
+
+        JSONPath.set(root, "$.nested.age", 200);
+        System.out.println("After setting $.nested.age: " + root);
+
+        JSONPath.set(root, "@.nested.age", 300);
+        System.out.println("After setting @.nested.age: " + root);
+
+        JSONPath.set(root, "$.list[0].age", 300);
+        System.out.println("After setting $.list[0].age: " + root);
+
+        JSONPath.set(root, "@.list[0].age", 400);
+        System.out.println("After setting @.list[0].age: " + root);
+        /*
+        分析
+        根对象设置:
+        JSONPath.set(root, "$.age", 100);
+        $.age 设置根对象的 age 属性为 100。
+        JSONPath.set(root, "@.age", 200);
+        @.age 也设置根对象的 age 属性为 200。
+        效果相同：因为 root 是根对象，$ 和 @ 在这里指向同一个对象。
+        嵌套对象设置:
+        JSONPath.set(root, "$.nested.age", 200);
+        $.nested.age 设置 nested 对象的 age 属性为 200。
+        JSONPath.set(root, "@.nested.age", 300);
+        @.nested.age 也设置 nested 对象的 age 属性为 300。
+        效果相同：因为 nested 是 root 的一个属性，$ 和 @ 在这里指向同一个对象。
+        数组元素设置:
+        JSONPath.set(root, "$.list[0].age", 300);
+        $.list[0].age 设置 list 数组中第一个元素的 age 属性为 300。
+        JSONPath.set(root, "@.list[0].age", 400);
+        @.list[0].age 也设置 list 数组中第一个元素的 age 属性为 400。
+        效果相同：因为 list 是 root 的一个属性，$ 和 @ 在这里指向同一个对象。
+         */
+    }
+
+    @Test
+    void test502() {
+        Map<String, Object> root = new HashMap<>();
+        root.put("age", 10);
+
+        Map<String, Object> nestedMap = new HashMap<>();
+        nestedMap.put("age", 20);
+        nestedMap.put("name", "nested");
+
+        root.put("nested", nestedMap);
+        System.out.println("root = " + root);
+
+
+        JSONPath.set(root, "$.nested.@.age", 250);
+        System.out.println("After setting $.nested.@.age: " + root);
+
+        JSONPath.set(root, "@.nested.@.age", 350);
+        System.out.println("After setting @.nested.@.age: ============" + root);
 
     }
 
