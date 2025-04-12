@@ -1,6 +1,6 @@
 package com.github.axinger.enumof;
 
-public enum  Week {
+public enum Week {
     MONDAY,
     TUESDAY,
     WEDNESDAY,
@@ -11,10 +11,11 @@ public enum  Week {
 
     /// 枚举是线程安全的单例
     public void print() {
-        System.out.println("我的名字"+this.name());
+        System.out.println("我的名字" + this.name());
     }
+
     public boolean isWeekEnd() {
-      return this == SATURDAY || this == SUNDAY;
+        return this == SATURDAY || this == SUNDAY;
     }
 }
 

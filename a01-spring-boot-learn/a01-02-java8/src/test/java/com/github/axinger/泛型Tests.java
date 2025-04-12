@@ -58,7 +58,6 @@ public class 泛型Tests {
     }
 
 
-
     public static <T> T testE(String text, TypeToken<T> typeToken) {
         Type type = typeToken.getType();
         if (type instanceof ParameterizedType) {

@@ -36,10 +36,12 @@ public enum Step implements StepItem {
     };
 
     public abstract int step(int a, int b);
+
     public abstract Step next();
 }
 
 interface StepItem {
     int step(int a, int b);
+
     Step next();
 }

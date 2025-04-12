@@ -10,11 +10,12 @@ public enum DateType {
 
     private int len;
 
-    public DateType len(int len){
+    public DateType len(int len) {
         this.len = len;
         return this;
     }
-    public DateType len(){
+
+    public DateType len() {
         return this;
     }
 

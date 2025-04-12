@@ -71,7 +71,7 @@ public class GenericTest {
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
-                "Cannot convert '" + text + "' to " + targetType.getSimpleName()
+                    "Cannot convert '" + text + "' to " + targetType.getSimpleName()
             );
         }
     }
@@ -80,11 +80,13 @@ public class GenericTest {
     @Test
     public void test2() {
         // 测试 Map<Integer, Integer>（键和值均为 Integer）
-        Map<Integer, Integer> map1 = testE("123", new TypeToken<Map<Integer, Integer>>() {});
+        Map<Integer, Integer> map1 = testE("123", new TypeToken<Map<Integer, Integer>>() {
+        });
         System.out.println("Map<Integer, Integer>: " + map1); // 输出: {123=123}
 
         // 测试 Map<String, String>（键和值均为 String）
-        Map<String, String> map2 = testE("value", new TypeToken<Map<String, String>>() {});
+        Map<String, String> map2 = testE("value", new TypeToken<Map<String, String>>() {
+        });
         System.out.println("Map<String, String>: " + map2); // 输出: {value=value}
 
         // 测试 Map<Boolean, Long>（键为 Boolean，值为 Long）

@@ -22,12 +22,12 @@ public class JacksonConfig {
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         javaTimeModule.addSerializer(
-            LocalDateTime.class,
-            new LocalDateTimeSerializer(formatter)
+                LocalDateTime.class,
+                new LocalDateTimeSerializer(formatter)
         );
         javaTimeModule.addDeserializer(
-            LocalDateTime.class,
-            new LocalDateTimeDeserializer(formatter)
+                LocalDateTime.class,
+                new LocalDateTimeDeserializer(formatter)
         );
         objectMapper.registerModule(javaTimeModule);
         // 禁用时间戳格式

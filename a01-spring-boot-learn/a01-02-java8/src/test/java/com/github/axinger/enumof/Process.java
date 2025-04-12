@@ -91,6 +91,8 @@ public enum Process implements ProcessItem {
 
 interface ProcessItem {
     int step(int a, int b);
+
     Process previous();
+
     Process next(int a, int b);
 }

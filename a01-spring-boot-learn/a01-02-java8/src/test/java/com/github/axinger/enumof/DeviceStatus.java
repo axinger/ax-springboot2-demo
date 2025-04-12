@@ -43,7 +43,7 @@ public enum DeviceStatus implements DeviceType {
         this.type = type;
     }
 
-     DeviceSwitch deviceSwitch() {
+    DeviceSwitch deviceSwitch() {
         return type;
     }
 

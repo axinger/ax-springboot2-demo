@@ -35,7 +35,7 @@ public class GetController {
     /// get参数list  [...](http://localhost:12021/get/test2?param=2&param=1)
     /// [...](http://localhost:12021/get/test2?param=1,2,3)",
     @GetMapping("/test2")
-    public Object test3(@RequestParam("param")List<String> id) {
+    public Object test3(@RequestParam("param") List<String> id) {
         Map<String, Object> map = new HashMap<>(16);
         map.put("id", id);
         return map;
