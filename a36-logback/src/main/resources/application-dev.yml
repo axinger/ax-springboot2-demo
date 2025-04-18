@@ -10,4 +10,8 @@ logging:
   config: classpath:logback-spring.xml
   file:
     path: ./logs
-    name: app123
+    name: a36-logback
+  level:
+#    org.springframework.boot.web: error
+    org.apache: error
+    com.github.axinger: debug

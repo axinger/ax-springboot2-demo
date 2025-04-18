@@ -28,6 +28,10 @@ public class A01MVCApplication {
     public static void main(String[] args) {
         SpringApplication.run(A01MVCApplication.class, args);
         log.info("环境变量={}", My_Env);
+        log.error("环境变量={}", My_Env);
+        log.debug("环境变量={}", My_Env);
+        log.warn("环境变量={}", My_Env);
+        log.trace("环境变量={}", My_Env);
     }
 
     @Value("${spring.profiles.active}")
