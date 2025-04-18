@@ -19,7 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ConfigurationProperties(prefix = "axinger.person")
 @Configuration
-public class PersonProperties {
+public class AxingerPersonProperties {
 
     private Long id;
     private String name;

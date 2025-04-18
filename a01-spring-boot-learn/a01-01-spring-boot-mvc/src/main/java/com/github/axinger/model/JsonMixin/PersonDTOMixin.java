@@ -1,7 +1,7 @@
 package com.github.axinger.model.JsonMixin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.axinger.model.PersonDTO;
+import com.github.axinger.model.dto.PersonDTO;
 import org.springframework.boot.jackson.JsonMixin;
 
 @JsonMixin(PersonDTO.class) // 1

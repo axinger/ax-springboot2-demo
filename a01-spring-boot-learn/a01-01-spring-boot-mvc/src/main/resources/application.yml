@@ -12,7 +12,3 @@ spring:
 axinger:
   delayExpression: 2000L
 
-logging:
-  config: classpath:logback-spring.xml
-  file:
-    path: logs

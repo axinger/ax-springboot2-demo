@@ -3,13 +3,11 @@ package com.github.axinger.model.bean;
 import com.axing.common.util.factory.YamlPropertySourceFactory;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
 
 @ConfigurationProperties(prefix = "my")
-@EnableConfigurationProperties(MyYmlBean.class) // 这句重要,要重复2次
 @PropertySource(value = {"classpath:my.yml"}, factory = YamlPropertySourceFactory.class) // 需要自定义yaml解析
 public record MyYmlBean(User user, List<User> list) {
 //    /**

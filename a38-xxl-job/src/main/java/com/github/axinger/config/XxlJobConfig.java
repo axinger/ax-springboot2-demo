@@ -23,28 +23,6 @@ public class XxlJobConfig {
     @Autowired
     private InetUtils inetUtils;
 
-    @Bean
-    public XxlJobSpringExecutor xxlJobExecutor() {
-
-
-        String ip = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
-        log.info("本机ip={}", ip);
-
-
-        log.info(">>>>>>>>>>> xxl-job config init.");
-        XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
-        xxlJobSpringExecutor.setAdminAddresses(xxlJobProperties.getAdmin().getAddresses());
-        xxlJobSpringExecutor.setAppname(xxlJobProperties.getExecutor().getAppname());
-        xxlJobSpringExecutor.setAddress(xxlJobProperties.getExecutor().getAddress());
-        xxlJobSpringExecutor.setIp(xxlJobProperties.getExecutor().getIp());
-        xxlJobSpringExecutor.setPort(xxlJobProperties.getExecutor().getPort());
-        xxlJobSpringExecutor.setAccessToken(xxlJobProperties.getAccessToken());
-        xxlJobSpringExecutor.setLogPath(xxlJobProperties.getExecutor().getLogpath());
-        xxlJobSpringExecutor.setLogRetentionDays(xxlJobProperties.getExecutor().getLogretentiondays());
-
-        return xxlJobSpringExecutor;
-    }
-
     /**
      * 针对多网卡、容器内部署等情况，可借助 "spring-cloud-commons" 提供的 "InetUtils" 组件灵活定制注册IP；
      *
@@ -61,6 +39,29 @@ public class XxlJobConfig {
      *      3、获取IP
      *          String ip_ = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
      */
+    @Bean
+    public XxlJobSpringExecutor xxlJobExecutor() {
+
+
+        String ip = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
+        log.info("本机ip={}", ip);
+
+
+        log.info(">>>>>>>>>>> xxl-job config init.");
+        XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
+        xxlJobSpringExecutor.setAdminAddresses(xxlJobProperties.getAdminAddresses());
+        xxlJobSpringExecutor.setAppname(xxlJobProperties.getAppname());
+        xxlJobSpringExecutor.setAddress(xxlJobProperties.getAddress());
+        xxlJobSpringExecutor.setIp(xxlJobProperties.getIp());
+        xxlJobSpringExecutor.setPort(xxlJobProperties.getPort());
+        xxlJobSpringExecutor.setAccessToken(xxlJobProperties.getAccessToken());
+        xxlJobSpringExecutor.setLogPath(xxlJobProperties.getLogPath());
+        xxlJobSpringExecutor.setLogRetentionDays(xxlJobProperties.getLogRetentionDays());
+
+        return xxlJobSpringExecutor;
+    }
+
+
 
 
 }

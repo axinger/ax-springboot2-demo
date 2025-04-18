@@ -5,9 +5,9 @@ import com.axing.common.response.dto.PageDTO;
 import com.axing.common.response.dto.PageResult;
 import com.axing.common.response.dto.Result;
 import com.github.axinger.config.MyTrackId;
-import com.github.axinger.model.Dog;
-import com.github.axinger.model.PersonDTO;
-import com.github.axinger.model.bean.UserProperties;
+import com.github.axinger.model.dto.Dog;
+import com.github.axinger.model.dto.PersonDTO;
+import com.github.axinger.model.bean.AxingerUserProperties;
 import com.github.axinger.model.dto.UserDTO;
 import com.github.axinger.model.dto.UserPojo;
 import com.github.axinger.service.UserService;
@@ -30,13 +30,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/one")
-    public UserProperties getUser() {
-        UserProperties user = new UserProperties("jim", "123", new UserProperties.Dog(1, 2));
+    public AxingerUserProperties getUser() {
+        AxingerUserProperties user = new AxingerUserProperties("jim", "123", new AxingerUserProperties.Dog(1, 2));
 //        User user2 = new User();
         String name = user.username();
         System.out.println("name = " + name);
 
-        UserProperties.range range = new UserProperties.range(1, 2);
+        AxingerUserProperties.range range = new AxingerUserProperties.range(1, 2);
 
         System.out.println(user.all());
         return user;

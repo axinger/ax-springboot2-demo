@@ -5,28 +5,17 @@ spring:
   application:
     version: 1.0.1
     description: dev环境
+  config:
+    import:
+      #Spring Boot 2.4 及以上版本
+      - classpath:axinger.yml      # 从 classpath 加载
+      - classpath:user.yml      # 从 classpath 加载
+#      - file:./config/user.yml  # 从文件系统加载（项目根目录的 config 目录下）
+#      - optional:file:./user.yml # 可选导入（文件不存在时不报错）
 
-axinger:
-  user:
-    username: jim
-    password: 1234
-    dog: # 必须缩进两格
-      min: 1 # 必须缩进四格
-      max: 100
-
-  person:
-    id: 1
-    name: jim
-    age: 18
-    time: 12:00:00
-    time2: "13:00:00"
-    created-date: "2000-01-01 13:00:00"
-    created-time: "13:00:01"
-    updated-date-time: "2000-01-02 14:00:00"
-    updated-date: "2000-01-02"
-    updated-time: "14:00:01"
-  doc:
-    title: mvc测试
+  #适用于 Spring Boot 2.4 以下版本：
+#  profiles:
+#    include: user  # 加载名为 user.yml 或 application-user.yml 的文件
 
 show:
   # 湿度

@@ -7,7 +7,7 @@ spring:
     time-zone: GMT+8
 
 logging:
-  config: classpath:logback-spring.xml
+#  config: classpath:logback-spring.xml # 默认加载
   file:
     path: ./logs
     name: a36-logback

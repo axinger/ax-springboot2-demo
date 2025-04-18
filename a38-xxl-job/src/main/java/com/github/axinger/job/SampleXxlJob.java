@@ -1,4 +1,4 @@
-package com.github.axinger.server;
+package com.github.axinger.job;
 
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.context.XxlJobHelper;
@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * XxlJob开发示例（Bean模式）
@@ -44,19 +46,42 @@ public class SampleXxlJob {
         // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
         // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
 //        return XxlJobHelper.handleFail();
-        return XxlJobHelper.handleSuccess(); // 执行成功
+        return XxlJobHelper.handleSuccess("直接返回成功结果"); // 执行成功
+    }
+
+    @XxlJob("job11")
+    public void job() throws Exception {
+        String param = XxlJobHelper.getJobParam();
+        XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
+        log.info("线程={}，简单任务示例={},参数={}", Thread.currentThread().getName(), LocalDateTime.now(), param);
+        // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
+        // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
+//        return XxlJobHelper.handleFail();
+
+
+        CompletableFuture.runAsync(() -> {
+
+            // 无法返回
+        });
+
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        XxlJobHelper.handleSuccess("直接返回成功结果AAAA" + LocalDateTime.now()); // 执行成功
     }
 
 
     @XxlJob("job2")
-    public boolean job2(String msg) throws Exception {
+    public boolean job2() throws Exception {
         String param = XxlJobHelper.getJobParam();
         XxlJobHelper.log("简单任务示例={}", LocalDateTime.now());
-        log.info("简单任务示例={},参数={},msg={}", LocalDateTime.now(), param, msg);
+        log.info("简单任务示例={},参数={}", LocalDateTime.now(), param);
         // 任务结果：默认任务结果为 "成功" 状态，不需要主动设置；
         // 如有诉求，比如设置任务结果为失败，可以通过 "XxlJobHelper.handleFail/handleSuccess" 自主设置任务结果；
 //        return XxlJobHelper.handleFail();
-        return XxlJobHelper.handleFail();
+        return XxlJobHelper.handleFail("直接返回失败结果");
     }
 
     // ReturnT.FAIL 不行
