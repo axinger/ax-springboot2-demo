@@ -5,18 +5,32 @@ import com.xxl.job.core.executor.XxlJobExecutor;
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import com.xxl.job.core.handler.IJobHandler;
 import com.xxl.job.core.util.XxlJobRemotingUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class JobController {
 
     @Autowired
     private XxlJobSpringExecutor xxlJobSpringExecutor;
+    @Autowired
+    private InetUtils inetUtils;
+
+    @GetMapping("/test1")
+    public void test1() throws Exception {
+        InetUtils.HostInfo hostInfo = inetUtils.findFirstNonLoopbackHostInfo();
+        String hostname = hostInfo.getHostname();
+        String ip = hostInfo.getIpAddress();
+        log.info("本机ip={}", ip);
+        log.info("本机hostname={}", hostname);
+    }
 
     @GetMapping("/start")
     public void start() throws Exception {
