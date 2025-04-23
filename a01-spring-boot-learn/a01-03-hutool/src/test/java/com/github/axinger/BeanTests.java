@@ -95,5 +95,22 @@ public class BeanTests {
         desc.getProp("name").setValue(user, "张三"); // 上层封装,使用就是DynaBean
         System.out.println("user = " + user);
 
+
+    }
+
+    @Test
+    void test6() {
+        Person person1 = new Person();
+        person1.setName("jim");
+        person1.setAge(22);
+
+        Person bean = BeanUtil.toBean(person1, Person.class);
+        System.out.println("bean = " + bean);
+
+        //将bean的部分属性转换成map
+        Map<String, Object> map = BeanUtil.beanToMap(bean);
+        System.out.println("map = " + map);
+
+
     }
 }

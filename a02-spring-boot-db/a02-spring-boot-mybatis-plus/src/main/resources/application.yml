@@ -35,6 +35,7 @@ mybatis-plus:
   #  object-wrapper-factory: com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志, info级别的,也可以直接让 对应的mapper debug级别
+    call-setters-on-nulls: true # 返回null值
   #    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
   global-config:
     db-config:
