@@ -1,6 +1,8 @@
 package com.github.axinger.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.LinkedHashMap;
@@ -31,5 +33,10 @@ public interface DynamicQueryMapper {
 
     List<LinkedHashMap<String, Object>> queryTableHasId(@Param("sql") String sql, @Param("id") Object id);
 
+
+    // 方式1：完全动态SQL（需严格校验）
+//    @Insert("${sql}")
+//    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insertRawSql(@Param("sql") String sql);
 
 }

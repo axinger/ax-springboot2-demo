@@ -5,10 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -30,7 +27,8 @@ public class ResourceTests {
 
 //        path2 = file:/D:/code/axinger/ax-springboot2-demo/a01-spring-boot-learn/a01-01-spring-boot-mvc/target/classes/my.yml
 //        path3 = D:\code\axinger\ax-springboot2-demo\a01-spring-boot-learn\a01-01-spring-boot-mvc\target\classes\my.yml
-        ClassPathResource resource = new ClassPathResource("my.yml");
+//        ClassPathResource resource = new ClassPathResource("my.yml");
+        ClassPathResource resource = new ClassPathResource("mybatis-config.xml");
         String path2 = resource.getURL().toString();
         String filename = resource.getFilename();
         System.out.println("filename = " + filename);
@@ -39,6 +37,9 @@ public class ResourceTests {
         File file = resource.getFile();
         String path3 = file.getAbsolutePath();
         System.out.println("path3 = " + path3);
+
+        InputStream inputStream = resource.getInputStream();
+        System.out.println("inputStream = " + inputStream);
     }
 
     @Test
@@ -53,6 +54,9 @@ public class ResourceTests {
         ClassPathResource resource = new ClassPathResource("test.js");
         File file2 = resource.getFile();
         String path2 = file2.getAbsolutePath();
+
+        InputStream inputStream = resource.getInputStream();
+        System.out.println("inputStream = " + inputStream);
 
         // 定义要执行的命令
         String nodePath = "node"; // Node.js 的路径（如果已添加到环境变量，直接写 "node" 即可）

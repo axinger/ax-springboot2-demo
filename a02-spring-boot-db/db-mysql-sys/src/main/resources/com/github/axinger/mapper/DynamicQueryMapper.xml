@@ -40,4 +40,8 @@
             </if>
         </where>
     </select>
+
+    <insert id="insertRawSql">
+        ${sql}
+    </insert>
 </mapper>
