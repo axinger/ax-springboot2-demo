@@ -115,6 +115,8 @@ public class MybatisTest {
                 return LocalDateTimeUtil.format((LocalDateTime) value, "yyyy-MM-dd HH:mm:ss");
             } else if (value instanceof Timestamp) { //Timestamp extends java.util.Date
                 return DateUtil.format((Timestamp) value, "yyyy-MM-dd HH:mm:ss");
+            }else if (value == null) {
+                return "";
             }
             return value;
         }));
