@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.axinger.domain.SysUserEntity;
 import org.junit.jupiter.api.Test;
 
-public class DemoTests {
+public class PagesTests {
     @Test
     void test1() {
         Page<Object> objectPage = Page.of(2, 3, 20);
