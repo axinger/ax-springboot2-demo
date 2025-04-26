@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
-public class JdbcDemo1Tests {
+public class JpaDemo1Tests {
 
     // JpaRepository
     @Autowired

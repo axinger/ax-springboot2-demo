@@ -30,13 +30,13 @@
 
 
     <!--    LinkedHashMap 按照查询字段顺序返回-->
-    <select id="queryTableHasId" resultType="java.util.LinkedHashMap">
+    <select id="queryTableHasId" resultType="java.util.LinkedHashMap" parameterType="map">
         <!-- 使用前校验 SQL -->
         <bind name="validatedSql" value="@com.github.axinger.config.SqlValidator@validateSelectSql(sql)"/>
         ${sql}
         <where>
-            <if test="id != null">
-                AND id = #{id}
+            <if test="params != null and params.id != null">
+                AND id = #{params.id}
             </if>
         </where>
     </select>

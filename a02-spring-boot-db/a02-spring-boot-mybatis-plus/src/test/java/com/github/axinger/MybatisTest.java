@@ -2,6 +2,7 @@ package com.github.axinger;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.axinger.mapper.DynamicQueryMapper;
 import org.apache.ibatis.io.Resources;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -103,24 +106,36 @@ public class MybatisTest {
         //[java.lang.IllegalArgumentException: SQL 不能为空] ,进行校验
 //        String sql = "";
         String sql = "select a,c,b,d from sys_alphabet";
-        List<LinkedHashMap<String, Object>> data = dynamicQueryMapper.queryTableHasId(sql, 1);
-        System.out.println("data = " + data);
-        List<LinkedHashMap<String, Object>> data2 = dynamicQueryMapper.queryTableHasId(sql, null);
-        System.out.println("data2 = " + data2);
 
 
-        /// 这个方式最简单
-        data2.forEach(map -> map.replaceAll((key, value) -> {
-            if (value instanceof LocalDateTime) {
-                return LocalDateTimeUtil.format((LocalDateTime) value, "yyyy-MM-dd HH:mm:ss");
-            } else if (value instanceof Timestamp) { //Timestamp extends java.util.Date
-                return DateUtil.format((Timestamp) value, "yyyy-MM-dd HH:mm:ss");
-            }else if (value == null) {
-                return "";
-            }
-            return value;
-        }));
-        System.out.println("data2 = " + data2);
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", 1);
+            List<LinkedHashMap<String, Object>> data = dynamicQueryMapper.queryTableHasId(sql, map);
+            System.out.println("data = " + data);
+        } catch (Exception e) {
+            System.err.println("e" + ExceptionUtil.getMessage(e));
+        }
+        try {
+            List<LinkedHashMap<String, Object>> data2 = dynamicQueryMapper.queryTableHasId(sql, null);
+            System.out.println("data2 = " + data2);
+
+
+            /// 这个方式最简单
+            data2.forEach(val -> val.replaceAll((key, value) -> {
+                if (value instanceof LocalDateTime) {
+                    return LocalDateTimeUtil.format((LocalDateTime) value, "yyyy-MM-dd HH:mm:ss");
+                } else if (value instanceof Timestamp) { //Timestamp extends java.util.Date
+                    return DateUtil.format((Timestamp) value, "yyyy-MM-dd HH:mm:ss");
+                } else if (value == null) {
+                    return "-";//自定义null返回值
+                }
+                return value;
+            }));
+            System.out.println("修改值后data2 = " + data2);
+        } catch (Exception e) {
+            System.err.println("data2" + ExceptionUtil.getMessage(e));
+        }
     }
 
     @Test
@@ -139,5 +154,103 @@ public class MybatisTest {
         int affected = dynamicQueryMapper.insertRawSql(sql);
         System.out.println("affected = " + affected);
     }
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Test
+    void test10() {
+
+        // 拼接 SQL 查询语句
+        String sql = "SELECT a, c, b, d FROM sys_alphabet";
+
+        // 执行查询并返回结果
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
+        System.out.println("maps = " + maps);
+
+        // 拼接 SQL 查询语句
+        String sql2 = "SELECT * FROM sys_alphabet";
+
+        // 执行查询并返回结果
+        List<Map<String, Object>> maps2 = jdbcTemplate.queryForList(sql2);
+        System.out.println("maps2 = " + maps2);
+    }
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+
+    @Test
+    void test11() {
+        StringBuilder sql = new StringBuilder("SELECT a, c, b, d FROM sys_alphabet WHERE 1=1");
+        Map<String, Object> params = new HashMap<>();
+        params.put("a", "jim");
+
+        // 动态拼接条件
+        if (params.containsKey("a")) {
+            sql.append(" AND a = :a");
+        }
+        if (params.containsKey("c")) {
+            sql.append(" AND c = :c");
+        }
+
+        List<Map<String, Object>> maps = namedParameterJdbcTemplate.queryForList(sql.toString(), params);
+        System.out.println("maps = " + maps);
+
+        maps.forEach(val -> val.replaceAll((key, value) -> {
+            if (value instanceof LocalDateTime) {
+                return LocalDateTimeUtil.format((LocalDateTime) value, "yyyy-MM-dd HH:mm:ss");
+            } else if (value instanceof Timestamp) { //Timestamp extends java.util.Date
+                return DateUtil.format((Timestamp) value, "yyyy-MM-dd HH:mm:ss");
+            } else if (value == null) {
+                return "-";//自定义null返回值
+            }
+            return value;
+        }));
+        System.out.println("修改值后data2 = " + maps);
+    }
+
+    @Test
+    void test12() {
+        StringBuilder sql = new StringBuilder("SELECT a, c, b, d FROM sys_alphabet");
+        Map<String, Object> params = new HashMap<>();
+        params.put("a", "jim");
+
+
+        List<String> conditions = new ArrayList<>();
+        Map<String, Object> paramMap = new HashMap<>();
+
+        // 动态拼接条件
+        if (params.containsKey("a")) {
+            conditions.add("a = :a");
+            paramMap.put("a", params.get("a"));
+        }
+        if (params.containsKey("c")) {
+            conditions.add("c = :c");
+            paramMap.put("c", params.get("c"));
+        }
+
+        // 合并条件到 SQL
+        if (!conditions.isEmpty()) {
+            sql.append(" WHERE ");
+            sql.append(String.join(" AND ", conditions));
+        }
+
+        List<Map<String, Object>> maps = namedParameterJdbcTemplate.queryForList(sql.toString(), paramMap);
+        System.out.println("maps = " + maps);
+
+        maps.forEach(val -> val.replaceAll((key, value) -> {
+            if (value instanceof LocalDateTime) {
+                return LocalDateTimeUtil.format((LocalDateTime) value, "yyyy-MM-dd HH:mm:ss");
+            } else if (value instanceof Timestamp) { //Timestamp extends java.util.Date
+                return DateUtil.format((Timestamp) value, "yyyy-MM-dd HH:mm:ss");
+            } else if (value == null) {
+                return "-";//自定义null返回值
+            }
+            return value;
+        }));
+        System.out.println("修改值后data2 = " + maps);
+    }
+
 
 }
