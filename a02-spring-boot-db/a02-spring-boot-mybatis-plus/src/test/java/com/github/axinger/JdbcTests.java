@@ -46,16 +46,66 @@ public class JdbcTests {
         Map<String, Object> stu = jdbcTemplate.queryForMap(sql, 1);
         System.out.println(stu);
     }
+    @Test
+    void test1011() {
+        String sql = "SELECT * FROM sys_employee where id = ?";
+        Map<String, Object> stu = jdbcTemplate.queryForMap(sql, 1);
+        System.out.println(stu);
+    }
 
     @Test
     void test102() {
-        String sql = "SELECT a, c, b, d FROM sys_alphabet where id = :id";
+        ///  :方式动态别名
+        String sql = "SELECT a as :AA, c, b, d FROM sys_alphabet where id = :id";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id", "1");
+        params.put("AA", "大A");
 
         Map<String, Object> stu = namedParameterJdbcTemplate.queryForMap(sql, params);
         System.out.println("stu = " + stu);
+    }
+
+    @Test
+    void test103() {
+// 先查询
+        String selectSql = "SELECT * FROM sys_alphabet WHERE id = 1";
+        Map<String, Object> dataToDelete = jdbcTemplate.queryForMap(selectSql);
+// 再删除
+        String deleteSql = "DELETE FROM sys_alphabet WHERE id = 1";
+        int affectedRows = jdbcTemplate.update(deleteSql);
+        System.out.println("被删除的数据: " + dataToDelete);
+        System.out.println("删除了 " + affectedRows + " 行");
+    }
+
+    @Test
+    void test104() {
+// 先查询
+        String selectSql = "SELECT * FROM sys_alphabet WHERE id = 1";
+        Map<String, Object> dataToDelete = jdbcTemplate.queryForMap(selectSql);
+
+        String sql = "UPDATE sys_alphabet SET a=:a WHERE id=:id";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("a", "王五");
+        params.put("id", "1");
+
+        int affectedRows = namedParameterJdbcTemplate.update(sql, params);
+        System.out.println("更新了 " + affectedRows + " 行");
+    }
+
+    @Test
+    void test105() {
+        String sql = "INSERT INTO sys_alphabet (a, b) VALUES (?, ?)";
+
+        List<Object[]> batchArgs = new ArrayList<>();
+        batchArgs.add(new Object[]{"张三", 20});
+        batchArgs.add(new Object[]{"李四", 25});
+        batchArgs.add(new Object[]{"王五", 30});
+
+        int[] affectedRows = jdbcTemplate.batchUpdate(sql, batchArgs);
+        System.out.println("批量插入了 " + affectedRows.length + " 条数据");
+
     }
 
     @Autowired

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.axinger.domain.PersonEntity;
 import com.github.axinger.mapper.PersonMapper;
 import com.github.axinger.service.PersonService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -21,11 +22,15 @@ import java.util.List;
 public class PersonServiceImpl extends ServiceImpl<PersonMapper, PersonEntity>
         implements PersonService {
 
+    String name = "test2";
+    // 方案2：使用 T() 引用静态变量（如果 sp 是静态常量）
+    private static final String SP = ":";
+
     @Override
     // @Cacheable(value 与 @CacheConfig(cacheNames  只能一个有效
     //二者选其一,可以使用value上的信息，来替换类上cacheNames的信息
 //    @Cacheable(value = "test2",key = "#id")
-    @Cacheable(key = "#id", unless = "#result==null")
+    @Cacheable(key = "test2+sp+#id", unless = "#result==null")
     //如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中
     public PersonEntity findPersonEntity(Integer id) {
         System.err.println("执行findPersonEntity===============");
@@ -41,6 +46,15 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, PersonEntity>
     public PersonEntity savePersonEntity(PersonEntity person) {
         return person;
     }
+
+//    @Value("${cache.person.prefix:person:}") // 从配置读取，默认"person:"
+//    private String personCachePrefix;
+//
+//    @Override
+//    @CachePut(key = "#root.target.personCachePrefix + #person.id")
+//    public PersonEntity savePersonEntity(PersonEntity person) {
+//        return person;
+//    }
 
     @Override
     //将方法的返回值放到缓存中
