@@ -3,9 +3,13 @@ package com.github.axinger;
 import com.axing.common.util.json.JsonUtil;
 import com.github.axinger.model.GetterSetterExample;
 import com.github.axinger.model.Person;
+import org.junit.Test;
 
-public class Main {
-    public static void main(String[] args) {
+public class Tests {
+
+
+    @Test
+    public void test1() {
 
         Person person = new Person();
 
@@ -15,26 +19,25 @@ public class Main {
         String string = JsonUtil.writeValueAsString(person);
         System.out.println("string = " + string);
     }
-}
 
 
-class Main2 {
-    public static void main(String[] args) {
-
+    @Test
+    public void test2() {
 
         GetterSetterExample example = new GetterSetterExample();
         example.setAge(1);
-
+//        example.setName(""); //没有set方法
     }
-}
 
 
-class Main3 {
-    public static void main(String[] args) {
+    @Test
+    public void test3() {
         Person person = new Person();
         // person.setAddress(null);
         person.setAddress("aaa");
         System.out.println("person = " + person);
 
     }
+
+
 }
