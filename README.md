@@ -68,7 +68,7 @@ springboot及spring cloud的demo
 高并发系统保护的三把利器 : 缓存、降级和限流
 ```
 
-```angular2html
+```text
 限流方式
     限制总并发数(比如数据库连接池、线程池)
     限制瞬时并发数(如nginx的limit_conn模块，用来限制瞬时并发连接数)
