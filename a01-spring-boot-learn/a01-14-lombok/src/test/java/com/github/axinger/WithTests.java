@@ -1,8 +1,9 @@
-package com.github.axinger.model;
+package com.github.axinger;
 
+import com.github.axinger.model.ImmutablePerson;
 import org.junit.Test;
 
-public class ImmutablePersonTest {
+public class WithTests {
 
     @Test
     public void test1() {
@@ -17,8 +18,5 @@ public class ImmutablePersonTest {
         ImmutablePerson person1 = person.withAge(21).withName("tom");
 
         System.out.println("person1 = " + person1);
-
-
     }
-
 }

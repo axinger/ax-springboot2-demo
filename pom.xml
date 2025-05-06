@@ -695,6 +695,15 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source> <!-- 设置源代码的语言级别 -->
+                    <target>${maven.compiler.source}</target><!-- 设置目标代码的语言级别 -->
+                </configuration>
+            </plugin>
+
 
             <!--不能放总pom中-->
             <!--            <plugin>-->

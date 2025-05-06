@@ -26,6 +26,8 @@ public class Address {
 
     private String city;
 
+    private Area area;
+
     @NonNull
     private String country;
 
