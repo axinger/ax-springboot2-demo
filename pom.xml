@@ -31,8 +31,8 @@
         <spring-boot-admin.version>3.0.0</spring-boot-admin.version>
 
         <spring-boot.version>2.7.18</spring-boot.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
-        <spring-cloud-alibaba.version>${spring-cloud.version}.0</spring-cloud-alibaba.version>
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <spring-cloud-alibaba.version>${spring-cloud.version}.2</spring-cloud-alibaba.version>
 
 
         <!--        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>-->
