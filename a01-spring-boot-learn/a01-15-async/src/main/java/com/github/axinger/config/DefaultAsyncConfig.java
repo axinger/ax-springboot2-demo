@@ -47,7 +47,7 @@ public class DefaultAsyncConfig implements AsyncConfigurer {
         // 等待任务在关机时完成--表明等待所有线程执行完
         executor.setWaitForTasksToCompleteOnShutdown(true);
         // 线程池名称前缀
-        executor.setThreadNamePrefix("️️1️⃣1️⃣️1️⃣️️️默认线程池-");
+        executor.setThreadNamePrefix("️️🐛🐛🐛️️默认线程池-");
         // 线程池拒绝策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
         // 线程池初始化

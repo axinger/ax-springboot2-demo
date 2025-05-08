@@ -4,7 +4,9 @@
 # 最大支持文件大小
 server:
   port: 11027
-
+spring:
+  application:
+    name: a27-springdoc
 axinger:
   doc:
     title: 测试项目A

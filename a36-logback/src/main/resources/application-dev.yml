@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo-logback
+    name: a36-logback
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -8,9 +8,8 @@ spring:
 
 logging:
 #  config: classpath:logback-spring.xml # 默认加载
-  file:
-    path: ./logs
-    name: a36-logback
+#  file:
+#    path: ./logs/${spring.application.name}
   level:
 #    org.springframework.boot.web: error
     org.apache: error

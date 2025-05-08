@@ -1,6 +1,7 @@
 spring:
   application:
-    name: demo-logback
+    name: a36-logback
+
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss

@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-class DemoLogbackApplicationTest {
+class A36LogbackApplicationTest {
 
     @Autowired
     private LoginService loginService;

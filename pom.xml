@@ -24,10 +24,10 @@
     <!--统一管理jar包版本-->
     <properties>
         <java.version>17</java.version>
-        <axinger.version>${project.version}</axinger.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <axinger.version>${project.version}</axinger.version>
         <spring-boot-admin.version>3.0.0</spring-boot-admin.version>
 
         <spring-boot.version>2.7.18</spring-boot.version>
@@ -698,10 +698,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.source}</source> <!-- 设置源代码的语言级别 -->
-                    <target>${maven.compiler.source}</target><!-- 设置目标代码的语言级别 -->
-                </configuration>
+<!--                <configuration>-->
+<!--                    <source>${maven.compiler.source}</source> &lt;!&ndash; 设置源代码的语言级别 &ndash;&gt;-->
+<!--                    <target>${maven.compiler.source}</target>&lt;!&ndash; 设置目标代码的语言级别 &ndash;&gt;-->
+<!--                </configuration>-->
             </plugin>
 
 

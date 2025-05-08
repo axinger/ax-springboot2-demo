@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @Slf4j
-public class DemoLogbackApplication {
+public class A36LogbackApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoLogbackApplication.class, args);
+        SpringApplication.run(A36LogbackApplication.class, args);
     }
 }
