@@ -16,5 +16,6 @@
         <module>a04-spring-boot-caffeine</module>
         <module>a04-spring-boot-redis-mysql</module>
         <module>a04-spring-boot-redis</module>
+        <module>a0405-spring-boot-jetcache</module>
     </modules>
 </project>
