@@ -123,6 +123,7 @@
         <module>axinger-config</module>
         <module>a22-cors</module>
         <module>a41-ocr</module>
+        <module>a42-queue</module>
     </modules>
 
     <dependencyManagement>

@@ -1,9 +1,11 @@
 package com.github.axinger.controller;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.github.axinger.event.CustomEvent;
 import com.github.axinger.event.EventProducer;
 import com.github.axinger.service.IMyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +37,20 @@ public class EventController {
         eventProducer.produceEvent(new CustomEvent(count));
         return List.of(count);
     }
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
+    @GetMapping("/push")
+    public Object add(String name) {
+        publisher.publishEvent(new CustomEvent(name));
+        return List.of(name);
+    }
+
+    @GetMapping("/push2")
+    public Object push2(String name) {
+        SpringUtil.publishEvent(new CustomEvent(name));
+        return List.of(name);
+    }
+
 }

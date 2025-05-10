@@ -28,4 +28,14 @@ show:
     max: 300
 
 
+my:
+  custom1:
+    property: true
+  custom2:
+    property: false
+  feature:
+    enabled: true
 
+  module:
+    enabled: true
+    mode: advanced

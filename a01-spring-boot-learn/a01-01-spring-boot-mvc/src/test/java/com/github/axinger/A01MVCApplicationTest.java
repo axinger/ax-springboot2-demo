@@ -15,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class A01MVCApplicationTest {
 
 
-
     @Autowired
     TestRestTemplate testRestTemplate;
 
