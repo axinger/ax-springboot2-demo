@@ -1,4 +1,4 @@
-package com.github.axinger;
+package com.github.axinger.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;

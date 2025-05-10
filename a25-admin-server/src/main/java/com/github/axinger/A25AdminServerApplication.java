@@ -1,11 +1,13 @@
 package com.github.axinger;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Demo25AdminClient {
+@EnableAdminServer
+public class A25AdminServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Demo25AdminClient.class, args);
+        SpringApplication.run(A25AdminServerApplication.class, args);
     }
 }
