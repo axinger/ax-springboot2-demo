@@ -39,3 +39,22 @@ my:
   module:
     enabled: true
     mode: advanced
+
+
+app:
+  currentTime: ${custom.timestamp}
+  randomValue: ${custom.randomString}
+
+  currentTime2: ${custom2.timestamp}
+  randomValue2: ${custom2.randomString}
+
+# ${random.uuid}
+#  ${random.int} - 随机整数
+#
+#  ${random.int(10)} - 10以内的随机整数
+#
+#  ${random.int(10,100)} - 10到100之间的随机整数
+#
+#  ${random.long} - 随机长整数
+#
+#  ${random.value} - 随机字母数字字符串
