@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MqttTestController {
 
-    @Autowired
-    private ProducerTemplate producerTemplate;
-
     /*
 
     参数名	描述	示例
@@ -21,11 +18,15 @@ clientId	客户端ID	clientId=myClient1
 cleanStart	是否清除会话	cleanStart=true
 keepAliveInterval	保活间隔(秒)	keepAliveInterval=60
      */
+
+    @Autowired
+    private ProducerTemplate producerTemplate;
+
     @GetMapping("/send-mqtt")
     public String sendMqttMessage(String message) {
         try {
             // ?retained=true
-            producerTemplate.sendBody("paho-mqtt5:testTopic?qos=2", message);
+            producerTemplate.sendBody("paho-mqtt5:testTopic2?qos=1", message);
             return "Message sent to MQTT";
         } catch (Exception e) {
             return "发送失败: " + e.getMessage();
