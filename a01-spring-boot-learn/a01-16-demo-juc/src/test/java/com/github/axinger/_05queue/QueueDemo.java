@@ -1,5 +1,8 @@
 package com.github.axinger._05queue;
 
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -97,5 +100,63 @@ public class QueueDemo {
         System.out.println("queue.take = " + queue.poll(3, TimeUnit.SECONDS));
 
 
+    }
+
+
+    class Producer implements Runnable {
+        private ArrayBlockingQueue<Integer> queue;
+
+        public Producer(ArrayBlockingQueue<Integer> queue) {
+            this.queue = queue;
+        }
+
+        @Override
+        public void run() {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    queue.put(i);
+                    System.out.println("Produced: " + i);
+                    Thread.sleep(500);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    class Consumer implements Runnable {
+        private ArrayBlockingQueue<Integer> queue;
+
+        public Consumer(ArrayBlockingQueue<Integer> queue) {
+            this.queue = queue;
+        }
+
+        @Override
+        public void run() {
+            try {
+                for (int i = 0; i < 5; i++) {
+                    Integer value = queue.take();
+                    System.out.println("Consumed: " + value);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+    //put() 和 take() 是阻塞式的，适合用于协调生产者和消费者节奏。
+    @SneakyThrows
+    @Test
+    public void test10() {
+
+        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(3);
+
+        Thread producer = new Thread(new Producer(queue));
+        Thread consumer = new Thread(new Consumer(queue));
+
+        producer.start();
+        consumer.start();
+
+        TimeUnit.SECONDS.sleep(10);
     }
 }
