@@ -9,14 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Map;
 
 @SpringBootTest
-class MainTest {
+class A18CustomStartApplicationTest {
 
     @Autowired
     private HelloService helloService;
 
     @Test
     void test1() {
-        final Map jim = helloService.sayHello("jim");
-        System.out.println("jim = " + jim);
+        Map<String, Object> map = helloService.sayHello("jim");
+        System.out.println("map = " + map);
     }
 }

@@ -16,6 +16,7 @@ public class UploadFileBO {
      * 文件路径/文件名
      */
     private String object;
+    private String region;
 
     /**
      * 文件名

@@ -3,6 +3,9 @@ package com.github.axinger.controller;
 import com.axing.common.minio.service.MinioTemplate;
 import com.axing.common.minio.util.FilePathUtil;
 import com.axing.common.response.dto.Result;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +33,7 @@ import java.util.Map;
  * @since 2018-11-30
  */
 @Slf4j
+@Tag(name = "MinioController")
 @RestController
 public class MinioController {
 
@@ -42,6 +46,7 @@ public class MinioController {
     /**
      * 上传文件,minio用 InputStream 方式
      */
+    @Operation(summary = "上传文件,minio用 InputStream 方式")
     @PostMapping(value = "/minio/uploadStream", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Result<?> uploadByMinio(@RequestParam(value = "file") MultipartFile file,
                                    @RequestParam("bucketName") String bucketName) throws Exception {
@@ -50,7 +55,7 @@ public class MinioController {
             return Result.fail("文件大小为：0");
         }
         String fileName = file.getOriginalFilename();
-        InputStream inputStream = file.getInputStream();
+        @Cleanup InputStream inputStream = file.getInputStream();
         String contentType = file.getContentType();
         String patchName = FilePathUtil.getFileName(fileName);
         Object upload = minioTemplate.uploadStream(inputStream, bucketName, patchName, contentType);

@@ -44,6 +44,7 @@ public class OssAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(AmazonS3.class)
+    @ConditionalOnMissingBean(OssTemplate.class)
     public OssTemplate ossTemplate(AmazonS3 amazonS3) {
         return new OssTemplateImpl(amazonS3);
     }

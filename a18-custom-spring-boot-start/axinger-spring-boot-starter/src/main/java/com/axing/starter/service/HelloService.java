@@ -7,5 +7,5 @@ import java.util.Map;
  */
 public interface HelloService {
 
-    Map sayHello(String param);
+    Map<String,Object> sayHello(String param);
 }

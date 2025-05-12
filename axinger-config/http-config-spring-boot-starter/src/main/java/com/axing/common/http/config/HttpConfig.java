@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class HttpConfig {
@@ -26,9 +25,10 @@ public class HttpConfig {
         return new RestTemplate(factory);
     }
 
-    @Bean
-    public WebClient webClient() {
-        return WebClient.create();
-    }
+//    @Bean
+//    public WebClient webClient() {
+////        return WebClient.create();
+//        return   WebClient.builder().build();
+//    }
 
 }

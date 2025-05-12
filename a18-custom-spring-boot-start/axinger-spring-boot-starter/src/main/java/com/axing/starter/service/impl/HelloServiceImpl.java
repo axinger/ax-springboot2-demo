@@ -26,8 +26,8 @@ public class HelloServiceImpl implements HelloService {
     }
 
     @Override
-    public Map sayHello(String param) {
-        Map map = new HashMap();
+    public Map<String,Object> sayHello(String param) {
+        Map<String,Object> map = new HashMap<>();
         map.put("param", param);
         map.put("name", helloProperties.getName());
         map.put("prefix", helloProperties.getPrefix());

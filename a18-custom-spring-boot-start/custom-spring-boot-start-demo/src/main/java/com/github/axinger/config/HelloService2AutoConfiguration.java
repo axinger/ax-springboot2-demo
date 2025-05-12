@@ -1,9 +1,8 @@
-package com.axing.starter.auto;
+package com.github.axinger.config;
 
 
 import com.axing.starter.bean.HelloProperties;
 import com.axing.starter.service.HelloService;
-import com.axing.starter.service.impl.HelloServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,15 +12,18 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(HelloProperties.class)// 默认把HelloProperties 放入容器中
-public class HelloServiceAutoConfiguration {
+public class HelloService2AutoConfiguration {
 
+    /**
+     * 重写 ConditionalOnMissingBean
+     * @return
+     */
 
     @Bean
-    //可以让被人重写
-    @ConditionalOnMissingBean(HelloService.class)
-    public HelloService helloService(HelloProperties helloProperties) {
-        HelloService helloService = new HelloServiceImpl(helloProperties);
-        log.info("自定义HelloService={}", helloService);
+//    @ConditionalOnMissingBean(HelloService.class)
+    public HelloService helloService() {
+        HelloService helloService = new HelloService2();
+        log.info("重写HelloService={}", helloService);
         return helloService;
     }
 

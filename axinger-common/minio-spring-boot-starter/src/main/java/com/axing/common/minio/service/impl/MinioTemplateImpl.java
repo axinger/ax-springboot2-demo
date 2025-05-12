@@ -10,7 +10,8 @@ import io.minio.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
 import io.minio.messages.Item;
-import lombok.RequiredArgsConstructor;
+import io.minio.messages.Part;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -24,10 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +42,7 @@ import java.util.stream.Collectors;
 
 
 @Slf4j
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MinioTemplateImpl implements MinioTemplate {
 
     private final MinioClient minioClient;
@@ -193,9 +198,25 @@ public class MinioTemplateImpl implements MinioTemplate {
                     .stream(inputStream, inputStream.available(), -1)
                     .contentType(contentType)
                     .build();
+
+            /*
+            putObject
+            简单上传：直接将整个对象一次性上传到 MinIO 服务器
+            适用场景：适合较小的文件（通常小于 5MB）
+            内存使用：需要将整个文件加载到内存中
+            参数：接受文件路径、流或缓冲区作为输入
+             */
             ObjectWriteResponse response = minioClient.putObject(args);
             Assert.notNull(response, "上传文件失败,response返回结果null");
 
+     /*
+            为什么 uploadObject 不直接支持 InputStream
+            uploadObject 设计用于处理大文件的分块上传，它需要知道文件的总大小和能够重新读取数据（用于重试失败的分块）。而 InputStream 通常：
+
+            不一定支持 available() 返回准确大小
+
+            不支持重新读取（只能读取一次）
+      */
 //            minioClient.uploadObject(UploadObjectArgs.builder()
 //                    .bucket(bucketName)
 //                    .object(objectName)
@@ -203,19 +224,72 @@ public class MinioTemplateImpl implements MinioTemplate {
 //                    .filename("C:\\Users\\j9967\\Downloads\\lifecycle-events.png")
 //                    .build());
 
+
             // 关闭
 //            inputStream.close();
             UploadFileBO bo = new UploadFileBO();
             bo.setBucket(response.bucket());
             bo.setObject(response.object());
-            bo.setObject(response.region());
+            bo.setRegion(response.region());
             log.info("上传文件成功 = {}", bo);
             return bo;
-        } catch (MinioException e) {
+        } catch (Exception e) {
             log.error("uploadStream失败 = {}", e.getMessage());
             throw new MinioException(StrUtil.format("上传文件失败 = {}", e.getMessage()));
         }
     }
+
+    //uploadObject 主要是为文件系统上的文件设计的优化方法，而 putObject 更适合通用的流上传场景。
+
+    public UploadFileBO uploadObject(InputStream inputStream, String bucketName, String objectName, String contentType) {
+        try {
+            // 检查存储桶是否已经存在，不存在则创建
+            this.createBucket(bucketName);
+
+
+            Path tempFile = Files.createTempFile("minio-upload", ".tmp");
+            try (OutputStream out = Files.newOutputStream(tempFile)) {
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+            }
+
+            ObjectWriteResponse response = minioClient.uploadObject(
+                    UploadObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName)
+                            .contentType(contentType)
+                            .filename(tempFile.toString())
+                            .build());
+            // 删除临时文件
+            Files.delete(tempFile);
+
+            Assert.notNull(response, "上传文件失败,response返回结果null");
+
+     /*
+            为什么 uploadObject 不直接支持 InputStream
+            uploadObject 设计用于处理大文件的分块上传，它需要知道文件的总大小和能够重新读取数据（用于重试失败的分块）。而 InputStream 通常：
+
+            不一定支持 available() 返回准确大小
+
+            不支持重新读取（只能读取一次）
+      */
+
+            UploadFileBO bo = new UploadFileBO();
+            bo.setBucket(response.bucket());
+            bo.setObject(response.object());
+            bo.setRegion(response.region());
+            log.info("上传文件成功 = {}", bo);
+
+            return bo;
+        } catch (Exception e) {
+            log.error("uploadStream失败 = {}", e.getMessage());
+            throw new MinioException(StrUtil.format("上传文件失败 = {}", e.getMessage()));
+        }
+    }
+
 
     /**
      * 上传MultipartFile

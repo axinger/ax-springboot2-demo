@@ -27,7 +27,7 @@ public class MinioAutoConfig {
     private final MinioProperties minioProperties;
 
     @Bean
-    public MinioClient minioClient() {
+    public MinioClient minioClient(MinioProperties minioProperties) {
         return MinioClient.builder()
                 .endpoint(minioProperties.getUrl())
                 .credentials(minioProperties.getUsername(), minioProperties.getPassword())
@@ -36,8 +36,8 @@ public class MinioAutoConfig {
 
     @Bean
     @ConditionalOnMissingBean(MinioTemplate.class)
-    public MinioTemplate minioTemplate() {
-        return new MinioTemplateImpl(minioClient());
+    public MinioTemplate minioTemplate(MinioClient minioClient) {
+        return new MinioTemplateImpl(minioClient);
     }
 
 
