@@ -2,6 +2,7 @@ package com.github.axinger;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class A01MVCApplicationTest {
@@ -46,6 +49,20 @@ public class A01MVCApplicationTest {
 
         String str = testRestTemplate.getForObject(url, String.class);
         System.out.println("str = " + str);
+    }
+
+    @Value("#{'${axinger.user.username2:}'.split(',')}")
+    private List<String> usernameList;
+
+    @Value("${axinger.user.username}")
+    private List<String> usernameList2;
+
+    @Test
+    public void test3() {
+
+        System.out.println("usernameList = " + usernameList);
+        System.out.println("usernameList2 = " + usernameList2);
+
     }
 
 }

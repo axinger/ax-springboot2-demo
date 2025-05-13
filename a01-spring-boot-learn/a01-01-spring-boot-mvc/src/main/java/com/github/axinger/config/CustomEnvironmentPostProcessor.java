@@ -1,5 +1,6 @@
 package com.github.axinger.config;
 
+import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -20,6 +21,7 @@ public class CustomEnvironmentPostProcessor implements EnvironmentPostProcessor 
         environment.getPropertySources().addFirst(
             new MapPropertySource("customProperties", customProperties)
         );
+
     }
 
     private String generateRandomString() {

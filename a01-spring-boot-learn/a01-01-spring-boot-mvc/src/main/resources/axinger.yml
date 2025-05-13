@@ -1,6 +1,6 @@
 axinger:
   user:
-    username: jim
+    username: jim,tom
     password: 1234
     dog: # 必须缩进两格
       min: 1 # 必须缩进四格
