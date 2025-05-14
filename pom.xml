@@ -649,6 +649,20 @@
             </dependency>
 
             <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-database-postgresql</artifactId>
+                <version>10.16.0</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-sqlserver -->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-sqlserver</artifactId>
+                <version>10.16.0</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>3.2.14</version>
