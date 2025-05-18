@@ -49,7 +49,7 @@
         <redisson.version>3.36.0</redisson.version>
         <minio.version>8.5.9</minio.version>
         <!--        <snakeyaml.version>2.0</snakeyaml.version>-->
-        <poi-version>5.2.3</poi-version>
+        <poi-version>5.4.0</poi-version>
         <itextpdf.version>5.5.13.3</itextpdf.version>
     </properties>
 
@@ -295,15 +295,15 @@
                 <scope>import</scope>
             </dependency>
 
-                <!-- https://mvnrepository.com/artifact/org.apache.camel.springboot/camel-spring-boot-dependencies -->
-                <dependency>
-                    <groupId>org.apache.camel.springboot</groupId>
-                    <artifactId>camel-spring-boot-dependencies</artifactId>
-                    <version>3.22.4</version>
-                    <type>pom</type>
-                    <!--               <scope>provided</scope>-->
-                    <scope>import</scope>
-                </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.camel.springboot/camel-spring-boot-dependencies -->
+            <dependency>
+                <groupId>org.apache.camel.springboot</groupId>
+                <artifactId>camel-spring-boot-dependencies</artifactId>
+                <version>3.22.4</version>
+                <type>pom</type>
+                <!--               <scope>provided</scope>-->
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
@@ -497,41 +497,51 @@
                 <version>1.5</version>
             </dependency>
 
-            <!--            <dependency>-->
-            <!--                <groupId>net.coobird</groupId>-->
-            <!--                <artifactId>thumbnailator</artifactId>-->
-            <!--                <version>0.4.15</version>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.18.0</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.17.0</version>
+            </dependency>
 
-            <!--            <dependency>-->
-            <!--                <groupId>com.github.axinger</groupId>-->
-            <!--                <artifactId>spring-boot-axinger-starter</artifactId>-->
-            <!--            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.5.0</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>1.27.1</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.13.1</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>1.14.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring-boot-web-starter</artifactId>
                 <version>1.13.0</version>
             </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.12.0</version>
-            </dependency>
-
-            <!--            <dependency>-->
-            <!--                <groupId>com.baomidou</groupId>-->
-            <!--                <artifactId>mybatis-plus-boot-starter</artifactId>-->
-            <!--                <version>${mybatis-plus.version}</version>-->
-            <!--            </dependency>-->
-
-            <!--            <dependency>-->
-            <!--                <groupId>com.baomidou</groupId>-->
-            <!--                <artifactId>mybatis-plus-extension</artifactId>-->
-            <!--                <version>${mybatis-plus.version}</version>-->
-            <!--            </dependency>-->
 
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -547,13 +557,6 @@
             </dependency>
 
 
-            <!--                        <dependency>-->
-            <!--                            <groupId>com.baomidou</groupId>-->
-            <!--                            <artifactId>mybatis-plus-extension</artifactId>-->
-            <!--                            <version>${mybatis-plus3.version}</version>-->
-            <!--                        </dependency>-->
-
-
             <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-jsqlparser -->
             <!--            最近升级 MyBatis Plus 到 3.5.9 版本的朋友可能注意到了，`PaginationInnerInterceptor`突然“消失”了，分页功能用不起来了。好消息是，它其实没被砍掉，只是MyBatis Plus进行了分页模块的拆分-->
             <dependency>
@@ -562,13 +565,12 @@
                 <version>${mybatis-plus.version}</version> <!-- 确保版本和 MyBatis Plus 主包一致 -->
             </dependency>
 
-
             <!--加密-->
-            <!--            <dependency>-->
-            <!--                <groupId>com.github.ulisesbocchio</groupId>-->
-            <!--                <artifactId>jasypt-spring-boot-starter</artifactId>-->
-            <!--                <version>3.0.4</version>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>3.0.5</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.mapstruct</groupId>
@@ -588,19 +590,19 @@
                 <version>3.3.2</version>
             </dependency>
 
-<!--            &lt;!&ndash;            springboot3&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springdoc</groupId>-->
-<!--                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
-<!--                <version>2.1.0</version>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash;            springboot3&ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springdoc</groupId>-->
+            <!--                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+            <!--                <version>2.1.0</version>-->
+            <!--            </dependency>-->
 
-<!--            &lt;!&ndash;            springboot3&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.springdoc</groupId>-->
-<!--                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>-->
-<!--                <version>2.1.0</version>-->
-<!--            </dependency>-->
+            <!--            &lt;!&ndash;            springboot3&ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springdoc</groupId>-->
+            <!--                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>-->
+            <!--                <version>2.1.0</version>-->
+            <!--            </dependency>-->
 
 
             <dependency>
@@ -616,11 +618,11 @@
             </dependency>
 
 
-<!--            <dependency>-->
-<!--                <groupId>com.github.xiaoymin</groupId>-->
-<!--                <artifactId>knife4j-springdoc-ui</artifactId>-->
-<!--                <version>3.0.3</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.github.xiaoymin</groupId>-->
+            <!--                <artifactId>knife4j-springdoc-ui</artifactId>-->
+            <!--                <version>3.0.3</version>-->
+            <!--            </dependency>-->
 
             <!--对应springdoc-->
             <dependency>
@@ -724,10 +726,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-<!--                <configuration>-->
-<!--                    <source>${maven.compiler.source}</source> &lt;!&ndash; 设置源代码的语言级别 &ndash;&gt;-->
-<!--                    <target>${maven.compiler.source}</target>&lt;!&ndash; 设置目标代码的语言级别 &ndash;&gt;-->
-<!--                </configuration>-->
+                <!--                <configuration>-->
+                <!--                    <source>${maven.compiler.source}</source> &lt;!&ndash; 设置源代码的语言级别 &ndash;&gt;-->
+                <!--                    <target>${maven.compiler.source}</target>&lt;!&ndash; 设置目标代码的语言级别 &ndash;&gt;-->
+                <!--                </configuration>-->
             </plugin>
 
 

@@ -79,12 +79,9 @@ public class JoinerTest {
         System.out.println("分割 去除空格 trimResults = " + list2);
 
 
-        String str2 = "key1=54,key2=28";
-        Map<String, String> map = Splitter.on(",").withKeyValueSeparator("=").split(str2);
-        System.out.println("String 转为 map： = " + map);
-
-
-        Comparator.naturalOrder();
+        String str2 = "key1=54&key2=28";
+        Map<String, String> map = Splitter.on("&").withKeyValueSeparator("=").split(str2);
+        System.out.println("解析参数格式=" + map);
 
     }
 
