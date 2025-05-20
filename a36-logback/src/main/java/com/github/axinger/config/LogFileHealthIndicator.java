@@ -10,14 +10,14 @@
 //
 //@Component
 //public class LogFileHealthIndicator implements HealthIndicator {
-//    @Value("${logging.file.path:}")  // 默认值为空，防止未配置时报错
+//    @Value("${logging.file.name:}")  // 默认值为空，防止未配置时报错
 //    private String logPath;
 //
 //    @Override
 //    public Health health() {
 //        if (logPath == null || logPath.isEmpty()) {
 //            return Health.unknown()
-//                    .withDetail("reason", "未配置 logging.file.path")
+//                    .withDetail("reason", "未配置 logging.file.name")
 //                    .build();
 //        }
 //

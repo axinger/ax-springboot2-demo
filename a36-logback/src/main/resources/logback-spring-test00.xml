@@ -2,10 +2,10 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
-    <!--    <springProperty name="log.dir" scope="context" source="logging.file.path" defaultValue="./logs"/>-->
+    <!--    <springProperty name="log.dir" scope="context" source="logging.file.name" defaultValue="./logs"/>-->
 
     <springProperty scope="context" name="app.name" source="spring.application.name" defaultValue="dir_IS_UNDEFINED"/>
-    <springProperty scope="context" name="log.dir" source="logging.file.path"
+    <springProperty scope="context" name="log.dir" source="logging.file.name"
                     defaultValue="./logs/${app.name}"/>
 
     <!--文件保留时间-->
@@ -42,7 +42,7 @@
     <!-- 日志记录器，日期滚动记录
             INFO  级别
     -->
-    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 此日志文件只记录info级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>info</level>
@@ -122,7 +122,7 @@
 
 
     <!--    ERROR-->
-    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>ACCEPT</onMatch>
@@ -157,6 +157,23 @@
             <pattern>${log.pattern}</pattern>
         </encoder>
     </appender>
+
+
+    !-- 异步日志 -->
+    <appender name="ASYNC_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>1024</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>false</includeCallerData>
+        <appender-ref ref="FILE_INFO" />
+    </appender>
+
+    <appender name="ASYNC_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>1024</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>false</includeCallerData>
+        <appender-ref ref="FILE_ERROR" />
+    </appender>
+
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

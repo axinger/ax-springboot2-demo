@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scanPeriod="60 seconds" debug="false">
 
-<!--    <springProperty scope="context" name="logging.file.path" source="logging.file.path" defaultValue="logs"/>-->
+<!--    <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="logs"/>-->
 
     <!--预读spring.application.name,不能直接${spring.application.name}-->
     <springProperty scope="context" name="app.name" source="spring.application.name" defaultValue="my-app"/>
-    <springProperty scope="context" name="logging.file.path" source="logging.file.path" defaultValue="./logs/${app.name}"/>
+    <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="./logs/${app.name}"/>
 
 
     <property name="LOG_PATTERN"
@@ -29,7 +29,7 @@
     <!-- 按照每天生成日志文件 -->
     <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${logging.file.path}/%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${logging.file.name}/%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <MaxHistory>${maxHistory}</MaxHistory>
             <maxFileSize>${maxFileSize}</maxFileSize>
         </rollingPolicy>
@@ -48,7 +48,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logging.file.path}/%d{yyyy-MM-dd}.%i.info.log</fileNamePattern>
+            <fileNamePattern>${logging.file.name}/%d{yyyy-MM-dd}.%i.info.log</fileNamePattern>
             <MaxHistory>${maxHistory}</MaxHistory>
             <maxFileSize>${maxFileSize}</maxFileSize>
         </rollingPolicy>
@@ -66,7 +66,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logging.file.path}/%d{yyyy-MM-dd}.%i.error.log</fileNamePattern>
+            <fileNamePattern>${logging.file.name}/%d{yyyy-MM-dd}.%i.error.log</fileNamePattern>
             <MaxHistory>${maxHistory}</MaxHistory>
             <maxFileSize>${maxFileSize}</maxFileSize>
         </rollingPolicy>

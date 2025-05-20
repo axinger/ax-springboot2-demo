@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scanPeriod="60 seconds" debug="false">
 
-    <springProperty scope="context" name="logging.file.path" source="logging.file.path" defaultValue="logs"/>
+    <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="logs"/>
     <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="spring"/>
 
     <property name="LOG_PATTERN"
@@ -22,7 +22,7 @@
     <!-- 按照每天生成日志文件 -->
     <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${logging.file.path}/${logging.file.name}-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${logging.file.name}/${logging.file.name}-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <MaxHistory>30</MaxHistory>
             <maxFileSize>10MB</maxFileSize>
         </rollingPolicy>
@@ -36,7 +36,7 @@
     <!-- 每天生成一个html格式的日志 -->
     <appender name="ROLLING_FILE_HTML" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${logging.file.path}/${logging.file.name}-%d{yyyy-MM-dd}.%i.html</FileNamePattern>
+            <FileNamePattern>${logging.file.name}/${logging.file.name}-%d{yyyy-MM-dd}.%i.html</FileNamePattern>
             <MaxHistory>30</MaxHistory>
             <MaxFileSize>10MB</MaxFileSize>
         </rollingPolicy>
@@ -58,7 +58,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${logging.file.path}/${logging.file.name}.%d{yyyy-MM-dd}.%i.error.log</fileNamePattern>
+            <fileNamePattern>${logging.file.name}/${logging.file.name}.%d{yyyy-MM-dd}.%i.error.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <maxFileSize>10MB</maxFileSize>
         </rollingPolicy>
@@ -76,7 +76,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${logging.file.path}/${logging.file.name}-%d{yyyy-MM-dd}.%i.error.html</FileNamePattern>
+            <FileNamePattern>${logging.file.name}/${logging.file.name}-%d{yyyy-MM-dd}.%i.error.html</FileNamePattern>
             <MaxHistory>30</MaxHistory>
             <MaxFileSize>10MB</MaxFileSize>
         </rollingPolicy>

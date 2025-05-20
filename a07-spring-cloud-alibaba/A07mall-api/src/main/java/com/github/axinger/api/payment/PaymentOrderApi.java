@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 // @FeignClient configuration 指定的配置类不要加@Configuration，如果加了@Configuration注解，那这个配置类就是一个全局配置类。
 @Component
@@ -19,4 +20,8 @@ public interface PaymentOrderApi {
 
     @GetMapping(value = "/count/{id}")
     Map<String, Object> count(@PathVariable("id") Integer id);
+
+
+    @GetMapping(value = "/count/{id}")
+    CompletableFuture<Map<String, Object>> count2(@PathVariable("id") Integer id);
 }

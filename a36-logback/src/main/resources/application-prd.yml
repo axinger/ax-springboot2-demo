@@ -8,7 +8,7 @@ spring:
 
 
 logging:
-  #  config: classpath:logback-spring.xml # 默认加载
+  #  config: classpath:logback-spring-test00.xml # 默认加载
   config: classpath:logback-spring-test01.xml # 通用归档
   #  config: classpath:logback-spring-test03.xml # 自定义业务场景
   #  config: classpath:logback-spring-test06.xml

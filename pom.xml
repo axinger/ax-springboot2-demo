@@ -125,6 +125,7 @@
         <module>a41-ocr</module>
         <module>a42-queue</module>
         <module>a43-camel</module>
+        <module>a36-logback2</module>
     </modules>
 
     <dependencyManagement>

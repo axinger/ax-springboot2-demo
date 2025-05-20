@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
     <!--source是启动配置文件中的配置，如果没有则使用默认值 1是系统名称，2是日志输出路径-->
-    <springProperty name="logback.dir" scope="context" source="logging.file.path" defaultValue="./logs"/>
+    <springProperty name="logback.dir" scope="context" source="logging.file.name" defaultValue="./logs"/>
     <!--文件保留时间,天-->
 <!--    <property name="log.maxHistory" value="7"/>-->
     <springProperty scope="context" name="log.maxHistory" source="logging.file.maxHistory" defaultValue="60"/>
