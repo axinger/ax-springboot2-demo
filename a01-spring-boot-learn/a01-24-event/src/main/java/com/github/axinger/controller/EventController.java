@@ -22,6 +22,8 @@ public class EventController {
     private IMyService iMyService;
     @Autowired
     private EventProducer<CustomEvent> eventProducer;
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     @GetMapping("/test")
     public Object login(@NotEmpty(message = "name不能为空") String name) {
@@ -37,9 +39,6 @@ public class EventController {
         eventProducer.produceEvent(new CustomEvent(count));
         return List.of(count);
     }
-
-    @Autowired
-    private ApplicationEventPublisher publisher;
 
     @GetMapping("/push")
     public Object add(String name) {

@@ -1,13 +1,13 @@
 spring:
   datasource:
     # 内存模式 (每次重启数据丢失)
-#    url=jdbc:h2:mem:testdb
+    #    url=jdbc:h2:mem:testdb
     #    url: jdbc:h2:mem:ax_test4;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     #    url: jdbc:h2:file:~/data/databases/ax_test4;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     #文件模式 (数据持久化到文件) MySQL 兼容模式
     url: jdbc:h2:file:./data/databases/ax_test4;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     #TCP 服务器模式 (多应用共享)
-#    url: jdbc:h2:tcp://localhost:9092/ax_test4;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #    url: jdbc:h2:tcp://localhost:9092/ax_test4;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
     driver-class-name: org.h2.Driver

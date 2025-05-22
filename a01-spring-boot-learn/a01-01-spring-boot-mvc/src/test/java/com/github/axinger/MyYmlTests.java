@@ -1,6 +1,5 @@
 package com.github.axinger;
 
-import com.alibaba.fastjson2.JSON;
 import com.github.axinger.model.bean.MyYmlBean;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,15 +3,11 @@ package com.github.axinger._1simple;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +34,7 @@ public class Controller {
 //        log.info("方式1.简单模式message== {}", message);
 //    }
 
-//    @Retryable(
+    //    @Retryable(
 //            value = {Exception.class}, // 需要重试的异常类型
 //            maxAttempts = 3, // 最大重试次数
 //            backoff = @Backoff(delay = 1000) // 重试间隔时间（毫秒）

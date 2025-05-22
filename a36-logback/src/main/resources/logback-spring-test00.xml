@@ -164,14 +164,14 @@
         <queueSize>1024</queueSize>
         <discardingThreshold>0</discardingThreshold>
         <includeCallerData>false</includeCallerData>
-        <appender-ref ref="FILE_INFO" />
+        <appender-ref ref="FILE_INFO"/>
     </appender>
 
     <appender name="ASYNC_ERROR" class="ch.qos.logback.classic.AsyncAppender">
         <queueSize>1024</queueSize>
         <discardingThreshold>0</discardingThreshold>
         <includeCallerData>false</includeCallerData>
-        <appender-ref ref="FILE_ERROR" />
+        <appender-ref ref="FILE_ERROR"/>
     </appender>
 
 

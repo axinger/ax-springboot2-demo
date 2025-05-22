@@ -8,13 +8,13 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
-import java.util.Observable;
 
 @Service
 public interface ApiService {
     @GET("users/{id}")
         // GET 请求 + 路径参数
     Call<User> getUser(@Path("id") int userId);
+
     User getUser2(@Path("id") int userId);
 
     @POST("users/create")

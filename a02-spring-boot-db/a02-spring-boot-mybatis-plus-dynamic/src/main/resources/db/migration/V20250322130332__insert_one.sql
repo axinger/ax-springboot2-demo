@@ -1,1 +1,2 @@
-INSERT INTO `order_person` (`id`, `name`, `age`) VALUES (1, 'jim', 1);
+INSERT INTO `order_person` (`id`, `name`, `age`)
+VALUES (1, 'jim', 1);

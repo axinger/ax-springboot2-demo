@@ -16,7 +16,6 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j

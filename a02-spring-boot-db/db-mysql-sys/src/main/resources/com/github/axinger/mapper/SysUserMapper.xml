@@ -17,7 +17,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,username,password,email,phone,age,
+        id
+        ,username,password,email,phone,age,
         create_time,update_time,deleted
     </sql>
 

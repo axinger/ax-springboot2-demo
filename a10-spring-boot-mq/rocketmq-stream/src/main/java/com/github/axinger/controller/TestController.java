@@ -2,6 +2,7 @@ package com.github.axinger.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.axinger.model.User;
 import com.github.axinger.model.UserRemoteApplicationEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +12,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.github.axinger.model.User;
+
 @RestController
 public class TestController {
 
@@ -29,7 +30,8 @@ public class TestController {
 
     /**
      * Publish the {@link UserRemoteApplicationEvent}.
-     * @param name the user name
+     *
+     * @param name        the user name
      * @param destination the destination
      * @return If published
      */
@@ -40,12 +42,13 @@ public class TestController {
         user.setId(System.currentTimeMillis());
         user.setName(name);
         publisher.publishEvent(
-                new UserRemoteApplicationEvent( user, originService, destination));
+                new UserRemoteApplicationEvent(user, originService, destination));
         return true;
     }
 
     /**
      * Listener on the {@link UserRemoteApplicationEvent}.
+     *
      * @param event {@link UserRemoteApplicationEvent}
      */
     @EventListener

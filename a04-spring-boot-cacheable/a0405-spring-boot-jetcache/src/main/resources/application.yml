@@ -37,13 +37,13 @@ jetcache:
       recordStats: true
   remote:
     default:
-      type:  redis.springdata #redis
+      type: redis.springdata #redis
       keyConvertor: fastjson2 #other choose：fastjson/jackson
       broadcastChannel: projectA
       valueEncoder: FASTJSON2   #other choose：kryo/kryo5/java
       valueDecoder: FASTJSON2   #other choose：kryo/kryo5/java
-#      valueEncoder: spring-data-redis   #other choose：kryo/kryo5/java
-#      valueDecoder: spring-data-redis   #other choose：kryo/kryo5/java
+      #      valueEncoder: spring-data-redis   #other choose：kryo/kryo5/java
+      #      valueDecoder: spring-data-redis   #other choose：kryo/kryo5/java
       poolConfig:
         minIdle: 5
         maxIdle: 20

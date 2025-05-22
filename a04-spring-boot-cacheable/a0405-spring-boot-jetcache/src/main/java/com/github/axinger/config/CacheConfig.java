@@ -1,18 +1,8 @@
 package com.github.axinger.config;
 
-import com.alicp.jetcache.Cache;
-import com.alicp.jetcache.CacheManager;
-import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.support.EncoderParser;
-import com.alicp.jetcache.template.QuickConfig;
-import com.github.axinger.config.JsonEncoderParser;
-import com.github.benmanes.caffeine.cache.Caffeine;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
-import java.time.Duration;
 
 @Configuration
 public class CacheConfig {
@@ -27,8 +17,8 @@ public class CacheConfig {
 //    }
 
     @Bean
-    public EncoderParser encoderParser(){
-        return new JsonEncoderParser();	// 支持json序列化
+    public EncoderParser encoderParser() {
+        return new JsonEncoderParser();    // 支持json序列化
     }
 
 //    @Autowired

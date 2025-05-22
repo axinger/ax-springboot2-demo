@@ -3,7 +3,6 @@ package com.github.axinger;
 import com.baomidou.mybatisplus.core.toolkit.AES;
 import com.github.axinger.domain.SysPersonEntity;
 import com.github.axinger.domain.SysUserTotalEntity;
-import com.github.axinger.mapper.DynamicQueryMapper;
 import com.github.axinger.service.SysPersonService;
 import com.github.axinger.service.SysUserTotalService;
 import org.junit.jupiter.api.Test;
@@ -16,10 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 //@SpringBootTest
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -30,6 +26,8 @@ class MybatisPlusApplicationTests {
     private SysPersonService sysPersonService;
     @Autowired
     private SysUserTotalService sysUserTotalService;
+    @Autowired
+    private TestRestTemplate testRestTemplate;
 
     //    // Jar 启动参数（ idea 设置 Program arguments , 服务器可以设置为启动环境变量 ）
 //--mpw.key=d1104d7c3b616f0b
@@ -79,10 +77,6 @@ class MybatisPlusApplicationTests {
         List<SysUserTotalEntity> list = sysUserTotalService.lambdaQuery().list();
         System.out.println("list = " + list);
     }
-
-
-    @Autowired
-    private TestRestTemplate testRestTemplate;
 
     @Test
     void test3() {

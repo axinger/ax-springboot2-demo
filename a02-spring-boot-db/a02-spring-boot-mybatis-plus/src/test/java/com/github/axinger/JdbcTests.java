@@ -21,6 +21,8 @@ public class JdbcTests {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Test
     void test10() {
@@ -46,6 +48,7 @@ public class JdbcTests {
         Map<String, Object> stu = jdbcTemplate.queryForMap(sql, 1);
         System.out.println(stu);
     }
+
     @Test
     void test1011() {
         String sql = "SELECT * FROM sys_employee where id = ?";
@@ -107,10 +110,6 @@ public class JdbcTests {
         System.out.println("批量插入了 " + affectedRows.length + " 条数据");
 
     }
-
-    @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
 
     @Test
     void test11() {

@@ -8,7 +8,7 @@ import com.alicp.jetcache.anno.Cached;
 import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
-public interface SummaryService{
+public interface SummaryService {
     @Cached(expire = 3600, cacheType = CacheType.REMOTE)
     @CacheRefresh(refresh = 1800, stopRefreshAfterLastAccess = 3600, timeUnit = TimeUnit.SECONDS)
     @CachePenetrationProtect

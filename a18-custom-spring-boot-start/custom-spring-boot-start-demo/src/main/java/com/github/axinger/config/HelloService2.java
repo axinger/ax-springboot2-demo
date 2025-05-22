@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class HelloService2 implements HelloService {
     @Override
-    public Map<String,Object> sayHello(String param) {
-        return Map.of("param",param);
+    public Map<String, Object> sayHello(String param) {
+        return Map.of("param", param);
     }
 }

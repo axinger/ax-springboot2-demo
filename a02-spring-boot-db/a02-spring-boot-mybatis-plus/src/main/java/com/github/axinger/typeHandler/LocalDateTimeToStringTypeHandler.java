@@ -9,12 +9,12 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@MappedTypes(value ={LocalDateTime.class,Timestamp.class})
+@MappedTypes(value = {LocalDateTime.class, Timestamp.class})
 @MappedJdbcTypes(JdbcType.TIMESTAMP)
 public class LocalDateTimeToStringTypeHandler extends BaseTypeHandler<String> {
 
     private static final DateTimeFormatter FORMATTER =
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, String parameter, JdbcType jdbcType) throws SQLException {

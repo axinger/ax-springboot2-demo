@@ -9,8 +9,8 @@ public class BeanRoute extends RouteBuilder {
     public void configure() throws Exception {
         from("direct:processData")
 //            .bean("dataProcessor", "process")
-            .bean(DataProcessor.class, "process")
-            .to("log:processedData");
+                .bean(DataProcessor.class, "process")
+                .to("log:processedData");
     }
 }
 

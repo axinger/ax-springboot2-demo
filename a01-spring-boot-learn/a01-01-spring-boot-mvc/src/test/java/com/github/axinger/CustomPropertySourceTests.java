@@ -5,28 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.PropertySource;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CustomPropertySourceTests {
 
+    @Autowired
+    ConfigurableEnvironment environment;
     @Value("${app.currentTime}")
     private Long currentTime;
-
     @Value("${app.randomValue}")
     private String randomValue;
-
-
     @Value("${app.currentTime2}")
     private Long currentTime2;
-
     @Value("${app.randomValue2}")
     private String randomValue2;
 
-    @Autowired
-    ConfigurableEnvironment environment;
     @Test
     public void test1() {
         System.out.println("currentTime = " + currentTime);

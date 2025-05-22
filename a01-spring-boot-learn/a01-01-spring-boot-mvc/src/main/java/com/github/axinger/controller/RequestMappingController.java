@@ -9,7 +9,6 @@ import java.util.Map;
 public class RequestMappingController {
 
 
-
     @RequestMapping("/request")
     public Object RequestMapping(String id) {
         return List.of(id);
@@ -19,7 +18,6 @@ public class RequestMappingController {
     public Object GetMapping(String id) {
         return List.of(id);
     }
-
 
 
     // 走的是get方式拼接参数,不要误会走body

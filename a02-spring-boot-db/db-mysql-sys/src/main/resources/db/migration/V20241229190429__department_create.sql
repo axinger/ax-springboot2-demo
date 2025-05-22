@@ -5,5 +5,7 @@ CREATE TABLE `sys_department`
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `sys_department` (`id`, `name`) VALUES (1, '行政部');
-INSERT INTO `sys_department` (`id`, `name`) VALUES (2, '采购部');
+INSERT INTO `sys_department` (`id`, `name`)
+VALUES (1, '行政部');
+INSERT INTO `sys_department` (`id`, `name`)
+VALUES (2, '采购部');

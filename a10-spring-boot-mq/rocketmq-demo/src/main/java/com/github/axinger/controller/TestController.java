@@ -5,7 +5,6 @@ import com.github.axinger.model.User;
 import com.github.axinger.service.MQProducerService;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
-import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
@@ -15,8 +14,6 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/rocketmq")

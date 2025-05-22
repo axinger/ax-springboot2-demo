@@ -1,7 +1,6 @@
 package com.github.axinger.mqtt;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.support.processor.idempotent.MemoryIdempotentRepository;
 import org.springframework.stereotype.Component;
 
 @Component

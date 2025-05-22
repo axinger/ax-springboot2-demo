@@ -15,49 +15,6 @@ import java.util.Map;
 @SuppressWarnings({"all"})
 public class 泛型Tests {
 
-    public <T> T testA(T t) {
-
-        return t;
-    }
-
-    public <T> T testB(Class<T> t) {
-
-        return null;
-    }
-
-    public <T> T testC(Type t) {
-
-        return null;
-    }
-
-    public <T> T testD(Type t) {
-
-        return null;
-    }
-
-
-    @Test
-    public void test1() {
-        String test = testA("123");
-
-        Long test1 = testA(1L);
-
-        Integer i = testB(Integer.class);
-        String str = testB(String.class);
-
-//        List<String> list = testC(Map<String,String>.class);
-
-        JSONObject.parseObject("", new TypeReference<List<String>>() {
-        });
-
-        JSONObject.parseObject("", Type.class, null);
-
-        TypeToken<Map<String, String>> typeToken = new TypeToken<Map<String, String>>() {
-        };
-        Type type = typeToken.getType();
-    }
-
-
     public static <T> T testE(String text, TypeToken<T> typeToken) {
         Type type = typeToken.getType();
         if (type instanceof ParameterizedType) {
@@ -122,6 +79,47 @@ public class 泛型Tests {
         } else {
             throw new UnsupportedOperationException("Unsupported type: " + targetType);
         }
+    }
+
+    public <T> T testA(T t) {
+
+        return t;
+    }
+
+    public <T> T testB(Class<T> t) {
+
+        return null;
+    }
+
+    public <T> T testC(Type t) {
+
+        return null;
+    }
+
+    public <T> T testD(Type t) {
+
+        return null;
+    }
+
+    @Test
+    public void test1() {
+        String test = testA("123");
+
+        Long test1 = testA(1L);
+
+        Integer i = testB(Integer.class);
+        String str = testB(String.class);
+
+//        List<String> list = testC(Map<String,String>.class);
+
+        JSONObject.parseObject("", new TypeReference<List<String>>() {
+        });
+
+        JSONObject.parseObject("", Type.class, null);
+
+        TypeToken<Map<String, String>> typeToken = new TypeToken<Map<String, String>>() {
+        };
+        Type type = typeToken.getType();
     }
 
     // 测试用例

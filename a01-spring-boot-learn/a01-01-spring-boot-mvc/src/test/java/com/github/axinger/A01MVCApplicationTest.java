@@ -20,6 +20,10 @@ public class A01MVCApplicationTest {
 
     @Autowired
     TestRestTemplate testRestTemplate;
+    @Value("#{'${axinger.user.username2:}'.split(',')}")
+    private List<String> usernameList;
+    @Value("${axinger.user.username}")
+    private List<String> usernameList2;
 
     @Test
     public void test2() {
@@ -50,12 +54,6 @@ public class A01MVCApplicationTest {
         String str = testRestTemplate.getForObject(url, String.class);
         System.out.println("str = " + str);
     }
-
-    @Value("#{'${axinger.user.username2:}'.split(',')}")
-    private List<String> usernameList;
-
-    @Value("${axinger.user.username}")
-    private List<String> usernameList2;
 
     @Test
     public void test3() {

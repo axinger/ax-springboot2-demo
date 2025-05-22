@@ -1,6 +1,5 @@
 package com.github.axinger.config;
 
-import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -13,13 +12,13 @@ public class CustomEnvironmentPostProcessor implements EnvironmentPostProcessor 
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment,
-                                     SpringApplication application) {
+                                       SpringApplication application) {
         Map<String, Object> customProperties = new HashMap<>();
         customProperties.put("custom2.timestamp", System.currentTimeMillis());
         customProperties.put("custom2.randomString", generateRandomString());
 
         environment.getPropertySources().addFirst(
-            new MapPropertySource("customProperties", customProperties)
+                new MapPropertySource("customProperties", customProperties)
         );
 
     }

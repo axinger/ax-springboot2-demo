@@ -16,7 +16,7 @@ public class Group2Consumer {
 
     @Component
     @RocketMQMessageListener(
-            consumerGroup = Topic.GROUP_2+"a",
+            consumerGroup = Topic.GROUP_2 + "a",
             topic = Topic.TOPIC_2,
             selectorType = SelectorType.TAG,
             selectorExpression = Topic.Tag_3,

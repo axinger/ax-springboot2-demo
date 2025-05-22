@@ -1,9 +1,5 @@
 package com.github.axinger.enumof;
 
-interface Compute {
-    int compute(int a, int b);
-}
-
 /// 可以用作策略模式
 public enum NumberCompute implements Compute {
 
@@ -21,5 +17,9 @@ public enum NumberCompute implements Compute {
         }
     }
 
+}
+
+interface Compute {
+    int compute(int a, int b);
 }
 

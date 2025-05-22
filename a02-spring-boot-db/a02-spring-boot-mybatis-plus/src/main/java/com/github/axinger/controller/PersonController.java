@@ -23,7 +23,7 @@ public class PersonController {
     }
 
     @GetMapping("/list")
-    public  List<SysPersonEntity> data() {
+    public List<SysPersonEntity> data() {
         List<SysPersonEntity> list = sysPersonService.list();
         System.out.println("list = " + list);
         return list;

@@ -11,6 +11,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        name,type,num
+        name
+        ,type,num
     </sql>
 </mapper>

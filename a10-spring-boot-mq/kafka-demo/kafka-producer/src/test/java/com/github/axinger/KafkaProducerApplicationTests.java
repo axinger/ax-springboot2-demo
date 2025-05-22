@@ -11,10 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import java.time.LocalDateTime;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 
 @SpringBootTest
@@ -28,9 +25,10 @@ class KafkaProducerApplicationTests {
     @SneakyThrows
     @Test
     void test1() {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        UserDTO user = new UserDTO();
 
-
-        ListenableFuture<SendResult<String, ProducerUser>> send = kafkaTemplate.send(Topic.USER_JSON, user);
+        ListenableFuture<SendResult<String, UserDTO>> send = kafkaTemplate.send(Topic.USER_JSON, user);
 
         send.addCallback(sendResult -> {
             log.info("发送消息成功===================");
@@ -39,7 +37,7 @@ class KafkaProducerApplicationTests {
                 recordMetadata = sendResult.getRecordMetadata();
             }
             System.out.println("recordMetadata = " + recordMetadata);
-            ProducerUser value = null;
+            UserDTO value = null;
             if (sendResult != null) {
                 value = sendResult.getProducerRecord().value();
             }

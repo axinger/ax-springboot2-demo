@@ -9,16 +9,16 @@ public class FileRoute extends RouteBuilder {  // 继承RouteBuilder，用于定
     public void configure() throws Exception {
         // 定义路由：从`input`目录读取文件
         from("file:input?noop=true")
-            // 打印日志：当前处理的文件名
-            .log("Processing file: ${header.CamelFileName}")
+                // 打印日志：当前处理的文件名
+                .log("Processing file: ${header.CamelFileName}")
                 .process(exchange -> {
                     String fileName = exchange.getIn().getHeader("CamelFileName", String.class);
                     String body = exchange.getIn().getBody(String.class);
                     System.out.println("fileName = " + fileName);
                     System.out.println("body = " + body);
                 })
-            // 将文件写入`output`目录
-            .to("file:output1");
+                // 将文件写入`output`目录
+                .to("file:output1");
     }
 
 

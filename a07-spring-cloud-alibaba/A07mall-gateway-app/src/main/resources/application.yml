@@ -25,10 +25,10 @@ spring:
           uri: lb://mall-order-app
           predicates:
             - Path=/order/**
-#          filters:
-#            - RewritePath=/order/(?<segment>.*),/$\{segment}
-#          filters:
-#            - StripPrefix=1
+        #          filters:
+        #            - RewritePath=/order/(?<segment>.*),/$\{segment}
+        #          filters:
+        #            - StripPrefix=1
 
         - id: payment
           uri: lb://mall-payment-app

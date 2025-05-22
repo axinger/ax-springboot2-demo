@@ -78,10 +78,10 @@
 
 
         <!--        这个目前只能用1.7.0-->
-<!--        <dependency>-->
-<!--            <groupId>org.springdoc</groupId>-->
-<!--            <artifactId>springdoc-openapi-ui</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springdoc</groupId>-->
+        <!--            <artifactId>springdoc-openapi-ui</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.github.xiaoymin</groupId>

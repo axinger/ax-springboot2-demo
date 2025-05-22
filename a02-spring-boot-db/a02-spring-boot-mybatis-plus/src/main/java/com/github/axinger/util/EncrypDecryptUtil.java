@@ -16,7 +16,7 @@ public class EncrypDecryptUtil {
      * @return
      */
     public static String encypt(String password, String value) {
-        if(ObjectUtils.isEmpty(value)){
+        if (ObjectUtils.isEmpty(value)) {
             return null;
         }
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
@@ -32,7 +32,7 @@ public class EncrypDecryptUtil {
      * @return
      */
     public static String decypt(String password, String value) {
-        if(ObjectUtils.isEmpty(value)){
+        if (ObjectUtils.isEmpty(value)) {
             return null;
         }
         StandardPBEStringEncryptor decryptor = new StandardPBEStringEncryptor();

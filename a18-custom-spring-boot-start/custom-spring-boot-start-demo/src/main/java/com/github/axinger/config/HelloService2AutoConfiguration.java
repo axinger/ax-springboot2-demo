@@ -4,7 +4,6 @@ package com.github.axinger.config;
 import com.axing.starter.bean.HelloProperties;
 import com.axing.starter.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +15,7 @@ public class HelloService2AutoConfiguration {
 
     /**
      * 重写 ConditionalOnMissingBean
+     *
      * @return
      */
 

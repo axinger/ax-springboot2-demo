@@ -1,9 +1,5 @@
 package com.github.axinger.controller;
 
-import com.alicp.jetcache.Cache;
-import com.alicp.jetcache.CacheGetResult;
-import com.alicp.jetcache.CacheManager;
-import com.alicp.jetcache.ResultData;
 import com.github.axinger.model.User;
 import com.github.axinger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/test")

@@ -60,28 +60,28 @@
     </dependencies>
 
     <build>
-<!--        <resources>-->
-<!--            &lt;!&ndash; 处理公共配置：application.yml，并排除所有环境配置 &ndash;&gt;-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <filtering>true</filtering> &lt;!&ndash; 启用占位符替换 &ndash;&gt;-->
-<!--                <excludes>-->
-<!--                    <exclude>application-*.yml</exclude>-->
-<!--                </excludes>-->
-<!--                <includes>-->
-<!--                    <include>application.yml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--            &lt;!&ndash; 动态包含当前环境的配置文件 &ndash;&gt;-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <filtering>true</filtering>-->
-<!--                <includes>-->
-<!--                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
-<!--                    <include>application-${my-env}.yml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
+        <!--        <resources>-->
+        <!--            &lt;!&ndash; 处理公共配置：application.yml，并排除所有环境配置 &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <filtering>true</filtering> &lt;!&ndash; 启用占位符替换 &ndash;&gt;-->
+        <!--                <excludes>-->
+        <!--                    <exclude>application-*.yml</exclude>-->
+        <!--                </excludes>-->
+        <!--                <includes>-->
+        <!--                    <include>application.yml</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--            &lt;!&ndash; 动态包含当前环境的配置文件 &ndash;&gt;-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <filtering>true</filtering>-->
+        <!--                <includes>-->
+        <!--                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+        <!--                    <include>application-${my-env}.yml</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
 
         <plugins>
             <plugin>

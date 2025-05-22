@@ -6,13 +6,11 @@ import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourcePrope
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
 import java.util.Map;
 
 @Slf4j
@@ -21,7 +19,7 @@ import java.util.Map;
 public class FlywayConfig {
 
     private static final String ENCODING = "UTF-8";
-//    @Autowired
+    //    @Autowired
 //    private DataSource dataSource;
     @Resource
     private DynamicDataSourceProperties dynamicDataSourceProperties;

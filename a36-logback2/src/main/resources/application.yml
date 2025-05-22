@@ -9,11 +9,11 @@ spring:
 
 # 默认格式,更丰富的需要配置logback.xml
 logging:
-#  file:
-#    name: ./logs/a36-logback2/all.log # 默认值是null,不会存储文件
+  #  file:
+  #    name: ./logs/a36-logback2/all.log # 默认值是null,不会存储文件
   pattern:
-##    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
-##    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+    ##    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+    ##    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
     console: '%d{yyyy-MM-dd HH:mm:ss.SSS}  %-5level  ${PID:- } --- [%t] %logger{100} : %msg%n'
     file: '%d{yyyy-MM-dd HH:mm:ss.SSS}  %-5level  ${PID:- } --- [%t] %logger{100} : %msg%n'
 

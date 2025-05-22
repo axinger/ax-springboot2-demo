@@ -5,7 +5,6 @@ import com.github.axinger.api.User;
 import lombok.SneakyThrows;
 import lombok.val;
 import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +15,9 @@ import java.util.Map;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class A0119HttpApplicationTest {
 
+
+    @Autowired
+    ApiService apiService;
 
     @Test
     public void test() {
@@ -123,9 +125,6 @@ public class A0119HttpApplicationTest {
             }
         });
     }
-
-    @Autowired
-    ApiService apiService;
 
     @SneakyThrows
     @Test

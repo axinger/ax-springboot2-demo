@@ -56,6 +56,8 @@ public enum Process implements ProcessItem {
         }
     };
 
+    private static Process previousStep = null;
+
     @Override
     public int step(int a, int b) {
         // 执行具体的步骤操作
@@ -83,8 +85,6 @@ public enum Process implements ProcessItem {
 
     @Override
     public abstract Process next(int a, int b);
-
-    private static Process previousStep = null;
 
 
 }

@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $('#uploadForm').on('submit', function(event) {
+$(document).ready(function () {
+    $('#uploadForm').on('submit', function (event) {
         event.preventDefault();
 
         // 获取文件输入
@@ -22,11 +22,11 @@ $(document).ready(function() {
             data: formData,
             contentType: false, // 不设置内容类型，让浏览器自动处理
             processData: false, // 不处理数据，让它保持原样
-            success: function(result) {
+            success: function (result) {
                 // 在页面上显示识别结果
                 $('#result').text(result);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
                 alert('识别失败，请稍后重试。');
             }

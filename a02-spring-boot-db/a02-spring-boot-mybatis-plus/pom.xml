@@ -87,10 +87,10 @@
             <artifactId>flyway-sqlserver</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-h2</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.flywaydb</groupId>-->
+        <!--            <artifactId>flyway-h2</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>com.github.axinger</groupId>
             <artifactId>excel-spring-boot-starter</artifactId>
@@ -126,16 +126,16 @@
             </plugin>
         </plugins>
 
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <filtering>true</filtering>-->
-<!--                <includes>-->
-<!--                    <include>application.yml</include>-->
-<!--                    <include>application-*.yml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
+        <!--        <resources>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <filtering>true</filtering>-->
+        <!--                <includes>-->
+        <!--                    <include>application.yml</include>-->
+        <!--                    <include>application-*.yml</include>-->
+        <!--                </includes>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
     </build>
 
 </project>

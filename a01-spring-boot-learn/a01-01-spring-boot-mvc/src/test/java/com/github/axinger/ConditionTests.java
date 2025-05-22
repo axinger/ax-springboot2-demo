@@ -7,10 +7,8 @@ import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.lang.Nullable;
 import org.springframework.test.context.TestPropertySource;
 
-import javax.annotation.Resource;
 import java.util.Map;
 import java.util.Optional;
 
@@ -37,6 +35,20 @@ public class ConditionTests {
     @Autowired(required = false)
     @Qualifier("myBean2")
     private MyBean myBean2;
+    /// 可以， 有告警
+    @Autowired
+    @Qualifier("myBean1")
+    private Optional<MyBean> myBean1Opt;
+    @Autowired
+    @Qualifier("myBean2")
+    private Optional<MyBean> myBean2Opt;
+    /// 可以
+    @Autowired
+    @Qualifier("myBean1")
+    private ObjectProvider<MyBean> myBean1Provider;
+    @Autowired
+    @Qualifier("myBean2")
+    private ObjectProvider<MyBean> myBean2Provider;
 
     @Test
     public void test1() {
@@ -54,30 +66,11 @@ public class ConditionTests {
         }
     }
 
-    /// 可以， 有告警
-    @Autowired
-    @Qualifier("myBean1")
-    private Optional<MyBean> myBean1Opt;
-
-    @Autowired
-    @Qualifier("myBean2")
-    private Optional<MyBean> myBean2Opt;
-
     @Test
     public void test2() {
         myBean1Opt.ifPresent(bean -> System.out.println("myBean1 = " + bean));
         myBean2Opt.ifPresent(bean -> System.out.println("myBean2 = " + bean));
     }
-
-
-    /// 可以
-    @Autowired
-    @Qualifier("myBean1")
-    private ObjectProvider<MyBean> myBean1Provider;
-
-    @Autowired
-    @Qualifier("myBean2")
-    private ObjectProvider<MyBean> myBean2Provider;
 
     @Test
     public void test4() {
@@ -94,12 +87,12 @@ public class ConditionTests {
         System.out.println("bean = " + bean);
 
 
-        MyBean bean1 = SpringUtil.getBean("myBean1",MyBean.class);
+        MyBean bean1 = SpringUtil.getBean("myBean1", MyBean.class);
         System.out.println("bean1 = " + bean1);
         try {
 
-        MyBean bean2 = SpringUtil.getBean("myBean2",MyBean.class);
-        System.out.println("bean2 = " + bean2);
+            MyBean bean2 = SpringUtil.getBean("myBean2", MyBean.class);
+            System.out.println("bean2 = " + bean2);
         } catch (Exception e) {
             System.err.println("bean2 未创建，条件不满足");
         }

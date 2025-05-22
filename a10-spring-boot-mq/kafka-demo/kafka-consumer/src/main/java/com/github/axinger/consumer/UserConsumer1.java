@@ -44,7 +44,7 @@ public class UserConsumer1 {
             // handleBusiness(record);
 
             // 获取主题名称
-             String topic = record.topic();
+            String topic = record.topic();
             //
             // // 获取主题分区 ID
             // int partition = record.partition();
@@ -64,7 +64,7 @@ public class UserConsumer1 {
 //            System.out.println("message.getPayload() = " + message.getPayload());
 //            System.out.println("data = " + data);
 //
-            log.info("主题={},偏移量={}，payload={}，data={}",topic, offset,payload, data);
+            log.info("主题={},偏移量={}，payload={}，data={}", topic, offset, payload, data);
 //            System.out.println("userDTO = " + userDTO);
 
 //            UserDTO value = record.value();

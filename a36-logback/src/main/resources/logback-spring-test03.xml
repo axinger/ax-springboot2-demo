@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scanPeriod="60 seconds" debug="false">
 
-<!--    <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="logs"/>-->
+    <!--    <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="logs"/>-->
 
     <!--预读spring.application.name,不能直接${spring.application.name}-->
     <springProperty scope="context" name="app.name" source="spring.application.name" defaultValue="my-app"/>
-    <springProperty scope="context" name="logging.file.name" source="logging.file.name" defaultValue="./logs/${app.name}"/>
+    <springProperty scope="context" name="logging.file.name" source="logging.file.name"
+                    defaultValue="./logs/${app.name}"/>
 
 
     <property name="LOG_PATTERN"

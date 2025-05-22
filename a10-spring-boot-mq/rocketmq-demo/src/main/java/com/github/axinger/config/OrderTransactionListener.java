@@ -40,10 +40,10 @@
 //        LocalTransactionState state;
 //        try {
 //            //修改为true时，模拟本地事务异常
-////            boolean imitateException = true;
-////            if(imitateException) {
-////                throw new RuntimeException("更新本地事务时抛出异常");
-////            }
+/// /            boolean imitateException = true;
+/// /            if(imitateException) {
+/// /                throw new RuntimeException("更新本地事务时抛出异常");
+/// /            }
 //
 //
 //            state = 1 == 1 ? LocalTransactionState.COMMIT_MESSAGE : LocalTransactionState.ROLLBACK_MESSAGE;

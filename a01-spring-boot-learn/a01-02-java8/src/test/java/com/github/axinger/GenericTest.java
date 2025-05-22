@@ -1,12 +1,14 @@
 package com.github.axinger;
 
-import com.alibaba.fastjson2.TypeReference;
 import com.google.common.reflect.TypeToken;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GenericTest {
 

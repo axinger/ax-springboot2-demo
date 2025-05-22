@@ -102,6 +102,21 @@ public class QueueDemo {
 
     }
 
+    //put() 和 take() 是阻塞式的，适合用于协调生产者和消费者节奏。
+    @SneakyThrows
+    @Test
+    public void test10() {
+
+        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(3);
+
+        Thread producer = new Thread(new Producer(queue));
+        Thread consumer = new Thread(new Consumer(queue));
+
+        producer.start();
+        consumer.start();
+
+        TimeUnit.SECONDS.sleep(10);
+    }
 
     class Producer implements Runnable {
         private ArrayBlockingQueue<Integer> queue;
@@ -142,21 +157,5 @@ public class QueueDemo {
                 Thread.currentThread().interrupt();
             }
         }
-    }
-
-    //put() 和 take() 是阻塞式的，适合用于协调生产者和消费者节奏。
-    @SneakyThrows
-    @Test
-    public void test10() {
-
-        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(3);
-
-        Thread producer = new Thread(new Producer(queue));
-        Thread consumer = new Thread(new Consumer(queue));
-
-        producer.start();
-        consumer.start();
-
-        TimeUnit.SECONDS.sleep(10);
     }
 }
