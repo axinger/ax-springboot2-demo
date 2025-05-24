@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.flowable.task.api.Task;
 import org.flowable.task.api.TaskInfo;
 import org.flowable.task.api.history.HistoricTaskInstance;
 
@@ -44,6 +45,27 @@ public class TaskVO {
     }
 
     static public List<TaskVO> fromTaskInfo(List<? extends TaskInfo> infos) {
+        return infos.stream().map(task -> TaskVO.builder()
+                .id(task.getId())
+                .processInstanceId(task.getProcessInstanceId())
+                .name(task.getName())
+                .assignee(task.getAssignee())
+                .description(task.getDescription())
+                .variablesLocal(task.getTaskLocalVariables())
+                .parentTaskId(task.getParentTaskId())
+                .createTime(task.getCreateTime())
+                .owner(task.getOwner())
+//                .delegationState(task.getDelegationState())
+                .taskDefinitionKey(task.getTaskDefinitionKey())
+                .processDefinitionId(task.getProcessDefinitionId())
+                .taskLocalVariables(task.getTaskLocalVariables())
+                .processVariables(task.getProcessVariables())
+                .caseVariables(task.getCaseVariables())
+                .claimTime(task.getClaimTime())
+                .build()).toList();
+    }
+
+    static public List<TaskVO> fromTask(List<? extends Task> infos) {
         return infos.stream().map(task -> TaskVO.builder()
                 .id(task.getId())
                 .processInstanceId(task.getProcessInstanceId())

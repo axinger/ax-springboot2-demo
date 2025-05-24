@@ -2,6 +2,8 @@ package com.github.axinger.controller;
 
 
 import cn.hutool.core.io.IoUtil;
+import com.github.axinger.vo.TaskVO;
+import lombok.extern.slf4j.Slf4j;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.*;
 import org.flowable.engine.history.HistoricProcessInstance;
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("/expense")
 public class TestController {
@@ -109,7 +112,7 @@ public class TestController {
             map.put("claimTime", task.getClaimTime());
 
 
-                // 获取流程变量,单次查询
+            // 获取流程变量,单次查询
 //            Map<String, Object> variablesLocal = runtimeService.getVariablesLocal(task.getProcessInstanceId());
 //            map.put("variablesLocal", variablesLocal);
 
@@ -137,6 +140,17 @@ public class TestController {
         return list;
     }
 
+    @GetMapping("/groupList")
+    public Object teacherList(String groupId) {
+        //此处.taskCandidateGroup("a")的值“a”即是画流程图时辅导员审批节点"分配用户-候选组"中填写的值
+        List<Task> tasks = taskService.createTaskQuery()
+                .taskCandidateGroup(groupId)
+                .orderByTaskCreateTime()
+                .desc()
+                .list();
+        return TaskVO.fromTask(tasks);
+    }
+
     /**
      * 申请人提交, 审批人审批都是掉这个接口,传值  Task 的id
      *
@@ -146,6 +160,10 @@ public class TestController {
     @ResponseBody
     public String apply(String taskId) {
         // runtimeService.startProcessInstanceByKey 返回的id
+
+        // //此处.taskCandidateGroup("a")的值“a”即是画流程图时辅导员审批节点"分配用户-候选组"中填写的值
+//        List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("a").list();
+//        Task task = taskService.createTaskQuery().taskCandidateGroup("a").taskId(taskId).singleResult();
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
         if (task == null) {
             throw new RuntimeException("流程不存在");
@@ -156,6 +174,7 @@ public class TestController {
         taskService.complete(taskId, map);
         return "processed ok!";
     }
+
 
     /**
      * 拒绝
