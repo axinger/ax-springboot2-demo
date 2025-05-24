@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-public class Application {
+public class A0115AsyncApplication {
 
     public static void main(String[] args) {
-        final ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        final ConfigurableApplicationContext context = SpringApplication.run(A0115AsyncApplication.class, args);
         final AsyncService service = context.getBean(AsyncService.class);
 
         // 默认线程池

@@ -7,10 +7,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@MapperScan("com.ax.mapper")
-public class Application {
+@MapperScan("com.github.axinger.mapper")
+public class A0107SqlTransactionalApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(A0107SqlTransactionalApplication.class, args);
     }
 }

@@ -1,12 +1,12 @@
-package com.github.axinger.taskHandler;
+package com.github.axinger.config;
 
-import org.flowable.engine.delegate.TaskListener;
 import org.flowable.task.service.delegate.DelegateTask;
+import org.flowable.task.service.delegate.TaskListener;
 
 public class BossTaskHandler implements TaskListener {
+
     @Override
     public void notify(DelegateTask delegateTask) {
-//        EVENTNAME_CREATE;
         delegateTask.setAssignee("老板");
     }
 }

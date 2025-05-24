@@ -1,6 +1,5 @@
 package com.github.axinger.config;
 
-import com.google.common.net.InetAddresses;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
 import org.springframework.cloud.commons.util.InetUtils;
-import org.springframework.cloud.commons.util.InetUtilsProperties;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
@@ -19,9 +17,7 @@ import org.springframework.stereotype.Component;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.UnknownHostException;
 import java.util.Enumeration;
-import java.util.List;
 
 @Component
 @Order(value = 1)
@@ -56,7 +52,6 @@ public class Start1 implements ApplicationRunner {
         log.info("本机hostname={}", hostname);
 
 
-
         int port = context.getWebServer().getPort();
         System.out.println("port = " + port);
         String ip2 = InetAddress.getLocalHost().getHostAddress();
@@ -65,7 +60,6 @@ public class Start1 implements ApplicationRunner {
 
 //        String host = context.getWebServer().getAddress().getHostString();
 //        System.out.println("Server is running at http://" + host + ":" + port);
-
 
 
         Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
@@ -104,8 +98,8 @@ public class Start1 implements ApplicationRunner {
 
 
         Environment environment = context.getBean(Environment.class);
-        String path = environment.getProperty("server.servlet.context-path")==null?
-                "":environment.getProperty("server.servlet.context-path");
+        String path = environment.getProperty("server.servlet.context-path") == null ?
+                "" : environment.getProperty("server.servlet.context-path");
         String port = environment.getProperty("server.port");
         String ip = InetAddress.getLocalHost().getHostAddress();
         log.info("Access URLs:\n----------------------------------------------------------\n\t"

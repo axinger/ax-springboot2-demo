@@ -126,6 +126,7 @@
         <module>a42-queue</module>
         <module>a43-camel</module>
         <module>a36-logback2</module>
+        <module>a35-flowable1</module>
     </modules>
 
     <dependencyManagement>
