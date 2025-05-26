@@ -684,7 +684,8 @@
 
         <dependency>
             <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
+<!--            <artifactId>hutool-core</artifactId>-->
+            <artifactId>hutool-all</artifactId>
             <scope>provided</scope>
         </dependency>
 

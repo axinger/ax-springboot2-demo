@@ -15,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
@@ -42,8 +43,21 @@ public class A04RedisApplicationTest {
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "jim");
 
-        this.redisTemplate.opsForValue().set("demo:dog1", jsonObject);
-        this.redisTemplate.opsForValue().set("demo:dog2", jsonObject);
+        this.redisTemplate.opsForValue().set("demo:dog1", jsonObject, 1, TimeUnit.HOURS);
+        this.redisTemplate.opsForValue().set("demo:dog2", jsonObject,1, TimeUnit.HOURS);
+
+        Object o = this.redisTemplate.opsForValue().get("demo:dog1");
+        System.out.println("o = " + o);
+        System.out.println("o = " + o.getClass());
+        if (o instanceof JSONObject jsonObject1){
+            String name = jsonObject1.getString("name");
+            System.out.println("name = " + name);
+        }
+
+        if (o instanceof Map<?,?> jsonObject1){
+            Object name = jsonObject1.get("name");
+            System.out.println("name222 = " + name);
+        }
     }
 
     @Test
@@ -63,7 +77,7 @@ public class A04RedisApplicationTest {
                 .build();
 
         final String key = "test:user:1:User";
-        this.redisTemplateUser.opsForValue().set(key, user);
+        this.redisTemplateUser.opsForValue().set(key, user, 1, TimeUnit.HOURS);
 
         // 设置键的字符串值并返回其旧值
 //        User andSet = this.redisTemplateUser.opsForValue().getAndSet(key, user);
@@ -115,7 +129,7 @@ public class A04RedisApplicationTest {
     void test_expire() {
 
         final String key = "test:expire:1:Map";
-        this.redisTemplate.opsForValue().set(key, "1");
+        this.redisTemplate.opsForValue().set(key, "1", 1, TimeUnit.HOURS);
         this.redisTemplate.expire(key, 5, TimeUnit.SECONDS);
     }
 
