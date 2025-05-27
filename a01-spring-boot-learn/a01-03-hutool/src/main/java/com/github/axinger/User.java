@@ -39,6 +39,9 @@ public class User implements Serializable {
     @Alias("性别")
     private String gender;
 
+    private Dog dog;
+    private Cat cat;
+
     @Alias("生日")
     private Date birthday;
 

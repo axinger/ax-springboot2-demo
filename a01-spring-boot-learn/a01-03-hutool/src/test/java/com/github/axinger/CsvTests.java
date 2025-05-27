@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class CsvTests {
 
@@ -28,6 +29,8 @@ public class CsvTests {
                 .id(1)
                 .name("张三")
                 .gender("男")
+                .dog(Dog.builder().name("柴犬").age(10).build())
+                .cat(Cat.builder().name("加菲猫").age(20).build())
                 .birthday(DateUtil.parse("2022-01-01"))
                 .build());
 
@@ -90,8 +93,6 @@ public class CsvTests {
         rowList.add(Arrays.asList(555L, 666L));
         csvWriter.write(rowList);
         csvWriter.close();
-
-
     }
 
     ///  writeBeans
@@ -105,5 +106,47 @@ public class CsvTests {
         CsvWriter csvWriter = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_UTF_8, false, config());
         csvWriter.writeBeans(generateUserList());
         csvWriter.close();
+    }
+
+    @Test
+    public void test3() throws InterruptedException {
+        File distFile = new File("C:\\Users\\xing\\Desktop\\3.csv");
+        // 创建CSV写入器，使用GBK编码格式，防止出现各个CSV工具打开乱码
+        CsvWriter writer = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_GBK, true, config());
+//        writer.writeHeaderLine("主键", "姓名","狗","地址");
+//        List<List<Object>> rowList = new ArrayList<>();
+//        rowList.add(Arrays.asList(1, "jim", "",""));
+//        rowList.add(Arrays.asList(333L, 444L));
+//        rowList.add(Arrays.asList(555L, 666L));
+//        writer.write(rowList);
+//        writer.close();
+
+        //按行写出
+        writer.write(
+                new String[] {"a1", "b1", "c1"},
+                new String[] {"a2", "b2", "c2"},
+                new String[] {"a3", "b3", "c3"}
+        );
+    }
+
+    @Test
+    public void test4() throws InterruptedException {
+        File distFile = new File("C:\\Users\\xing\\Desktop\\4.csv");
+        // 创建CSV写入器，使用GBK编码格式，防止出现各个CSV工具打开乱码
+        CsvWriter writer = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_GBK, true, config());
+        writer.writeHeaderLine("主键", "姓名","狗","地址");
+//        List<List<Object>> rowList = new ArrayList<>();
+//        rowList.add(Arrays.asList(1, "jim", "",""));
+//        rowList.add(Arrays.asList(333L, 444L));
+//        rowList.add(Arrays.asList(555L, 666L));
+//        writer.write(rowList);
+//        writer.close();
+
+        //按行写出
+        writer.write(
+                new String[] {"a1", "b1", "c1"},
+                new String[] {"a2", "b2", "c2"},
+                new String[] {"a3", "b3", "c3"}
+        );
     }
 }
