@@ -57,7 +57,7 @@ public class GrpcClientService {
             map.put("message", response.getMessage());
             map.put("result", response.getResult());
             return map;
-        } catch (final StatusRuntimeException e) {
+        } catch (Exception e) {
             log.error("FAILED with={} ", e.getMessage());
             throw e;
         }

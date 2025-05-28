@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class SimpleGrpcController {
     @Autowired
@@ -18,7 +17,13 @@ public class SimpleGrpcController {
 
     @GetMapping("/test1")
     public Object test1() {
-        return service.test1("客户端kele连接");
+        try {
+            System.out.println("test1==========");
+            return service.test1("客户端kele连接");
+        } catch (Exception e) {
+            System.err.println("test1 error=" + e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("/test2")

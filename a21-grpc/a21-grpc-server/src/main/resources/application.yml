@@ -1,6 +1,11 @@
 server:
-  port: 12020
-
+  port: 12102
+  tomcat:
+    max-connections: 10000
+    threads:
+      max: 600
+      min-spare: 50
+    connection-timeout: 30000
 spring:
   application:
     name: a21-grpc-server
