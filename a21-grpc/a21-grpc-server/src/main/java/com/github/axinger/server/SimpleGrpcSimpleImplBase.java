@@ -14,7 +14,9 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -33,16 +35,39 @@ import java.util.Map;
 @Slf4j
 public class SimpleGrpcSimpleImplBase extends SimpleGrpc.SimpleImplBase {
 
-
     @Override
-    public void oneToOne(MyRequest request, StreamObserver<MyResponse> responseObserver) {
-        log.info("接收客户端数据{}", request.getName());
+    public void sendMessage(MyRequest request, StreamObserver<MyResponse> responseObserver) {
+
+        log.info("sendMessage={}", request.getName());
         MyResponse response = MyResponse.newBuilder()
-                .setMessage("SimpleGrpc.SimpleImplBase 接收到参数,返回" + request.getName())
+                .setMessage("SimpleGrpc.SimpleImplBase#sendMessage,返回" + request.getName())
                 .setResult(1)
                 .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public void sendMessageStream(MyRequest request, StreamObserver<MyResponse> responseObserver) {
+
+        log.info("开始流式处理请求: {}", request.getName());
+
+        try {
+            // 示例：发送3个流式响应
+            for (int i = 1; i <= 3; i++) {
+                MyResponse response = MyResponse.newBuilder()
+                        .setMessage(request.getName() + "###" + i)
+                        .setResult(i)
+                        .build();
+                responseObserver.onNext(response); // 发送单个响应
+                Thread.sleep(1000); // 模拟处理延迟
+            }
+        } catch (Exception e) {
+            responseObserver.onError(e); // 异常处理
+        } finally {
+            responseObserver.onCompleted();
+            log.info("流式处理完成");
+        }
     }
 
     @Override
@@ -110,4 +135,5 @@ public class SimpleGrpcSimpleImplBase extends SimpleGrpc.SimpleImplBase {
         responseObserver.onCompleted();
 
     }
+
 }

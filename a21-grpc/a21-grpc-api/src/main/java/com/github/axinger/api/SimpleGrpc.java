@@ -16,34 +16,65 @@ public final class SimpleGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<MyRequest,
-      MyResponse> getOneToOneMethod;
+      MyResponse> getSendMessageMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "OneToOne",
+      fullMethodName = SERVICE_NAME + '/' + "SendMessage",
       requestType = MyRequest.class,
       responseType = MyResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<MyRequest,
-      MyResponse> getOneToOneMethod() {
-    io.grpc.MethodDescriptor<MyRequest, MyResponse> getOneToOneMethod;
-    if ((getOneToOneMethod = SimpleGrpc.getOneToOneMethod) == null) {
+      MyResponse> getSendMessageMethod() {
+    io.grpc.MethodDescriptor<MyRequest, MyResponse> getSendMessageMethod;
+    if ((getSendMessageMethod = SimpleGrpc.getSendMessageMethod) == null) {
       synchronized (SimpleGrpc.class) {
-        if ((getOneToOneMethod = SimpleGrpc.getOneToOneMethod) == null) {
-          SimpleGrpc.getOneToOneMethod = getOneToOneMethod =
+        if ((getSendMessageMethod = SimpleGrpc.getSendMessageMethod) == null) {
+          SimpleGrpc.getSendMessageMethod = getSendMessageMethod =
               io.grpc.MethodDescriptor.<MyRequest, MyResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "OneToOne"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SendMessage"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   MyRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   MyResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new SimpleMethodDescriptorSupplier("OneToOne"))
+              .setSchemaDescriptor(new SimpleMethodDescriptorSupplier("SendMessage"))
               .build();
         }
       }
     }
-    return getOneToOneMethod;
+    return getSendMessageMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<MyRequest,
+      MyResponse> getSendMessageStreamMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SendMessageStream",
+      requestType = MyRequest.class,
+      responseType = MyResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<MyRequest,
+      MyResponse> getSendMessageStreamMethod() {
+    io.grpc.MethodDescriptor<MyRequest, MyResponse> getSendMessageStreamMethod;
+    if ((getSendMessageStreamMethod = SimpleGrpc.getSendMessageStreamMethod) == null) {
+      synchronized (SimpleGrpc.class) {
+        if ((getSendMessageStreamMethod = SimpleGrpc.getSendMessageStreamMethod) == null) {
+          SimpleGrpc.getSendMessageStreamMethod = getSendMessageStreamMethod =
+              io.grpc.MethodDescriptor.<MyRequest, MyResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SendMessageStream"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  MyRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  MyResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new SimpleMethodDescriptorSupplier("SendMessageStream"))
+              .build();
+        }
+      }
+    }
+    return getSendMessageStreamMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
@@ -158,15 +189,31 @@ public final class SimpleGrpc {
 
     /**
      * <pre>
-     * 简单gRPC
+     **
+     * 普通 RPC
      * </pre>
      */
-    public void oneToOne(MyRequest request,
-                         io.grpc.stub.StreamObserver<MyResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getOneToOneMethod(), responseObserver);
+    public void sendMessage(MyRequest request,
+                            io.grpc.stub.StreamObserver<MyResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
     }
 
     /**
+     * <pre>
+     **
+     * 服务端流式
+     * </pre>
+     */
+    public void sendMessageStream(MyRequest request,
+                                  io.grpc.stub.StreamObserver<MyResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendMessageStreamMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     **
+     * StringValue参数
+     * </pre>
      */
     public void get1(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.google.protobuf.StringValue> responseObserver) {
@@ -174,6 +221,10 @@ public final class SimpleGrpc {
     }
 
     /**
+     * <pre>
+     **
+     * Struct参数
+     * </pre>
      */
     public void get2(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<MyStructDto> responseObserver) {
@@ -183,12 +234,19 @@ public final class SimpleGrpc {
     @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getOneToOneMethod(),
+            getSendMessageMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 MyRequest,
                 MyResponse>(
-                  this, METHODID_ONE_TO_ONE)))
+                  this, METHODID_SEND_MESSAGE)))
+          .addMethod(
+            getSendMessageStreamMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                MyRequest,
+                MyResponse>(
+                  this, METHODID_SEND_MESSAGE_STREAM)))
           .addMethod(
             getGet1Method(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -223,16 +281,33 @@ public final class SimpleGrpc {
 
     /**
      * <pre>
-     * 简单gRPC
+     **
+     * 普通 RPC
      * </pre>
      */
-    public void oneToOne(MyRequest request,
-                         io.grpc.stub.StreamObserver<MyResponse> responseObserver) {
+    public void sendMessage(MyRequest request,
+                            io.grpc.stub.StreamObserver<MyResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getOneToOneMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
+     * <pre>
+     **
+     * 服务端流式
+     * </pre>
+     */
+    public void sendMessageStream(MyRequest request,
+                                  io.grpc.stub.StreamObserver<MyResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getSendMessageStreamMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     **
+     * StringValue参数
+     * </pre>
      */
     public void get1(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<com.google.protobuf.StringValue> responseObserver) {
@@ -241,6 +316,10 @@ public final class SimpleGrpc {
     }
 
     /**
+     * <pre>
+     **
+     * Struct参数
+     * </pre>
      */
     public void get2(com.google.protobuf.StringValue request,
         io.grpc.stub.StreamObserver<MyStructDto> responseObserver) {
@@ -265,15 +344,32 @@ public final class SimpleGrpc {
 
     /**
      * <pre>
-     * 简单gRPC
+     **
+     * 普通 RPC
      * </pre>
      */
-    public MyResponse oneToOne(MyRequest request) {
+    public MyResponse sendMessage(MyRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getOneToOneMethod(), getCallOptions(), request);
+          getChannel(), getSendMessageMethod(), getCallOptions(), request);
     }
 
     /**
+     * <pre>
+     **
+     * 服务端流式
+     * </pre>
+     */
+    public java.util.Iterator<MyResponse> sendMessageStream(
+        MyRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getSendMessageStreamMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     **
+     * StringValue参数
+     * </pre>
      */
     public com.google.protobuf.StringValue get1(com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -281,6 +377,10 @@ public final class SimpleGrpc {
     }
 
     /**
+     * <pre>
+     **
+     * Struct参数
+     * </pre>
      */
     public MyStructDto get2(com.google.protobuf.StringValue request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -304,16 +404,21 @@ public final class SimpleGrpc {
 
     /**
      * <pre>
-     * 简单gRPC
+     **
+     * 普通 RPC
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<MyResponse> oneToOne(
+    public com.google.common.util.concurrent.ListenableFuture<MyResponse> sendMessage(
         MyRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getOneToOneMethod(), getCallOptions()), request);
+          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request);
     }
 
     /**
+     * <pre>
+     **
+     * StringValue参数
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.StringValue> get1(
         com.google.protobuf.StringValue request) {
@@ -322,6 +427,10 @@ public final class SimpleGrpc {
     }
 
     /**
+     * <pre>
+     **
+     * Struct参数
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<MyStructDto> get2(
         com.google.protobuf.StringValue request) {
@@ -330,9 +439,10 @@ public final class SimpleGrpc {
     }
   }
 
-  private static final int METHODID_ONE_TO_ONE = 0;
-  private static final int METHODID_GET1 = 1;
-  private static final int METHODID_GET2 = 2;
+  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_SEND_MESSAGE_STREAM = 1;
+  private static final int METHODID_GET1 = 2;
+  private static final int METHODID_GET2 = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -351,8 +461,12 @@ public final class SimpleGrpc {
     @SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_ONE_TO_ONE:
-          serviceImpl.oneToOne((MyRequest) request,
+        case METHODID_SEND_MESSAGE:
+          serviceImpl.sendMessage((MyRequest) request,
+              (io.grpc.stub.StreamObserver<MyResponse>) responseObserver);
+          break;
+        case METHODID_SEND_MESSAGE_STREAM:
+          serviceImpl.sendMessageStream((MyRequest) request,
               (io.grpc.stub.StreamObserver<MyResponse>) responseObserver);
           break;
         case METHODID_GET1:
@@ -385,7 +499,7 @@ public final class SimpleGrpc {
 
     @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return SimpleProto.getDescriptor();
+      return SimpleOuterClass.getDescriptor();
     }
 
     @Override
@@ -424,7 +538,8 @@ public final class SimpleGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new SimpleFileDescriptorSupplier())
-              .addMethod(getOneToOneMethod())
+              .addMethod(getSendMessageMethod())
+              .addMethod(getSendMessageStreamMethod())
               .addMethod(getGet1Method())
               .addMethod(getGet2Method())
               .build();

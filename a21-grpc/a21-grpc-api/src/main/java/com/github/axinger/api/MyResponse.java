@@ -33,13 +33,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return SimpleProto.internal_static_MyResponse_descriptor;
+    return SimpleOuterClass.internal_static_MyResponse_descriptor;
   }
 
   @Override
   protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return SimpleProto.internal_static_MyResponse_fieldAccessorTable
+    return SimpleOuterClass.internal_static_MyResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             MyResponse.class, Builder.class);
   }
@@ -268,13 +268,13 @@ private static final long serialVersionUID = 0L;
       MyResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return SimpleProto.internal_static_MyResponse_descriptor;
+      return SimpleOuterClass.internal_static_MyResponse_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return SimpleProto.internal_static_MyResponse_fieldAccessorTable
+      return SimpleOuterClass.internal_static_MyResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               MyResponse.class, Builder.class);
     }
@@ -302,7 +302,7 @@ private static final long serialVersionUID = 0L;
     @Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return SimpleProto.internal_static_MyResponse_descriptor;
+      return SimpleOuterClass.internal_static_MyResponse_descriptor;
     }
 
     @Override

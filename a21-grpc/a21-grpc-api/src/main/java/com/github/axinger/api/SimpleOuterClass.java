@@ -3,8 +3,8 @@
 
 package com.github.axinger.api;
 
-public final class SimpleProto {
-  private SimpleProto() {}
+public final class SimpleOuterClass {
+  private SimpleOuterClass() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -43,13 +43,13 @@ public final class SimpleProto {
       "MyRequest\022\014\n\004name\030\001 \001(\t\022\r\n\005value\030\002 \001(\005\"-" +
       "\n\nMyResponse\022\017\n\007message\030\001 \001(\t\022\016\n\006result\030" +
       "\002 \001(\003\"7\n\013MyStructDto\022(\n\007details\030\001 \001(\0132\027." +
-      "google.protobuf.Struct2\247\001\n\006Simple\022%\n\010One" +
-      "ToOne\022\n.MyRequest\032\013.MyResponse\"\000\022B\n\004Get1" +
-      "\022\034.google.protobuf.StringValue\032\034.google." +
-      "protobuf.StringValue\0222\n\004Get2\022\034.google.pr" +
-      "otobuf.StringValue\032\014.MyStructDtoB\'\n\026com." +
-      "github.axinger.apiB\013SimpleProtoP\001b\006proto" +
-      "3"
+      "google.protobuf.Struct2\330\001\n\006Simple\022&\n\013Sen" +
+      "dMessage\022\n.MyRequest\032\013.MyResponse\022.\n\021Sen" +
+      "dMessageStream\022\n.MyRequest\032\013.MyResponse0" +
+      "\001\022B\n\004Get1\022\034.google.protobuf.StringValue\032" +
+      "\034.google.protobuf.StringValue\0222\n\004Get2\022\034." +
+      "google.protobuf.StringValue\032\014.MyStructDt" +
+      "oB\032\n\026com.github.axinger.apiP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

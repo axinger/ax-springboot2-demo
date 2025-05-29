@@ -4,19 +4,31 @@ syntax = "proto3"; // 协议版本
 option java_multiple_files = true;
 //生成位置
 option java_package = "com.github.axinger.api";
-option java_outer_classname = "SimpleProto";
+//option java_outer_classname = "SimpleProto";
 import "google/protobuf/wrappers.proto";
 
 import "google/protobuf/struct.proto";
 
 service Simple {
-  // 简单gRPC
-  rpc OneToOne (MyRequest) returns (MyResponse) {
-  }
 
+  /**
+    * 普通 RPC
+   */
+  rpc SendMessage (MyRequest) returns (MyResponse); // 普通 RPC
+
+  /**
+    * 服务端流式
+   */
+  rpc SendMessageStream (MyRequest) returns (stream MyResponse);
+
+  /**
+    * StringValue参数
+   */
   rpc Get1 (google.protobuf.StringValue) returns (google.protobuf.StringValue);
 
-
+  /**
+    * Struct参数
+   */
   rpc Get2 (google.protobuf.StringValue) returns (MyStructDto);
 }
 
