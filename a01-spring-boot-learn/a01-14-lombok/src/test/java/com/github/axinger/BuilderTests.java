@@ -1,6 +1,6 @@
 package com.github.axinger;
 
-import com.github.axinger.model.BuilderExample;
+import com.github.axinger.model.SingularTests;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ public class BuilderTests {
 
     @Test
     public void test1() {
-        BuilderExample build1 = BuilderExample.builder()
+        SingularTests build1 = SingularTests.builder()
                 .fingers(new ArrayList<>())
                 .build();
         System.out.println("build1 = " + build1);
 
-        BuilderExample build2 = BuilderExample.builder()
+        SingularTests build2 = SingularTests.builder()
 //                .finger("小拇指")
 //                .finger("食指")
 //                .clearFingers()

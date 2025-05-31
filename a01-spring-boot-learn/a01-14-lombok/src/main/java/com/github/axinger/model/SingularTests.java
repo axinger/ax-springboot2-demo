@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuilderExample {
+public class SingularTests {
 
     @Default
     private int age = 1;
