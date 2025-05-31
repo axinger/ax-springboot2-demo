@@ -1,8 +1,10 @@
 package com.github.axinger;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("all")
@@ -68,6 +70,73 @@ public class 队列Tests {
         System.out.println("优先级队列内容: " + pq);
         while (!pq.isEmpty()) {
             System.out.println(pq.poll());
+        }
+    }
+
+    @SneakyThrows
+    @Test
+    public void test4_1() {
+        // 创建优先级阻塞队列
+        PriorityBlockingQueue<Integer> queue = new PriorityBlockingQueue<>();
+
+// 添加元素 - 不会阻塞，因为队列无界
+        queue.put(5);
+        queue.put(1);
+        queue.put(3);
+
+// 取出元素 - 按优先级顺序
+//        System.out.println(queue.take()); // 输出 1 (最小优先级)
+//        System.out.println(queue.take()); // 输出 3
+//        System.out.println(queue.take()); // 输出 5
+
+
+        System.out.println("优先级队列内容: " + queue);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.poll());
+        }
+    }
+
+    @Test
+    public void test4_2() {
+        // 使用自定义比较器
+        PriorityBlockingQueue<String> queue = new PriorityBlockingQueue<>(
+                11, // 初始容量
+                (a, b) -> b.length() - a.length() // 按字符串长度降序
+        );
+
+        queue.put("c");
+        queue.put("aaa");
+        queue.put("bb");
+
+//         System.out.println(queue.take()); // "aaa" (最长)
+//         System.out.println(queue.take()); // "bb"
+//         System.out.println(queue.take()); // "c"
+
+        System.out.println("优先级队列内容: " + queue);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.poll());
+        }
+    }
+
+    @Test
+    public void test4_3() {
+        // 使用自定义比较器
+        PriorityBlockingQueue<Person> queue = new PriorityBlockingQueue<>(
+                11, // 初始容量
+                Comparator.comparingInt(Person::getAge).reversed() //逆序
+        );
+
+        queue.put(Person.builder().name("张三").age(10).build());
+        queue.put(Person.builder().name("李四").age(11).build());
+        queue.put(Person.builder().name("王五").age(10).build());
+
+//         System.out.println(queue.take()); // "aaa" (最长)
+//         System.out.println(queue.take()); // "bb"
+//         System.out.println(queue.take()); // "c"
+
+        System.out.println("优先级队列内容: " + queue);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.poll());
         }
     }
 
