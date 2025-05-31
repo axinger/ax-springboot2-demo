@@ -1,11 +1,14 @@
 package com.github.axinger._02lock;
 
+import lombok.Locked;
+import lombok.SneakyThrows;
+
 import java.util.concurrent.TimeUnit;
 
 class Phone {
 
-    public static synchronized void sendSMS() throws InterruptedException {
-        // 停留4秒
+    @SneakyThrows
+    public synchronized void sendSMS() {
         TimeUnit.SECONDS.sleep(4);
         System.out.println(".......sendSMS");
     }
@@ -14,10 +17,28 @@ class Phone {
         System.out.println(".......sendEmail");
     }
 
+    //使用 synchronized 修饰方法，等同于 synchronized(this)
+    public void sendQQ() {
+        synchronized (this) {
+            System.out.println("synchronized(this)");
+        }
+    }
+
+    private final Object lock = new Object();
+
+    @Locked // 默认使用lock字段
+    public void sendWx() {
+        synchronized (this) {
+            System.out.println("synchronized(this)");
+        }
+    }
+
 
     public void getHello() {
         System.out.println(".......getHello");
     }
+
+
 }
 
 
@@ -79,7 +100,7 @@ public class ThreadDemo4OfLock8 {
 
         new Thread(() -> {
             try {
-                Phone.sendSMS();
+                phone1.sendSMS();
 
             } catch (Exception e) {
                 e.printStackTrace();
