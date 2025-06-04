@@ -63,25 +63,45 @@
                     <!-- proto文件目录 -->
                     <protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
                     <!-- 生成的Java文件目录 -->
-                    <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                    <!--                    <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>-->
+                    <!--                    <outputDirectory>${project.build.directory}/generated-sources/protobuf</outputDirectory>-->
                     <clearOutputDirectory>false</clearOutputDirectory>
-                    <outputDirectory>${project.build.directory}/generated-sources/protobuf</outputDirectory>
                 </configuration>
                 <executions>
+                    <!--                    <execution>-->
+                    <!--                        <id>protobuf-compile</id>-->
+                    <!--                        <phase>compile</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>compile</goal> &lt;!&ndash; 生成 Protobuf 消息类 &ndash;&gt;-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <outputDirectory>${project.basedir}/src/main/java/protobuf</outputDirectory>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>grpc-compile</id>-->
+                    <!--                        <phase>compile</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>compile-custom</goal> &lt;!&ndash; 生成 gRPC 服务类 &ndash;&gt;-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <outputDirectory>${project.basedir}/src/main/java/grpc</outputDirectory>-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
                     <execution>
-                        <!--在执行mvn compile的时候会执行以下操作-->
-                        <phase>compile</phase>
                         <goals>
-                            <!--生成OuterClass类-->
-                            <goal>compile</goal>
-                            <!--生成Grpc类-->
-                            <goal>compile-custom</goal>
+                            <goal>compile</goal> <!-- Protobuf 消息类 -->
+                            <goal>compile-custom</goal> <!-- gRPC 服务类 -->
                         </goals>
                     </execution>
                 </executions>
+
             </plugin>
         </plugins>
     </build>
+
+
+
 
 
 </project>

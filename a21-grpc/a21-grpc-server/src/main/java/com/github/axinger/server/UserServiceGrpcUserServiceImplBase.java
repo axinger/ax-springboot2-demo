@@ -1,6 +1,8 @@
 package com.github.axinger.server;
 
 import com.github.axinger.api.*;
+import com.github.axinger.api.UserOuterClass;
+import com.github.axinger.api.UserServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
