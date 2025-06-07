@@ -1,4 +1,4 @@
-package com.github.axinger.controller;
+package com.github.axinger;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/hutool")
-public class HutoolController {
+public class 图形码Controller {
 
     @GetMapping("/code/create")
     public void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
