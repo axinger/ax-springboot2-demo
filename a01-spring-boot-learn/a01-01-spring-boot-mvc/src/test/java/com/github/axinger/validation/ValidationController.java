@@ -1,4 +1,4 @@
-package com.github.axinger.controller;
+package com.github.axinger.validation;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

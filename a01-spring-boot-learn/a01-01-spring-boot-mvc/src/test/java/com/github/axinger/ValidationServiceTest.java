@@ -4,7 +4,8 @@ import cn.hutool.core.date.DateUtil;
 import com.github.axinger.model.dto.DateDTO;
 import com.github.axinger.model.dto.LoginDTO;
 import com.github.axinger.model.dto.ParamDTO;
-import com.github.axinger.service.ValidationService;
+import com.github.axinger.validation.NotEmptyService;
+import com.github.axinger.validation.ValidationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,8 @@ public class ValidationServiceTest {
     ValidationService validationService;
 //    ValidationServiceImpl validationService;
 
+    @Autowired
+    private NotEmptyService notEmptyService;
 
     @Test
     void test1() {
@@ -38,8 +41,6 @@ public class ValidationServiceTest {
 
     @Test
     void strNotBlank_13() {
-
-
         validationService.strNotNull3("");
     }
 
@@ -55,17 +56,19 @@ public class ValidationServiceTest {
 
     @Test
     void strNotEmpty_1() {
-        validationService.strNotEmpty(null); // 能被校验,不通过
+        notEmptyService.strNotEmpty(null); // 能被校验,不通过
     }
 
     @Test
     void strNotEmpty_2() {
-        validationService.strNotEmpty(""); // 能被校验,不通过
+        //@NotEmpty
+        notEmptyService.strNotEmpty(""); // 能被校验,不通过
     }
 
     @Test
     void strNotEmpty_3() {
-        validationService.strNotEmpty(" "); //通过
+        //@NotEmpty
+        notEmptyService.strNotEmpty(" "); //不能被校验
     }
 
 
