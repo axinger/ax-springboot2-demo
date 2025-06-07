@@ -21,10 +21,6 @@ service Simple {
    */
   rpc SendMessageStream (MyRequest) returns (stream MyResponse);
 
-  /**
-    *  新增双向流式方法
-   */
-  rpc ServerPushStream (stream MyRequest) returns (stream MyResponse) {}
 
   /**
     * StringValue参数
@@ -38,11 +34,12 @@ service Simple {
 }
 
 message MyRequest {
-  string name = 1;
+  string userId = 1;
   int32 value = 2;
 
   //oneof 是 Protocol Buffers (protobuf) 中的一个特殊语法结构，它用于表示一组字段中同一时间只能有一个字段被设置。
   // 这是 protobuf 提供的一种联合类型(union type)的实现方式
+  // 通过 has 判断对应的值
   oneof content {
     string message = 3;
     Heartbeat heartbeat = 4;

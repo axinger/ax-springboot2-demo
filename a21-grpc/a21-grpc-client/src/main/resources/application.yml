@@ -22,8 +22,8 @@ spring:
 grpc:
   client:
     a21-grpc-server:
-      #      address: dns:///localhost:19898
-      address: 'static://127.0.0.1:19898' # 去除,使用nacos
+      #      address: dns:///localhost:12122
+      address: 'static://127.0.0.1:12122' # 去除,使用nacos
       # 是否开启保持连接（长连接）
       enableKeepAlive: true
       # 保持连接时长（默认20s）
