@@ -52,8 +52,8 @@ public class LeaveProcessService {
      */
     public void deployProcessDefinition() {
         repositoryService.createDeployment()
-            .addClasspathResource("processes/employee-leave.bpmn20.xml")
-            .name("员工请假流程")
-            .deploy();
+                .addClasspathResource("processes/employee-leave.bpmn20.xml")
+                .name("员工请假流程")
+                .deploy();
     }
 }

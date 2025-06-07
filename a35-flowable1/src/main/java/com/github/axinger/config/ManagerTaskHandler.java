@@ -4,8 +4,6 @@ import org.flowable.engine.delegate.TaskListener;
 import org.flowable.task.service.delegate.DelegateTask;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
-
 @Component("managerTaskHandler")
 public class ManagerTaskHandler implements TaskListener {
 

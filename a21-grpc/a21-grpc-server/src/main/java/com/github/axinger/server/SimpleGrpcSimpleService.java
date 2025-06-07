@@ -1,14 +1,12 @@
 package com.github.axinger.server;
 
 import com.alibaba.fastjson2.JSON;
-import com.github.axinger.api.MyRequest;
-import com.github.axinger.api.MyResponse;
-import com.github.axinger.api.MyStructDto;
-import com.github.axinger.api.SimpleGrpc;
+import com.github.axinger.api.*;
 import com.google.protobuf.ListValue;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +14,7 @@ import net.devh.boot.grpc.server.service.GrpcService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /// **
@@ -31,7 +30,9 @@ import java.util.Map;
 // */
 @GrpcService
 @Slf4j
-public class SimpleGrpcSimpleImplBase extends SimpleGrpc.SimpleImplBase {
+public class SimpleGrpcSimpleService extends SimpleGrpc.SimpleImplBase {
+
+    private static final Map<String, StreamObserver<MyResponse>> activeClients = new ConcurrentHashMap<>();
 
     @Override
     public void sendMessage(MyRequest request, StreamObserver<MyResponse> responseObserver) {
@@ -133,5 +134,79 @@ public class SimpleGrpcSimpleImplBase extends SimpleGrpc.SimpleImplBase {
         responseObserver.onCompleted();
 
     }
+
+    @Override
+    public StreamObserver<MyRequest> serverPushStream(StreamObserver<MyResponse> responseObserver) {
+        return new StreamObserver<>() {
+            private String clientId;
+
+            @Override
+            public void onNext(MyRequest request) {
+                if (request.hasHeartbeat()) {
+                    // 处理心跳
+                    responseObserver.onNext(MyResponse.newBuilder()
+                            .setHeartbeat(Heartbeat.newBuilder()
+                                    .setTimestamp(System.currentTimeMillis())
+                                    .build())
+                            .build());
+                    log.info("收到心跳: {}", request.getHeartbeat().getTimestamp());
+                    return;
+                }
+                clientId = request.getName();
+                // 添加前检查是否已存在
+                StreamObserver<MyResponse> previous = activeClients.put(clientId, responseObserver);
+                if (previous != null) {
+                    // 处理旧连接
+                    try {
+                        previous.onError(Status.ALREADY_EXISTS.asRuntimeException());
+                    } catch (Exception e) {
+                        log.warn("关闭旧连接失败", e);
+                    }
+                }
+                log.info("客户端 {} 注册成功", clientId);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                log.error("客户端 {} 连接错误: {}", clientId, t.getMessage());
+                cleanup();
+            }
+
+            @Override
+            public void onCompleted() {
+                log.info("客户端 {} 连接正常关闭", clientId);
+                cleanup();
+            }
+
+            private void cleanup() {
+                if (clientId != null) {
+                    StreamObserver<MyResponse> observer = activeClients.remove(clientId);
+                    if (observer == responseObserver) {
+                        log.info("移除客户端 {}", clientId);
+                    }
+                }
+            }
+        };
+    }
+
+    public boolean pushToClient(String clientId, String message) {
+        StreamObserver<MyResponse> observer = activeClients.get(clientId);
+        if (observer != null) {
+            synchronized (observer) {
+                try {
+                    observer.onNext(MyResponse.newBuilder().setResult(1).setMessage(message).build());
+                    return true;
+                } catch (Exception e) {
+                    log.error("推送消息到客户端 {} 失败，移除连接", clientId, e);
+                    activeClients.remove(clientId);
+                    return false;
+                }
+            }
+        } else {
+            log.warn("客户端 {} 不存在或已断开", clientId);
+            return false;
+        }
+    }
+
 
 }

@@ -9,7 +9,7 @@ public class JacksonTests {
 
     @SneakyThrows
     @Test
-    public void test1(){
+    public void test1() {
         ObjectMapper mapper = new ObjectMapper();
 
         // 反序列化：JSON -> Java对象

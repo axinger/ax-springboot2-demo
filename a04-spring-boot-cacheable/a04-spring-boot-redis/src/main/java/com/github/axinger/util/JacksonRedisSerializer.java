@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 import org.springframework.lang.Nullable;
@@ -17,6 +16,11 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class JacksonRedisSerializer<T> implements RedisSerializer<T> {
     public static final Charset DEFAULT_CHARSET;
+
+    static {
+        DEFAULT_CHARSET = StandardCharsets.UTF_8;
+    }
+
     private final JavaType javaType;
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -43,7 +47,7 @@ public class JacksonRedisSerializer<T> implements RedisSerializer<T> {
 
     public byte[] serialize(@Nullable Object t) throws SerializationException {
         if (t == null) {
-            return  new byte[0];
+            return new byte[0];
         } else {
             try {
                 return this.objectMapper.writeValueAsBytes(t);
@@ -60,9 +64,5 @@ public class JacksonRedisSerializer<T> implements RedisSerializer<T> {
 
     protected JavaType getJavaType(Class<?> clazz) {
         return TypeFactory.defaultInstance().constructType(clazz);
-    }
-
-    static {
-        DEFAULT_CHARSET = StandardCharsets.UTF_8;
     }
 }

@@ -10,7 +10,6 @@ import org.flowable.task.api.TaskInfo;
 import org.flowable.task.api.history.HistoricTaskInstance;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

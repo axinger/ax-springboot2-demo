@@ -123,7 +123,7 @@
         <module>axinger-config</module>
         <module>a22-cors</module>
         <module>a41-ocr</module>
-        <module>a42-queue</module>
+        <module>a42-queue-disruptor</module>
         <module>a43-camel</module>
         <module>a36-logback2</module>
         <module>a35-flowable1</module>
@@ -684,7 +684,7 @@
 
         <dependency>
             <groupId>cn.hutool</groupId>
-<!--            <artifactId>hutool-core</artifactId>-->
+            <!--            <artifactId>hutool-core</artifactId>-->
             <artifactId>hutool-all</artifactId>
             <scope>provided</scope>
         </dependency>

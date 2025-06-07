@@ -44,17 +44,17 @@ public class A04RedisApplicationTest {
         jsonObject.put("name", "jim");
 
         this.redisTemplate.opsForValue().set("demo:dog1", jsonObject, 1, TimeUnit.HOURS);
-        this.redisTemplate.opsForValue().set("demo:dog2", jsonObject,1, TimeUnit.HOURS);
+        this.redisTemplate.opsForValue().set("demo:dog2", jsonObject, 1, TimeUnit.HOURS);
 
         Object o = this.redisTemplate.opsForValue().get("demo:dog1");
         System.out.println("o = " + o);
         System.out.println("o = " + o.getClass());
-        if (o instanceof JSONObject jsonObject1){
+        if (o instanceof JSONObject jsonObject1) {
             String name = jsonObject1.getString("name");
             System.out.println("name = " + name);
         }
 
-        if (o instanceof Map<?,?> jsonObject1){
+        if (o instanceof Map<?, ?> jsonObject1) {
             Object name = jsonObject1.get("name");
             System.out.println("name222 = " + name);
         }

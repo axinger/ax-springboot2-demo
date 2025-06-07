@@ -1,8 +1,6 @@
 package com.github.axinger.server;
 
 import com.github.axinger.api.*;
-import com.github.axinger.api.UserOuterClass;
-import com.github.axinger.api.UserServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -12,7 +10,7 @@ import java.util.List;
 
 @GrpcService
 @Slf4j
-public class UserServiceGrpcUserServiceImplBase extends UserServiceGrpc.UserServiceImplBase {
+public class UserServiceGrpcUserService extends UserServiceGrpc.UserServiceImplBase {
 
 
     @Override

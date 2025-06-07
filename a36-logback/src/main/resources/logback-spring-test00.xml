@@ -22,10 +22,10 @@
     <!--日志的输出格式-->
 
     <!--    [%thread]  就是 [%t] -->
-    <!--    2025-05-10 19:15:10.003 [main] ERROR com.github.axinger.Start1 - error = error 日志-->
+    <!--    2025-05-10 19:15:10.003 [main] ERROR com.github.axinger.event.Start1 - error = error 日志-->
     <!--    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} - %msg%n"/>-->
 
-    <!--   2025-05-10 19:17:19.686  ERROR  2152 -&#45;&#45; [main] com.github.axinger.Start1 : error = error 日志 -->
+    <!--   2025-05-10 19:17:19.686  ERROR  2152 -&#45;&#45; [main] com.github.axinger.event.Start1 : error = error 日志 -->
     <property name="log.pattern"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS}  %-5level  ${PID:- } --- [%t] %logger{100} : %msg%n"/>
 

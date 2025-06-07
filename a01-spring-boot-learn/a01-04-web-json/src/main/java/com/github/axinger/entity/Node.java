@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class Node {
     private Node parent;
 
     @JsonManagedReference // ← 父节点指向子节点（序列化）
-    private List<Node> children= new ArrayList<>();
+    private List<Node> children = new ArrayList<>();
 
     // 构造方法
     public Node(String name) {

@@ -21,7 +21,7 @@ public class JsonFilterTests {
 
         SimpleFilterProvider filterProvider = new SimpleFilterProvider()
 //                .addFilter("departmentFilter", SimpleBeanPropertyFilter.filterOutAllExcept("name", "employees")) //  只序列化指定的字段
-                .addFilter("departmentFilter",     SimpleBeanPropertyFilter.serializeAllExcept("employees")) //除了
+                .addFilter("departmentFilter", SimpleBeanPropertyFilter.serializeAllExcept("employees")) //除了
 
 //                .addFilter("employeeFilter", SimpleBeanPropertyFilter.serializeAllExcept("employees.salary"))
 //                .addFilter("employeeFilter", SimpleBeanPropertyFilter.filterOutAllExcept("id","name", "salary"))

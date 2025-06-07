@@ -33,7 +33,8 @@ public class LeaveController {
 
     @Autowired
     private RuntimeService runtimeService;
-
+    @Autowired
+    private RepositoryService repositoryService;
 
     // 2. 模拟员工请假
     @GetMapping("/apply")
@@ -66,10 +67,6 @@ public class LeaveController {
 
         return map;
     }
-
-
-    @Autowired
-    private RepositoryService repositoryService;
 
     @GetMapping("/check")
     public String applyLeave(String processInstanceId, String applicant) {

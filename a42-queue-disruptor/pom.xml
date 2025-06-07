@@ -9,7 +9,7 @@
         <version>2025.01.01-2.7</version>
     </parent>
 
-    <artifactId>a42-queue</artifactId>
+    <artifactId>a42-queue-disruptor</artifactId>
 
     <dependencies>
         <!-- Spring Boot 相关依赖 -->
