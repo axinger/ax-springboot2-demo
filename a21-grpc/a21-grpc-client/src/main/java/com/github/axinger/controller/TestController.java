@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.config.StockService;
+import com.github.axinger.config.ChatService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private StockService stockService;
+    private ChatService ChatService;
 
     @GetMapping("/pushServer")
     public String pushServer(String message) {
-        boolean b = stockService.sendMessage(message);
+        boolean b = ChatService.sendMessage(message);
         return b ? "成功" : "失败";
     }
 }
