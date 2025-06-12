@@ -77,14 +77,14 @@ public class ListTests {
     @Test
     @SuppressWarnings("all")
     void test6() {
-        /// 可以
+        /// 不可以
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
         list.add(3);
 
         for (Integer i : list) {
-            if (i == 2) {
+            if (i == 1) { // 1不可用,2可以
                 list.remove(i);
             }
         }
@@ -98,7 +98,7 @@ public class ListTests {
         list.add(1);
         list.add(2);
         list.add(3);
-        list.removeIf(i -> i == 2);
+        list.removeIf(i -> i == 1);
         System.out.println("list = " + list);
     }
 
@@ -113,7 +113,7 @@ public class ListTests {
         Iterator<Integer> iterator = list.iterator();
         while (iterator.hasNext()) {
             Integer next = iterator.next();
-            if (next == 2) {
+            if (next == 0) {
                 iterator.remove();
             }
         }
@@ -122,15 +122,31 @@ public class ListTests {
 
     @Test
     void test9() {
-        /// 可以
+        /// 不可以
         List<Integer> list = new ArrayList<>();
-        list.add(1);
         list.add(2);
-        list.add(3);
+        list.add(2);
+        list.add(1);
+//        for (int i = 0; i < list.size(); i++) {
+//            if (i == 0) {
+//                Integer obj = list.get(i);
+//                list.remove(obj);
+//            }
+//        }
+//        System.out.println("list = " + list);
+
+        /// 不可以
+//        for (int i = 0; i < list.size(); i++) {
+//            if (list.get(i) == 2) {  // 删除所有等于 2 的元素
+//                list.remove(i);      // 删除后，后面的元素会左移，但 i 仍然递增，可能跳过检查某些元素
+//            }
+//        }
+//        System.out.println("list = " + list);
+
         for (int i = 0; i < list.size(); i++) {
-            Integer obj = list.get(i);
-            if (obj == 2) {
-                list.remove(obj);
+            if (list.get(i) == 2) {
+                list.remove(i);
+                i--;  // 调整索引，防止跳过下一个元素
             }
         }
         System.out.println("list = " + list);
