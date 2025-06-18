@@ -29,6 +29,7 @@ public class CustomPropertySourceTests {
         System.out.println("currentTime2 = " + currentTime2);
         System.out.println("randomValue2 = " + randomValue2);
 
+        // java定义返回值,yaml引用
         // 可以通过名称获取特定的属性源
         PropertySource<?> source = environment.getPropertySources().get("customProperties");
         System.out.println("source = " + source);
