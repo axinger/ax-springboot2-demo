@@ -111,4 +111,32 @@ public class ObjectsTests {
     void test4() {
         String str = "";
     }
+
+    @Test
+    void test5() {
+
+        Person person = new Person();
+        person.setName("jim");
+        person.setAge(10);
+        System.out.println("person = " + person);
+
+        String name = "jim";
+        System.out.println("name = " + name);
+        test6(person);
+        test7(name);
+        System.out.println("==============================================");
+        System.out.println("person2 = " + person);
+        System.out.println("name = " + name);
+    }
+
+    // 可以修改原对象的值
+    void test6(Person person) {
+        person.setName("tom");
+    }
+
+    // 无法修改原String的值
+    void test7(String name) {
+        name = "tom";
+        System.out.println("test7 name = " + name);
+    }
 }
