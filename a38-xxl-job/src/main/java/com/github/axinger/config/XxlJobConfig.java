@@ -43,6 +43,8 @@ public class XxlJobConfig {
     public XxlJobSpringExecutor xxlJobExecutor() {
 
         log.info(">>>>>>>>>>> xxl-job config init.");
+        String ip_ = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
+        log.info("本机ip={}", ip_);
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
         xxlJobSpringExecutor.setAdminAddresses(xxlJobProperties.getAdminAddresses());
         xxlJobSpringExecutor.setAppname(xxlJobProperties.getAppName());
