@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @SuppressWarnings("all")
@@ -124,9 +126,31 @@ public class ObjectsTests {
         System.out.println("name = " + name);
         test6(person);
         test7(name);
+        test8(person);
         System.out.println("==============================================");
         System.out.println("person2 = " + person);
         System.out.println("name = " + name);
+    }
+
+    @Test
+    void test51() {
+
+        Person person = new Person();
+        person.setName("jim");
+        person.setAge(10);
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("tip", "123");
+
+        Dog dog = new Dog();
+        dog.setName("golf");
+        params.put("dog", dog);
+        person.setParams(params);
+        System.out.println("person = " + person);
+
+        test8(person);
+        System.out.println("==============================================");
+        System.out.println("person2 = " + person);
     }
 
     // 可以修改原对象的值
@@ -138,5 +162,16 @@ public class ObjectsTests {
     void test7(String name) {
         name = "tom";
         System.out.println("test7 name = " + name);
+    }
+
+    void test8(Person person) {
+        String name = person.getName();
+        name = "lili"; //不能修改
+
+        Object tip = person.getParams().get("tip");
+        tip = "456"; //不能修改
+
+        Dog dog = (Dog) person.getParams().get("dog");
+        dog.setName("lucy"); //可以修改
     }
 }
