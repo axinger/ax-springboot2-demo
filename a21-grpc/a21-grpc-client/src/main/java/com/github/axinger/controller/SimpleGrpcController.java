@@ -10,13 +10,17 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.netty.shaded.io.netty.channel.ChannelFactory;
 import io.grpc.stub.StreamObserver;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import net.devh.boot.grpc.client.channelfactory.GrpcChannelFactory;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -101,10 +105,41 @@ public class SimpleGrpcController {
         MyResponse myResponse = stub.sendMessage(request);
         String message = myResponse.getMessage();
         System.out.println("message = " + message);
-
         return message;
     }
 
+    @Autowired
+    private GrpcChannelFactory channelFactory;
+
+    @GetMapping("/test5")
+    public Object test51() {
+
+        Channel channel = channelFactory.createChannel("a21-grpc-server");
+        SimpleGrpc.SimpleStub newedStub = SimpleGrpc.newStub(channel);
+
+        newedStub.sendMessage(MyRequest.newBuilder().setUserId("").build(), new StreamObserver<MyResponse>() {
+
+            @Override
+            public void onNext(MyResponse myResponse) {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        });
+
+        SimpleGrpc.SimpleBlockingStub blockingStub = SimpleGrpc.newBlockingStub(channel);
+        final MyResponse response = blockingStub.sendMessage(MyRequest.newBuilder().setUserId("name").build());
+
+        return response.getMessage();
+    }
 
     @SneakyThrows
     public void test4() {
