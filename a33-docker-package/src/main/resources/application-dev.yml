@@ -2,7 +2,7 @@ config:
   name: 开发环境
 
 server:
-  port: 45032
+  port: 13311
 
 
 mybatis-plus:
