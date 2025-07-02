@@ -729,10 +729,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <!--                <configuration>-->
-                <!--                    <source>${maven.compiler.source}</source> &lt;!&ndash; 设置源代码的语言级别 &ndash;&gt;-->
-                <!--                    <target>${maven.compiler.source}</target>&lt;!&ndash; 设置目标代码的语言级别 &ndash;&gt;-->
-                <!--                </configuration>-->
+                <configuration>
+                    <source>${java.version}</source> <!-- 设置源代码的语言级别 -->
+                    <target>${java.version}</target><!-- 设置目标代码的语言级别 -->
+                </configuration>
             </plugin>
 
 
