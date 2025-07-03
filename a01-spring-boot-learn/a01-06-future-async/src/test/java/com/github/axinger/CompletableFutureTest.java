@@ -1,6 +1,6 @@
 package com.github.axinger;
 
-import com.google.common.base.Throwables;
+import cn.hutool.core.exceptions.ExceptionUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @SpringBootTest
 @Slf4j
-class FutureTaskServiceTest {
+class CompletableFutureTest {
 
 
     @Autowired
@@ -130,22 +130,73 @@ class FutureTaskServiceTest {
 
     }
 
+    @SneakyThrows
+    @Test
+    void test11() {
+
+        CompletableFuture<Object> objectCompletableFuture = new CompletableFuture<>();
+
+        objectCompletableFuture.thenApply(val -> {
+            return 5;
+        }).exceptionally(throwable -> {
+            // 返回默认值
+            return -1;
+        }).whenComplete((res, e) -> {
+            // 在同一个线程执行
+            System.out.println("A res = " + res);
+            res = res * 10;
+        });
+
+        Object join = objectCompletableFuture.join();
+        System.out.println("join = " + join);
+
+    }
+
+    @SneakyThrows
+    @Test
+    void test12() {
+
+        CompletableFuture<Object> objectCompletableFuture = new CompletableFuture<>();
+
+        objectCompletableFuture.thenApply(val -> {
+            return 5;
+        }).exceptionally(throwable -> {
+            // 返回默认值
+            return -1;
+        }).whenComplete((res, e) -> {
+            // 在同一个线程执行
+            System.out.println("A res = " + res);
+            res = res * 10;
+        });
+
+        Object join = objectCompletableFuture.join();
+        System.out.println("join = " + join);
+
+    }
 
     @SneakyThrows
     @Test
     void test2() {
 
         CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
-            log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+                    log.info(" Thread.currentThread().getName() = {}", Thread.currentThread().getName());
+//                    int a = 1 / 0;
+                    return "返回内容1";
+                }, executor)
+                .whenComplete((val, error) -> {
+                    log.info("whenComplete val = " + val);
+                    if (error != null) {
+                        log.info("error = {}", error.getMessage());
+                    }
+                }).thenApply(val -> {
+                    log.info("thenApply val = " + val);
+                    return val;
+                }).exceptionally(e -> {
+                    log.error("exceptionally会拦截错误 e={}", ExceptionUtil.getRootCauseMessage(e));
+                    return null;
+                });
 
-            int a = 1 / 0;
-            return "返回内容1";
-        }, orderExecutor).exceptionally(e -> {
-            log.error("exceptionally会拦截错误 = {},e={}", Thread.currentThread().getName(), Throwables.getRootCause(e).getMessage());
-            return null;
-        });
-
-        TimeUnit.SECONDS.sleep(5);
+        future1.join();
     }
 
 
@@ -230,15 +281,14 @@ class FutureTaskServiceTest {
         StopWatch watch = new StopWatch();
         watch.start();
         List<Integer> collect = list.parallelStream()
-                .map(val -> {
+                .peek(val -> {
                     try {
                         TimeUnit.SECONDS.sleep(val);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
-                    return val;
-                }).collect(Collectors.toList());
+                }).toList();
         watch.stop();
 
         System.out.println("collect = " + collect + " getTotalTimeSeconds = " + watch.getTotalTimeSeconds());
@@ -285,15 +335,14 @@ class FutureTaskServiceTest {
 
 
         List<Integer> collect = list.parallelStream()
-                .map(val -> {
+                .peek(val -> {
                     try {
                         TimeUnit.SECONDS.sleep(val);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
-                    return val;
-                }).collect(Collectors.toList());
+                }).toList();
 
 
         /// 模拟抢占线程
@@ -334,14 +383,14 @@ class FutureTaskServiceTest {
             }
             System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
             return val;
-        }, executor)).collect(Collectors.toList());
+        }, executor)).toList();
 
         /// 这行可有可无,
-        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[futureList.size()])).join();
+        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[0])).join();
         List<Integer> collect = futureList.stream().map(val -> {
             System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
             return val.join();
-        }).collect(Collectors.toList());
+        }).toList();
 
 
         // 这个不行
@@ -359,5 +408,46 @@ class FutureTaskServiceTest {
         watch.stop();
         System.out.println("collect = " + collect + " getTotalTimeSeconds = " + watch.getTotalTimeSeconds());
 
+    }
+
+    @Test
+    @SuppressWarnings({"all"})
+    void test_延时() {
+        log.info("延迟准备=========");
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+            log.info("延迟开始=========");
+
+        }, CompletableFuture.delayedExecutor(2, TimeUnit.SECONDS));
+        log.info("其他任务=========");
+
+        future.join();
+        log.info("延迟结束=========");
+    }
+
+    @Test
+    @SuppressWarnings({"all"})
+    void test_延时2() {
+        log.info("延迟准备=========");
+        CompletableFuture<Object> future = new CompletableFuture<>();
+        future.completeOnTimeout("123", 2, TimeUnit.SECONDS)
+                .thenRun(() -> {
+                    log.info("延迟开始thenRun=========");
+                })
+
+                .thenRunAsync(() -> {
+                    log.info("延迟开始thenRunAsync=========");
+                })
+
+        ;
+
+//        future.completeOnTimeout("123", 2, TimeUnit.SECONDS)
+//                .runAsync(() -> {
+//
+//            log.info("延迟开始=========");
+//        });
+        log.info("其他任务=========");
+        Object join = future.join();
+        log.info("join = " + join);
+        log.info("延迟结束=========");
     }
 }
