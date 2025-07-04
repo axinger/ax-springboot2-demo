@@ -1,214 +1,285 @@
 package com.github.axinger;
 
-import com.alibaba.fastjson.JSONPath;
-import lombok.Data;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONPath;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+//https://alibaba.github.io/fastjson2/jsonpath_cn
+public class FastJson2JSONPathTest {
 
-import static org.junit.jupiter.api.Assertions.*;
+    /*
+     @ 表示当前对象。
+     [?age=10] 是一个过滤条件，表示选择 age 属性等于 10 的对象。
+     因此，@[?age=10] 的含义是：在当前对象的集合中，选择所有 age 属性等于 10 的对象。
 
-public class FastjsonJSONPathTests {
 
-
+     $.age:
+    $ 表示根对象。
+    $.age 表示根对象中的 age 属性。
+    这种语法通常用于 JSON 对象或 JSON 数组的根级别。
+    @.age:
+    @ 表示当前对象。
+    @.age 表示当前对象中的 age 属性。
+    这种语法在某些情况下更明确地指定了当前对象。
+      */
     @Test
-    public void test_set() throws Exception {
+    void test01() {
 
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("age", 10);
-
-
-        // 存在key
-        JSONPath.set(map, "$.age", 11);
-        System.out.println("map = " + map);
-
-        //不存在key，也会强制赋值
-        JSONPath.set(map, "$.age2", 12);
-
-        System.out.println("map = " + map);
-
-        //不存在key，也会强制赋值，判断是否有key
-        if (JSONPath.contains(map, "$.age3")) {
-            JSONPath.set(map, "$.age3", 12);
-        } else {
-            System.err.println("没有age3");
-        }
-        System.out.println("map = " + map);
-//        System.err.println()；
-//        System.in.read();
-        ;
-
-        map.put("age4", new ArrayList<>());
-        JSONPath.arrayAdd(map, "$.age4", 1, 2); // 添加数组，这个可以
-        JSONPath.set(map, "$.age5", new ArrayList<>() {{
-            add(1);
-            add(2);
-        }}); // 添加数组，这个可以， List.of不行，
-        System.out.println("map = " + map);
-    }
-
-    @Test
-    public void test_entity() throws Exception {
-        Entity entity = new Entity(123, new Object());
-
-        assertSame(entity.getValue(), JSONPath.eval(entity, "$.value"));
-        assertTrue(JSONPath.contains(entity, "$.value"));
-        assertEquals(2, JSONPath.size(entity, "$"));
-        assertEquals(0, JSONPath.size(new Object[0], "$"));
-    }
-
-    @Test
-    public void test2() {
-        List<Entity> entities = new ArrayList<Entity>();
-        entities.add(new Entity("wenshao"));
-        entities.add(new Entity("ljw2083"));
-
-        @SuppressWarnings("unchecked")
-        List<String> names = (List<String>) JSONPath.eval(entities, "$.name"); // 返回enties的所有名称
-        System.out.println("names = " + names);
-        assertSame(entities.get(0).getName(), names.get(0));
-        assertSame(entities.get(1).getName(), names.get(1));
-    }
-
-    @Test
-    public void test3() {
-        //返回集合中多个元素
-        List<Entity> entities = new ArrayList<Entity>();
-        entities.add(new Entity("wenshao"));
-        entities.add(new Entity("ljw2083"));
-        entities.add(new Entity("Yako"));
-
-        @SuppressWarnings("unchecked")
-        List<Entity> result = (List<Entity>) JSONPath.eval(entities, "[1,2]"); // 返回list中下标为1和2的元素
-        System.out.println("result = " + result);
+        String str = """
+                {
+                    "store": {
+                        "book": [
+                            {
+                                "category": "reference",
+                                "author": "Nigel Rees",
+                                "title": "Sayings of the Century",
+                                "price": 8.95
+                            },
+                            {
+                                "category": "fiction",
+                                "author": "Evelyn Waugh",
+                                "title": "Sword of Honour",
+                                "price": 12.99
+                            },
+                            {
+                                "category": "fiction",
+                                "author": "Herman Melville",
+                                "title": "Moby Dick",
+                                "isbn": "0-553-21311-3",
+                                "price": 8.99
+                            },
+                            {
+                                "category": "fiction",
+                                "author": "J. R. R. Tolkien",
+                                "title": "The Lord of the Rings",
+                                "isbn": "0-395-19395-8",
+                                "price": 22.99
+                            }
+                        ],
+                        "bicycle": {
+                            "color": "red",
+                            "price": 19.95
+                        }
+                    },
+                    "expensive": 10
+                }
+                """;
 
 
-        assertEquals(2, result.size());
-        assertSame(entities.get(1), result.get(0));
-        assertSame(entities.get(2), result.get(1));
-    }
+        JSONObject jsonObject = JSON.parseObject(str);
 
-    @Test
-    public void test4() {
+        // 1 获取单个节点的值
+        Object color = JSONPath.eval(jsonObject, "$.store.bicycle.color");
+        System.out.println("Bicycle color: " + color);
 
-        //3.4 例4
-        //按范围返回集合的子集
-        List<Entity> entities = new ArrayList<Entity>();
-        entities.add(new Entity("wenshao"));
-        entities.add(new Entity("ljw2083"));
-        entities.add(new Entity("Yako"));
+        // 2 获取数组中的元素
+        // 获取 store.book 数组中的第一个元素
+        Object firstBook = JSONPath.eval(jsonObject, "$.store.book[0]");
+        System.out.println("First book: " + firstBook);
 
-        @SuppressWarnings("unchecked")
-        List<Entity> result = (List<Entity>) JSONPath.eval(entities, "[0:2]"); // 返回下标从0到2的元素
-        System.out.println("result = " + result);
-        assertEquals(3, result.size());
-//        assertSame(entities.get(0), result.get(0));
-//        assertSame(entities.get(1), result.get(1));
-//        assertSame(entities.get(2), result.get(1));
-    }
+        //3 过滤数组元素
+        // 获取价格低于 expensive 值的书籍
+//        Object cheapBooks = JSONPath.eval(jsonObject, "$.store.book[?(@.price < $.expensive)]");
+        Object cheapBooks = JSONPath.eval(jsonObject, "$.store.book[?(@.price < 10)]");
+        System.out.println("Cheap books: " + cheapBooks);
 
-    @Test
-    public void test5() {
-//        3.5 例5
-//        通过条件过滤，返回集合的子集
-        List<Entity> entities = new ArrayList<Entity>();
-        entities.add(new Entity(1001, "ljw2083"));
-        entities.add(new Entity(1002, "wenshao"));
-        entities.add(new Entity(1003, "yakolee"));
-        entities.add(new Entity(1004, null));
+        //4 递归查找
+        //使用递归通配符 .. 可以递归查找所有匹配的节点。例如，查找所有 author 字段的值
+        // 查找所有 author 字段的值
+        Object allAuthors = JSONPath.eval(jsonObject, "$..author");
+        System.out.println("All authors: " + allAuthors);
 
-        @SuppressWarnings("unchecked")
-        List<Object> result = (List<Object>) JSONPath.eval(entities, "[?(@.id in (1001,1002))]");
-        System.out.println("result = " + result);
-        assertEquals(2, result.size());
-        assertSame(entities.get(0), result.get(0));
-    }
+        //3. 修改 JSON 数据
+        // 修改 store.bicycle.color 的值为 blue
+        JSONPath.set(jsonObject, "$.store.bicycle.color", "blue");
+        System.out.println("Modified JSON: " + jsonObject.toJSONString());
 
-    @Test
-    public void test6() {
-//        3.6 例6
-//        根据属性值过滤条件判断是否返回对象，修改对象，数组属性添加元素
-        Entity entity = new Entity(1001, "ljw2083");
-        assertSame(entity, JSONPath.eval(entity, "[?(@.id = 1001)]"));
-
-        JSONPath.set(entity, "id", 123456); //将id字段修改为123456
-        System.out.println("entity = " + entity);
-        assertEquals(123456, entity.getId().intValue());
-
-        JSONPath.set(entity, "value", new int[0]); //将value字段赋值为长度为0的数组
-    }
-
-    @Test
-    public void test7() {
-
-        Map<String, Map<String, List<Map<String, Integer>>>> root = Collections.singletonMap("company",
-                Collections.singletonMap("departs",
-                        Arrays.asList(
-                                Collections.singletonMap("id", 1001),
-                                Collections.singletonMap("id", 1002),
-                                Collections.singletonMap("id", 1003)
-                        )
-                ));
-
-        //deepScan属性访问，例如$..name
-        @SuppressWarnings("unchecked")
-        List<Object> ids = (List<Object>) JSONPath.eval(root, "$..id");
-
-        System.out.println("ids = " + ids);
-
-
-        Object eval = JSONPath.eval(root, "$..departs");
-        System.out.println("eval = " + eval);
-
-//        assertEquals(3, ids.size());
-//        assertEquals(1001, ids.get(0));
-//        assertEquals(1002, ids.get(1));
-//        assertEquals(1003, ids.get(2));
-
-
-        Person person = Person.builder()
-                .id("1")
-                .name("jin")
-                .books(List.of(
-                        Book.builder()
-                                .id("1")
-                                .name("西游记")
-                                .build(),
-                        Book.builder()
-                                .id("2")
-                                .name("水浒传")
-                                .build()
-                ))
-                .build();
-
-        System.out.println(JSONPath.eval(person, "$..name"));
 
     }
 
-    @Data
-    public static class Entity {
-        private Integer id;
-        private String name;
-        private Object value;
+    /*
+        @ 表示当前对象。
+        [?age=10] 是一个过滤条件，表示选择 age 属性等于 10 的对象。
+        因此，@[?age=10] 的含义是：在当前对象的集合中，选择所有 age 属性等于 10 的对象。
 
-        @SuppressWarnings("unused")
-        public Entity() {
+
+        $.age:
+        $ 表示根对象。
+        $.age 表示根对象中的 age 属性。
+        这种语法通常用于 JSON 对象或 JSON 数组的根级别。
+        @.age:
+        @ 表示当前对象。
+        @.age 表示当前对象中的 age 属性。
+        这种语法在某些情况下更明确地指定了当前对象。
+
+        =================================================
+           分析
+        根对象设置:
+        JSONPath.set(root, "$.age", 100);
+        $.age 设置根对象的 age 属性为 100。
+        JSONPath.set(root, "@.age", 200);
+        @.age 也设置根对象的 age 属性为 200。
+        效果相同：因为 root 是根对象，$ 和 @ 在这里指向同一个对象。
+        嵌套对象设置:
+        JSONPath.set(root, "$.nested.age", 200);
+        $.nested.age 设置 nested 对象的 age 属性为 200。
+        JSONPath.set(root, "@.nested.age", 300);
+        @.nested.age 也设置 nested 对象的 age 属性为 300。
+        效果相同：因为 nested 是 root 的一个属性，$ 和 @ 在这里指向同一个对象。
+        数组元素设置:
+        JSONPath.set(root, "$.list[0].age", 300);
+        $.list[0].age 设置 list 数组中第一个元素的 age 属性为 300。
+        JSONPath.set(root, "@.list[0].age", 400);
+        @.list[0].age 也设置 list 数组中第一个元素的 age 属性为 400。
+        效果相同：因为 list 是 root 的一个属性，$ 和 @ 在这里指向同一个对象。
+
+        https://alibaba.github.io/fastjson2/jsonpath_cn
+ */
+    @Test
+    void test02() {
+
+        String str = """
+                {
+                    "id":101,
+                    "name": "张三",
+                    "age": 10,
+                    "books": [
+                        {
+                            "id":1,
+                            "name": "西游记",
+                            "age": 10
+                        },
+                        {
+                            "id":2,
+                            "name": "水浒传",
+                            "age": 11
+                        },
+                        {
+                            "id":3,
+                            "name": "三国演义",
+                            "age": 11
+                        }
+                    ],
+                    "dog": {
+                        "name": "哈士奇",
+                        "age": 10
+                    }
+                }
+                """;
+        JSONObject root = JSON.parseObject(str);
+        System.out.println("root = " + JSON.toJSONString(root));
+
+        System.out.println("取值================================================");
+        System.out.println("$.dog.name==" + JSONPath.eval(root, "$.dog.name"));
+
+        System.out.println("数组中指定值,返回集合===" + JSONPath.eval(root, "$.books.name"));
+
+
+        try {
+            System.out.println("取值中间值不存在的对象==" + JSONPath.eval(root, "$.cat.name")); //取值中间值不存在的对象,不报错
+        } catch (Exception e) {
+            System.out.println("取值不存在的对象");
         }
 
-        public Entity(Integer id, Object value) {
-            this.id = id;
-            this.value = value;
+        try {
+            System.out.println("取值list越界====" + JSONPath.eval(root, "$.books[3].name")); //取值中间值不存在的对象,不报错
+        } catch (Exception e) {
+            System.out.println("取值list越界");
         }
 
-        public Entity(Integer id, String name) {
-            this.id = id;
-            this.name = name;
+        Object eval = JSONPath.eval(root, "$.books[0,2]");
+        System.out.println("数组选择多个 = " + eval);
+
+        System.out.println("数组选择,范围 = " + JSONPath.eval(root, "$.books[0:2]"));
+
+        System.out.println("数组选择,in范围 = " + JSONPath.eval(root, "$.books[?(@.id in (2,3))]"));
+
+        System.out.println("数组选择,值等于 = " + JSONPath.eval(root, "$.books[?(@.id = 2 )]"));
+
+        System.out.println("所有的值,深度查找 = " + JSONPath.eval(root, "$..id"));
+
+        System.out.println("过滤================================================");
+        System.out.println("根路径==" + JSONPath.eval(root, "[?(@.age > 10)]"));
+        System.out.println("根路径==" + JSONPath.eval(root, "[?(@.age = 10)]"));
+
+        // 指定对象过滤
+        System.out.println("根路径dog==" + JSONPath.eval(root, "$.dog[?(@.age > 10)]"));
+        System.out.println("根路径dog==" + JSONPath.eval(root, "$.dog[?(@.age = 10)]"));
+
+        // 获取 books 中 age > 10 的书籍名称  .name
+        Object result = JSONPath.eval(root, "$.books[?(@.age > 10)].name"); //这个方式是字符串比较
+        System.out.println("符合条件的书籍名,返回指定的集合：" + result);
+
+
+//        Object result2 = JSONPath.eval(root, "$.books[age > 10]");
+//        System.out.println("符合条件的书籍名,返回指定的集合2：" + result2);
+
+        // 判断 dog 的 age 是否大于 10
+//
+//        Object isGreaterThan10 = JSONPath.eval(root, "$.dog.(@age>10)");
+
+//        //Object eval3 = JSONPath.eval(map, "@[?(@.age=10)]");
+//        Object age等于值 = JSONPath.eval(root, "$.dog.(@.age=10)");
+//        System.out.println("dog.age > 10 ? " + age等于值);
+
+
+        System.out.println("修改值================================================");
+        // 使用 $.age 和 @.age 进行设置和评估
+        System.out.println("使用 $.age 和 @.age,修改值,效果一样");
+        JSONPath.set(root, "$.age", 100);
+        System.out.println("After setting $.age: " + root);
+
+        JSONPath.set(root, "@.age", 200);
+        System.out.println("After setting @.age: " + root);
+
+        System.out.println("================================================");
+
+        JSONPath.set(root, "$.dog.name", "柯基");
+        JSONPath.set(root, "$.dog.age", 3); // 修改不存在的值,成功
+        System.out.println("map添加新属性: " + root);
+        System.out.println("================================================");
+
+        JSONObject cat = new JSONObject();
+        cat.put("id",1);
+        cat.put("name","加菲猫");
+        JSONPath.set(root, "$.cat", cat); // 修改不存在的值,成功
+        System.out.println("新增一个对象: " + root);
+        System.out.println("================================================");
+
+        JSONPath.set(root, "@.dog.name", "柴犬");
+        JSONPath.set(root, "@.dog.age", 4); // 修改不存在的值,成功
+        System.out.println("After setting @.nested.age: " + root);
+
+        System.out.println("================================================");
+        JSONPath.set(root, "$.books[0].price", 10.00);
+        System.out.println("After setting $.books[0].price: " + root);
+
+        /*
+        ,
+                        {
+                            "id":4,
+                            "name": "红楼梦",
+                            "age": 12
+                        }
+         */
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id",4);
+        jsonObject.put("name","红楼梦");
+        JSONPath.of("$.books").arrayAdd(root,jsonObject);
+        System.out.println("数组添加元素 arrayAdd=" + root);
+        System.out.println("================================================");
+
+        JSONPath.set(root, "@.books[1].price", 12.01);
+        System.out.println("After setting @.books[1].price: " + root);
+
+        try {
+            JSONPath.set(root, "@.books[3].price", 12.01); //越界
+            System.out.println("越界 @.books[3].price: " + root);
+        } catch (Exception e) {
+            System.out.println("不能list越界");
         }
 
-        public Entity(String name) {
-            this.name = name;
-        }
     }
+
 }
-
