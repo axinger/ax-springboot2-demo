@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-class FastJson2JSONPathTest {
+public class FastJson2Test {
 
     static Person person;
 
