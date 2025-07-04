@@ -11,6 +11,13 @@ public class TreeMapTests {
     @Test
     void test1() {
 
+        //自动排序
+//        treeMap.firstEntry()  // 获取最小键的Entry
+//        treeMap.lastEntry()   // 获取最大键的Entry
+//        treeMap.ceilingEntry() // 获取>=给定键的最小Entry
+//        treeMap.floorEntry()   // 获取<=给定键的最大Entry
+//        treeMap.headMap()     // 获取所有小于给定键的子Map
+//        treeMap.tailMap()     // 获取所有大于等于给定键的子Map
         TreeMap<String, String> treeMap = new TreeMap<>();
         // 插入
 

@@ -2,7 +2,7 @@ package com.github.axinger;
 
 import org.junit.jupiter.api.Test;
 
-public class ValueOfTests {
+public class 数值解析Test {
 
     @Test
     void test1() {
@@ -10,6 +10,7 @@ public class ValueOfTests {
 //        long a = Integer.parseInt(""); //解析失败报错
 //        System.out.println("parseLong = " + a);
 
+        //获取系统属性,不是解析
         Integer integer = Integer.getInteger("a"); //解析失败为null
         System.out.println("integer = " + integer);
 
