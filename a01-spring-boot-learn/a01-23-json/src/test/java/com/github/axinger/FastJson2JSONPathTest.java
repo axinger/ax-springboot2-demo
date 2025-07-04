@@ -6,7 +6,7 @@ import com.alibaba.fastjson2.JSONPath;
 import org.junit.jupiter.api.Test;
 
 //https://alibaba.github.io/fastjson2/jsonpath_cn
-public class JSONPathTest {
+public class FastJson2JSONPathTest {
 
     /*
      @ 表示当前对象。
