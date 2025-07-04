@@ -250,6 +250,20 @@ public class FastJson2JSONPathTest {
         System.out.println("After setting @.nested.age: " + root);
 
         System.out.println("================================================");
+        JSONObject cat = new JSONObject();
+        cat.put("id",1);
+        cat.put("name","加菲猫");
+        JSONPath.set(root, "$.cat", cat);
+        System.out.println("添加一个对象: " + root);
+
+        System.out.println("================================================");
+        JSONObject book5 = new JSONObject();
+        book5.put("id",5);
+        book5.put("name","金瓶梅");
+        JSONPath.of("$.books").arrayAdd(root,book5);
+        System.out.println("数组添加一个对象: " + root);
+
+        System.out.println("================================================");
         JSONPath.set(root, "$.books[0].price", 10.00);
         System.out.println("After setting $.books[0].price: " + root);
 
