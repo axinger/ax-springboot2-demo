@@ -9,8 +9,11 @@ CREATE TABLE `sys_alphabet`
 );
 
 INSERT INTO `sys_alphabet` (`id`, `b`, `c`, `d`, `a`)
-VALUES (1, 2.13, '2025-04-24 20:30:26', '2025-04-23 20:30:29', NULL);
-INSERT INTO `sys_alphabet` (`id`, `b`, `c`, `d`, `a`)
-VALUES (2, 2.00, NULL, '2025-04-23 20:30:29', 'jim');
+VALUES
+    (1, 2.13, '2025-04-24 20:30:26', '2025-04-23 20:30:29', '王五'),
+    (2, 2.00, NULL, '2025-04-23 20:30:29', 'jim'),
+    (3, 20.00, NULL, NULL, '张三'),
+    (4, 25.00, NULL, NULL, '李四'),
+    (5, 30.00, NULL, NULL, '王五');
 
 

@@ -43,7 +43,7 @@ public interface SysPersonMapper extends MyBaseMapper<SysPersonEntity> {
 
     /**
      * @param handler handler
-     * @Select ibatis 语法
+     * @Select mybatis方法 语法
      */
     @Select("select * from sys_person")
     @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 20)
@@ -56,8 +56,11 @@ public interface SysPersonMapper extends MyBaseMapper<SysPersonEntity> {
     @ResultType(SysPersonEntity.class)
     void selectStreamWrapper(@Param(Constants.WRAPPER) Wrapper<SysPersonEntity> wrapper, ResultHandler<SysPersonEntity> handler);
 
+    /// mybatis方法
     @Select("select * from sys_person")
-    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = 20)
+    /// 关键点是设置 fetchSize=Integer.MIN_VALUE（即 -2147483648），这会启用 MySQL 的流式结果集。
+    /// 对于 H2，设置 fetchSize=1 可以实现类似流式的效果
+    @Options(resultSetType = ResultSetType.FORWARD_ONLY, fetchSize = Integer.MIN_VALUE)
     @ResultType(SysPersonEntity.class)
     Cursor<SysPersonEntity> cursorSelect();
 

@@ -55,17 +55,12 @@
 
         <!--        <dependency>-->
         <!--            <groupId>com.microsoft.sqlserver</groupId>-->
-        <!--            <artifactId>sqljdbc4</artifactId>-->
-        <!--            <version>4.0</version>-->
+        <!--            <artifactId>mssql-jdbc</artifactId>-->
+        <!--            <version>11.2.3.jre8</version>-->
+        <!--            <scope>runtime</scope>-->
         <!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <!--            <version>11.2.3.jre17</version>-->
-            <version>11.2.3.jre8</version>
-        </dependency>
-
+        <!--springboot自动引入-->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
@@ -75,17 +70,16 @@
             <artifactId>flyway-mysql</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-database-postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.flywaydb</groupId>-->
+        <!--            <artifactId>flyway-database-postgresql</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-sqlserver -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-sqlserver</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.flywaydb</groupId>-->
+        <!--            <artifactId>flyway-sqlserver</artifactId>-->
+        <!--        </dependency>-->
 
         <!--        <dependency>-->
         <!--            <groupId>org.flywaydb</groupId>-->

@@ -1,4 +1,4 @@
-package com.github.axinger.service;
+package com.github.axinger;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.alibaba.fastjson2.JSON;
@@ -14,6 +14,7 @@ import com.github.axinger.config.MyTableNameHandler;
 import com.github.axinger.config.MyTenantLineHandler;
 import com.github.axinger.domain.SysPersonEntity;
 import com.github.axinger.mapper.SysPersonMapper;
+import com.github.axinger.service.SysPersonService;
 import com.github.axinger.vo.SysPersonVO;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.SqlSession;
@@ -21,6 +22,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -119,22 +123,58 @@ class SysPersonServiceTest {
                 .ge(SysPersonEntity::getAge, 10);
 
         sysPersonMapper.selectStreamWrapper(wrapper, val -> {
-            SysPersonEntity resultObject = val.getResultObject();
-            int resultCount = val.getResultCount();
-            System.out.println("resultCount = " + resultCount);
-            System.out.println("resultObject = " + resultObject);
+            SysPersonEntity entity = val.getResultObject();
+            System.out.println("流式查询entity = " + entity);
         });
     }
 
+
+    //方案一：SqlSessionFactory
+    // 流式查询,mysql驱动默认不是流式返回
     @Test
-    void test_cursorSelect() throws IOException {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            SysPersonMapper mapper = session.getMapper(SysPersonMapper.class);
-            try (Cursor<SysPersonEntity> entities = mapper.cursorSelect()) {
-                for (SysPersonEntity entity : entities) {
-                    System.out.println("entity = " + entity);
-                }
+    void test_cursor1() throws IOException {
+        try (SqlSession session = sqlSessionFactory.openSession();
+             Cursor<SysPersonEntity> entities = session.getMapper(SysPersonMapper.class).cursorSelect()) {
+            for (SysPersonEntity entity : entities) {
+                System.out.println("流式查询entity = " + entity);
             }
+        }
+    }
+
+
+    @Autowired
+    PlatformTransactionManager transactionManager;
+
+    //方案二：TransactionTemplate
+    @Test
+    void test_cursor2(){
+
+        TransactionTemplate transactionTemplate =
+                new TransactionTemplate(transactionManager);  // 1
+
+        transactionTemplate.execute(status -> {               // 2
+            try (Cursor<SysPersonEntity> cursor = sysPersonMapper.cursorSelect()) {
+                cursor.forEach(entity -> {
+                    System.out.println("流式查询entity = " + entity);
+                });
+            } catch (IOException e) {
+                System.err.println("e = " + e);
+            }
+            return null;
+        });
+    }
+
+    //方案三：@Transactional 注解
+    @Test
+    @Transactional
+    void test_cursor3() throws IOException {
+        // 2
+        try (Cursor<SysPersonEntity> cursor = sysPersonMapper.cursorSelect()) {
+            cursor.forEach(entity -> {
+                System.out.println("流式查询entity = " + entity);
+            });
+        } catch (IOException e) {
+            System.err.println("e = " + e);
         }
     }
 
