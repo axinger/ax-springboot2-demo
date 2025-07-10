@@ -4,12 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
+/**
+ * Objects jdk工具类
+ */
 @SuppressWarnings("all")
-public class ObjectsTests {
+public class 工具类Test {
 
     @Test
     @SuppressWarnings("all")
@@ -28,8 +29,6 @@ public class ObjectsTests {
         ///  null 抛异常
         String str2 = Objects.requireNonNull(str, "不能为空");
         System.out.println("str2 = " + str2);
-
-
     }
 
     @Test
@@ -109,69 +108,5 @@ public class ObjectsTests {
 
     }
 
-    @Test
-    void test4() {
-        String str = "";
-    }
 
-    @Test
-    void test5() {
-
-        Person person = new Person();
-        person.setName("jim");
-        person.setAge(10);
-        System.out.println("person = " + person);
-
-        String name = "jim";
-        System.out.println("name = " + name);
-        test6(person);
-        test7(name);
-        test8(person);
-        System.out.println("==============================================");
-        System.out.println("person2 = " + person);
-        System.out.println("name = " + name);
-    }
-
-    @Test
-    void test51() {
-
-        Person person = new Person();
-        person.setName("jim");
-        person.setAge(10);
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("tip", "123");
-
-        Dog dog = new Dog();
-        dog.setName("golf");
-        params.put("dog", dog);
-        person.setParams(params);
-        System.out.println("person = " + person);
-
-        test8(person);
-        System.out.println("==============================================");
-        System.out.println("person2 = " + person);
-    }
-
-    // 可以修改原对象的值
-    void test6(Person person) {
-        person.setName("tom");
-    }
-
-    // 无法修改原String的值
-    void test7(String name) {
-        name = "tom";
-        System.out.println("test7 name = " + name);
-    }
-
-    void test8(Person person) {
-        String name = person.getName();
-        name = "lili"; //不能修改
-
-        Object tip = person.getParams().get("tip");
-        tip = "456"; //不能修改
-
-        Dog dog = (Dog) person.getParams().get("dog");
-        dog.setName("lucy"); //可以修改
-    }
 }
