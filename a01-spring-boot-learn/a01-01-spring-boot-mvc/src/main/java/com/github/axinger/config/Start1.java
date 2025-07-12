@@ -3,12 +3,11 @@ package com.github.axinger.config;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent;
 import org.springframework.cloud.commons.util.InetUtils;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
@@ -22,18 +21,51 @@ import java.util.Enumeration;
 @Component
 @Order(value = 1)
 @Slf4j
-public class Start1 implements ApplicationRunner {
+public class Start1 {
 
     @Autowired
     private InetUtils inetUtils;
+    //
+    //测试中 Spring 的 ApplicationContext 可能是普通上下文（非 Web 环境），
+    // 而 ServletWebServerApplicationContext 仅存在于 Servlet 容器启动时。
+//    @Autowired
+//    private ServletWebServerApplicationContext context;
 
-    @Autowired
-    private ServletWebServerApplicationContext context;
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println("ApplicationRunner启动监控=" + args);
+    @SneakyThrows
+    @EventListener(ApplicationReadyEvent.class)
+    public void onApplicationReady(ApplicationReadyEvent event) {
+        System.out.println("Spring Boot 应用已完全启动并准备好接收请求");
+        ConfigurableApplicationContext context = event.getApplicationContext();
+        // 获取Environment实例
+        Environment env = context.getEnvironment();
 
+        // 获取端口号和上下文路径
+        String serverPort = env.getProperty("server.port");
+        String contextPath = env.getProperty("server.servlet.context-path", "");
+
+        // 打印启动信息
+        System.out.println("\n\n===========> 系统启动成功！后台地址：http://localhost:" + serverPort + contextPath);
+
+
+        Environment environment = context.getBean(Environment.class);
+        String path = environment.getProperty("server.servlet.context-path") == null ?
+                "" : environment.getProperty("server.servlet.context-path");
+        String port = environment.getProperty("server.port");
+        String ip = InetAddress.getLocalHost().getHostAddress();
+        log.info("Access URLs:\n----------------------------------------------------------\n\t"
+                        + "Local: \t\thttp://127.0.0.1:{}{}\n\t"
+                        + "External: \thttp://{}:{}{}\n----------------------------------------------------------",
+                port, path, ip, port, path
+        );
+
+    }
+
+    @SneakyThrows
+    @EventListener(ServletWebServerInitializedEvent.class)
+    public void onApplicationEvent(ServletWebServerInitializedEvent event) {
+
+        ServletWebServerApplicationContext context = event.getApplicationContext();
 
         //查找第一个非回环的主机信息
         /*
@@ -58,10 +90,6 @@ public class Start1 implements ApplicationRunner {
         System.out.println("ip2 = " + ip2);
 
 
-//        String host = context.getWebServer().getAddress().getHostString();
-//        System.out.println("Server is running at http://" + host + ":" + port);
-
-
         Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
 
         while (interfaces.hasMoreElements()) {
@@ -80,39 +108,4 @@ public class Start1 implements ApplicationRunner {
             }
         }
     }
-
-    @SneakyThrows
-    @EventListener(ApplicationReadyEvent.class)
-    public void onApplicationReady(ApplicationReadyEvent event) {
-        System.out.println("Spring Boot 应用已完全启动并准备好接收请求");
-
-        // 获取Environment实例
-        Environment env = context.getEnvironment();
-
-        // 获取端口号和上下文路径
-        String serverPort = env.getProperty("server.port");
-        String contextPath = env.getProperty("server.servlet.context-path", "");
-
-        // 打印启动信息
-        System.out.println("\n\n===========> 系统启动成功！后台地址：http://localhost:" + serverPort + contextPath);
-
-
-        Environment environment = context.getBean(Environment.class);
-        String path = environment.getProperty("server.servlet.context-path") == null ?
-                "" : environment.getProperty("server.servlet.context-path");
-        String port = environment.getProperty("server.port");
-        String ip = InetAddress.getLocalHost().getHostAddress();
-        log.info("Access URLs:\n----------------------------------------------------------\n\t"
-                        + "Local: \t\thttp://127.0.0.1:{}{}\n\t"
-                        + "External: \thttp://{}:{}{}\n----------------------------------------------------------",
-                port, path, ip, port, path
-        );
-    }
-
-    @EventListener(ServletWebServerInitializedEvent.class)
-    public void onApplicationEvent(ServletWebServerInitializedEvent event) {
-        int port = event.getWebServer().getPort();
-        System.out.println("Application is running on port: " + port);
-    }
-
 }

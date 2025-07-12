@@ -13,4 +13,4 @@ spring:
 # gRPC有关的配置，这里只需要配置服务端口号默认9090
 grpc:
   server:
-    port: 19898
+    port: 12122

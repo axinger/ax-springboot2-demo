@@ -63,8 +63,8 @@ services:
         - axinger/a33-docker-package:latest
         - axinger/a33-docker-package:1.0
     ports:
-      - "45033:45033"
-      - "45032:45032"
+      - "13311:13311"
+      - "13312:13312"
     volumes:
       - /etc/hosts:/etc/hosts
     environment:

@@ -2,7 +2,7 @@ config:
   name: 生产环境
 
 server:
-  port: 45033
+  port: 13312
 
 mybatis-plus:
   configuration:

@@ -1,11 +1,15 @@
 package com.github.axinger;
 
+import cn.hutool.core.io.resource.Resource;
+import cn.hutool.core.io.resource.ResourceUtil;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -86,5 +90,27 @@ public class ResourceTests {
         }
 
         TimeUnit.SECONDS.sleep(5);
+    }
+
+    //cn.hutool.core.io.resource
+    @Test
+    public void test4(){
+        String string = ResourceUtil.readUtf8Str("123.json");
+
+        System.out.println("string = " + string);
+
+        //当资源不存在时返回null
+        InputStream inputStream = ResourceUtil.getStreamSafe("123.json");
+        System.out.println("inputStream = " + inputStream);
+
+        URL url = ResourceUtil.getResource("123.json");
+        System.out.println("url = " + url);
+
+        List<URL> urlList = ResourceUtil.getResources("dir1/");
+        System.out.println("urlList = " + urlList);
+
+        Resource resource = ResourceUtil.getResourceObj("123.json");
+        URL url1 = resource.getUrl();
+        System.out.println("url1 = " + url1);
     }
 }

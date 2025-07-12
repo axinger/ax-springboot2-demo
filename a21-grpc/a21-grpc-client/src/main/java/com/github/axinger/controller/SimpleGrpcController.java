@@ -10,13 +10,17 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.netty.shaded.io.netty.channel.ChannelFactory;
 import io.grpc.stub.StreamObserver;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import net.devh.boot.grpc.client.channelfactory.GrpcChannelFactory;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +58,7 @@ public class SimpleGrpcController {
     @GetMapping("/test1")
     public Map<String, Object> sendMessage(final String name) {
         try {
-            final MyResponse response = simpleBlockingStub.sendMessage(MyRequest.newBuilder().setName(name).build());
+            final MyResponse response = simpleBlockingStub.sendMessage(MyRequest.newBuilder().setUserId(name).build());
 
             Map<String, Object> map = new HashMap<>();
 
@@ -70,7 +74,7 @@ public class SimpleGrpcController {
     @GetMapping("/test3")
     public Map<String, Object> sendMessageStream(final String name) {
         try {
-            Iterator<MyResponse> messageStream = simpleBlockingStub.sendMessageStream(MyRequest.newBuilder().setName(name).build());
+            Iterator<MyResponse> messageStream = simpleBlockingStub.sendMessageStream(MyRequest.newBuilder().setUserId(name).build());
 
             while (messageStream.hasNext()) {
                 MyResponse response = messageStream.next();
@@ -96,15 +100,46 @@ public class SimpleGrpcController {
                 .forTarget("a21-grpc-server")
                 .usePlaintext()
                 .build();
-        MyRequest request = MyRequest.newBuilder().setName("jim").build();
+        MyRequest request = MyRequest.newBuilder().setUserId("jim").build();
         SimpleGrpc.SimpleBlockingStub stub = SimpleGrpc.newBlockingStub(channel);
         MyResponse myResponse = stub.sendMessage(request);
         String message = myResponse.getMessage();
         System.out.println("message = " + message);
-
         return message;
     }
 
+    @Autowired
+    private GrpcChannelFactory channelFactory;
+
+    @GetMapping("/test5")
+    public Object test51() {
+
+        Channel channel = channelFactory.createChannel("a21-grpc-server");
+        SimpleGrpc.SimpleStub newedStub = SimpleGrpc.newStub(channel);
+
+        newedStub.sendMessage(MyRequest.newBuilder().setUserId("").build(), new StreamObserver<MyResponse>() {
+
+            @Override
+            public void onNext(MyResponse myResponse) {
+
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        });
+
+        SimpleGrpc.SimpleBlockingStub blockingStub = SimpleGrpc.newBlockingStub(channel);
+        final MyResponse response = blockingStub.sendMessage(MyRequest.newBuilder().setUserId("name").build());
+
+        return response.getMessage();
+    }
 
     @SneakyThrows
     public void test4() {
@@ -152,7 +187,7 @@ public class SimpleGrpcController {
     public Map<String, Object> test21(final String name) {
         Map<String, Object> map = new HashMap<>();
         try {
-            ListenableFuture<MyResponse> sentMessage = simpleFutureStub.sendMessage(MyRequest.newBuilder().setName(name).build());
+            ListenableFuture<MyResponse> sentMessage = simpleFutureStub.sendMessage(MyRequest.newBuilder().setUserId(name).build());
             // 添加超时和结果获取
             MyResponse response = sentMessage.get(5, TimeUnit.SECONDS); // 5秒超时
 
@@ -198,7 +233,7 @@ public class SimpleGrpcController {
                 }
             };
 
-            simpleStub.sendMessage(MyRequest.newBuilder().setName(name).build(), responseObserver);
+            simpleStub.sendMessage(MyRequest.newBuilder().setUserId(name).build(), responseObserver);
             // 等待响应或超时
             if (!latch.await(5, TimeUnit.SECONDS)) {
                 map.put("error", "Request timeout");
@@ -246,7 +281,7 @@ public class SimpleGrpcController {
                 }
             };
 
-            simpleStub.sendMessageStream(MyRequest.newBuilder().setName(name).build(), responseObserver);
+            simpleStub.sendMessageStream(MyRequest.newBuilder().setUserId(name).build(), responseObserver);
             // 等待流完成或超时
             if (!latch.await(10, TimeUnit.SECONDS)) {
                 log.warn("Stream processing timeout");

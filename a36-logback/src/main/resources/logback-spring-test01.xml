@@ -22,7 +22,7 @@
     <!--日志的输出格式-->
 
     <!--    [%thread]  就是 [%t] -->
-    <!--    2025-05-10 19:15:10.003 [main] ERROR com.github.axinger.Start1 - error = error 日志-->
+    <!--    2025-05-10 19:15:10.003 [main] ERROR com.github.axinger.event.Start1 - error = error 日志-->
     <springProperty scope="context" name="logging.pattern.console" source="logging.pattern.console"
                     defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS}  %-5level  ${PID:- } --- [%t] %logger{100} : %msg%n"/>
     <springProperty scope="context" name="logging.pattern.file" source="logging.pattern.file"

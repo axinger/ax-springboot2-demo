@@ -52,56 +52,27 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
-        <!--        <resources>-->
-        <!--            &lt;!&ndash; 处理公共配置：application.yml，并排除所有环境配置 &ndash;&gt;-->
-        <!--            <resource>-->
-        <!--                <directory>src/main/resources</directory>-->
-        <!--                <filtering>true</filtering> &lt;!&ndash; 启用占位符替换 &ndash;&gt;-->
-        <!--                <excludes>-->
-        <!--                    <exclude>application-*.yml</exclude>-->
-        <!--                </excludes>-->
-        <!--                <includes>-->
-        <!--                    <include>application.yml</include>-->
-        <!--                </includes>-->
-        <!--            </resource>-->
-        <!--            &lt;!&ndash; 动态包含当前环境的配置文件 &ndash;&gt;-->
-        <!--            <resource>-->
-        <!--                <directory>src/main/resources</directory>-->
-        <!--                <filtering>true</filtering>-->
-        <!--                <includes>-->
-        <!--                    &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
-        <!--                    <include>application-${my-env}.yml</include>-->
-        <!--                </includes>-->
-        <!--            </resource>-->
-        <!--        </resources>-->
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <skip>true</skip>
                     <excludes>
-                        <exclude>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-configuration-processor</artifactId>
-                        </exclude>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>
                     </excludes>
                 </configuration>
             </plugin>
-            <!--跳过测试-->
+            <!-- maven 打包时跳过测试 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -109,7 +80,67 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-compiler-plugin</artifactId>-->
+            <!--                <version>${maven-compiler-plugin.version}</version>-->
+            <!--                <configuration>-->
+            <!--                    <source>${maven.compiler.source}</source>-->
+            <!--                    <target>${maven.compiler.target}</target>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
+
+            <!--      打包上传值docker hub      -->
+            <!--            <plugin>-->
+            <!--                <groupId>com.google.cloud.tools</groupId>-->
+            <!--                <artifactId>jib-maven-plugin</artifactId>-->
+            <!--                <version>3.3.1</version>-->
+            <!--                <configuration>-->
+            <!--                    <from>-->
+            <!--                        <image>eclipse-temurin:17-jre-jammy</image>-->
+            <!--                    </from>-->
+            <!--                    <to>-->
+            <!--                        &lt;!&ndash;                        <image>registry.hub.docker.com/axingrun/demo</image>&ndash;&gt;-->
+            <!--                        <image>axingrun/demo</image>-->
+            <!--                        <tags>-->
+            <!--                            &lt;!&ndash;版本号&ndash;&gt;-->
+            <!--                            <tag>${axinger.version}</tag>-->
+            <!--                        </tags>-->
+            <!--                        <auth>-->
+            <!--                            &lt;!&ndash;在docker-hub或者阿里云上的账号和密码&ndash;&gt;-->
+            <!--                            <username>${docker.registry.username}</username>-->
+            <!--                            <password>${docker.registry.password}</password>-->
+            <!--                        </auth>-->
+            <!--                    </to>-->
+            <!--                    <allowInsecureRegistries>true</allowInsecureRegistries>-->
+            <!--                    <container>-->
+            <!--                        &lt;!&ndash;微服务的启动类&ndash;&gt;-->
+            <!--                        <mainClass>com.axing.SpringBoot33Application</mainClass>-->
+            <!--                        &lt;!&ndash;使用该参数将镜像的创建时间与系统时间对其&ndash;&gt;-->
+            <!--                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>-->
+            <!--                        <jvmFlags>-->
+            <!--                            <jvmFlag>-Xms128m</jvmFlag>-->
+            <!--                            <jvmFlag>-Xmx128m</jvmFlag>-->
+            <!--                            <jvmFlag>-Duser.timezone=GMT+08</jvmFlag>-->
+            <!--                            <jvmFlag>-Dfile.encoding=UTF8</jvmFlag>-->
+            <!--                        </jvmFlags>-->
+            <!--                        <ports>-->
+            <!--                            <port>8080</port>-->
+            <!--                        </ports>-->
+            <!--                    </container>-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>jib-maven-plugin</id>-->
+            <!--                        <phase>package</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>build</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
+
 
 </project>

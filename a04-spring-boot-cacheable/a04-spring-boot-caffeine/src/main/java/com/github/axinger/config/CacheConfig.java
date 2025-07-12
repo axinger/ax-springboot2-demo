@@ -16,7 +16,7 @@ public class CacheConfig {
         return (target, method, objects) -> {
             StringBuilder sb = new StringBuilder();
             sb.append(target.getClass().getName());
-            sb.append("::" + method.getName() + ":");
+            sb.append("::").append(method.getName()).append(":");
             for (Object obj : objects) {
                 sb.append(obj.toString());
             }
@@ -26,7 +26,7 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        Caffeine caffeine = Caffeine.newBuilder()
+        Caffeine<Object, Object> caffeine = Caffeine.newBuilder()
                 .initialCapacity(10) // 初始大小
                 .maximumSize(100)  // 最大大小
                 // .expireAfterWrite(1, TimeUnit.HOURS)

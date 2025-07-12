@@ -10,7 +10,7 @@ public class ViewsTest {
 
     @SneakyThrows
     @Test
-    public void test(){
+    public void test() {
 
         ObjectMapper mapper = new ObjectMapper();
 

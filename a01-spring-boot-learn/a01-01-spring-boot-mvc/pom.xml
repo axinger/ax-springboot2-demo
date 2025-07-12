@@ -110,24 +110,24 @@
             <artifactId>graal-sdk</artifactId>
             <version>23.1.0</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.graalvm.js</groupId>-->
-<!--            <artifactId>js</artifactId>-->
-<!--            <version>23.1.0</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.graalvm.js</groupId>-->
+        <!--            <artifactId>js</artifactId>-->
+        <!--            <version>23.1.0</version>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.graalvm.polyglot/js -->
-<!--        <dependency>-->
-<!--            <groupId>org.graalvm.polyglot</groupId>-->
-<!--            <artifactId>js</artifactId>-->
-<!--            <version>23.1.0</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.graalvm.polyglot</groupId>-->
+        <!--            <artifactId>js</artifactId>-->
+        <!--            <version>23.1.0</version>-->
+        <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.graalvm.polyglot</groupId>-->
-<!--            <artifactId>python</artifactId>-->
-<!--            <version>23.1.0</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.graalvm.polyglot</groupId>-->
+        <!--            <artifactId>python</artifactId>-->
+        <!--            <version>23.1.0</version>-->
+        <!--        </dependency>-->
 
     </dependencies>
 

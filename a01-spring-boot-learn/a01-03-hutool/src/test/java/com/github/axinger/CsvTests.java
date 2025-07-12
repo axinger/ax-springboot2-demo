@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class CsvTests {
 
@@ -123,9 +122,9 @@ public class CsvTests {
 
         //按行写出
         writer.write(
-                new String[] {"a1", "b1", "c1"},
-                new String[] {"a2", "b2", "c2"},
-                new String[] {"a3", "b3", "c3"}
+                new String[]{"a1", "b1", "c1"},
+                new String[]{"a2", "b2", "c2"},
+                new String[]{"a3", "b3", "c3"}
         );
     }
 
@@ -134,7 +133,7 @@ public class CsvTests {
         File distFile = new File("C:\\Users\\xing\\Desktop\\4.csv");
         // 创建CSV写入器，使用GBK编码格式，防止出现各个CSV工具打开乱码
         CsvWriter writer = CsvUtil.getWriter(distFile, CharsetUtil.CHARSET_GBK, true, config());
-        writer.writeHeaderLine("主键", "姓名","狗","地址");
+        writer.writeHeaderLine("主键", "姓名", "狗", "地址");
 //        List<List<Object>> rowList = new ArrayList<>();
 //        rowList.add(Arrays.asList(1, "jim", "",""));
 //        rowList.add(Arrays.asList(333L, 444L));
@@ -144,9 +143,9 @@ public class CsvTests {
 
         //按行写出
         writer.write(
-                new String[] {"a1", "b1", "c1"},
-                new String[] {"a2", "b2", "c2"},
-                new String[] {"a3", "b3", "c3"}
+                new String[]{"a1", "b1", "c1"},
+                new String[]{"a2", "b2", "c2"},
+                new String[]{"a3", "b3", "c3"}
         );
     }
 }

@@ -56,10 +56,10 @@
 //        }
 //
 //        //修改为true时，模拟本地事务超时，对于超时的消息，rocketmq会调用 checkLocalTransaction 方法回查本地事务执行状况
-////        boolean imitateTimeout = true;
-////        if(imitateTimeout){
-////            state = LocalTransactionState.UNKNOW;
-////        }
+/// /        boolean imitateTimeout = true;
+/// /        if(imitateTimeout){
+/// /            state = LocalTransactionState.UNKNOW;
+/// /        }
 //        log.info("本地事务执行结果：msgKey=" + msgKey + ",execute state:" + state);
 //        return state;
 //    }

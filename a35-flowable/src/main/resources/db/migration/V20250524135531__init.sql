@@ -5,7 +5,8 @@ CREATE TABLE `department`
     `dept_leader_id`    varchar(36) DEFAULT NULL COMMENT '部门领导ID，关联employee表的id',
     `company_leader_id` varchar(36) DEFAULT NULL COMMENT '公司领导ID，关联employee表的id',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='部门信息表';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='部门信息表';
 
 
 CREATE TABLE `employee`
@@ -16,7 +17,8 @@ CREATE TABLE `employee`
     `department_id`    varchar(36)  NOT NULL COMMENT '所属部门ID，关联department表的id',
     `direct_leader_id` varchar(36) DEFAULT NULL COMMENT '直属领导ID，关联本表的id(自关联)',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='员工信息表';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='员工信息表';
 
 
 -- 插入初始部门数据  COMMENT '公司领导统一为e003',COMMENT 'CEO没有直属领导'

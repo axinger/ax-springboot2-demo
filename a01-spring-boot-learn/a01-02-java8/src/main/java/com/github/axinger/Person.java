@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -45,5 +46,16 @@ public class Person {
 //            return sort;
     private String address;
 
+
+    private Map<String, Object> params;
+
+
+    public Person(Integer id, String name, String sex, Integer age, String address) {
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.address = address;
+    }
 
 }
