@@ -79,6 +79,10 @@ public class MyWebSocket {
         System.out.println("pathMap = " + pathMap);
 
         sessionMap.put(userId, session);
+        io.netty.channel.Channel channel = session.channel();
+        String longText = channel.id().asLongText();
+
+
     }
 
     @OnClose

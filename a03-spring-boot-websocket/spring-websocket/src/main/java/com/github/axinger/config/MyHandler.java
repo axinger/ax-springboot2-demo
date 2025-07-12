@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class MyHandler implements WebSocketHandler {
@@ -19,7 +19,7 @@ public class MyHandler implements WebSocketHandler {
 
 
     static {
-        users = new HashMap<>();
+        users = new ConcurrentHashMap<>();
     }
 
     //新增socket
@@ -33,7 +33,7 @@ public class MyHandler implements WebSocketHandler {
 
         String ID = session.getAttributes().get("WEBSOCKET_USERID").toString();
         System.out.println("o = " + ID);
-
+//        String name = session.getPrincipal().getName();
 
         if (ID != null) {
             users.put(ID, session);
