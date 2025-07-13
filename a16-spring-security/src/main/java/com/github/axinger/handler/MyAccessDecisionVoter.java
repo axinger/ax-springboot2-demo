@@ -6,13 +6,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class CustomAccessDecisionVoter implements AccessDecisionVoter<FilterInvocation> {
+public class MyAccessDecisionVoter implements AccessDecisionVoter<FilterInvocation> {
+
+    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1","/");
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override
     public int vote(Authentication authentication, FilterInvocation object, Collection<ConfigAttribute> attributes) {
@@ -41,7 +46,12 @@ public class CustomAccessDecisionVoter implements AccessDecisionVoter<FilterInvo
         // 你可以根据请求 URL 做进一步的权限判断
         System.out.println("Requested URL: " + requestUrl);
 
-        if (requestUrl.equals("/login") || requestUrl.equals("/favicon.ico")) {
+//        if (requestUrl.equals("/login") || requestUrl.equals("/favicon.ico")) {
+//            return ACCESS_GRANTED;
+//        }
+
+        boolean whitelisted = isWhitelisted(request.getRequestURI());
+        if (whitelisted) {
             return ACCESS_GRANTED;
         }
 
@@ -75,5 +85,13 @@ public class CustomAccessDecisionVoter implements AccessDecisionVoter<FilterInvo
     @Override
     public boolean supports(Class<?> clazz) {
         return FilterInvocation.class.isAssignableFrom(clazz);
+    }
+
+    public boolean isWhitelisted(String path) {
+        if (CollectionUtils.isEmpty(WHITELIST)) {
+            return false;
+        }
+        return WHITELIST.stream()
+                .anyMatch(pattern -> pathMatcher.match(pattern, path));
     }
 }

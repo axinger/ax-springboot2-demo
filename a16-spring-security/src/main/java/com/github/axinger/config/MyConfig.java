@@ -1,9 +1,6 @@
 package com.github.axinger.config;
 
-import com.github.axinger.handler.CustomAccessDecisionVoter;
-import com.github.axinger.handler.CustomAuthenticationEntryPoint;
-import com.github.axinger.handler.CustomPermissionEvaluator;
-import com.github.axinger.handler.RestAuthAccessDeniedHandler;
+import com.github.axinger.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,24 +26,24 @@ import java.util.List;
 public class MyConfig {
 
     @Autowired
-    private JwtSecurityFilter jwtSecurityFilter;
+    private MyOncePerRequestFilter myOncePerRequestFilter;
 
     @Autowired
-    private CustomPermissionEvaluator customAuthenticationEntryPoint;
+    private MyPermissionEvaluator myPermissionEvaluator;
     @Autowired
-    private CustomAccessDecisionVoter customAccessDecisionVoter;
+    private MyAccessDecisionVoter myAccessDecisionVoter;
 
     @Bean
     public DefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
         DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
-        handler.setPermissionEvaluator(customAuthenticationEntryPoint);
+        handler.setPermissionEvaluator(myPermissionEvaluator);
         return handler;
     }
 
     @Bean
     public AccessDecisionManager customAccessDecisionManager() {
         List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
-        decisionVoters.add(customAccessDecisionVoter);
+        decisionVoters.add(myAccessDecisionVoter);
         return new UnanimousBased(decisionVoters);  // 使用投票机制
     }
 
@@ -54,7 +51,7 @@ public class MyConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http    // 将自定义JWT校验过滤链方法UsernamePasswordAuthenticationToken过滤链之前
-                .addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(myOncePerRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http
                 .cors()//新加入
                 .and()
@@ -74,9 +71,9 @@ public class MyConfig {
                 // 异常处理配置
                 .exceptionHandling()
                 // 自定义未认证处理逻辑
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .authenticationEntryPoint(new MyAuthenticationEntryPoint())
                 // 自定义无权限处理逻辑
-                .accessDeniedHandler(new RestAuthAccessDeniedHandler());
+                .accessDeniedHandler(new MyAccessDeniedHandler());
         ;
         return http.build();
 

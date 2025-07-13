@@ -19,12 +19,12 @@ import java.util.Collection;
  * @date 2018/9/5
  */
 @Component
-public class CustomPermissionEvaluator implements PermissionEvaluator {
+public class MyPermissionEvaluator implements PermissionEvaluator {
     /**
      * 自定义验证方法
      *
      * @param authentication     登录的时候存储的用户信息
-     * @param targetDomainObject @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第一个参数
+     * @param targetUrl @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第一个参数
      * @param permission         @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第二个参数
      * @return
      */

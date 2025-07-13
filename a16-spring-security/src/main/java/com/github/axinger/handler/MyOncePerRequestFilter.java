@@ -1,4 +1,4 @@
-package com.github.axinger.config;
+package com.github.axinger.handler;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ObjUtil;
@@ -25,9 +25,9 @@ import java.util.Objects;
 
 @Component
 @Slf4j
-public class JwtSecurityFilter extends OncePerRequestFilter {
+public class MyOncePerRequestFilter extends OncePerRequestFilter {
 
-    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1");
+    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1","/");
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
