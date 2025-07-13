@@ -4,7 +4,6 @@ import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ObjUtil;
 import com.axing.common.response.dto.Result;
 import com.axing.common.util.utils.ResponseUtil;
-import com.github.axinger.service.JwtTokenProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -43,8 +42,10 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
         }
         String token = request.getHeader("Authorization");
         if (Objects.isNull(token)) {
-            ResponseUtil.writeError(response, Result.fail("没有token"));
-            return;
+//            ResponseUtil.writeError(response, Result.fail("没有token"));
+//
+            throw new RuntimeException("没有token");
+//            return;
         }
 
         if (ObjUtil.isEmpty(jwtTokenProvider.validateToken(token))) {

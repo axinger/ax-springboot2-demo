@@ -1,7 +1,7 @@
-package com.github.axinger.service;
+package com.github.axinger.handler;
 
-import com.github.axinger.dto.SysUser;
-import com.github.axinger.mapper.UserMapper;
+import com.github.axinger.domain.SysUserEntity;
+import com.github.axinger.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,17 +17,17 @@ import java.util.Collection;
 @Component
 public class MyAuthenticationManager implements AuthenticationManager {
     @Autowired
-    private UserMapper userMapper;
+    private SysUserService sysUserService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         // 获取表单输入中返回的用户名;
-        String userName = (String) authentication.getPrincipal();
+        String username = (String) authentication.getPrincipal();
         // 获取表单中输入的密码；
         String password = (String) authentication.getCredentials();
         // 这里调用我们的自己写的获取用户的方法；
 //        UserDetails userInfo = customerDetailService.loadUserByUsername(userName);
-        SysUser userInfo = userMapper.findByUsername(userName);
+        SysUserEntity userInfo = sysUserService.loadUserByUsername(username);
         if (userInfo == null) {
             throw new BadCredentialsException("用户名不存在");
         }

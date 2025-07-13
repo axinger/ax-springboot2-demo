@@ -4,22 +4,26 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import com.github.axinger.dto.SysRole;
-import lombok.Data;
-
 /**
  * 系统用户表
+ *
  * @TableName sys_user
  */
-@TableName(value ="sys_user")
+@TableName(value = "sys_user")
 @Data
-public class SysUserEntity implements Serializable {
+public class SysUserEntity implements Serializable, UserDetails {
     /**
      *
      */
@@ -86,4 +90,65 @@ public class SysUserEntity implements Serializable {
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        /// 添加角色
+        List<SimpleGrantedAuthority> authorities = roles
+                .stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .toList();
+        /// 添加权限
+        List<SimpleGrantedAuthority> authorities2 = roles.stream().flatMap(val -> val.getPermissions().stream())
+                .map(val -> new SimpleGrantedAuthority(val.getName())).toList();
+
+        ArrayList<SimpleGrantedAuthority> list = new ArrayList<>();
+        list.addAll(authorities);
+        list.addAll(authorities2);
+        return list;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    /*
+     * 表示判断账户是否过期
+     * */
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    /*
+     * 表示判断账户是否被锁定
+     * */
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    /*
+     * 表示凭证{密码}是否过期
+     * */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    /*
+     * 是否可用
+     * */
+    @Override
+    public boolean isEnabled() {
+        return status == 1;
+    }
 }

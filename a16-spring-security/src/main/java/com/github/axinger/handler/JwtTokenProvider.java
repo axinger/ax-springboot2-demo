@@ -1,8 +1,8 @@
-package com.github.axinger.service;
+package com.github.axinger.handler;
 
 import com.axing.common.util.jwt.JwtHelper;
-import com.github.axinger.dto.SysUser;
-import com.github.axinger.mapper.UserMapper;
+import com.github.axinger.domain.SysUserEntity;
+import com.github.axinger.mapper.SysUserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +19,7 @@ import java.util.Collection;
 public class JwtTokenProvider {
 
     @Autowired
-    private UserMapper userMapper;
+    private SysUserMapper sysUserMapper;
 
     public String generateToken(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -52,7 +52,7 @@ public class JwtTokenProvider {
         if (username == null) {
             throw new BadCredentialsException("用户名不存在");
         }
-        SysUser userInfo = userMapper.findByUsername(username);
+        SysUserEntity userInfo = sysUserMapper.findUserWithRolesAndPermissionsByUsername(username);
         if (userInfo == null) {
             throw new BadCredentialsException("用户名不存在");
         }

@@ -1,7 +1,7 @@
 package com.github.axinger.mapper;
 
-import com.github.axinger.domain.SysPermissionEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.axinger.domain.SysPermissionEntity;
 
 /**
 * @author xing

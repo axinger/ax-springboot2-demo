@@ -12,20 +12,18 @@ import java.io.Serializable;
 import java.util.Collection;
 
 /**
+ * 权限评估器
  * 我们需要自定义对hasPermission()方法的处理，
  * 就需要自定义PermissionEvaluator，创建类CustomPermissionEvaluator，实现PermissionEvaluator接口。
- *
- * @author zhoukebo
- * @date 2018/9/5
  */
 @Component
 public class MyPermissionEvaluator implements PermissionEvaluator {
     /**
      * 自定义验证方法
      *
-     * @param authentication     登录的时候存储的用户信息
-     * @param targetUrl @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第一个参数
-     * @param permission         @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第二个参数
+     * @param authentication 登录的时候存储的用户信息
+     * @param targetUrl      @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第一个参数
+     * @param permission     @PreAuthorize("hasPermission('/hello/**','r')") 中hasPermission的第二个参数
      * @return
      */
     @Override

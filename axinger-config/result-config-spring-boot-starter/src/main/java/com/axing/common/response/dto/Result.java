@@ -25,6 +25,9 @@ public class Result<T> implements Serializable {
     @Schema(title = "是否成功", description = "成功：true；失败：false")
     private Boolean success = false;
 
+    @Schema(title = "状态码", description = "2xx成功")
+    private Integer code;
+
     @Schema(title = "提示信息", description = "错误信息")
     private String msg = "";
 
@@ -34,10 +37,14 @@ public class Result<T> implements Serializable {
     @Schema(title = "返回数据", description = "数据")
     private T data;
 
+    public Boolean getSuccess() {
+        return (code != null && code >= 200 && code < 300);
+    }
 
     public static <T> Result<T> ok(T data) {
         return Result.<T>builder()
-                .success(true)
+                .code(200)
+//                .success(true)
                 .data(data)
                 .build();
     }
@@ -48,15 +55,24 @@ public class Result<T> implements Serializable {
 
     public static <T> Result<T> ok(String msg) {
         return Result.<T>builder()
-                .success(true)
+                .code(200)
+//                .success(true)
                 .msg(msg)
                 .build();
+    }
 
+    public static <T> Result<T> fail(Integer code, String msg) {
+        return Result.<T>builder()
+                .code(code)
+//                .success(false)
+                .msg(msg)
+                .build();
     }
 
     public static <T> Result<T> fail(String msg, Object details) {
         return Result.<T>builder()
-                .success(false)
+                .code(400)
+//                .success(false)
                 .msg(msg)
                 .details(details)
                 .build();
@@ -64,7 +80,8 @@ public class Result<T> implements Serializable {
 
     public static <T> Result<T> fail(String msg) {
         return Result.<T>builder()
-                .success(false)
+                .code(400)
+//                .success(false)
                 .msg(msg)
                 .build();
     }
@@ -73,4 +90,23 @@ public class Result<T> implements Serializable {
         return Result.fail("");
     }
 
+    public static <T> Result<T> success() {
+        return Result.ok("");
+    }
+
+    public static <T> Result<T> success(String msg) {
+        return Result.<T>builder()
+                .code(200)
+//                .success(true)
+                .msg(msg)
+                .build();
+    }
+
+    public static <T> Result<T> success(T data) {
+        return Result.<T>builder()
+                .code(200)
+//                .success(true)
+                .data(data)
+                .build();
+    }
 }

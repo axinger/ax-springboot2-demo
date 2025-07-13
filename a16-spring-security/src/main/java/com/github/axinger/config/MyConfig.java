@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.UnanimousBased;
+import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,8 +31,8 @@ public class MyConfig {
 
     @Autowired
     private MyPermissionEvaluator myPermissionEvaluator;
-    @Autowired
-    private MyAccessDecisionVoter myAccessDecisionVoter;
+//    @Autowired
+//    private MyAccessDecisionVoter myAccessDecisionVoter;
 
     @Bean
     public DefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
@@ -40,12 +41,18 @@ public class MyConfig {
         return handler;
     }
 
-    @Bean
-    public AccessDecisionManager customAccessDecisionManager() {
-        List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
-        decisionVoters.add(myAccessDecisionVoter);
-        return new UnanimousBased(decisionVoters);  // 使用投票机制
-    }
+//    @Bean
+//    public AccessDecisionManager customAccessDecisionManager() {
+//        List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
+//        decisionVoters.add(myAccessDecisionVoter);
+//        return new UnanimousBased(decisionVoters);  // 使用投票机制
+//    }
+
+//    @Bean
+//    public AuthorizationManager authorizationManager() {
+//
+//
+//    }
 
 
     @Bean
@@ -56,13 +63,14 @@ public class MyConfig {
                 .cors()//新加入
                 .and()
                 .csrf().disable() // 取消跨站请求伪造防护
-                .authorizeRequests()
+//                .authorizeRequests()
+                .authorizeHttpRequests()
                 //"/login"不进行权限验证
 //                .antMatchers("/login").permitAll()
 //                .antMatchers("/favicon.ico").permitAll()
                 .anyRequest()
                 .authenticated()   //其他的需要登陆后才能访问
-                .accessDecisionManager(customAccessDecisionManager())  // 自定义权限决策管理器
+//                .accessDecisionManager(customAccessDecisionManager())  // 自定义权限决策管理器
                 .and()
                 .formLogin()
                 .disable()  // 禁用默认的登录表单
