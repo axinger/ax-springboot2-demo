@@ -3,6 +3,7 @@ package com.github.axinger.config;
 import com.github.axinger.model.bean.AppProperties;
 import com.github.axinger.model.bean.MyBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;

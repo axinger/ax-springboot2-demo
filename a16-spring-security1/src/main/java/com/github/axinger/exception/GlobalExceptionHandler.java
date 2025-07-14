@@ -36,8 +36,6 @@ public class GlobalExceptionHandler {
         return Result.fail("token不足: " + e.getMessage());
     }
 
-
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result<Void> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         String message = e.getBindingResult().getAllErrors().stream()

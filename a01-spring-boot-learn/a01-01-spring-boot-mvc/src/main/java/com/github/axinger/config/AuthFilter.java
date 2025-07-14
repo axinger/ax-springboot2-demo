@@ -1,14 +1,20 @@
 package com.github.axinger.config;
 
-import cn.hutool.core.util.IdUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Principal;
 
-@Component
+@Slf4j
+//@Component
+@javax.servlet.annotation.WebFilter
+@Order(1) //多个Filter指定优先级
 public class AuthFilter implements Filter {
 
     @Override
@@ -16,21 +22,44 @@ public class AuthFilter implements Filter {
         // Filter初始化
     }
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("容器级别,优先走1111Filter===============================");
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+        //前置：强制转换为http协议的请求对象、响应对象 （转换原因：要使用子类中特有方法）
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        MyHolder.setUserId(IdUtil.fastSimpleUUID());
-        MyTrackId.setId(IdUtil.getSnowflakeNextId());
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        System.out.println("AuthFilter===============================================================================");
+        //1.context-path及获取请求后面的路径,除去host:port的部分
+        String requestURI = request.getRequestURI();
+        System.out.println("requestURI = " + requestURI);
+        //2.获取请求方法
+        String method = request.getMethod();
+        System.out.println("method = " + method);
+        String pathInfo = request.getPathInfo();
+        System.out.println("pathInfo = " + pathInfo);
+        System.out.println("request.getContextPath() = " + request.getContextPath());
+        System.out.println("request.getQueryString() = " + request.getQueryString());
+//        System.out.println("request.changeSessionId() = " + request.changeSessionId());
+        System.out.println("request.getAuthType() = " + request.getAuthType());
+        try {
+            request.login("admin", "123456");
+            // 登录成功
+            Principal userPrincipal = request.getUserPrincipal();
+            System.out.println("userPrincipal = " + userPrincipal);
+        } catch (ServletException e) {
+            // 登录失败
+            System.out.println("登录失败e = " + e.getMessage());
+        }
 
-        // 获取请求中的token
-//        String token = httpRequest.getHeader("Authorization");
-//
-//
-//        System.out.println("token = " + token);
+        request.logout();
+
+        //3.完整的获取请求url,包含ip
+        String url = request.getRequestURL().toString();
+        System.out.println("url = " + url);
+
+        if ((request.getContextPath() + "/filter/2").equals(requestURI)) {
+            throw new RuntimeException("Filter内部错误");
+        }
 
 
         // 如果token有效，继续请求
