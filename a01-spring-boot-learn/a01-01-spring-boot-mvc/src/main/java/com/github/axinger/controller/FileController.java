@@ -1,23 +1,34 @@
 package com.github.axinger.controller;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.io.resource.ResourceUtil;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
-@RestController
 @Slf4j
+@RestController
+@RequestMapping("/file")
 public class FileController {
 
     // 下载文件-jar中的文件
@@ -52,4 +63,85 @@ public class FileController {
 
     }
 
+
+    /// jar无法获取
+    //org.springframework.util.ResourceUtils
+    @GetMapping("/1")
+    public Object test1() throws Exception {
+        System.out.println("java当前目录,main函数,和springboot 项目不一样: " + System.getProperty("user.dir"));
+        File file = org.springframework.util.ResourceUtils.getFile("classpath:123.json");
+        String path = file.getAbsolutePath();
+        String data = FileUtil.readString(file, StandardCharsets.UTF_8);
+        return Map.of("path", path, "data", data);
+    }
+
+    //org.springframework.core.io.ClassPathResource
+    @GetMapping("/2")
+    public Object test2() throws Exception {
+        ClassPathResource resource = new ClassPathResource("123.json");
+        String path = resource.getPath();
+        @Cleanup InputStream inputStream = resource.getInputStream();
+        String data = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        return Map.of("path", path, "data", data);
+    }
+
+    /// 能获取
+    @GetMapping("/21")
+    public Object test21() throws Exception {
+        ClassPathResource resource = new ClassPathResource("123.json");
+        String data;
+        try (InputStream inputStream = resource.getInputStream()) {
+            data = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        return Map.of("path", resource.getPath(), "data", data);
+    }
+
+    /// 能获取
+    @GetMapping("/3")
+    public Object test3() throws Exception {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("123.json");
+        String data = "";
+        if (inputStream != null) {
+            data = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+        }
+        return Map.of("path", "classpath:123.json", "data", data);
+    }
+
+    @Autowired
+    private ResourceLoader resourceLoader;
+
+    /// 能获取
+    @GetMapping("/31")
+    public Object test31() throws Exception {
+        Resource resource = resourceLoader.getResource("classpath:123.json");
+        String data;
+        try (InputStream inputStream = resource.getInputStream()) {
+            data = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        }
+        return Map.of("path", "classpath:123.json", "data", data);
+    }
+
+    /// 能获取
+    //cn.hutool.core.io.resource
+    @GetMapping("/4")
+    public Object test4() {
+        String data = ResourceUtil.readUtf8Str("123.json");
+
+        //当资源不存在时返回null
+        InputStream inputStream = ResourceUtil.getStreamSafe("123.json");
+        System.out.println("inputStream = " + inputStream);
+
+        URL url = ResourceUtil.getResource("123.json");
+        System.out.println("url = " + url);
+
+        List<URL> urlList = ResourceUtil.getResources("dir1/");
+        System.out.println("urlList = " + urlList);
+
+        cn.hutool.core.io.resource.Resource resource = ResourceUtil.getResourceObj("123.json");
+        URL url1 = resource.getUrl();
+
+
+        String data2 = resource.readUtf8Str();
+        return Map.of("url", url, "url1", url1, "data", data, "data2", data2);
+    }
 }
