@@ -1,14 +1,18 @@
 package com.github.axinger;
 
 
-import com.alibaba.fastjson2.*;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FastJson2Test {
 
@@ -164,13 +168,6 @@ public class FastJson2Test {
         Person person1 = JSONObject.parseObject(jsonString).to(Person.class);
         System.out.println("person1 = " + person1);
     }
-
-
-
-
-
-
-
 
 
     @Test

@@ -5,7 +5,7 @@ import com.github.axinger.model.dto.UserDTO;
 import com.github.axinger.service.UserService;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
 

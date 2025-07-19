@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.val;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,73 +25,61 @@ import java.util.List;
 @TableName(value = "sys_user")
 @Data
 public class SysUserEntity implements Serializable, UserDetails {
+    @Serial
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
     /**
      *
      */
     @TableField(value = "username")
     private String username;
-
     /**
      *
      */
     @TableField(value = "password")
     private String password;
-
     /**
      *
      */
     @TableField(value = "email")
     private String email;
-
     /**
      *
      */
     @TableField(value = "phone")
     private String phone;
-
     /**
      * 0-禁用 1-启用
      */
     @TableField(value = "status")
     private Integer status;
-
     /**
      *
      */
     @TableField(value = "create_time")
     private Date createTime;
-
     /**
      *
      */
     @TableField(value = "update_time")
     private Date updateTime;
-
     /**
      *
      */
     @TableField(value = "version")
     private Long version;
-
     /**
      * 0-未删除 1-已删除
      */
     @TableField(value = "is_deleted")
     private Integer isDeleted;
-
     @TableField(exist = false)
     private List<SysRoleEntity> roles; // 用户拥有的角色集合
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-
 
     @Override
     @JsonIgnore

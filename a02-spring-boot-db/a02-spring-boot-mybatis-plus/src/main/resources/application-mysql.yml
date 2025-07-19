@@ -4,8 +4,8 @@ spring:
     #    url: jdbc:mysql://hadoop102:3306/ax_test01?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 123456
-#    username: ENC(RWzRR1pJfaSLFjgjg2xqig==)
-#    password: ENC(lcvkuMl1WkiShRZJ+Fzlhw==)
+    #    username: ENC(RWzRR1pJfaSLFjgjg2xqig==)
+    #    password: ENC(lcvkuMl1WkiShRZJ+Fzlhw==)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 axinger:

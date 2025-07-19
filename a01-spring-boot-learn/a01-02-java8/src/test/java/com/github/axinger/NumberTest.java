@@ -3,11 +3,9 @@ package com.github.axinger;
 import cn.hutool.core.util.NumberUtil;
 import org.junit.jupiter.api.Test;
 
-import java.io.Console;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.Scanner;
 
 
 /**

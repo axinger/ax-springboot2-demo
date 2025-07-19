@@ -12,7 +12,7 @@
 //
 //import java.util.Collection;
 //
-///**
+/// **
 // * 实现自己的AuthenticationProvider类，用来自定义用户校验机制
 // *
 // * @author zhoukebo

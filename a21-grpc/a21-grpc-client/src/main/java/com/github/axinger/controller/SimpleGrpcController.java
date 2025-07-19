@@ -13,7 +13,6 @@ import com.google.protobuf.Value;
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.netty.shaded.io.netty.channel.ChannelFactory;
 import io.grpc.stub.StreamObserver;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -54,6 +53,8 @@ public class SimpleGrpcController {
     private SimpleGrpc.SimpleFutureStub simpleFutureStub;
     @GrpcClient("a21-grpc-server")
     private SimpleGrpc.SimpleStub simpleStub;
+    @Autowired
+    private GrpcChannelFactory channelFactory;
 
     @GetMapping("/test1")
     public Map<String, Object> sendMessage(final String name) {
@@ -107,9 +108,6 @@ public class SimpleGrpcController {
         System.out.println("message = " + message);
         return message;
     }
-
-    @Autowired
-    private GrpcChannelFactory channelFactory;
 
     @GetMapping("/test5")
     public Object test51() {

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
-* @author xing
-* @description 针对表【sys_user(系统用户表)】的数据库操作Service实现
-* @createDate 2025-07-12 23:48:24
-*/
+ * @author xing
+ * @description 针对表【sys_user(系统用户表)】的数据库操作Service实现
+ * @createDate 2025-07-12 23:48:24
+ */
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserEntity>
-    implements SysUserService{
+        implements SysUserService {
 
     @Override
     public SysUserEntity loadUserByUsername(String username) {

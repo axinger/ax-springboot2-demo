@@ -1,9 +1,11 @@
 package com.github.axinger.domain;
 
-import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.annotation.*;
 import com.github.axinger.model.Gender;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;

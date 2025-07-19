@@ -35,8 +35,9 @@ import java.util.concurrent.TimeUnit;
 class SysPersonServiceTest {
 
     @Autowired
+    PlatformTransactionManager transactionManager;
+    @Autowired
     private SysPersonService sysPersonService;
-
     @Autowired
     private SysPersonMapper sysPersonMapper;
     @Autowired
@@ -128,7 +129,6 @@ class SysPersonServiceTest {
         });
     }
 
-
     //方案一：SqlSessionFactory
     // 流式查询,mysql驱动默认不是流式返回
     @Test
@@ -141,13 +141,9 @@ class SysPersonServiceTest {
         }
     }
 
-
-    @Autowired
-    PlatformTransactionManager transactionManager;
-
     //方案二：TransactionTemplate
     @Test
-    void test_cursor2(){
+    void test_cursor2() {
 
         TransactionTemplate transactionTemplate =
                 new TransactionTemplate(transactionManager);  // 1

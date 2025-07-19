@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Objects;
 
 /**
  * Objects jdk工具类

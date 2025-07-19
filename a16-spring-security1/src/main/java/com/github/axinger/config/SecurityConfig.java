@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    private DynamicPermissionFilter dynamicPermissionFilter; // 您的权限过滤器
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
+    @Autowired
+    private ObjectMapper objectMapper; // Jackson JSON处理器
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -79,9 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-    @Autowired
-    private ObjectMapper objectMapper; // Jackson JSON处理器
 
     private void handleAuthenticationException(HttpServletRequest request,
                                                HttpServletResponse response,

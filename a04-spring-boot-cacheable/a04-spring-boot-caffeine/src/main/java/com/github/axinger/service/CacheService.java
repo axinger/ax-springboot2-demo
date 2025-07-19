@@ -21,13 +21,16 @@ import java.util.Optional;
 @CacheConfig(cacheNames = {"student", "person"})
 public class CacheService {
 
+    @Autowired
+    private CacheManager cacheManager;
+
     /**
      * 查询
      */
 //    @Cacheable(value = "dog", key = "#id")
     @Cacheable(key = "#id")
 //    @Cacheable(keyGenerator = "keyGenerator")
-    public <K, V> V  get(K id) {
+    public <K, V> V get(K id) {
         log.info("查询id={}", id);
         return null;
     }
@@ -56,11 +59,6 @@ public class CacheService {
     public void removeAll() {
         log.info("删除所有");
     }
-
-
-    @Autowired
-    private CacheManager cacheManager;
-
 
     /**
      * 查询某个缓存的所有 key

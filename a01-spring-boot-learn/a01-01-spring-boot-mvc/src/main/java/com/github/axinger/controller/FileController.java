@@ -33,6 +33,9 @@ public class FileController {
 
     // 下载文件-jar中的文件
 
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     @GetMapping("/download")
     public void shenbao(@RequestParam String fileName,
                         HttpServletResponse response) throws Exception {
@@ -62,7 +65,6 @@ public class FileController {
 //        outputStream.close();
 
     }
-
 
     /// jar无法获取
     //org.springframework.util.ResourceUtils
@@ -106,9 +108,6 @@ public class FileController {
         }
         return Map.of("path", "classpath:123.json", "data", data);
     }
-
-    @Autowired
-    private ResourceLoader resourceLoader;
 
     /// 能获取
     @GetMapping("/31")

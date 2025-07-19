@@ -26,7 +26,7 @@ import java.util.Objects;
 @Slf4j
 public class MyOncePerRequestFilter extends OncePerRequestFilter {
 
-    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1","/");
+    public static final List<String> WHITELIST = List.of("/login", "/favicon.ico", "/**/test1", "/");
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Autowired
     private JwtTokenProvider jwtTokenProvider;

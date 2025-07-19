@@ -2,7 +2,6 @@ package com.github.axinger.config;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import com.github.axinger.api.*;
-import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -25,16 +24,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @RestController
 public class ChatService {
 
-    @GrpcClient("a21-grpc-server")
-    private ChatServiceGrpc.ChatServiceStub chatServiceStub;
-
-    @GrpcClient("a21-grpc-server")
-    private ChatServiceGrpc.ChatServiceBlockingStub chatServiceBlockingStub;
-
-    private volatile StreamObserver<ChatRequest> requestObserver;
-    private volatile boolean connected = false;
     private final AtomicBoolean reconnecting = new AtomicBoolean(false);
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    @GrpcClient("a21-grpc-server")
+    private ChatServiceGrpc.ChatServiceStub chatServiceStub;
+    @GrpcClient("a21-grpc-server")
+    private ChatServiceGrpc.ChatServiceBlockingStub chatServiceBlockingStub;
+    private volatile StreamObserver<ChatRequest> requestObserver;
+    private volatile boolean connected = false;
 
     @EventListener(ApplicationReadyEvent.class)
     public void start() {

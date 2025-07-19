@@ -1,18 +1,9 @@
 package com.github.axinger.config;
 
+import io.grpc.*;
+import net.devh.boot.grpc.client.interceptor.GrpcGlobalClientInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.grpc.CallOptions;
-import io.grpc.Channel;
-import io.grpc.ClientCall;
-import io.grpc.ClientInterceptor;
-import io.grpc.ForwardingClientCall;
-import io.grpc.ForwardingClientCallListener;
-import io.grpc.Metadata;
-import io.grpc.MethodDescriptor;
-import io.grpc.Status;
-import net.devh.boot.grpc.client.interceptor.GrpcGlobalClientInterceptor;
 
 /**
  * Example {@link ClientInterceptor} that logs all called methods in INFO log level, also request and response messages,

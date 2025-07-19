@@ -25,7 +25,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         System.out.println("登录验证失败");
-        Map<String,String> map=new HashMap<>(2);
+        Map<String, String> map = new HashMap<>(2);
         map.put("code", "10001");
         map.put("msg", exception.getMessage());
         response.setContentType("application/json;charset=UTF-8");

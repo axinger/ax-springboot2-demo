@@ -128,6 +128,7 @@
         <module>a43-camel</module>
         <module>a36-logback2</module>
         <module>a35-flowable1</module>
+        <module>a16-spring-security2</module>
     </modules>
 
     <dependencyManagement>

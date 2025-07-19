@@ -18,14 +18,16 @@ import java.util.Map;
  */
 @Component
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-    /**Json转化工具*/
+    /**
+     * Json转化工具
+     */
     @Autowired
     private ObjectMapper objectMapper;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        SysUserEntity userDetails = (SysUserEntity)authentication.getPrincipal();
-        Map<String,String> map=new HashMap<>(2);
+        SysUserEntity userDetails = (SysUserEntity) authentication.getPrincipal();
+        Map<String, String> map = new HashMap<>(2);
         map.put("code", "200");
         map.put("msg", "登录成功");
         response.setContentType("application/json;charset=UTF-8");

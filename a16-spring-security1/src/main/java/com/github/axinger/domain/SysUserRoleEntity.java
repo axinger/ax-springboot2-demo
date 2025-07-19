@@ -12,54 +12,48 @@ import java.util.Date;
 
 /**
  * 用户角色关联表
+ *
  * @TableName sys_user_role
  */
-@TableName(value ="sys_user_role")
+@TableName(value = "sys_user_role")
 @Data
 public class SysUserRoleEntity implements Serializable {
+    @Serial
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      *
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
     /**
      *
      */
     @TableField(value = "user_id")
     private Integer userId;
-
     /**
      *
      */
     @TableField(value = "role_id")
     private Integer roleId;
-
     /**
      *
      */
     @TableField(value = "create_time")
     private Date createTime;
-
     /**
      *
      */
     @TableField(value = "update_time")
     private Date updateTime;
-
     /**
      *
      */
     @TableField(value = "version")
     private Long version;
-
     /**
      *
      */
     @TableField(value = "is_deleted")
     private Integer isDeleted;
-
-    @Serial
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

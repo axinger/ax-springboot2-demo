@@ -17,19 +17,18 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class PermissionServiceImpl implements PermissionService {
 
-    @Autowired
-    private SysPermissionMapper permissionMapper;
-
     // 缓存路径-权限映射关系
     private final Map<String, String> pathPermissionCache = new ConcurrentHashMap<>();
+    @Autowired
+    private SysPermissionMapper permissionMapper;
 
     @PostConstruct
     public void initPathPermissionCache() {
         List<SysPermissionEntity> permissions = permissionMapper.selectList(
-            new QueryWrapper<SysPermissionEntity>()
+                new QueryWrapper<SysPermissionEntity>()
 //                .eq("type", 3) // API类型权限
-                .eq("status", 1)
-                .eq("is_deleted", 0)
+                        .eq("status", 1)
+                        .eq("is_deleted", 0)
         );
 
         for (SysPermissionEntity permission : permissions) {

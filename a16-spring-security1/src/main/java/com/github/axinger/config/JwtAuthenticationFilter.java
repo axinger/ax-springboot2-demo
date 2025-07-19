@@ -3,19 +3,15 @@ package com.github.axinger.config;
 import com.github.axinger.service.PermissionService;
 import com.github.axinger.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
@@ -88,6 +84,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throw new AccessDeniedException("权限不足，无法访问");
         }
 
+        //把当前用户信息放入Security全局缓存中
+//        SecurityContextHolder.getContext().setAuthentication(getAuth(claims));
         chain.doFilter(request, response);
     }
 

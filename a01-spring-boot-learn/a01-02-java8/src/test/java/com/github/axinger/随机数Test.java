@@ -1,10 +1,10 @@
 package com.github.axinger;
 
+import org.junit.jupiter.api.Test;
+
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
-import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("all")
 public class 随机数Test {

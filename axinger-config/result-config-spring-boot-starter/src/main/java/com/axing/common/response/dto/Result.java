@@ -1,10 +1,8 @@
 package com.axing.common.response.dto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -36,10 +34,6 @@ public class Result<T> implements Serializable {
 
     @Schema(title = "返回数据", description = "数据")
     private T data;
-
-    public Boolean getSuccess() {
-        return (code != null && code >= 200 && code < 300);
-    }
 
     public static <T> Result<T> ok(T data) {
         return Result.<T>builder()
@@ -108,5 +102,15 @@ public class Result<T> implements Serializable {
 //                .success(true)
                 .data(data)
                 .build();
+    }
+
+    public Boolean getSuccess() {
+        return (code != null && code >= 200 && code < 300);
+    }
+
+    @SneakyThrows
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(this);
     }
 }

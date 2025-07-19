@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 class Phone {
 
+    private final Object lock = new Object();
+
     @SneakyThrows
     public synchronized void sendSMS() {
         TimeUnit.SECONDS.sleep(4);
@@ -23,8 +25,6 @@ class Phone {
             System.out.println("synchronized(this)");
         }
     }
-
-    private final Object lock = new Object();
 
     @Locked // 默认使用lock字段
     public void sendWx() {
