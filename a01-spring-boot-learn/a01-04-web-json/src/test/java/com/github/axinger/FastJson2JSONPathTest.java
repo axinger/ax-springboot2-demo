@@ -5,6 +5,8 @@ import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.JSONPath;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 //https://alibaba.github.io/fastjson2/jsonpath_cn
 public class FastJson2JSONPathTest {
 
@@ -203,6 +205,13 @@ public class FastJson2JSONPathTest {
         System.out.println("数组选择,值等于 = " + JSONPath.eval(root, "$.books[?(@.id = 2 )]"));
         System.out.println("数组选择,age = 11值等于返回list = " + JSONPath.eval(root, "$.books[?(@.age = 11 )]"));
         System.out.println("数组选择,age = 11值等于返回list,取值0,取值不到就是null = " + JSONPath.eval(root, "$.books[?(@.age = 15 )][11]"));
+        List<Object> books = (List<Object>) JSONPath.eval(root, "$.books");
+        for (int i = 0; i < books.size(); i++) {
+            JSONObject book = (JSONObject) books.get(i);
+            if (book.getIntValue("age") == 11) {
+                System.out.println("找到符合条件的元素下标：" + i);
+            }
+        }
 
         System.out.println("所有的值,深度查找 = " + JSONPath.eval(root, "$..id"));
 
