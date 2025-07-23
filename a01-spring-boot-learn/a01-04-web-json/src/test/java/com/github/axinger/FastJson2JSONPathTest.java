@@ -201,6 +201,8 @@ public class FastJson2JSONPathTest {
         System.out.println("数组选择,in范围 = " + JSONPath.eval(root, "$.books[?(@.id in (2,3))]"));
 
         System.out.println("数组选择,值等于 = " + JSONPath.eval(root, "$.books[?(@.id = 2 )]"));
+        System.out.println("数组选择,age = 11值等于返回list = " + JSONPath.eval(root, "$.books[?(@.age = 11 )]"));
+        System.out.println("数组选择,age = 11值等于返回list,取值0,取值不到就是null = " + JSONPath.eval(root, "$.books[?(@.age = 15 )][11]"));
 
         System.out.println("所有的值,深度查找 = " + JSONPath.eval(root, "$..id"));
 
