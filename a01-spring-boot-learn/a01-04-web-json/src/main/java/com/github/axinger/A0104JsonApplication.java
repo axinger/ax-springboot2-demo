@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class A0123JsonApplication {
+public class A0104JsonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(A0123JsonApplication.class, args);
+        SpringApplication.run(A0104JsonApplication.class, args);
     }
 }

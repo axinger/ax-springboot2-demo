@@ -59,7 +59,9 @@ public class FastJson2Test {
                 ))
                 .build();
 
-        Map map = JSON.parseObject(JSON.toJSONString(person), Map.class);
+        TypeReference<Map<String, Object>> typeReference = new TypeReference<>() {
+        };
+        Map<String, Object> map = JSON.parseObject(JSON.toJSONString(person),typeReference);
 
         JSONObject jsonObject = JSONObject.from(map);
 

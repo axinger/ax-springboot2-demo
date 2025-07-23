@@ -1,6 +1,0 @@
-spring:
-  jackson:
-    date-format: yyyy年MM月dd HH:mm:ss
-    time-zone: GMT+8
-  serialization:
-    writer:
