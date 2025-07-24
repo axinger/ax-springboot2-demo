@@ -1,20 +1,21 @@
-package com.github.axinger.entity;
+package com.github.axinger;
 
 import com.alibaba.fastjson2.JSON;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.axinger.entity.Person;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
 class PersonTest {
 
-    public static void main(String[] args) throws JsonProcessingException {
+    @Test
+    void test1() throws Exception {
 
-
-        final Person person = Person.builder()
+        final com.github.axinger.entity.Person person = com.github.axinger.entity.Person.builder()
                 .string2("jim")
                 .list2(Arrays.asList("a", "b"))
-                .map2(new HashMap<String, Object>() {{
+                .map2(new HashMap<>() {{
                     put("age", 10);
                 }})
                 .aBoolean2(true)
@@ -36,7 +37,6 @@ class PersonTest {
         final List<Person> list = Collections.singletonList(person);
         final String listStr = JSON.toJSONString(list);
         System.out.println("listStr = " + listStr);
-
 
     }
 

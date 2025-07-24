@@ -1,4 +1,4 @@
-package com.github.axinger.JsonMixin;
+package com.github.axinger;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;

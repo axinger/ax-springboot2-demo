@@ -1,7 +1,9 @@
-package com.github.axinger.entity;
+package com.github.axinger;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.github.axinger.entity.Dog;
+import com.github.axinger.entity.Person;
 import org.junit.jupiter.api.Test;
 
 class DogTest {
@@ -23,12 +25,12 @@ class DogTest {
         System.out.println("builder JSON.toJSONString(dog1) = " + JSON.toJSONString(dog1));
 
 
-        Person person = new Person();
+        com.github.axinger.entity.Person person = new com.github.axinger.entity.Person();
         person.setAaTransient("transient修改不被序列化");
         System.out.println("JSON.toJSONString(person) = " + JSON.toJSONString(person));
 
 
-        final Person person2 = Person.builder()
+        final com.github.axinger.entity.Person person2 = Person.builder()
                 .aTransient("transient修改不被序列化")
                 .aaTransient("transient修改不被序列化")
                 .build();
