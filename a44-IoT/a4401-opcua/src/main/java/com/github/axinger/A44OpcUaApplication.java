@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class A26PrometheusApplication {
 
+public class A44OpcUaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(A26PrometheusApplication.class, args);
+        SpringApplication.run(A44OpcUaApplication.class, args);
     }
 }
