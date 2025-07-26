@@ -19,7 +19,7 @@
         <module>a4402-mqtt</module>
         <module>a4403-mqtt2</module>
         <module>a4404-s7</module>
-        <module>a4405-modbus</module>
+        <module>a4404-modbus</module>
     </modules>
 
 </project>
