@@ -10,7 +10,5 @@ import org.springframework.stereotype.Component;
 @Component
 @MessagingGateway(defaultRequestChannel = MqttProviderConfig.MQTT_MESSAGE_CHANNEL)
 public interface MqttTemplate {
-    void push(@Header(MqttHeaders.TOPIC) String topic,
-              @Header(MqttHeaders.QOS) int qos,
-              @Payload Object data);
+    void push(@Header(MqttHeaders.TOPIC) String topic, @Header(MqttHeaders.QOS) int qos, @Payload Object data);
 }
