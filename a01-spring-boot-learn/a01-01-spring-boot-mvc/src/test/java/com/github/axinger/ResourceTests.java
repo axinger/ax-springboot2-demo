@@ -23,6 +23,7 @@ public class ResourceTests {
     public void test1() throws Exception {
         System.out.println("java当前目录,main函数,和springboot 项目不一样: " + System.getProperty("user.dir"));
 
+        /// 不能用于生产
         File file = ResourceUtils.getFile("classpath:123.json");
         String path1 = file.getAbsolutePath();
 
@@ -30,7 +31,6 @@ public class ResourceTests {
 
         String read = FileUtil.readString(file, StandardCharsets.UTF_8);
         System.out.println("read = " + read);
-
         // 读取服务器文件
         File file1 = ResourceUtils.getFile("file:/opt/234.json");
         String read2 = FileUtil.readString(file1, StandardCharsets.UTF_8);
