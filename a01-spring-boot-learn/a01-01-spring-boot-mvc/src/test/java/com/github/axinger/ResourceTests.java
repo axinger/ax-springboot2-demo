@@ -30,6 +30,13 @@ public class ResourceTests {
 
         String read = FileUtil.readString(file, StandardCharsets.UTF_8);
         System.out.println("read = " + read);
+
+        // 读取服务器文件
+        File file1 = ResourceUtils.getFile("file:/opt/234.json");
+        String read2 = FileUtil.readString(file1, StandardCharsets.UTF_8);
+        System.out.println("read2 = " + read2);
+//        File file1 = ResourceUtils.getFile("http:/opt/234.json");
+
     }
 
     //org.springframework.core.io.ClassPathResource
