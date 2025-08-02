@@ -54,6 +54,9 @@ public class MapTest {
         Map<Object, Object> map = new HashMap<>();
         map.put("d", null);
         System.out.println("map = " + map);
+        ///  可以
+        map.put(null, null);
+        System.out.println("map = " + map);
     }
 
     @Test

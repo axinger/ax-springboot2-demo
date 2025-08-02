@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ListTest {
 
@@ -21,12 +22,27 @@ public class ListTest {
 //        });
 
         for (Integer integer : Arrays.asList(1, 2, 3, 4)) {
-
             System.out.println("val = " + integer);
             if (integer == 2) {
                 break;
             }
         }
+
+        List<Object> list = new ArrayList<>();
+        list.add(1);
+        list.add(null);
+        list.add(null);
+        System.out.println("list = " + list);
+
+
+        List<Object> list2 = new ArrayList<>(Collections.nCopies(3, null));
+        System.out.println("list2 = " + list2);
+
+
+        List<Object> list3 = IntStream.range(0, 3)
+                .mapToObj(i -> null)
+                .toList();
+        System.out.println("list3 = " + list3);
     }
 
     @Test
