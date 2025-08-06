@@ -23,17 +23,4 @@ public class CompareUtilTests {
         System.out.println("compare = " + compare);
     }
 
-    @Test
-    void test3() {
-        int compare2 = VersionComparator.INSTANCE.compare("1", "2");
-        System.out.println("compare2 = " + compare2);
-
-        // -1
-        int compare = VersionComparator.INSTANCE.compare("1.12.1", "1.12.1c");
-
-        System.out.println("compare = " + compare);
-
-        int compare1 = VersionComparator.INSTANCE.compare("1.0.2", "1.0.10");
-        System.out.println("compare1 = " + compare1);
-    }
 }
