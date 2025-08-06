@@ -48,20 +48,4 @@ public class StrTests {
         System.out.println("format = " + format);
 
     }
-
-    @Test
-    void test_4() {
-
-        // 版本号比较
-        System.out.println(VersionComparator.INSTANCE.compare("1.1", "1.12"));
-        System.out.println(VersionComparator.INSTANCE.compare("1.10", "1.12"));
-        System.out.println(VersionComparator.INSTANCE.compare("1.1", "1.1.2"));
-    }
-
-    @Test
-    void test5() {
-
-
-    }
-
 }
