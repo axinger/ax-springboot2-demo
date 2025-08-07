@@ -5,10 +5,15 @@ import com.github.axinger.api.MyRequest;
 import com.github.axinger.api.MyResponse;
 import com.github.axinger.api.MyStructDto;
 import com.github.axinger.api.SimpleGrpc;
+import com.github.axinger.config.GrpcHeaderUtil;
+import com.github.axinger.config.HeaderServerInterceptor;
 import com.google.protobuf.ListValue;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
+import io.grpc.Context;
+import io.grpc.Metadata;
+import io.grpc.ServerInterceptors;
 import io.grpc.stub.StreamObserver;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -36,10 +41,33 @@ public class SimpleGrpcSimpleService extends SimpleGrpc.SimpleImplBase {
 
     private static final Map<String, StreamObserver<MyResponse>> activeClients = new ConcurrentHashMap<>();
 
+    private static final Metadata.Key<String> CUSTOM_HEADER = Metadata.Key.of("userName", Metadata.ASCII_STRING_MARSHALLER);
+
     @Override
     public void sendMessage(MyRequest request, StreamObserver<MyResponse> responseObserver) {
 
-        log.info("sendMessage={}", request.getUserId());
+        Map<String, String> headersMap = new HashMap<>();
+        headersMap.put("content-type", GrpcHeaderUtil.getHeader("content-type"));
+        headersMap.put("authorization", GrpcHeaderUtil.getHeader("authorization"));
+        headersMap.put("clientId", GrpcHeaderUtil.getHeader("client-id"));
+        headersMap.put("header-user-name", GrpcHeaderUtil.getHeader("header-user-name"));
+        headersMap.put("user-agent", GrpcHeaderUtil.getHeader("user-agent"));
+
+        log.info("服务端获取请求头={}", JSON.toJSONString(headersMap));
+
+
+//        Context.Key<Metadata> HEADER_KEY =GrpcHeaderUtil.HEADERS_KEY;
+//        Context.Key<Metadata> HEADER_KEY = Context.current().key("my-grpc-headers");
+        Context.Key<Metadata> HEADER_KEY = Context.key("my-grpc-headers");
+        Metadata headers = HEADER_KEY.get();
+        if (headers != null){
+            String authorization = headers.get(Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER));
+            System.out.println("authorization = " + authorization);
+        }else {
+            System.err.println("headers null============");
+        }
+
+        log.info("getUserId={}", request.getUserId());
         MyResponse response = MyResponse.newBuilder()
                 .setMessage("SimpleGrpc.SimpleImplBase#sendMessage,返回" + request.getUserId())
                 .setResult(1)

@@ -10,9 +10,8 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.StringValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
-import io.grpc.Channel;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
+import io.grpc.*;
+import io.grpc.stub.MetadataUtils;
 import io.grpc.stub.StreamObserver;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -59,7 +58,15 @@ public class SimpleGrpcController {
     @GetMapping("/test1")
     public Map<String, Object> sendMessage(final String name) {
         try {
-            final MyResponse response = simpleBlockingStub.sendMessage(MyRequest.newBuilder().setUserId(name).build());
+            // 客户端设置请求头
+            Metadata metadata = new Metadata();
+            metadata.put(Metadata.Key.of("header-user-name", Metadata.ASCII_STRING_MARSHALLER),name);
+            ClientInterceptor interceptor = MetadataUtils.newAttachHeadersInterceptor(metadata);
+
+            final MyResponse response = simpleBlockingStub
+                    .withInterceptors(interceptor)
+                    .sendMessage(MyRequest.newBuilder().setUserId(name).build());
+
 
             Map<String, Object> map = new HashMap<>();
 
