@@ -1,6 +1,9 @@
 package com.github.axinger.server;
 
-import com.github.axinger.api.*;
+import com.github.axinger.api.ResponseOuterClass;
+import com.github.axinger.api.ResponsePayloadOuterClass;
+import com.github.axinger.api.UserOuterClass;
+import com.github.axinger.api.UserServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -34,7 +37,7 @@ public class UserServiceGrpcUserService extends UserServiceGrpc.UserServiceImplB
                 .build();
 
         ResponseOuterClass.Response response = ResponseOuterClass.Response.newBuilder()
-                .setCode(StatusCodeOuterClass.StatusCode.SUCCESS)
+                .setCode(com.github.axinger.api.StatusCodeOuterClass.StatusCode.SUCCESS)
                 .setMessage("success")
                 .setPayload(payload)
                 .build();

@@ -130,6 +130,7 @@
         <module>a35-flowable1</module>
         <module>a16-spring-security2</module>
         <module>a44-IoT</module>
+        <module>a01-spring-boot-learn/a01-12-sse</module>
     </modules>
 
     <dependencyManagement>
@@ -514,28 +515,24 @@
                 <version>3.17.0</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>4.5.0</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
                 <version>1.27.1</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
                 <version>1.13.1</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>

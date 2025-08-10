@@ -1,6 +1,11 @@
 package com.github.axinger.server;
 
 import com.github.axinger.api.*;
+import com.github.axinger.api.ChatHeartbeat;
+import com.github.axinger.api.ChatRequest;
+import com.github.axinger.api.ChatResponse;
+import com.github.axinger.api.ChatServiceGrpc;
+import com.github.axinger.api.SendCode;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
@@ -106,7 +111,7 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
     }
 
     @Override
-    public void sendMessage(ChatRequest request, StreamObserver<ChatMessageResponse> responseObserver) {
+    public void sendMessage(ChatRequest request, StreamObserver<com.github.axinger.api.ChatMessageResponse> responseObserver) {
 
         String userId = request.getUserId();
         String toUserId = request.getToUserId();
@@ -114,7 +119,7 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
         boolean b = pushToClient(toUserId, message);
 
-        responseObserver.onNext(ChatMessageResponse.newBuilder().setUserId(userId).setToUserId(toUserId).setSendCode(b ? SendCode.SUCCESS : SendCode.FAILURE).build());
+        responseObserver.onNext(com.github.axinger.api.ChatMessageResponse.newBuilder().setUserId(userId).setToUserId(toUserId).setSendCode(b ? com.github.axinger.api.SendCode.SUCCESS : SendCode.FAILURE).build());
         responseObserver.onCompleted();
     }
 
