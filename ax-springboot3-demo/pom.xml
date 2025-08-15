@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.github.axinger</groupId>
-    <artifactId>a23-oauth2</artifactId>
+    <artifactId>ax-springboot3-demo</artifactId>
     <version>2025.03.01-3.4</version>
     <packaging>pom</packaging>
-
+    <name>springboot3-demo-${project.version}</name>
 
     <!--统一管理jar包版本-->
     <properties>
@@ -38,10 +38,9 @@
     </properties>
 
 
+
     <modules>
-        <module>oauth2-server</module>
-        <module>oauth2-resource</module>
-        <module>oauth2-client</module>
+        <module>a23-oauth2</module>
     </modules>
 
 

@@ -27,6 +27,7 @@
         <module>a01-10-jdk17</module>
         <module>a01-11-rxjava</module>
         <module>a01-12-spring-web-flux</module>
+        <module>a01-12-sse</module>
         <module>a01-13graphics</module>
         <module>a01-14-lombok</module>
         <module>a01-15-async</module>

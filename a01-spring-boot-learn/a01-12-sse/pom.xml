@@ -2,14 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.axinger</groupId>
-        <artifactId>ax-springboot2-demo</artifactId>
+        <artifactId>a01-spring-boot-learn</artifactId>
         <version>2025.08.01-2.7</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
-
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>a01-12-sse</artifactId>
 
     <dependencies>
