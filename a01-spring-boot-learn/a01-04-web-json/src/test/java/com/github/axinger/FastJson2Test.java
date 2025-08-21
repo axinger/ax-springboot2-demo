@@ -7,6 +7,7 @@ import com.alibaba.fastjson2.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.axinger.dto.Gender;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +46,7 @@ public class FastJson2Test {
         Person person = Person.builder()
                 .id("1")
                 .name("jin")
+                .gender(Gender.MALE)
                 .books(List.of(
 
                         Book.builder()
@@ -59,15 +61,34 @@ public class FastJson2Test {
                 ))
                 .build();
 
+        String jsonString = JSON.toJSONString(person);
+        System.out.println("jsonString = " + jsonString);
+
         TypeReference<Map<String, Object>> typeReference = new TypeReference<>() {
         };
-        Map<String, Object> map = JSON.parseObject(JSON.toJSONString(person),typeReference);
+        Map<String, Object> map = JSON.parseObject(jsonString, typeReference);
+        System.out.println("转泛型map = " + map);
+
+        JSONObject jsonObject1 = JSONObject.from(person);
+        System.out.println("jsonObject1 = " + jsonObject1);
+
 
         JSONObject jsonObject = JSONObject.from(map);
+        System.out.println("jsonObject = " + jsonObject);
+
+        String string = """
+                {"age":0,"books":[{"id":"1","name":"西游记"},{"id":"2","name":"水浒传"}],"gender":"男","id":"1","name":"jin"}
+                """;
+        Person person1 = JSON.parseObject(string, Person.class);
+        System.out.println("person1 = " + person1);
+        System.out.println("person1.getGender = " + person1.getGender());
+        System.out.println("person1.getGender = " + person1.getGender().getCode());
+        System.out.println("person1.getGender = " + person1.getGender().getDesc());
+
 
 //        JSONObject jsonObject = JSON.parseObject(JSON.toJSONString(person), JSONObject.class);
 
-
+        System.out.println("===================================");
         String book1Name = jsonObject.getJSONArray("books").getJSONObject(1).getString("name");
         System.out.println("book1Name = " + book1Name);
         jsonObject.getJSONArray("books").getJSONObject(1).put("name", "tom");

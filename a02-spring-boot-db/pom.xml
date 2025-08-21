@@ -13,22 +13,33 @@
     <artifactId>a02-spring-boot-db</artifactId>
 
     <modules>
-        <module>a02-spring-boot-mybatis-plus</module>
-        <module>a02-spring-boot-mybatis-plus-dynamic</module>
-        <module>a02-spring-boot-data-jpa</module>
-        <module>db-mysql-sys</module>
-        <module>a02-spring-boot-data-mongodb</module>
-        <module>a02-spring-boot-iotdb</module>
-        <module>a02-spring-boot-postgres</module>
-        <module>a02-spring-boot-mybatis-flex</module>
-        <module>a02-03-dynamic-atomikos</module>
         <module>a02-01-dynamic-custom</module>
         <module>a02-02-sync-transaction</module>
+        <module>a02-03-dynamic-atomikos</module>
         <module>a02-04-narayana-jta</module>
+        <module>a02-05-spring-boot-data-jpa</module>
+        <module>a02-06-spring-boot-mybatis</module>
+        <module>a02-07-spring-boot-mybatis-plus</module>
+        <module>a02-08-spring-boot-mybatis-plus-dynamic</module>
+        <module>a02-09-spring-boot-mybatis-flex</module>
+        <module>a02-10-spring-boot-postgres</module>
+        <module>a02-11-spring-boot-data-mongodb</module>
+        <module>a02-12-spring-boot-iotdb</module>
+        <module>a02-db-sys-mybatis</module>
+        <module>a02-db-sys-flyway</module>
         <module>db-test1</module>
         <module>db-test2</module>
         <module>db-test21</module>
-        <module>a02-spring-boot-mybatis</module>
     </modules>
 
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>a02-db-sys-mybatis</artifactId>
+                <version>${axinger.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

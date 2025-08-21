@@ -1,6 +1,7 @@
 package com.github.axinger;
 
 
+import com.github.axinger.dto.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class Person {
     private String name;
     private int age;
 
+    private Gender gender;
     private List<Book> books;
 }
