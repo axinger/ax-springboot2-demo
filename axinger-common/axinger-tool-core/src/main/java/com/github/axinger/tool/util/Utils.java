@@ -1,4 +1,4 @@
-package com.axing.common.util.utils;
+package com.github.axinger.tool.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

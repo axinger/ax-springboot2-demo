@@ -272,14 +272,14 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>db-mysql-sys</artifactId>
+                <artifactId>A07mall-api</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>A07mall-api</artifactId>
-                <version>${axinger.version}</version>
+                <artifactId>axinger-tool-core</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->

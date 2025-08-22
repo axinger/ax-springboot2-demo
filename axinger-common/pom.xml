@@ -21,6 +21,7 @@
         <module>request-log-spring-boot-starter</module>
         <module>excel-spring-boot-starter</module>
         <module>oos-spring-boot-starter</module>
+        <module>axinger-tool-core</module>
     </modules>
 
     <dependencies>
