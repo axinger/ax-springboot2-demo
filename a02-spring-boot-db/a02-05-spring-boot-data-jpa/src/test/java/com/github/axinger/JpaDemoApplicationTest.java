@@ -3,8 +3,8 @@ package com.github.axinger;
 import com.alibaba.fastjson2.JSON;
 import com.github.axinger.dao.*;
 import com.github.axinger.dto.Gender;
-import com.github.axinger.entity.SchoolStudent;
-import com.github.axinger.entity.SchoolSubject;
+import com.github.axinger.entity.EduCourse;
+import com.github.axinger.entity.EduStudent;
 import com.github.axinger.entity.SysUser;
 import com.github.axinger.entity.SysUserAddress;
 import com.google.common.collect.Lists;
@@ -38,10 +38,10 @@ class JpaDemoApplicationTest {
     SysUserAddressDTO sysUserAddressDTO;
 
     @Autowired
-    SchoolSubjectDAO subjectDao;
+    EduCourseDAO subjectDao;
 
     @Autowired
-    SchoolStudentDAO studentDao;
+    EduStudentDAO studentDao;
 
     /**
      * 2.一对多 Users 有多个 Address
@@ -222,84 +222,84 @@ class JpaDemoApplicationTest {
 
 
     @Test
-    void ManyToMany_saveSchoolSubject() {
+    void ManyToMany_saveEduCourse() {
 
 
-        SchoolSubject SchoolSubject1 = new SchoolSubject();
-        SchoolSubject1.setId(1L);
-        SchoolSubject1.setName("语文");
+        EduCourse EduCourse1 = new EduCourse();
+        EduCourse1.setId(1L);
+        EduCourse1.setName("语文");
 
-        SchoolSubject SchoolSubject2 = new SchoolSubject();
-        SchoolSubject2.setId(2L);
-        SchoolSubject2.setName("数学");
+        EduCourse EduCourse2 = new EduCourse();
+        EduCourse2.setId(2L);
+        EduCourse2.setName("数学");
 
-        SchoolSubject SchoolSubject3 = new SchoolSubject();
-        SchoolSubject3.setId(3L);
-        SchoolSubject3.setName("英语");
+        EduCourse EduCourse3 = new EduCourse();
+        EduCourse3.setId(3L);
+        EduCourse3.setName("英语");
 
-        SchoolSubject SchoolSubject4 = new SchoolSubject();
-        SchoolSubject4.setId(4L);
-        SchoolSubject4.setName("化学");
+        EduCourse EduCourse4 = new EduCourse();
+        EduCourse4.setId(4L);
+        EduCourse4.setName("化学");
 
-        subjectDao.saveAll(Lists.newArrayList(SchoolSubject1, SchoolSubject2, SchoolSubject3, SchoolSubject4));
+        subjectDao.saveAll(Lists.newArrayList(EduCourse1, EduCourse2, EduCourse3, EduCourse4));
     }
 
     @Test
     void ManyToMany_saveStudent() {
 
-        SchoolStudent student1 = new SchoolStudent();
+        EduStudent student1 = new EduStudent();
         student1.setId(1L);
         student1.setName("学生1");
 
-        SchoolStudent student2 = new SchoolStudent();
+        EduStudent student2 = new EduStudent();
         student2.setId(2L);
         student2.setName("学生2");
         studentDao.saveAll(Lists.newArrayList(student1, student2));
     }
 
     @Test
-    void ManyToMany_saveStudentSchoolSubject() {
+    void ManyToMany_saveStudentEduCourse() {
 
-        SchoolStudent student1 = new SchoolStudent();
+        EduStudent student1 = new EduStudent();
         student1.setId(1L);
         student1.setName("学生1");
 
-        SchoolStudent student2 = new SchoolStudent();
+        EduStudent student2 = new EduStudent();
         student2.setId(2L);
         student2.setName("学生2");
 
-        SchoolSubject SchoolSubject1 = new SchoolSubject();
-        SchoolSubject1.setId(1L);
-        SchoolSubject1.setName("语文");
+        EduCourse EduCourse1 = new EduCourse();
+        EduCourse1.setId(1L);
+        EduCourse1.setName("语文");
 
-        SchoolSubject SchoolSubject2 = new SchoolSubject();
-        SchoolSubject2.setId(2L);
-        SchoolSubject2.setName("数学");
+        EduCourse EduCourse2 = new EduCourse();
+        EduCourse2.setId(2L);
+        EduCourse2.setName("数学");
 
-        SchoolSubject SchoolSubject3 = new SchoolSubject();
-        SchoolSubject3.setId(3L);
-        SchoolSubject3.setName("英语");
+        EduCourse EduCourse3 = new EduCourse();
+        EduCourse3.setId(3L);
+        EduCourse3.setName("英语");
 
-        SchoolSubject SchoolSubject4 = new SchoolSubject();
-        SchoolSubject4.setId(4L);
-        SchoolSubject4.setName("化学");
-
-
-        SchoolSubject SchoolSubject5 = new SchoolSubject();
-        SchoolSubject5.setId(5L);
-        SchoolSubject5.setName("物理");
-        subjectDao.saveAndFlush(SchoolSubject5);
+        EduCourse EduCourse4 = new EduCourse();
+        EduCourse4.setId(4L);
+        EduCourse4.setName("化学");
 
 
-        SchoolSubject SchoolSubject6 = new SchoolSubject();
-        SchoolSubject6.setId(6L);
-        SchoolSubject6.setName("生物");
-        subjectDao.saveAndFlush(SchoolSubject6);
+        EduCourse EduCourse5 = new EduCourse();
+        EduCourse5.setId(5L);
+        EduCourse5.setName("物理");
+        subjectDao.saveAndFlush(EduCourse5);
 
-        // id 为 1 的学生选修了 SchoolSubject1，SchoolSubject2 两门课
-        // id 为 2 的学生选修了 SchoolSubject3，SchoolSubject4 两门课
-        student1.setSchoolSubjectList(Lists.newArrayList(SchoolSubject1, SchoolSubject2, SchoolSubject5, SchoolSubject6));
-        student2.setSchoolSubjectList(Lists.newArrayList(SchoolSubject3, SchoolSubject4));
+
+        EduCourse EduCourse6 = new EduCourse();
+        EduCourse6.setId(6L);
+        EduCourse6.setName("生物");
+        subjectDao.saveAndFlush(EduCourse6);
+
+        // id 为 1 的学生选修了 EduCourse1，EduCourse2 两门课
+        // id 为 2 的学生选修了 EduCourse3，EduCourse4 两门课
+        student1.setCourses(Lists.newArrayList(EduCourse1, EduCourse2, EduCourse5, EduCourse6));
+        student2.setCourses(Lists.newArrayList(EduCourse3, EduCourse4));
 
         studentDao.saveAll(Lists.newArrayList(student1, student2));
 
@@ -309,27 +309,27 @@ class JpaDemoApplicationTest {
     }
 
     @Test
-    void manyToMany_updateSchoolSubject() {
-        Optional<SchoolStudent> byId = studentDao.findById(2);
-        SchoolStudent student = byId.get();
+    void manyToMany_updateEduCourse() {
+        Optional<EduStudent> byId = studentDao.findById(2);
+        EduStudent student = byId.get();
         // 删除一门课
-        student.getSchoolSubjectList().remove(0);
+        student.getCourses().removeFirst();
 
         // 新增一门课
-        SchoolSubject SchoolSubject = new SchoolSubject();
-        SchoolSubject.setId(5L);
-        SchoolSubject.setName("物理");
-        subjectDao.save(SchoolSubject);
+        EduCourse EduCourse = new EduCourse();
+        EduCourse.setId(5L);
+        EduCourse.setName("物理");
+        subjectDao.save(EduCourse);
 
         // 添加
-        student.getSchoolSubjectList().add(SchoolSubject);
+        student.getCourses().add(EduCourse);
         studentDao.save(student);
     }
 
 
     @Test
     void ManyToMany_findStudent() {
-        List<SchoolStudent> list = studentDao.findAll();
+        List<EduStudent> list = studentDao.findAll();
         System.out.println("list = " + list);
     }
 
