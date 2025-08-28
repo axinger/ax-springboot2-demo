@@ -2,6 +2,7 @@ package com.github.axinger.controller;
 
 import com.github.axinger.service.CountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,12 @@ public class TestController {
     public Object count1() {
         count++;
         System.out.println("count = " + count);
-        return List.of(count);
+//        return List.of(count);
+
+        ResponseEntity<Integer> response = ResponseEntity.ok(count);
+
+        System.out.println("response = " + response);
+        return  response;
     }
 
     @GetMapping("/count2")
