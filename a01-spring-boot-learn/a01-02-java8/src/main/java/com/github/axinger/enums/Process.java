@@ -1,4 +1,4 @@
-package com.github.axinger.enumof;
+package com.github.axinger.enums;
 
 public enum Process implements ProcessItem {
     收货 {

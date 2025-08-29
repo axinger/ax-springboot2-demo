@@ -1,4 +1,4 @@
-package com.github.axinger.enumof;
+package com.github.axinger.enums;
 
 enum DeviceSwitch implements DeviceType {
     OFF(0),

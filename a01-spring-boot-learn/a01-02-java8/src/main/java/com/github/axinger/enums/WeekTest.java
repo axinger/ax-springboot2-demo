@@ -1,4 +1,4 @@
-package com.github.axinger.enumof;
+package com.github.axinger.enums;
 
 public class WeekTest {
     public static void main(String[] args) {

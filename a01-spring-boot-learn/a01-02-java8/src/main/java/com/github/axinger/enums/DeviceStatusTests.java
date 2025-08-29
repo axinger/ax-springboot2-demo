@@ -1,4 +1,4 @@
-package com.github.axinger.enumof;
+package com.github.axinger.enums;
 
 
 import cn.hutool.core.util.RandomUtil;

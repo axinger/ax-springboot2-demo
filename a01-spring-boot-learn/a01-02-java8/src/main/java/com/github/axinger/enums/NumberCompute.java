@@ -1,4 +1,4 @@
-package com.github.axinger.enumof;
+package com.github.axinger.enums;
 
 /// 可以用作策略模式
 public enum NumberCompute implements Compute {
