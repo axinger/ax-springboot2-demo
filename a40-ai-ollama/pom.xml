@@ -9,7 +9,7 @@
         <version>2025.08.01-2.7</version>
     </parent>
 
-    <artifactId>a40-ai</artifactId>
+    <artifactId>a40-ai-ollama</artifactId>
 
 
     <dependencies>
