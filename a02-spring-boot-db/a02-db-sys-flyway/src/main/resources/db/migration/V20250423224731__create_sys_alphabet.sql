@@ -1,6 +1,6 @@
 CREATE TABLE `sys_alphabet`
 (
-    `id` int NOT NULL AUTO_INCREMENT,
+    `id` int       NOT NULL AUTO_INCREMENT,
     `b`  decimal(10, 2) DEFAULT NULL,
     `c`  datetime       DEFAULT NULL,
     `d`  timestamp NULL DEFAULT NULL,

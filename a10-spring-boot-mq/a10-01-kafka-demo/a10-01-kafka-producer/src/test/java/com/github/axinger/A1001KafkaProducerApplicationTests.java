@@ -48,18 +48,18 @@ class A1001KafkaProducerApplicationTests {
         ListenableFuture<SendResult<String, MessageUserDTO>> send = kafkaTemplate.send(record);
 
         send.addCallback(
-            sendResult -> {
-                log.info("发送消息成功===================");
-                RecordMetadata recordMetadata = sendResult.getRecordMetadata();
-                log.info("recordMetadata = {}", recordMetadata);
-                MessageUserDTO value = sendResult.getProducerRecord().value();
-                log.info("value = {}", value);
-                countDownLatch.countDown();
-            },
-            e -> {
-                log.error("发送消息失败: {}", e.getMessage(), e);
-                countDownLatch.countDown();
-            }
+                sendResult -> {
+                    log.info("发送消息成功===================");
+                    RecordMetadata recordMetadata = sendResult.getRecordMetadata();
+                    log.info("recordMetadata = {}", recordMetadata);
+                    MessageUserDTO value = sendResult.getProducerRecord().value();
+                    log.info("value = {}", value);
+                    countDownLatch.countDown();
+                },
+                e -> {
+                    log.error("发送消息失败: {}", e.getMessage(), e);
+                    countDownLatch.countDown();
+                }
         );
 
         countDownLatch.await();
@@ -79,17 +79,17 @@ class A1001KafkaProducerApplicationTests {
         ListenableFuture<SendResult<String, String>> send = stringKafkaTemplate.send(Topic.TEST_01, message);
 
         send.addCallback(
-            sendResult -> {
-                log.info("发送字符串消息成功===================");
-                RecordMetadata recordMetadata = sendResult.getRecordMetadata();
-                log.info("消息发送到主题: {}, 分区: {}, 偏移量: {}",
-                    recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
-                countDownLatch.countDown();
-            },
-            e -> {
-                log.error("发送字符串消息失败: {}", e.getMessage(), e);
-                countDownLatch.countDown();
-            }
+                sendResult -> {
+                    log.info("发送字符串消息成功===================");
+                    RecordMetadata recordMetadata = sendResult.getRecordMetadata();
+                    log.info("消息发送到主题: {}, 分区: {}, 偏移量: {}",
+                            recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
+                    countDownLatch.countDown();
+                },
+                e -> {
+                    log.error("发送字符串消息失败: {}", e.getMessage(), e);
+                    countDownLatch.countDown();
+                }
         );
 
         countDownLatch.await();

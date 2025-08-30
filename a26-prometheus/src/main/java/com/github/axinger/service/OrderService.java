@@ -34,10 +34,10 @@ public class OrderService {
             }
 
             Order order = new Order(
-                "ORD-" + System.currentTimeMillis(),
-                customerId,
-                amount,
-                "COMPLETED"
+                    "ORD-" + System.currentTimeMillis(),
+                    customerId,
+                    amount,
+                    "COMPLETED"
             );
 
             // 记录指标

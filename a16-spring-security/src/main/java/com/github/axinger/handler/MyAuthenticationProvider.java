@@ -31,7 +31,7 @@
 //        // 获取表单中输入的密码；
 //        String password = (String) authentication.getCredentials();
 //        // 这里调用我们的自己写的获取用户的方法；
-////        UserDetails userInfo = customerDetailService.loadUserByUsername(userName);
+/// /        UserDetails userInfo = customerDetailService.loadUserByUsername(userName);
 //        SysUser userInfo = userMapper.findByUsername(userName);
 //        if (userInfo == null) {
 //            throw new BadCredentialsException("用户名不存在");

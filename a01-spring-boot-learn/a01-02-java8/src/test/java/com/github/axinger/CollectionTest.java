@@ -129,7 +129,6 @@ public class CollectionTest {
     }
 
 
-
     @Test
     void test11() {
         Set<String> set1 = new HashSet<>(List.of("001", "002", "004"));

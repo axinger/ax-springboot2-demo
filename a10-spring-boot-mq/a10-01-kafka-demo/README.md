@@ -7,6 +7,7 @@
 ## 配置说明
 
 在 [kafka-consumer](kafka-consumer) 项目中，配置如下：
+
 ```yaml
 spring:
   kafka:
@@ -15,6 +16,7 @@ spring:
 ```
 
 在 [kafka-consumer2](kafka-consumer2) 项目中，配置如下：
+
 ```yaml
 spring:
   kafka:

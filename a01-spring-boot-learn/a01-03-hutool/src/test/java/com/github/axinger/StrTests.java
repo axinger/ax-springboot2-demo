@@ -1,7 +1,6 @@
 package com.github.axinger;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.comparator.VersionComparator;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;

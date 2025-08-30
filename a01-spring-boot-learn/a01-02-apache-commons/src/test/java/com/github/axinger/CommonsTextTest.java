@@ -5,7 +5,6 @@ import org.apache.commons.text.RandomStringGenerator;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.commons.text.StringSubstitutor;
 import org.apache.commons.text.WordUtils;
-import org.apache.commons.text.similarity.FuzzyScore;
 import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.junit.jupiter.api.Test;
 

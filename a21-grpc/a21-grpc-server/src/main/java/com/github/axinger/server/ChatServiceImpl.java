@@ -1,11 +1,6 @@
 package com.github.axinger.server;
 
 import com.github.axinger.api.*;
-import com.github.axinger.api.ChatHeartbeat;
-import com.github.axinger.api.ChatRequest;
-import com.github.axinger.api.ChatResponse;
-import com.github.axinger.api.ChatServiceGrpc;
-import com.github.axinger.api.SendCode;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;

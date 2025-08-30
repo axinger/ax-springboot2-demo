@@ -20,7 +20,8 @@ public interface SysUsersDAO extends JpaRepository<SysUser, Integer> {
 //    List<SysUser> findAll();
 
     @Override
-    @EntityGraph(attributePaths = "userAddress") // 指定要加载的关联字段
+    @EntityGraph(attributePaths = "userAddress")
+        // 指定要加载的关联字段
     List<SysUser> findAll();
 
     List<SysUser> findByUsername(String username);

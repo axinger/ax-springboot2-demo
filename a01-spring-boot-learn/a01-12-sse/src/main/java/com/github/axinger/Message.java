@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
-  private Integer id ;
-  private String author ;
-  private String time ;
-  private String message ;
+    private Integer id;
+    private String author;
+    private String time;
+    private String message;
 }

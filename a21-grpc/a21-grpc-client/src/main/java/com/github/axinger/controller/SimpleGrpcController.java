@@ -60,7 +60,7 @@ public class SimpleGrpcController {
         try {
             // 客户端设置请求头
             Metadata metadata = new Metadata();
-            metadata.put(Metadata.Key.of("header-user-name", Metadata.ASCII_STRING_MARSHALLER),name);
+            metadata.put(Metadata.Key.of("header-user-name", Metadata.ASCII_STRING_MARSHALLER), name);
             ClientInterceptor interceptor = MetadataUtils.newAttachHeadersInterceptor(metadata);
 
             final MyResponse response = simpleBlockingStub

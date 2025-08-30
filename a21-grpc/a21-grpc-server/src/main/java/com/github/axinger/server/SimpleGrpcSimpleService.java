@@ -58,10 +58,10 @@ public class SimpleGrpcSimpleService extends SimpleGrpc.SimpleImplBase {
 //        Context.Key<Metadata> HEADER_KEY = Context.current().key("my-grpc-headers");
         Context.Key<Metadata> HEADER_KEY = Context.key("my-grpc-headers");
         Metadata headers = HEADER_KEY.get();
-        if (headers != null){
+        if (headers != null) {
             String authorization = headers.get(Metadata.Key.of("authorization", Metadata.ASCII_STRING_MARSHALLER));
             System.out.println("authorization = " + authorization);
-        }else {
+        } else {
             System.err.println("headers null============");
         }
 

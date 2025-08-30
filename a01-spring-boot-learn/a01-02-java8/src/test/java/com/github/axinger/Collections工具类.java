@@ -44,7 +44,7 @@ public class Collections工具类 {
     public void test2() {
 
         List<String> list = Arrays.asList("A", "B", "C", "D");
-        List<String> list2 = Arrays.asList("A","B");
+        List<String> list2 = Arrays.asList("A", "B");
 
         // 二分查找（List必须已排序）
         int index = Collections.binarySearch(list, "C");
@@ -114,13 +114,13 @@ public class Collections工具类 {
         System.out.println("用指定对象替换List中的所有元素= " + list);
 
 // 用新值替换List中所有的旧值
-        Collections.replaceAll(list,"B","C");
+        Collections.replaceAll(list, "B", "C");
         System.out.println("用新值替换List中所有的旧值= " + list);
 
 
         // 复制源List到目标List（目标List必须足够大）
         List<String> list2 = new ArrayList<>(10);
-        Collections.copy(list,list2);
+        Collections.copy(list, list2);
         System.out.println("list2 = " + list2);
 
 // 反转Comparator的顺序
@@ -136,7 +136,7 @@ public class Collections工具类 {
 
 // 使用指定值初始化Map的所有值（如果键不存在）
         List<String> list3 = new ArrayList<>(10);
-        Collections.addAll(list3,"A","B");
+        Collections.addAll(list3, "A", "B");
         System.out.println("list3 = " + list3);
 
     }

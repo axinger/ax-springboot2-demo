@@ -1,7 +1,6 @@
 package com.github.axinger;
 
 import cn.hutool.core.comparator.CompareUtil;
-import cn.hutool.core.comparator.VersionComparator;
 import org.junit.jupiter.api.Test;
 
 public class CompareUtilTests {

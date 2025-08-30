@@ -8,7 +8,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Headers;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 
@@ -45,7 +44,7 @@ public class UserConsumer1 {
                 long offset = consumerRecord.offset();
                 Object key = consumerRecord.key();
                 MessageUserDTO value = consumerRecord.value();
-                log.info("topic={},headers={},partition={},offset={},key={},value={}", topic,headers, partition, offset, key, value);
+                log.info("topic={},headers={},partition={},offset={},key={},value={}", topic, headers, partition, offset, key, value);
             }
 
 //            {

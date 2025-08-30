@@ -1,7 +1,10 @@
 package com.github.axinger;
 
 import com.alibaba.fastjson2.JSON;
-import com.github.axinger.dao.*;
+import com.github.axinger.dao.EduCourseDAO;
+import com.github.axinger.dao.EduStudentDAO;
+import com.github.axinger.dao.SysUserAddressDTO;
+import com.github.axinger.dao.SysUsersDAO;
 import com.github.axinger.dto.Gender;
 import com.github.axinger.entity.EduCourse;
 import com.github.axinger.entity.EduStudent;
@@ -32,16 +35,13 @@ import java.util.Optional;
 class JpaDemoApplicationTest {
 
     @Autowired
-    private SysUsersDAO sysUsersDao;
-
-    @Autowired
     SysUserAddressDTO sysUserAddressDTO;
-
     @Autowired
     EduCourseDAO subjectDao;
-
     @Autowired
     EduStudentDAO studentDao;
+    @Autowired
+    private SysUsersDAO sysUsersDao;
 
     /**
      * 2.一对多 Users 有多个 Address
@@ -132,7 +132,7 @@ class JpaDemoApplicationTest {
     @Test
     public void findAll() {
         List<SysUser> all = sysUsersDao.findAll();
-        System.out.println("all = " +all);
+        System.out.println("all = " + all);
         System.out.println("JSON all = " + JSON.toJSONString(all));
     }
 

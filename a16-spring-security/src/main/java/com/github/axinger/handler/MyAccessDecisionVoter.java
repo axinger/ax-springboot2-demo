@@ -23,19 +23,19 @@
 //    public int vote(Authentication authentication, FilterInvocation object, Collection<ConfigAttribute> attributes) {
 /// /        System.out.println("object = " + targetUrl);
 //
-////      if (targetUrl instanceof HttpServletRequest) {
-////
-////          System.out.println("authentication = " + authentication);
-////      }
-////        if (!(targetUrl instanceof String)) {
-////            return ACCESS_ABSTAIN; // 如果没有特殊规则，返回 Abstain
-////        }
-////        String url = (String) targetUrl;
-////        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-////        String httpMethod = request.getMethod();
-////
-////        System.out.println("httpMethod = " + httpMethod);
-////        System.out.println("url = " + url);
+/// /      if (targetUrl instanceof HttpServletRequest) {
+/// /
+/// /          System.out.println("authentication = " + authentication);
+/// /      }
+/// /        if (!(targetUrl instanceof String)) {
+/// /            return ACCESS_ABSTAIN; // 如果没有特殊规则，返回 Abstain
+/// /        }
+/// /        String url = (String) targetUrl;
+/// /        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+/// /        String httpMethod = request.getMethod();
+/// /
+/// /        System.out.println("httpMethod = " + httpMethod);
+/// /        System.out.println("url = " + url);
 //
 //
 ////        if (object instanceof FilterInvocation) {

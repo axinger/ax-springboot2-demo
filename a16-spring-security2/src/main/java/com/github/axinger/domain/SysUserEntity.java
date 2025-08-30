@@ -119,7 +119,6 @@ public class SysUserEntity implements Serializable, UserDetails {
 
     /**
      * 表示判断账户是否过期
-     *
      */
     @Override
     @JsonIgnore
@@ -129,7 +128,6 @@ public class SysUserEntity implements Serializable, UserDetails {
 
     /**
      * 表示判断账户是否被锁定
-     *
      */
     @Override
     public boolean isAccountNonLocked() {
@@ -138,7 +136,6 @@ public class SysUserEntity implements Serializable, UserDetails {
 
     /**
      * 表示凭证{密码}是否过期
-     *
      */
     @Override
     public boolean isCredentialsNonExpired() {
@@ -147,7 +144,6 @@ public class SysUserEntity implements Serializable, UserDetails {
 
     /**
      * 是否可用
-     *
      */
     @Override
     public boolean isEnabled() {

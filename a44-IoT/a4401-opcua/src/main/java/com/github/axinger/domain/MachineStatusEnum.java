@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Optional;
-
 @Getter
 @AllArgsConstructor
 public enum MachineStatusEnum {
@@ -58,48 +56,47 @@ public enum MachineStatusEnum {
      * @param running
      * @return
      */
-    public static MachineStatusEnum ofStatus(String machinesOnline,
-                                             String alarm,
-                                             String running) {
-
-        machinesOnline = StatusEnum.ofSafe(Optional.ofNullable(machinesOnline).orElse("0")).getCode();
-        alarm = StatusEnum.ofSafe(Optional.ofNullable(alarm).orElse("0")).getCode();
-        running = StatusEnum.ofSafe(Optional.ofNullable(running).orElse("1")).getCode();
-
-
-        // 设备开关状态优先级高于运行状态，关机的情况下不处理运行状态
-
-        // machinesOnline 有值
-        // 运行: true - > 在判断其他请情况
-        // 运行: false - > abnormal 停机
-        // 关机 online=0
-        if (machinesOnline.equals(StatusEnum.abnormal.getCode())) {
-            return MachineStatusEnum.OFF;
-        }
-
-        // 报警有值
-        // 报警: true normal - > 故障
-        // 报警: false - > 忽略
-        // 开机,有警告,忽略运行
-        if (alarm.equals(StatusEnum.normal.getCode())) {
-            return MachineStatusEnum.BREAKDOWN;
-        }
-
-        // 运行有值
-        // 运行: true - normal > 正常
-        // 运行: false - > 待机
-        // 开机无警告,但未运行
-        if (running.equals(StatusEnum.normal.getCode())) {
-            return MachineStatusEnum.RUNNING;
-        }
-
-        // 开机无警告,但未运行
-        if (running.equals(StatusEnum.abnormal.getCode())) {
-            return MachineStatusEnum.RUNNING;
-        }
-        return MachineStatusEnum.SHUTDOWN;
-    }
-
+//    public static MachineStatusEnum ofStatus(String machinesOnline,
+//                                             String alarm,
+//                                             String running) {
+//
+//        machinesOnline = MachineStatusEnum.ofSafe(Optional.ofNullable(machinesOnline).orElse("0")).getCode();
+//        alarm = StatusEnum.ofSafe(Optional.ofNullable(alarm).orElse("0")).getCode();
+//        running = StatusEnum.ofSafe(Optional.ofNullable(running).orElse("1")).getCode();
+//
+//
+//        // 设备开关状态优先级高于运行状态，关机的情况下不处理运行状态
+//
+//        // machinesOnline 有值
+//        // 运行: true - > 在判断其他请情况
+//        // 运行: false - > abnormal 停机
+//        // 关机 online=0
+//        if (machinesOnline.equals(StatusEnum.abnormal.getCode())) {
+//            return MachineStatusEnum.OFF;
+//        }
+//
+//        // 报警有值
+//        // 报警: true normal - > 故障
+//        // 报警: false - > 忽略
+//        // 开机,有警告,忽略运行
+//        if (alarm.equals(StatusEnum.normal.getCode())) {
+//            return MachineStatusEnum.BREAKDOWN;
+//        }
+//
+//        // 运行有值
+//        // 运行: true - normal > 正常
+//        // 运行: false - > 待机
+//        // 开机无警告,但未运行
+//        if (running.equals(StatusEnum.normal.getCode())) {
+//            return MachineStatusEnum.RUNNING;
+//        }
+//
+//        // 开机无警告,但未运行
+//        if (running.equals(StatusEnum.abnormal.getCode())) {
+//            return MachineStatusEnum.RUNNING;
+//        }
+//        return MachineStatusEnum.SHUTDOWN;
+//    }
     public static MachineStatusEnum of(Integer machinesOnline,
                                        Integer alarm,
                                        Integer running) {

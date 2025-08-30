@@ -1,6 +1,6 @@
 package com.github.axinger.dto;
 
-import com.alibaba.fastjson2.*;
+import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.writer.ObjectWriter;
 
 import java.lang.reflect.Type;

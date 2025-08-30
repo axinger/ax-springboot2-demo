@@ -2,7 +2,7 @@ package com.github.axinger.dto;
 
 import com.alibaba.fastjson2.annotation.JSONField;
 
-public enum Type implements BaseEnum{
+public enum Type implements BaseEnum {
     X(101, "Big"),
     M(102, "Medium"),
     S(103, "Small");

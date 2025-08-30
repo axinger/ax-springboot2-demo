@@ -40,7 +40,7 @@ public class TestController {
         ResponseEntity<Integer> response = ResponseEntity.ok(count);
 
         System.out.println("response = " + response);
-        return  response;
+        return response;
     }
 
     @GetMapping("/count2")

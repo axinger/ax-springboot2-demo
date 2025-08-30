@@ -9,7 +9,8 @@ public class MetricsConfig {
 
     @Bean
     public MeterFilter renameRegionTag() {
-        return MeterFilter.renameTag("order.service", "region", "location");    }
+        return MeterFilter.renameTag("order.service", "region", "location");
+    }
 
     @Bean
     public MeterFilter disableJvmThreadsMetrics() {
