@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class Person {
     private int id;
     private String name;
+    private Integer age;
 
     //    @EnumValidator(value = Gender.class)
     private Gender gender;

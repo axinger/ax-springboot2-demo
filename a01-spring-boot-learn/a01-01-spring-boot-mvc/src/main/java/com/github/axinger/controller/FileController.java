@@ -65,8 +65,11 @@ public class FileController {
 //        outputStream.close();
 
     }
-
     /// jar无法获取
+    /// 只支持文件系统路径（file:）
+    /// 但一旦项目被打包成 JAR 文件，资源文件就 嵌入到了 JAR 包内部，它们不再是文件系统中的独立文件，而是以流的形式存在于归档包中，路径类似
+    /// jar:file:/app.jar!/BOOT-INF/classes!/data.txt
+    /// 因为 jar:file: 不是 file: 协议，无法转换为 java.io.File 对象
     //org.springframework.util.ResourceUtils
     @GetMapping("/1")
     public Object test1() throws Exception {
@@ -113,11 +116,10 @@ public class FileController {
     @GetMapping("/31")
     public Object test31() throws Exception {
         Resource resource = resourceLoader.getResource("classpath:123.json");
-        String data;
         try (InputStream inputStream = resource.getInputStream()) {
-            data = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+            String data = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+            return Map.of("path", "classpath:123.json", "data", data);
         }
-        return Map.of("path", "classpath:123.json", "data", data);
     }
 
     /// 能获取
