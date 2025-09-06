@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -25,6 +26,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -36,9 +38,9 @@ public class FileController {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    @GetMapping("/download")
-    public void shenbao(@RequestParam String fileName,
-                        HttpServletResponse response) throws Exception {
+    @GetMapping("/0")
+    public void test0(@RequestParam String fileName,
+                      HttpServletResponse response) throws Exception {
         // 对文件名进行UTF-8编码
         String encodedFileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8);
         // 设置响应的内容类型
@@ -65,6 +67,7 @@ public class FileController {
 //        outputStream.close();
 
     }
+
     /// jar无法获取
     /// 只支持文件系统路径（file:）
     /// 但一旦项目被打包成 JAR 文件，资源文件就 嵌入到了 JAR 包内部，它们不再是文件系统中的独立文件，而是以流的形式存在于归档包中，路径类似
@@ -94,21 +97,22 @@ public class FileController {
     @GetMapping("/21")
     public Object test21() throws Exception {
         ClassPathResource resource = new ClassPathResource("123.json");
-        String data;
-        try (InputStream inputStream = resource.getInputStream()) {
-            data = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-        }
+        @Cleanup InputStream inputStream = resource.getInputStream();
+        String data = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         return Map.of("path", resource.getPath(), "data", data);
     }
 
     /// 能获取
     @GetMapping("/3")
-    public Object test3() throws Exception {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("123.json");
-        String data = "";
-        if (inputStream != null) {
-            data = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-        }
+    public Object test3() {
+        @Cleanup InputStream inputStream = getClass().getClassLoader().getResourceAsStream("123.json");
+        String data = Optional.ofNullable(inputStream).map(val -> {
+            try {
+                return new String(val.readAllBytes(), StandardCharsets.UTF_8);
+            } catch (IOException e) {
+                return "数据异常";
+            }
+        }).orElse("数据异常");
         return Map.of("path", "classpath:123.json", "data", data);
     }
 
@@ -116,10 +120,9 @@ public class FileController {
     @GetMapping("/31")
     public Object test31() throws Exception {
         Resource resource = resourceLoader.getResource("classpath:123.json");
-        try (InputStream inputStream = resource.getInputStream()) {
-            String data = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-            return Map.of("path", "classpath:123.json", "data", data);
-        }
+        @Cleanup InputStream inputStream = resource.getInputStream();
+        String data = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+        return Map.of("path", "classpath:123.json", "data", data);
     }
 
     /// 能获取
