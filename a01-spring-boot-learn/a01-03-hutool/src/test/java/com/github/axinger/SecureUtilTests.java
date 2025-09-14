@@ -7,7 +7,7 @@ public class SecureUtilTests {
 
     @Test
     void test1() {
-        String s = SecureUtil.md5("123");
+        String s = SecureUtil.md5("123456");
         System.out.println("s = " + s);
     }
 }

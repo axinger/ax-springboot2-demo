@@ -14,10 +14,10 @@ spring:
       cache-null-values: true
       time-to-live: 1800000     # 缓存默认有效时长，以毫秒为单位
   redis:
-    #    host: 127.0.0.1 # Redis服务器地址
-    host: hadoop135 # Redis服务器地址
-    password: 123456 # Redis服务器连接密码（默认为空）
-    database: 13 # Redis数据库索引（默认为0）
+    host: 127.0.0.1 # Redis服务器地址
+    #    host: hadoop135 # Redis服务器地址
+#    password: 123456 # Redis服务器连接密码（默认为空）
+    database: 2 # Redis数据库索引（默认为0）
     port: 6379 # Redis服务器连接端口
     timeout: 5000 # 连接超时时间（毫秒）\
     lettuce:
