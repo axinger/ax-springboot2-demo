@@ -97,6 +97,12 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
+            <artifactId>a02-db-sys-flyway</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axinger</groupId>
             <artifactId>logback-config-spring-boot-starter</artifactId>
         </dependency>
 

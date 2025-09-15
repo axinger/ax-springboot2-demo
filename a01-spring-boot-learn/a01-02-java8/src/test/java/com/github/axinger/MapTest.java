@@ -52,7 +52,8 @@ public class MapTest {
     public void tes2() {
         ///  可以
         Map<Object, Object> map = new HashMap<>();
-        map.put("d", null);
+        map.put("name", null);
+        map.put("NAME", "大D");
         System.out.println("map = " + map);
         ///  可以
         map.put(null, null);

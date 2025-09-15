@@ -1,6 +1,8 @@
 package com.github.axinger.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.handlers.Fastjson2TypeHandler;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +11,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @TableName sys_user
@@ -17,7 +22,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "sys_user")
+// autoResultMap 解析json格式
+@TableName(value = "sys_user",autoResultMap = true)
+//@TableName(value = "sys_user",resultMap="getInfo")
 public class SysUserEntity implements Serializable {
     @Serial
     @TableField(exist = false)
@@ -52,6 +59,18 @@ public class SysUserEntity implements Serializable {
      */
     @TableField(value = "age")
     private Integer age;
+
+
+    // JSON 字段映射
+    //java 和 XML，都需要写 typeHandler
+//    @TableField(value = "info")
+    @TableField(value = "info",typeHandler = JacksonTypeHandler.class)
+    private Map<String, Object> info = new HashMap<>();
+
+
+    @TableField(value = "info_list",typeHandler = JacksonTypeHandler.class)
+    private List<String> infoList;
+
     /**
      * 创建时间
      */

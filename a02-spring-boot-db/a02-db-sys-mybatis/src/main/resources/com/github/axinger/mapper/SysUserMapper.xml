@@ -11,16 +11,14 @@
         <result property="email" column="email"/>
         <result property="phone" column="phone"/>
         <result property="age" column="age"/>
+        <result property="info" column="info" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="infoList" column="info_list" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+<!--        <result property="info" column="info"/>-->
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="deleted" column="deleted"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id
-        ,username,password,email,phone,age,
-        create_time,update_time,deleted
-    </sql>
 
     <insert id="batchInsertOrUpdate">
         INSERT INTO sys_user (username, email, phone, age)
@@ -73,8 +71,8 @@
     </select>
 
     <select id="conditionalPage" resultMap="BaseResultMap">
-        select *
-        from sys_user ${ew.customSqlSegment}
+        SELECT *
+        FROM sys_user ${ew.customSqlSegment}
     </select>
 
 </mapper>

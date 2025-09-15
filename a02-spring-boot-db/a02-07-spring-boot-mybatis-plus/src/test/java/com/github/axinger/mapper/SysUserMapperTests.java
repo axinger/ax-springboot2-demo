@@ -1,8 +1,10 @@
 package com.github.axinger.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.axinger.domain.SysUserEntity;
+import com.github.axinger.service.SysUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,22 +20,55 @@ public class SysUserMapperTests {
     @Autowired
     private SysUserMapper sysUserMapper;
 
-    @Test
-    void test1() {
-        List<SysUserEntity> sysUserEntities = sysUserMapper.selectList(null);
-        System.out.println("sysUserEntities = " + sysUserEntities);
-    }
+    @Autowired
+    private SysUserService sysUserService;
 
     @Test
-    void test2() {
+    void test1() {
         SysUserEntity sysUser = SysUserEntity.builder()
                 .username("jim")
                 .email("123@qq.com")
                 .phone("189000")
                 .age(10)
+                .info(Map.of("name", "jim"))
+                .infoList(List.of("1","2"))
                 .build();
         sysUserMapper.insert(sysUser);
     }
+
+
+    @Test
+    void test2() {
+        List<SysUserEntity> sysUserEntities = sysUserMapper.selectList(null);
+        System.out.println("sysUserEntities = " + sysUserEntities);
+
+
+        List<SysUserEntity> list = sysUserService.list();
+        System.out.println("list = " + list);
+
+
+        // 使用 Wrapper 查询
+        QueryWrapper<SysUserEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("info->'$.name'", "jim");
+
+        List<SysUserEntity> users = sysUserMapper.selectList(wrapper);
+        System.out.println("users = " + users);
+
+        QueryWrapper<SysUserEntity> wrapper2 = new QueryWrapper<>();
+        wrapper2.apply("JSON_CONTAINS(info_list, {0})", "\"1\""); // 注意：字符串要加双引号
+
+        List<SysUserEntity> users2 = sysUserMapper.selectList(wrapper2);
+        System.out.println("users2 = " + users2);
+
+        QueryWrapper<SysUserEntity> wrapper3 = new QueryWrapper<>();
+        wrapper3.apply("JSON_SEARCH(info_list, 'one', {0}) IS NOT NULL", "1"); // 数字不用加引号
+
+        List<SysUserEntity> users3 = sysUserMapper.selectList(wrapper3);
+        System.out.println("users3 = " + users3);
+
+    }
+
+
 
     @Test
     void test3() {
