@@ -646,7 +646,11 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
-            <scope>provided</scope>
+<!--            <scope>provided</scope>-->
+<!--            为什么使用provided范围？-->
+<!--            provided范围表示依赖在编译和测试时需要，但不会打包到您的JAR中-->
+<!--            最终用户需要自己提供Hutool依赖-->
+<!--            避免了版本冲突，用户可以使用他们喜欢的Hutool版本-->
         </dependency>
 
         <dependency>

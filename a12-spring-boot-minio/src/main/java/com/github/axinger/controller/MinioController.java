@@ -95,7 +95,7 @@ public class MinioController {
      *
      * @return url
      */
-    @PostMapping("/minio/fileUrl")
+    @GetMapping("/minio/fileUrl")
     public Result<?> downloadByMinio(String bucketName, String fileName) {
         String url = minioTemplate.fileUrl(bucketName, fileName);
         return Result.ok(url);
@@ -108,7 +108,7 @@ public class MinioController {
      * @param fileName
      * @return
      */
-    @PostMapping("/minio/writeToPath/path")
+    @GetMapping("/minio/writeToPath/path")
     public Result<?> downloadByMinio(String bucketName, String fileName, String path) {
         return Result.ok(minioTemplate.writeToPath(bucketName, fileName, path));
     }

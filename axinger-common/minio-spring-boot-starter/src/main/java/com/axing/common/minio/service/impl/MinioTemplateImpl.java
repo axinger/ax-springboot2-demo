@@ -1,6 +1,7 @@
 package com.axing.common.minio.service.impl;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
 import com.axing.common.minio.error.MinioException;
 import com.axing.common.minio.model.UploadFileBO;
@@ -330,7 +331,7 @@ public class MinioTemplateImpl implements MinioTemplate {
             StatObjectResponse stat = minioClient.statObject(args);
             response.setContentType(stat.contentType());
             response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(objectName, String.valueOf(StandardCharsets.UTF_8)));
-            IOUtils.copy(inputStream, response.getOutputStream());
+            IoUtil.copy(inputStream, response.getOutputStream());
         } catch (MinioException e) {
             throw new MinioException(StrUtil.format("下载文件失败 = {}", e.getMessage()));
         }
@@ -494,9 +495,14 @@ public class MinioTemplateImpl implements MinioTemplate {
     @Override
     public String fileUrl(String bucketName, String objectName) {
         try {
-            new GetPresignedObjectUrlArgs();
-            GetPresignedObjectUrlArgs build = GetPresignedObjectUrlArgs.builder().method(Method.GET).bucket(bucketName).object(objectName).expiry(7, TimeUnit.DAYS).build();
-            return minioClient.getPresignedObjectUrl(build);
+            //getPresignedObjectUrl() 生成的是带 X-Amz-Signature 的临时链接，即使不设过期时间
+            GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder()
+                    .method(Method.GET)
+                    .bucket(bucketName)
+                    .object(objectName)
+//                    .expiry(7, TimeUnit.DAYS)
+                    .build();
+            return minioClient.getPresignedObjectUrl(args);
         } catch (MinioException e) {
             throw new MinioException(StrUtil.format("获取文件url失败 = {}", e.getMessage()));
         }
