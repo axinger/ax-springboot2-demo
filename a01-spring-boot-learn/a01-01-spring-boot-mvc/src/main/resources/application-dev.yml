@@ -17,6 +17,8 @@ spring:
 #  profiles:
 #    include: user  # 加载名为 user.yml 或 application-user.yml 的文件
 
+Java-time-module:
+  date-time-format: yyyy-MM-dd HH:mm:ss
 show:
   # 湿度
   humidity:
