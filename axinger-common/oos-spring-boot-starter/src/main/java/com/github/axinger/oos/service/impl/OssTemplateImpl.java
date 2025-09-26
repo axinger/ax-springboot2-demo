@@ -1,174 +1,241 @@
 package com.github.axinger.oos.service.impl;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
-import com.amazonaws.util.IOUtils;
+import cn.hutool.core.collection.CollUtil;
+import com.alibaba.fastjson2.JSON;
+import com.github.axinger.oos.dto.BucketPolicyConfigDto;
+import com.github.axinger.oos.exception.OssException;
+import com.github.axinger.oos.dto.S3ObjectSummary;
 import com.github.axinger.oos.service.OssTemplate;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.core.ResponseInputStream;
+import software.amazon.awssdk.core.exception.SdkClientException;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.*;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
+import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequest;
+import software.amazon.awssdk.utils.IoUtils;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.Date;
+import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
-public class OssTemplateImpl implements OssTemplate {
+@Slf4j
+public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implements OssTemplate {
 
-    private final AmazonS3 amazonS3;
+    // 构造检查
+    public OssTemplateImpl {
+        Objects.requireNonNull(s3Client, "S3Client must not be null");
+        Objects.requireNonNull(s3Presigner, "S3Presigner must not be null");
+    }
 
     /**
-     * 创建Bucket
-     * AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html
-     *
-     * @param bucketName bucket名称
+     * 判断 Bucket 是否存在
      */
-    @Override
-    @SneakyThrows
-    public void createBucket(String bucketName) {
-        if (!amazonS3.doesBucketExistV2(bucketName)) {
-            amazonS3.createBucket((bucketName));
+    private boolean bucketExists(String bucketName) {
+        try {
+            s3Client.headBucket(r -> r.bucket(bucketName));
+            return true;
+        } catch (NoSuchBucketException e) {
+            return false;
+        } catch (S3Exception e) {
+            log.warn("Error checking bucket existence: {}", bucketName, e);
+            throw new OssException("Failed to check bucket: " + bucketName, e);
         }
     }
 
     /**
-     * 获取所有的buckets
-     * AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html
-     *
-     * @return
+     * 创建 Bucket 的只读访问策略
+     */
+    private BucketPolicyConfigDto createBucketPolicyConfigDto(String bucketName) {
+        BucketPolicyConfigDto.Statement statement = BucketPolicyConfigDto.Statement.builder()
+                .Effect("Allow")
+                .Principal(BucketPolicyConfigDto.Principal.builder().AWS(new String[]{"*"}).build())
+                .Action(new String[]{"s3:GetObject"})
+                .Resource(new String[]{"arn:aws:s3:::" + bucketName + "/*"})
+                .build();
+        return BucketPolicyConfigDto.builder()
+                .Version("2012-10-17")
+                .Statement(CollUtil.toList(statement))
+                .build();
+    }
+
+    /**
+     * 创建 Bucket（线程安全）
      */
     @Override
-    @SneakyThrows
+    public void createBucket(String bucketName) {
+        if (bucketExists(bucketName)) {
+            log.info("Bucket already exists: {}", bucketName);
+            return;
+        }
+
+        try {
+            s3Client.createBucket(CreateBucketRequest.builder().bucket(bucketName).build());
+            log.info("Bucket created: {}", bucketName);
+
+            // 设置只读策略
+            String policy = JSON.toJSONString(createBucketPolicyConfigDto(bucketName));
+            s3Client.putBucketPolicy(PutBucketPolicyRequest.builder()
+                    .bucket(bucketName)
+                    .policy(policy)
+                    .build());
+            log.info("Bucket policy set: {}", bucketName);
+
+        } catch (S3Exception e) {
+            if ("BucketAlreadyOwnedByYou".equals(e.awsErrorDetails().errorCode())) {
+                log.info("Bucket was just created by another thread: {}", bucketName);
+            } else {
+                log.error("Failed to create bucket: {}", bucketName, e);
+                throw new OssException("Failed to create bucket: " + bucketName, e);
+            }
+        }
+    }
+
+    @Override
     public List<Bucket> getAllBuckets() {
-        return amazonS3.listBuckets();
+        try {
+            return s3Client.listBuckets().buckets();
+        } catch (SdkClientException e) {
+            log.error("Failed to list buckets", e);
+            throw new OssException("Failed to list buckets", e);
+        }
     }
 
-    /**
-     * 通过Bucket名称删除Bucket
-     * AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html
-     *
-     * @param bucketName
-     */
     @Override
-    @SneakyThrows
     public void removeBucket(String bucketName) {
-        amazonS3.deleteBucket(bucketName);
+        try {
+            s3Client.deleteBucket(DeleteBucketRequest.builder().bucket(bucketName).build());
+            log.info("Bucket deleted: {}", bucketName);
+        } catch (S3Exception e) {
+            log.error("Failed to delete bucket: {}", bucketName, e);
+            throw new OssException("Failed to delete bucket: " + bucketName, e);
+        }
     }
 
-    /**
-     * 上传对象
-     *
-     * @param bucketName  bucket名称
-     * @param objectName  文件名称
-     * @param stream      文件流
-     * @param contextType 文件类型
-     *                    AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
-     */
+    // --- 上传对象 ---
+
     @Override
-    @SneakyThrows
-    public PutObjectResult putObject(String bucketName, String objectName, InputStream stream, String contextType) {
-        return putObject(bucketName, objectName, stream, stream.available(), contextType);
+    public PutObjectResponse putObject(String bucketName, String objectName, InputStream stream, String contentType) {
+        try {
+            byte[] bytes = IoUtils.toByteArray(stream);
+            return doPutObject(bucketName, objectName, new ByteArrayInputStream(bytes), bytes.length, contentType);
+        } catch (IOException e) {
+            throw new OssException("Failed to read input stream", e);
+        }
     }
 
-    /**
-     * 上传对象
-     *
-     * @param bucketName bucket名称
-     * @param objectName 文件名称
-     * @param stream     文件流
-     *                   AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
-     */
     @Override
-    @SneakyThrows
-    public PutObjectResult putObject(String bucketName, String objectName, InputStream stream) {
-        return putObject(bucketName, objectName, stream, stream.available(), "application/octet-stream");
+    public PutObjectResponse putObject(String bucketName, String objectName, InputStream stream) {
+        return putObject(bucketName, objectName, stream, "application/octet-stream");
     }
 
-    /**
-     * 通过bucketName和objectName获取对象
-     *
-     * @param bucketName bucket名称
-     * @param objectName 文件名称
-     * @return AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html
-     */
-    @Override
-    @SneakyThrows
-    public S3Object getObject(String bucketName, String objectName) {
-        return amazonS3.getObject(bucketName, objectName);
+    private PutObjectResponse doPutObject(String bucketName, String objectName, InputStream stream, long size, String contentType) {
+        try {
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(objectName)
+                    .contentType(contentType)
+                    .build();
+
+            RequestBody requestBody = RequestBody.fromInputStream(stream, size);
+            PutObjectResponse response = s3Client.putObject(putObjectRequest, requestBody);
+
+            log.info("Object uploaded: bucket={}, object={}, size={} bytes, contentType={}",
+                    bucketName, objectName, size, contentType);
+
+            return response;
+        } catch (SdkClientException e) {
+            log.error("Upload failed: bucket={}, object={}", bucketName, objectName, e);
+            throw new OssException("Upload failed: " + bucketName + "/" + objectName, e);
+        }
     }
 
-    /**
-     * 获取对象的url
-     *
-     * @param bucketName
-     * @param objectName
-     * @param expires
-     * @return AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_GeneratePresignedUrl.html
-     */
+    // --- 下载对象 ---
+
     @Override
-    @SneakyThrows
-    public String getObjectURL(String bucketName, String objectName, Integer expires) {
-        Date expiration = new Date(System.currentTimeMillis() + expires); // 1小时后过期
-        URL url = amazonS3.generatePresignedUrl(bucketName, objectName, expiration);
-        return url.toString();
+    public GetObjectResponse getObject(String bucketName, String objectName) {
+        try {
+            GetObjectRequest request = GetObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(objectName)
+                    .build();
+            ResponseInputStream<GetObjectResponse> stream = s3Client.getObject(request);
+            log.info("Object downloaded: {}/{}", bucketName, objectName);
+            return stream.response();
+        } catch (S3Exception e) {
+            log.error("Get object failed: {}/{}", bucketName, objectName, e);
+            throw new OssException("Get object failed: " + bucketName + "/" + objectName, e);
+        }
     }
 
-    /**
-     * 通过bucketName和objectName删除对象
-     *
-     * @param bucketName
-     * @param objectName AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html
-     */
+    // --- 生成预签名 URL（推荐方式）---
+
     @Override
-    @SneakyThrows
+    public String getObjectURL(String bucketName, String objectName, Integer expiresMinutes) {
+        try {
+            GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(objectName)
+                    .build();
+
+            GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
+                    .getObjectRequest(getObjectRequest)
+                    .signatureDuration(Duration.ofMinutes(expiresMinutes))
+                    .build();
+
+            PresignedGetObjectRequest presignedRequest = s3Presigner.presignGetObject(presignRequest);
+            String url = presignedRequest.url().toString();
+
+            log.debug("Generated presigned URL: {} (expires in {} min)", url, expiresMinutes);
+            return url;
+        } catch (Exception e) {
+            throw new OssException("Failed to generate presigned URL for " + bucketName + "/" + objectName, e);
+        }
+    }
+
+    // --- 删除对象 ---
+
+    @Override
     public void removeObject(String bucketName, String objectName) {
-        amazonS3.deleteObject(bucketName, objectName);
+        try {
+            s3Client.deleteObject(DeleteObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(objectName)
+                    .build());
+            log.info("Object deleted: {}/{}", bucketName, objectName);
+        } catch (S3Exception e) {
+            log.error("Delete object failed: {}/{}", bucketName, objectName, e);
+            throw new OssException("Delete object failed: " + bucketName + "/" + objectName, e);
+        }
     }
 
-    /**
-     * 根据bucketName和prefix获取对象集合
-     *
-     * @param bucketName bucket名称
-     * @param prefix     前缀
-     * @param recursive  是否递归查询
-     * @return AmazonS3：https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html
-     */
+    // --- 列出所有对象（支持分页）---
+
     @Override
-    @SneakyThrows
     public List<S3ObjectSummary> getAllObjectsByPrefix(String bucketName, String prefix, boolean recursive) {
-        ObjectListing objectListing = amazonS3.listObjects(bucketName, prefix);
-        return objectListing.getObjectSummaries();
-    }
+        ListObjectsV2Request.Builder requestBuilder = ListObjectsV2Request.builder()
+                .bucket(bucketName)
+                .prefix(prefix);
 
+        if (!recursive) {
+            requestBuilder.delimiter("/"); // 模拟目录结构
+        }
 
-    /**
-     * @param bucketName
-     * @param objectName
-     * @param stream
-     * @param size
-     * @param contextType
-     * @return
-     */
-    @SneakyThrows
-    private PutObjectResult putObject(String bucketName, String objectName, InputStream stream, long size,
-                                      String contextType) {
+        List<S3ObjectSummary> result = s3Client.listObjectsV2Paginator(requestBuilder.build())
+                .contents()
+                .stream()
+                .map(s3Object -> new S3ObjectSummary(bucketName, s3Object.key(), s3Object.size()))
+                .collect(Collectors.toList());
 
-        byte[] bytes = IOUtils.toByteArray(stream);
-        ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentLength(size);
-        objectMetadata.setContentType(contextType);
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+        log.debug("Listed {} objects under bucket='{}', prefix='{}', recursive={}",
+                result.size(), bucketName, prefix, recursive);
 
-
-        // 上传
-        PutObjectResult putObjectResult = amazonS3.putObject(bucketName, objectName, byteArrayInputStream, objectMetadata);
-
-        // 或使用 S3 客户端内置方法生成路径（需确保权限）
-        String s3Url = amazonS3.getUrl(bucketName, objectName).toString();
-        System.out.println("S3 生成的路径: " + s3Url);
-
-        return putObjectResult;
-
+        return result;
     }
 }

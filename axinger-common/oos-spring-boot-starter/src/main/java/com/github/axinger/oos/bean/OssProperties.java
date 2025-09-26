@@ -12,7 +12,7 @@ public class OssProperties {
     private String endpoint;
 
     /**
-     * 区域
+     * 区域 Region.US_EAST_1
      */
     private String region;
 
@@ -26,12 +26,12 @@ public class OssProperties {
     /**
      * Access key
      */
-    private String accessKey;
+    private String accessKeyId;
 
     /**
      * Secret key
      */
-    private String secretKey;
+    private String secretAccessKey;
 
     /**
      * 最大线程数，默认：100

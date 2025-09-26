@@ -1,13 +1,5 @@
 package com.github.axinger.oos.config;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.github.axinger.oos.bean.OssProperties;
 import com.github.axinger.oos.service.OssTemplate;
 import com.github.axinger.oos.service.impl.OssTemplateImpl;
@@ -17,35 +9,49 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+
+import java.net.URI;
+
 
 @Configuration
 @RequiredArgsConstructor
 @EnableConfigurationProperties(OssProperties.class)
 public class OssAutoConfiguration {
 
+
     @Bean
     @ConditionalOnMissingBean
-    public AmazonS3 ossClient(OssProperties ossProperties) {
-        // 客户端配置，主要是全局的配置信息
-        ClientConfiguration clientConfiguration = new ClientConfiguration();
-        clientConfiguration.setMaxConnections(ossProperties.getMaxConnections());
-        // url以及region配置
-        AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(
-                ossProperties.getEndpoint(), ossProperties.getRegion());
-        // 凭证配置
-        AWSCredentials awsCredentials = new BasicAWSCredentials(ossProperties.getAccessKey(),
-                ossProperties.getSecretKey());
-        AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider(awsCredentials);
-        // build amazonS3Client客户端
-        return AmazonS3Client.builder().withEndpointConfiguration(endpointConfiguration)
-                .withClientConfiguration(clientConfiguration).withCredentials(awsCredentialsProvider)
-                .disableChunkedEncoding().withPathStyleAccessEnabled(ossProperties.getPathStyleAccess()).build();
+    public S3Client s3Client(OssProperties ossProperties) {
+        // 初始化 S3 客户端
+        return S3Client.builder()
+                .endpointOverride(URI.create(ossProperties.getEndpoint())) // RustFS 地址
+                .region(Region.of(ossProperties.getRegion())) // 可写死，RustFS 不校验 region
+                .credentialsProvider(StaticCredentialsProvider.create(
+                        AwsBasicCredentials.create(ossProperties.getAccessKeyId(), ossProperties.getSecretAccessKey())))
+                .forcePathStyle(true) // 关键配置！RustFS 需启用 Path-Style
+                .build();
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean
+    public S3Presigner s3Presigner(OssProperties ossProperties) {
+        return S3Presigner.builder()
+                .region(Region.of(ossProperties.getRegion()))
+                .credentialsProvider(StaticCredentialsProvider.create(
+                        AwsBasicCredentials.create(ossProperties.getAccessKeyId(), ossProperties.getSecretAccessKey())))
+                .build();
     }
 
     @Bean
-    @ConditionalOnBean(AmazonS3.class)
+    @ConditionalOnBean(value = {S3Client.class, S3Presigner.class})
     @ConditionalOnMissingBean(OssTemplate.class)
-    public OssTemplate ossTemplate(AmazonS3 amazonS3) {
-        return new OssTemplateImpl(amazonS3);
+    public OssTemplate ossTemplate(S3Client s3Client, S3Presigner s3Presigner) {
+        return new OssTemplateImpl(s3Client, s3Presigner);
     }
 }

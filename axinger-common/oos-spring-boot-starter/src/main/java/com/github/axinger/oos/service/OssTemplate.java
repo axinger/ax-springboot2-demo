@@ -1,9 +1,10 @@
 package com.github.axinger.oos.service;
 
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.github.axinger.oos.dto.S3ObjectSummary;
+import software.amazon.awssdk.services.s3.model.Bucket;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
+import software.amazon.awssdk.services.s3.model.PutObjectResponse;
+import software.amazon.awssdk.services.s3.model.S3Object;
 
 import java.io.InputStream;
 import java.util.List;
@@ -40,7 +41,7 @@ public interface OssTemplate {
      * @param contextType 文件类型
      * @throws Exception
      */
-    PutObjectResult putObject(String bucketName, String objectName, InputStream stream, String contextType) throws Exception;
+    PutObjectResponse putObject(String bucketName, String objectName, InputStream stream, String contextType) throws Exception;
 
     /**
      * 上传文件
@@ -50,7 +51,7 @@ public interface OssTemplate {
      * @param stream     文件流
      * @throws Exception
      */
-    PutObjectResult putObject(String bucketName, String objectName, InputStream stream) throws Exception;
+    PutObjectResponse putObject(String bucketName, String objectName, InputStream stream) throws Exception;
 
     /**
      * 获取文件
@@ -59,7 +60,7 @@ public interface OssTemplate {
      * @param objectName 文件名称
      * @return S3Object
      */
-    S3Object getObject(String bucketName, String objectName);
+    GetObjectResponse getObject(String bucketName, String objectName);
 
     /**
      * 获取对象的url
