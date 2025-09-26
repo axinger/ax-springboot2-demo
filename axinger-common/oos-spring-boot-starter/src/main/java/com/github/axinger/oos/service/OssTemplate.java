@@ -1,10 +1,10 @@
 package com.github.axinger.oos.service;
 
 import com.github.axinger.oos.dto.S3ObjectSummary;
+import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.model.Bucket;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
-import software.amazon.awssdk.services.s3.model.S3Object;
 
 import java.io.InputStream;
 import java.util.List;
@@ -60,7 +60,7 @@ public interface OssTemplate {
      * @param objectName 文件名称
      * @return S3Object
      */
-    GetObjectResponse getObject(String bucketName, String objectName);
+    ResponseInputStream<GetObjectResponse> getObject(String bucketName, String objectName);
 
     /**
      * 获取对象的url

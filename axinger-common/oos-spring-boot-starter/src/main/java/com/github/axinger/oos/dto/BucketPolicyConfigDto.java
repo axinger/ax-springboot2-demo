@@ -1,5 +1,7 @@
 package com.github.axinger.oos.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,25 +15,36 @@ import java.util.List;
 @EqualsAndHashCode
 @Builder
 public class BucketPolicyConfigDto {
-    private String ID;
-    private String Version;
-    private List<Statement> Statement;
+
+    @JsonProperty("ID")
+    private String id;
+
+    @JsonProperty("Version")
+    private String version;
+
+    @JsonProperty("Statement")
+    private List<Statement> statement;
 
     @Data
     @EqualsAndHashCode
     @Builder
     public static class Statement {
-        private String Effect;
-        private Principal Principal;
-        private String[] Action;
-        private String[] Resource;
+        @JsonProperty("Effect")
+        private String effect;
+        @JsonProperty("Principal")
+        private Principal principal;
+        @JsonProperty("Action")
+        private String[] action;
+        @JsonProperty("Resource")
+        private String[] resource;
 
     }
 
     @Data
     @EqualsAndHashCode
     @Builder
-    public static class Principal{
-        private String[] AWS;
+    public static class Principal {
+        @JsonProperty("AWS")
+        private String[] aws;
     }
 }

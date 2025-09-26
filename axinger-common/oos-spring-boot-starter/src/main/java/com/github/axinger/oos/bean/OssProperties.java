@@ -12,6 +12,16 @@ public class OssProperties {
     private String endpoint;
 
     /**
+     * Access key
+     */
+    private String accessKeyId;
+
+    /**
+     * Secret key
+     */
+    private String secretAccessKey;
+
+    /**
      * 区域 Region.US_EAST_1
      */
     private String region;
@@ -22,16 +32,6 @@ public class OssProperties {
      * 只是url的显示不一样
      */
     private Boolean pathStyleAccess = true;
-
-    /**
-     * Access key
-     */
-    private String accessKeyId;
-
-    /**
-     * Secret key
-     */
-    private String secretAccessKey;
 
     /**
      * 最大线程数，默认：100

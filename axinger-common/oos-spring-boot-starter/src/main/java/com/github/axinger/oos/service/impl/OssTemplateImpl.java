@@ -1,11 +1,12 @@
 package com.github.axinger.oos.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson2.JSON;
 import com.github.axinger.oos.dto.BucketPolicyConfigDto;
-import com.github.axinger.oos.exception.OssException;
 import com.github.axinger.oos.dto.S3ObjectSummary;
+import com.github.axinger.oos.exception.OssException;
 import com.github.axinger.oos.service.OssTemplate;
+import com.github.axinger.oos.util.S3Util;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.exception.SdkClientException;
@@ -54,14 +55,14 @@ public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implem
      */
     private BucketPolicyConfigDto createBucketPolicyConfigDto(String bucketName) {
         BucketPolicyConfigDto.Statement statement = BucketPolicyConfigDto.Statement.builder()
-                .Effect("Allow")
-                .Principal(BucketPolicyConfigDto.Principal.builder().AWS(new String[]{"*"}).build())
-                .Action(new String[]{"s3:GetObject"})
-                .Resource(new String[]{"arn:aws:s3:::" + bucketName + "/*"})
+                .effect("Allow")
+                .principal(BucketPolicyConfigDto.Principal.builder().aws(new String[]{"*"}).build())
+                .action(new String[]{"s3:GetObject"})
+                .resource(new String[]{"arn:aws:s3:::" + bucketName + "/*"})
                 .build();
         return BucketPolicyConfigDto.builder()
-                .Version("2012-10-17")
-                .Statement(CollUtil.toList(statement))
+                .version("2012-10-17")
+                .statement(List.of(statement))
                 .build();
     }
 
@@ -80,13 +81,12 @@ public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implem
             log.info("Bucket created: {}", bucketName);
 
             // 设置只读策略
-            String policy = JSON.toJSONString(createBucketPolicyConfigDto(bucketName));
+            String policy = S3Util.createBucketPolicyConfigDto(bucketName);
             s3Client.putBucketPolicy(PutBucketPolicyRequest.builder()
                     .bucket(bucketName)
                     .policy(policy)
                     .build());
             log.info("Bucket policy set: {}", bucketName);
-
         } catch (S3Exception e) {
             if ("BucketAlreadyOwnedByYou".equals(e.awsErrorDetails().errorCode())) {
                 log.info("Bucket was just created by another thread: {}", bucketName);
@@ -159,7 +159,7 @@ public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implem
     // --- 下载对象 ---
 
     @Override
-    public GetObjectResponse getObject(String bucketName, String objectName) {
+    public ResponseInputStream<GetObjectResponse> getObject(String bucketName, String objectName) {
         try {
             GetObjectRequest request = GetObjectRequest.builder()
                     .bucket(bucketName)
@@ -167,7 +167,7 @@ public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implem
                     .build();
             ResponseInputStream<GetObjectResponse> stream = s3Client.getObject(request);
             log.info("Object downloaded: {}/{}", bucketName, objectName);
-            return stream.response();
+            return stream;
         } catch (S3Exception e) {
             log.error("Get object failed: {}/{}", bucketName, objectName, e);
             throw new OssException("Get object failed: " + bucketName + "/" + objectName, e);
@@ -230,7 +230,14 @@ public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implem
         List<S3ObjectSummary> result = s3Client.listObjectsV2Paginator(requestBuilder.build())
                 .contents()
                 .stream()
-                .map(s3Object -> new S3ObjectSummary(bucketName, s3Object.key(), s3Object.size()))
+                .map(s3Object -> S3ObjectSummary.builder()
+                        .bucketName(bucketName)
+                        .objectName(s3Object.key())
+                        .size(s3Object.size())
+                        .lastModified(s3Object.lastModified())
+                        .storageClass(s3Object.storageClass().toString())
+                        .build()
+                )
                 .collect(Collectors.toList());
 
         log.debug("Listed {} objects under bucket='{}', prefix='{}', recursive={}",

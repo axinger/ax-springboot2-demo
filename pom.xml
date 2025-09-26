@@ -89,7 +89,7 @@
         <module>a10-spring-boot-mq</module>
         <module>a11-spring-boot-swagger3</module>
         <module>a12-spring-boot-minio</module>
-        <module>a13-springboot-sso</module>
+        <module>a13-springboot-oss</module>
         <module>a14-spring-boot-netty</module>
         <module>a15-spring-boot-shiro</module>
         <module>a16-spring-security</module>

@@ -9,7 +9,7 @@
         <version>2025.08.01-2.7</version>
     </parent>
 
-    <artifactId>a13-springboot-sso</artifactId>
+    <artifactId>a13-springboot-oss</artifactId>
 
     <dependencies>
 
