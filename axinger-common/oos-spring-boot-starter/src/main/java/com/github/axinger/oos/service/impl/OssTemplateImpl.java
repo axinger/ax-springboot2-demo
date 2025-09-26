@@ -1,12 +1,9 @@
 package com.github.axinger.oos.service.impl;
 
-import com.alibaba.fastjson2.JSON;
-import com.github.axinger.oos.dto.BucketPolicyConfigDto;
 import com.github.axinger.oos.dto.S3ObjectSummary;
 import com.github.axinger.oos.exception.OssException;
 import com.github.axinger.oos.service.OssTemplate;
 import com.github.axinger.oos.util.S3Util;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.exception.SdkClientException;
@@ -48,22 +45,6 @@ public record OssTemplateImpl(S3Client s3Client, S3Presigner s3Presigner) implem
             log.warn("Error checking bucket existence: {}", bucketName, e);
             throw new OssException("Failed to check bucket: " + bucketName, e);
         }
-    }
-
-    /**
-     * 创建 Bucket 的只读访问策略
-     */
-    private BucketPolicyConfigDto createBucketPolicyConfigDto(String bucketName) {
-        BucketPolicyConfigDto.Statement statement = BucketPolicyConfigDto.Statement.builder()
-                .effect("Allow")
-                .principal(BucketPolicyConfigDto.Principal.builder().aws(new String[]{"*"}).build())
-                .action(new String[]{"s3:GetObject"})
-                .resource(new String[]{"arn:aws:s3:::" + bucketName + "/*"})
-                .build();
-        return BucketPolicyConfigDto.builder()
-                .version("2012-10-17")
-                .statement(List.of(statement))
-                .build();
     }
 
     /**

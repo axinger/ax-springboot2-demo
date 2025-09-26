@@ -1,7 +1,6 @@
 package com.github.axinger.oos.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
