@@ -75,7 +75,7 @@ public class OssAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(value = {S3Client.class, S3Presigner.class})
-    @ConditionalOnMissingBean(OssTemplate.class)
+    @ConditionalOnMissingBean(S3Template.class)
     public S3Template s3Template(S3Client s3Client, S3Presigner s3Presigner) {
         return new S3TemplateImpl(s3Client, s3Presigner);
     }

@@ -1,15 +1,18 @@
 package com.github.axinger.controller;
 
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.IdcardUtil;
 import com.github.axinger.oos.service.OssTemplate;
+import com.github.axinger.oos.service.S3Template;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.x.file.storage.core.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
+import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,6 +27,22 @@ public class OssController {
 
     @Autowired
     private OssTemplate ossTemplate;
+
+    @Autowired
+    private S3Template s3Template;
+
+
+    /**
+     * 上传文件
+     */
+    @PostMapping("/upload")
+    public void upload(MultipartFile file) {
+        PutObjectResponse response = s3Template.putObject("ax-test1", IdUtil.fastSimpleUUID(), file);
+
+        String s = response.eTag();
+        System.out.println("s = " + s);
+    }
+
 
     /**
      * 浏览器访问这个 URL 就能直接下载文件

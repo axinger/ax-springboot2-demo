@@ -34,7 +34,7 @@ public record S3TemplateImpl(S3Client s3Client, S3Presigner s3Presigner) impleme
      * 判断Bucket是否存在
      */
     private boolean bucketNotExists(String bucketName) {
-        return bucketExists(bucketName);
+        return !bucketExists(bucketName);
     }
 
     private boolean bucketExists(String bucketName) {
