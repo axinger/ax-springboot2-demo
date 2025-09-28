@@ -132,6 +132,7 @@
         <module>a44-IoT</module>
         <module>axinger-common-bom</module>
         <module>axinger-config-bom</module>
+        <module>axinger-cloud-bom</module>
     </modules>
 
     <dependencyManagement>
@@ -155,8 +156,10 @@
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
-                <artifactId>cloud-fetch-gateway-starter</artifactId>
+                <artifactId>axinger-cloud-bom</artifactId>
                 <version>${axinger.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
 
