@@ -130,18 +130,19 @@
         <module>a35-flowable1</module>
         <module>a16-spring-security2</module>
         <module>a44-IoT</module>
+        <module>axinger-common-bom</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
 
-            <!--            <dependency>-->
-            <!--                <groupId>com.github.axinger</groupId>-->
-            <!--                <artifactId>axinger-common-parent</artifactId>-->
-            <!--                <version>${axinger.version}</version>-->
-            <!--                <type>pom</type>-->
-            <!--                <scope>import</scope>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>axinger-common-bom</artifactId>
+                <version>${axinger.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
 
             <dependency>
@@ -150,23 +151,6 @@
                 <version>${axinger.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>quartz-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>excel-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>redis-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
@@ -177,12 +161,6 @@
             <dependency>
                 <groupId>com.github.axinger</groupId>
                 <artifactId>cors-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>util-spring-boot-starter</artifactId>
                 <version>${axinger.version}</version>
             </dependency>
 
@@ -216,23 +194,6 @@
                 <version>${axinger.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>oos-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>mongodb-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>minio-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
@@ -276,11 +237,6 @@
                 <version>${axinger.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>axinger-tool-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
 
             <!-- spring-boot, spring-cloud, spring-cloud-alibaba 需要注意版本兼容         -->
             <!--            不要这样引用,打包会no main manifest attribute-->
@@ -646,11 +602,11 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
-<!--            <scope>provided</scope>-->
-<!--            为什么使用provided范围？-->
-<!--            provided范围表示依赖在编译和测试时需要，但不会打包到您的JAR中-->
-<!--            最终用户需要自己提供Hutool依赖-->
-<!--            避免了版本冲突，用户可以使用他们喜欢的Hutool版本-->
+            <!--            <scope>provided</scope>-->
+            <!--            为什么使用provided范围？-->
+            <!--            provided范围表示依赖在编译和测试时需要，但不会打包到您的JAR中-->
+            <!--            最终用户需要自己提供Hutool依赖-->
+            <!--            避免了版本冲突，用户可以使用他们喜欢的Hutool版本-->
         </dependency>
 
         <dependency>
