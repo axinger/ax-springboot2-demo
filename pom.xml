@@ -131,6 +131,7 @@
         <module>a16-spring-security2</module>
         <module>a44-IoT</module>
         <module>axinger-common-bom</module>
+        <module>axinger-config-bom</module>
     </modules>
 
     <dependencyManagement>
@@ -144,6 +145,13 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.axinger</groupId>
+                <artifactId>axinger-config-bom</artifactId>
+                <version>${axinger.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
@@ -151,73 +159,6 @@
                 <version>${axinger.version}</version>
             </dependency>
 
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>doc-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>cors-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>request-log-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>http-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>result-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>base-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>mybatis-plus-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>advice-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>jackson-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>logback-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.axinger</groupId>
-                <artifactId>executor-config-spring-boot-starter</artifactId>
-                <version>${axinger.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.github.axinger</groupId>
