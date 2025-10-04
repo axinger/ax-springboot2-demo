@@ -2,7 +2,7 @@ FROM eclipse-temurin:21-jdk-jammy
 
 MAINTAINER 阿星
 
-VOLUME /logs
+VOLUME /var/log/a33-docker-jar
 VOLUME /data
 ENV APP_NAME=server.jar
 
@@ -19,4 +19,4 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 
 EXPOSE 13301
 
-ENTRYPOINT exec java -Xms512m -Xmx512m -Xmn256m -jar ./${APP_NAME}
+ENTRYPOINT exec java -Xms512m -Xmx512m -Xmn256m -jar ./${APP_NAME} --spring.profiles.active=prd

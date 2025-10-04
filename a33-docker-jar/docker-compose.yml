@@ -12,10 +12,10 @@ services:
       - "13301:13301"
       - "13302:13302"
     environment:
-      - DEBUG=1
+      - DEMO_DEBUG=1
     networks:
-      mynetwork:
+      my-network:
 
 networks:
-  mynetwork:
+  my-network:
     external: true

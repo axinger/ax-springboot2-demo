@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
 import lombok.Cleanup;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -104,6 +105,7 @@ public class FileController {
 
     /// 能获取
     @GetMapping("/3")
+    @SneakyThrows
     public Object test3() {
         @Cleanup InputStream inputStream = getClass().getClassLoader().getResourceAsStream("123.json");
         String data = Optional.ofNullable(inputStream).map(val -> {
@@ -118,6 +120,7 @@ public class FileController {
 
     /// 能获取
     @GetMapping("/31")
+    @SneakyThrows
     public Object test31() throws Exception {
         Resource resource = resourceLoader.getResource("classpath:123.json");
         @Cleanup InputStream inputStream = resource.getInputStream();

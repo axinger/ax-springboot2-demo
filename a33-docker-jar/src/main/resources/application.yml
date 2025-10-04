@@ -6,3 +6,6 @@ spring:
     # 这个用来打包
 #    active: '@my-env@'
     active: dev
+logging:
+  file:
+    name: /var/log/a33-docker-jar

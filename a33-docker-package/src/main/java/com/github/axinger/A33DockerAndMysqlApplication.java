@@ -1,7 +1,6 @@
 package com.github.axinger;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,10 +12,9 @@ import java.util.Optional;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan(value = {"com.github.axinger.mapper"})
-public class A33DockerApplication {
+public class A33DockerAndMysqlApplication {
     public static void main(String[] args) throws UnknownHostException {
-        ConfigurableApplicationContext application = SpringApplication.run(A33DockerApplication.class, args);
+        ConfigurableApplicationContext application = SpringApplication.run(A33DockerAndMysqlApplication.class, args);
         Environment env = application.getEnvironment();
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");

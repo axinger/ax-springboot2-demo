@@ -1,8 +1,8 @@
 package com.github.axinger.controller;
 
 import com.axing.common.response.dto.Result;
-import com.github.axinger.domain.SysUser;
-import com.github.axinger.service.SysUserService;
+import com.github.axinger.dao.SysUsersDAO;
+import com.github.axinger.entity.SysUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class IndexController {
     @Value("${config.name}")
     private String name;
     @Autowired
-    private SysUserService sysUserService;
+    private SysUsersDAO sysUsersDAO;
 
     @GetMapping("/data")
     public Result<?> data() {
@@ -41,13 +41,19 @@ public class IndexController {
 
     @GetMapping("/")
     public Result<?> index() {
-
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("name", name);
-//        map.put("age", 14);
-//        map.put("dateTime", LocalDateTime.now());
-
-        List<SysUser> list = sysUserService.list();
+        List<SysUser> list = sysUsersDAO.findAll();
         return Result.ok(list);
+    }
+
+    @GetMapping("/add")
+    public Result<?> add(String username) {
+
+        SysUser sysUser = SysUser.builder()
+                .username(username)
+                .password("123456")
+                .age(18)
+                .sex(1).build();
+        SysUser saved = sysUsersDAO.save(sysUser);
+        return Result.ok(saved);
     }
 }
