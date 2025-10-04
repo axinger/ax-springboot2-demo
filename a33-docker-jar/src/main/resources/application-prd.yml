@@ -3,5 +3,6 @@ server:
 
 spring:
   application:
-    version: 2.0.1
-    description: 生产环境
+    version: ${DEMO_VERSION:2.0.0}
+    description: ${DEMO_DESCRIPTION:生产环境}
+    debug: ${DEMO_DEBUG:0} # 从环境变量中获取

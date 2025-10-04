@@ -10,4 +10,5 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationInfo {
     private String version;
     private String description;
+    private Integer debug;
 }

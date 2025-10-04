@@ -11,7 +11,7 @@ WORKDIR /app
 RUN #mkdir -p config target
 RUN mkdir -p config
 
-COPY /docker/application.yml ./config/application.yml
+#COPY /docker/application.yml ./config/application.yml
 COPY /docker/bootstrap.yml ./config/bootstrap.yml
 COPY /target/*.jar ./${APP_NAME}
 
@@ -19,4 +19,5 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 
 EXPOSE 13301
 
-ENTRYPOINT exec java -Xms512m -Xmx512m -Xmn256m -jar ./${APP_NAME} --spring.profiles.active=prd
+#ENTRYPOINT exec java -Xms512m -Xmx512m -Xmn256m -jar ./${APP_NAME} --spring.profiles.active=prd
+ENTRYPOINT exec java -Xms512m -Xmx512m -Xmn256m -jar ./${APP_NAME}

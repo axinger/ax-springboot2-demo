@@ -12,7 +12,10 @@ services:
       - "13301:13301"
       - "13302:13302"
     environment:
-      - DEMO_DEBUG=1
+      SPRING_PROFILES_ACTIVE: prd
+      DEMO_VERSION: 2.1.1
+      DEMO_DESCRIPTION: docker参数生产环境
+      DEMO_DEBUG: 1
     networks:
       my-network:
 
