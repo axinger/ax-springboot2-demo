@@ -17,7 +17,6 @@
               <option value="a33-docker-jar" />
               <option value="-DskipTests" />
               <option value="-am" />
-              <option value="-amd" />
             </list>
           </option>
           <option name="multimoduleDir" />

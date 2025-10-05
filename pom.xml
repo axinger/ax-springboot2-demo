@@ -133,6 +133,7 @@
         <module>axinger-common-bom</module>
         <module>axinger-config-bom</module>
         <module>axinger-cloud-bom</module>
+        <module>a23-integration</module>
     </modules>
 
     <dependencyManagement>
