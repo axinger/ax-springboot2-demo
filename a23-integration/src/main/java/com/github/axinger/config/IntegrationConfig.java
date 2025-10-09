@@ -10,6 +10,7 @@ import org.springframework.integration.channel.ExecutorChannel;
 import org.springframework.integration.config.EnableIntegration;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
+import org.springframework.integration.dsl.MessageChannels;
 import org.springframework.messaging.MessageChannel;
 
 import java.time.LocalDateTime;
@@ -28,8 +29,20 @@ public class IntegrationConfig {
      * 直连通道：单线程同步处理，适合轻量操作
      */
     @Bean
-    public MessageChannel orderInputChannel() {
-        return new DirectChannel();
+    public MessageChannel orderInputChannel(Executor orderExecutor) {
+
+
+//        MessageChannels.publishSubscribe().get();
+//        MessageChannels.queue().get();
+//        MessageChannels.executor(orderExecutor).get();
+//        MessageChannels.rendezvous().get();
+//        MessageChannels.priority().get();
+//        MessageChannels.flux().get();
+
+        return MessageChannels
+                .direct()
+                .failover(true)
+                .get();
     }
 
     /**

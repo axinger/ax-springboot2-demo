@@ -1,5 +1,6 @@
 package com.github.axinger.controller;
 
+import com.github.axinger.model.dto.LoginDTO;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,17 @@ public class GetController {
     public Object login(@RequestParam("username") @NotEmpty(message = "username不能为空") String username,
                         @RequestParam @NotBlank(message = "password不能为空") @Length(min = 2, message = "password长度不能小于2") String password) {
         return List.of(username, password);
+    }
+
+    /// get请求参数封装对象
+    @GetMapping("/login2")
+    public Object login2(@Validated LoginDTO dto) {
+        return dto;
+    }
+
+    @RequestMapping("/login3")
+    public Object login3(@Validated  @ModelAttribute LoginDTO dto) {
+        return dto;
     }
 
     @GetMapping({
@@ -41,5 +53,14 @@ public class GetController {
         return map;
     }
 
+    /**
+     * 示例：带校验的路径变量
+     */
+    @GetMapping("/user/{id}")
+    public Object getUserById(@PathVariable @NotBlank(message = "用户ID不能为空") String id) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        return result;
+    }
 
 }

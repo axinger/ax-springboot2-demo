@@ -21,4 +21,12 @@ public class PostController {
     public Object login2(@RequestBody @Validated LoginDTO dto) {
         return dto;
     }
+    
+    /**
+     * 示例：带复杂校验的POST请求
+     */
+    @PostMapping("/user")
+    public Object createUser(@RequestBody @Validated LoginDTO dto) {
+        return dto;
+    }
 }
