@@ -27,10 +27,30 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!--不知道有什么区别-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+<!--对比 JDBC：传统的 JDBC 是同步和阻塞的，每个数据库操作都会占用一个线程直到操作完成。R2DBC
+则基于响应式流（如 Project Reactor 的 Flux 和 Mono），允许在少量线程上处理大量并发数据库操作，非常适合高并发、低延迟的应用场景。
+springboot3 才有-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-data-r2dbc</artifactId>-->
+<!--        </dependency>-->
+
 
         <dependency>
             <groupId>com.mysql</groupId>
@@ -51,11 +71,11 @@
             <version>11.2.3.jre17</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate.orm</groupId>-->
-<!--            <artifactId>hibernate-core</artifactId>-->
-<!--            <version>6.4.4.Final</version> &lt;!&ndash; 或更高 &ndash;&gt;-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.hibernate.orm</groupId>-->
+        <!--            <artifactId>hibernate-core</artifactId>-->
+        <!--            <version>6.4.4.Final</version> &lt;!&ndash; 或更高 &ndash;&gt;-->
+        <!--        </dependency>-->
 
 
     </dependencies>

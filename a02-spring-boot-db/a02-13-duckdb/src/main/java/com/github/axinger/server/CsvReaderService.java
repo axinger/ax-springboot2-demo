@@ -2,6 +2,7 @@ package com.github.axinger.server;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,23 @@ public class CsvReaderService {
     public List<Map<String, Object>> readCsv(String csvFilePath) {
         // 使用DuckDB的read_csv函数读取CSV文件
         String sql = "SELECT * FROM read_csv(?)";
+//        String sql = "SELECT * FROM '?' ";
+
+//        Object res = jdbcTemplate.queryForObject("SELECT * FROM "+csvFilePath, Object.class);
+//        System.out.println("res = " + res);
+
+        String sql2 = """
+                    select * from '/opt/123.csv'
+                """;
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql2);
+        System.out.println("maps = " + maps);
+
+        String sql3 = """
+                    select * from '/opt/123.csv'
+                """;
+        List<Map<String, Object>> maps3 = jdbcTemplate.queryForList(sql3);
+        System.out.println("maps3 = " + maps3);
+
         return jdbcTemplate.queryForList(sql, csvFilePath);
     }
 

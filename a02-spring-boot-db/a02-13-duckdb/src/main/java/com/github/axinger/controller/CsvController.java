@@ -16,7 +16,7 @@ public class CsvController {
     }
 
     @GetMapping("/read")
-    public List<Map<String, Object>> readCsv(@RequestParam String filePath) {
+    public List<Map<String, Object>> readCsv(@RequestParam(defaultValue = "/opt/123.csv") String filePath) {
         return csvReaderService.readCsv(filePath);
     }
 
