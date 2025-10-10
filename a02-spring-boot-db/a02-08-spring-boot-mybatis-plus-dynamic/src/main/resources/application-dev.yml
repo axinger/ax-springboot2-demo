@@ -1,3 +1,14 @@
+jasypt:
+  encryptor:
+    #  采用的加密算法
+    algorithm: PBEWITHHMACSHA512ANDAES_256
+    # 盐粒
+    password: 1234
+    property:
+      prefix: ENC(
+      suffix: )
+    iv-generator-classname: org.jasypt.iv.RandomIvGenerator
+
 spring:
   application:
     name: a17-spring-boot-mybatis-plus
@@ -20,16 +31,17 @@ spring:
       lazy: true #默认false非懒启动，系统加载到数据源立即初始化连接池，缺点在于，如果参数配置有误，则启动的时候不知道，初始化的时候失败，可能一直抛异常。
       datasource:
         db_1:
-          url: jdbc:mysql://hadoop102:3306/ax_test01?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+          url: jdbc:mysql://localhost:3306/ax_test01?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: 123456
+#          password: Abcd#1234
+          password: ENC(dclW3RclF3sVdZkNxj+UwqZ8U8tNoX1NBrno5/CRMsjveE+6de5/XlFzoCj0wSzU)
           driver-class-name: com.mysql.cj.jdbc.Driver
 
 
         db_2:
-          url: jdbc:mysql://hadoop102:3306/ax_test02?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+          url: jdbc:mysql://localhost:3306/ax_test02?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: 123456
+          password: Abcd#1234
           driver-class-name: com.mysql.cj.jdbc.Driver
 
   #        db_2:
@@ -51,7 +63,7 @@ spring:
 
 mybatis-plus:
   #枚举包,必须有
-  type-enums-package: com.ax.a16.enums
+#  type-enums-package: com.ax.a16.enums
   #  mapper-locations: classpath*:/mybatis/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   #  typeAliasesPackage: com.example.demo.model

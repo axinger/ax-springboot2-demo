@@ -85,67 +85,33 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-compiler-plugin</artifactId>-->
-            <!--                <version>${maven-compiler-plugin.version}</version>-->
-            <!--                <configuration>-->
-            <!--                    <source>${maven.compiler.source}</source>-->
-            <!--                    <target>${maven.compiler.target}</target>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
 
-            <!--      打包上传值docker hub      -->
-            <!--            <plugin>-->
-            <!--                <groupId>com.google.cloud.tools</groupId>-->
-            <!--                <artifactId>jib-maven-plugin</artifactId>-->
-            <!--                <version>3.3.1</version>-->
-            <!--                <configuration>-->
-            <!--                    <from>-->
-            <!--                        <image>eclipse-temurin:17-jre-jammy</image>-->
-            <!--                    </from>-->
-            <!--                    <to>-->
-            <!--                        &lt;!&ndash;                        <image>registry.hub.docker.com/axingrun/demo</image>&ndash;&gt;-->
-            <!--                        <image>axingrun/demo</image>-->
-            <!--                        <tags>-->
-            <!--                            &lt;!&ndash;版本号&ndash;&gt;-->
-            <!--                            <tag>${axinger.version}</tag>-->
-            <!--                        </tags>-->
-            <!--                        <auth>-->
-            <!--                            &lt;!&ndash;在docker-hub或者阿里云上的账号和密码&ndash;&gt;-->
-            <!--                            <username>${docker.registry.username}</username>-->
-            <!--                            <password>${docker.registry.password}</password>-->
-            <!--                        </auth>-->
-            <!--                    </to>-->
-            <!--                    <allowInsecureRegistries>true</allowInsecureRegistries>-->
-            <!--                    <container>-->
-            <!--                        &lt;!&ndash;微服务的启动类&ndash;&gt;-->
-            <!--                        <mainClass>com.axing.SpringBoot33Application</mainClass>-->
-            <!--                        &lt;!&ndash;使用该参数将镜像的创建时间与系统时间对其&ndash;&gt;-->
-            <!--                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>-->
-            <!--                        <jvmFlags>-->
-            <!--                            <jvmFlag>-Xms128m</jvmFlag>-->
-            <!--                            <jvmFlag>-Xmx128m</jvmFlag>-->
-            <!--                            <jvmFlag>-Duser.timezone=GMT+08</jvmFlag>-->
-            <!--                            <jvmFlag>-Dfile.encoding=UTF8</jvmFlag>-->
-            <!--                        </jvmFlags>-->
-            <!--                        <ports>-->
-            <!--                            <port>8080</port>-->
-            <!--                        </ports>-->
-            <!--                    </container>-->
-            <!--                </configuration>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <id>jib-maven-plugin</id>-->
-            <!--                        <phase>package</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>build</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>quick-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mvn</executable>
+                            <arguments>
+                                <argument>clean</argument>
+                                <argument>package</argument>
+                                <argument>-pl</argument>
+                                <argument>a33-docker-jar</argument>
+                                <argument>-DskipTests</argument>
+                                <argument>-am</argument>
+                                <argument>-amd</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
-
 </project>

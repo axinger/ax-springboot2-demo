@@ -30,6 +30,7 @@
         <module>db-test1</module>
         <module>db-test2</module>
         <module>db-test21</module>
+        <module>a02-13-duckdb</module>
     </modules>
 
 
