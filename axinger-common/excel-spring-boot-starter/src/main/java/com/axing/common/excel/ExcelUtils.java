@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author xing
@@ -59,13 +60,14 @@ public class ExcelUtils {
     public static void writeExcel(HttpServletResponse response,
                                   Class excelClass,
                                   String fileName,
-                                  String sheetName) {
+                                  String sheetName,
+                                  Collection<?> data) {
         OutputStream outputStream = excelStream(response, fileName, ExcelTypeEnum.XLSX.getValue());
         EasyExcel.write(outputStream, excelClass)
                 .excelType(ExcelTypeEnum.XLSX)
-                .sheet(sheetName)
+                .sheet(data == null ? "Sheet1" : sheetName)
                 .registerWriteHandler(ExcelUtils.horizontalCellStyleStrategy())
-                .doWrite(new ArrayList<>());
+                .doWrite(data == null ? new ArrayList<>() : data);
     }
 
     /**

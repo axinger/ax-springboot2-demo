@@ -1,5 +1,6 @@
-package com.github.axinger;
+package com.github.axinger.controller;
 
+import com.github.axinger.service.ExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,13 +51,6 @@ public class HomeController {
 //        modelAndView.addObject("port",request.getServerPort());
         modelAndView.addObject("port", port);
         return modelAndView;
-
-    }
-
-    @RequestMapping(value = "/excel")
-    public void excel(HttpServletResponse response) throws Exception {
-
-        excelService.exportExcel(response);
 
     }
 
