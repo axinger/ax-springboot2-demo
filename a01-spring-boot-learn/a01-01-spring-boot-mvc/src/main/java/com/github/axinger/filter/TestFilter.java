@@ -1,7 +1,11 @@
-package com.github.axinger.config;
+package com.github.axinger.filter;
 
+import com.github.axinger.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,18 +17,25 @@ import java.io.IOException;
  * 只使用一个, 但是@Order 又不生效
  */
 @Slf4j
-//@Component
-//@WebFilter(urlPatterns = "/test/**") //拦截所有请求
-@javax.servlet.annotation.WebFilter(urlPatterns = "/test/*", dispatcherTypes = {DispatcherType.REQUEST})
-@Order(-1)
-public class LoginCheckFilter implements Filter {
+@Component
+//@javax.servlet.annotation.WebFilter(urlPatterns = "/test/**",
+//        filterName = "testFilter",
+//        dispatcherTypes = {DispatcherType.REQUEST})
+//@Order(-1)
+@RequiredArgsConstructor
+public class TestFilter implements javax.servlet.Filter {
+
+//    @Autowired
+//    private UserService userService;
+
+    private final UserService userService;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         //前置：强制转换为http协议的请求对象、响应对象 （转换原因：要使用子类中特有方法）
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        System.out.println("LoginCheckFilter===============================================================================");
+        log.info("/test/**,javax.servlet.Filter拦截器=={}",userService);
         //6.放行
         chain.doFilter(request, response);
     }

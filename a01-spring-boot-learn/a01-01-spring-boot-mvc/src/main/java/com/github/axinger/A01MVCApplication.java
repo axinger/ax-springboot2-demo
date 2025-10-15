@@ -23,16 +23,15 @@ import org.springframework.retry.annotation.EnableRetry;
 @Slf4j
 
 /*
-@ServletComponentScan作用
-SpringBootApplication 上使用@ServletComponentScan 注解后
-Servlet可以直接通过@WebServlet注解自动注册
-Filter可以直接通过@WebFilter注解自动注册
-Listener可以直接通过@WebListener 注解自动注册
+ @ServletComponentScan作用 SpringBootApplication 上使用@ServletComponentScan 注解后
+ Servlet可以直接通过@WebServlet注解自动注册
+ Filter可以直接通过@WebFilter注解自动注册
+ Listener可以直接通过@WebListener 注解自动注册
  */
 @ServletComponentScan
 
 
-//@ServletComponentScan(basePackages = "com.github.axinger")
+//@ServletComponentScan(basePackages = "com.github.axinger.filter")
 public class A01MVCApplication {
 
     static String My_Env;

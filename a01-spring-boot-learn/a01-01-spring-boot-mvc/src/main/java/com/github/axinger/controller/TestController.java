@@ -68,7 +68,7 @@ public class TestController {
         return List.of(countService.count());
     }
 
-    // @Operation(summary = "MTR-获取物料信息")
+    // 这使得该路径可以捕获 /b/ 后面的所有内容作为 materialCode 参数值
     @GetMapping("/b/{materialCode:.*}")
     public Object getInfoByCode(@PathVariable("materialCode") String materialCode) {
         return List.of(materialCode);
