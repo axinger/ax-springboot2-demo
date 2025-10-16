@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
 import com.github.axinger.bean.DocInfoProperties;
-import com.github.axinger.bean.PersonProperties;
+import com.github.axinger.bean.FilterProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -31,13 +31,13 @@ public class ConfigController {
     private DocInfoProperties docInfoProperties;
 
     @Autowired
-    private PersonProperties personProperties;
+    private FilterProperties filterProperties;
 
     @GetMapping("/")
     public Object getInfo() {
         Map<String, Object> map = new HashMap<>(16);
         map.put("title", title);
-        map.put("person", personProperties);
+        map.put("person", filterProperties);
         map.put("doc", docInfoProperties);
         return map;
     }

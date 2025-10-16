@@ -1,7 +1,7 @@
 package com.github.axinger.config;
 
 import com.github.axinger.bean.DocInfoProperties;
-import com.github.axinger.bean.PersonProperties;
+import com.github.axinger.bean.FilterProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @RefreshScope // 支持nacos的动态刷新功能
 @EnableConfigurationProperties({
         DocInfoProperties.class,
-        PersonProperties.class
+        FilterProperties.class
 })
 public class SpringDocAutoConfig {
 

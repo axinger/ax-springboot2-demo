@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   application:
     name: demoNacos
@@ -13,12 +15,12 @@ spring:
         refresh-enabled: true
         file-extension: yaml
         group: DEFAULT_GROUP
-        namespace: demo_dev
+        namespace: dev
         enabled: true
 
         # 默认加载,通用格式的,再加载其他配置,用以下语法
         extension-configs:
-          - data-id: 'docInfo.yaml' # 配置文件名-Data Id
+          - data-id: 'demo_dev.yaml' # 配置文件名-Data Id
             group: DEFAULT_GROUP   # 默认为DEFAULT_GROUP
             refresh: true   # 是否动态刷新，默认为false
       discovery:

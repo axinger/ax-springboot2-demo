@@ -49,7 +49,7 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
         }
 
         if (ObjUtil.isEmpty(jwtTokenProvider.validateToken(token))) {
-            ResponseUtil.writeError(response, Result.fail("token验证失败"));
+            ResponseUtil.writeFail(response, Result.fail("token验证失败"));
             return;
         }
         try {
@@ -57,7 +57,7 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
 
-            ResponseUtil.writeError(response, Result.fail(ExceptionUtil.getSimpleMessage(e)));
+            ResponseUtil.writeFail(response, Result.fail(ExceptionUtil.getSimpleMessage(e)));
             return;
         }
 
