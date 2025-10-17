@@ -25,6 +25,6 @@ public class EnvController {
         map.put("person", person);
         map.put("applicationInfo", applicationInfo);
 
-        return Result.ok(JSONObject.from(map));
+        return Result.success(JSONObject.from(map));
     }
 }

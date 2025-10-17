@@ -21,6 +21,8 @@ public enum Gender {
 
     private String alias;
 
+    //自定义反序列化: 用于指定在 JSON 反序列化过程中，如何将 JSON 数据转换为 Java 对象
+    //构造器/工厂方法标记: 标记一个构造函数或静态工厂方法，使其能够被 Jackson 用于创建对象实例
     @JsonCreator
     public static Gender fromCode(int code) {
 

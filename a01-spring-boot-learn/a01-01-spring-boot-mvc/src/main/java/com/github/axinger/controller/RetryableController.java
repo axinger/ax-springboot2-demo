@@ -33,7 +33,7 @@ public class RetryableController {
             Map<String, Object> map = myService.test1();
             System.out.println("map = " + map);
         });
-        return Result.ok();
+        return Result.success();
 //        return null;
     }
 

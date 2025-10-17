@@ -59,7 +59,7 @@ public class MinioController {
         String contentType = file.getContentType();
         String patchName = FilePathUtil.getFileName(fileName);
         Object upload = minioTemplate.uploadStream(inputStream, bucketName, patchName, contentType);
-        return Result.ok(upload);
+        return Result.success(upload);
     }
 
     /**
@@ -69,7 +69,7 @@ public class MinioController {
     public Result<?> uploadFile(@RequestParam(value = "file") MultipartFile file,
                                 @RequestParam("bucketName") String bucketName) {
         Object upload = minioTemplate.uploadFile(file, bucketName);
-        return Result.ok(upload);
+        return Result.success(upload);
     }
 
     /**
@@ -98,7 +98,7 @@ public class MinioController {
     @GetMapping("/minio/fileUrl")
     public Result<?> downloadByMinio(String bucketName, String fileName) {
         String url = minioTemplate.fileUrl(bucketName, fileName);
-        return Result.ok(url);
+        return Result.success(url);
     }
 
     /**
@@ -110,7 +110,7 @@ public class MinioController {
      */
     @GetMapping("/minio/writeToPath/path")
     public Result<?> downloadByMinio(String bucketName, String fileName, String path) {
-        return Result.ok(minioTemplate.writeToPath(bucketName, fileName, path));
+        return Result.success(minioTemplate.writeToPath(bucketName, fileName, path));
     }
 
     @GetMapping("/v1/file/download3/{fileId}")

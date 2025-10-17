@@ -72,7 +72,7 @@
 
         <dependency>
             <groupId>com.github.axinger</groupId>
-            <artifactId>A07mall-api</artifactId>
+            <artifactId>a07mall-call</artifactId>
             <version>2025.10.01-2.7</version>
         </dependency>
 

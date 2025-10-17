@@ -69,7 +69,7 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
 
         if (body instanceof String) {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(Result.ok(body));
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(Result.success(body));
         }
 
         if (body instanceof Resource) {
@@ -86,8 +86,8 @@ public class GlobalResponse implements ResponseBodyAdvice<Object> {
         }
 
         if (body instanceof Boolean res) {
-            return res ? Result.ok() : Result.fail();
+            return res ? Result.success() : Result.fail();
         }
-        return Result.ok(body);
+        return Result.success(body);
     }
 }

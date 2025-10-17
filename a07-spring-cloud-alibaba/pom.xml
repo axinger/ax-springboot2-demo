@@ -22,6 +22,7 @@
         <module>A07mall-payment-app</module>
         <module>A07mall-sleuth</module>
         <module>A07mall-api</module>
+        <module>a07mall-call</module>
     </modules>
 
 </project>

@@ -1,4 +1,4 @@
-package com.github.axinger.api.payment;
+package com.github.axinger.api.call.payment;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Import;
@@ -14,7 +14,7 @@ import java.util.Map;
         contextId = "PaymentRefundApi",
         configuration = PaymentRefundConfig.class)
 @Import(PaymentRefundConfig.class)
-public interface PaymentRefundApi {
+public interface RefundCall {
 
     @GetMapping(value = "/count/{id}")
     Map<String, Object> count(@PathVariable("id") Integer id);

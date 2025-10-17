@@ -22,26 +22,26 @@ public class UserController {
         // 第2步，获取 Token  相关参数
         SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
         // 第3步，返回给前端
-        return Result.ok(tokenInfo);
+        return Result.success(tokenInfo);
     }
 
     // 查询登录状态  ---- http://localhost:8081/acc/isLogin
     @GetMapping("isLogin")
     public Result isLogin() {
-        return Result.ok("是否登录：" + StpUtil.isLogin());
+        return Result.success("是否登录：" + StpUtil.isLogin());
     }
 
     // 查询 Token 信息  ---- http://localhost:8081/acc/tokenInfo
     @GetMapping("tokenInfo")
     public Result tokenInfo() {
-        return Result.ok(StpUtil.getTokenInfo());
+        return Result.success(StpUtil.getTokenInfo());
     }
 
     // 测试注销  ---- http://localhost:8081/acc/logout
     @GetMapping("logout")
     public Result logout() {
         StpUtil.logout();
-        return Result.ok();
+        return Result.success();
     }
 
 }

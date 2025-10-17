@@ -49,7 +49,7 @@ public class JobController {
 //        final Boolean join = future.join();
 //        System.out.println("join = " + join);
 
-        return Result.ok();
+        return Result.success();
 //        return Result.ok(join);
     }
 
@@ -63,7 +63,7 @@ public class JobController {
 //        final Boolean join = future.join();
 //        System.out.println("join = " + join);
 
-        return Result.ok(b ? "存在" : "不存在");
+        return Result.success(b ? "存在" : "不存在");
 //        return Result.ok(join);
     }
 
@@ -116,7 +116,7 @@ public class JobController {
         final CronTaskPOJO cronTaskPOJO = new CronTaskPOJO();
         cronTaskPOJO.setJobName(id);
         quartzTemplate.deleteJob(cronTaskPOJO);
-        return Result.ok();
+        return Result.success();
     }
 
     /**
@@ -131,7 +131,7 @@ public class JobController {
         final CronTaskPOJO cronTaskPOJO = new CronTaskPOJO();
         cronTaskPOJO.setJobName(id);
         quartzTemplate.resumeJob(cronTaskPOJO);
-        return Result.ok();
+        return Result.success();
     }
 
     /**
@@ -146,7 +146,7 @@ public class JobController {
         final CronTaskPOJO cronTaskPOJO = new CronTaskPOJO();
         cronTaskPOJO.setJobName(id);
         quartzTemplate.resumeJob(cronTaskPOJO);
-        return Result.ok();
+        return Result.success();
     }
 
 
@@ -155,6 +155,6 @@ public class JobController {
         List<Object> list = new ArrayList<>();
         list.add(quartzTemplate.getAllJob());
         list.add(studentService.list());
-        return Result.ok(list);
+        return Result.success(list);
     }
 }

@@ -1,4 +1,4 @@
-package com.github.axinger.api.payment;
+package com.github.axinger.api.call.payment;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Import;
@@ -15,7 +15,7 @@ import java.util.Map;
         url = "http://127.0.0.1:10708/payment/refund/count2",
         configuration = PaymentOrderConfig.class)
 @Import(PaymentOrderConfig.class)
-public interface PaymentOrderApi2 {
+public interface PaymentCall2 {
 
     @GetMapping
 //    @GetMapping("http://127.0.0.1:10708/payment/refund/count2")

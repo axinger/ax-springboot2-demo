@@ -1,4 +1,4 @@
-package com.github.axinger.api.payment;
+package com.github.axinger.api.call.payment;
 
 import com.github.axinger.api.TestServer;
 import feign.Logger;

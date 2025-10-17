@@ -31,7 +31,7 @@ public class IndexController {
         log.warn("warn");
         log.debug("debug");
         log.trace("trace");
-        return Result.ok(Map.of("name", name, "dateTime", LocalDateTime.now()));
+        return Result.success(Map.of("name", name, "dateTime", LocalDateTime.now()));
     }
 
     @GetMapping("/favicon.ico")
@@ -42,7 +42,7 @@ public class IndexController {
     @GetMapping("/")
     public Result<?> index() {
         List<SysUser> list = sysUsersDAO.findAll();
-        return Result.ok(list);
+        return Result.success(list);
     }
 
     @GetMapping("/add")
@@ -54,6 +54,6 @@ public class IndexController {
                 .age(18)
                 .sex(1).build();
         SysUser saved = sysUsersDAO.save(sysUser);
-        return Result.ok(saved);
+        return Result.success(saved);
     }
 }

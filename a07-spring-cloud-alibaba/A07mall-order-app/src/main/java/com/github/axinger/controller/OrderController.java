@@ -1,9 +1,6 @@
 package com.github.axinger.controller;
 
 import brave.Tracer;
-import brave.propagation.TraceContext;
-import com.github.axinger.api.payment.PaymentOrderApi;
-import com.github.axinger.api.payment.PaymentRefundApi;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +22,8 @@ import java.util.Map;
 /**
  * @author xing
  */
-@RestController
 @Slf4j
+@RestController
 public class OrderController {
 
 
@@ -42,11 +39,7 @@ public class OrderController {
 
     @Value("${server-url.gateway-service}")
     private String gatewayService;
-    @Autowired
-    private PaymentOrderApi paymentOrderApi;
 
-    @Autowired
-    private PaymentRefundApi paymentRefundApi;
 
     @Autowired
     private Tracer tracer;
@@ -59,7 +52,9 @@ public class OrderController {
     @Operation(summary = "订单系统")
     @GetMapping(value = "/list")
     public Object order1() {
-        return getRes(1);
+        Map<String, Object> res = new HashMap<>(16);
+        res.put("data", "订单系统");
+        return res;
     }
 
     /**
@@ -77,7 +72,6 @@ public class OrderController {
         ///  泛型擦除
         Map map2 = restTemplate.getForObject(url, Map.class);
         Map<String, Object> res = new HashMap<>(16);
-        res.put("order", getRes(id));
         res.put("payment", map2);
         return res;
     }
@@ -104,50 +98,10 @@ public class OrderController {
         });
         Map<String, Object> map2 = response.getBody();
         Map<String, Object> res = new HashMap<>(16);
-        res.put("order", getRes(id));
         res.put("payment", map2);
         return res;
 
     }
 
-
-    @Operation(summary = "open方式请求,请求支付系统", description = "gatewayFeign")
-    @GetMapping(value = "/gateway/feign/{id}")
-    public Object gatewayFeign(@PathVariable("id") Integer id) {
-        Map<String, Object> map2 = paymentOrderApi.count(id);
-        Map<String, Object> res = new HashMap<>(16);
-        res.put("order", getRes(id));
-        res.put("payment", map2);
-        return res;
-    }
-
-    @Operation(summary = "open方式请求,请求退款", description = "gatewayFeign")
-    @GetMapping(value = "/gateway/refund/{id}")
-    public Object refund(@PathVariable("id") Integer id) {
-        Map<String, Object> map2 = paymentRefundApi.count(id);
-        Map<String, Object> res = new HashMap<>(16);
-        res.put("order", getRes(id));
-        res.put("payment", map2);
-        return res;
-    }
-
-    public Map<String, Object> getRes(Integer id) {
-        Map<String, Object> map = new HashMap<>(16);
-        map.put("order_id", id);
-        map.put("order_name", "订单");
-        map.put("order_port", port);
-
-        TraceContext context = tracer.currentSpan().start().context();
-
-        map.put("parentId", context.parentId());
-        map.put("traceId", context.traceId());
-        map.put("spanId", context.spanId());
-
-        map.put("traceIdHigh", context.traceIdHigh());
-        map.put("traceIdString", context.traceIdString());
-        map.put("isLocalRoot", context.isLocalRoot());
-
-        return map;
-    }
 
 }

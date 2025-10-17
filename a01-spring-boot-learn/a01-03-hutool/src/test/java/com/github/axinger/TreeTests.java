@@ -8,6 +8,7 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public class TreeTests {
     @Test
@@ -39,7 +40,11 @@ public class TreeTests {
 
 //        nodeList.add(new TreeNode<>("0", "-1", "菜单栏", 0));
 
-        nodeList.add(new TreeNode<>("1", "0", "系统管理", 5));
+        {
+            TreeNode<String> node = new TreeNode<>("1", "0", "系统管理", 5);
+            node.setExtra(Map.of("extraField", 666));
+            nodeList.add(node);
+        }
         nodeList.add(new TreeNode<>("2", "0", "店铺管理", 1));
 
         nodeList.add(new TreeNode<>("11", "1", "用户管理", 222222));

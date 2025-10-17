@@ -67,7 +67,7 @@ public class UserController {
         user1.setSex(1);
         user1.setData(books);
 
-        return Result.ok(List.of(
+        return Result.success(List.of(
                 user1
         ));
     }

@@ -54,7 +54,7 @@ public class IndexController {
         resultMap.put("username", username);
         resultMap.put("password", password);
         resultMap.put(token, token);
-        return Result.ok(resultMap);
+        return Result.success(resultMap);
     }
 
 

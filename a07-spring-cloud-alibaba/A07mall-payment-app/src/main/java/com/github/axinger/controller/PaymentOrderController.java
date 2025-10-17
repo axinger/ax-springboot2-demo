@@ -3,9 +3,13 @@ package com.github.axinger.controller;
 
 import brave.Tracer;
 import brave.propagation.TraceContext;
+import com.axing.common.response.dto.Result;
+import com.github.axinger.api.dto.PaymentDTO;
+import com.github.axinger.api.dto.PaymentVO;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,14 +25,15 @@ public class PaymentOrderController {
     @Value("${server.port}")
     private String port;
 
-
     @Autowired
     private Tracer tracer;
 
 
     @Operation(summary = "支付系统,订单")
-    @GetMapping(value = "/count/{id}")
-    public Map<String, Object> payment(@PathVariable("id") String id, @RequestHeader("Authorization") String token) {
+    /// get请求分组dto参数
+    @GetMapping(value = "/payment1")
+    public Result<PaymentVO> payment1(@RequestHeader("Authorization") String token, @SpringQueryMap PaymentDTO dto) {
+        String id = dto.getId();
         System.out.println("payment_id = " + id);
         Map<String, Object> map = new HashMap<>(16);
         map.put("payment_id", id);
@@ -45,7 +50,24 @@ public class PaymentOrderController {
         map.put("traceIdHigh", context.traceIdHigh());
         map.put("traceIdString", context.traceIdString());
         map.put("isLocalRoot", context.isLocalRoot());
-        return map;
+
+        Result<PaymentVO> result = Result.success(PaymentVO.builder()
+                .id(id)
+                .build());
+        result.setParams(map);
+        return result;
+    }
+
+    @Operation(summary = "支付系统,订单2")
+    @PostMapping(value = "/payment2")
+    public Result<PaymentVO> payment2(@RequestHeader("Authorization") String token, @RequestBody PaymentDTO dto) {
+        String id = dto.getId();
+        Result<PaymentVO> result = Result.success(PaymentVO.builder()
+                .id(id)
+                .build());
+
+        result.setParams(Map.of("payment_id", id, "token", token));
+        return result;
     }
 
 }

@@ -25,7 +25,7 @@ public class FileController {
                                   @RequestPart("name") String name) {
         System.out.println("file = " + file);
         System.out.println("name = " + name);
-        return Result.ok();
+        return Result.success();
     }
 
     /**
@@ -42,7 +42,7 @@ public class FileController {
                                   @RequestParam("name") String name) {
         System.out.println("file = " + file);
         System.out.println("name = " + name);
-        return Result.ok();
+        return Result.success();
     }
 
 

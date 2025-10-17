@@ -52,7 +52,9 @@ public class UserController {
 //
     @DeleteMapping("/delete/{id}")
 //    @PreAuthorize("hasAuthority('user:delete')")
-    public Result<Void> deleteUser(@PathVariable Integer id) {
-        return Result.success("删除成功");
+    public Result<Object> deleteUser(@PathVariable Integer id) {
+        Result<Object> result = Result.success();
+        result.setMsg("删除成功");
+        return result;
     }
 }

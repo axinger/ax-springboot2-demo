@@ -49,7 +49,7 @@ public class AuthController {
             result.put("token", token);
             result.put("username", loginDTO.getUsername());
 
-            return Result.ok(result);
+            return Result.success(result);
         } catch (BadCredentialsException e) {
             return Result.fail("用户名或密码错误");
         }
@@ -65,7 +65,7 @@ public class AuthController {
             String newToken = jwtTokenUtil.generateToken(userDetails.getUsername());
             Map<String, String> result = new HashMap<>();
             result.put("token", newToken);
-            return Result.ok(result);
+            return Result.success(result);
         }
 
         return Result.fail("token刷新失败");

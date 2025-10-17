@@ -48,7 +48,8 @@ public class GlobalException {
         map.put("path", uri);
         ///  错误message,没有类型
         String msg = ExceptionUtil.getSimpleMessage(e);
-        final Result<Map<String, Object>> result = Result.fail(msg, map);
+        final Result<Map<String, Object>> result = Result.fail(msg);
+        result.setParams(map);
         ///  getRootCauseMessage: 错误类型
         log.error("全局异常,result = {}", JSONObject.toJSONString(result));
 

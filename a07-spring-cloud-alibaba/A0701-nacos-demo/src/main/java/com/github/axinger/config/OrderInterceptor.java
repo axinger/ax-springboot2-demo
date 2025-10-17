@@ -1,6 +1,5 @@
 package com.github.axinger.config;
 
-import com.alibaba.fastjson2.JSON;
 import com.axing.common.response.dto.Result;
 import com.axing.common.util.utils.ResponseUtil;
 import com.github.axinger.bean.FilterProperties;
@@ -22,10 +21,9 @@ import java.util.List;
 @Component
 public class OrderInterceptor implements HandlerInterceptor {
 
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Autowired
     private FilterProperties filterProperties;
-
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Override
     public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) throws ServletException, IOException {

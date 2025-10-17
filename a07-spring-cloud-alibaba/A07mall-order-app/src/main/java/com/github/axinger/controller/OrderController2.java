@@ -1,6 +1,6 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.api.payment.PaymentOrderApi2;
+import com.github.axinger.api.call.payment.PaymentCall2;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class OrderController2 {
 
 
     @Autowired
-    private PaymentOrderApi2 paymentOrderApi;
+    private PaymentCall2 paymentOrderApi;
 
     @Operation(summary = "订单系统")
     @GetMapping(value = "/list")

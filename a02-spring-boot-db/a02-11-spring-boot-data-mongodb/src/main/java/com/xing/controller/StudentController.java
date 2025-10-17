@@ -30,7 +30,7 @@ public class StudentController {
     @PostMapping("save")
     public Result save(@RequestBody StudentInfo studentInfo) {
         studentInfoService.save(studentInfo);
-        return Result.ok();
+        return Result.success();
     }
 
     /**
@@ -42,7 +42,7 @@ public class StudentController {
     @GetMapping("getStudentInfoById")
     public Result getStudentInfoById(@RequestParam("id") ObjectId id) {
         StudentInfo studentInfo = studentInfoService.getStudentInfoById(id);
-        return Result.ok(studentInfo);
+        return Result.success(studentInfo);
     }
 
     /**
@@ -62,7 +62,7 @@ public class StudentController {
                                                @RequestParam(defaultValue = "addTime") String sort,
                                                @RequestParam(defaultValue = "desc") String order) {
         List<StudentInfo> studentInfoList = studentInfoService.getStudentInfoListByCourseId(courseId, page, limit, sort, order);
-        return Result.ok(studentInfoList);
+        return Result.success(studentInfoList);
     }
 
     /**
@@ -74,7 +74,7 @@ public class StudentController {
     @PostMapping("update")
     public Result update(@RequestBody StudentInfo studentInfo) {
         studentInfoService.update(studentInfo);
-        return Result.ok();
+        return Result.success();
     }
 
     /**
@@ -87,7 +87,7 @@ public class StudentController {
     @GetMapping("deleteCourseByIdAndCourseId")
     public Result deleteCourseByIdAndCourseId(@RequestParam("id") ObjectId id, @RequestParam("courseId") Integer courseId) {
         studentInfoService.deleteCourseByIdAndCourseId(id, courseId);
-        return Result.ok();
+        return Result.success();
     }
 
     /**
@@ -99,7 +99,7 @@ public class StudentController {
     @GetMapping("delete")
     public Result delete(@RequestParam("id") ObjectId id) {
         studentInfoService.delete(id);
-        return Result.ok();
+        return Result.success();
     }
 
 
