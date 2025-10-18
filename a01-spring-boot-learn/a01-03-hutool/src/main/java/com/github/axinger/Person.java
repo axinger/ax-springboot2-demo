@@ -20,6 +20,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Person implements Serializable {
 
+    private Integer id;
+
     private String name;
 
     private Boolean big;
