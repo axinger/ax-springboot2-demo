@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.axinger.mapper.DynamicQueryMapper">
+<mapper namespace="com.github.axinger.mapper.CommonMapper">
 
     <select id="queryTableMap" resultType="java.util.Map">
         <!-- 使用前校验 SQL -->

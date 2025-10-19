@@ -10,6 +10,12 @@ import java.util.Map;
 @Mapper
 public interface DuckDBMapper {
 
+    //  #{sql} 不行
+    @Select("""
+                ${sql}
+            """)
+    List<Map<String, Object>> select(@Param("sql") String sql);
+
     @Select("""
             SELECT * FROM read_csv(#{path},delim = ',')
             """)
@@ -18,7 +24,7 @@ public interface DuckDBMapper {
     /**
      * 透视
      * 第一个查询以year列为中心。这意味着我们将分别获得国家、姓名和年份的列。
-     * ON year IN (2020,2021) ,必须加年份 ,不然报错
+     * ON year IN (2020,2021) ,必须加年份 ,不然报错, 正常情况是不需要加的
      */
         /*
         PIVOT cities

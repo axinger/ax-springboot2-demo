@@ -185,15 +185,37 @@ public class A02B13DuckDBApplicationTest {
     @Test
     public void test_透视() {
 
+//        {
+//            String filename = "./opt/cities.csv";
+//            String sql3 = String.format("""
+//                    PIVOT read_csv('%s', delim = ',')
+//                    ON year
+//                    USING sum(population)
+//                    """, filename.replace("'", "''"));  // 处理单引号转义
+//            List<Map<String, Object>> objects = jdbcTemplate.queryForList(sql3);
+//            System.out.println("objects = " + objects);
+//            ConsoleTable consoleTable = ConsoleTable.create();
+//            String[] titles = objects.getFirst().keySet().toArray(new String[0]);
+//            consoleTable.addHeader(titles);
+//            for (Map<String, Object> map : objects) {
+//                Object[] array = map.values().toArray(new Object[0]);
+//                String[] stringArray = Arrays.stream(array)
+//                        .map(obj -> obj == null ? "" : obj.toString())
+//                        .toArray(String[]::new);
+//                consoleTable.addBody(stringArray);
+//            }
+//            Console.table(consoleTable);
+//        }
+
         {
-            String filename = "./opt/cities.csv";
+            String path = "./opt/cities.csv".replace("'", "''");  // 处理单引号转义
             String sql3 = String.format("""
                     PIVOT read_csv('%s', delim = ',')
                     ON year
                     USING sum(population)
-                    """, filename.replace("'", "''"));  // 处理单引号转义
-            List<Map<String, Object>> objects = jdbcTemplate.queryForList(sql3);
-            System.out.println("objects = " + objects);
+                    """, path);
+            List<Map<String, Object>> objects = duckDBMapper.select(sql3);
+            System.out.println("拼接字符串方式objects = " + objects);
             ConsoleTable consoleTable = ConsoleTable.create();
             String[] titles = objects.getFirst().keySet().toArray(new String[0]);
             consoleTable.addHeader(titles);
@@ -206,6 +228,7 @@ public class A02B13DuckDBApplicationTest {
             }
             Console.table(consoleTable);
         }
+
 
         // 不行,  PIVOT read_csv(:filename 不能填充
 //        String sql4 = """
