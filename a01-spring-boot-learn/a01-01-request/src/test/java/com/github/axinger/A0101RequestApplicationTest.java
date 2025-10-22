@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
-class A0101RequestApplicationTest {
+public class A0101RequestApplicationTest {
 
 
     @Test

@@ -35,8 +35,8 @@ public class Person implements Serializable {
     @JsonFormat(pattern = "yyyyMM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     Date date;
-    @JsonFormat(pattern = "yyyy\uD83C\uDF1EMM-dd HH:mm:ss", timezone = "GMT+8")
-    @JSONField(format = "yyyy\uD83C\uDF1EMM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy年MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JSONField(format = "yyyy年MM-dd HH:mm:ss")
     LocalDateTime localDateTime;
     LocalDateTime localDateTime2;
     LocalDate localDate2;
