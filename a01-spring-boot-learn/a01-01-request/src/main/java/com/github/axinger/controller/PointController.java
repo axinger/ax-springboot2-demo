@@ -2,7 +2,6 @@ package com.github.axinger.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
 import com.github.axinger.bean.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +27,8 @@ public class PointController {
 
         Point reader = objectMapper.readValue(json, Point.class);
         System.out.println("reader = " + reader);
+
+//        JsonParser jsonParser = new JacksonJsonParser();
 
         return point;
     }

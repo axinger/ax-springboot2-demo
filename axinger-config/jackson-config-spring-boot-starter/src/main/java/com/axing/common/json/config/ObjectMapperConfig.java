@@ -2,6 +2,7 @@ package com.axing.common.json.config;
 
 import com.axing.common.json.bean.JsonProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
@@ -38,10 +39,14 @@ public class ObjectMapperConfig {
         return builder -> {
             builder.locale(Locale.CHINA);
             builder.serializationInclusion(JsonInclude.Include.NON_NULL);
-
-            builder.simpleDateFormat(properties.getDateFormat());
-
             if (Optional.ofNullable(properties).isPresent()) {
+                builder.simpleDateFormat(properties.getDateFormat());
+                // 默认情况下如果遇到目标类中不存在的属性就会抛出异常。
+                // builder.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, properties.isFailOnUnknownProperties());
+                // Spring Boot 默认就是 FAIL_ON_UNKNOWN_PROPERTIES = false，即忽略未知属性
+                if (properties.isFailOnUnknownProperties()) {
+                    builder.featuresToEnable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+                }
                 // 使用这个方式, 使用modules,会影响其他设置 builder.modules(new Java8TimeModule());
                 // builder.modules(new Java8TimeModule(properties));
                 // yyyy-MM-dd HH:mm:ss
@@ -56,7 +61,6 @@ public class ObjectMapperConfig {
                 builder.serializerByType(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(properties.getLocalTimeFormat())));
                 builder.deserializerByType(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(properties.getLocalTimeFormat())));
             }
-
         };
     }
 
