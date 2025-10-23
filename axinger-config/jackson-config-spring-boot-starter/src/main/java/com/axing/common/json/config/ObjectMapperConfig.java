@@ -45,7 +45,7 @@ public class ObjectMapperConfig {
                 // builder.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, properties.isFailOnUnknownProperties());
                 // Spring Boot 默认就是 FAIL_ON_UNKNOWN_PROPERTIES = false，即忽略未知属性
                 if (properties.isFailOnUnknownProperties()) {
-                    builder.featuresToEnable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+                    builder.featuresToDisable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
                 }
                 // 使用这个方式, 使用modules,会影响其他设置 builder.modules(new Java8TimeModule());
                 // builder.modules(new Java8TimeModule(properties));
