@@ -19,11 +19,11 @@ public class LockController {
     @GetMapping("/1")
     public String test1() {
         System.out.println("开始test1*************************************");
-        lockCount+=1;
+        lockCount += 1;
         System.out.println("lockCount1 = " + lockCount);
         TimeUnit.SECONDS.sleep(5);
         System.out.println("结束test1************************************");
-        return "lockCount1:"+lockCount;
+        return "lockCount1:" + lockCount;
     }
 
     @Locked
@@ -31,10 +31,10 @@ public class LockController {
     @GetMapping("/2")
     public String test2() {
         System.out.println("开始test2************************************");
-        lockCount+=1;
+        lockCount += 1;
         System.out.println("lockCount = " + lockCount);
         TimeUnit.SECONDS.sleep(2);
         System.out.println("结束test2************************************");
-        return "lockCount2:"+lockCount;
+        return "lockCount2:" + lockCount;
     }
 }
