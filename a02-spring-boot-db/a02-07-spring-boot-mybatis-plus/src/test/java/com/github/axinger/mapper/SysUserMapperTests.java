@@ -3,8 +3,9 @@ package com.github.axinger.mapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.github.axinger.domain.SysUserEntity;
-import com.github.axinger.service.SysUserService;
+import com.github.axinger.sys.domain.SysUserEntity;
+import com.github.axinger.sys.mapper.SysUserMapper;
+import com.github.axinger.sys.service.SysUserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +32,7 @@ public class SysUserMapperTests {
                 .phone("189000")
                 .age(10)
                 .info(Map.of("name", "jim"))
-                .infoList(List.of("1","2"))
+                .infoList(List.of("1", "2"))
                 .build();
         sysUserMapper.insert(sysUser);
     }
@@ -69,7 +70,6 @@ public class SysUserMapperTests {
     }
 
 
-
     @Test
     void test3() {
         /// username和email均有唯一索引，任意一个重复均,就会失败
@@ -92,7 +92,7 @@ public class SysUserMapperTests {
         users.add(SysUserEntity.builder().username("jim").email("123@qq.com").phone("189000").age(13).build());
 //        users.add(SysUserEntity.builder().username("jim").email("123@qq.com").age(13).build());
 
-        sysUserMapper.batchInsertOrUpdate(users);
+        sysUserMapper.batchInsertOrUpdateOnDuplicate(users);
     }
 
     @Test

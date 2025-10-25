@@ -33,7 +33,7 @@ spring:
         db_1:
           url: jdbc:mysql://localhost:3306/ax_test01?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-#          password: Abcd#1234
+          #          password: Abcd#1234
           password: ENC(dclW3RclF3sVdZkNxj+UwqZ8U8tNoX1NBrno5/CRMsjveE+6de5/XlFzoCj0wSzU)
           driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -63,7 +63,7 @@ spring:
 
 mybatis-plus:
   #枚举包,必须有
-#  type-enums-package: com.ax.a16.enums
+  #  type-enums-package: com.ax.a16.enums
   #  mapper-locations: classpath*:/mybatis/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   #  typeAliasesPackage: com.example.demo.model

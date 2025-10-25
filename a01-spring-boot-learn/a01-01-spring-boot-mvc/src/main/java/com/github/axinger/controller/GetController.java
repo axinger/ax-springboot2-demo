@@ -29,7 +29,7 @@ public class GetController {
     }
 
     @RequestMapping("/login3")
-    public Object login3(@Validated  @ModelAttribute LoginDTO dto) {
+    public Object login3(@Validated @ModelAttribute LoginDTO dto) {
         return dto;
     }
 

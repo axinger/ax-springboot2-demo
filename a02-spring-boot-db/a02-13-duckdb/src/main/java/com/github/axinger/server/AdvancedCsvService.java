@@ -20,21 +20,21 @@ public class AdvancedCsvService {
      */
     public List<Map<String, Object>> complexQuery(String csvFilePath) {
         String sql = """
-            WITH csv_data AS (
-                SELECT * FROM read_csv(?, 
-                    columns={'id': 'INTEGER', 'name': 'VARCHAR', 'age': 'INTEGER', 'salary': 'DOUBLE'},
-                    auto_detect=true
+                WITH csv_data AS (
+                    SELECT * FROM read_csv(?, 
+                        columns={'id': 'INTEGER', 'name': 'VARCHAR', 'age': 'INTEGER', 'salary': 'DOUBLE'},
+                        auto_detect=true
+                    )
                 )
-            )
-            SELECT 
-                name,
-                age,
-                salary,
-                AVG(salary) OVER() as avg_salary
-            FROM csv_data 
-            WHERE age > 25
-            ORDER BY salary DESC
-            """;
+                SELECT 
+                    name,
+                    age,
+                    salary,
+                    AVG(salary) OVER() as avg_salary
+                FROM csv_data 
+                WHERE age > 25
+                ORDER BY salary DESC
+                """;
 
         return jdbcTemplate.queryForList(sql, csvFilePath);
     }
@@ -56,11 +56,11 @@ public class AdvancedCsvService {
      */
     public List<Map<String, Object>> getCsvSchema(String csvFilePath) {
         String sql = """
-            SELECT 
-                column_name,
-                data_type
-            FROM pragma_table_info('read_csv(?)')
-            """;
+                SELECT 
+                    column_name,
+                    data_type
+                FROM pragma_table_info('read_csv(?)')
+                """;
 
         return jdbcTemplate.queryForList(sql, csvFilePath);
     }

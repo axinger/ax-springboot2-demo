@@ -1,10 +1,10 @@
 package com.github.axinger;
 
 import com.baomidou.mybatisplus.core.toolkit.AES;
-import com.github.axinger.domain.SysPersonEntity;
-import com.github.axinger.domain.SysUserTotalEntity;
-import com.github.axinger.service.SysPersonService;
-import com.github.axinger.service.SysUserTotalService;
+import com.github.axinger.sys.domain.SysPersonEntity;
+import com.github.axinger.sys.domain.SysUserTotalEntity;
+import com.github.axinger.sys.service.SysPersonService;
+import com.github.axinger.sys.service.SysUserTotalService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

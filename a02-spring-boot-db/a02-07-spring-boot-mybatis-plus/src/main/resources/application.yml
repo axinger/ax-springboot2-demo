@@ -1,3 +1,7 @@
+server:
+  port: 12007
+
 spring:
   profiles:
     active: mysql
+

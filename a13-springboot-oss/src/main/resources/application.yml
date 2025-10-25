@@ -41,7 +41,7 @@ dromara:
         end-point: http://localhost:19000
         bucket-name: ax-test1 #桶名称
         domain: http://localhost:19001/ # 访问域名，注意“/”结尾，例如：https://abcd.s3.ap-east-1.amazonaws.com/
-#        base-path: s3/ # 基础路径
+    #        base-path: s3/ # 基础路径
 
     minio: # Amazon S3 V2
       - platform: my-minio # 存储平台标识

@@ -1,11 +1,9 @@
 package com.github.axinger.controller;
 
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.IdcardUtil;
 import com.github.axinger.oos.service.OssTemplate;
 import com.github.axinger.oos.service.S3Template;
 import lombok.extern.slf4j.Slf4j;
-import org.dromara.x.file.storage.core.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;

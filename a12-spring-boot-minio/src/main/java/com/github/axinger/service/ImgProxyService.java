@@ -25,13 +25,37 @@ public class ImgProxyService {
     @Value("${img-proxy.url}")
     private String proxyUrl;
 
+    public static String signPath(byte[] key, byte[] salt, String path) throws Exception {
+        final String HMACSHA256 = "HmacSHA256";
+
+        Mac sha256HMAC = Mac.getInstance(HMACSHA256);
+        SecretKeySpec secretKey = new SecretKeySpec(key, HMACSHA256);
+        sha256HMAC.init(secretKey);
+        sha256HMAC.update(salt);
+
+        String hash = Base64.getUrlEncoder().withoutPadding().encodeToString(sha256HMAC.doFinal(path.getBytes()));
+
+        return "/" + hash + path;
+    }
+
+    private static byte[] hexStringToByteArray(String hex) {
+        if (hex.length() % 2 != 0) {
+            throw new IllegalArgumentException("Even-length string required");
+        }
+        byte[] res = new byte[hex.length() / 2];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = (byte) ((Character.digit(hex.charAt(i * 2), 16) << 4) | (Character.digit(hex.charAt(i * 2 + 1), 16)));
+        }
+        return res;
+    }
+
     /**
      * 根据路径和规则过去签名地址
      *
      * @param path              路径
      * @param processingOptions 处理规则
      */
-    public String getImgProxyUrl(String minioBucketName,String path, String processingOptions) {
+    public String getImgProxyUrl(String minioBucketName, String path, String processingOptions) {
         byte[] readKey = hexStringToByteArray(key);
         byte[] readSalt = hexStringToByteArray(salt);
 
@@ -57,31 +81,6 @@ public class ImgProxyService {
         String finalProxyUrl = proxyUrl.endsWith("/") ? proxyUrl.substring(0, proxyUrl.length() - 1) : proxyUrl;
         return finalProxyUrl + pathWithHash;
     }
-
-    public static String signPath(byte[] key, byte[] salt, String path) throws Exception {
-        final String HMACSHA256 = "HmacSHA256";
-
-        Mac sha256HMAC = Mac.getInstance(HMACSHA256);
-        SecretKeySpec secretKey = new SecretKeySpec(key, HMACSHA256);
-        sha256HMAC.init(secretKey);
-        sha256HMAC.update(salt);
-
-        String hash = Base64.getUrlEncoder().withoutPadding().encodeToString(sha256HMAC.doFinal(path.getBytes()));
-
-        return "/" + hash + path;
-    }
-
-    private static byte[] hexStringToByteArray(String hex) {
-        if (hex.length() % 2 != 0) {
-            throw new IllegalArgumentException("Even-length string required");
-        }
-        byte[] res = new byte[hex.length() / 2];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = (byte) ((Character.digit(hex.charAt(i * 2), 16) << 4) | (Character.digit(hex.charAt(i * 2 + 1), 16)));
-        }
-        return res;
-    }
-
 
     public String buildWatermarkParam(WatermarkDTO wm) {
         String text = wm.getText();

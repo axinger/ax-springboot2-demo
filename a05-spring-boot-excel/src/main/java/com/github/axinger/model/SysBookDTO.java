@@ -8,7 +8,6 @@ import com.alibaba.excel.enums.BooleanEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.poi.ss.usermodel.IndexedColors;
 
 import java.util.Date;
 
@@ -27,8 +26,8 @@ import java.util.Date;
 // 可选：设置表头样式（背景色、字体等）
 //@HeadStyle(fillForegroundColor = IndexedColors.LIGHT_BLUE.index)
 //@HeadFontStyle(color = IndexedColors.WHITE.index, bold = BooleanEnum.TRUE)
-@HeadFontStyle(color = 4, bold = BooleanEnum.TRUE,fontName = "微软雅黑", fontHeightInPoints = 10)
-@ContentFontStyle(color = 14,fontName = "Arial", fontHeightInPoints = 10)
+@HeadFontStyle(color = 4, bold = BooleanEnum.TRUE, fontName = "微软雅黑", fontHeightInPoints = 10)
+@ContentFontStyle(color = 14, fontName = "Arial", fontHeightInPoints = 10)
 @ContentRowHeight(60)
 //@OnceAbsoluteMerge(firstRowIndex = 1, lastRowIndex = 100)
 public class SysBookDTO {

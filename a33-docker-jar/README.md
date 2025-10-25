@@ -1,12 +1,15 @@
 构建自身和依赖
+
 ```shell
 mvn clean package -pl a33-docker-jar -DskipTests -am
 ```
 
 构建自身和自身被依赖的模块
+
 ```
 mvn clean package -pl a33-docker-jar -DskipTests -am -amd
 ```
+
 ```text
 这条命令会：
 构建 a33-docker-jar 模块所依赖的所有模块（-am 的作用）

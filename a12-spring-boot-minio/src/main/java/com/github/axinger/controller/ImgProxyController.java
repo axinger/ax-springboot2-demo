@@ -2,14 +2,11 @@ package com.github.axinger.controller;
 
 import com.axing.common.response.dto.Result;
 import com.github.axinger.model.SizeDTO;
-import com.github.axinger.model.WatermarkDTO;
 import com.github.axinger.service.ImgProxyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @RestController

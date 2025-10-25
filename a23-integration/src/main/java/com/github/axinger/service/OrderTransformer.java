@@ -4,7 +4,6 @@ import com.github.axinger.model.Order;
 import org.springframework.integration.annotation.Transformer;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 //3.3 转换器（自定义字段转换）

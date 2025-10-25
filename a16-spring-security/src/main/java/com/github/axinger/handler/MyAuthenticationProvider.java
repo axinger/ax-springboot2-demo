@@ -48,8 +48,8 @@
 //        return new UsernamePasswordAuthenticationToken(userInfo, password, authorities);
 //    }
 //
-////    @Override
-////    public boolean supports(Class<?> authentication) {
+/// /    @Override
+/// /    public boolean supports(Class<?> authentication) {
 //
 //    /// /      这里直接改成retrun true;表示是支持这个执行
 ////        return true;

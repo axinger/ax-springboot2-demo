@@ -248,12 +248,6 @@ public class SpringUtilTests {
         System.out.println("result = " + result);
     }
 
-    private static class MyService {
-        public int calculateTotal(int amount, double taxRate) {
-            return (int) (amount * (1 + taxRate));
-        }
-    }
-
     @Test
     public void test13() throws Exception {
 
@@ -321,7 +315,6 @@ public class SpringUtilTests {
         }
 
     }
-
 
     @Test
     public void test18() throws Exception {
@@ -539,7 +532,6 @@ public class SpringUtilTests {
         System.out.println("intValue = " + intValue);
     }
 
-
     @Test
     public void test34() throws Exception {
         // 根据文件名推断媒体类型
@@ -606,7 +598,6 @@ public class SpringUtilTests {
 
     }
 
-
     @Test
     public void test41() throws Exception {
         // 创建代理
@@ -634,5 +625,11 @@ public class SpringUtilTests {
         yaml.setResources(new ClassPathResource("application.yml"));
         Properties properties = yaml.getObject();
 
+    }
+
+    private static class MyService {
+        public int calculateTotal(int amount, double taxRate) {
+            return (int) (amount * (1 + taxRate));
+        }
     }
 }

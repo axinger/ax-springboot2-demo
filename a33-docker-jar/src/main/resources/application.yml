@@ -6,8 +6,8 @@ server:
 spring:
   profiles:
     # 这个用来打包
-#    active: '@my-env@'
-#    active: dev
+    #    active: '@my-env@'
+    #    active: dev
     active: ${SPRING_PROFILES_ACTIVE:dev}
 
 logging:

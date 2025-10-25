@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author xing
@@ -26,50 +25,94 @@ import java.util.Date;
 @Configuration
 public class MybatisPlusConfig implements MetaObjectHandler {
 
-
     @Autowired
     private TenantProperties tenantProperties;
 
+    /**
+     * 插入填充字段
+     *
+     * @param metaObject 元对象
+     */
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.debug("insertFill================================================================");
-        this.strictInsertFill(metaObject, "version", Long.class, 1L);
-        this.insertDateFill("createTime", metaObject);
-        this.insertDateFill("updateTime", metaObject);
+        LocalDateTime nowed = LocalDateTime.now();
+        myInsertFill(metaObject, "createTime", LocalDateTime.class, nowed);
+        myInsertFill(metaObject, "updateTime", LocalDateTime.class, nowed);
+        myInsertFill(metaObject, "delFlag", String.class, "N");
+        myInsertFill(metaObject, "version", Long.class, 1L);
     }
 
+    /**
+     *
+     * @param metaObject 元对象
+     */
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.debug("updateFill================================================================");
-        this.updateDateFill("updateTime", metaObject);
-        Object val = getFieldValByName("updateBy", metaObject);
-        if (val != null) {
-            //更新人
-            this.updateByFill("updateBy", metaObject);
+        myUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
+    }
+
+
+    public <T, E extends T> void myInsertFill(MetaObject metaObject, String field, Class<T> fieldType, E fieldVal) {
+        if (!metaObject.hasGetter(field)) {
+            return;
         }
+        Object value = metaObject.getValue(field);
+        if (value != null) {
+            return;
+        }
+        this.strictInsertFill(metaObject, field, fieldType, fieldVal);
+    }
+
+    public <T, E extends T> void myUpdateFill(MetaObject metaObject, String field, Class<T> fieldType, E fieldVal) {
+        if (!metaObject.hasGetter(field)) {
+            return;
+        }
+        Object value = metaObject.getValue(field);
+        if (value != null) {
+            return;
+        }
+        this.strictUpdateFill(metaObject, field, fieldType, fieldVal);
     }
 
 
+//    @Override
+//    public void insertFill(MetaObject metaObject) {
+//        log.debug("insertFill================================================================");
+//        this.strictInsertFill(metaObject, "version", Long.class, 1L);
+//        this.insertDateFill("createTime", metaObject);
+//        this.insertDateFill("updateTime", metaObject);
+//    }
+//
+//    @Override
+//    public void updateFill(MetaObject metaObject) {
+//        log.debug("updateFill================================================================");
+//        this.updateDateFill("updateTime", metaObject);
+//        Object val = getFieldValByName("updateBy", metaObject);
+//        if (val != null) {
+//            //更新人
+//            this.updateByFill("updateBy", metaObject);
+//        }
+//    }
     // 官方已更新setFieldValByName方法为strictInsertFill或fillStrategy等
-    protected void insertDateFill(String field, MetaObject metaObject) {
-        this.strictInsertFill(metaObject, field, Date.class, new Date());
-        this.strictInsertFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
-    }
-
-    @SuppressWarnings(value = {"all"})
-    protected void updateDateFill(String field, MetaObject metaObject) {
-        metaObject.setValue(field, null);
-        this.strictUpdateFill(metaObject, field, Date.class, new Date());
-        this.strictUpdateFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
-        // this.strictUpdateFill(metaObject, field, () -> new Date(), Date.class);
-        // this.strictUpdateFill(metaObject, field, () -> LocalDateTime.now(), LocalDateTime.class);
-    }
-
-    @SuppressWarnings(value = {"all"})
-    protected void updateByFill(String updateBy, MetaObject metaObject) {
-        metaObject.setValue(updateBy, null);
-        this.strictUpdateFill(metaObject, updateBy, String.class, "");
-    }
+//    protected void insertDateFill(String field, MetaObject metaObject) {
+//        this.strictInsertFill(metaObject, field, Date.class, new Date());
+//        this.strictInsertFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
+//    }
+//
+//    @SuppressWarnings(value = {"all"})
+//    protected void updateDateFill(String field, MetaObject metaObject) {
+//        metaObject.setValue(field, null);
+//        this.strictUpdateFill(metaObject, field, Date.class, new Date());
+//        this.strictUpdateFill(metaObject, field, LocalDateTime.class, LocalDateTime.now());
+//        // this.strictUpdateFill(metaObject, field, () -> new Date(), Date.class);
+//        // this.strictUpdateFill(metaObject, field, () -> LocalDateTime.now(), LocalDateTime.class);
+//    }
+//
+//    @SuppressWarnings(value = {"all"})
+//    protected void updateByFill(String updateBy, MetaObject metaObject) {
+//        metaObject.setValue(updateBy, null);
+//        this.strictUpdateFill(metaObject, updateBy, String.class, "");
+//    }
 
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

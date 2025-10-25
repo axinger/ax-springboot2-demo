@@ -11,61 +11,6 @@ import java.lang.reflect.Field;
 
 public class 继承Tests {
 
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface AnimalFlag {
-        String value();
-    }
-
-    interface Animal {
-
-        String CONFIG = "config";
-
-        default String flag() {
-            return "A";
-        }
-
-        String getFlag(); // 改为实例方法
-
-
-        default Class<?> show() {
-            return this.getClass();
-        }
-    }
-
-
-    interface Animal3 {
-        String DOG_FLAG = "DOG_FLAG";
-    }
-
-    //    @AnimalFlag("DOG_FLAG")
-    @AnimalFlag(Animal3.DOG_FLAG)
-    @Data
-    class Dog implements Animal {
-
-        public static final String CONFIG = "DOG_FLAG";
-
-        private String name;
-
-
-        @Override
-        public String flag() {
-            return "B";
-        }
-
-        @Override
-        public String getFlag() {
-            return "B";
-        }
-
-
-    }
-
-    @Data
-    class Cat {
-
-        private String name;
-    }
-
     public void func1(Animal animal) {
         Class<? extends Animal> aClass = animal.getClass();
         System.out.println("aClass = " + aClass);
@@ -169,5 +114,59 @@ public class 继承Tests {
         func3(Dog.class);
 //        func4(Cat.class);// 不可以
 //        func4(Dog.class);
+    }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface AnimalFlag {
+        String value();
+    }
+
+    interface Animal {
+
+        String CONFIG = "config";
+
+        default String flag() {
+            return "A";
+        }
+
+        String getFlag(); // 改为实例方法
+
+
+        default Class<?> show() {
+            return this.getClass();
+        }
+    }
+
+    interface Animal3 {
+        String DOG_FLAG = "DOG_FLAG";
+    }
+
+    //    @AnimalFlag("DOG_FLAG")
+    @AnimalFlag(Animal3.DOG_FLAG)
+    @Data
+    class Dog implements Animal {
+
+        public static final String CONFIG = "DOG_FLAG";
+
+        private String name;
+
+
+        @Override
+        public String flag() {
+            return "B";
+        }
+
+        @Override
+        public String getFlag() {
+            return "B";
+        }
+
+
+    }
+
+    @Data
+    class Cat {
+
+        private String name;
     }
 }

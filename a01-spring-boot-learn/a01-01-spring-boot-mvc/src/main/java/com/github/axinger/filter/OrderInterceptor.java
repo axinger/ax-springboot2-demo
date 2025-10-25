@@ -18,10 +18,11 @@ public class OrderInterceptor implements HandlerInterceptor {
 
     @Autowired
     private UserService userService;
+
     @Override
     public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) throws ServletException, IOException {
         System.out.println("OrderInterceptor===================");
-        log.info("OrderInterceptor,拦截器=="+userService);
+        log.info("OrderInterceptor,拦截器==" + userService);
         return true;
     }
 }

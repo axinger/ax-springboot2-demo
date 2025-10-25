@@ -1,6 +1,5 @@
 package com.github.axinger.filter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,7 @@ public class FilterConfig {
 //        return registrationBean;
 //    }
 
-//    @Autowired
+    //    @Autowired
 //    TestFilter testFilter;
 //
     @Bean

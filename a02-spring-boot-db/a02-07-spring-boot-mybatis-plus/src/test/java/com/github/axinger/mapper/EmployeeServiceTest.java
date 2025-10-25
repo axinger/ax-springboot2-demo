@@ -1,8 +1,9 @@
 package com.github.axinger.mapper;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.github.axinger.domain.EmployeeEntity;
-import com.github.axinger.service.EmployeeService;
+import com.github.axinger.sys.domain.EmployeeEntity;
+import com.github.axinger.sys.mapper.EmployeeMapper;
+import com.github.axinger.sys.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

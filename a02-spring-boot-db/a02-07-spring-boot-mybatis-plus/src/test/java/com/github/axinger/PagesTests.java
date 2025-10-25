@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.axinger.domain.SysUserEntity;
+import com.github.axinger.sys.domain.SysUserEntity;
 import org.junit.jupiter.api.Test;
 
 public class PagesTests {

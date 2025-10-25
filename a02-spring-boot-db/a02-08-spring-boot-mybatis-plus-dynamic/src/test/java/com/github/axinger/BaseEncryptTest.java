@@ -16,6 +16,6 @@ class BaseEncryptTest {
 
     @Test
     void encrypt() {
-        System.out.println("key="+stringEncryptor.encrypt("Abcd#1234"));
+        System.out.println("key=" + stringEncryptor.encrypt("Abcd#1234"));
     }
 }

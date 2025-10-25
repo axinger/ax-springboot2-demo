@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.domain.SysPersonEntity;
-import com.github.axinger.service.SysPersonService;
+import com.github.axinger.sys.domain.SysPersonEntity;
+import com.github.axinger.sys.service.SysPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

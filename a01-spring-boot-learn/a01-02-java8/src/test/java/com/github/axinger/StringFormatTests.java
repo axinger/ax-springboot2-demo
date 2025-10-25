@@ -24,7 +24,7 @@ public class StringFormatTests {
     @Test
     public void test2() {
         System.out.println("右对齐=" + String.format("%5s", "A"));
-        System.out.println("右对齐=" + String.format("%-5s", "A")+"<<<");
+        System.out.println("右对齐=" + String.format("%-5s", "A") + "<<<");
     }
 
     @Test

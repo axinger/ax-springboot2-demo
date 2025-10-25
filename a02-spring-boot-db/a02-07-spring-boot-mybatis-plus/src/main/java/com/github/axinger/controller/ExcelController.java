@@ -1,7 +1,7 @@
 package com.github.axinger.controller;
 
-import com.github.axinger.domain.SysPersonEntity;
-import com.github.axinger.mapper.SysPersonMapper;
+import com.github.axinger.sys.domain.SysPersonEntity;
+import com.github.axinger.sys.mapper.SysPersonMapper;
 import com.github.axinger.util.CommonResultHandler;
 import com.github.axinger.util.StreamExportUtil;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class ExcelController {
     private SysPersonMapper sysPersonMapper;
 
 
-    /// 数据库 流失,导出excel
+    /// 数据库 流失,
     @GetMapping("/utilExport")
     public void utilExport(HttpServletResponse response) throws IOException {
         System.out.println("response = " + response.getOutputStream());

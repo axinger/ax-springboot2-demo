@@ -21,7 +21,7 @@ public class JsonProperties {
      * LocalTime格式
      */
     private String localTimeFormat = "HH:mm:ss";
-    
+
     /**
      * 是否忽略未知属性
      */

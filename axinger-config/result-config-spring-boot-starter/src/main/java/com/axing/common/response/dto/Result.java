@@ -39,21 +39,6 @@ public class Result<T> implements Serializable {
     @Schema(title = "拓展字段", description = "其他字段")
     private Map<String, Object> params;
 
-    // 动态属性,不解析, 方法重载,和params的set方法名一样
-    @com.fasterxml.jackson.annotation.JsonAnySetter
-    public Result<T> setParams(String key, Object value) {
-        if (params == null) {
-            params = new HashMap<>();
-        }
-        params.put(key, value);
-        return this;
-    }
-
-    @com.fasterxml.jackson.annotation.JsonAnyGetter
-    public Map<String, Object> getParams() {
-        return params;
-    }
-
     public static <T> Result<T> success(T data) {
         return Result.<T>builder()
                 .code(200)
@@ -82,6 +67,20 @@ public class Result<T> implements Serializable {
         return Result.fail(400, msg);
     }
 
+    // 动态属性,不解析, 方法重载,和params的set方法名一样
+    @com.fasterxml.jackson.annotation.JsonAnySetter
+    public Result<T> setParams(String key, Object value) {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        params.put(key, value);
+        return this;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonAnyGetter
+    public Map<String, Object> getParams() {
+        return params;
+    }
 
     public Boolean getSuccess() {
         return (code != null && code >= 200 && code < 300);
