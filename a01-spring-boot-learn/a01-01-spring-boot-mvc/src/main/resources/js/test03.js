@@ -7,7 +7,7 @@ function multiply(a, b) {
 }
 
 function add(params) {
-    console.log('参数=' + JSON.stringify(params))
+    console.log('参数map=' + JSON.stringify(params))
     // 从params对象中根据key取值
     const a = params.a || 0;
     const b = params.b || 0;
