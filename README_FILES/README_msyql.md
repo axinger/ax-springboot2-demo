@@ -26,6 +26,9 @@
 ```
 
 # 二.语法
+```text
+mysql不存储boolean,默认为0是false,非0是true
+```
 
 ## 1.建表
 

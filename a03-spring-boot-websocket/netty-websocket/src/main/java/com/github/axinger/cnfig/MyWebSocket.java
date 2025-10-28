@@ -7,16 +7,15 @@ import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.MultiValueMap;
-import org.yeauty.annotation.*;
 import org.yeauty.pojo.Session;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
-@ServerEndpoint(path = "/plc/{userId}", port = "1200")
-@Configuration
 @Slf4j
+@Configuration
+@org.yeauty.annotation.ServerEndpoint(path = "/plc/{userId}", port = "1200")
 public class MyWebSocket {
 
     private static final Map<String, Session> sessionMap = new ConcurrentHashMap<>();
@@ -36,13 +35,13 @@ public class MyWebSocket {
         }
     }
 
-    @BeforeHandshake
+    @org.yeauty.annotation.BeforeHandshake
     public void handshake(Session session,
                           io.netty.handler.codec.http.HttpHeaders headers,
-                          @RequestParam(name = "age") String age,
-                          @RequestParam MultiValueMap<String, Object> reqMap,
-                          @PathVariable(name = "userId") String userId,
-                          @PathVariable Map<String, Object> pathMap) {
+                          @org.yeauty.annotation.RequestParam(name = "age") String age,
+                          @org.yeauty.annotation.RequestParam MultiValueMap<String, Object> reqMap,
+                          @org.yeauty.annotation.PathVariable(name = "userId") String userId,
+                          @org.yeauty.annotation.PathVariable Map<String, Object> pathMap) {
         System.out.println("1111111111111111111111");
 
         session.setSubprotocols("stomp");
@@ -61,15 +60,14 @@ public class MyWebSocket {
 
     }
 
-    @OnOpen
+    @org.yeauty.annotation.OnOpen
     public void onOpen(
             Session session,
             io.netty.handler.codec.http.HttpHeaders headers,
-            @RequestParam(name = "age") String age,
-            @RequestParam MultiValueMap<String, Object> reqMap,
-            @PathVariable(name = "userId") String userId,
-            @PathVariable Map<String, Object> pathMap
-    ) {
+            @org.yeauty.annotation.RequestParam(name = "age") String age,
+            @org.yeauty.annotation.RequestParam MultiValueMap<String, Object> reqMap,
+            @org.yeauty.annotation.PathVariable(name = "userId") String userId,
+            @org.yeauty.annotation.PathVariable Map<String, Object> pathMap) {
         System.out.println("222222222222222222");
         System.out.println("headers = " + headers);
         System.out.println("token = " + headers.get("token"));
@@ -85,19 +83,21 @@ public class MyWebSocket {
 
     }
 
-    @OnClose
+    @org.yeauty.annotation.OnClose
     public void onClose(Session session) {
         System.out.println("one connection closed");
     }
 
-    @OnError
+    @org.yeauty.annotation.OnError
     public void onError(Session session, Throwable throwable) {
 
         log.error(throwable.getMessage());
     }
 
-    @OnMessage
-    public void onMessage(Session session, @PathVariable(name = "userId") String userId, String message) {
+    @org.yeauty.annotation.OnMessage
+    public void onMessage(Session session,
+                          @org.yeauty.annotation.PathVariable(name = "userId") String userId,
+                          String message) {
         System.out.println("onMessage=================");
         System.out.println("userId = " + userId);
         System.out.println(message);
@@ -112,7 +112,7 @@ public class MyWebSocket {
     }
 
 
-    @OnBinary
+    @org.yeauty.annotation.OnBinary
     public void onBinary(Session session, byte[] bytes) {
         for (byte b : bytes) {
             System.out.println("onBinary = " + b);
@@ -120,7 +120,7 @@ public class MyWebSocket {
         session.sendBinary(bytes);
     }
 
-    @OnEvent
+    @org.yeauty.annotation.OnEvent
     public void onEvent(Session session, Object evt) {
         if (evt instanceof IdleStateEvent idleStateEvent) {
             switch (idleStateEvent.state()) {

@@ -1,5 +1,5 @@
 server:
-  port: 12004
+  port: 10104
 
 spring:
   application:

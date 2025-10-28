@@ -1,11 +1,15 @@
 package com.github.axinger;
 
+import com.github.axinger.annotation.LogListener;
 import com.github.axinger.controller.TestController;
 import com.github.axinger.service.LogService1;
 import com.github.axinger.service.UserService;
 import com.github.axinger.service2.LogService2;
 import com.github.axinger.service2.PersonService;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.junit.jupiter.api.Test;
+import org.springframework.aop.framework.AopProxyUtils;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -56,5 +60,37 @@ class A01By18AopApplicationTest {
     @Test
     void test3() {
         logService2.log("jim");
+    }
+
+
+    @Test
+    void test_transaction() {
+
+        // isAopProxy(Object obj) ： 判断对象是否是 AOP 代理对象；
+
+        boolean isAopProxy = org.springframework.aop.support.AopUtils.isAopProxy(logService2);
+        System.out.println("Is AOP proxy: " + isAopProxy);
+
+        //判断是否是 JDK 动态代理（基于接口）；
+        AopUtils.isJdkDynamicProxy(logService2);
+
+        //判断是否是 CGLIB 代理（基于子类）
+        AopUtils.isCglibProxy(logService2);
+        // 替代方案2：检查代理标记接口
+        boolean isProxy = logService2 instanceof org.springframework.aop.SpringProxy;
+        System.out.println("Implements SpringProxy: " + isProxy);
+
+        //获取真实目标类：getTargetClass
+        Class<?> targetClass = AopUtils.getTargetClass(logService2);
+
+        //想判断一个方法是不是被 AOP 增强了（有没有对应的切面通知）
+//        AopUtils.isAspectJAdviceMethod(logService2.getClass().getMethods()[0]);
+//
+//        // 切入点：匹配UserService的所有方法@Pointcut("execution(* com.example.service.UserService.*(..))")public void userServicePointcut {}
+//// 前置通知@Before("userServicePointcut")public void beforeLog(JoinPoint joinPoint) {
+//        Method method = ((MethodSignature) joinPoint.getSignature).getMethod;// 判断当前方法是不是切面通
+
+        //findAnnotation 会 沿着继承链和接口链递归查找 ，这在 “子类继承父类方法” 的场景中特别有用。
+//        AopUtils.findAnnotation(logService2.getClass(), LogListener.class);
     }
 }

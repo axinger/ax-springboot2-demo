@@ -22,4 +22,18 @@
         <module>a4404-modbus</module>
     </modules>
 
+<!--    <dependencyManagement>-->
+
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.plc4x</groupId>-->
+<!--                <artifactId>plc4j-driver-all</artifactId>-->
+<!--                <version>0.13.1</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>runtime</scope>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+
+<!--    </dependencyManagement>-->
+
 </project>

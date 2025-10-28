@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@MapperScan(value = {"com.github.axinger.mapper"})
 @EnableConfigurationProperties(value = {
         TenantProperties.class,
 })

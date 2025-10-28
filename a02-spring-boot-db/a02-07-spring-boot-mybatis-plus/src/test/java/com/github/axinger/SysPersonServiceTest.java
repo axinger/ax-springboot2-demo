@@ -44,6 +44,13 @@ class SysPersonServiceTest {
     private SqlSessionFactory sqlSessionFactory;
 
     @Test
+    void test_allList() {
+
+        List<SysPersonEntity> list = sysPersonService.list();
+        System.out.println("list = " + list);
+
+    }
+    @Test
     void test_新增list() {
         String jsonList = """
                 [
