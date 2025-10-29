@@ -77,36 +77,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
         </dependency>
-        <!-- GraalVM JS 引擎 -->
-        <dependency>
-            <groupId>org.graalvm.js</groupId>
-            <artifactId>js</artifactId>
-            <version>22.3.0</version>
-        </dependency>
-
-        <!-- GraalVM SDK -->
-        <dependency>
-            <groupId>org.graalvm.sdk</groupId>
-            <artifactId>graal-sdk</artifactId>
-            <version>22.3.0</version>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.graalvm.js</groupId>-->
-<!--            <artifactId>js</artifactId>-->
-<!--            <version>23.0.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.graalvm.js</groupId>-->
-<!--            <artifactId>js-scriptengine</artifactId>-->
-<!--            <version>23.1.0</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.graalvm.regex</groupId>-->
-<!--            <artifactId>regex</artifactId>-->
-<!--&lt;!&ndash;            <version>23.1.1</version>&ndash;&gt;-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -124,16 +94,6 @@
             <version>2.12.3</version> <!-- 请根据需求更改为所需版本 -->
         </dependency>
     </dependencies>
-
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>org.graalvm.sdk</groupId>-->
-<!--                <artifactId>graal-sdk</artifactId>-->
-<!--                <version>23.1.0</version>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
 
 
     <!--指定运行环境,每次切换需要更新一下maven,有缓存-->

@@ -96,10 +96,7 @@ public class JSTests {
                 Value result = add2.execute(proxyArray);
                 System.out.println("Java端获取的add2结果: " + result.asInt());
             }
-
-
         }
     }
-
 
 }

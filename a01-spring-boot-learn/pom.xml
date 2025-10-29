@@ -46,6 +46,7 @@
         <module>a01-26-b</module>
         <module>a01-19-okhttp</module>
         <module>a01-02-apache-commons</module>
+        <module>a01-27-script</module>
     </modules>
 
 

@@ -1,5 +1,8 @@
 package com.github.axinger;
 
+import cn.hutool.core.io.resource.ResourceUtil;
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Value;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileCopyUtils;
@@ -7,44 +10,44 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.*;
 
-public class Python脚本Tests {
+public class PythonTests {
 
     /*
 
 在 Spring Boot 中，ResourceUtils.getFile() 和 ClassPathResource 获取文件路径的方式有以下区别：
 
-1. ResourceUtils.getFile("classpath:script.py")
+1. ResourceUtils.getFile("classpath:test01.py")
 返回的是标准的 java.io.File 对象
 
 getAbsolutePath() 返回的是本地文件系统的绝对路径（Windows 下带盘符）
 
-示例输出：D:\code\...\target\classes\script.py
+示例输出：D:\code\...\target\classes\test01.py
 
 缺点：当应用打包为 JAR 文件运行时，这种方法会失败，因为 JAR 中的资源不是独立的文件
 
-2. new ClassPathResource("script.py")
+2. new ClassPathResource("test01.py")
 是 Spring 提供的专门用于类路径资源访问的类
 
 getURL().getPath() 返回的是 URL 编码的路径（以 / 开头）
 
-示例输出：/D:/code/.../target/classes/script.py
+示例输出：/D:/code/.../target/classes/test01.py
 
 优点：在 JAR 包中也能工作，因为它不依赖于文件系统路径
      */
     @Test
-    public void testPythonTests() {
+    public void test01() {
         // 要传递的两个数字参数
         String num1 = "10";
         String num2 = "3";
 
         try {
             /// 可用
-            File file = ResourceUtils.getFile("classpath:script.py");
+            File file = ResourceUtils.getFile("classpath:py/test01.py");
             String path1 = file.getAbsolutePath();
             System.out.println("path1 = " + path1);
 
             /// 不可用
-            ClassPathResource resource = new ClassPathResource("script.py");
+            ClassPathResource resource = new ClassPathResource("py/test01.py");
             String path = resource.getURL().getPath();
             System.out.println("path = " + path);
 
@@ -53,7 +56,7 @@ getURL().getPath() 返回的是 URL 编码的路径（以 / 开头）
             System.out.println("path2 = " + path2);
 
             // 创建ProcessBuilder执行Python脚本
-            ProcessBuilder pb = new ProcessBuilder("python", path2, num1, num2);
+            java.lang.ProcessBuilder pb = new java.lang.ProcessBuilder("python", path2, num1, num2);
             Process process = pb.start();
 
             // 读取Python脚本的输出
@@ -76,26 +79,14 @@ getURL().getPath() 返回的是 URL 编码的路径（以 / 开头）
         }
     }
 
-    /*
-1. JAR 包内的资源不是独立文件
-当应用打包为 JAR 后：
-
-所有资源文件（如 script.py）会被压缩到 JAR 包内部，不再是文件系统中的独立文件。
-
-此时通过 ClassPathResource.getURL().getPath() 获取的路径（如 /D:/.../app.jar!/script.py）是无效的：
-
-ProcessBuilder 无法直接访问 JAR 内部的资源路径。
-
-操作系统也不认识这种嵌入在 JAR 中的路径格式。
-     */
 
     @Test
-    void test2() {
+    void test02() {
         String num1 = "10";
         String num2 = "3";
 
         try {
-            ClassPathResource resource = new ClassPathResource("script.py");
+            ClassPathResource resource = new ClassPathResource("test01.py");
 
             // 创建临时文件
             File tempFile = File.createTempFile("script", ".py");
@@ -125,6 +116,27 @@ ProcessBuilder 无法直接访问 JAR 内部的资源路径。
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test03() {
+// 创建支持多语言的上下文
+//        try (Context context = Context.create("python")) {
+//            Value result = context.eval("python", "2 + 3 * 4");
+//            System.out.println(result.asInt()); // 14
+//
+//        }
+        String data = ResourceUtil.readUtf8Str("py/test02.py");
+        try (Context context = Context.create("python")) {
+            context.eval("python", data);
+            Value value1 = context.getBindings("python").getMember("add");
+            if (value1 != null && value1.canExecute()) {
+                Value sumResult = value1.execute(1, 2);
+                System.out.println("Java端获取的,add:结果: " + sumResult.asInt());
+            }
+        } catch (Exception e) {
+            System.err.println("执行错误 = " + e);
         }
     }
 }

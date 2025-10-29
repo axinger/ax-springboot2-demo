@@ -31,7 +31,7 @@ def test1():
         except ValueError as e:
             print(f"错误: 参数必须是数字 ({e})")
     else:
-        print("用法: python script.py <数字1> <数字2>")
+        print("用法: python test01.py <数字1> <数字2>")
 
 if __name__ == "__main__":
     test1()
