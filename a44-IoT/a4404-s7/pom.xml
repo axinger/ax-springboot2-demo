@@ -11,6 +11,10 @@
 
     <artifactId>a4404-s7</artifactId>
 
+    <properties>
+        <plc4x.version>0.12.0</plc4x.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,40 +37,40 @@
             <scope>test</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.plc4x</groupId>-->
-<!--            <artifactId>plc4j-driver-s7</artifactId>-->
-<!--            <version>0.13.1</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4j-driver-s7</artifactId>
+            <version>${plc4x.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.plc4x</groupId>-->
-<!--            <artifactId>plc4j-driver-opcua</artifactId>-->
-<!--            <version>0.13.1</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.plc4x</groupId>-->
-<!--            <artifactId>plc4x-opcua-server</artifactId>-->
-<!--            <version>0.13.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.plc4x</groupId>-->
-<!--            <artifactId>plc4j-driver-modbus</artifactId>-->
-<!--            <version>0.13.1</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.plc4x</groupId>-->
-<!--            <artifactId>plc4j-plc4x-server</artifactId>-->
-<!--            <version>0.13.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.plc4x</groupId>-->
-<!--            <artifactId>plc4x-protocols-mqtt</artifactId>-->
-<!--            <version>0.13.1</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4j-driver-opcua</artifactId>
+            <version>${plc4x.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4x-opcua-server</artifactId>
+            <version>${plc4x.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4j-driver-modbus</artifactId>
+            <version>${plc4x.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4j-plc4x-server</artifactId>
+            <version>${plc4x.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4x-protocols-mqtt</artifactId>
+            <version>${plc4x.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
