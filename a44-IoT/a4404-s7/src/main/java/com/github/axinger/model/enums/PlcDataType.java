@@ -1,4 +1,4 @@
-package com.github.axinger.model.plc.api;
+package com.github.axinger.model.enums;
 
 import lombok.Getter;
 

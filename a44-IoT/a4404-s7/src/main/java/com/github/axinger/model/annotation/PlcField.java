@@ -1,4 +1,6 @@
-package com.github.axinger.model.plc.api;
+package com.github.axinger.model.annotation;
+
+import com.github.axinger.model.enums.PlcDataType;
 
 import java.lang.annotation.*;
 

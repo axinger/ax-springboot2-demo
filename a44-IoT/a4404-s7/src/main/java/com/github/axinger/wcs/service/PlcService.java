@@ -1,7 +1,7 @@
 package com.github.axinger.wcs.service;
 
 
-import com.github.axinger.model.plc.api.PlcDataType;
+import com.github.axinger.model.enums.PlcDataType;
 
 public interface PlcService {
 
