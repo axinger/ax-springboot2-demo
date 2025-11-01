@@ -71,6 +71,12 @@
             <artifactId>plc4x-protocols-mqtt</artifactId>
             <version>${plc4x.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

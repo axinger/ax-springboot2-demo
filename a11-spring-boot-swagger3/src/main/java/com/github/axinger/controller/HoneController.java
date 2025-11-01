@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-@Api(tags = "tags值", value = "value不显示")
+@Tag(name =  "tags值", value = "value不显示")
 @RestController("")
 public class HoneController {
 
