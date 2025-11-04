@@ -1,7 +1,6 @@
-package com.github.axinger.api.call.payment;
+package com.github.axinger.api;
 
 import com.axing.common.response.dto.Result;
-import com.github.axinger.api.call.payment.config.PaymentOrderConfig;
 import com.github.axinger.api.dto.PaymentDTO;
 import com.github.axinger.api.dto.PaymentVO;
 import io.swagger.v3.oas.annotations.Operation;

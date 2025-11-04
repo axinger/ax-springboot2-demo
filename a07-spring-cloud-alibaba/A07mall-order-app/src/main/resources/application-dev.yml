@@ -42,3 +42,13 @@ springdoc:
 #      packages-to-scan: com.github.axinger
 ##  default-flat-param-object: false
 
+axinger:
+  doc:
+    title: nacos案例
+    description: 123
+    version: v1234
+    websiteName: 11111
+    websiteUrl: 11111
+  filter:
+    blacklist: /order/**
+    whitelist: /order/1,/order/2

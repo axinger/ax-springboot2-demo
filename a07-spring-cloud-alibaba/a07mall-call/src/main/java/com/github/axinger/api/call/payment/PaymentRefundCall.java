@@ -1,5 +1,8 @@
 package com.github.axinger.api.call.payment;
 
+import com.github.axinger.api.call.payment.config.PaymentOrderConfig;
+import com.github.axinger.api.call.payment.config.PaymentRefundCallConfig;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
@@ -8,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
+@RefreshScope
 @Component
 @FeignClient(
         value = "PaymentOrderApi2",
         contextId = "PaymentOrderApi2",
-        url = "http://127.0.0.1:10708/payment/refund/count2",
-        configuration = PaymentOrderConfig.class)
+        url = "${callApi.payment.refund.url}",
+        configuration = PaymentRefundCallConfig.class)
 @Import(PaymentOrderConfig.class)
-public interface PaymentCall2 {
+public interface PaymentRefundCall {
 
     @GetMapping
-//    @GetMapping("http://127.0.0.1:10708/payment/refund/count2")
-    Map<String, Object> count(@RequestParam("id") String id);
+    Map<String, Object> refund(@RequestParam("id") String id);
 }

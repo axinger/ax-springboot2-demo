@@ -20,8 +20,8 @@ public class RefundController {
 
 
     @Operation(summary = "支付系统,退款")
-    @GetMapping(value = "/count/{id}")
-    public Map<String, Object> payment(@PathVariable("id") String id) {
+    @GetMapping(value = "/count")
+    public Map<String, Object> payment(@RequestParam("id") String id) {
         Map<String, Object> map = new HashMap<>(16);
         map.put("payment_id", id);
         map.put("payment_name", "支付系统,退款");
