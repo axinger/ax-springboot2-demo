@@ -1,6 +1,5 @@
 package com.github.axinger.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.io.Serializable;
@@ -12,13 +11,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class User implements Serializable {
+public class User2 implements Serializable {
 
     private Integer id;
     private String name;
     private Integer age;
 
-     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
 
