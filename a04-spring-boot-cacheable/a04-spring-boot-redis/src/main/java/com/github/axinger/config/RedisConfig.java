@@ -60,22 +60,70 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(factory);
 
         // 序列号key value
-        redisTemplate.setKeySerializer(RedisSerializer.string());
-        redisTemplate.setValueSerializer(valueSerializer());
+        RedisSerializer<String> key = RedisSerializer.string();
+        RedisSerializer<Object> value = MyRedisSerializer.jackson2JsonRedisSerializer();
+//        RedisSerializer<Object> value = jackson2JsonRedisSerializer();
 
-        redisTemplate.setHashKeySerializer(RedisSerializer.string());
-        redisTemplate.setHashValueSerializer(valueSerializer());
-
-
-//        redisTemplate.setKeySerializer(new StringRedisSerializer());
-//        redisTemplate.setValueSerializer(RedisSerializer.byteArray());
-//
-//        // hash
-//        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-//        redisTemplate.setHashValueSerializer(RedisSerializer.byteArray());
+        redisTemplate.setKeySerializer(key);
+        redisTemplate.setValueSerializer(value);
+        // hash
+        redisTemplate.setHashKeySerializer(key);
+        redisTemplate.setHashValueSerializer(value);
 
         redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
 
+    @Bean({"myJsonRedisTemplate"})
+    public RedisTemplate<?, ?> myJsonRedisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(factory);
+        // 序列号key value
+        RedisSerializer<String> key = RedisSerializer.string();
+        /// 含有 "@class
+        RedisSerializer<Object> value = RedisSerializer.json();
+
+        redisTemplate.setKeySerializer(key);
+        redisTemplate.setValueSerializer(value);
+        // hash
+        redisTemplate.setHashKeySerializer(key);
+        redisTemplate.setHashValueSerializer(value);
+
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+
+    @Bean({"myStringRedisTemplate"})
+    public RedisTemplate<String, String> stringRedisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, String> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        // 全部使用 String 序列化器
+        // 序列号key value
+        RedisSerializer<String> key = RedisSerializer.string();
+
+        template.setKeySerializer(key);
+        template.setValueSerializer(key);
+        // hash
+        template.setHashKeySerializer(key);
+        template.setHashValueSerializer(key);
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    @Bean(name = "bytesRedisTemplate")
+    public RedisTemplate<String, byte[]> bytesRedisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, byte[]> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(connectionFactory);
+        // 设置key和value的序列化规则
+        RedisSerializer<String> key = RedisSerializer.string();
+        RedisSerializer<byte[]> value = RedisSerializer.byteArray();
+
+        redisTemplate.setKeySerializer(key);
+        redisTemplate.setValueSerializer(value);
+        // hash
+        redisTemplate.setHashKeySerializer(key);
+        redisTemplate.setHashValueSerializer(value);
+        redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
 
@@ -103,7 +151,7 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisSerializer<Object> valueSerializer() {
+    public RedisSerializer<Object> jackson2JsonRedisSerializer() {
 
 //        ObjectMapper objectMapper = new CommonObjectMapper(jsonProperties);
 //
@@ -152,27 +200,9 @@ public class RedisConfig {
                         .build();
 
         // 创建一个可用于监听Redis流的消息监听容器。
-        StreamMessageListenerContainer<String, ObjectRecord<String, String>> listenerContainer =
-                StreamMessageListenerContainer.create(connectionFactory, options);
 
-        return listenerContainer;
+        return StreamMessageListenerContainer.create(connectionFactory, options);
     }
 
-
-    @Bean(name = "bytesRedisTemplate")
-    public RedisTemplate<String, byte[]> bytesRedisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, byte[]> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory);
-        // 设置key和value的序列化规则
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(RedisSerializer.byteArray());
-
-        // hash
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(RedisSerializer.byteArray());
-
-        redisTemplate.afterPropertiesSet();
-        return redisTemplate;
-    }
 
 }

@@ -8,6 +8,7 @@ import com.github.axinger.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,42 +24,15 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 public class A04RedisApplicationTest {
 
-    private static final String SERIAL_NUM = "order:serialNo:";
+
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
-
-    @Autowired
+    @Qualifier("myJsonRedisTemplate")
     private RedisTemplate<String, User> redisTemplateUser;
 
     @Autowired
     private RedisTemplate<String, Order> redisTemplateOrder;
 
-    @Test
-    void test() {
-
-//        Object peron = redisService.getCacheObject("peron");
-//        System.out.println("peron = " + peron);
-
-        final JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", "jim");
-
-        this.redisTemplate.opsForValue().set("demo:dog1", jsonObject, 1, TimeUnit.HOURS);
-        this.redisTemplate.opsForValue().set("demo:dog2", jsonObject, 1, TimeUnit.HOURS);
-
-        Object o = this.redisTemplate.opsForValue().get("demo:dog1");
-        System.out.println("o = " + o);
-        System.out.println("o = " + o.getClass());
-        if (o instanceof JSONObject jsonObject1) {
-            String name = jsonObject1.getString("name");
-            System.out.println("name = " + name);
-        }
-
-        if (o instanceof Map<?, ?> jsonObject1) {
-            Object name = jsonObject1.get("name");
-            System.out.println("name222 = " + name);
-        }
-    }
 
     @Test
     void test1_redisTemplateUser() {
@@ -76,7 +50,8 @@ public class A04RedisApplicationTest {
                 .books(List.of(book))
                 .build();
 
-        final String key = "test:user:1:User";
+        final String key = "test:bean:user:1:User";
+        redisTemplateUser.delete(key);
         this.redisTemplateUser.opsForValue().set(key, user, 1, TimeUnit.HOURS);
 
         // 设置键的字符串值并返回其旧值
@@ -90,7 +65,7 @@ public class A04RedisApplicationTest {
 
 
         final User user2 = this.redisTemplateUser.opsForValue().get(key);
-
+//
         System.out.println("user2 = " + user2);
     }
 
@@ -103,17 +78,7 @@ public class A04RedisApplicationTest {
         System.out.println("user = " + user);
     }
 
-    @Test
-    void test_json() {
-        final Object o = this.redisTemplate.opsForValue().get("test:json:user.id");
-        System.out.println("o = " + o);
-    }
 
-    @Test
-    void test_get() {
-        final Object o = this.redisTemplate.opsForValue().get("user:name");
-        System.out.println("o = " + o);
-    }
 
     @Test
     void test_Cacheable() {
@@ -125,62 +90,6 @@ public class A04RedisApplicationTest {
         return "我的jim" + id;
     }
 
-    @Test
-    void test_expire() {
-
-        final String key = "test:expire:1:Map";
-        this.redisTemplate.opsForValue().set(key, "1", 1, TimeUnit.HOURS);
-        this.redisTemplate.expire(key, 5, TimeUnit.SECONDS);
-    }
-
-    /**
-     * 自增流水号
-     */
-    @Test
-    void orderSerialNo() {
-        for (int i = 0; i < 100; i++) {
-            testNum();
-        }
-    }
-
-    void testNum() {
-        LocalDateTime dateTime = LocalDateTime.now();
-        dateTime = dateTime.plusDays(1);
-        final String currentDate = LocalDateTimeUtil.format(dateTime, "yyyy-MM-dd");
-        String key = SERIAL_NUM + currentDate;
-        // 过期时间 60*60*24
-        long incr = redisTemplate.opsForValue().increment(key, 1);
-        // 左对齐
-        String value = StrUtil.padPre(String.valueOf(incr), 6, "0");
-        // 然后把 时间戳和优化后的 ID 拼接
-        String code = StrUtil.format("{}-{}", currentDate, value);
-        System.out.println("code = " + code);
-    }
-
-    @Test
-    public void testOrder() {
-        final String key = "test-order:1";
-        Order order = Order.builder()
-                .id("1")
-                .name("jim")
-                .dateTime(LocalDateTime.now())
-                .build();
-        redisTemplate.opsForValue().set(key, order);
-    }
-
-    @Test
-    public void testOrder2() {
-        final String key = "test-order:1";
-
-        Object o = redisTemplate.opsForValue().get(key);
-        System.out.println("o = " + o);
-        Class<?> aClass = o.getClass();
-        System.out.println("aClass = " + aClass);
-
-        if (o instanceof Order order) {
-            System.out.println("order = " + order);
-        }
-    }
 
     @Test
     public void testOrder21() {

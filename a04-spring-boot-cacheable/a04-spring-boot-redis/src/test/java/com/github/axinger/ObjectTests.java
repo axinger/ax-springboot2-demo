@@ -1,9 +1,13 @@
 package com.github.axinger;
 
 
+import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.axinger.model.Order;
 import com.github.axinger.model.User;
+import com.github.axinger.util.JsonRedisUtil;
 import com.github.axinger.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -12,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +34,9 @@ public class ObjectTests {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private JsonRedisUtil jsonRedisUtil;
 
     @Test
     void test1() {
@@ -93,4 +102,84 @@ public class ObjectTests {
             }
         }
     }
+
+
+    @Test
+    void test2() {
+
+        final User.Book book = User.Book.builder()
+                .id(1)
+                .name("海底两万里")
+                .build();
+
+        final User user = User.builder()
+                .id(1)
+                .name("jim")
+                .age(21)
+                .date(new Date())
+                .updateTime(LocalDateTime.now())
+                .books(List.of(book))
+                .build();
+
+        final String key = "test:json:user:1:User";
+        jsonRedisUtil.delete(key);
+        jsonRedisUtil.set(key, user, Duration.ofHours(1));
+
+
+        User user1 = jsonRedisUtil.get(key, User.class);
+        System.out.println("user1 = " + user1);
+    }
+
+
+    /**
+     * 自增流水号
+     */
+    @Test
+    void orderSerialNo() {
+        for (int i = 0; i < 100; i++) {
+            testNum();
+        }
+    }
+
+
+    private static final String SERIAL_NUM = "order:serialNo:";
+    void testNum() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        dateTime = dateTime.plusDays(1);
+        final String currentDate = LocalDateTimeUtil.format(dateTime, "yyyy-MM-dd");
+        String key = SERIAL_NUM + currentDate;
+        // 过期时间 60*60*24
+        long incr = redisTemplate.opsForValue().increment(key, 1);
+        // 左对齐
+        String value = StrUtil.padPre(String.valueOf(incr), 6, "0");
+        // 然后把 时间戳和优化后的 ID 拼接
+        String code = StrUtil.format("{}-{}", currentDate, value);
+        System.out.println("code = " + code);
+    }
+
+    @Test
+    public void testOrder() {
+        final String key = "test-order:1";
+        Order order = Order.builder()
+                .id("1")
+                .name("jim")
+                .dateTime(LocalDateTime.now())
+                .build();
+        redisTemplate.opsForValue().set(key, order);
+    }
+
+    @Test
+    public void testOrder2() {
+        final String key = "test-order:1";
+
+        Object o = redisTemplate.opsForValue().get(key);
+        System.out.println("o = " + o);
+        Class<?> aClass = o.getClass();
+        System.out.println("aClass = " + aClass);
+
+        if (o instanceof Order order) {
+            System.out.println("order = " + order);
+        }
+    }
+
 }
